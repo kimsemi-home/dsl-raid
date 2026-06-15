@@ -37,12 +37,15 @@ Do not use:
 
 Once the Rust workspace and viewer exist, required checks should be:
 
+- GitHub Actions workflow lint
 - Rust fmt, clippy, test
 - `dslraid validate`
 - `dslraid compose`
 - `dslraid project`
 - `dslraid render`
 - `dslraid trace import`
+- `dslraid coverage build`
+- `dslraid coverage check`
 - `dslraid diff`
 - `dslraid artifact verify`
 - `dslraid compat check`
@@ -69,6 +72,8 @@ compose --check
 project --check
 render --check
 trace import --check
+coverage build --check
+coverage check
 diff --check
 artifact verify
 compat check

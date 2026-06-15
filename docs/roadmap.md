@@ -165,7 +165,7 @@ Exit criteria:
 Goal: make multi-FSM architecture exploration unique.
 
 - implement union composition
-- implement lazy product FSM composition
+- implement lazy reachable product FSM composition MVP
 - implement synchronized product composition
 - implement projection views
 - avoid eager full Cartesian product materialization by default
@@ -196,7 +196,9 @@ Goal: compare designed behavior to observed behavior.
 - implement `dslraid trace import logs/run-123.jsonl`
 - produce runtime trace JSON and validate it against the trace schema
 - implement `dslraid trace check` for basic transition conformance
-- produce coverage overlay JSON
+- produce trace-derived coverage overlay JSON
+- implement `dslraid coverage build`
+- implement `dslraid coverage check`
 - show executed and unexecuted transitions
 - show transition failure rates
 - connect runtime events through source maps

@@ -123,18 +123,22 @@ cargo run -p dslraid-cli -- codegen examples/runscope/runscope.raid.json --targe
 cargo run -p dslraid-cli -- export mermaid examples/runscope/runscope.raid.json
 cargo run -p dslraid-cli -- diff base.json head.json
 cargo run -p dslraid-cli -- query examples/runscope/runscope.raid.json 'kind=transition and tested=false'
+cargo run -p dslraid-cli -- query examples/runscope/runscope.raid.json 'kind in [state,transition] and generated=false'
+cargo run -p dslraid-cli -- compose examples/runscope/runscope.raid.json --materialize reachable --format json
 cargo run -p dslraid-cli -- trace import examples/runscope/run-002.trace.jsonl --design-ir examples/runscope/runscope.raid.json
 cargo run -p dslraid-cli -- trace check examples/runscope/run-001.trace.json --design-ir examples/runscope/runscope.raid.json
+cargo run -p dslraid-cli -- coverage build --trace examples/runscope/run-001.trace.json --design-ir examples/runscope/runscope.raid.json
+cargo run -p dslraid-cli -- coverage check examples/runscope/run-001.coverage.json --design-ir examples/runscope/runscope.raid.json
 cargo run -p dslraid-cli -- artifact verify examples/runscope/runscope.raid.json
 cargo run -p dslraid-cli -- compat check examples/runscope/runscope.raid.json
 cargo run -p dslraid-cli -- quality
 ```
 
-MVP implementations now exist for no-op version migration, simple IR queries,
-runtime trace import, and runtime trace conformance checks. Planned but not yet
-implemented as full product features: non-trivial migrations, richer query
-language semantics, lazy product composition materialization beyond the current
-diagnostic summary, WASM packaging, and WebGL rendering.
+MVP implementations now exist for no-op version migration, richer IR queries,
+lazy reachable composition materialization, runtime trace import/check, and
+trace-derived coverage overlays. Planned but not yet implemented as full
+product features: non-trivial migrations, synchronized product semantics,
+coverage-aware viewer overlays, WASM packaging, and WebGL rendering.
 
 ## Viewer
 
@@ -142,6 +146,7 @@ diagnostic summary, WASM packaging, and WebGL rendering.
 cd apps/viewer
 npm ci
 npm run dev
+npm run lint
 npm run build
 ```
 

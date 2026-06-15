@@ -190,7 +190,26 @@
       ]
     }
   ],
-  "compositions": [],
+  "compositions": [
+    {
+      "id": "composition:runscope",
+      "name": "RunScopeFSM",
+      "kind": "product",
+      "inputs": ["fsm:runtime"],
+      "state_space": {
+        "kind": "lazy",
+        "max_materialized_states": 5000
+      },
+      "conflict_policy": {
+        "nondeterminism": "diagnostic",
+        "unreachable": "hide_by_default",
+        "duplicate_events": "diagnostic",
+        "guard_conflict": "diagnostic"
+      },
+      "visibility": "public",
+      "tags": ["runtime", "lazy"]
+    }
+  ],
   "projections": [
     {
       "id": "view:runtime",

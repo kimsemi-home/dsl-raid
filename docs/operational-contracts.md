@@ -247,10 +247,12 @@ semantic subjects.
 
 Large systems need query, not only search.
 
-Initial command:
+Initial commands:
 
 ```bash
 dslraid query 'kind=transition and tested=false'
+dslraid query 'kind in [state,transition] and generated=false'
+dslraid query 'kind=transition and requires~=policy:no_secret_leak or terminal=true'
 ```
 
 Useful queries:
@@ -261,8 +263,9 @@ Useful queries:
 - find runtime traces that violate design
 - find private objects included in public projection
 
-The first implementation can be a small expression language over the index and
-projection outputs. A dedicated DSL can come later.
+The first implementation is a small expression language over indexed IR items.
+It supports `and`, `or`, `=`, `!=`, `~=`, `^=`, `$=`, numeric comparisons,
+`in [...]`, `exists`, and `missing`. A dedicated DSL can come later.
 
 ## Diagnostic Severity Policy
 

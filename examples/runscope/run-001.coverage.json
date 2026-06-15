@@ -1,48 +1,132 @@
 {
   "coverage_version": "0.1.0",
   "design_ir": {
-    "path": "examples/runscope/runscope.raid.json"
+    "path": "examples/runscope/runscope.raid.json",
+    "hash": "sha256:6a09165e1c9bac97230b818773e3eb6eb472f360332571eae021c1071620b220"
   },
   "traces": [
     {
-      "path": "examples/runscope/run-001.trace.json"
+      "path": "examples/runscope/run-001.trace.json",
+      "hash": "sha256:a1ce64d558e89218eee067561c38beae26e3895c031db2553bb22056a91b3c47"
     }
   ],
   "subjects": [
     {
-      "subject": "state:runtime.running",
+      "subject": "artifact:fsm_runtime_running_golden",
+      "kind": "artifact",
+      "status": "not_deployed",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "artifact:runscope_lisp",
+      "kind": "artifact",
+      "status": "not_deployed",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "artifact:runtime_fsm.go",
+      "kind": "artifact",
+      "status": "not_deployed",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "artifact:runtime_fsm.rs",
+      "kind": "artifact",
+      "status": "not_deployed",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "event:runtime.start_failed",
+      "kind": "event",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "event:runtime.start_requested",
+      "kind": "event",
+      "status": "covered",
+      "count": 1,
+      "failure_rate": 0.0,
+      "last_seen": "2026-06-15T00:00:00Z"
+    },
+    {
+      "subject": "state:runtime.completed",
       "kind": "state",
       "status": "covered",
       "count": 1,
-      "failure_rate": 0
+      "failure_rate": 0.0,
+      "last_seen": "2026-06-15T00:00:03Z"
     },
     {
       "subject": "state:runtime.failed",
       "kind": "state",
       "status": "uncovered",
       "count": 0,
-      "failure_rate": 0
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "state:runtime.idle",
+      "kind": "state",
+      "status": "covered",
+      "count": 1,
+      "failure_rate": 0.0,
+      "last_seen": "2026-06-15T00:00:01Z"
+    },
+    {
+      "subject": "state:runtime.running",
+      "kind": "state",
+      "status": "covered",
+      "count": 2,
+      "failure_rate": 0.0,
+      "last_seen": "2026-06-15T00:00:03Z"
+    },
+    {
+      "subject": "state:runtime.starting",
+      "kind": "state",
+      "status": "covered",
+      "count": 2,
+      "failure_rate": 0.0,
+      "last_seen": "2026-06-15T00:00:02Z"
+    },
+    {
+      "subject": "transition:runtime.idle_to_starting",
+      "kind": "transition",
+      "status": "covered",
+      "count": 1,
+      "failure_rate": 0.0,
+      "last_seen": "2026-06-15T00:00:01Z"
     },
     {
       "subject": "transition:runtime.running_to_completed",
       "kind": "transition",
       "status": "covered",
       "count": 1,
-      "failure_rate": 0
+      "failure_rate": 0.0,
+      "last_seen": "2026-06-15T00:00:03Z"
     },
     {
       "subject": "transition:runtime.starting_to_failed",
       "kind": "transition",
       "status": "uncovered",
       "count": 0,
-      "failure_rate": 0
+      "failure_rate": 0.0
     },
     {
-      "subject": "artifact:runtime_fsm.rs",
-      "kind": "artifact",
-      "status": "deployed",
-      "count": 1
+      "subject": "transition:runtime.starting_to_running",
+      "kind": "transition",
+      "status": "covered",
+      "count": 1,
+      "failure_rate": 0.0,
+      "last_seen": "2026-06-15T00:00:02Z"
     }
-  ]
+  ],
+  "metadata": {
+    "generator": "dslraid-cli",
+    "mode": "trace-derived"
+  }
 }
-

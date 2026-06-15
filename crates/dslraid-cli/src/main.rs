@@ -7,7 +7,7 @@ use dslraid_core::{
     validate_json_schema, CORE_SCHEMA_PATH, VALIDATION_SCHEMA_PATH, VIEW_SCHEMA_PATH,
 };
 use serde_json::Value;
-use std::collections::BTreeSet;
+use std::collections::{BTreeMap, BTreeSet, VecDeque};
 use std::fs;
 use std::io::Write;
 use std::path::{Path, PathBuf};
@@ -91,6 +91,16 @@ enum Command {
         composition: Option<String>,
         #[arg(long, default_value = "diagnostics-only")]
         materialize: String,
+        #[arg(long, default_value_t = 5000)]
+        limit: usize,
+        #[arg(long)]
+        focus: Option<String>,
+        #[arg(long, default_value_t = 1)]
+        depth: usize,
+        #[arg(long, value_enum, default_value_t = OutputFormat::Text)]
+        format: OutputFormat,
+        #[arg(long)]
+        out: Option<PathBuf>,
     },
     Diff {
         base: PathBuf,
@@ -105,6 +115,10 @@ enum Command {
     Trace {
         #[command(subcommand)]
         command: TraceCommand,
+    },
+    Coverage {
+        #[command(subcommand)]
+        command: CoverageCommand,
     },
     Artifact {
         #[command(subcommand)]
@@ -147,6 +161,25 @@ enum TraceCommand {
     },
     Check {
         trace: PathBuf,
+        #[arg(long)]
+        design_ir: PathBuf,
+        #[arg(long, value_enum, default_value_t = OutputFormat::Text)]
+        format: OutputFormat,
+    },
+}
+
+#[derive(Debug, Subcommand)]
+enum CoverageCommand {
+    Build {
+        #[arg(long)]
+        trace: PathBuf,
+        #[arg(long)]
+        design_ir: PathBuf,
+        #[arg(long)]
+        out: Option<PathBuf>,
+    },
+    Check {
+        coverage: PathBuf,
         #[arg(long)]
         design_ir: PathBuf,
         #[arg(long, value_enum, default_value_t = OutputFormat::Text)]
@@ -243,7 +276,21 @@ fn run() -> Result<()> {
             input,
             composition,
             materialize,
-        } => compose(&input, composition.as_deref(), &materialize),
+            limit,
+            focus,
+            depth,
+            format,
+            out,
+        } => compose(
+            &input,
+            composition.as_deref(),
+            &materialize,
+            limit,
+            focus.as_deref(),
+            depth,
+            format,
+            out.as_deref(),
+        ),
         Command::Diff { base, head } => diff(&base, &head),
         Command::Query {
             input,
@@ -267,6 +314,18 @@ fn run() -> Result<()> {
                 design_ir,
                 format,
             } => trace_check(&trace, &design_ir, format),
+        },
+        Command::Coverage { command } => match command {
+            CoverageCommand::Build {
+                trace,
+                design_ir,
+                out,
+            } => coverage_build(&trace, &design_ir, out.as_deref()),
+            CoverageCommand::Check {
+                coverage,
+                design_ir,
+                format,
+            } => coverage_check(&coverage, &design_ir, format),
         },
         Command::Artifact { command } => match command {
             ArtifactCommand::Verify { input, lock } => artifact_verify(&input, lock.as_deref()),
@@ -389,6 +448,19 @@ fn schema_validate(schema: &Path, input: &Path) -> Result<()> {
     }
 }
 
+fn validate_json_file(schema: &Path, input: &Path) -> Result<()> {
+    let issues = validate_json_schema(schema, input)?;
+    if issues.is_empty() {
+        Ok(())
+    } else {
+        bail!(
+            "{} failed schema validation with {} issues",
+            input.display(),
+            issues.len()
+        )
+    }
+}
+
 fn quality() -> Result<()> {
     check_json_syntax("schemas")?;
     check_json_syntax("examples")?;
@@ -456,11 +528,41 @@ fn quality() -> Result<()> {
     if transition_query.is_empty() {
         bail!("query returned no transitions");
     }
+    let richer_query = query_values(
+        &ir,
+        "kind=transition and requires~=policy:no_secret_leak or terminal=true",
+    )?;
+    if richer_query.is_empty() {
+        bail!("richer query returned no results");
+    }
+    let composition = compose_result(&ir, None, "reachable", 100, None, 1)?;
+    if composition
+        .get("composition")
+        .and_then(|value| value.get("state_space"))
+        .and_then(Value::as_u64)
+        .unwrap_or_default()
+        == 0
+    {
+        bail!("lazy composition did not compute a state space");
+    }
     trace_check(
         Path::new("examples/runscope/run-001.trace.json"),
         input,
         OutputFormat::Text,
     )?;
+    let coverage_path =
+        std::env::temp_dir().join(format!("dslraid-coverage-{}.json", std::process::id()));
+    coverage_build(
+        Path::new("examples/runscope/run-001.trace.json"),
+        input,
+        Some(&coverage_path),
+    )?;
+    schema_validate(
+        Path::new("schemas/dslraid-coverage.schema.json"),
+        &coverage_path,
+    )?;
+    coverage_check(&coverage_path, input, OutputFormat::Text)?;
+    fs::remove_file(&coverage_path).ok();
     let imported_trace = std::env::temp_dir().join(format!(
         "dslraid-imported-trace-{}.json",
         std::process::id()
@@ -690,6 +792,340 @@ fn trace_check(trace: &Path, design_ir: &Path, format: OutputFormat) -> Result<(
     }
 }
 
+fn coverage_build(trace: &Path, design_ir: &Path, out: Option<&Path>) -> Result<()> {
+    validate_json_file(Path::new("schemas/dslraid-trace.schema.json"), trace)?;
+    let ir = load_core_ir(design_ir)?;
+    let trace_value: Value = serde_json::from_slice(&fs::read(trace)?)?;
+    let coverage = coverage_overlay_value(&ir, design_ir, trace, &trace_value)?;
+    let temp_path = std::env::temp_dir().join(format!(
+        "dslraid-coverage-build-{}.json",
+        std::process::id()
+    ));
+    write_bytes(
+        &temp_path,
+        serde_json::to_string_pretty(&coverage)?.as_bytes(),
+    )?;
+    validate_json_file(
+        Path::new("schemas/dslraid-coverage.schema.json"),
+        &temp_path,
+    )?;
+    fs::remove_file(&temp_path).ok();
+    write_or_stdout(out, serde_json::to_string_pretty(&coverage)?.as_bytes())
+}
+
+fn coverage_check(coverage: &Path, design_ir: &Path, format: OutputFormat) -> Result<()> {
+    let schema_issues =
+        validate_json_schema(Path::new("schemas/dslraid-coverage.schema.json"), coverage)?;
+    if !schema_issues.is_empty() {
+        match format {
+            OutputFormat::Json => println!("{}", serde_json::to_string_pretty(&schema_issues)?),
+            OutputFormat::Text => {
+                for issue in &schema_issues {
+                    println!("schema error at {}: {}", issue.instance_path, issue.message);
+                }
+            }
+        }
+        bail!("coverage schema validation failed");
+    }
+    let ir = load_core_ir(design_ir)?;
+    let coverage_value: Value = serde_json::from_slice(&fs::read(coverage)?)?;
+    let known_subjects = ir.semantic_subjects();
+    let mut issues = Vec::new();
+    let mut covered_subjects = BTreeSet::new();
+    for subject in coverage_value
+        .get("subjects")
+        .and_then(Value::as_array)
+        .ok_or_else(|| anyhow!("coverage.subjects must be an array"))?
+    {
+        let Some(subject_id) = subject.get("subject").and_then(Value::as_str) else {
+            continue;
+        };
+        if !known_subjects.contains(subject_id) {
+            issues.push(serde_json::json!({
+                "code": "COV001",
+                "subject": subject_id,
+                "message": "Coverage subject does not resolve to the design IR."
+            }));
+        }
+        covered_subjects.insert(subject_id.to_string());
+    }
+    for fsm in &ir.fsms {
+        for state in &fsm.states {
+            let subject = state_subject(&fsm.id, &state.id);
+            if !covered_subjects.contains(&subject) {
+                issues.push(serde_json::json!({
+                    "code": "COV002",
+                    "subject": subject,
+                    "message": "Coverage overlay is missing a state subject."
+                }));
+            }
+        }
+        for transition in &fsm.transitions {
+            let subject = transition_subject(&fsm.id, &transition.id);
+            if !covered_subjects.contains(&subject) {
+                issues.push(serde_json::json!({
+                    "code": "COV002",
+                    "subject": subject,
+                    "message": "Coverage overlay is missing a transition subject."
+                }));
+            }
+        }
+    }
+    let report = serde_json::json!({
+        "status": if issues.is_empty() { "passed" } else { "failed" },
+        "coverage": coverage.display().to_string(),
+        "design_ir": design_ir.display().to_string(),
+        "issues": issues
+    });
+    match format {
+        OutputFormat::Json => println!("{}", serde_json::to_string_pretty(&report)?),
+        OutputFormat::Text => {
+            if report.get("status").and_then(Value::as_str) == Some("passed") {
+                println!("coverage check passed");
+            } else {
+                println!("coverage check failed");
+                if let Some(issues) = report.get("issues").and_then(Value::as_array) {
+                    for issue in issues {
+                        println!(
+                            "{} {}: {}",
+                            issue
+                                .get("code")
+                                .and_then(Value::as_str)
+                                .unwrap_or("COV000"),
+                            issue
+                                .get("subject")
+                                .and_then(Value::as_str)
+                                .unwrap_or("<unknown>"),
+                            issue.get("message").and_then(Value::as_str).unwrap_or("")
+                        );
+                    }
+                }
+            }
+        }
+    }
+    if report.get("status").and_then(Value::as_str) == Some("passed") {
+        Ok(())
+    } else {
+        bail!("coverage check failed")
+    }
+}
+
+#[derive(Debug, Clone)]
+struct CoverageCounter {
+    kind: String,
+    count: usize,
+    failures: usize,
+    status_override: Option<String>,
+    last_seen: Option<String>,
+}
+
+fn coverage_overlay_value(
+    ir: &dslraid_core::CoreIr,
+    design_ir: &Path,
+    trace: &Path,
+    trace_value: &Value,
+) -> Result<Value> {
+    let mut counters = base_coverage_counters(ir);
+    for event in trace_value
+        .get("events")
+        .and_then(Value::as_array)
+        .ok_or_else(|| anyhow!("trace.events must be an array"))?
+    {
+        let kind = event
+            .get("kind")
+            .and_then(Value::as_str)
+            .unwrap_or_default();
+        let timestamp = event
+            .get("timestamp")
+            .and_then(Value::as_str)
+            .map(str::to_string);
+        let failed = event
+            .get("status")
+            .and_then(Value::as_str)
+            .is_some_and(|status| {
+                matches!(
+                    status,
+                    "failed" | "timeout" | "cancelled" | "policy_blocked" | "degraded"
+                )
+            })
+            || kind == "transition_failed";
+        match kind {
+            "event_received"
+            | "state_entered"
+            | "state_exited"
+            | "transition_started"
+            | "transition_completed"
+            | "transition_failed"
+            | "action_started"
+            | "action_completed"
+            | "diagnostic_emitted" => {
+                if let Some(subject) = event.get("subject").and_then(Value::as_str) {
+                    mark_coverage(&mut counters, subject, failed, timestamp.clone(), None);
+                }
+                if matches!(
+                    kind,
+                    "transition_started" | "transition_completed" | "transition_failed"
+                ) {
+                    for field in ["from", "to"] {
+                        if let Some(subject) = event.get(field).and_then(Value::as_str) {
+                            mark_coverage(&mut counters, subject, false, timestamp.clone(), None);
+                        }
+                    }
+                }
+            }
+            "artifact_deployed" => {
+                if let Some(subject) = event.get("subject").and_then(Value::as_str) {
+                    mark_coverage(
+                        &mut counters,
+                        subject,
+                        failed,
+                        timestamp.clone(),
+                        Some("deployed"),
+                    );
+                }
+            }
+            _ => {}
+        }
+    }
+    let mut subjects = counters
+        .into_iter()
+        .filter_map(|(subject, counter)| coverage_subject_value(subject, counter))
+        .collect::<Vec<_>>();
+    subjects.sort_by_key(|left| value_string(left, "subject"));
+    Ok(serde_json::json!({
+        "coverage_version": "0.1.0",
+        "design_ir": {
+            "path": design_ir.display().to_string(),
+            "hash": sha256_json(ir)?
+        },
+        "traces": [{
+            "path": trace.display().to_string(),
+            "hash": sha256_json(trace_value)?
+        }],
+        "subjects": subjects,
+        "metadata": {
+            "generator": "dslraid-cli",
+            "mode": "trace-derived"
+        }
+    }))
+}
+
+fn base_coverage_counters(ir: &dslraid_core::CoreIr) -> BTreeMap<String, CoverageCounter> {
+    let mut counters = BTreeMap::new();
+    for fsm in &ir.fsms {
+        for state in &fsm.states {
+            counters.insert(
+                state_subject(&fsm.id, &state.id),
+                CoverageCounter::new("state"),
+            );
+        }
+        for event in &fsm.events {
+            counters.insert(
+                event_subject(&fsm.id, &event.id),
+                CoverageCounter::new("event"),
+            );
+        }
+        for guard in &fsm.guards {
+            counters.insert(
+                format!("guard:{}.{}", fsm.local_name(), guard.id),
+                CoverageCounter::new("guard"),
+            );
+        }
+        for action in &fsm.actions {
+            counters.insert(
+                format!("action:{}.{}", fsm.local_name(), action.id),
+                CoverageCounter::new("action"),
+            );
+        }
+        for transition in &fsm.transitions {
+            counters.insert(
+                transition_subject(&fsm.id, &transition.id),
+                CoverageCounter::new("transition"),
+            );
+        }
+    }
+    for artifact in &ir.artifacts {
+        counters.insert(artifact.id.clone(), CoverageCounter::new("artifact"));
+    }
+    counters
+}
+
+impl CoverageCounter {
+    fn new(kind: &str) -> Self {
+        Self {
+            kind: kind.to_string(),
+            count: 0,
+            failures: 0,
+            status_override: None,
+            last_seen: None,
+        }
+    }
+}
+
+fn mark_coverage(
+    counters: &mut BTreeMap<String, CoverageCounter>,
+    subject: &str,
+    failed: bool,
+    timestamp: Option<String>,
+    status_override: Option<&str>,
+) {
+    if let Some(counter) = counters.get_mut(subject) {
+        counter.count += 1;
+        if failed {
+            counter.failures += 1;
+        }
+        if let Some(status_override) = status_override {
+            counter.status_override = Some(status_override.to_string());
+        }
+        if let Some(timestamp) = timestamp {
+            counter.last_seen = Some(timestamp);
+        }
+    }
+}
+
+fn coverage_subject_value(subject: String, counter: CoverageCounter) -> Option<Value> {
+    if !matches!(
+        counter.kind.as_str(),
+        "state" | "transition" | "event" | "guard" | "action" | "artifact"
+    ) {
+        return None;
+    }
+    let status = if let Some(status) = counter.status_override {
+        status
+    } else if counter.kind == "artifact" {
+        if counter.count > 0 {
+            "deployed".to_string()
+        } else {
+            "not_deployed".to_string()
+        }
+    } else if counter.failures > 0 {
+        "failed".to_string()
+    } else if counter.count > 0 {
+        "covered".to_string()
+    } else {
+        "uncovered".to_string()
+    };
+    let failure_rate = if counter.count == 0 {
+        0.0
+    } else {
+        counter.failures as f64 / counter.count as f64
+    };
+    let mut value = serde_json::json!({
+        "subject": subject,
+        "kind": counter.kind,
+        "status": status,
+        "count": counter.count,
+        "failure_rate": failure_rate
+    });
+    if let Some(last_seen) = counter.last_seen {
+        value
+            .as_object_mut()
+            .expect("coverage subject is an object")
+            .insert("last_seen".to_string(), Value::String(last_seen));
+    }
+    Some(value)
+}
+
 fn golden_check(path: &Path) -> Result<()> {
     if !path.exists() {
         bail!("golden path does not exist: {}", path.display());
@@ -795,27 +1231,353 @@ fn codegen(input: &Path, target: CliCodegenTarget, out: Option<&Path>) -> Result
     }
 }
 
-fn compose(input: &Path, composition: Option<&str>, materialize: &str) -> Result<()> {
+#[allow(clippy::too_many_arguments)]
+fn compose(
+    input: &Path,
+    composition: Option<&str>,
+    materialize: &str,
+    limit: usize,
+    focus: Option<&str>,
+    depth: usize,
+    format: OutputFormat,
+    out: Option<&Path>,
+) -> Result<()> {
     let ir = load_core_ir(input)?;
+    let result = compose_result(&ir, composition, materialize, limit, focus, depth)?;
+    let bytes = match format {
+        OutputFormat::Json => serde_json::to_vec_pretty(&result)?,
+        OutputFormat::Text => {
+            let composition = result
+                .get("composition")
+                .ok_or_else(|| anyhow!("compose result is missing composition"))?;
+            let states = result
+                .get("states")
+                .and_then(Value::as_array)
+                .map_or(0, Vec::len);
+            let transitions = result
+                .get("transitions")
+                .and_then(Value::as_array)
+                .map_or(0, Vec::len);
+            format!(
+                "composition {} kind={} mode={} state_space={} materialized_states={} materialized_transitions={} truncated={}\n",
+                composition
+                    .get("id")
+                    .and_then(Value::as_str)
+                    .unwrap_or("<none>"),
+                composition
+                    .get("kind")
+                    .and_then(Value::as_str)
+                    .unwrap_or("<unknown>"),
+                composition
+                    .get("mode")
+                    .and_then(Value::as_str)
+                    .unwrap_or(materialize),
+                composition
+                    .get("state_space")
+                    .and_then(Value::as_u64)
+                    .unwrap_or_default(),
+                states,
+                transitions,
+                composition
+                    .get("truncated")
+                    .and_then(Value::as_bool)
+                    .unwrap_or(false)
+            )
+            .into_bytes()
+        }
+    };
+    write_or_stdout(out, &bytes)
+}
+
+fn compose_result(
+    ir: &dslraid_core::CoreIr,
+    composition: Option<&str>,
+    materialize: &str,
+    limit: usize,
+    focus: Option<&str>,
+    depth: usize,
+) -> Result<Value> {
+    if limit == 0 {
+        bail!("--limit must be greater than 0");
+    }
     let selected = composition
         .and_then(|id| ir.compositions.iter().find(|item| item.id == id))
         .or_else(|| ir.compositions.first());
     match selected {
         Some(composition) => {
-            let state_space: usize = composition
+            let input_fsms = composition
                 .inputs
                 .iter()
-                .filter_map(|id| ir.find_fsm(id))
-                .map(|fsm| fsm.states.len())
+                .map(|id| {
+                    ir.find_fsm(id).ok_or_else(|| {
+                        anyhow!(
+                            "composition {} references unknown FSM {}",
+                            composition.id,
+                            id
+                        )
+                    })
+                })
+                .collect::<Result<Vec<_>>>()?;
+            let state_space: usize = input_fsms
+                .iter()
+                .map(|fsm| fsm.states.len().max(1))
                 .product();
-            println!(
-                "composition {} kind={} mode={} lazy_state_space={}",
-                composition.id, composition.kind, materialize, state_space
-            );
+            let mode = materialize.to_ascii_lowercase();
+            let mut diagnostics = Vec::new();
+            if !matches!(
+                mode.as_str(),
+                "diagnostics-only" | "reachable" | "reachable-only" | "focus"
+            ) {
+                bail!("unsupported materialization mode: {materialize}");
+            }
+            if state_space > limit {
+                diagnostics.push(serde_json::json!({
+                    "code": "CMP026",
+                    "severity": "warning",
+                    "message": "Composition state space exceeds materialization limit.",
+                    "subjects": [composition.id]
+                }));
+            }
+            let should_materialize = mode != "diagnostics-only";
+            let (states, transitions, truncated) = if should_materialize {
+                materialize_reachable_product(
+                    &composition.id,
+                    &input_fsms,
+                    limit,
+                    focus,
+                    if mode == "focus" {
+                        depth.max(1)
+                    } else {
+                        usize::MAX
+                    },
+                )?
+            } else {
+                (Vec::new(), Vec::new(), false)
+            };
+            Ok(serde_json::json!({
+                "composition_version": "0.1.0",
+                "composition": {
+                    "id": composition.id,
+                    "name": composition.name,
+                    "kind": composition.kind,
+                    "inputs": composition.inputs,
+                    "mode": materialize,
+                    "state_space": state_space,
+                    "limit": limit,
+                    "lazy": true,
+                    "truncated": truncated,
+                    "focus": focus,
+                    "depth": depth
+                },
+                "states": states,
+                "transitions": transitions,
+                "diagnostics": diagnostics
+            }))
         }
-        None => println!("no compositions defined; nothing to compose"),
+        None => Ok(serde_json::json!({
+            "composition_version": "0.1.0",
+            "composition": {
+                "id": null,
+                "name": null,
+                "kind": null,
+                "inputs": [],
+                "mode": materialize,
+                "state_space": 0,
+                "limit": limit,
+                "lazy": true,
+                "truncated": false,
+                "focus": focus,
+                "depth": depth
+            },
+            "states": [],
+            "transitions": [],
+            "diagnostics": [{
+                "code": "CMP000",
+                "severity": "info",
+                "message": "No compositions defined; nothing to compose.",
+                "subjects": []
+            }]
+        })),
     }
-    Ok(())
+}
+
+fn materialize_reachable_product(
+    composition_id: &str,
+    fsms: &[&dslraid_core::Fsm],
+    limit: usize,
+    focus: Option<&str>,
+    focus_depth: usize,
+) -> Result<(Vec<Value>, Vec<Value>, bool)> {
+    if fsms.is_empty() {
+        return Ok((Vec::new(), Vec::new(), false));
+    }
+    let initial: Vec<String> = fsms
+        .iter()
+        .map(|fsm| {
+            fsm.states
+                .iter()
+                .find(|state| state.initial)
+                .or_else(|| fsm.states.first())
+                .map(|state| state.id.clone())
+                .ok_or_else(|| anyhow!("{} has no states", fsm.id))
+        })
+        .collect::<Result<Vec<_>>>()?;
+    let mut queue = VecDeque::from([(initial, 0usize)]);
+    let mut seen = BTreeSet::new();
+    let mut states = Vec::new();
+    let mut transitions = Vec::new();
+    let mut truncated = false;
+
+    while let Some((tuple, depth)) = queue.pop_front() {
+        let current_key = tuple_key(&tuple);
+        if !seen.insert(current_key.clone()) {
+            continue;
+        }
+        if seen.len() > limit {
+            truncated = true;
+            break;
+        }
+        if focus
+            .is_none_or(|subject| tuple_matches_focus(fsms, &tuple, subject, focus_depth, depth))
+        {
+            states.push(tuple_state_value(composition_id, fsms, &tuple)?);
+        }
+        if focus.is_some() && depth >= focus_depth {
+            continue;
+        }
+        for (index, fsm) in fsms.iter().enumerate() {
+            let current = &tuple[index];
+            for transition in fsm
+                .transitions
+                .iter()
+                .filter(|transition| &transition.from == current)
+            {
+                let mut next_tuple = tuple.clone();
+                next_tuple[index] = transition.to.clone();
+                let next_key = tuple_key(&next_tuple);
+                if seen.len() + queue.len() >= limit && !seen.contains(&next_key) {
+                    truncated = true;
+                    continue;
+                }
+                let edge = tuple_transition_value(
+                    composition_id,
+                    fsms,
+                    &tuple,
+                    &next_tuple,
+                    &fsm.id,
+                    transition,
+                )?;
+                if focus.is_none_or(|subject| transition_matches_focus(&edge, subject)) {
+                    transitions.push(edge);
+                }
+                if !seen.contains(&next_key) {
+                    queue.push_back((next_tuple, depth + 1));
+                }
+            }
+        }
+    }
+    states.sort_by_key(|left| value_string(left, "id"));
+    transitions.sort_by_key(|left| value_string(left, "id"));
+    Ok((states, transitions, truncated))
+}
+
+fn tuple_state_value(
+    composition_id: &str,
+    fsms: &[&dslraid_core::Fsm],
+    tuple: &[String],
+) -> Result<Value> {
+    let members = tuple_members(fsms, tuple);
+    let initial = fsms.iter().zip(tuple.iter()).all(|(fsm, state_id)| {
+        fsm.states
+            .iter()
+            .any(|state| state.id == *state_id && state.initial)
+    });
+    let terminal = fsms.iter().zip(tuple.iter()).all(|(fsm, state_id)| {
+        fsm.states
+            .iter()
+            .any(|state| state.id == *state_id && state.terminal)
+    });
+    Ok(serde_json::json!({
+        "id": tuple_subject(composition_id, &members),
+        "members": members,
+        "initial": initial,
+        "terminal": terminal
+    }))
+}
+
+fn tuple_transition_value(
+    composition_id: &str,
+    fsms: &[&dslraid_core::Fsm],
+    from_tuple: &[String],
+    to_tuple: &[String],
+    fsm_id: &str,
+    transition: &dslraid_core::Transition,
+) -> Result<Value> {
+    let from_members = tuple_members(fsms, from_tuple);
+    let to_members = tuple_members(fsms, to_tuple);
+    Ok(serde_json::json!({
+        "id": format!("tuple_transition:{}:{}", composition_id.trim_start_matches("composition:"), transition.id),
+        "from": tuple_subject(composition_id, &from_members),
+        "to": tuple_subject(composition_id, &to_members),
+        "members": [transition_subject(fsm_id, &transition.id)],
+        "event": transition.on.as_ref().map(|event| event_subject(fsm_id, event))
+    }))
+}
+
+fn tuple_members(fsms: &[&dslraid_core::Fsm], tuple: &[String]) -> Vec<String> {
+    fsms.iter()
+        .zip(tuple.iter())
+        .map(|(fsm, state)| state_subject(&fsm.id, state))
+        .collect()
+}
+
+fn tuple_subject(composition_id: &str, members: &[String]) -> String {
+    format!(
+        "state_tuple:{}.{}",
+        composition_id.trim_start_matches("composition:"),
+        members
+            .iter()
+            .map(|member| member.replace([':', '.'], "_"))
+            .collect::<Vec<_>>()
+            .join("__")
+    )
+}
+
+fn tuple_key(tuple: &[String]) -> String {
+    tuple.join("\u{1f}")
+}
+
+fn tuple_matches_focus(
+    fsms: &[&dslraid_core::Fsm],
+    tuple: &[String],
+    subject: &str,
+    focus_depth: usize,
+    depth: usize,
+) -> bool {
+    depth <= focus_depth
+        && tuple_members(fsms, tuple)
+            .iter()
+            .any(|member| member == subject)
+}
+
+fn transition_matches_focus(edge: &Value, subject: &str) -> bool {
+    edge.get("members")
+        .and_then(Value::as_array)
+        .is_some_and(|members| {
+            members
+                .iter()
+                .any(|member| member.as_str() == Some(subject))
+        })
+        || edge.get("from").and_then(Value::as_str) == Some(subject)
+        || edge.get("to").and_then(Value::as_str) == Some(subject)
+}
+
+fn value_string(value: &Value, key: &str) -> String {
+    value
+        .get(key)
+        .and_then(Value::as_str)
+        .unwrap_or_default()
+        .to_string()
 }
 
 fn diff(base: &Path, head: &Path) -> Result<()> {
@@ -863,28 +1625,153 @@ fn query_values(ir: &dslraid_core::CoreIr, expression: &str) -> Result<Vec<Value
         .collect())
 }
 
-fn parse_query(expression: &str) -> Result<Vec<(String, String)>> {
+#[derive(Debug, Clone)]
+struct QueryExpression {
+    groups: Vec<Vec<QueryClause>>,
+}
+
+#[derive(Debug, Clone)]
+struct QueryClause {
+    key: String,
+    operator: QueryOperator,
+}
+
+#[derive(Debug, Clone)]
+enum QueryOperator {
+    Eq(String),
+    NotEq(String),
+    Contains(String),
+    Prefix(String),
+    Suffix(String),
+    GreaterThan(String),
+    GreaterOrEqual(String),
+    LessThan(String),
+    LessOrEqual(String),
+    In(Vec<String>),
+    Exists,
+    Missing,
+}
+
+fn parse_query(expression: &str) -> Result<QueryExpression> {
     let expression = expression.trim();
     if expression.is_empty() || expression == "*" {
-        return Ok(Vec::new());
+        return Ok(QueryExpression {
+            groups: vec![Vec::new()],
+        });
     }
-    expression
-        .split(" and ")
-        .map(|part| {
-            let (key, value) = part
-                .split_once('=')
-                .ok_or_else(|| anyhow!("query clause must use key=value: {part}"))?;
-            let key = key.trim();
-            if key.is_empty() {
-                bail!("query key cannot be empty");
-            }
-            let value = value
-                .trim()
-                .trim_matches('"')
-                .trim_matches('\'')
-                .to_string();
-            Ok((key.to_ascii_lowercase(), value))
+    let groups = split_logical(expression, "or")
+        .into_iter()
+        .map(|group| {
+            split_logical(&group, "and")
+                .into_iter()
+                .map(|clause| parse_query_clause(&clause))
+                .collect::<Result<Vec<_>>>()
         })
+        .collect::<Result<Vec<_>>>()?;
+    Ok(QueryExpression { groups })
+}
+
+fn parse_query_clause(clause: &str) -> Result<QueryClause> {
+    let clause = clause.trim();
+    let lower = clause.to_ascii_lowercase();
+    if let Some(key) = lower.strip_suffix(" exists") {
+        return query_clause(key, QueryOperator::Exists);
+    }
+    if let Some(key) = lower.strip_suffix(" missing") {
+        return query_clause(key, QueryOperator::Missing);
+    }
+    if let Some((key, value)) = split_word_operator(clause, "in") {
+        let values = parse_list_value(value);
+        if values.is_empty() {
+            bail!("query in-list cannot be empty: {clause}");
+        }
+        return query_clause(key, QueryOperator::In(values));
+    }
+    for (operator, factory) in [
+        ("!=", QueryOperator::NotEq as fn(String) -> QueryOperator),
+        (">=", QueryOperator::GreaterOrEqual),
+        ("<=", QueryOperator::LessOrEqual),
+        ("~=", QueryOperator::Contains),
+        ("^=", QueryOperator::Prefix),
+        ("$=", QueryOperator::Suffix),
+        (">", QueryOperator::GreaterThan),
+        ("<", QueryOperator::LessThan),
+        ("=", QueryOperator::Eq),
+    ] {
+        if let Some((key, value)) = clause.split_once(operator) {
+            return query_clause(key, factory(normalize_query_value(value)));
+        }
+    }
+    bail!("query clause must use an operator: {clause}")
+}
+
+fn query_clause(key: &str, operator: QueryOperator) -> Result<QueryClause> {
+    let key = key.trim();
+    if key.is_empty() {
+        bail!("query key cannot be empty");
+    }
+    Ok(QueryClause {
+        key: key.to_ascii_lowercase(),
+        operator,
+    })
+}
+
+fn split_word_operator<'a>(clause: &'a str, operator: &str) -> Option<(&'a str, &'a str)> {
+    let needle = format!(" {operator} ");
+    clause
+        .to_ascii_lowercase()
+        .find(&needle)
+        .map(|index| (&clause[..index], &clause[index + needle.len()..]))
+}
+
+fn split_logical(input: &str, operator: &str) -> Vec<String> {
+    let mut parts = Vec::new();
+    let mut start = 0usize;
+    let mut quote: Option<char> = None;
+    let mut bracket_depth = 0usize;
+    let bytes = input.as_bytes();
+    let needle = format!(" {operator} ");
+    let lower = input.to_ascii_lowercase();
+    let lower_bytes = lower.as_bytes();
+    let mut index = 0usize;
+    while index < bytes.len() {
+        let character = input[index..].chars().next().unwrap_or_default();
+        match character {
+            '\'' | '"' if quote == Some(character) => quote = None,
+            '\'' | '"' if quote.is_none() => quote = Some(character),
+            '[' if quote.is_none() => bracket_depth += 1,
+            ']' if quote.is_none() && bracket_depth > 0 => bracket_depth -= 1,
+            _ => {}
+        }
+        if quote.is_none()
+            && bracket_depth == 0
+            && lower_bytes[index..].starts_with(needle.as_bytes())
+        {
+            parts.push(input[start..index].trim().to_string());
+            index += needle.len();
+            start = index;
+            continue;
+        }
+        index += character.len_utf8();
+    }
+    parts.push(input[start..].trim().to_string());
+    parts
+}
+
+fn normalize_query_value(value: &str) -> String {
+    value
+        .trim()
+        .trim_matches('"')
+        .trim_matches('\'')
+        .to_string()
+}
+
+fn parse_list_value(value: &str) -> Vec<String> {
+    let value = value.trim().trim_start_matches('[').trim_end_matches(']');
+    value
+        .split(',')
+        .map(normalize_query_value)
+        .filter(|item| !item.is_empty())
         .collect()
 }
 
@@ -1253,39 +2140,128 @@ fn push_query_item(
     items.push(item);
 }
 
-fn matches_query(item: &Value, filters: &[(String, String)]) -> bool {
-    filters.iter().all(|(key, expected)| {
-        if key == "tag" {
-            return item
-                .get("tags")
-                .and_then(Value::as_array)
-                .is_some_and(|tags| tags.iter().any(|tag| value_matches(tag, key, expected)));
-        }
-        item.get(key)
-            .is_some_and(|actual| value_matches(actual, key, expected))
+fn matches_query(item: &Value, expression: &QueryExpression) -> bool {
+    expression.groups.iter().any(|group| {
+        group.iter().all(|clause| {
+            if clause.key == "tag" {
+                return item
+                    .get("tags")
+                    .and_then(Value::as_array)
+                    .is_some_and(|tags| {
+                        tags.iter()
+                            .any(|tag| value_matches_operator(Some(tag), &clause.operator))
+                    });
+            }
+            value_matches_operator(query_value(item, &clause.key), &clause.operator)
+        })
     })
 }
 
-fn value_matches(actual: &Value, key: &str, expected: &str) -> bool {
+fn query_value<'a>(item: &'a Value, key: &str) -> Option<&'a Value> {
+    let mut current = item;
+    for part in key.split('.') {
+        current = current.get(part)?;
+    }
+    Some(current)
+}
+
+fn value_matches_operator(actual: Option<&Value>, operator: &QueryOperator) -> bool {
+    match operator {
+        QueryOperator::Exists => actual.is_some_and(value_exists),
+        QueryOperator::Missing => actual.is_none_or(|value| !value_exists(value)),
+        QueryOperator::Eq(expected) => actual.is_some_and(|value| value_matches(value, expected)),
+        QueryOperator::NotEq(expected) => {
+            actual.is_some_and(|value| !value_matches(value, expected))
+        }
+        QueryOperator::Contains(expected) => {
+            actual.is_some_and(|value| value_contains(value, expected))
+        }
+        QueryOperator::Prefix(expected) => actual.is_some_and(|value| {
+            value.as_str().is_some_and(|actual| {
+                actual
+                    .to_ascii_lowercase()
+                    .starts_with(&expected.to_ascii_lowercase())
+            })
+        }),
+        QueryOperator::Suffix(expected) => actual.is_some_and(|value| {
+            value.as_str().is_some_and(|actual| {
+                actual
+                    .to_ascii_lowercase()
+                    .ends_with(&expected.to_ascii_lowercase())
+            })
+        }),
+        QueryOperator::GreaterThan(expected) => {
+            compare_numbers(actual, expected, |left, right| left > right)
+        }
+        QueryOperator::GreaterOrEqual(expected) => {
+            compare_numbers(actual, expected, |left, right| left >= right)
+        }
+        QueryOperator::LessThan(expected) => {
+            compare_numbers(actual, expected, |left, right| left < right)
+        }
+        QueryOperator::LessOrEqual(expected) => {
+            compare_numbers(actual, expected, |left, right| left <= right)
+        }
+        QueryOperator::In(expected) => actual.is_some_and(|value| {
+            expected
+                .iter()
+                .any(|expected| value_matches(value, expected))
+        }),
+    }
+}
+
+fn value_exists(value: &Value) -> bool {
+    match value {
+        Value::Null => false,
+        Value::Array(values) => !values.is_empty(),
+        Value::String(value) => !value.is_empty(),
+        _ => true,
+    }
+}
+
+fn compare_numbers(
+    actual: Option<&Value>,
+    expected: &str,
+    predicate: impl Fn(f64, f64) -> bool,
+) -> bool {
+    let Some(actual) = actual.and_then(value_as_f64) else {
+        return false;
+    };
+    let Ok(expected) = expected.parse::<f64>() else {
+        return false;
+    };
+    predicate(actual, expected)
+}
+
+fn value_as_f64(value: &Value) -> Option<f64> {
+    match value {
+        Value::Number(number) => number.as_f64(),
+        Value::String(value) => value.parse().ok(),
+        _ => None,
+    }
+}
+
+fn value_contains(actual: &Value, expected: &str) -> bool {
+    match actual {
+        Value::String(value) => value
+            .to_ascii_lowercase()
+            .contains(&expected.to_ascii_lowercase()),
+        Value::Array(values) => values.iter().any(|value| value_contains(value, expected)),
+        Value::Bool(_) | Value::Number(_) | Value::Null => value_matches(actual, expected),
+        Value::Object(object) => object.values().any(|value| value_contains(value, expected)),
+    }
+}
+
+fn value_matches(actual: &Value, expected: &str) -> bool {
     match actual {
         Value::Bool(value) => match expected.to_ascii_lowercase().as_str() {
             "true" | "yes" | "1" => *value,
             "false" | "no" | "0" => !*value,
             _ => false,
         },
-        Value::String(value) => {
-            if key == "label" || key == "path" {
-                value
-                    .to_ascii_lowercase()
-                    .contains(&expected.to_ascii_lowercase())
-            } else {
-                value.eq_ignore_ascii_case(expected)
-            }
-        }
+        Value::String(value) => value.eq_ignore_ascii_case(expected),
         Value::Number(value) => value.to_string() == expected,
-        Value::Array(values) => values
-            .iter()
-            .any(|value| value_matches(value, key, expected)),
+        Value::Array(values) => values.iter().any(|value| value_matches(value, expected)),
         Value::Null => expected.eq_ignore_ascii_case("null"),
         Value::Object(_) => false,
     }
