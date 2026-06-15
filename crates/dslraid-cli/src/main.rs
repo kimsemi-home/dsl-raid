@@ -324,7 +324,7 @@ fn run() -> Result<()> {
                 design_ir,
                 run_id,
                 out,
-            } => trace_import(
+            } => commands::trace::import(
                 &input,
                 design_ir.as_deref(),
                 run_id.as_deref(),
@@ -334,19 +334,19 @@ fn run() -> Result<()> {
                 trace,
                 design_ir,
                 format,
-            } => trace_check(&trace, &design_ir, format),
+            } => commands::trace::check(&trace, &design_ir, format),
         },
         Command::Coverage { command } => match command {
             CoverageCommand::Build {
                 trace,
                 design_ir,
                 out,
-            } => coverage_build(&trace, &design_ir, out.as_deref()),
+            } => commands::coverage::build(&trace, &design_ir, out.as_deref()),
             CoverageCommand::Check {
                 coverage,
                 design_ir,
                 format,
-            } => coverage_check(&coverage, &design_ir, format),
+            } => commands::coverage::check(&coverage, &design_ir, format),
         },
         Command::Artifact { command } => match command {
             ArtifactCommand::Verify {
@@ -570,14 +570,14 @@ fn quality() -> Result<()> {
     {
         bail!("lazy composition did not compute a state space");
     }
-    trace_check(
+    commands::trace::check(
         Path::new("examples/runscope/run-001.trace.json"),
         input,
         OutputFormat::Text,
     )?;
     let coverage_path =
         std::env::temp_dir().join(format!("dslraid-coverage-{}.json", std::process::id()));
-    coverage_build(
+    commands::coverage::build(
         Path::new("examples/runscope/run-001.trace.json"),
         input,
         Some(&coverage_path),
@@ -586,13 +586,13 @@ fn quality() -> Result<()> {
         Path::new("schemas/dslraid-coverage.schema.json"),
         &coverage_path,
     )?;
-    coverage_check(&coverage_path, input, OutputFormat::Text)?;
+    commands::coverage::check(&coverage_path, input, OutputFormat::Text)?;
     fs::remove_file(&coverage_path).ok();
     let imported_trace = std::env::temp_dir().join(format!(
         "dslraid-imported-trace-{}.json",
         std::process::id()
     ));
-    trace_import(
+    commands::trace::import(
         Path::new("examples/runscope/run-002.trace.jsonl"),
         Some(input),
         Some("run-002"),
@@ -610,550 +610,6 @@ fn quality() -> Result<()> {
     commands::artifact::verify(input, None, OutputFormat::Text)?;
     println!("quality ok");
     Ok(())
-}
-
-fn trace_import(
-    input: &Path,
-    design_ir: Option<&Path>,
-    run_id: Option<&str>,
-    out: Option<&Path>,
-) -> Result<()> {
-    let source = fs::read_to_string(input).with_context(|| format!("read {}", input.display()))?;
-    let trimmed = source.trim_start();
-    let is_jsonl = input.extension().and_then(|ext| ext.to_str()) == Some("jsonl");
-    let mut trace = if !is_jsonl && trimmed.starts_with('{') {
-        serde_json::from_str::<Value>(&source)
-            .with_context(|| format!("parse {}", input.display()))?
-    } else {
-        let mut events = Vec::new();
-        for (index, line) in source.lines().enumerate() {
-            let line = line.trim();
-            if line.is_empty() {
-                continue;
-            }
-            let mut event: Value = serde_json::from_str(line)
-                .with_context(|| format!("parse JSONL line {}", index + 1))?;
-            let object = event
-                .as_object_mut()
-                .ok_or_else(|| anyhow!("JSONL line {} must be an object", index + 1))?;
-            object
-                .entry("id".to_string())
-                .or_insert_with(|| Value::String(format!("evt-{:04}", index + 1)));
-            if !object.contains_key("timestamp") {
-                bail!("JSONL line {} is missing timestamp", index + 1);
-            }
-            if !object.contains_key("kind") {
-                bail!("JSONL line {} is missing kind", index + 1);
-            }
-            events.push(event);
-        }
-        serde_json::json!({
-            "trace_version": "0.1.0",
-            "run": {
-                "id": run_id
-                    .map(str::to_string)
-                    .unwrap_or_else(|| input.file_stem().and_then(|stem| stem.to_str()).unwrap_or("imported-run").to_string()),
-                "environment": "imported"
-            },
-            "events": events
-        })
-    };
-
-    if let Some(design_ir) = design_ir {
-        let hash = sha256_json(&load_core_ir(design_ir)?)?;
-        trace
-            .as_object_mut()
-            .ok_or_else(|| anyhow!("trace root must be an object"))?
-            .insert(
-                "design_ir".to_string(),
-                serde_json::json!({
-                    "path": design_ir.display().to_string(),
-                    "hash": hash
-                }),
-            );
-    }
-
-    let temp_path =
-        std::env::temp_dir().join(format!("dslraid-trace-import-{}.json", std::process::id()));
-    write_bytes(&temp_path, serde_json::to_string_pretty(&trace)?.as_bytes())?;
-    let issues = validate_json_schema(Path::new("schemas/dslraid-trace.schema.json"), &temp_path)?;
-    fs::remove_file(&temp_path).ok();
-    if !issues.is_empty() {
-        for issue in &issues {
-            println!("schema error at {}: {}", issue.instance_path, issue.message);
-        }
-        bail!("imported trace failed schema validation");
-    }
-
-    write_or_stdout(out, serde_json::to_string_pretty(&trace)?.as_bytes())
-}
-
-fn trace_check(trace: &Path, design_ir: &Path, format: OutputFormat) -> Result<()> {
-    let schema_issues =
-        validate_json_schema(Path::new("schemas/dslraid-trace.schema.json"), trace)?;
-    if !schema_issues.is_empty() {
-        match format {
-            OutputFormat::Json => println!("{}", serde_json::to_string_pretty(&schema_issues)?),
-            OutputFormat::Text => {
-                for issue in &schema_issues {
-                    println!("schema error at {}: {}", issue.instance_path, issue.message);
-                }
-            }
-        }
-        bail!("trace schema validation failed");
-    }
-    if matches!(format, OutputFormat::Text) {
-        println!("schema ok: {}", trace.display());
-    }
-    let ir = load_core_ir(design_ir)?;
-    let trace_value: Value = serde_json::from_slice(&fs::read(trace)?)?;
-    let known_subjects = ir.semantic_subjects();
-    let mut issues = Vec::new();
-
-    for event in trace_value
-        .get("events")
-        .and_then(Value::as_array)
-        .ok_or_else(|| anyhow!("trace.events must be an array"))?
-    {
-        let event_id = event
-            .get("id")
-            .and_then(Value::as_str)
-            .unwrap_or("<unknown>");
-        let kind = event
-            .get("kind")
-            .and_then(Value::as_str)
-            .unwrap_or("<unknown>");
-        for field in ["subject", "from", "to"] {
-            if let Some(subject) = event.get(field).and_then(Value::as_str) {
-                if !known_subjects.contains(subject) {
-                    issues.push(serde_json::json!({
-                        "code": "RTE049",
-                        "event": event_id,
-                        "field": field,
-                        "subject": subject,
-                        "message": "runtime trace event does not map to a known design subject"
-                    }));
-                }
-            }
-        }
-        if matches!(
-            kind,
-            "transition_started" | "transition_completed" | "transition_failed"
-        ) {
-            let Some(subject) = event.get("subject").and_then(Value::as_str) else {
-                issues.push(serde_json::json!({
-                    "code": "RTE049",
-                    "event": event_id,
-                    "message": "transition trace event is missing subject"
-                }));
-                continue;
-            };
-            if let Some((from, to)) = transition_endpoints(&ir, subject) {
-                if event
-                    .get("from")
-                    .and_then(Value::as_str)
-                    .is_some_and(|value| value != from)
-                {
-                    issues.push(serde_json::json!({
-                        "code": "RTE050",
-                        "event": event_id,
-                        "subject": subject,
-                        "message": "trace from-state contradicts transition definition",
-                        "expected": from,
-                        "actual": event.get("from")
-                    }));
-                }
-                if event
-                    .get("to")
-                    .and_then(Value::as_str)
-                    .is_some_and(|value| value != to)
-                {
-                    issues.push(serde_json::json!({
-                        "code": "RTE050",
-                        "event": event_id,
-                        "subject": subject,
-                        "message": "trace to-state contradicts transition definition",
-                        "expected": to,
-                        "actual": event.get("to")
-                    }));
-                }
-            }
-        }
-    }
-
-    let report = serde_json::json!({
-        "status": if issues.is_empty() { "passed" } else { "failed" },
-        "trace": trace.display().to_string(),
-        "design_ir": design_ir.display().to_string(),
-        "issues": issues
-    });
-
-    match format {
-        OutputFormat::Json => println!("{}", serde_json::to_string_pretty(&report)?),
-        OutputFormat::Text => {
-            if report.get("status").and_then(Value::as_str) == Some("passed") {
-                println!("trace check passed");
-            } else {
-                println!("trace check failed");
-                if let Some(issues) = report.get("issues").and_then(Value::as_array) {
-                    for issue in issues {
-                        println!(
-                            "{} {}: {}",
-                            issue
-                                .get("code")
-                                .and_then(Value::as_str)
-                                .unwrap_or("RTE000"),
-                            issue
-                                .get("event")
-                                .and_then(Value::as_str)
-                                .unwrap_or("<unknown>"),
-                            issue.get("message").and_then(Value::as_str).unwrap_or("")
-                        );
-                    }
-                }
-            }
-        }
-    }
-
-    if report.get("status").and_then(Value::as_str) == Some("passed") {
-        Ok(())
-    } else {
-        bail!("trace check failed")
-    }
-}
-
-fn coverage_build(trace: &Path, design_ir: &Path, out: Option<&Path>) -> Result<()> {
-    validate_json_file(Path::new("schemas/dslraid-trace.schema.json"), trace)?;
-    let ir = load_core_ir(design_ir)?;
-    let trace_value: Value = serde_json::from_slice(&fs::read(trace)?)?;
-    let coverage = coverage_overlay_value(&ir, design_ir, trace, &trace_value)?;
-    let temp_path = std::env::temp_dir().join(format!(
-        "dslraid-coverage-build-{}.json",
-        std::process::id()
-    ));
-    write_bytes(
-        &temp_path,
-        serde_json::to_string_pretty(&coverage)?.as_bytes(),
-    )?;
-    validate_json_file(
-        Path::new("schemas/dslraid-coverage.schema.json"),
-        &temp_path,
-    )?;
-    fs::remove_file(&temp_path).ok();
-    write_or_stdout(out, serde_json::to_string_pretty(&coverage)?.as_bytes())
-}
-
-fn coverage_check(coverage: &Path, design_ir: &Path, format: OutputFormat) -> Result<()> {
-    let schema_issues =
-        validate_json_schema(Path::new("schemas/dslraid-coverage.schema.json"), coverage)?;
-    if !schema_issues.is_empty() {
-        match format {
-            OutputFormat::Json => println!("{}", serde_json::to_string_pretty(&schema_issues)?),
-            OutputFormat::Text => {
-                for issue in &schema_issues {
-                    println!("schema error at {}: {}", issue.instance_path, issue.message);
-                }
-            }
-        }
-        bail!("coverage schema validation failed");
-    }
-    let ir = load_core_ir(design_ir)?;
-    let coverage_value: Value = serde_json::from_slice(&fs::read(coverage)?)?;
-    let known_subjects = ir.semantic_subjects();
-    let mut issues = Vec::new();
-    let mut covered_subjects = BTreeSet::new();
-    for subject in coverage_value
-        .get("subjects")
-        .and_then(Value::as_array)
-        .ok_or_else(|| anyhow!("coverage.subjects must be an array"))?
-    {
-        let Some(subject_id) = subject.get("subject").and_then(Value::as_str) else {
-            continue;
-        };
-        if !known_subjects.contains(subject_id) {
-            issues.push(serde_json::json!({
-                "code": "COV001",
-                "subject": subject_id,
-                "message": "Coverage subject does not resolve to the design IR."
-            }));
-        }
-        covered_subjects.insert(subject_id.to_string());
-    }
-    for fsm in &ir.fsms {
-        for state in &fsm.states {
-            let subject = state_subject(&fsm.id, &state.id);
-            if !covered_subjects.contains(&subject) {
-                issues.push(serde_json::json!({
-                    "code": "COV002",
-                    "subject": subject,
-                    "message": "Coverage overlay is missing a state subject."
-                }));
-            }
-        }
-        for transition in &fsm.transitions {
-            let subject = transition_subject(&fsm.id, &transition.id);
-            if !covered_subjects.contains(&subject) {
-                issues.push(serde_json::json!({
-                    "code": "COV002",
-                    "subject": subject,
-                    "message": "Coverage overlay is missing a transition subject."
-                }));
-            }
-        }
-    }
-    let report = serde_json::json!({
-        "status": if issues.is_empty() { "passed" } else { "failed" },
-        "coverage": coverage.display().to_string(),
-        "design_ir": design_ir.display().to_string(),
-        "issues": issues
-    });
-    match format {
-        OutputFormat::Json => println!("{}", serde_json::to_string_pretty(&report)?),
-        OutputFormat::Text => {
-            if report.get("status").and_then(Value::as_str) == Some("passed") {
-                println!("coverage check passed");
-            } else {
-                println!("coverage check failed");
-                if let Some(issues) = report.get("issues").and_then(Value::as_array) {
-                    for issue in issues {
-                        println!(
-                            "{} {}: {}",
-                            issue
-                                .get("code")
-                                .and_then(Value::as_str)
-                                .unwrap_or("COV000"),
-                            issue
-                                .get("subject")
-                                .and_then(Value::as_str)
-                                .unwrap_or("<unknown>"),
-                            issue.get("message").and_then(Value::as_str).unwrap_or("")
-                        );
-                    }
-                }
-            }
-        }
-    }
-    if report.get("status").and_then(Value::as_str) == Some("passed") {
-        Ok(())
-    } else {
-        bail!("coverage check failed")
-    }
-}
-
-#[derive(Debug, Clone)]
-struct CoverageCounter {
-    kind: String,
-    count: usize,
-    failures: usize,
-    status_override: Option<String>,
-    last_seen: Option<String>,
-}
-
-fn coverage_overlay_value(
-    ir: &dslraid_core::CoreIr,
-    design_ir: &Path,
-    trace: &Path,
-    trace_value: &Value,
-) -> Result<Value> {
-    let mut counters = base_coverage_counters(ir);
-    for event in trace_value
-        .get("events")
-        .and_then(Value::as_array)
-        .ok_or_else(|| anyhow!("trace.events must be an array"))?
-    {
-        let kind = event
-            .get("kind")
-            .and_then(Value::as_str)
-            .unwrap_or_default();
-        let timestamp = event
-            .get("timestamp")
-            .and_then(Value::as_str)
-            .map(str::to_string);
-        let failed = event
-            .get("status")
-            .and_then(Value::as_str)
-            .is_some_and(|status| {
-                matches!(
-                    status,
-                    "failed" | "timeout" | "cancelled" | "policy_blocked" | "degraded"
-                )
-            })
-            || kind == "transition_failed";
-        match kind {
-            "event_received"
-            | "state_entered"
-            | "state_exited"
-            | "transition_started"
-            | "transition_completed"
-            | "transition_failed"
-            | "action_started"
-            | "action_completed"
-            | "diagnostic_emitted" => {
-                if let Some(subject) = event.get("subject").and_then(Value::as_str) {
-                    mark_coverage(&mut counters, subject, failed, timestamp.clone(), None);
-                }
-                if matches!(
-                    kind,
-                    "transition_started" | "transition_completed" | "transition_failed"
-                ) {
-                    for field in ["from", "to"] {
-                        if let Some(subject) = event.get(field).and_then(Value::as_str) {
-                            mark_coverage(&mut counters, subject, false, timestamp.clone(), None);
-                        }
-                    }
-                }
-            }
-            "artifact_deployed" => {
-                if let Some(subject) = event.get("subject").and_then(Value::as_str) {
-                    mark_coverage(
-                        &mut counters,
-                        subject,
-                        failed,
-                        timestamp.clone(),
-                        Some("deployed"),
-                    );
-                }
-            }
-            _ => {}
-        }
-    }
-    let mut subjects = counters
-        .into_iter()
-        .filter_map(|(subject, counter)| coverage_subject_value(subject, counter))
-        .collect::<Vec<_>>();
-    subjects.sort_by_key(|left| value_string(left, "subject"));
-    Ok(serde_json::json!({
-        "coverage_version": "0.1.0",
-        "design_ir": {
-            "path": design_ir.display().to_string(),
-            "hash": sha256_json(ir)?
-        },
-        "traces": [{
-            "path": trace.display().to_string(),
-            "hash": sha256_json(trace_value)?
-        }],
-        "subjects": subjects,
-        "metadata": {
-            "generator": "dslraid-cli",
-            "mode": "trace-derived"
-        }
-    }))
-}
-
-fn base_coverage_counters(ir: &dslraid_core::CoreIr) -> BTreeMap<String, CoverageCounter> {
-    let mut counters = BTreeMap::new();
-    for fsm in &ir.fsms {
-        for state in &fsm.states {
-            counters.insert(
-                state_subject(&fsm.id, &state.id),
-                CoverageCounter::new("state"),
-            );
-        }
-        for event in &fsm.events {
-            counters.insert(
-                event_subject(&fsm.id, &event.id),
-                CoverageCounter::new("event"),
-            );
-        }
-        for guard in &fsm.guards {
-            counters.insert(
-                format!("guard:{}.{}", fsm.local_name(), guard.id),
-                CoverageCounter::new("guard"),
-            );
-        }
-        for action in &fsm.actions {
-            counters.insert(
-                format!("action:{}.{}", fsm.local_name(), action.id),
-                CoverageCounter::new("action"),
-            );
-        }
-        for transition in &fsm.transitions {
-            counters.insert(
-                transition_subject(&fsm.id, &transition.id),
-                CoverageCounter::new("transition"),
-            );
-        }
-    }
-    for artifact in &ir.artifacts {
-        counters.insert(artifact.id.clone(), CoverageCounter::new("artifact"));
-    }
-    counters
-}
-
-impl CoverageCounter {
-    fn new(kind: &str) -> Self {
-        Self {
-            kind: kind.to_string(),
-            count: 0,
-            failures: 0,
-            status_override: None,
-            last_seen: None,
-        }
-    }
-}
-
-fn mark_coverage(
-    counters: &mut BTreeMap<String, CoverageCounter>,
-    subject: &str,
-    failed: bool,
-    timestamp: Option<String>,
-    status_override: Option<&str>,
-) {
-    if let Some(counter) = counters.get_mut(subject) {
-        counter.count += 1;
-        if failed {
-            counter.failures += 1;
-        }
-        if let Some(status_override) = status_override {
-            counter.status_override = Some(status_override.to_string());
-        }
-        if let Some(timestamp) = timestamp {
-            counter.last_seen = Some(timestamp);
-        }
-    }
-}
-
-fn coverage_subject_value(subject: String, counter: CoverageCounter) -> Option<Value> {
-    if !matches!(
-        counter.kind.as_str(),
-        "state" | "transition" | "event" | "guard" | "action" | "artifact"
-    ) {
-        return None;
-    }
-    let status = if let Some(status) = counter.status_override {
-        status
-    } else if counter.kind == "artifact" {
-        if counter.count > 0 {
-            "deployed".to_string()
-        } else {
-            "not_deployed".to_string()
-        }
-    } else if counter.failures > 0 {
-        "failed".to_string()
-    } else if counter.count > 0 {
-        "covered".to_string()
-    } else {
-        "uncovered".to_string()
-    };
-    let failure_rate = if counter.count == 0 {
-        0.0
-    } else {
-        counter.failures as f64 / counter.count as f64
-    };
-    let mut value = serde_json::json!({
-        "subject": subject,
-        "kind": counter.kind,
-        "status": status,
-        "count": counter.count,
-        "failure_rate": failure_rate
-    });
-    if let Some(last_seen) = counter.last_seen {
-        value
-            .as_object_mut()
-            .expect("coverage subject is an object")
-            .insert("last_seen".to_string(), Value::String(last_seen));
-    }
-    Some(value)
 }
 
 fn golden_check(path: &Path) -> Result<()> {
@@ -2852,20 +2308,6 @@ fn value_matches(actual: &Value, expected: &str) -> bool {
         Value::Null => expected.eq_ignore_ascii_case("null"),
         Value::Object(_) => false,
     }
-}
-
-fn transition_endpoints(ir: &dslraid_core::CoreIr, subject: &str) -> Option<(String, String)> {
-    for fsm in &ir.fsms {
-        for transition in &fsm.transitions {
-            if transition_subject(&fsm.id, &transition.id) == subject {
-                return Some((
-                    state_subject(&fsm.id, &transition.from),
-                    state_subject(&fsm.id, &transition.to),
-                ));
-            }
-        }
-    }
-    None
 }
 
 fn compat_check(input: &Path) -> Result<()> {
