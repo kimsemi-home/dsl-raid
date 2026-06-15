@@ -7,8 +7,8 @@ Goal: make the project understandable and contributable.
 - publish positioning and architecture docs
 - choose license
 - create contribution guide
-- define initial core, index, view, trace, coverage, source map, lock, and
-  annotation JSON schemas
+- define initial core, assertion, index, view, trace, coverage, source map,
+  lock, annotation, and validation JSON schemas
 - add one hand-written RunScope fixture
 - add fixture validation in CI
 - record MVP non-goals and risk boundaries in ADRs
@@ -17,8 +17,8 @@ Exit criteria:
 
 - a new contributor can read the README and understand what DSLRaid is
 - `runscope.raid.json` validates against the core schema
-- the core/index/view/trace/coverage/source-map/lock/annotation schemas and fixture are
-  committed to the repository
+- the core/assertion/index/view/trace/coverage/source-map/lock/annotation/
+  validation schemas and fixture are committed to the repository
 
 ## Milestone 1: IR Kernel
 

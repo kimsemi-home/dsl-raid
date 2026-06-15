@@ -14,11 +14,20 @@
   },
   "summary": {
     "status": "passed",
-    "passed": 9,
-    "failed": 0,
-    "warnings": 0,
-    "skipped": 0,
-    "not_applicable": 1
+    "propositions": {
+      "passed": 9,
+      "failed": 0,
+      "warnings": 0,
+      "skipped": 0,
+      "not_applicable": 1
+    },
+    "assertions": {
+      "passed": 3,
+      "failed": 0,
+      "warnings": 0,
+      "skipped": 0,
+      "not_applicable": 1
+    }
   },
   "propositions": [
     {

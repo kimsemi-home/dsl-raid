@@ -72,7 +72,7 @@ The assertion registry can derive:
 - CLI docs
 - diagnostic code tables
 - fixture templates
-- viewer copy and fix hints
+- viewer copy and suggestions generated from fix templates
 
 ## Validation Layers
 
@@ -182,7 +182,7 @@ The report should include:
 - proposition results
 - assertion results with evidence and suggested fix
 - related diagnostic IDs
-- summary counts by status and severity
+- separate proposition and assertion summary counts by status
 
 Status values:
 
@@ -191,6 +191,9 @@ Status values:
 - `warning`
 - `skipped`
 - `not_applicable`
+
+Summary counts must state whether they are counting propositions or assertions.
+Do not mix those two totals in a single flat count.
 
 Failed assertion shape:
 

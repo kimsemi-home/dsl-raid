@@ -92,13 +92,26 @@
     },
     "summary": {
       "type": "object",
-      "required": ["status", "passed", "failed", "warnings", "skipped", "not_applicable"],
+      "required": ["status", "propositions", "assertions"],
       "additionalProperties": false,
       "properties": {
         "status": {
           "type": "string",
           "enum": ["passed", "failed"]
         },
+        "propositions": {
+          "$ref": "#/$defs/count_summary"
+        },
+        "assertions": {
+          "$ref": "#/$defs/count_summary"
+        }
+      }
+    },
+    "count_summary": {
+      "type": "object",
+      "required": ["passed", "failed", "warnings", "skipped", "not_applicable"],
+      "additionalProperties": false,
+      "properties": {
         "passed": {
           "type": "integer",
           "minimum": 0

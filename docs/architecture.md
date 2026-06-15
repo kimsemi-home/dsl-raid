@@ -520,10 +520,17 @@ Owns:
 │   ├── fixtures/
 │   └── golden/
 │       ├── validate/
+│       ├── assertion-registry/
+│       ├── validation-report/
 │       ├── compose/
 │       ├── project/
 │       ├── render/
-│       └── diagnostics/
+│       ├── trace/
+│       ├── diff/
+│       ├── diagnostics/
+│       ├── mutation/
+│       ├── artifacts/
+│       └── compat/
 └── tools/
 ```
 

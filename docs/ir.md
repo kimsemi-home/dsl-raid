@@ -23,15 +23,14 @@ trace, coverage, source-map, lock, annotation, assertion, and validation schemas
 are separate data products and must not be folded back into core IR.
 
 ```text
-typed executable core IR
+typed executable core IR + assertion registry
   -> validation / analyzer
-  -> assertion registry
   -> composition / projection / derivation
   -> runtime trace import
   -> coverage overlay
   -> source map
   -> lock / artifact freshness
-  -> validation proposition report
+  -> validation proposition/assertion report
   -> derived index graph
   -> derived view model
   -> annotations

@@ -1046,10 +1046,6 @@
           "type": "string",
           "minLength": 1
         },
-        "fix": {
-          "type": "string",
-          "minLength": 1
-        },
         "evidence": {
           "$ref": "#/$defs/metadata"
         },
