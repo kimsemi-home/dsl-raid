@@ -1,0 +1,5 @@
+/target/
+/apps/viewer/node_modules/
+/apps/viewer/dist/
+/.DS_Store
+*.fasl

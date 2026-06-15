@@ -1,0 +1,15 @@
+[package]
+name = "dslraid-cli"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+anyhow.workspace = true
+clap.workspace = true
+dslraid-analyzer = { path = "../dslraid-analyzer" }
+dslraid-codegen = { path = "../dslraid-codegen" }
+dslraid-core = { path = "../dslraid-core" }
+serde_json.workspace = true
+walkdir.workspace = true

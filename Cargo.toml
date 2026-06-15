@@ -1,0 +1,25 @@
+[workspace]
+members = [
+  "crates/dslraid-core",
+  "crates/dslraid-analyzer",
+  "crates/dslraid-codegen",
+  "crates/dslraid-cli"
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+repository = "https://github.com/kimsemi-home/dsl-raid"
+
+[workspace.dependencies]
+anyhow = "1.0"
+clap = { version = "4.5", features = ["derive"] }
+hex = "0.4"
+jsonschema = "0.17"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { version = "1.0", features = ["preserve_order"] }
+sha2 = "0.10"
+thiserror = "1.0"
+walkdir = "2.5"

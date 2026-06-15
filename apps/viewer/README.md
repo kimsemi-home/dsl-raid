@@ -17,3 +17,16 @@ provided through HTML panels, not by relying on Canvas alone.
 
 See [../../docs/viewer-architecture.md](../../docs/viewer-architecture.md) and
 [../../docs/viewer-rendering.md](../../docs/viewer-rendering.md).
+
+## Commands
+
+```bash
+npm ci
+npm run lint
+npm test
+npm run build
+npm run dev
+```
+
+The current app is a TypeScript + Canvas 2D implementation. It keeps Core IR,
+projection/view model, camera, selection, and inspector state separate.

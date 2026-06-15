@@ -49,19 +49,30 @@ to click from a project or context to a runtime FSM, from the FSM to a state or
 transition, and from there to source definitions, tests, generated code, and
 related policies.
 
-## Planned Stack
+## Stack
 
 - Common Lisp for authoring DSLs and SSOT-friendly macros
-- Rust for canonical IR, analysis, composition, code generation, and WASM
-- WASM for running the core engine in the browser
-- JavaScript/TypeScript for the web application shell and plugin surface
-- Canvas/WebGL for scalable interactive visualization
-- ELK or Graphviz for early layout, with a native incremental layout engine
-  later only if needed
+- Rust for canonical IR, JSON Schema validation, FSM analysis, projection,
+  code generation, and CLI workflows
+- TypeScript for the web application shell
+- Canvas 2D for the interactive graph viewport
+- WASM, WebGL, ELK, and Graphviz remain later expansion points
 
 ## Repository Map
 
-This repository is currently in design-first bootstrap mode.
+This repository now has a working MVP implementation around the original
+design contracts.
+
+- `crates/dslraid-core`: typed Core IR structs, JSON loading, stable hashes,
+  and JSON Schema validation
+- `crates/dslraid-analyzer`: FSM and traceability semantic validation reports
+- `crates/dslraid-codegen`: projection, SVG render, Mermaid/DOT export, and
+  Rust/Go/TypeScript FSM codegen
+- `crates/dslraid-cli`: executable CLI over the core/analyzer/codegen crates
+- `apps/viewer`: TypeScript Canvas viewer with search, hit-testing, inspector,
+  and diagnostics panels
+- `lisp`: Common Lisp data-first DSL macros, normalization, validation, and
+  deterministic JSON emitters
 
 - [Architecture](docs/architecture.md)
 - [IR Design](docs/ir.md)
@@ -97,21 +108,37 @@ Start with a small, stable executable IR kernel. Let renderers, code
 generators, graph indexes, and language integrations grow around it as
 replaceable adapters.
 
-The first product contract is CLI-first:
+The implemented product contract is CLI-first:
 
 ```bash
-dslraid init
-dslraid normalize .dslraid.json
-dslraid validate .dslraid.json
-dslraid validate .dslraid.json --format json
-dslraid migrate --from 0.1.0 --to 0.2.0 .dslraid.json
-dslraid compose .dslraid.json --composition composition:runscope
-dslraid project .dslraid.json --projection view:runscope.conflicts
-dslraid trace import logs/run-123.jsonl
-dslraid diff base.json head.json
-dslraid render .dslraid.json --format svg
-dslraid artifact verify
-dslraid compat check
-dslraid query 'kind=transition and tested=false'
-dslraid export mermaid .dslraid.json
+cargo run -p dslraid-cli -- init .dslraid.json
+cargo run -p dslraid-cli -- normalize examples/runscope/runscope.raid.json
+cargo run -p dslraid-cli -- validate examples/runscope/runscope.raid.json
+cargo run -p dslraid-cli -- validate examples/runscope/runscope.raid.json --format json
+cargo run -p dslraid-cli -- schema validate schemas/dslraid-core.schema.json examples/runscope/runscope.raid.json
+cargo run -p dslraid-cli -- project examples/runscope/runscope.raid.json --projection view:runtime
+cargo run -p dslraid-cli -- render examples/runscope/runscope.raid.json --format svg
+cargo run -p dslraid-cli -- codegen examples/runscope/runscope.raid.json --target rust
+cargo run -p dslraid-cli -- export mermaid examples/runscope/runscope.raid.json
+cargo run -p dslraid-cli -- diff base.json head.json
+cargo run -p dslraid-cli -- artifact verify examples/runscope/runscope.raid.json
+cargo run -p dslraid-cli -- compat check examples/runscope/runscope.raid.json
+cargo run -p dslraid-cli -- quality
 ```
+
+Planned but not yet implemented as full product features: migrations, runtime
+trace import, query language, lazy product composition materialization beyond
+the current diagnostic summary, WASM packaging, and WebGL rendering.
+
+## Viewer
+
+```bash
+cd apps/viewer
+npm ci
+npm run dev
+npm run build
+```
+
+The viewer loads `public/examples/runscope.raid.json` when the Pages workflow
+renders example assets, and falls back to an embedded RunScope sample during
+local development.
