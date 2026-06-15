@@ -53,7 +53,12 @@ jobs:
 
       - name: Render example assets
         if: steps.cli.outputs.present == 'true' && steps.viewer.outputs.present == 'true'
-        run: cargo run -p dslraid-cli -- render examples/runscope/runscope.raid.json --out apps/viewer/public/examples
+        run: |
+          cargo run -p dslraid-cli -- render examples/runscope/runscope.raid.json --out apps/viewer/public/examples
+          cargo run -p dslraid-cli -- coverage build \
+            --trace examples/runscope/run-001.trace.json \
+            --design-ir examples/runscope/runscope.raid.json \
+            --out apps/viewer/public/examples/run-001.coverage.json
 
       - name: Build viewer
         if: steps.viewer.outputs.present == 'true'

@@ -1,6 +1,8 @@
 import type {
   Artifact,
   CoreIr,
+  CoverageOverlay,
+  CoverageSubject,
   Fsm,
   InspectorPanel,
   Projection,
@@ -10,13 +12,13 @@ import type {
   ViewModel
 } from "../types";
 
-export function projectIr(ir: CoreIr, projectionId?: string): ViewModel {
+export function projectIr(ir: CoreIr, projectionId?: string, coverage?: CoverageOverlay): ViewModel {
   const projection = selectProjection(ir, projectionId);
   const fsm = (ir.fsms ?? []).find((candidate) => candidate.id === projection.source);
   if (!fsm) {
     throw new Error(`Projection source is not an FSM: ${projection.source}`);
   }
-  return projectFsm(ir, projection, fsm);
+  return projectFsm(ir, projection, fsm, coverageIndex(coverage));
 }
 
 function selectProjection(ir: CoreIr, projectionId?: string): Projection {
@@ -30,7 +32,7 @@ function selectProjection(ir: CoreIr, projectionId?: string): Projection {
   return projection;
 }
 
-function projectFsm(ir: CoreIr, projection: Projection, fsm: Fsm): ViewModel {
+function projectFsm(ir: CoreIr, projection: Projection, fsm: Fsm, coverage: Map<string, CoverageSubject>): ViewModel {
   const nodes: SceneNode[] = [];
   const edges: SceneEdge[] = [];
   const panels: InspectorPanel[] = [fsmPanel(ir, fsm)];
@@ -44,12 +46,14 @@ function projectFsm(ir: CoreIr, projection: Projection, fsm: Fsm): ViewModel {
   states.forEach((state, index) => {
     const x = 80 + (index % 3) * colGap;
     const y = 90 + Math.floor(index / 3) * rowGap;
+    const subject = stateSubject(fsm.id, state.id);
+    const coverageSubject = coverage.get(subject);
     const badges = [
       ...(state.initial ? ["initial"] : []),
       ...(state.terminal ? [state.terminal_semantics ?? "terminal"] : []),
-      ...(state.tags ?? [])
+      ...(state.tags ?? []),
+      ...coverageBadges(coverageSubject)
     ];
-    const subject = stateSubject(fsm.id, state.id);
     nodes.push({
       id: layoutStateId(fsm.id, state.id),
       subject,
@@ -60,11 +64,12 @@ function projectFsm(ir: CoreIr, projection: Projection, fsm: Fsm): ViewModel {
       label: state.id,
       badges,
       style: {
-        tone: state.terminal ? (state.terminal_semantics === "failed" ? "danger" : "success") : "default",
-        emphasis: state.initial || state.terminal ? "strong" : "normal"
+        tone: coverageTone(coverageSubject) ?? (state.terminal ? (state.terminal_semantics === "failed" ? "danger" : "success") : "default"),
+        emphasis: coverageSubject?.status === "uncovered" ? "faint" : state.initial || state.terminal ? "strong" : "normal",
+        coverage: coverageSubject?.status
       }
     });
-    panels.push(statePanel(ir, fsm, state.id, subject));
+    panels.push(statePanel(ir, fsm, state.id, subject, coverageSubject));
   });
 
   transitions.forEach((transition) => {
@@ -74,6 +79,7 @@ function projectFsm(ir: CoreIr, projection: Projection, fsm: Fsm): ViewModel {
       return;
     }
     const subject = transitionSubject(fsm.id, transition.id);
+    const coverageSubject = coverage.get(subject);
     edges.push({
       id: layoutTransitionId(fsm.id, transition.id),
       subject,
@@ -85,11 +91,12 @@ function projectFsm(ir: CoreIr, projection: Projection, fsm: Fsm): ViewModel {
         { x: to.x, y: to.y + to.height / 2 }
       ],
       style: {
-        tone: (transition.requires ?? []).length > 0 ? "warning" : "default",
-        emphasis: "normal"
+        tone: coverageTone(coverageSubject) ?? ((transition.requires ?? []).length > 0 ? "warning" : "default"),
+        emphasis: coverageSubject?.status === "uncovered" ? "faint" : "normal",
+        coverage: coverageSubject?.status
       }
     });
-    panels.push(transitionPanel(ir, fsm, transition, subject));
+    panels.push(transitionPanel(ir, fsm, transition, subject, coverageSubject));
   });
 
   return {
@@ -156,7 +163,7 @@ function fsmPanel(ir: CoreIr, fsm: Fsm): InspectorPanel {
   };
 }
 
-function statePanel(ir: CoreIr, fsm: Fsm, stateId: string, subject: string): InspectorPanel {
+function statePanel(ir: CoreIr, fsm: Fsm, stateId: string, subject: string, coverage?: CoverageSubject): InspectorPanel {
   const transitions = fsm.transitions ?? [];
   const incoming = transitions.filter((transition) => transition.to === stateId);
   const outgoing = transitions.filter((transition) => transition.from === stateId);
@@ -174,6 +181,10 @@ function statePanel(ir: CoreIr, fsm: Fsm, stateId: string, subject: string): Ins
         ]
       },
       {
+        title: "Coverage",
+        rows: coverageRows(coverage)
+      },
+      {
         title: "Traceability",
         rows: artifacts.length > 0 ? artifacts.map(artifactRow) : [{ label: "Artifacts", value: "none linked" }]
       }
@@ -181,7 +192,7 @@ function statePanel(ir: CoreIr, fsm: Fsm, stateId: string, subject: string): Ins
   };
 }
 
-function transitionPanel(ir: CoreIr, fsm: Fsm, transition: Transition, subject: string): InspectorPanel {
+function transitionPanel(ir: CoreIr, fsm: Fsm, transition: Transition, subject: string, coverage?: CoverageSubject): InspectorPanel {
   const requires = transition.requires ?? [];
   return {
     subject,
@@ -207,6 +218,10 @@ function transitionPanel(ir: CoreIr, fsm: Fsm, transition: Transition, subject: 
             : [{ label: "Requires", value: "none" }]
       },
       {
+        title: "Coverage",
+        rows: coverageRows(coverage)
+      },
+      {
         title: "Traceability",
         rows: artifactsForSubject(ir, subject).map(artifactRow)
       }
@@ -229,4 +244,55 @@ function artifactRow(artifact: Artifact) {
     value: artifact.path,
     subject: artifact.id
   };
+}
+
+function coverageIndex(coverage?: CoverageOverlay): Map<string, CoverageSubject> {
+  return new Map((coverage?.subjects ?? []).map((subject) => [subject.subject, subject]));
+}
+
+function coverageBadges(coverage?: CoverageSubject): string[] {
+  if (!coverage) {
+    return [];
+  }
+  const badges: string[] = [coverage.status];
+  if ((coverage.count ?? 0) > 0) {
+    badges.push(`seen ${coverage.count}`);
+  }
+  return badges;
+}
+
+function coverageTone(coverage?: CoverageSubject): "success" | "warning" | "danger" | "muted" | undefined {
+  switch (coverage?.status) {
+    case "covered":
+    case "deployed":
+      return "success";
+    case "failed":
+      return "danger";
+    case "flaky":
+      return "warning";
+    case "uncovered":
+    case "not_deployed":
+      return "muted";
+    default:
+      return undefined;
+  }
+}
+
+function coverageRows(coverage?: CoverageSubject) {
+  if (!coverage) {
+    return [{ label: "Status", value: "not loaded" }];
+  }
+  return [
+    { label: "Status", value: coverage.status },
+    { label: "Count", value: String(coverage.count ?? 0) },
+    { label: "Failure rate", value: formatRate(coverage.failure_rate) },
+    { label: "Last seen", value: coverage.last_seen ?? "never" }
+  ];
+}
+
+function formatRate(value: number | undefined): string {
+  if (value === undefined) {
+    return "n/a";
+  }
+  return `${Math.round(value * 1000) / 10}%`;
 }

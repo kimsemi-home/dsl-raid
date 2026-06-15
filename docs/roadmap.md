@@ -199,7 +199,7 @@ Goal: compare designed behavior to observed behavior.
 - produce trace-derived coverage overlay JSON
 - implement `dslraid coverage build`
 - implement `dslraid coverage check`
-- show executed and unexecuted transitions
+- show executed and unexecuted transitions in the viewer
 - show transition failure rates
 - connect runtime events through source maps
 - map runtime event kinds to semantic transition and state subjects

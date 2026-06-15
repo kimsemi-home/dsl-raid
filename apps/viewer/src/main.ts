@@ -5,7 +5,7 @@ import { renderCanvas } from "./canvas/renderer";
 import { projectIr, subjectsForSearch } from "./graph/projection";
 import { sampleIr } from "./sample-ir";
 import { createInitialCamera, type AppStore } from "./store/app-store";
-import type { CoreIr, InspectorPanel, Point } from "./types";
+import type { CoreIr, CoverageOverlay, CoverageStatus, InspectorPanel, Point } from "./types";
 
 const root = document.querySelector<HTMLDivElement>("#app");
 if (!root) {
@@ -26,9 +26,17 @@ root.innerHTML = `
         <input id="file-input" type="file" accept="application/json,.json" />
         Load IR
       </label>
+      <label class="file-button">
+        <input id="coverage-input" type="file" accept="application/json,.json" />
+        Load Coverage
+      </label>
       <section>
         <h2>Project</h2>
         <div id="project-tree" class="tree"></div>
+      </section>
+      <section>
+        <h2>Coverage</h2>
+        <div id="coverage-summary" class="coverage-summary"></div>
       </section>
       <section>
         <h2>Search</h2>
@@ -44,7 +52,9 @@ root.innerHTML = `
         <label><input id="diagnostic-toggle" type="checkbox" checked /> Diagnostics</label>
         <label><input id="focus-toggle" type="checkbox" /> 1-hop focus</label>
       </div>
-      <canvas id="graph-canvas" aria-label="FSM projection canvas"></canvas>
+      <div class="canvas-stage">
+        <canvas id="graph-canvas" aria-label="FSM projection canvas"></canvas>
+      </div>
       <div id="status" class="status"></div>
     </main>
     <aside class="inspector" aria-label="Inspector">
@@ -66,6 +76,8 @@ const diagnostics = mustQuery<HTMLDivElement>("#diagnostic-list");
 const searchInput = mustQuery<HTMLInputElement>("#search-input");
 const searchResults = mustQuery<HTMLDivElement>("#search-results");
 const fileInput = mustQuery<HTMLInputElement>("#file-input");
+const coverageInput = mustQuery<HTMLInputElement>("#coverage-input");
+const coverageSummary = mustQuery<HTMLDivElement>("#coverage-summary");
 
 let store: AppStore = {
   ir: sampleIr,
@@ -79,6 +91,7 @@ let store: AppStore = {
 let dragging = false;
 let lastMouse: Point | undefined;
 let renderQueued = false;
+const coverageStatusOrder: CoverageStatus[] = ["covered", "uncovered", "failed", "flaky", "deployed", "not_deployed"];
 
 void loadDefaultIr();
 bindControls();
@@ -92,17 +105,31 @@ async function loadDefaultIr(): Promise<void> {
       throw new Error(response.statusText);
     }
     const ir = (await response.json()) as CoreIr;
-    setIr(ir);
+    const coverage = await loadDefaultCoverage();
+    setIr(ir, coverage);
   } catch {
     setIr(sampleIr);
   }
 }
 
-function setIr(ir: CoreIr): void {
+async function loadDefaultCoverage(): Promise<CoverageOverlay | undefined> {
+  try {
+    const response = await fetch("./examples/run-001.coverage.json", { cache: "no-cache" });
+    if (!response.ok) {
+      return undefined;
+    }
+    return (await response.json()) as CoverageOverlay;
+  } catch {
+    return undefined;
+  }
+}
+
+function setIr(ir: CoreIr, coverage?: CoverageOverlay): void {
   store = {
     ...store,
     ir,
-    view: projectIr(ir),
+    coverage,
+    view: projectIr(ir, undefined, coverage),
     selection: { selected: ir.fsms?.[0]?.id }
   };
   fitGraph();
@@ -178,6 +205,20 @@ function bindControls(): void {
     const ir = JSON.parse(await file.text()) as CoreIr;
     setIr(ir);
   });
+  coverageInput.addEventListener("change", async () => {
+    const file = coverageInput.files?.[0];
+    if (!file) {
+      return;
+    }
+    const coverage = JSON.parse(await file.text()) as CoverageOverlay;
+    store = {
+      ...store,
+      coverage,
+      view: projectIr(store.ir, undefined, coverage)
+    };
+    syncPanels();
+    queueRender();
+  });
   window.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       store.selection.selected = undefined;
@@ -198,6 +239,7 @@ function bindControls(): void {
 
 function syncPanels(): void {
   syncProjectTree();
+  syncCoverageSummary();
   syncInspector();
   syncDiagnostics();
   syncSearch();
@@ -222,6 +264,34 @@ function syncProjectTree(): void {
       queueRender();
     });
   });
+}
+
+function syncCoverageSummary(): void {
+  const subjects = store.coverage?.subjects ?? [];
+  if (!store.coverage || subjects.length === 0) {
+    coverageSummary.innerHTML = `<p class="muted">No coverage overlay loaded.</p>`;
+    return;
+  }
+  const counts = subjects.reduce<Record<string, number>>((accumulator, subject) => {
+    accumulator[subject.status] = (accumulator[subject.status] ?? 0) + 1;
+    return accumulator;
+  }, {});
+  const statuses = [
+    ...coverageStatusOrder.filter((status) => counts[status]),
+    ...Object.keys(counts)
+      .filter((status) => !coverageStatusOrder.includes(status as CoverageStatus))
+      .sort()
+  ];
+  coverageSummary.innerHTML = `
+    <div class="coverage-grid">
+      ${statuses.map((status) => coverageSummaryItem(status, counts[status] ?? 0)).join("")}
+    </div>
+  `;
+}
+
+function coverageSummaryItem(label: string, count: number): string {
+  const displayLabel = label.replaceAll("_", " ");
+  return `<div class="coverage-pill ${escapeHtml(label)}"><strong>${count}</strong><span>${escapeHtml(displayLabel)}</span></div>`;
 }
 
 function syncInspector(): void {

@@ -1,7 +1,8 @@
-import type { Camera, CoreIr, SelectionState, ViewModel } from "../types";
+import type { Camera, CoreIr, CoverageOverlay, SelectionState, ViewModel } from "../types";
 
 export type AppStore = {
   ir: CoreIr;
+  coverage?: CoverageOverlay;
   view: ViewModel;
   camera: Camera;
   selection: SelectionState;

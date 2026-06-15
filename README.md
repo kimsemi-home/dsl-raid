@@ -150,6 +150,6 @@ npm run lint
 npm run build
 ```
 
-The viewer loads `public/examples/runscope.raid.json` when the Pages workflow
-renders example assets, and falls back to an embedded RunScope sample during
-local development.
+The viewer loads `public/examples/runscope.raid.json` and
+`public/examples/run-001.coverage.json` when the Pages workflow renders example
+assets, and falls back to an embedded RunScope sample during local development.

@@ -66,8 +66,10 @@ function drawEdges(context: CanvasRenderingContext2D, edges: SceneEdge[], select
     }
     const selected = selection.selected === edge.subject;
     const hovered = selection.hovered === edge.subject;
-    context.strokeStyle = selected ? "#0f766e" : hovered ? "#b45309" : "#58616a";
+    const tone = edge.style?.tone ?? "default";
+    context.strokeStyle = selected ? "#0f766e" : hovered ? "#b45309" : toneStroke(tone);
     context.lineWidth = selected || hovered ? 3 : 2;
+    context.globalAlpha = edge.style?.emphasis === "faint" ? 0.45 : 1;
     context.beginPath();
     context.moveTo(edge.route[0].x, edge.route[0].y);
     for (const point of edge.route.slice(1)) {
@@ -80,6 +82,7 @@ function drawEdges(context: CanvasRenderingContext2D, edges: SceneEdge[], select
       const end = edge.route[edge.route.length - 1];
       drawLabel(context, edge.label, (start.x + end.x) / 2, (start.y + end.y) / 2 - 12);
     }
+    context.globalAlpha = 1;
   }
 }
 
@@ -105,6 +108,7 @@ function drawNodes(context: CanvasRenderingContext2D, nodes: SceneNode[], select
     const selected = selection.selected === node.subject;
     const hovered = selection.hovered === node.subject;
     const tone = node.style?.tone ?? "default";
+    context.globalAlpha = node.style?.emphasis === "faint" ? 0.68 : 1;
     context.fillStyle = "#fffefa";
     context.strokeStyle = selected ? "#0f766e" : hovered ? "#b45309" : toneStroke(tone);
     context.lineWidth = selected || hovered || node.style?.emphasis === "strong" ? 3 : 2;
@@ -127,6 +131,7 @@ function drawNodes(context: CanvasRenderingContext2D, nodes: SceneNode[], select
       context.fillText(badge, badgeX + 8, node.y + 47);
       badgeX += badgeWidth + 6;
     }
+    context.globalAlpha = 1;
   }
 }
 
@@ -158,6 +163,18 @@ function toneStroke(tone: string): string {
 function badgeFill(tone: string, badge: string): string {
   if (badge === "generated") {
     return "#dbeafe";
+  }
+  if (badge === "covered" || badge === "deployed") {
+    return "#ccfbf1";
+  }
+  if (badge === "uncovered" || badge === "not_deployed") {
+    return "#e5e7eb";
+  }
+  if (badge === "failed") {
+    return "#fee2e2";
+  }
+  if (badge === "flaky") {
+    return "#fef3c7";
   }
   if (badge === "tested" || tone === "success") {
     return "#ccfbf1";
