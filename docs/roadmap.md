@@ -212,10 +212,12 @@ Exit criteria:
 
 Goal: make DSLRaid useful in code review.
 
-- implement `dslraid diff base.json head.json`
-- summarize added/removed states and transitions
+- implement `dslraid diff base.json head.json` MVP with text, JSON, and
+  Markdown output
+- summarize added/removed/changed states and transitions
 - detect broken policy/capability traces
 - detect untested transitions
+- detect terminal path deltas
 - detect stale artifact deltas
 - detect compatibility deltas
 - produce deterministic markdown suitable for PR comments

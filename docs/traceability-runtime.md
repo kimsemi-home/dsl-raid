@@ -124,6 +124,9 @@ warning: provider capability changed
 ```
 
 Diff should be deterministic and usable both in CLI output and PR comments.
+The current CLI supports text, JSON, and Markdown output, including state and
+transition additions/removals/changes, untested added transitions, terminal path
+changes, and transition policy requirement changes.
 
 Review mode should compare before/after projections, diagnostics delta,
 coverage delta, artifact freshness delta, and compatibility delta.

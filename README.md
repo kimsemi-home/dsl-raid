@@ -122,6 +122,7 @@ cargo run -p dslraid-cli -- render examples/runscope/runscope.raid.json --format
 cargo run -p dslraid-cli -- codegen examples/runscope/runscope.raid.json --target rust
 cargo run -p dslraid-cli -- export mermaid examples/runscope/runscope.raid.json
 cargo run -p dslraid-cli -- diff base.json head.json
+cargo run -p dslraid-cli -- diff base.json head.json --format markdown --out dslraid-diff.md
 cargo run -p dslraid-cli -- query examples/runscope/runscope.raid.json 'kind=transition and tested=false'
 cargo run -p dslraid-cli -- query examples/runscope/runscope.raid.json 'kind in [state,transition] and generated=false'
 cargo run -p dslraid-cli -- compose examples/runscope/runscope.raid.json --materialize reachable --format json
@@ -135,10 +136,11 @@ cargo run -p dslraid-cli -- quality
 ```
 
 MVP implementations now exist for no-op version migration, richer IR queries,
-lazy reachable composition materialization, runtime trace import/check, and
-trace-derived coverage overlays. Planned but not yet implemented as full
-product features: non-trivial migrations, synchronized product semantics,
-coverage-aware viewer overlays, WASM packaging, and WebGL rendering.
+lazy reachable composition materialization, semantic diff review summaries,
+runtime trace import/check, trace-derived coverage overlays, and coverage-aware
+viewer overlays. Planned but not yet implemented as full product features:
+non-trivial migrations, synchronized product semantics, WASM packaging, and
+WebGL rendering.
 
 ## Viewer
 

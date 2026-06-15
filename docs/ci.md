@@ -143,7 +143,7 @@ cargo run -p dslraid-cli -- golden update tests/golden
 
 ## PR Review Summary
 
-After `dslraid diff` exists, CI should publish a deterministic PR summary:
+`dslraid diff --format markdown` can publish a deterministic PR summary:
 
 ```text
 FSM changed:

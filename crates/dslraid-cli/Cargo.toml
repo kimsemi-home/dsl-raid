@@ -11,5 +11,6 @@ clap.workspace = true
 dslraid-analyzer = { path = "../dslraid-analyzer" }
 dslraid-codegen = { path = "../dslraid-codegen" }
 dslraid-core = { path = "../dslraid-core" }
+serde.workspace = true
 serde_json.workspace = true
 walkdir.workspace = true

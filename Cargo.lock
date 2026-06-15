@@ -279,6 +279,7 @@ dependencies = [
  "dslraid-analyzer",
  "dslraid-codegen",
  "dslraid-core",
+ "serde",
  "serde_json",
  "walkdir",
 ]
