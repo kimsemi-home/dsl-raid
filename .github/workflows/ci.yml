@@ -174,7 +174,7 @@ jobs:
       - name: Detect DSLRaid CLI
         id: cli
         run: |
-          if [ -f Cargo.toml ] && grep -R "name = \"dslraid-cli\"" -n crates cli >/dev/null 2>&1; then
+          if [ -f Cargo.toml ] && [ -f crates/dslraid-cli/Cargo.toml ]; then
             echo "present=true" >> "$GITHUB_OUTPUT"
           else
             echo "present=false" >> "$GITHUB_OUTPUT"
