@@ -131,16 +131,17 @@ cargo run -p dslraid-cli -- trace check examples/runscope/run-001.trace.json --d
 cargo run -p dslraid-cli -- coverage build --trace examples/runscope/run-001.trace.json --design-ir examples/runscope/runscope.raid.json
 cargo run -p dslraid-cli -- coverage check examples/runscope/run-001.coverage.json --design-ir examples/runscope/runscope.raid.json
 cargo run -p dslraid-cli -- artifact verify examples/runscope/runscope.raid.json
+cargo run -p dslraid-cli -- artifact verify examples/runscope/runscope.raid.json --format json
 cargo run -p dslraid-cli -- compat check examples/runscope/runscope.raid.json
 cargo run -p dslraid-cli -- quality
 ```
 
 MVP implementations now exist for no-op version migration, richer IR queries,
 lazy reachable composition materialization, semantic diff review summaries,
-runtime trace import/check, trace-derived coverage overlays, and coverage-aware
-viewer overlays. Planned but not yet implemented as full product features:
-non-trivial migrations, synchronized product semantics, WASM packaging, and
-WebGL rendering.
+stale artifact verification against lock input hashes, runtime trace
+import/check, trace-derived coverage overlays, and coverage-aware viewer
+overlays. Planned but not yet implemented as full product features: non-trivial
+migrations, synchronized product semantics, WASM packaging, and WebGL rendering.
 
 ## Viewer
 

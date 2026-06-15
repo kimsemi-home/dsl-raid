@@ -42,8 +42,8 @@ Exit criteria:
 
 - Rust can read, validate, and write the RunScope fixture without changing it
 - `dslraid migrate --from 0.1.0 --to 0.1.0` is deterministic as a no-op
-- `dslraid artifact verify` can compare fixture artifact input hashes against
-  the lock file
+- `dslraid artifact verify` compares fixture artifact input hashes against the
+  lock file
 - `dslraid validate --format json` can emit a validation report with
   proposition IDs, assertion IDs, diagnostic codes, evidence, and suggestions
 

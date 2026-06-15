@@ -52,8 +52,9 @@ Required command:
 dslraid artifact verify
 ```
 
-CI should eventually fail when generated artifacts are stale unless the job is a
-pure documentation preview.
+The current CLI compares the lock file's core and artifact input hashes against
+the canonical IR hash. CI can fail when generated artifacts are stale unless the
+job is a pure documentation preview.
 
 ## Provider, Runtime, Protocol, Capability, and Constraint Model
 

@@ -142,6 +142,8 @@ dslraid artifact verify
 
 If an artifact's recorded input hash differs from the current canonical IR hash,
 the artifact is stale.
+The current CLI infers the sibling lock file by default, validates it against
+the lock schema, and reports stale/missing artifact records in text or JSON.
 
 ## Generated Docs
 
