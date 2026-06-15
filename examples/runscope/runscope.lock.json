@@ -1,0 +1,77 @@
+{
+  "lock_version": "0.1.0",
+  "core": {
+    "path": "examples/runscope/runscope.raid.json",
+    "schema_version": "0.1.0",
+    "ir_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000001",
+    "hash_algorithm": "sha256"
+  },
+  "resolver": {
+    "name": "dslraid",
+    "version": "0.1.0"
+  },
+  "resolved_refs": [
+    {
+      "subject": "fsm:runtime",
+      "kind": "fsm",
+      "definition_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000002"
+    }
+  ],
+  "derivations": [
+    {
+      "derivation": "derivation:runtime.codegen",
+      "rule": "fsm_codegen",
+      "generator": {
+        "name": "dslraid-codegen",
+        "version": "0.1.0"
+      },
+      "input_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000001",
+      "targets": [
+        "artifact:runtime_fsm.go",
+        "artifact:runtime_fsm.rs",
+        "artifact:fsm_runtime_running_golden"
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact": "artifact:runtime_fsm.go",
+      "path": "generated/runtime_fsm.go",
+      "kind": "generated",
+      "generated_by": "derivation:runtime.codegen",
+      "input_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000001",
+      "content_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000003",
+      "schema_version": "0.1.0",
+      "status": "fresh"
+    },
+    {
+      "artifact": "artifact:runtime_fsm.rs",
+      "path": "generated/runtime_fsm.rs",
+      "kind": "generated",
+      "generated_by": "derivation:runtime.codegen",
+      "input_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000001",
+      "content_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000004",
+      "schema_version": "0.1.0",
+      "status": "fresh"
+    },
+    {
+      "artifact": "artifact:fsm_runtime_running_golden",
+      "path": "tests/golden/fsm-runtime-running.golden",
+      "kind": "test",
+      "generated_by": "derivation:runtime.codegen",
+      "input_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000001",
+      "content_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000005",
+      "schema_version": "0.1.0",
+      "status": "fresh"
+    }
+  ],
+  "golden": [],
+  "compat": [
+    {
+      "subject": "fsm:runtime",
+      "requires": "runtime supports start and completion observation",
+      "satisfied_by": "capability:runtime_execution",
+      "status": "ok"
+    }
+  ]
+}

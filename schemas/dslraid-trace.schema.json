@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dslraid.dev/schemas/dslraid-trace.schema.json",
+  "title": "DSLRaid Runtime Trace",
+  "type": "object",
+  "required": ["trace_version", "run", "events"],
+  "additionalProperties": false,
+  "properties": {
+    "trace_version": {
+      "$ref": "#/$defs/semver"
+    },
+    "design_ir": {
+      "$ref": "#/$defs/input_ref"
+    },
+    "run": {
+      "$ref": "#/$defs/run"
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/runtime_event"
+      }
+    },
+    "metadata": {
+      "$ref": "#/$defs/metadata"
+    }
+  },
+  "$defs": {
+    "run": {
+      "type": "object",
+      "required": ["id"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "started_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ended_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "environment": {
+          "type": "string",
+          "minLength": 1
+        },
+        "metadata": {
+          "$ref": "#/$defs/metadata"
+        }
+      }
+    },
+    "runtime_event": {
+      "type": "object",
+      "required": ["id", "timestamp", "kind"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "event_received",
+            "state_entered",
+            "state_exited",
+            "transition_started",
+            "transition_completed",
+            "transition_failed",
+            "action_started",
+            "action_completed",
+            "artifact_deployed",
+            "diagnostic_emitted"
+          ]
+        },
+        "subject": {
+          "$ref": "#/$defs/semantic_ref"
+        },
+        "from": {
+          "$ref": "#/$defs/semantic_ref"
+        },
+        "to": {
+          "$ref": "#/$defs/semantic_ref"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["ok", "failed", "timeout", "cancelled", "policy_blocked", "degraded"]
+        },
+        "duration_ms": {
+          "type": "number",
+          "minimum": 0
+        },
+        "attributes": {
+          "$ref": "#/$defs/metadata"
+        },
+        "visibility": {
+          "type": "string",
+          "default": "internal",
+          "enum": ["public", "internal", "private", "secret"]
+        }
+      }
+    },
+    "input_ref": {
+      "type": "object",
+      "required": ["path"],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hash": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "semver": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "semantic_ref": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_\\-]*:[a-z][a-z0-9_.\\-]*$"
+    }
+  }
+}
+

@@ -1,0 +1,21 @@
+{
+  "annotation_version": "0.1.0",
+  "source": {
+    "core_ir": "examples/runscope/runscope.raid.json",
+    "ir_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000001"
+  },
+  "annotations": [
+    {
+      "id": "annotation:runtime.running.note",
+      "subject": "state:runtime.running",
+      "kind": "note",
+      "body": "Runtime is actively executing after workspace setup succeeds.",
+      "visibility": "public",
+      "provenance": {
+        "kind": "user_annotation",
+        "trust": "reviewed"
+      },
+      "tags": ["example", "inspector"]
+    }
+  ]
+}

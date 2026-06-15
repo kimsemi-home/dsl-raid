@@ -1,0 +1,48 @@
+{
+  "coverage_version": "0.1.0",
+  "design_ir": {
+    "path": "examples/runscope/runscope.raid.json"
+  },
+  "traces": [
+    {
+      "path": "examples/runscope/run-001.trace.json"
+    }
+  ],
+  "subjects": [
+    {
+      "subject": "state:runtime.running",
+      "kind": "state",
+      "status": "covered",
+      "count": 1,
+      "failure_rate": 0
+    },
+    {
+      "subject": "state:runtime.failed",
+      "kind": "state",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0
+    },
+    {
+      "subject": "transition:runtime.running_to_completed",
+      "kind": "transition",
+      "status": "covered",
+      "count": 1,
+      "failure_rate": 0
+    },
+    {
+      "subject": "transition:runtime.starting_to_failed",
+      "kind": "transition",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0
+    },
+    {
+      "subject": "artifact:runtime_fsm.rs",
+      "kind": "artifact",
+      "status": "deployed",
+      "count": 1
+    }
+  ]
+}
+

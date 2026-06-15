@@ -1,0 +1,49 @@
+name: Golden
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: golden-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  golden:
+    name: Golden outputs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detect DSLRaid CLI
+        id: cli
+        run: |
+          if [ -f Cargo.toml ] && grep -R "name = \"dslraid-cli\"" -n crates cli >/dev/null 2>&1; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: dtolnay/rust-toolchain@stable
+        if: steps.cli.outputs.present == 'true'
+
+      - uses: Swatinem/rust-cache@v2
+        if: steps.cli.outputs.present == 'true'
+
+      - name: Check golden outputs
+        if: steps.cli.outputs.present == 'true'
+        run: cargo run -p dslraid-cli -- golden check tests/golden
+
+      - name: Bootstrap golden fallback
+        if: steps.cli.outputs.present != 'true'
+        run: |
+          echo "dslraid-cli is not present yet; checking JSON fixtures only."
+          find schemas examples -name '*.json' -print0 |
+            while IFS= read -r -d '' file; do
+              python3 -m json.tool "$file" >/dev/null
+            done

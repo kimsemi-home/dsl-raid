@@ -1,0 +1,91 @@
+name: Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Deploy demo
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detect viewer app
+        id: viewer
+        run: |
+          if [ -f apps/viewer/package-lock.json ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Detect DSLRaid CLI
+        id: cli
+        run: |
+          if [ -f Cargo.toml ] && grep -R "name = \"dslraid-cli\"" -n crates cli >/dev/null 2>&1; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: dtolnay/rust-toolchain@stable
+        if: steps.cli.outputs.present == 'true'
+
+      - uses: actions/setup-node@v4
+        if: steps.viewer.outputs.present == 'true'
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: apps/viewer/package-lock.json
+
+      - name: Render example assets
+        if: steps.cli.outputs.present == 'true' && steps.viewer.outputs.present == 'true'
+        run: cargo run -p dslraid-cli -- render examples/runscope/runscope.raid.json --out apps/viewer/public/examples
+
+      - name: Build viewer
+        if: steps.viewer.outputs.present == 'true'
+        working-directory: apps/viewer
+        run: |
+          npm ci
+          npm run build
+
+      - name: Build placeholder site
+        if: steps.viewer.outputs.present != 'true'
+        run: |
+          mkdir -p _site
+          cat > _site/index.html <<'HTML'
+          <!doctype html>
+          <html lang="en">
+            <head>
+              <meta charset="utf-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1">
+              <title>DSLRaid</title>
+            </head>
+            <body>
+              <main>
+                <h1>DSLRaid</h1>
+                <p>Composable DSL Runtime &amp; Interactive Architecture Explorer.</p>
+                <p>The viewer demo will be published here once apps/viewer exists.</p>
+              </main>
+            </body>
+          </html>
+          HTML
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ steps.viewer.outputs.present == 'true' && 'apps/viewer/dist' || '_site' }}
+
+      - uses: actions/deploy-pages@v4

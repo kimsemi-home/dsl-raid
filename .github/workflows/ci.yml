@@ -1,0 +1,245 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  schemas:
+    name: Schemas and fixtures
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate JSON syntax
+        run: |
+          set -euo pipefail
+          find schemas examples -name '*.json' -print0 |
+            while IFS= read -r -d '' file; do
+              python3 -m json.tool "$file" >/dev/null
+            done
+
+      - name: Validate RunScope semantic sanity
+        run: |
+          python3 - <<'PY'
+          import json
+          import sys
+
+          fixture = json.load(open("examples/runscope/runscope.raid.json"))
+          errors = []
+
+          if "system" in fixture:
+              errors.append("core IR must not use top-level system")
+
+          required = (
+              "project",
+              "contexts",
+              "requirements",
+              "capabilities",
+              "policies",
+              "commands",
+              "fsms",
+              "compositions",
+              "projections",
+              "derivations",
+              "artifacts",
+              "diagnostics",
+          )
+          for key in required:
+              if key not in fixture:
+                  errors.append(f"missing top-level {key}")
+
+          fsm_ids = {fsm["id"] for fsm in fixture.get("fsms", [])}
+          context_ids = {context["id"] for context in fixture.get("contexts", [])}
+          composition_ids = {composition["id"] for composition in fixture.get("compositions", [])}
+          derivation_ids = {derivation["id"] for derivation in fixture.get("derivations", [])}
+          artifact_ids = {artifact["id"] for artifact in fixture.get("artifacts", [])}
+          policy_ids = {policy["id"] for policy in fixture.get("policies", [])}
+          capability_ids = {capability["id"] for capability in fixture.get("capabilities", [])}
+
+          for fsm in fixture.get("fsms", []):
+              states = [state["id"] for state in fsm.get("states", [])]
+              state_set = set(states)
+              events = {event["id"] for event in fsm.get("events", [])}
+              guards = {guard["id"] for guard in fsm.get("guards", [])}
+              actions = {action["id"] for action in fsm.get("actions", [])}
+              terminal = {state["id"] for state in fsm.get("states", []) if state.get("terminal")}
+
+              if len(states) != len(state_set):
+                  errors.append(f"duplicate state id in {fsm['id']}")
+
+              initial_count = sum(1 for state in fsm.get("states", []) if state.get("initial"))
+              if initial_count != 1:
+                  errors.append(f"{fsm['id']} initial state count is {initial_count}, expected 1")
+
+              for transition in fsm.get("transitions", []):
+                  transition_id = f"{fsm['id']}.{transition['id']}"
+                  if transition["from"] not in state_set:
+                      errors.append(f"{transition_id} unknown from {transition['from']}")
+                  if transition["to"] not in state_set:
+                      errors.append(f"{transition_id} unknown to {transition['to']}")
+                  if transition.get("on") and transition["on"] not in events:
+                      errors.append(f"{transition_id} unknown event {transition['on']}")
+                  if transition["from"] in terminal:
+                      errors.append(f"{transition_id} leaves terminal state {transition['from']}")
+                  for guard in transition.get("guards", []):
+                      if guard not in guards:
+                          errors.append(f"{transition_id} unknown guard {guard}")
+                  for action in transition.get("actions", []):
+                      if action not in actions:
+                          errors.append(f"{transition_id} unknown action {action}")
+                  for requirement in transition.get("requires", []):
+                      if requirement.startswith("policy:") and requirement not in policy_ids:
+                          errors.append(f"{transition_id} unknown required policy {requirement}")
+                      if requirement.startswith("capability:") and requirement not in capability_ids:
+                          errors.append(f"{transition_id} unknown required capability {requirement}")
+
+          known_sources = fsm_ids | context_ids | composition_ids
+          for projection in fixture.get("projections", []):
+              if projection["source"] not in known_sources:
+                  errors.append(f"{projection['id']} unknown source {projection['source']}")
+
+          for derivation in fixture.get("derivations", []):
+              if derivation["source"] not in known_sources:
+                  errors.append(f"{derivation['id']} unknown source {derivation['source']}")
+              for target in derivation.get("targets", []):
+                  if target["artifact"] not in artifact_ids:
+                      errors.append(f"{derivation['id']} missing artifact {target['artifact']}")
+
+          for artifact in fixture.get("artifacts", []):
+              if artifact.get("generated_by") and artifact["generated_by"] not in derivation_ids:
+                  errors.append(f"{artifact['id']} unknown generated_by {artifact['generated_by']}")
+              if artifact.get("visibility") == "secret":
+                  errors.append(f"{artifact['id']} must not be secret-bearing in public fixture")
+
+          if errors:
+              print("\n".join(errors))
+              sys.exit(1)
+          PY
+
+  rust:
+    name: Rust
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detect Rust workspace
+        id: rust
+        run: |
+          if [ -f Cargo.toml ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: dtolnay/rust-toolchain@stable
+        if: steps.rust.outputs.present == 'true'
+        with:
+          components: rustfmt, clippy
+
+      - uses: Swatinem/rust-cache@v2
+        if: steps.rust.outputs.present == 'true'
+
+      - name: Check formatting
+        if: steps.rust.outputs.present == 'true'
+        run: cargo fmt --all -- --check
+
+      - name: Clippy
+        if: steps.rust.outputs.present == 'true'
+        run: cargo clippy --workspace --all-targets -- -D warnings
+
+      - name: Test
+        if: steps.rust.outputs.present == 'true'
+        run: cargo test --workspace
+
+      - name: Skip Rust
+        if: steps.rust.outputs.present != 'true'
+        run: echo "No Cargo.toml yet; skipping Rust checks."
+
+  dslraid:
+    name: DSLRaid quality
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detect DSLRaid CLI
+        id: cli
+        run: |
+          if [ -f Cargo.toml ] && grep -R "name = \"dslraid-cli\"" -n crates cli >/dev/null 2>&1; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: dtolnay/rust-toolchain@stable
+        if: steps.cli.outputs.present == 'true'
+
+      - uses: Swatinem/rust-cache@v2
+        if: steps.cli.outputs.present == 'true'
+
+      - name: Run unified quality gate
+        if: steps.cli.outputs.present == 'true'
+        run: cargo run -p dslraid-cli -- quality
+
+      - name: Bootstrap quality fallback
+        if: steps.cli.outputs.present != 'true'
+        run: |
+          find schemas examples -name '*.json' -print0 |
+            while IFS= read -r -d '' file; do
+              python3 -m json.tool "$file" >/dev/null
+            done
+
+  viewer:
+    name: Viewer
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detect viewer app
+        id: viewer
+        run: |
+          if [ -f apps/viewer/package-lock.json ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-node@v4
+        if: steps.viewer.outputs.present == 'true'
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: apps/viewer/package-lock.json
+
+      - name: Install viewer dependencies
+        if: steps.viewer.outputs.present == 'true'
+        working-directory: apps/viewer
+        run: npm ci
+
+      - name: Lint viewer
+        if: steps.viewer.outputs.present == 'true'
+        working-directory: apps/viewer
+        run: npm run lint
+
+      - name: Test viewer
+        if: steps.viewer.outputs.present == 'true'
+        working-directory: apps/viewer
+        run: npm test
+
+      - name: Build viewer
+        if: steps.viewer.outputs.present == 'true'
+        working-directory: apps/viewer
+        run: npm run build
+
+      - name: Skip viewer
+        if: steps.viewer.outputs.present != 'true'
+        run: echo "No apps/viewer/package-lock.json yet; skipping viewer checks."

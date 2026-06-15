@@ -1,0 +1,1219 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dslraid.dev/schemas/dslraid-core.schema.json",
+  "title": "DSLRaid Core Typed Executable IR",
+  "type": "object",
+  "required": ["ir_version", "project"],
+  "additionalProperties": false,
+  "properties": {
+    "ir_version": {
+      "$ref": "#/$defs/semver"
+    },
+    "project": {
+      "$ref": "#/$defs/project"
+    },
+    "contexts": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/context"
+      }
+    },
+    "requirements": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/requirement"
+      }
+    },
+    "capabilities": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/capability"
+      }
+    },
+    "policies": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/policy"
+      }
+    },
+    "commands": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/command"
+      }
+    },
+    "fsms": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/fsm"
+      }
+    },
+    "compositions": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/composition"
+      }
+    },
+    "projections": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/projection"
+      }
+    },
+    "derivations": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/derivation"
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/artifact"
+      }
+    },
+    "diagnostics": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/diagnostic"
+      }
+    }
+  },
+  "$defs": {
+    "project": {
+      "type": "object",
+      "required": ["id", "name"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/local_id"
+        },
+        "uid": {
+          "$ref": "#/$defs/uid"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "visibility": {
+          "$ref": "#/$defs/visibility"
+        },
+        "tags": {
+          "$ref": "#/$defs/tags"
+        },
+        "metadata": {
+          "$ref": "#/$defs/metadata"
+        }
+      }
+    },
+    "context": {
+      "type": "object",
+      "required": ["id", "name", "kind"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/context_ref"
+        },
+        "uid": {
+          "$ref": "#/$defs/uid"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["system", "bounded_context", "actor", "external_system"]
+        },
+        "owns": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/semantic_ref"
+          }
+        },
+        "defined_at": {
+          "$ref": "#/$defs/defined_at"
+        },
+        "visibility": {
+          "$ref": "#/$defs/visibility"
+        },
+        "tags": {
+          "$ref": "#/$defs/tags"
+        },
+        "metadata": {
+          "$ref": "#/$defs/metadata"
+        }
+      }
+    },
+    "requirement": {
+      "type": "object",
+      "required": ["id", "name"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/requirement_ref"
+        },
+        "uid": {
+          "$ref": "#/$defs/uid"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string"
+        },
+        "satisfied_by": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/semantic_ref"
+          }
+        },
+        "defined_at": {
+          "$ref": "#/$defs/defined_at"
+        },
+        "visibility": {
+          "$ref": "#/$defs/visibility"
+        },
+        "tags": {
+          "$ref": "#/$defs/tags"
+        },
+        "metadata": {
+          "$ref": "#/$defs/metadata"
+        }
+      }
+    },
+    "capability": {
+      "type": "object",
+      "required": ["id", "name", "kind"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/capability_ref"
+        },
+        "uid": {
+          "$ref": "#/$defs/uid"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "runtime",
+            "protocol",
+            "tool",
+            "security",
+            "streaming",
+            "resume",
+            "storage",
+            "network",
+            "custom"
+          ]
+        },
+        "owner": {
+          "$ref": "#/$defs/context_ref"
+        },
+        "provides": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/semantic_ref"
+          }
+        },
+        "requires": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/semantic_ref"
+          }
+        },
+        "defined_at": {
+          "$ref": "#/$defs/defined_at"
+        },
+        "visibility": {
+          "$ref": "#/$defs/visibility"
+        },
+        "tags": {
+          "$ref": "#/$defs/tags"
+        },
+        "metadata": {
+          "$ref": "#/$defs/metadata"
+        }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "required": ["id", "name", "kind"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/policy_ref"
+        },
+        "uid": {
+          "$ref": "#/$defs/uid"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["security", "runtime", "retry", "access", "privacy", "compliance", "custom"]
+        },
+        "applies_to": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/semantic_ref"
+          }
+        },
+        "defined_at": {
+          "$ref": "#/$defs/defined_at"
+        },
+        "visibility": {
+          "$ref": "#/$defs/visibility"
+        },
+        "tags": {
+          "$ref": "#/$defs/tags"
+        },
+        "metadata": {
+          "$ref": "#/$defs/metadata"
+        }
+      }
+    },
+    "command": {
+      "type": "object",
+      "required": ["id", "name"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/command_ref"
+        },
+        "uid": {
+          "$ref": "#/$defs/uid"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "capability": {
+          "$ref": "#/$defs/capability_ref"
+        },
+        "payload_schema": {
+          "$ref": "#/$defs/json_schema_ref"
+        },
+        "defined_at": {
+          "$ref": "#/$defs/defined_at"
+        },
+        "visibility": {
+          "$ref": "#/$defs/visibility"
+        },
+        "tags": {
+          "$ref": "#/$defs/tags"
+        },
+        "metadata": {
+          "$ref": "#/$defs/metadata"
+        }
+      }
+    },
+    "fsm": {
+      "type": "object",
+      "required": ["id", "name", "states", "transitions"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/fsm_ref"
+        },
+        "uid": {
+          "$ref": "#/$defs/uid"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "context": {
+          "$ref": "#/$defs/context_ref"
+        },
+        "states": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/state"
+          }
+        },
+        "events": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/event"
+          }
+        },
+        "guards": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/guard"
+          }
+        },
+        "actions": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/action"
+          }
+        },
+        "transitions": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/transition"
+          }
+        },
+        "defined_at": {
+          "$ref": "#/$defs/defined_at"
+        },
+        "visibility": {
+          "$ref": "#/$defs/visibility"
+        },
+        "tags": {
+          "$ref": "#/$defs/tags"
+        },
+        "metadata": {
+          "$ref": "#/$defs/metadata"
+        }
+      }
+    },
+    "state": {
+      "type": "object",
+      "required": ["id", "kind"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/local_id"
+        },
+        "uid": {
+          "$ref": "#/$defs/uid"
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["atomic", "compound", "parallel", "history"]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "initial": {
+          "type": "boolean",
+          "default": false
+        },
+        "terminal": {
+          "type": "boolean",
+          "default": false
+        },
+        "terminal_semantics": {
+          "type": "string",
+          "enum": [
+            "success",
+            "cancelled",
+            "timeout",
+            "failed",
+            "retriable_failed",
+            "policy_blocked",
+            "degraded"
+          ]
+        },
+        "regions": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/region"
+          }
+        },
+        "entry_actions": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/local_id"
+          }
+        },
+        "exit_actions": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/local_id"
+          }
+        },
+        "defined_at": {
+          "$ref": "#/$defs/defined_at"
+        },
+        "visibility": {
+          "$ref": "#/$defs/visibility"
+        },
+        "tags": {
+          "$ref": "#/$defs/tags"
+        },
+        "metadata": {
+          "$ref": "#/$defs/metadata"
+        }
+      }
+    },
+    "region": {
+      "type": "object",
+      "required": ["id", "states", "transitions"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/local_id"
+        },
+        "uid": {
+          "$ref": "#/$defs/uid"
+        },
+        "states": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/state"
+          }
+        },
+        "transitions": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/transition"
+          }
+        },
+        "metadata": {
+          "$ref": "#/$defs/metadata"
+        }
+      }
+    },
+    "event": {
+      "type": "object",
+      "required": ["id"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/local_id"
+        },
+        "uid": {
+          "$ref": "#/$defs/uid"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "type": "string",
+          "default": "external",
+          "enum": ["external", "internal", "generated", "timer", "error"]
+        },
+        "payload_schema": {
+          "$ref": "#/$defs/json_schema_ref"
+        },
+        "defined_at": {
+          "$ref": "#/$defs/defined_at"
+        },
+        "visibility": {
+          "$ref": "#/$defs/visibility"
+        },
+        "tags": {
+          "$ref": "#/$defs/tags"
+        },
+        "metadata": {
+          "$ref": "#/$defs/metadata"
+        }
+      }
+    },
+    "guard": {
+      "type": "object",
+      "required": ["id", "kind"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/local_id"
+        },
+        "uid": {
+          "$ref": "#/$defs/uid"
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["predicate", "expression", "policy", "capability"]
+        },
+        "expression": {
+          "$ref": "#/$defs/expression"
+        },
+        "input": {
+          "$ref": "#/$defs/local_id"
+        },
+        "defined_at": {
+          "$ref": "#/$defs/defined_at"
+        },
+        "visibility": {
+          "$ref": "#/$defs/visibility"
+        },
+        "tags": {
+          "$ref": "#/$defs/tags"
+        },
+        "metadata": {
+          "$ref": "#/$defs/metadata"
+        }
+      }
+    },
+    "action": {
+      "type": "object",
+      "required": ["id", "kind"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/local_id"
+        },
+        "uid": {
+          "$ref": "#/$defs/uid"
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["command", "emit", "call", "effect", "assign", "log"]
+        },
+        "command": {
+          "$ref": "#/$defs/semantic_ref"
+        },
+        "emits": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/local_id"
+          }
+        },
+        "expression": {
+          "$ref": "#/$defs/expression"
+        },
+        "defined_at": {
+          "$ref": "#/$defs/defined_at"
+        },
+        "visibility": {
+          "$ref": "#/$defs/visibility"
+        },
+        "tags": {
+          "$ref": "#/$defs/tags"
+        },
+        "metadata": {
+          "$ref": "#/$defs/metadata"
+        }
+      }
+    },
+    "transition": {
+      "type": "object",
+      "required": ["id", "from", "to"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/local_id"
+        },
+        "uid": {
+          "$ref": "#/$defs/uid"
+        },
+        "from": {
+          "$ref": "#/$defs/local_id"
+        },
+        "to": {
+          "$ref": "#/$defs/local_id"
+        },
+        "on": {
+          "$ref": "#/$defs/local_id"
+        },
+        "guards": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/local_id"
+          }
+        },
+        "actions": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/local_id"
+          }
+        },
+        "requires": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/semantic_ref"
+          }
+        },
+        "emits": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/local_id"
+          }
+        },
+        "priority": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "defined_at": {
+          "$ref": "#/$defs/defined_at"
+        },
+        "visibility": {
+          "$ref": "#/$defs/visibility"
+        },
+        "tags": {
+          "$ref": "#/$defs/tags"
+        },
+        "metadata": {
+          "$ref": "#/$defs/metadata"
+        }
+      }
+    },
+    "composition": {
+      "type": "object",
+      "required": ["id", "name", "kind", "inputs"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/composition_ref"
+        },
+        "uid": {
+          "$ref": "#/$defs/uid"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["union", "product", "synchronized_product", "refinement"]
+        },
+        "inputs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/fsm_ref"
+          }
+        },
+        "state_space": {
+          "$ref": "#/$defs/state_space",
+          "default": {
+            "kind": "lazy",
+            "max_materialized_states": 5000
+          }
+        },
+        "conflict_policy": {
+          "$ref": "#/$defs/conflict_policy"
+        },
+        "sync": {
+          "$ref": "#/$defs/sync_policy"
+        },
+        "defined_at": {
+          "$ref": "#/$defs/defined_at"
+        },
+        "visibility": {
+          "$ref": "#/$defs/visibility"
+        },
+        "tags": {
+          "$ref": "#/$defs/tags"
+        },
+        "metadata": {
+          "$ref": "#/$defs/metadata"
+        }
+      }
+    },
+    "state_space": {
+      "type": "object",
+      "required": ["kind"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "default": "lazy",
+          "enum": ["eager", "lazy", "symbolic"]
+        },
+        "max_materialized_states": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "conflict_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "nondeterminism": {
+          "type": "string",
+          "enum": ["diagnostic", "reject", "allow"]
+        },
+        "unreachable": {
+          "type": "string",
+          "enum": ["hide_by_default", "show", "diagnostic"]
+        },
+        "duplicate_events": {
+          "type": "string",
+          "enum": ["diagnostic", "reject", "allow"]
+        },
+        "guard_conflict": {
+          "type": "string",
+          "enum": ["diagnostic", "reject", "allow"]
+        }
+      }
+    },
+    "sync_policy": {
+      "type": "object",
+      "required": ["mode"],
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["none", "shared_events", "explicit"]
+        },
+        "events": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/local_id"
+          }
+        }
+      }
+    },
+    "projection": {
+      "type": "object",
+      "required": ["id", "kind", "source", "show"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/view_ref"
+        },
+        "uid": {
+          "$ref": "#/$defs/uid"
+        },
+        "kind": {
+          "const": "projection"
+        },
+        "source": {
+          "oneOf": [
+            { "$ref": "#/$defs/fsm_ref" },
+            { "$ref": "#/$defs/composition_ref" },
+            { "$ref": "#/$defs/context_ref" }
+          ]
+        },
+        "show": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "enum": [
+              "states",
+              "transitions",
+              "events",
+              "guards",
+              "actions",
+              "conflicts",
+              "coverage",
+              "runtime_trace",
+              "derivations",
+              "artifacts",
+              "requirements",
+              "policies",
+              "capabilities",
+              "commands",
+              "diagnostics"
+            ]
+          }
+        },
+        "filters": {
+          "$ref": "#/$defs/projection_filters"
+        },
+        "defined_at": {
+          "$ref": "#/$defs/defined_at"
+        },
+        "visibility": {
+          "$ref": "#/$defs/visibility"
+        },
+        "tags": {
+          "$ref": "#/$defs/tags"
+        },
+        "metadata": {
+          "$ref": "#/$defs/metadata"
+        }
+      }
+    },
+    "projection_filters": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "unreachable": {
+          "type": "boolean"
+        },
+        "reachable_only": {
+          "type": "boolean"
+        },
+        "conflicts_only": {
+          "type": "boolean"
+        },
+        "terminal": {
+          "type": "boolean"
+        },
+        "artifact": {
+          "$ref": "#/$defs/artifact_ref"
+        },
+        "visibility": {
+          "$ref": "#/$defs/visibility"
+        },
+        "diagnostic_severity": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "string",
+            "enum": ["hint", "info", "warning", "error"]
+          }
+        }
+      }
+    },
+    "derivation": {
+      "type": "object",
+      "required": ["id", "source", "rule", "targets"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/derivation_ref"
+        },
+        "uid": {
+          "$ref": "#/$defs/uid"
+        },
+        "source": {
+          "oneOf": [
+            { "$ref": "#/$defs/fsm_ref" },
+            { "$ref": "#/$defs/composition_ref" },
+            { "$ref": "#/$defs/context_ref" }
+          ]
+        },
+        "rule": {
+          "$ref": "#/$defs/derive_rule"
+        },
+        "targets": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/derive_target"
+          }
+        },
+        "defined_at": {
+          "$ref": "#/$defs/defined_at"
+        },
+        "visibility": {
+          "$ref": "#/$defs/visibility"
+        },
+        "tags": {
+          "$ref": "#/$defs/tags"
+        },
+        "metadata": {
+          "$ref": "#/$defs/metadata"
+        }
+      }
+    },
+    "derive_rule": {
+      "type": "object",
+      "required": ["id", "kind"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/local_id"
+        },
+        "uid": {
+          "$ref": "#/$defs/uid"
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["codegen", "testgen", "docgen", "export", "layout"]
+        },
+        "generator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "metadata": {
+          "$ref": "#/$defs/metadata"
+        }
+      }
+    },
+    "derive_target": {
+      "type": "object",
+      "required": ["artifact", "role"],
+      "additionalProperties": false,
+      "properties": {
+        "artifact": {
+          "$ref": "#/$defs/artifact_ref"
+        },
+        "role": {
+          "type": "string",
+          "enum": ["source", "generated", "test", "doc", "layout", "export"]
+        }
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "required": ["id", "kind", "path"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/artifact_ref"
+        },
+        "uid": {
+          "$ref": "#/$defs/uid"
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["source", "generated", "test", "doc", "layout", "export", "other"]
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "generated_by": {
+          "$ref": "#/$defs/derivation_ref"
+        },
+        "hash": {
+          "type": "string",
+          "minLength": 1
+        },
+        "visibility": {
+          "$ref": "#/$defs/visibility"
+        },
+        "tags": {
+          "$ref": "#/$defs/tags"
+        },
+        "metadata": {
+          "$ref": "#/$defs/metadata"
+        }
+      }
+    },
+    "diagnostic": {
+      "type": "object",
+      "required": ["id", "severity", "code", "subjects", "message"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/diagnostic_ref"
+        },
+        "uid": {
+          "$ref": "#/$defs/uid"
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["hint", "info", "warning", "error"]
+        },
+        "code": {
+          "type": "string",
+          "pattern": "^([A-Z][A-Z0-9]+|[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+)$"
+        },
+        "proposition": {
+          "$ref": "#/$defs/proposition_id"
+        },
+        "assertion": {
+          "$ref": "#/$defs/assertion_ref"
+        },
+        "subjects": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/semantic_ref"
+          }
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1
+        },
+        "suggestion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fix": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence": {
+          "$ref": "#/$defs/metadata"
+        },
+        "related": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/semantic_ref"
+          }
+        },
+        "defined_at": {
+          "$ref": "#/$defs/defined_at"
+        },
+        "visibility": {
+          "$ref": "#/$defs/visibility"
+        },
+        "tags": {
+          "$ref": "#/$defs/tags"
+        },
+        "metadata": {
+          "$ref": "#/$defs/metadata"
+        }
+      }
+    },
+    "expression": {
+      "type": "object",
+      "required": ["language", "source"],
+      "additionalProperties": false,
+      "properties": {
+        "language": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "json_schema_ref": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "defined_at": {
+      "type": "object",
+      "required": ["uri"],
+      "additionalProperties": false,
+      "properties": {
+        "uri": {
+          "type": "string",
+          "minLength": 1
+        },
+        "range": {
+          "$ref": "#/$defs/source_range"
+        }
+      }
+    },
+    "source_range": {
+      "type": "object",
+      "required": ["start_line", "end_line"],
+      "additionalProperties": false,
+      "properties": {
+        "start_line": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "start_column": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "end_line": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "end_column": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "uid": {
+      "type": "string",
+      "pattern": "^[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "visibility": {
+      "type": "string",
+      "default": "internal",
+      "enum": ["public", "internal", "private", "secret"]
+    },
+    "tags": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "semver": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "local_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_\\-]*$"
+    },
+    "semantic_ref": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_\\-]*:[a-z][a-z0-9_.\\-]*$"
+    },
+    "context_ref": {
+      "type": "string",
+      "pattern": "^context:[a-z][a-z0-9_.\\-]*$"
+    },
+    "requirement_ref": {
+      "type": "string",
+      "pattern": "^requirement:[a-z][a-z0-9_.\\-]*$"
+    },
+    "capability_ref": {
+      "type": "string",
+      "pattern": "^capability:[a-z][a-z0-9_.\\-]*$"
+    },
+    "policy_ref": {
+      "type": "string",
+      "pattern": "^policy:[a-z][a-z0-9_.\\-]*$"
+    },
+    "command_ref": {
+      "type": "string",
+      "pattern": "^command:[a-z][a-z0-9_.\\-]*$"
+    },
+    "fsm_ref": {
+      "type": "string",
+      "pattern": "^fsm:[a-z][a-z0-9_.\\-]*$"
+    },
+    "composition_ref": {
+      "type": "string",
+      "pattern": "^composition:[a-z][a-z0-9_.\\-]*$"
+    },
+    "view_ref": {
+      "type": "string",
+      "pattern": "^view:[a-z][a-z0-9_.\\-]*$"
+    },
+    "derivation_ref": {
+      "type": "string",
+      "pattern": "^derivation:[a-z][a-z0-9_.\\-]*$"
+    },
+    "artifact_ref": {
+      "type": "string",
+      "pattern": "^artifact:[a-z][a-z0-9_.\\-]*$"
+    },
+    "diagnostic_ref": {
+      "type": "string",
+      "pattern": "^diagnostic:[a-z][a-z0-9_.\\-]*$"
+    },
+    "proposition_id": {
+      "type": "string",
+      "pattern": "^V[0-9]{3}$"
+    },
+    "assertion_ref": {
+      "type": "string",
+      "pattern": "^assertion:[a-z][a-z0-9_.\\-]*$"
+    }
+  }
+}

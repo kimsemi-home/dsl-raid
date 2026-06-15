@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dslraid.dev/schemas/dslraid-annotation.schema.json",
+  "title": "DSLRaid Annotation Layer",
+  "type": "object",
+  "required": ["annotation_version", "source", "annotations"],
+  "additionalProperties": false,
+  "properties": {
+    "annotation_version": {
+      "$ref": "#/$defs/semver"
+    },
+    "source": {
+      "$ref": "#/$defs/source"
+    },
+    "annotations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/annotation"
+      }
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "required": ["core_ir", "ir_hash"],
+      "additionalProperties": false,
+      "properties": {
+        "core_ir": {
+          "type": "string",
+          "minLength": 1
+        },
+        "ir_hash": {
+          "$ref": "#/$defs/hash"
+        }
+      }
+    },
+    "annotation": {
+      "type": "object",
+      "required": ["id", "subject", "kind"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/annotation_ref"
+        },
+        "subject": {
+          "$ref": "#/$defs/semantic_ref"
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["note", "rationale", "review_comment", "todo", "doc_link", "external_link"]
+        },
+        "body": {
+          "type": "string"
+        },
+        "links": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/link"
+          }
+        },
+        "author": {
+          "type": "string"
+        },
+        "visibility": {
+          "$ref": "#/$defs/visibility"
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance"
+        },
+        "tags": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "link": {
+      "type": "object",
+      "required": ["label", "uri"],
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "uri": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["kind"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["trusted_source", "generated", "external_import", "runtime_trace", "user_annotation"]
+        },
+        "generator": {
+          "type": "string"
+        },
+        "importer": {
+          "type": "string"
+        },
+        "input_hash": {
+          "$ref": "#/$defs/hash"
+        },
+        "trust": {
+          "type": "string",
+          "enum": ["trusted", "reviewed", "untrusted"]
+        }
+      }
+    },
+    "hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "semver": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "visibility": {
+      "type": "string",
+      "default": "internal",
+      "enum": ["public", "internal", "private", "secret"]
+    },
+    "annotation_ref": {
+      "type": "string",
+      "pattern": "^annotation:[a-z][a-z0-9_.\\-]*$"
+    },
+    "semantic_ref": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_\\-]*:[a-z][a-z0-9_.\\-]*$"
+    }
+  }
+}

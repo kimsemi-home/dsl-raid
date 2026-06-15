@@ -1,0 +1,56 @@
+{
+  "trace_version": "0.1.0",
+  "design_ir": {
+    "path": "examples/runscope/runscope.raid.json"
+  },
+  "run": {
+    "id": "run-001",
+    "started_at": "2026-06-15T00:00:00Z",
+    "ended_at": "2026-06-15T00:00:03Z",
+    "environment": "example"
+  },
+  "events": [
+    {
+      "id": "evt-001",
+      "timestamp": "2026-06-15T00:00:00Z",
+      "kind": "event_received",
+      "subject": "event:runtime.start_requested",
+      "status": "ok",
+      "visibility": "public"
+    },
+    {
+      "id": "evt-002",
+      "timestamp": "2026-06-15T00:00:01Z",
+      "kind": "transition_completed",
+      "subject": "transition:runtime.idle_to_starting",
+      "from": "state:runtime.idle",
+      "to": "state:runtime.starting",
+      "status": "ok",
+      "duration_ms": 12,
+      "visibility": "public"
+    },
+    {
+      "id": "evt-003",
+      "timestamp": "2026-06-15T00:00:02Z",
+      "kind": "transition_completed",
+      "subject": "transition:runtime.starting_to_running",
+      "from": "state:runtime.starting",
+      "to": "state:runtime.running",
+      "status": "ok",
+      "duration_ms": 8,
+      "visibility": "public"
+    },
+    {
+      "id": "evt-004",
+      "timestamp": "2026-06-15T00:00:03Z",
+      "kind": "transition_completed",
+      "subject": "transition:runtime.running_to_completed",
+      "from": "state:runtime.running",
+      "to": "state:runtime.completed",
+      "status": "ok",
+      "duration_ms": 10,
+      "visibility": "public"
+    }
+  ]
+}
+

@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dslraid.dev/schemas/dslraid-sourcemap.schema.json",
+  "title": "DSLRaid Source Map",
+  "type": "object",
+  "required": ["source_map_version", "design_ir", "mappings"],
+  "additionalProperties": false,
+  "properties": {
+    "source_map_version": {
+      "$ref": "#/$defs/semver"
+    },
+    "design_ir": {
+      "$ref": "#/$defs/input_ref"
+    },
+    "mappings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/mapping"
+      }
+    },
+    "metadata": {
+      "$ref": "#/$defs/metadata"
+    }
+  },
+  "$defs": {
+    "mapping": {
+      "type": "object",
+      "required": ["id", "ir_subject"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "ir_subject": {
+          "$ref": "#/$defs/semantic_ref"
+        },
+        "dsl_location": {
+          "$ref": "#/$defs/location"
+        },
+        "generated_locations": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/generated_location"
+          }
+        },
+        "runtime_event_ids": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "generated_location": {
+      "type": "object",
+      "required": ["artifact", "location"],
+      "additionalProperties": false,
+      "properties": {
+        "artifact": {
+          "$ref": "#/$defs/semantic_ref"
+        },
+        "location": {
+          "$ref": "#/$defs/location"
+        }
+      }
+    },
+    "location": {
+      "type": "object",
+      "required": ["uri"],
+      "additionalProperties": false,
+      "properties": {
+        "uri": {
+          "type": "string",
+          "minLength": 1
+        },
+        "range": {
+          "$ref": "#/$defs/source_range"
+        }
+      }
+    },
+    "source_range": {
+      "type": "object",
+      "required": ["start_line", "end_line"],
+      "additionalProperties": false,
+      "properties": {
+        "start_line": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "start_column": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "end_line": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "end_column": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "input_ref": {
+      "type": "object",
+      "required": ["path"],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hash": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "semver": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "semantic_ref": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_\\-]*:[a-z][a-z0-9_.\\-]*$"
+    }
+  }
+}
+

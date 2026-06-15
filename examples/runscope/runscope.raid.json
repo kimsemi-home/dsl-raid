@@ -1,0 +1,274 @@
+{
+  "ir_version": "0.1.0",
+  "project": {
+    "id": "runscope",
+    "name": "RunScope",
+    "visibility": "public",
+    "tags": ["example", "fsm"],
+    "metadata": {
+      "summary": "Minimal typed executable FSM IR fixture for DSLRaid bootstrap."
+    }
+  },
+  "contexts": [
+    {
+      "id": "context:runtime",
+      "name": "Runtime Context",
+      "kind": "bounded_context",
+      "owns": [
+        "requirement:runtime_runs_to_completion",
+        "capability:runtime_execution",
+        "policy:runtime_failure_policy",
+        "policy:no_secret_leak",
+        "policy:artifact_signed",
+        "command:runtime_start",
+        "fsm:runtime"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "requirement:runtime_runs_to_completion",
+      "name": "Runtime runs to completion",
+      "description": "A started runtime eventually reaches a success or failure terminal state.",
+      "satisfied_by": ["fsm:runtime", "policy:runtime_failure_policy"],
+      "visibility": "public",
+      "tags": ["runtime", "completion"]
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "capability:runtime_execution",
+      "name": "Runtime execution",
+      "kind": "runtime",
+      "owner": "context:runtime",
+      "provides": ["command:runtime_start"],
+      "visibility": "public",
+      "tags": ["runtime", "execution"]
+    }
+  ],
+  "policies": [
+    {
+      "id": "policy:runtime_failure_policy",
+      "name": "Runtime failure policy",
+      "kind": "runtime",
+      "applies_to": ["fsm:runtime", "state:runtime.failed"],
+      "visibility": "public",
+      "tags": ["runtime", "failure"]
+    },
+    {
+      "id": "policy:no_secret_leak",
+      "name": "No secret leak",
+      "kind": "security",
+      "applies_to": ["transition:runtime.running_to_completed"],
+      "visibility": "public",
+      "tags": ["security", "redaction"]
+    },
+    {
+      "id": "policy:artifact_signed",
+      "name": "Artifact signed",
+      "kind": "compliance",
+      "applies_to": ["transition:runtime.running_to_completed", "artifact:runtime_fsm.rs"],
+      "visibility": "public",
+      "tags": ["artifact", "compliance"]
+    }
+  ],
+  "commands": [
+    {
+      "id": "command:runtime_start",
+      "name": "Start runtime",
+      "capability": "capability:runtime_execution",
+      "visibility": "public",
+      "tags": ["runtime", "command"]
+    }
+  ],
+  "fsms": [
+    {
+      "id": "fsm:runtime",
+      "name": "RuntimeFSM",
+      "context": "context:runtime",
+      "visibility": "public",
+      "tags": ["runtime", "example"],
+      "defined_at": {
+        "uri": "lisp/runtime/runscope.lisp",
+        "range": {
+          "start_line": 12,
+          "start_column": 1,
+          "end_line": 44,
+          "end_column": 2
+        }
+      },
+      "states": [
+        {
+          "id": "idle",
+          "kind": "atomic",
+          "initial": true
+        },
+        {
+          "id": "starting",
+          "kind": "atomic"
+        },
+        {
+          "id": "running",
+          "kind": "atomic",
+          "defined_at": {
+            "uri": "lisp/runtime/runscope.lisp",
+            "range": {
+              "start_line": 24,
+              "end_line": 26
+            }
+          },
+          "visibility": "public",
+          "tags": ["tested", "generated"]
+        },
+        {
+          "id": "completed",
+          "kind": "atomic",
+          "terminal": true,
+          "terminal_semantics": "success"
+        },
+        {
+          "id": "failed",
+          "kind": "atomic",
+          "terminal": true,
+          "terminal_semantics": "failed"
+        }
+      ],
+      "events": [
+        {
+          "id": "start_requested",
+          "name": "start requested",
+          "kind": "external"
+        },
+        {
+          "id": "start_failed",
+          "name": "start failed",
+          "kind": "error"
+        }
+      ],
+      "guards": [],
+      "actions": [],
+      "transitions": [
+        {
+          "id": "idle_to_starting",
+          "from": "idle",
+          "to": "starting",
+          "on": "start_requested",
+          "guards": [],
+          "actions": []
+        },
+        {
+          "id": "starting_to_running",
+          "from": "starting",
+          "to": "running",
+          "guards": [],
+          "actions": []
+        },
+        {
+          "id": "starting_to_failed",
+          "from": "starting",
+          "to": "failed",
+          "on": "start_failed",
+          "guards": [],
+          "actions": []
+        },
+        {
+          "id": "running_to_completed",
+          "from": "running",
+          "to": "completed",
+          "guards": [],
+          "actions": [],
+          "requires": ["policy:no_secret_leak", "policy:artifact_signed"],
+          "defined_at": {
+            "uri": "lisp/runtime/runscope.lisp",
+            "range": {
+              "start_line": 36,
+              "end_line": 38
+            }
+          },
+          "visibility": "public"
+        }
+      ]
+    }
+  ],
+  "compositions": [],
+  "projections": [
+    {
+      "id": "view:runtime",
+      "kind": "projection",
+      "source": "fsm:runtime",
+      "show": [
+        "states",
+        "transitions",
+        "events",
+        "requirements",
+        "policies",
+        "capabilities",
+        "derivations",
+        "artifacts"
+      ],
+      "filters": {
+        "unreachable": false
+      }
+    }
+  ],
+  "derivations": [
+    {
+      "id": "derivation:runtime.codegen",
+      "source": "fsm:runtime",
+      "rule": {
+        "id": "fsm_codegen",
+        "kind": "codegen",
+        "generator": "dslraid-codegen",
+        "version": "0.1.0"
+      },
+      "targets": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "role": "generated"
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "role": "generated"
+        },
+        {
+          "artifact": "artifact:fsm_runtime_running_golden",
+          "role": "test"
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "artifact:runscope_lisp",
+      "kind": "source",
+      "path": "lisp/runtime/runscope.lisp",
+      "visibility": "public",
+      "tags": ["source"]
+    },
+    {
+      "id": "artifact:runtime_fsm.go",
+      "kind": "generated",
+      "path": "generated/runtime_fsm.go",
+      "generated_by": "derivation:runtime.codegen",
+      "visibility": "public",
+      "tags": ["generated", "go"]
+    },
+    {
+      "id": "artifact:runtime_fsm.rs",
+      "kind": "generated",
+      "path": "generated/runtime_fsm.rs",
+      "generated_by": "derivation:runtime.codegen",
+      "visibility": "public",
+      "tags": ["generated", "rust"]
+    },
+    {
+      "id": "artifact:fsm_runtime_running_golden",
+      "kind": "test",
+      "path": "tests/golden/fsm-runtime-running.golden",
+      "generated_by": "derivation:runtime.codegen",
+      "visibility": "public",
+      "tags": ["test", "golden"]
+    }
+  ],
+  "diagnostics": []
+}

@@ -1,0 +1,243 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dslraid.dev/schemas/dslraid-view.schema.json",
+  "title": "DSLRaid View Model",
+  "type": "object",
+  "required": ["view_version", "source", "nodes", "edges"],
+  "additionalProperties": false,
+  "properties": {
+    "view_version": {
+      "$ref": "#/$defs/semver"
+    },
+    "source": {
+      "$ref": "#/$defs/source"
+    },
+    "layout": {
+      "$ref": "#/$defs/layout"
+    },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/node"
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/edge"
+      }
+    },
+    "inspector_panels": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/inspector_panel"
+      }
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "required": ["core_ir", "projection"],
+      "additionalProperties": false,
+      "properties": {
+        "core_ir": {
+          "type": "string",
+          "minLength": 1
+        },
+        "index": {
+          "type": "string",
+          "minLength": 1
+        },
+        "projection": {
+          "$ref": "#/$defs/semantic_ref"
+        },
+        "hash": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "layout": {
+      "type": "object",
+      "required": ["engine"],
+      "additionalProperties": false,
+      "properties": {
+        "engine": {
+          "type": "string",
+          "enum": ["elk", "graphviz", "manual", "cached", "none"]
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "node": {
+      "type": "object",
+      "required": ["id", "subject", "x", "y", "width", "height", "label"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/layout_id"
+        },
+        "subject": {
+          "$ref": "#/$defs/semantic_ref"
+        },
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        },
+        "width": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "height": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "badges": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "string"
+          }
+        },
+        "style": {
+          "$ref": "#/$defs/style_token"
+        }
+      }
+    },
+    "edge": {
+      "type": "object",
+      "required": ["id", "from", "to", "route"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/layout_id"
+        },
+        "subject": {
+          "$ref": "#/$defs/semantic_ref"
+        },
+        "from": {
+          "$ref": "#/$defs/layout_id"
+        },
+        "to": {
+          "$ref": "#/$defs/layout_id"
+        },
+        "label": {
+          "type": "string"
+        },
+        "route": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "$ref": "#/$defs/point"
+          }
+        },
+        "style": {
+          "$ref": "#/$defs/style_token"
+        }
+      }
+    },
+    "inspector_panel": {
+      "type": "object",
+      "required": ["subject", "title", "sections"],
+      "additionalProperties": false,
+      "properties": {
+        "subject": {
+          "$ref": "#/$defs/semantic_ref"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/inspector_section"
+          }
+        }
+      }
+    },
+    "inspector_section": {
+      "type": "object",
+      "required": ["title", "rows"],
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/inspector_row"
+          }
+        }
+      }
+    },
+    "inspector_row": {
+      "type": "object",
+      "required": ["label", "value"],
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "value": {
+          "type": "string"
+        },
+        "subject": {
+          "$ref": "#/$defs/semantic_ref"
+        }
+      }
+    },
+    "point": {
+      "type": "object",
+      "required": ["x", "y"],
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        }
+      }
+    },
+    "style_token": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tone": {
+          "type": "string",
+          "enum": ["default", "success", "warning", "danger", "muted"]
+        },
+        "emphasis": {
+          "type": "string",
+          "enum": ["normal", "strong", "faint"]
+        }
+      }
+    },
+    "semver": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "layout_id": {
+      "type": "string",
+      "pattern": "^layout:[a-z][a-z0-9_.\\-]*$"
+    },
+    "semantic_ref": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_\\-]*:[a-z][a-z0-9_.\\-]*$"
+    }
+  }
+}

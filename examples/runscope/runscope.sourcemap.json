@@ -1,0 +1,43 @@
+{
+  "source_map_version": "0.1.0",
+  "design_ir": {
+    "path": "examples/runscope/runscope.raid.json"
+  },
+  "mappings": [
+    {
+      "id": "map-runtime-running",
+      "ir_subject": "state:runtime.running",
+      "dsl_location": {
+        "uri": "lisp/runtime/runscope.lisp",
+        "range": {
+          "start_line": 24,
+          "end_line": 26
+        }
+      },
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 18,
+              "end_line": 22
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 18,
+              "end_line": 22
+            }
+          }
+        }
+      ],
+      "runtime_event_ids": ["evt-003"]
+    }
+  ]
+}
+

@@ -1,0 +1,176 @@
+{
+  "validation_version": "0.1.0",
+  "source": {
+    "core_ir": "examples/runscope/runscope.raid.json",
+    "ir_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000001",
+    "lock": "examples/runscope/runscope.lock.json",
+    "assertions": "examples/runscope/runscope.assertions.json"
+  },
+  "run": {
+    "tool": "dslraid",
+    "version": "0.1.0",
+    "mode": "validate",
+    "deny": ["error"]
+  },
+  "summary": {
+    "status": "passed",
+    "passed": 9,
+    "failed": 0,
+    "warnings": 0,
+    "skipped": 0,
+    "not_applicable": 1
+  },
+  "propositions": [
+    {
+      "id": "V006",
+      "layer": "fsm",
+      "status": "passed",
+      "severity": "error",
+      "subjects": ["fsm:runtime"],
+      "message": "RuntimeFSM has states."
+    },
+    {
+      "id": "V007",
+      "layer": "fsm",
+      "status": "passed",
+      "severity": "error",
+      "subjects": ["fsm:runtime"],
+      "assertions": ["assertion:fsm.initial_exactly_one"],
+      "message": "RuntimeFSM has exactly one initial state."
+    },
+    {
+      "id": "V008",
+      "layer": "fsm",
+      "status": "passed",
+      "severity": "error",
+      "subjects": ["fsm:runtime"],
+      "message": "All transition sources exist."
+    },
+    {
+      "id": "V009",
+      "layer": "fsm",
+      "status": "passed",
+      "severity": "error",
+      "subjects": ["fsm:runtime"],
+      "assertions": ["assertion:fsm.transition_target_exists"],
+      "message": "All transition targets exist."
+    },
+    {
+      "id": "V010",
+      "layer": "fsm",
+      "status": "passed",
+      "severity": "error",
+      "subjects": ["fsm:runtime"],
+      "message": "Event-bearing transitions reference defined events."
+    },
+    {
+      "id": "V011",
+      "layer": "fsm",
+      "status": "passed",
+      "severity": "error",
+      "subjects": ["state:runtime.completed", "state:runtime.failed"],
+      "assertions": ["assertion:fsm.terminal_has_no_outgoing"],
+      "message": "Terminal states have no outgoing transitions."
+    },
+    {
+      "id": "V021",
+      "layer": "composition",
+      "status": "not_applicable",
+      "severity": "error",
+      "assertions": ["assertion:composition.inputs_are_fsms"],
+      "message": "RunScope bootstrap fixture has no compositions."
+    },
+    {
+      "id": "V029",
+      "layer": "projection",
+      "status": "passed",
+      "severity": "error",
+      "subjects": ["view:runtime", "fsm:runtime"],
+      "message": "Projection root exists."
+    },
+    {
+      "id": "V034",
+      "layer": "traceability",
+      "status": "passed",
+      "severity": "error",
+      "subjects": ["derivation:runtime.codegen"],
+      "message": "Generated artifacts trace back to their derivation."
+    },
+    {
+      "id": "V043",
+      "layer": "diagnostics",
+      "status": "passed",
+      "severity": "error",
+      "message": "All diagnostic severities are valid."
+    }
+  ],
+  "assertions": [
+    {
+      "id": "assertion:fsm.initial_exactly_one",
+      "proposition": "V007",
+      "code": "FSM007",
+      "predicate": "exactly_one_initial_state",
+      "status": "passed",
+      "severity": "error",
+      "subjects": ["fsm:runtime", "state:runtime.idle"],
+      "evidence": {
+        "fsm": "runtime",
+        "initial_count": 1,
+        "initial_states": ["idle"],
+        "expected": 1
+      },
+      "message": "RuntimeFSM has exactly one initial state.",
+      "suggestion": "No change needed."
+    },
+    {
+      "id": "assertion:fsm.transition_target_exists",
+      "proposition": "V009",
+      "code": "FSM009",
+      "predicate": "transition_target_exists",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [
+        "transition:runtime.idle_to_starting",
+        "transition:runtime.starting_to_running",
+        "transition:runtime.starting_to_failed",
+        "transition:runtime.running_to_completed"
+      ],
+      "evidence": {
+        "fsm": "runtime",
+        "checked_transitions": 4,
+        "unknown_targets": []
+      },
+      "message": "All RuntimeFSM transition targets exist.",
+      "suggestion": "No change needed."
+    },
+    {
+      "id": "assertion:fsm.terminal_has_no_outgoing",
+      "proposition": "V011",
+      "code": "FSM011",
+      "predicate": "terminal_has_no_outgoing",
+      "status": "passed",
+      "severity": "error",
+      "subjects": ["state:runtime.completed", "state:runtime.failed"],
+      "evidence": {
+        "terminal_states": ["completed", "failed"],
+        "outgoing_transitions": []
+      },
+      "message": "Terminal states completed and failed have no outgoing transitions.",
+      "suggestion": "No change needed."
+    },
+    {
+      "id": "assertion:composition.inputs_are_fsms",
+      "proposition": "V021",
+      "code": "CMP001",
+      "predicate": "compose_inputs_are_fsms",
+      "status": "not_applicable",
+      "severity": "error",
+      "evidence": {
+        "composition_count": 0
+      },
+      "message": "RunScope bootstrap fixture has no compositions.",
+      "suggestion": "Add composition fixtures when composition support lands."
+    }
+  ],
+  "diagnostics": []
+}

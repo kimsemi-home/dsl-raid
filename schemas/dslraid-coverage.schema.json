@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dslraid.dev/schemas/dslraid-coverage.schema.json",
+  "title": "DSLRaid Coverage Overlay",
+  "type": "object",
+  "required": ["coverage_version", "design_ir", "subjects"],
+  "additionalProperties": false,
+  "properties": {
+    "coverage_version": {
+      "$ref": "#/$defs/semver"
+    },
+    "design_ir": {
+      "$ref": "#/$defs/input_ref"
+    },
+    "traces": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/input_ref"
+      }
+    },
+    "subjects": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/coverage_subject"
+      }
+    },
+    "metadata": {
+      "$ref": "#/$defs/metadata"
+    }
+  },
+  "$defs": {
+    "coverage_subject": {
+      "type": "object",
+      "required": ["subject", "kind", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "subject": {
+          "$ref": "#/$defs/semantic_ref"
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["state", "transition", "event", "guard", "action", "artifact"]
+        },
+        "status": {
+          "type": "string",
+          "enum": ["covered", "uncovered", "failed", "flaky", "deployed", "not_deployed"]
+        },
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "failure_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "last_seen": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "diagnostics": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/semantic_ref"
+          }
+        }
+      }
+    },
+    "input_ref": {
+      "type": "object",
+      "required": ["path"],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hash": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "semver": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "semantic_ref": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_\\-]*:[a-z][a-z0-9_.\\-]*$"
+    }
+  }
+}
+

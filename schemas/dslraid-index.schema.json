@@ -1,0 +1,244 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dslraid.dev/schemas/dslraid-index.schema.json",
+  "title": "DSLRaid Derived Index Graph",
+  "type": "object",
+  "required": ["index_version", "source", "atoms", "relations"],
+  "additionalProperties": false,
+  "properties": {
+    "index_version": {
+      "$ref": "#/$defs/semver"
+    },
+    "source": {
+      "$ref": "#/$defs/source"
+    },
+    "atoms": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/atom"
+      }
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/relation"
+      }
+    },
+    "search": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/search_record"
+      }
+    },
+    "cross_references": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/cross_reference"
+      }
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "required": ["core_ir"],
+      "additionalProperties": false,
+      "properties": {
+        "core_ir": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hash": {
+          "type": "string",
+          "minLength": 1
+        },
+        "projection": {
+          "$ref": "#/$defs/semantic_ref"
+        }
+      }
+    },
+    "atom": {
+      "type": "object",
+      "required": ["id", "kind", "subject", "label"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/index_id"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "project",
+            "context",
+            "requirement",
+            "capability",
+            "provider",
+            "runtime",
+            "protocol",
+            "constraint",
+            "policy",
+            "command",
+            "fsm",
+            "state",
+            "state_tuple",
+            "event",
+            "guard",
+            "action",
+            "transition",
+            "composition",
+            "projection",
+            "derivation",
+            "artifact",
+            "diagnostic",
+            "annotation"
+          ]
+        },
+        "subject": {
+          "$ref": "#/$defs/semantic_ref"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_location": {
+          "$ref": "#/$defs/source_location"
+        },
+        "metadata": {
+          "$ref": "#/$defs/metadata"
+        }
+      }
+    },
+    "relation": {
+      "type": "object",
+      "required": ["id", "kind", "from", "to"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/index_id"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "contains",
+            "transition_from",
+            "transition_to",
+            "tuple_member",
+            "on_event",
+            "uses_guard",
+            "runs_action",
+            "emits",
+            "composes",
+            "projects",
+            "derives",
+            "generates",
+            "diagnoses",
+            "requires",
+            "satisfies",
+            "provides",
+            "implements",
+            "maps_to",
+            "annotates",
+            "compatible_with",
+            "imports",
+            "exports",
+            "references"
+          ]
+        },
+        "from": {
+          "$ref": "#/$defs/index_id"
+        },
+        "to": {
+          "$ref": "#/$defs/index_id"
+        },
+        "subject": {
+          "$ref": "#/$defs/semantic_ref"
+        },
+        "metadata": {
+          "$ref": "#/$defs/metadata"
+        }
+      }
+    },
+    "search_record": {
+      "type": "object",
+      "required": ["subject", "text"],
+      "additionalProperties": false,
+      "properties": {
+        "subject": {
+          "$ref": "#/$defs/semantic_ref"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tags": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "cross_reference": {
+      "type": "object",
+      "required": ["from", "to", "kind"],
+      "additionalProperties": false,
+      "properties": {
+        "from": {
+          "$ref": "#/$defs/semantic_ref"
+        },
+        "to": {
+          "$ref": "#/$defs/semantic_ref"
+        },
+        "kind": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "source_location": {
+      "type": "object",
+      "required": ["path"],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "start_line": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "start_column": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "end_line": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "end_column": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "semver": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "index_id": {
+      "type": "string",
+      "pattern": "^idx:[a-z][a-z0-9_.\\-]*$"
+    },
+    "semantic_ref": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_\\-]*:[a-z][a-z0-9_.\\-]*$"
+    }
+  }
+}

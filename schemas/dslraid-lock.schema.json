@@ -1,0 +1,228 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dslraid.dev/schemas/dslraid-lock.schema.json",
+  "title": "DSLRaid Lock File",
+  "type": "object",
+  "required": ["lock_version", "core", "resolver", "artifacts"],
+  "additionalProperties": false,
+  "properties": {
+    "lock_version": {
+      "$ref": "#/$defs/semver"
+    },
+    "core": {
+      "$ref": "#/$defs/core_record"
+    },
+    "resolver": {
+      "$ref": "#/$defs/tool_record"
+    },
+    "resolved_refs": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/resolved_ref"
+      }
+    },
+    "derivations": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/derivation_record"
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/artifact_record"
+      }
+    },
+    "golden": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/golden_record"
+      }
+    },
+    "compat": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/compat_record"
+      }
+    }
+  },
+  "$defs": {
+    "core_record": {
+      "type": "object",
+      "required": ["path", "schema_version", "ir_hash"],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "schema_version": {
+          "$ref": "#/$defs/semver"
+        },
+        "ir_hash": {
+          "$ref": "#/$defs/hash"
+        },
+        "hash_algorithm": {
+          "type": "string",
+          "default": "sha256"
+        }
+      }
+    },
+    "tool_record": {
+      "type": "object",
+      "required": ["name", "version"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "resolved_ref": {
+      "type": "object",
+      "required": ["subject", "kind"],
+      "additionalProperties": false,
+      "properties": {
+        "subject": {
+          "$ref": "#/$defs/semantic_ref"
+        },
+        "uid": {
+          "$ref": "#/$defs/uid"
+        },
+        "kind": {
+          "type": "string",
+          "minLength": 1
+        },
+        "definition_hash": {
+          "$ref": "#/$defs/hash"
+        }
+      }
+    },
+    "derivation_record": {
+      "type": "object",
+      "required": ["derivation", "rule", "input_hash", "targets"],
+      "additionalProperties": false,
+      "properties": {
+        "derivation": {
+          "$ref": "#/$defs/semantic_ref"
+        },
+        "rule": {
+          "type": "string",
+          "minLength": 1
+        },
+        "generator": {
+          "$ref": "#/$defs/tool_record"
+        },
+        "input_hash": {
+          "$ref": "#/$defs/hash"
+        },
+        "targets": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/semantic_ref"
+          }
+        }
+      }
+    },
+    "artifact_record": {
+      "type": "object",
+      "required": ["artifact", "path", "kind", "content_hash", "input_hash", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "artifact": {
+          "$ref": "#/$defs/semantic_ref"
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "type": "string",
+          "enum": ["source", "generated", "test", "doc", "layout", "export", "other"]
+        },
+        "generated_by": {
+          "$ref": "#/$defs/semantic_ref"
+        },
+        "input_hash": {
+          "$ref": "#/$defs/hash"
+        },
+        "content_hash": {
+          "$ref": "#/$defs/hash"
+        },
+        "schema_version": {
+          "$ref": "#/$defs/semver"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["fresh", "stale", "missing", "external"]
+        }
+      }
+    },
+    "golden_record": {
+      "type": "object",
+      "required": ["path", "input_hash", "expected_hash"],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "schema_version": {
+          "$ref": "#/$defs/semver"
+        },
+        "input_hash": {
+          "$ref": "#/$defs/hash"
+        },
+        "expected_hash": {
+          "$ref": "#/$defs/hash"
+        }
+      }
+    },
+    "compat_record": {
+      "type": "object",
+      "required": ["subject", "requires", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "subject": {
+          "$ref": "#/$defs/semantic_ref"
+        },
+        "requires": {
+          "type": "string",
+          "minLength": 1
+        },
+        "satisfied_by": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["ok", "warning", "error"]
+        }
+      }
+    },
+    "hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "uid": {
+      "type": "string",
+      "pattern": "^[0-9A-HJKMNP-TV-Z]{26}$"
+    },
+    "semver": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "semantic_ref": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_\\-]*:[a-z][a-z0-9_.\\-]*$"
+    }
+  }
+}
