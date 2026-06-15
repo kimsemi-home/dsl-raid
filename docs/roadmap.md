@@ -31,7 +31,7 @@ Goal: make the executable IR real.
 - implement deterministic JSON serialization
 - implement lock-file writer for resolved refs, hashes, derivations, artifacts,
   and golden records
-- implement IR version reader and migration scaffold
+- implement IR version reader and no-op migration scaffold
 - implement core schema validation
 - implement assertion registry reader
 - add golden fixtures
@@ -194,7 +194,8 @@ Exit criteria:
 Goal: compare designed behavior to observed behavior.
 
 - implement `dslraid trace import logs/run-123.jsonl`
-- produce runtime trace JSON
+- produce runtime trace JSON and validate it against the trace schema
+- implement `dslraid trace check` for basic transition conformance
 - produce coverage overlay JSON
 - show executed and unexecuted transitions
 - show transition failure rates

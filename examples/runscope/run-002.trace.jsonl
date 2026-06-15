@@ -1,0 +1,4 @@
+{"timestamp":"2026-06-15T00:01:00Z","kind":"event_received","subject":"event:runtime.start_requested","status":"ok","visibility":"public"}
+{"timestamp":"2026-06-15T00:01:01Z","kind":"transition_completed","subject":"transition:runtime.idle_to_starting","from":"state:runtime.idle","to":"state:runtime.starting","status":"ok","duration_ms":11,"visibility":"public"}
+{"timestamp":"2026-06-15T00:01:02Z","kind":"transition_completed","subject":"transition:runtime.starting_to_running","from":"state:runtime.starting","to":"state:runtime.running","status":"ok","duration_ms":7,"visibility":"public"}
+{"timestamp":"2026-06-15T00:01:03Z","kind":"transition_completed","subject":"transition:runtime.running_to_completed","from":"state:runtime.running","to":"state:runtime.completed","status":"ok","duration_ms":9,"visibility":"public"}

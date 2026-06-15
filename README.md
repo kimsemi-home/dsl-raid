@@ -116,19 +116,25 @@ cargo run -p dslraid-cli -- normalize examples/runscope/runscope.raid.json
 cargo run -p dslraid-cli -- validate examples/runscope/runscope.raid.json
 cargo run -p dslraid-cli -- validate examples/runscope/runscope.raid.json --format json
 cargo run -p dslraid-cli -- schema validate schemas/dslraid-core.schema.json examples/runscope/runscope.raid.json
+cargo run -p dslraid-cli -- migrate examples/runscope/runscope.raid.json --from 0.1.0 --to 0.1.0
 cargo run -p dslraid-cli -- project examples/runscope/runscope.raid.json --projection view:runtime
 cargo run -p dslraid-cli -- render examples/runscope/runscope.raid.json --format svg
 cargo run -p dslraid-cli -- codegen examples/runscope/runscope.raid.json --target rust
 cargo run -p dslraid-cli -- export mermaid examples/runscope/runscope.raid.json
 cargo run -p dslraid-cli -- diff base.json head.json
+cargo run -p dslraid-cli -- query examples/runscope/runscope.raid.json 'kind=transition and tested=false'
+cargo run -p dslraid-cli -- trace import examples/runscope/run-002.trace.jsonl --design-ir examples/runscope/runscope.raid.json
+cargo run -p dslraid-cli -- trace check examples/runscope/run-001.trace.json --design-ir examples/runscope/runscope.raid.json
 cargo run -p dslraid-cli -- artifact verify examples/runscope/runscope.raid.json
 cargo run -p dslraid-cli -- compat check examples/runscope/runscope.raid.json
 cargo run -p dslraid-cli -- quality
 ```
 
-Planned but not yet implemented as full product features: migrations, runtime
-trace import, query language, lazy product composition materialization beyond
-the current diagnostic summary, WASM packaging, and WebGL rendering.
+MVP implementations now exist for no-op version migration, simple IR queries,
+runtime trace import, and runtime trace conformance checks. Planned but not yet
+implemented as full product features: non-trivial migrations, richer query
+language semantics, lazy product composition materialization beyond the current
+diagnostic summary, WASM packaging, and WebGL rendering.
 
 ## Viewer
 
