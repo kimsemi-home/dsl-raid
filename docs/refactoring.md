@@ -5,6 +5,11 @@ implementation code. It complements the ADRs: renderer and UI internals can move
 freely, while Core IR semantics, composition rules, diagnostic codes, stable ID
 rules, visibility rules, and codegen contracts require an ADR.
 
+It also follows ADR 0005: reduce observable surface area rather than simply
+reducing file count. Most hand-written source files should stay below roughly
+100 lines, with folders arranged around the concepts a reader needs for one
+task.
+
 ## Audit Order
 
 Start with the layer boundaries before optimizing details:
