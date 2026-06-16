@@ -1,0 +1,20 @@
+mod generated;
+mod projection;
+mod runtime;
+mod schema;
+mod semantic;
+
+use anyhow::Result;
+use std::path::Path;
+
+pub(crate) fn run() -> Result<()> {
+    let input = Path::new("examples/runscope/runscope.raid.json");
+    schema::check_fixtures()?;
+    let ir = semantic::check(input)?;
+    projection::check(input, &ir)?;
+    generated::check(input, &ir)?;
+    runtime::check(input)?;
+    crate::commands::artifact::verify(input, None, crate::OutputFormat::Text)?;
+    println!("quality ok");
+    Ok(())
+}

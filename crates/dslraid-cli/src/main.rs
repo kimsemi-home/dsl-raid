@@ -2,10 +2,7 @@ use anyhow::{anyhow, bail, Context, Result};
 use clap::{Parser, Subcommand, ValueEnum};
 use dslraid_analyzer::{validate_core_ir, ValidateOptions, ValidationReport};
 use dslraid_codegen::{generate_code, project_view, render_svg, CodegenTarget};
-use dslraid_core::{
-    load_core_ir, sha256_json, validate_json_schema, CORE_SCHEMA_PATH, VALIDATION_SCHEMA_PATH,
-    VIEW_SCHEMA_PATH,
-};
+use dslraid_core::{load_core_ir, sha256_json, validate_json_schema, CORE_SCHEMA_PATH};
 use serde_json::Value;
 use std::fs;
 use std::io::Write;
@@ -269,7 +266,7 @@ fn run() -> Result<()> {
         Command::Schema { command } => match command {
             SchemaCommand::Validate { schema, input } => schema_validate(&schema, &input),
         },
-        Command::Quality => quality(),
+        Command::Quality => commands::quality::run(),
         Command::Golden { command } => match command {
             GoldenCommand::Check { path } => golden_check(&path),
             GoldenCommand::Update { path } => golden_update(&path),
@@ -484,132 +481,6 @@ fn validate_json_file(schema: &Path, input: &Path) -> Result<()> {
     }
 }
 
-fn quality() -> Result<()> {
-    check_json_syntax("schemas")?;
-    check_json_syntax("examples")?;
-    schema_validate(
-        Path::new(CORE_SCHEMA_PATH),
-        Path::new("examples/runscope/runscope.raid.json"),
-    )?;
-    schema_validate(
-        Path::new("schemas/dslraid-assertion.schema.json"),
-        Path::new("examples/runscope/runscope.assertions.json"),
-    )?;
-    schema_validate(
-        Path::new(VALIDATION_SCHEMA_PATH),
-        Path::new("examples/runscope/runscope.validation.json"),
-    )?;
-    schema_validate(
-        Path::new("schemas/dslraid-lock.schema.json"),
-        Path::new("examples/runscope/runscope.lock.json"),
-    )?;
-    schema_validate(
-        Path::new("schemas/dslraid-annotation.schema.json"),
-        Path::new("examples/runscope/runscope.annotations.json"),
-    )?;
-    schema_validate(
-        Path::new("schemas/dslraid-sourcemap.schema.json"),
-        Path::new("examples/runscope/runscope.sourcemap.json"),
-    )?;
-    schema_validate(
-        Path::new("schemas/dslraid-trace.schema.json"),
-        Path::new("examples/runscope/run-001.trace.json"),
-    )?;
-    schema_validate(
-        Path::new("schemas/dslraid-coverage.schema.json"),
-        Path::new("examples/runscope/run-001.coverage.json"),
-    )?;
-
-    let input = Path::new("examples/runscope/runscope.raid.json");
-    let ir = load_core_ir(input)?;
-    let report = validation_report(&ir, input, "quality", Vec::new())?;
-    if !report.is_success(&[]) {
-        print_report_text(&report);
-        bail!("semantic quality failed");
-    }
-    let view = project_view(&ir, Some("view:runtime"), input.display().to_string())?;
-    let view_path = std::env::temp_dir().join(format!("dslraid-view-{}.json", std::process::id()));
-    write_bytes(&view_path, serde_json::to_string_pretty(&view)?.as_bytes())?;
-    schema_validate(Path::new(VIEW_SCHEMA_PATH), &view_path)?;
-    fs::remove_file(&view_path).ok();
-
-    let svg = render_svg(&view);
-    if !svg.contains("<svg") || svg.len() < 200 {
-        bail!("rendered SVG is unexpectedly empty");
-    }
-    for target in [
-        CliCodegenTarget::Rust,
-        CliCodegenTarget::Go,
-        CliCodegenTarget::Typescript,
-    ] {
-        let generated = generate_code(&ir, target.into())?;
-        if generated.trim().is_empty() {
-            bail!("empty codegen output for {target:?}");
-        }
-    }
-    let transition_query = commands::query::values(&ir, "kind=transition")?;
-    if transition_query.is_empty() {
-        bail!("query returned no transitions");
-    }
-    let richer_query = commands::query::values(
-        &ir,
-        "kind=transition and requires~=policy:no_secret_leak or terminal=true",
-    )?;
-    if richer_query.is_empty() {
-        bail!("richer query returned no results");
-    }
-    let composition = commands::compose::result(&ir, None, "reachable", 100, None, 1)?;
-    if composition
-        .get("composition")
-        .and_then(|value| value.get("state_space"))
-        .and_then(Value::as_u64)
-        .unwrap_or_default()
-        == 0
-    {
-        bail!("lazy composition did not compute a state space");
-    }
-    commands::trace::check(
-        Path::new("examples/runscope/run-001.trace.json"),
-        input,
-        OutputFormat::Text,
-    )?;
-    let coverage_path =
-        std::env::temp_dir().join(format!("dslraid-coverage-{}.json", std::process::id()));
-    commands::coverage::build(
-        Path::new("examples/runscope/run-001.trace.json"),
-        input,
-        Some(&coverage_path),
-    )?;
-    schema_validate(
-        Path::new("schemas/dslraid-coverage.schema.json"),
-        &coverage_path,
-    )?;
-    commands::coverage::check(&coverage_path, input, OutputFormat::Text)?;
-    fs::remove_file(&coverage_path).ok();
-    let imported_trace = std::env::temp_dir().join(format!(
-        "dslraid-imported-trace-{}.json",
-        std::process::id()
-    ));
-    commands::trace::import(
-        Path::new("examples/runscope/run-002.trace.jsonl"),
-        Some(input),
-        Some("run-002"),
-        Some(&imported_trace),
-    )?;
-    schema_validate(
-        Path::new("schemas/dslraid-trace.schema.json"),
-        &imported_trace,
-    )?;
-    fs::remove_file(&imported_trace).ok();
-    let self_diff = commands::diff::report(&ir, &ir, input, input)?;
-    if self_diff.status != "unchanged" {
-        bail!("self diff should be unchanged");
-    }
-    commands::artifact::verify(input, None, OutputFormat::Text)?;
-    println!("quality ok");
-    Ok(())
-}
-
 fn golden_check(path: &Path) -> Result<()> {
     if !path.exists() {
         bail!("golden path does not exist: {}", path.display());
@@ -766,23 +637,6 @@ fn print_report_text(report: &ValidationReport) {
             }
         }
     }
-}
-
-fn check_json_syntax(path: impl AsRef<Path>) -> Result<()> {
-    for entry in WalkDir::new(path)
-        .into_iter()
-        .filter_map(Result::ok)
-        .filter(|entry| entry.file_type().is_file())
-    {
-        let path = entry.path();
-        if path.extension().and_then(|ext| ext.to_str()) == Some("json") {
-            let _: Value = serde_json::from_slice(
-                &fs::read(path).with_context(|| format!("read {}", path.display()))?,
-            )
-            .with_context(|| format!("parse {}", path.display()))?;
-        }
-    }
-    Ok(())
 }
 
 fn write_or_stdout(out: Option<&Path>, bytes: &[u8]) -> Result<()> {
