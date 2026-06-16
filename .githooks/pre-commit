@@ -11,3 +11,4 @@ bash scripts/lisp-irgen.sh check
 bash scripts/roadmapgen.sh check
 bash scripts/fsmgen.sh check
 bash scripts/assertiongen.sh check
+bash scripts/tracegen.sh check

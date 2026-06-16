@@ -5,7 +5,8 @@ use std::path::Path;
 pub(super) fn check(input: &Path) -> Result<()> {
     check_trace(input)?;
     check_coverage(input)?;
-    check_trace_import(input)
+    check_trace_import(input)?;
+    check_trace_catalog()
 }
 
 fn check_trace(input: &Path) -> Result<()> {
@@ -50,4 +51,16 @@ fn check_trace_import(input: &Path) -> Result<()> {
     )?;
     fs::remove_file(&imported_trace).ok();
     Ok(())
+}
+
+fn check_trace_catalog() -> Result<()> {
+    let status = std::process::Command::new("bash")
+        .arg("scripts/tracegen.sh")
+        .arg("check")
+        .status()?;
+    if status.success() {
+        Ok(())
+    } else {
+        anyhow::bail!("scripts/tracegen.sh check failed")
+    }
 }
