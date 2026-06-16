@@ -1,3 +1,4 @@
+mod demo;
 mod docs;
 mod generated;
 mod lock;
@@ -15,6 +16,7 @@ pub(crate) fn run() -> Result<()> {
     let ir = semantic::check(input)?;
     projection::check(input, &ir)?;
     generated::check(input, &ir)?;
+    demo::check(input)?;
     docs::check(input)?;
     lock::check(input)?;
     runtime::check(input)?;

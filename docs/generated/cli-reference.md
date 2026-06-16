@@ -15,7 +15,7 @@ Usage: dslraid <COMMAND>
 | `-h`, `--help` | no | Print help |
 | `-V`, `--version` | no | Print version |
 
-Subcommands: `init`, `normalize`, `migrate`, `validate`, `schema`, `quality`, `golden`, `generate`, `project`, `render`, `codegen`, `doc`, `compose`, `diff`, `query`, `trace`, `coverage`, `artifact`, `compat`, `export`, `help`
+Subcommands: `init`, `normalize`, `migrate`, `validate`, `schema`, `quality`, `golden`, `generate`, `demo`, `project`, `render`, `codegen`, `doc`, `compose`, `diff`, `query`, `trace`, `coverage`, `artifact`, `compat`, `export`, `help`
 
 ## `dslraid init`
 
@@ -176,6 +176,45 @@ Usage: generate [OPTIONS] <INPUT>
 | `--source-map` | no | Also regenerate a source map JSON |
 | `--skip-lock` | no | Do not refresh the inferred lock file after generation |
 | `-h`, `--help` | no | Print help |
+
+## `dslraid demo`
+
+```text
+Usage: demo <COMMAND>
+```
+
+| Argument | Required | Help |
+| --- | --- | --- |
+| `-h`, `--help` | no | Print help |
+
+Subcommands: `package`, `help`
+
+## `dslraid demo package`
+
+Package deterministic assets consumed by the web viewer demo
+
+```text
+Usage: package [OPTIONS] --out <OUT> <INPUT>
+```
+
+| Argument | Required | Help |
+| --- | --- | --- |
+| `input` | yes | Canonical IR input file |
+| `--out` | yes | Output directory for viewer-readable assets |
+| `--trace` | no | Runtime trace to copy and convert into a coverage overlay |
+| `-h`, `--help` | no | Print help |
+
+## `dslraid demo help`
+
+Print this message or the help of the given subcommand(s)
+
+```text
+Usage: help [COMMAND]...
+```
+
+| Argument | Required | Help |
+| --- | --- | --- |
+| `subcommand` | no | Print help for the subcommand(s) |
 
 ## `dslraid project`
 

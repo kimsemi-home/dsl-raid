@@ -16,6 +16,7 @@ pub(crate) fn run(command: Command) -> Result<()> {
         Command::Quality => crate::commands::quality::run(),
         Command::Golden(args) => core::golden(args),
         Command::Generate(args) => crate::commands::generate::run(args),
+        Command::Demo(args) => crate::commands::demo::run(args),
         Command::Project(args) => outputs::project(args),
         Command::Render(args) => outputs::render(args),
         Command::Codegen(args) => outputs::codegen(args),

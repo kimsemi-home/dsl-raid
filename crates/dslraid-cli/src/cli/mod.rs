@@ -1,5 +1,6 @@
 mod command;
 mod common;
+mod demo;
 mod docs;
 mod formats;
 mod generate;
@@ -12,6 +13,7 @@ use clap::Parser;
 
 pub(crate) use command::Command;
 pub(crate) use common::*;
+pub(crate) use demo::*;
 pub(crate) use docs::*;
 pub(crate) use formats::*;
 pub(crate) use generate::*;
