@@ -61,6 +61,7 @@ export function createActions(session: viewerSession.ViewerSession, elements: Vi
     setFocusDepth: (depth: 1 | 2) => {
       session.store.focusDepth = depth;
       actions.syncPanels();
+      queueRender();
     },
     updateStatus: (world: Point) => {
       elements.status.textContent = `zoom ${session.store.camera.zoom.toFixed(2)} / world ${world.x.toFixed(0)}, ${world.y.toFixed(0)}`;

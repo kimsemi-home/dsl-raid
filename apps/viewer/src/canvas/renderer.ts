@@ -7,6 +7,8 @@ import { visibleNodes } from "./hit-test";
 import { drawNodes } from "./node-layer";
 
 export function renderCanvas(canvas: HTMLCanvasElement, view: ViewModel, camera: Camera, selection: SelectionState): void {
+  canvas.setAttribute("data-rendered-nodes", String(view.nodes.length));
+  canvas.setAttribute("data-rendered-edges", String(view.edges.length));
   const context = canvas.getContext("2d");
   if (!context) {
     return;

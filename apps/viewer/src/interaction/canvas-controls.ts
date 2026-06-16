@@ -4,6 +4,7 @@ import type { Point } from "../types";
 import type { ViewerActions } from "../app/action-types";
 import type { ViewerElements } from "../app/elements";
 import type { ViewerSession } from "../app/session";
+import { visibleView } from "../app/visible-view";
 import { relativePoint } from "./point";
 
 export function bindCanvasControls(elements: ViewerElements, session: ViewerSession, actions: ViewerActions): void {
@@ -23,7 +24,7 @@ export function bindCanvasControls(elements: ViewerElements, session: ViewerSess
   elements.canvas.addEventListener("pointermove", (event) => {
     const point = relativePoint(elements.canvas, event);
     const world = screenToWorld(session.store.camera, point);
-    const hit = hitTest(session.store.view, world);
+    const hit = hitTest(visibleView(session.store), world);
     actions.hover(hit?.subject);
     if (dragging && lastMouse && !hit) {
       actions.pan(event.clientX - lastMouse.x, event.clientY - lastMouse.y);
@@ -44,5 +45,5 @@ export function bindCanvasControls(elements: ViewerElements, session: ViewerSess
 
 function hitAt(elements: ViewerElements, session: ViewerSession, event: PointerEvent) {
   const point = relativePoint(elements.canvas, event);
-  return hitTest(session.store.view, screenToWorld(session.store.camera, point));
+  return hitTest(visibleView(session.store), screenToWorld(session.store.camera, point));
 }
