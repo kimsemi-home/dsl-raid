@@ -1,5 +1,5 @@
 use super::{CliCodegenTarget, CliExportTarget, RenderFormat};
-use clap::{Args, Subcommand};
+use clap::Args;
 use std::path::PathBuf;
 
 #[derive(Debug, Args)]
@@ -38,24 +38,4 @@ pub(crate) struct ExportArgs {
     pub(crate) input: PathBuf,
     #[arg(long)]
     pub(crate) out: Option<PathBuf>,
-}
-
-#[derive(Debug, Args)]
-pub(crate) struct DocArgs {
-    #[command(subcommand)]
-    pub(crate) command: DocCommand,
-}
-
-#[derive(Debug, Subcommand)]
-pub(crate) enum DocCommand {
-    Generate {
-        input: PathBuf,
-        #[arg(long)]
-        out: Option<PathBuf>,
-    },
-    Check {
-        input: PathBuf,
-        #[arg(long)]
-        golden: PathBuf,
-    },
 }

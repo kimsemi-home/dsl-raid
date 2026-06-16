@@ -1,3 +1,7 @@
+mod cli_arg;
+mod cli_ref;
+mod cli_walk;
+
 use anyhow::{bail, Context, Result};
 use dslraid_codegen::generate_markdown_doc;
 use dslraid_core::load_core_ir;
@@ -8,6 +12,7 @@ pub(crate) fn run(args: crate::DocArgs) -> Result<()> {
     match args.command {
         crate::DocCommand::Generate { input, out } => generate(&input, out.as_deref()),
         crate::DocCommand::Check { input, golden } => check(&input, &golden),
+        crate::DocCommand::Cli { command } => cli_ref::run(command),
     }
 }
 

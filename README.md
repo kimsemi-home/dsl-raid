@@ -78,6 +78,7 @@ design contracts.
   deterministic Canonical IR emitters
 
 - [Architecture](docs/architecture.md)
+- [Generated CLI Reference](docs/generated/cli-reference.md)
 - [IR Design](docs/ir.md)
 - [Validation Proposition Catalog](docs/validation.md)
 - [Traceability and Runtime Evidence](docs/traceability-runtime.md)
@@ -128,6 +129,8 @@ cargo run -p dslraid-cli -- codegen examples/runscope/runscope.raid.json --targe
 cargo run -p dslraid-cli -- codegen examples/runscope/runscope.raid.json --target go --out generated/runtime_fsm.go
 cargo run -p dslraid-cli -- doc generate examples/runscope/runscope.raid.json --out examples/runscope/runscope.generated.md
 cargo run -p dslraid-cli -- doc check examples/runscope/runscope.raid.json --golden examples/runscope/runscope.generated.md
+cargo run -p dslraid-cli -- doc cli generate --out docs/generated/cli-reference.md
+cargo run -p dslraid-cli -- doc cli check --golden docs/generated/cli-reference.md
 cargo run -p dslraid-cli -- export mermaid examples/runscope/runscope.raid.json
 cargo run -p dslraid-cli -- diff base.json head.json
 cargo run -p dslraid-cli -- diff base.json head.json --format markdown --out dslraid-diff.md
@@ -148,10 +151,10 @@ cargo run -p dslraid-cli -- quality
 MVP implementations now exist for no-op version migration, richer IR queries,
 lazy reachable composition materialization, semantic diff review summaries,
 stale artifact verification against lock input and content hashes, deterministic
-lock updates, generated code freshness checks, runtime trace import/check, trace-derived coverage overlays, and
-coverage-aware viewer overlays. Planned but not yet implemented as full product
-features: non-trivial migrations, synchronized product semantics, WASM
-packaging, and WebGL rendering.
+lock updates, generated code and CLI-doc freshness checks, runtime trace
+import/check, trace-derived coverage overlays, and coverage-aware viewer
+overlays. Planned but not yet implemented as full product features: non-trivial
+migrations, synchronized product semantics, WASM packaging, and WebGL rendering.
 
 ## Viewer
 

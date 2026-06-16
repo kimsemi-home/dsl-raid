@@ -7,5 +7,12 @@ pub(super) fn check(input: &Path) -> Result<()> {
             input: input.to_path_buf(),
             golden: Path::new("examples/runscope/runscope.generated.md").to_path_buf(),
         },
+    })?;
+    crate::commands::outputs::doc(crate::DocArgs {
+        command: crate::DocCommand::Cli {
+            command: crate::CliDocCommand::Check {
+                golden: Path::new("docs/generated/cli-reference.md").to_path_buf(),
+            },
+        },
     })
 }
