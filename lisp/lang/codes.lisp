@@ -3,7 +3,8 @@
 (defparameter *language-diagnostics*
   (append *authoring-diagnostic-codes*
           *transition-diagnostic-codes*
-          *identifier-diagnostic-codes*))
+          *identifier-diagnostic-codes*
+          *keyword-diagnostic-codes*))
 
 (defun language-code (key)
   (getf (or (find key *language-diagnostics*
