@@ -26,4 +26,6 @@
   (indent out 1)
   (format out "\"fsms\": [~%")
   (write-json-array fsms out 2 #'write-fsm-json)
+  (format out ",~%")
+  (write-derived-project-sections out)
   (format out "~%}~%"))

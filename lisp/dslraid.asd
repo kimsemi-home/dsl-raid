@@ -40,6 +40,7 @@
     ((:file "json-values")
      (:file "json-source")
      (:file "json-fsm")
+     (:file "json-derived")
      (:file "json")
      (:file "markdown")
      (:file "diagnostics")))

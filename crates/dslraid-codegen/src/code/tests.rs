@@ -26,6 +26,26 @@ fn rust_backend_accepts_lisp_emitted_canonical_ir() {
 }
 
 #[test]
+fn lisp_emitted_ir_declares_rust_as_generated_artifact() {
+    let ir = load_core_ir(repo_path("examples/runscope/runscope.lisp.raid.json")).unwrap();
+    let artifact = ir.artifact_by_id("artifact:runtime_fsm.rs").unwrap();
+    let derivation = ir
+        .derivation_by_id("derivation:lisp_runtime_codegen")
+        .unwrap();
+
+    assert_eq!(artifact.kind, "generated");
+    assert_eq!(
+        artifact.generated_by.as_deref(),
+        Some(derivation.id.as_str())
+    );
+    assert_eq!(derivation.source, "context:runtime");
+    assert!(derivation
+        .targets
+        .iter()
+        .any(|target| target.artifact == artifact.id && target.role == "generated"));
+}
+
+#[test]
 fn generated_backends_share_canonical_ir_header() {
     let ir = load_core_ir(repo_path("examples/runscope/runscope.raid.json")).unwrap();
     let go = generate_code(&ir, CodegenTarget::Go).unwrap();

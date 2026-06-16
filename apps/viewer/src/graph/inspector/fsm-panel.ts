@@ -18,6 +18,7 @@ export function fsmPanel(ir: CoreIr, fsm: Fsm): InspectorPanel {
           { label: "Events", value: String((fsm.events ?? []).length) },
           { label: "Initial", value: stateList(fsm, "initial") },
           { label: "Terminal", value: stateList(fsm, "terminal") },
+          { label: "Context", value: fsm.context ?? "none", subject: fsm.context },
           { label: "Source", value: fsm.defined_at?.uri ?? "not linked" }
         ]
       },

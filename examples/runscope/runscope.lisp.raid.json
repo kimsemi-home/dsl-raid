@@ -73,5 +73,21 @@
         {"id": "syncing_to_conflict", "from": "syncing", "to": "conflict", "on": "sync_conflict"}
       ]
     }
-  ]
+  ],
+  "contexts": [
+    {"id": "context:runtime", "name": "Runtime Context", "kind": "bounded_context", "owns": ["fsm:runtime", "fsm:agent", "fsm:workspace"]}
+  ],
+  "projections": [
+    {"id": "view:runtime", "kind": "projection", "source": "fsm:runtime", "show": ["states", "transitions", "events", "artifacts"]},
+    {"id": "view:agent", "kind": "projection", "source": "fsm:agent", "show": ["states", "transitions", "events", "artifacts"]},
+    {"id": "view:workspace", "kind": "projection", "source": "fsm:workspace", "show": ["states", "transitions", "events", "artifacts"]}
+  ],
+  "derivations": [
+    {"id": "derivation:lisp_runtime_codegen", "source": "context:runtime", "rule": {"id": "fsm_codegen", "kind": "codegen", "generator": "dslraid-codegen", "version": "0.1.0"}, "targets": [{"artifact": "artifact:runtime_fsm.rs", "role": "generated"}]}
+  ],
+  "artifacts": [
+    {"id": "artifact:runtime_fsm.rs", "kind": "generated", "path": "generated/runtime_fsm.rs", "generated_by": "derivation:lisp_runtime_codegen", "visibility": "public", "tags": ["generated", "rust", "lisp-ssot"]}
+  ],
+  "diagnostics": []
+
 }
