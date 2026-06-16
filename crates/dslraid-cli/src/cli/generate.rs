@@ -11,6 +11,9 @@ pub(crate) struct GenerateArgs {
     /// Also regenerate a validation proposition report JSON.
     #[arg(long)]
     pub(crate) validation_report: Option<PathBuf>,
+    /// Also regenerate a source map JSON.
+    #[arg(long)]
+    pub(crate) source_map: Option<PathBuf>,
     /// Do not refresh the inferred lock file after generation.
     #[arg(long)]
     pub(crate) skip_lock: bool,

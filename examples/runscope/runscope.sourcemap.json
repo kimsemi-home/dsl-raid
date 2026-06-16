@@ -1,11 +1,97 @@
 {
   "source_map_version": "0.1.0",
   "design_ir": {
-    "path": "examples/runscope/runscope.raid.json"
+    "path": "examples/runscope/runscope.raid.json",
+    "hash": "sha256:217b0823ab442501c87c15260e6d804946700a0335292282e44b8d33c69ded6d"
   },
   "mappings": [
     {
-      "id": "map-runtime-running",
+      "id": "map-fsm-runtime",
+      "ir_subject": "fsm:runtime",
+      "dsl_location": {
+        "uri": "lisp/runtime/runscope.lisp",
+        "range": {
+          "start_line": 4,
+          "end_line": 16
+        }
+      },
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 5,
+              "end_line": 34
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 3,
+              "end_line": 20
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-state-runtime-idle",
+      "ir_subject": "state:runtime.idle",
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 8,
+              "end_line": 8
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 5,
+              "end_line": 5
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-state-runtime-starting",
+      "ir_subject": "state:runtime.starting",
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 9,
+              "end_line": 9
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 6,
+              "end_line": 6
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-state-runtime-running",
       "ir_subject": "state:runtime.running",
       "dsl_location": {
         "uri": "lisp/runtime/runscope.lisp",
@@ -16,27 +102,775 @@
       },
       "generated_locations": [
         {
-          "artifact": "artifact:runtime_fsm.rs",
-          "location": {
-            "uri": "generated/runtime_fsm.rs",
-            "range": {
-              "start_line": 7,
-              "end_line": 17
-            }
-          }
-        },
-        {
           "artifact": "artifact:runtime_fsm.go",
           "location": {
             "uri": "generated/runtime_fsm.go",
             "range": {
               "start_line": 10,
-              "end_line": 30
+              "end_line": 10
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 7,
+              "end_line": 7
             }
           }
         }
-      ],
-      "runtime_event_ids": ["evt-003"]
+      ]
+    },
+    {
+      "id": "map-state-runtime-completed",
+      "ir_subject": "state:runtime.completed",
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 11,
+              "end_line": 11
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 8,
+              "end_line": 8
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-state-runtime-failed",
+      "ir_subject": "state:runtime.failed",
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 12,
+              "end_line": 12
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 9,
+              "end_line": 9
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-transition-runtime-idle_to_starting",
+      "ir_subject": "transition:runtime.idle_to_starting",
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 18,
+              "end_line": 20
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 14,
+              "end_line": 14
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-transition-runtime-starting_to_running",
+      "ir_subject": "transition:runtime.starting_to_running",
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 22,
+              "end_line": 24
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 15,
+              "end_line": 15
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-transition-runtime-starting_to_failed",
+      "ir_subject": "transition:runtime.starting_to_failed",
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 25,
+              "end_line": 27
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 16,
+              "end_line": 16
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-transition-runtime-running_to_completed",
+      "ir_subject": "transition:runtime.running_to_completed",
+      "dsl_location": {
+        "uri": "lisp/runtime/runscope.lisp",
+        "range": {
+          "start_line": 16,
+          "end_line": 16
+        }
+      },
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 29,
+              "end_line": 31
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 17,
+              "end_line": 17
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-fsm-agent",
+      "ir_subject": "fsm:agent",
+      "dsl_location": {
+        "uri": "lisp/runtime/runscope.lisp",
+        "range": {
+          "start_line": 19,
+          "end_line": 34
+        }
+      },
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 36,
+              "end_line": 70
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 22,
+              "end_line": 41
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-state-agent-idle",
+      "ir_subject": "state:agent.idle",
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 39,
+              "end_line": 39
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 24,
+              "end_line": 24
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-state-agent-planning",
+      "ir_subject": "state:agent.planning",
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 40,
+              "end_line": 40
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 25,
+              "end_line": 25
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-state-agent-acting",
+      "ir_subject": "state:agent.acting",
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 41,
+              "end_line": 41
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 26,
+              "end_line": 26
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-state-agent-waiting",
+      "ir_subject": "state:agent.waiting",
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 42,
+              "end_line": 42
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 27,
+              "end_line": 27
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-state-agent-completed",
+      "ir_subject": "state:agent.completed",
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 43,
+              "end_line": 43
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 28,
+              "end_line": 28
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-state-agent-failed",
+      "ir_subject": "state:agent.failed",
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 44,
+              "end_line": 44
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 29,
+              "end_line": 29
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-transition-agent-idle_to_planning",
+      "ir_subject": "transition:agent.idle_to_planning",
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 50,
+              "end_line": 52
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 34,
+              "end_line": 34
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-transition-agent-planning_to_acting",
+      "ir_subject": "transition:agent.planning_to_acting",
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 54,
+              "end_line": 56
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 35,
+              "end_line": 35
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-transition-agent-acting_to_waiting",
+      "ir_subject": "transition:agent.acting_to_waiting",
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 58,
+              "end_line": 60
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 36,
+              "end_line": 36
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-transition-agent-waiting_to_completed",
+      "ir_subject": "transition:agent.waiting_to_completed",
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 65,
+              "end_line": 67
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 37,
+              "end_line": 37
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-transition-agent-acting_to_failed",
+      "ir_subject": "transition:agent.acting_to_failed",
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 61,
+              "end_line": 63
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 38,
+              "end_line": 38
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-fsm-workspace",
+      "ir_subject": "fsm:workspace",
+      "dsl_location": {
+        "uri": "lisp/runtime/runscope.lisp",
+        "range": {
+          "start_line": 37,
+          "end_line": 51
+        }
+      },
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 72,
+              "end_line": 101
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 43,
+              "end_line": 61
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-state-workspace-clean",
+      "ir_subject": "state:workspace.clean",
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 75,
+              "end_line": 75
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 45,
+              "end_line": 45
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-state-workspace-dirty",
+      "ir_subject": "state:workspace.dirty",
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 76,
+              "end_line": 76
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 46,
+              "end_line": 46
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-state-workspace-syncing",
+      "ir_subject": "state:workspace.syncing",
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 77,
+              "end_line": 77
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 47,
+              "end_line": 47
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-state-workspace-synced",
+      "ir_subject": "state:workspace.synced",
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 78,
+              "end_line": 78
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 48,
+              "end_line": 48
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-state-workspace-conflict",
+      "ir_subject": "state:workspace.conflict",
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 79,
+              "end_line": 79
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 49,
+              "end_line": 49
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-transition-workspace-clean_to_dirty",
+      "ir_subject": "transition:workspace.clean_to_dirty",
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 85,
+              "end_line": 87
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 54,
+              "end_line": 54
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-transition-workspace-dirty_to_syncing",
+      "ir_subject": "transition:workspace.dirty_to_syncing",
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 89,
+              "end_line": 91
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 55,
+              "end_line": 55
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-transition-workspace-syncing_to_synced",
+      "ir_subject": "transition:workspace.syncing_to_synced",
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 93,
+              "end_line": 95
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 56,
+              "end_line": 56
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "map-transition-workspace-syncing_to_conflict",
+      "ir_subject": "transition:workspace.syncing_to_conflict",
+      "generated_locations": [
+        {
+          "artifact": "artifact:runtime_fsm.go",
+          "location": {
+            "uri": "generated/runtime_fsm.go",
+            "range": {
+              "start_line": 96,
+              "end_line": 98
+            }
+          }
+        },
+        {
+          "artifact": "artifact:runtime_fsm.rs",
+          "location": {
+            "uri": "generated/runtime_fsm.rs",
+            "range": {
+              "start_line": 57,
+              "end_line": 57
+            }
+          }
+        }
+      ]
     }
   ]
 }
