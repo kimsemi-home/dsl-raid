@@ -33,13 +33,18 @@ main() {
     return 0
   fi
 
-  mapfile -t modules < <(discover_modules)
-  if [ "${#modules[@]}" -eq 0 ]; then
+  modules=""
+  while IFS= read -r module; do
+    modules="${modules}${module}
+"
+  done < <(discover_modules)
+  if [ -z "$modules" ]; then
     echo "golangci-lint: Go files found, but no go.mod exists." >&2
     return 1
   fi
 
-  for module in "${modules[@]}"; do
+  printf "%s" "$modules" | while IFS= read -r module; do
+    [ -n "$module" ] || continue
     run_lint "$(dirname "$module")"
   done
 }

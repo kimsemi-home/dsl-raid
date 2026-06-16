@@ -20,8 +20,8 @@
           "location": {
             "uri": "generated/runtime_fsm.rs",
             "range": {
-              "start_line": 18,
-              "end_line": 22
+              "start_line": 7,
+              "end_line": 17
             }
           }
         },
@@ -30,8 +30,8 @@
           "location": {
             "uri": "generated/runtime_fsm.go",
             "range": {
-              "start_line": 18,
-              "end_line": 22
+              "start_line": 10,
+              "end_line": 30
             }
           }
         }
@@ -40,4 +40,3 @@
     }
   ]
 }
-

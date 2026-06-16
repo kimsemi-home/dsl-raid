@@ -71,6 +71,7 @@ design contracts.
 - `crates/dslraid-codegen`: projection, SVG render, Mermaid/DOT export, and
   Rust/Go/TypeScript FSM codegen
 - `crates/dslraid-cli`: executable CLI over the core/analyzer/codegen crates
+- `generated`: checked example backend artifacts generated from Canonical IR
 - `apps/viewer`: TypeScript Canvas viewer with search, hit-testing, inspector,
   and diagnostics panels
 - `lisp`: Common Lisp SSOT forms, expansion, language conformance, and
@@ -123,6 +124,8 @@ cargo run -p dslraid-cli -- migrate examples/runscope/runscope.raid.json --from 
 cargo run -p dslraid-cli -- project examples/runscope/runscope.raid.json --projection view:runtime
 cargo run -p dslraid-cli -- render examples/runscope/runscope.raid.json --format svg
 cargo run -p dslraid-cli -- codegen examples/runscope/runscope.raid.json --target rust
+cargo run -p dslraid-cli -- codegen examples/runscope/runscope.raid.json --target rust --out generated/runtime_fsm.rs
+cargo run -p dslraid-cli -- codegen examples/runscope/runscope.raid.json --target go --out generated/runtime_fsm.go
 cargo run -p dslraid-cli -- doc generate examples/runscope/runscope.raid.json --out examples/runscope/runscope.generated.md
 cargo run -p dslraid-cli -- doc check examples/runscope/runscope.raid.json --golden examples/runscope/runscope.generated.md
 cargo run -p dslraid-cli -- export mermaid examples/runscope/runscope.raid.json
@@ -143,10 +146,11 @@ cargo run -p dslraid-cli -- quality
 
 MVP implementations now exist for no-op version migration, richer IR queries,
 lazy reachable composition materialization, semantic diff review summaries,
-stale artifact verification against lock input hashes, runtime trace
-import/check, trace-derived coverage overlays, and coverage-aware viewer
-overlays. Planned but not yet implemented as full product features: non-trivial
-migrations, synchronized product semantics, WASM packaging, and WebGL rendering.
+stale artifact verification against lock input hashes, generated code freshness
+checks, runtime trace import/check, trace-derived coverage overlays, and
+coverage-aware viewer overlays. Planned but not yet implemented as full product
+features: non-trivial migrations, synchronized product semantics, WASM
+packaging, and WebGL rendering.
 
 ## Viewer
 
