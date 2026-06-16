@@ -10,8 +10,8 @@
       "dsl_location": {
         "uri": "lisp/runtime/runscope.lisp",
         "range": {
-          "start_line": 24,
-          "end_line": 26
+          "start_line": 8,
+          "end_line": 8
         }
       },
       "generated_locations": [

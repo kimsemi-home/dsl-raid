@@ -1,5 +1,7 @@
 import type { CoreIr } from "./types";
+import { sampleAgentFsm } from "./sample-ir/agent-fsm";
 import { sampleRuntimeFsm } from "./sample-ir/runtime-fsm";
+import { sampleWorkspaceFsm } from "./sample-ir/workspace-fsm";
 import { sampleProjections } from "./sample-ir/projections";
 import {
   sampleCapabilities,
@@ -16,7 +18,7 @@ export const sampleIr: CoreIr = {
   policies: samplePolicies,
   capabilities: sampleCapabilities,
   commands: sampleCommands,
-  fsms: [sampleRuntimeFsm],
+  fsms: [sampleRuntimeFsm, sampleAgentFsm, sampleWorkspaceFsm],
   projections: sampleProjections,
   derivations: [],
   artifacts: [],

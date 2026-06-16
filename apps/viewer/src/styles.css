@@ -193,10 +193,15 @@ h4 {
 .toolbar label:hover,
 .file-button:hover,
 .tree-row:hover,
+.tree-row.active,
 .search-results button:hover,
 .row button:hover,
 .diagnostic:hover {
   border-color: #0f766e;
+}
+
+.tree-row.active {
+  background: #e6fffb;
 }
 
 .status {

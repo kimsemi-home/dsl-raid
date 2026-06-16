@@ -1,24 +1,10 @@
 import { zoomAt } from "../canvas/camera";
 import { renderPanels } from "../panels/render";
 import type { CoverageOverlay, CoreIr, Point } from "../types";
+import type { ViewerActions } from "./action-types";
 import type { ViewerElements } from "./elements";
 import { fitGraph as fitCamera } from "./fit";
-import { setCoverage as applyCoverage, setIr as applyIr, type ViewerSession } from "./session";
-
-export type ViewerActions = {
-  setIr: (ir: CoreIr, coverage?: CoverageOverlay) => void;
-  setCoverage: (coverage: CoverageOverlay) => void;
-  select: (subject: string | undefined) => void;
-  hover: (subject: string | undefined) => void;
-  pan: (dx: number, dy: number) => void;
-  zoom: (point: Point, factor: number) => void;
-  fit: () => void;
-  setDiagnosticsVisible: (visible: boolean) => void;
-  setFocusDepth: (depth: 1 | 2) => void;
-  updateStatus: (world: Point) => void;
-  syncPanels: () => void;
-  queueRender: () => void;
-};
+import { setCoverage as applyCoverage, setIr as applyIr, setProjection as applyProjection, type ViewerSession } from "./session";
 
 export function createActions(session: ViewerSession, elements: ViewerElements, queueRender: () => void): ViewerActions {
   const actions = {
@@ -30,6 +16,18 @@ export function createActions(session: ViewerSession, elements: ViewerElements, 
       applyCoverage(session, coverage);
       actions.syncPanels();
       queueRender();
+    },
+    openProjection: (projectionId: string) => {
+      applyProjection(session, projectionId);
+      actions.fit();
+    },
+    openFsm: (fsmId: string) => {
+      const projection = session.store.ir.projections?.find((candidate) => candidate.source === fsmId);
+      if (projection) {
+        actions.openProjection(projection.id);
+      } else {
+        actions.select(fsmId);
+      }
     },
     select: (subject: string | undefined) => {
       session.store.selection.selected = subject;
@@ -65,7 +63,7 @@ export function createActions(session: ViewerSession, elements: ViewerElements, 
     updateStatus: (world: Point) => {
       elements.status.textContent = `zoom ${session.store.camera.zoom.toFixed(2)} / world ${world.x.toFixed(0)}, ${world.y.toFixed(0)}`;
     },
-    syncPanels: () => renderPanels(elements, session.store, actions.select),
+    syncPanels: () => renderPanels(elements, session.store, actions),
     queueRender
   };
   return actions;

@@ -32,3 +32,70 @@ func RuntimeFSMTransition(state RuntimeFSMState, event string) (RuntimeFSMState,
 	}
 	return state, false
 }
+
+type AgentFSMState string
+
+const (
+	AgentFSMStateIdle      AgentFSMState = "idle"
+	AgentFSMStatePlanning  AgentFSMState = "planning"
+	AgentFSMStateActing    AgentFSMState = "acting"
+	AgentFSMStateWaiting   AgentFSMState = "waiting"
+	AgentFSMStateCompleted AgentFSMState = "completed"
+	AgentFSMStateFailed    AgentFSMState = "failed"
+)
+
+func AgentFSMTransition(state AgentFSMState, event string) (AgentFSMState, bool) {
+	switch state {
+	case AgentFSMStateIdle:
+		if event == "plan_requested" {
+			return AgentFSMStatePlanning, true
+		}
+	case AgentFSMStatePlanning:
+		if event == "" {
+			return AgentFSMStateActing, true
+		}
+	case AgentFSMStateActing:
+		if event == "action_completed" {
+			return AgentFSMStateWaiting, true
+		}
+		if event == "action_failed" {
+			return AgentFSMStateFailed, true
+		}
+	case AgentFSMStateWaiting:
+		if event == "" {
+			return AgentFSMStateCompleted, true
+		}
+	}
+	return state, false
+}
+
+type WorkspaceFSMState string
+
+const (
+	WorkspaceFSMStateClean    WorkspaceFSMState = "clean"
+	WorkspaceFSMStateDirty    WorkspaceFSMState = "dirty"
+	WorkspaceFSMStateSyncing  WorkspaceFSMState = "syncing"
+	WorkspaceFSMStateSynced   WorkspaceFSMState = "synced"
+	WorkspaceFSMStateConflict WorkspaceFSMState = "conflict"
+)
+
+func WorkspaceFSMTransition(state WorkspaceFSMState, event string) (WorkspaceFSMState, bool) {
+	switch state {
+	case WorkspaceFSMStateClean:
+		if event == "file_changed" {
+			return WorkspaceFSMStateDirty, true
+		}
+	case WorkspaceFSMStateDirty:
+		if event == "sync_requested" {
+			return WorkspaceFSMStateSyncing, true
+		}
+	case WorkspaceFSMStateSyncing:
+		if event == "sync_completed" {
+			return WorkspaceFSMStateSynced, true
+		}
+		if event == "sync_conflict" {
+			return WorkspaceFSMStateConflict, true
+		}
+	}
+	return state, false
+}

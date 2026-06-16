@@ -1,7 +1,7 @@
 import { screenToWorld } from "../canvas/camera";
 import { hitTest } from "../canvas/hit-test";
 import type { Point } from "../types";
-import type { ViewerActions } from "../app/actions";
+import type { ViewerActions } from "../app/action-types";
 import type { ViewerElements } from "../app/elements";
 import type { ViewerSession } from "../app/session";
 import { relativePoint } from "./point";

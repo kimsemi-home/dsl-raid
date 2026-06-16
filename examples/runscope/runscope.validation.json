@@ -2,118 +2,589 @@
   "validation_version": "0.1.0",
   "source": {
     "core_ir": "examples/runscope/runscope.raid.json",
-    "ir_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000001",
-    "lock": "examples/runscope/runscope.lock.json",
-    "assertions": "examples/runscope/runscope.assertions.json"
+    "ir_hash": "sha256:217b0823ab442501c87c15260e6d804946700a0335292282e44b8d33c69ded6d"
   },
   "run": {
-    "tool": "dslraid",
+    "tool": "dslraid-cli",
     "version": "0.1.0",
     "mode": "validate",
-    "deny": ["error"]
+    "deny": []
   },
   "summary": {
     "status": "passed",
     "propositions": {
-      "passed": 9,
+      "passed": 41,
       "failed": 0,
       "warnings": 0,
       "skipped": 0,
-      "not_applicable": 1
+      "not_applicable": 0
     },
     "assertions": {
-      "passed": 3,
+      "passed": 41,
       "failed": 0,
       "warnings": 0,
       "skipped": 0,
-      "not_applicable": 1
+      "not_applicable": 0
     }
   },
   "propositions": [
+    {
+      "id": "V001",
+      "layer": "ir_structure",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:ir.subject_ids_unique"
+      ],
+      "message": "All semantic subject IDs are unique."
+    },
+    {
+      "id": "V002",
+      "layer": "ir_structure",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:ir.reference_targets_exist"
+      ],
+      "message": "All semantic references resolve."
+    },
     {
       "id": "V006",
       "layer": "fsm",
       "status": "passed",
       "severity": "error",
-      "subjects": ["fsm:runtime"],
-      "message": "RuntimeFSM has states."
+      "subjects": [
+        "fsm:runtime"
+      ],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:fsm.has_state"
+      ],
+      "message": "RuntimeFSM has 5 states."
     },
     {
       "id": "V007",
       "layer": "fsm",
       "status": "passed",
       "severity": "error",
-      "subjects": ["fsm:runtime"],
-      "assertions": ["assertion:fsm.initial_exactly_one"],
-      "message": "RuntimeFSM has exactly one initial state."
+      "subjects": [
+        "fsm:runtime",
+        "state:runtime.idle"
+      ],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:fsm.initial_exactly_one"
+      ],
+      "message": "RuntimeFSM has 1 initial states."
     },
     {
       "id": "V008",
       "layer": "fsm",
       "status": "passed",
       "severity": "error",
-      "subjects": ["fsm:runtime"],
-      "message": "All transition sources exist."
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:fsm.transition_from_exists"
+      ],
+      "message": "All transition.from states resolve inside their FSM."
     },
     {
       "id": "V009",
       "layer": "fsm",
       "status": "passed",
       "severity": "error",
-      "subjects": ["fsm:runtime"],
-      "assertions": ["assertion:fsm.transition_target_exists"],
-      "message": "All transition targets exist."
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:fsm.transition_target_exists"
+      ],
+      "message": "All transition.to states resolve inside their FSM."
     },
     {
       "id": "V010",
       "layer": "fsm",
       "status": "passed",
       "severity": "error",
-      "subjects": ["fsm:runtime"],
-      "message": "Event-bearing transitions reference defined events."
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:fsm.transition_event_exists"
+      ],
+      "message": "All transition events resolve inside their FSM."
+    },
+    {
+      "id": "V017",
+      "layer": "guard_action",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:guard.references_existing_capability"
+      ],
+      "message": "All guard/action references resolve inside their FSM."
+    },
+    {
+      "id": "V018",
+      "layer": "guard_action",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:action.uses_allowed_capability"
+      ],
+      "message": "All transition requirements resolve to semantic subjects."
     },
     {
       "id": "V011",
       "layer": "fsm",
       "status": "passed",
       "severity": "error",
-      "subjects": ["state:runtime.completed", "state:runtime.failed"],
-      "assertions": ["assertion:fsm.terminal_has_no_outgoing"],
-      "message": "Terminal states have no outgoing transitions."
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:fsm.terminal_has_no_outgoing"
+      ],
+      "message": "Terminal states do not have outgoing transitions."
+    },
+    {
+      "id": "V012",
+      "layer": "fsm",
+      "status": "passed",
+      "severity": "warning",
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:fsm.states_reachable"
+      ],
+      "message": "All states are reachable from the initial state."
+    },
+    {
+      "id": "V015",
+      "layer": "fsm",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:fsm.event_handling_deterministic"
+      ],
+      "message": "Transitions are deterministic by state and event."
+    },
+    {
+      "id": "V033",
+      "layer": "traceability",
+      "status": "passed",
+      "severity": "warning",
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:traceability.state_source_location_exists"
+      ],
+      "message": "Every state has a direct or FSM-level source location."
+    },
+    {
+      "id": "V006",
+      "layer": "fsm",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [
+        "fsm:agent"
+      ],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:fsm.has_state"
+      ],
+      "message": "AgentFSM has 6 states."
+    },
+    {
+      "id": "V007",
+      "layer": "fsm",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [
+        "fsm:agent",
+        "state:agent.idle"
+      ],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:fsm.initial_exactly_one"
+      ],
+      "message": "AgentFSM has 1 initial states."
+    },
+    {
+      "id": "V008",
+      "layer": "fsm",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:fsm.transition_from_exists"
+      ],
+      "message": "All transition.from states resolve inside their FSM."
+    },
+    {
+      "id": "V009",
+      "layer": "fsm",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:fsm.transition_target_exists"
+      ],
+      "message": "All transition.to states resolve inside their FSM."
+    },
+    {
+      "id": "V010",
+      "layer": "fsm",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:fsm.transition_event_exists"
+      ],
+      "message": "All transition events resolve inside their FSM."
+    },
+    {
+      "id": "V017",
+      "layer": "guard_action",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:guard.references_existing_capability"
+      ],
+      "message": "All guard/action references resolve inside their FSM."
+    },
+    {
+      "id": "V018",
+      "layer": "guard_action",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:action.uses_allowed_capability"
+      ],
+      "message": "All transition requirements resolve to semantic subjects."
+    },
+    {
+      "id": "V011",
+      "layer": "fsm",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:fsm.terminal_has_no_outgoing"
+      ],
+      "message": "Terminal states do not have outgoing transitions."
+    },
+    {
+      "id": "V012",
+      "layer": "fsm",
+      "status": "passed",
+      "severity": "warning",
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:fsm.states_reachable"
+      ],
+      "message": "All states are reachable from the initial state."
+    },
+    {
+      "id": "V015",
+      "layer": "fsm",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:fsm.event_handling_deterministic"
+      ],
+      "message": "Transitions are deterministic by state and event."
+    },
+    {
+      "id": "V033",
+      "layer": "traceability",
+      "status": "passed",
+      "severity": "warning",
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:traceability.state_source_location_exists"
+      ],
+      "message": "Every state has a direct or FSM-level source location."
+    },
+    {
+      "id": "V006",
+      "layer": "fsm",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [
+        "fsm:workspace"
+      ],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:fsm.has_state"
+      ],
+      "message": "WorkspaceFSM has 5 states."
+    },
+    {
+      "id": "V007",
+      "layer": "fsm",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [
+        "fsm:workspace",
+        "state:workspace.clean"
+      ],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:fsm.initial_exactly_one"
+      ],
+      "message": "WorkspaceFSM has 1 initial states."
+    },
+    {
+      "id": "V008",
+      "layer": "fsm",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:fsm.transition_from_exists"
+      ],
+      "message": "All transition.from states resolve inside their FSM."
+    },
+    {
+      "id": "V009",
+      "layer": "fsm",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:fsm.transition_target_exists"
+      ],
+      "message": "All transition.to states resolve inside their FSM."
+    },
+    {
+      "id": "V010",
+      "layer": "fsm",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:fsm.transition_event_exists"
+      ],
+      "message": "All transition events resolve inside their FSM."
+    },
+    {
+      "id": "V017",
+      "layer": "guard_action",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:guard.references_existing_capability"
+      ],
+      "message": "All guard/action references resolve inside their FSM."
+    },
+    {
+      "id": "V018",
+      "layer": "guard_action",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:action.uses_allowed_capability"
+      ],
+      "message": "All transition requirements resolve to semantic subjects."
+    },
+    {
+      "id": "V011",
+      "layer": "fsm",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:fsm.terminal_has_no_outgoing"
+      ],
+      "message": "Terminal states do not have outgoing transitions."
+    },
+    {
+      "id": "V012",
+      "layer": "fsm",
+      "status": "passed",
+      "severity": "warning",
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:fsm.states_reachable"
+      ],
+      "message": "All states are reachable from the initial state."
+    },
+    {
+      "id": "V015",
+      "layer": "fsm",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:fsm.event_handling_deterministic"
+      ],
+      "message": "Transitions are deterministic by state and event."
+    },
+    {
+      "id": "V033",
+      "layer": "traceability",
+      "status": "passed",
+      "severity": "warning",
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:traceability.state_source_location_exists"
+      ],
+      "message": "Every state has a direct or FSM-level source location."
     },
     {
       "id": "V021",
       "layer": "composition",
-      "status": "not_applicable",
+      "status": "passed",
       "severity": "error",
-      "assertions": ["assertion:composition.inputs_are_fsms"],
-      "message": "RunScope bootstrap fixture has no compositions."
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:composition.inputs_are_fsms"
+      ],
+      "message": "Composition inputs must resolve to FSM objects."
+    },
+    {
+      "id": "V027",
+      "layer": "composition",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:composition.policy_explicit"
+      ],
+      "message": "Composition conflict policy must be explicit."
     },
     {
       "id": "V029",
       "layer": "projection",
       "status": "passed",
       "severity": "error",
-      "subjects": ["view:runtime", "fsm:runtime"],
-      "message": "Projection root exists."
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:projection.root_exists"
+      ],
+      "message": "Projection roots resolve."
     },
     {
       "id": "V034",
       "layer": "traceability",
       "status": "passed",
       "severity": "error",
-      "subjects": ["derivation:runtime.codegen"],
-      "message": "Generated artifacts trace back to their derivation."
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:traceability.generated_artifact_traced"
+      ],
+      "message": "Generated artifacts trace back to derivations."
     },
     {
-      "id": "V043",
-      "layer": "diagnostics",
+      "id": "V036",
+      "layer": "artifact",
+      "status": "passed",
+      "severity": "warning",
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:artifact.generated_by_exists"
+      ],
+      "message": "Generated artifacts have derivation provenance."
+    },
+    {
+      "id": "V046",
+      "layer": "visibility_security",
       "status": "passed",
       "severity": "error",
-      "message": "All diagnostic severities are valid."
+      "subjects": [],
+      "diagnostics": [],
+      "assertions": [
+        "assertion:security.public_projection_no_secret"
+      ],
+      "message": "Public IR fixture has no secret-bearing artifacts."
     }
   ],
   "assertions": [
+    {
+      "id": "assertion:ir.subject_ids_unique",
+      "proposition": "V001",
+      "code": "IRR001",
+      "predicate": "subject_ids_unique",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "evidence": {
+        "duplicates": []
+      },
+      "message": "All semantic subject IDs are unique.",
+      "suggestion": "Rename the duplicate object or assign a stable unique ID.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:ir.reference_targets_exist",
+      "proposition": "V002",
+      "code": "IRR002",
+      "predicate": "reference_targets_exist",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "evidence": {
+        "missing": []
+      },
+      "message": "All semantic references resolve.",
+      "suggestion": "Add the missing subject or update the reference to a stable existing ID.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:fsm.has_state",
+      "proposition": "V006",
+      "code": "FSM006",
+      "predicate": "fsm_has_state",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [
+        "fsm:runtime"
+      ],
+      "evidence": {
+        "fsm": "fsm:runtime",
+        "state_count": 5
+      },
+      "message": "RuntimeFSM has 5 states.",
+      "suggestion": "Define at least one state for every complete FSM.",
+      "diagnostics": []
+    },
     {
       "id": "assertion:fsm.initial_exactly_one",
       "proposition": "V007",
@@ -121,36 +592,96 @@
       "predicate": "exactly_one_initial_state",
       "status": "passed",
       "severity": "error",
-      "subjects": ["fsm:runtime", "state:runtime.idle"],
+      "subjects": [
+        "fsm:runtime",
+        "state:runtime.idle"
+      ],
       "evidence": {
-        "fsm": "runtime",
+        "fsm": "fsm:runtime",
         "initial_count": 1,
-        "initial_states": ["idle"],
-        "expected": 1
+        "expected": 1,
+        "initial_states": [
+          "idle"
+        ]
       },
-      "message": "RuntimeFSM has exactly one initial state.",
-      "suggestion": "No change needed."
+      "message": "RuntimeFSM has 1 initial states.",
+      "suggestion": "Mark exactly one state as initial.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:fsm.transition_from_exists",
+      "proposition": "V008",
+      "code": "FSM008",
+      "predicate": "transition_from_state_exists",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "evidence": {
+        "failures": []
+      },
+      "message": "All transition.from states resolve inside their FSM.",
+      "suggestion": "Use a state ID defined in the same FSM.",
+      "diagnostics": []
     },
     {
       "id": "assertion:fsm.transition_target_exists",
       "proposition": "V009",
       "code": "FSM009",
-      "predicate": "transition_target_exists",
+      "predicate": "transition_to_state_exists",
       "status": "passed",
       "severity": "error",
-      "subjects": [
-        "transition:runtime.idle_to_starting",
-        "transition:runtime.starting_to_running",
-        "transition:runtime.starting_to_failed",
-        "transition:runtime.running_to_completed"
-      ],
+      "subjects": [],
       "evidence": {
-        "fsm": "runtime",
-        "checked_transitions": 4,
-        "unknown_targets": []
+        "failures": []
       },
-      "message": "All RuntimeFSM transition targets exist.",
-      "suggestion": "No change needed."
+      "message": "All transition.to states resolve inside their FSM.",
+      "suggestion": "Use a state ID defined in the same FSM.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:fsm.transition_event_exists",
+      "proposition": "V010",
+      "code": "FSM010",
+      "predicate": "transition_event_exists",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "evidence": {
+        "failures": []
+      },
+      "message": "All transition events resolve inside their FSM.",
+      "suggestion": "Declare the event or remove the transition event reference.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:guard.references_existing_capability",
+      "proposition": "V017",
+      "code": "GUA017",
+      "predicate": "guard_references_existing_capability",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "evidence": {
+        "failures": []
+      },
+      "message": "All guard/action references resolve inside their FSM.",
+      "suggestion": "Declare the guard or action before referencing it.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:action.uses_allowed_capability",
+      "proposition": "V018",
+      "code": "ACT018",
+      "predicate": "action_uses_allowed_capability",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "evidence": {
+        "failures": []
+      },
+      "message": "All transition requirements resolve to semantic subjects.",
+      "suggestion": "Reference an existing policy, capability, constraint, or semantic subject.",
+      "diagnostics": []
     },
     {
       "id": "assertion:fsm.terminal_has_no_outgoing",
@@ -159,26 +690,506 @@
       "predicate": "terminal_has_no_outgoing",
       "status": "passed",
       "severity": "error",
-      "subjects": ["state:runtime.completed", "state:runtime.failed"],
+      "subjects": [],
       "evidence": {
-        "terminal_states": ["completed", "failed"],
-        "outgoing_transitions": []
+        "failures": []
       },
-      "message": "Terminal states completed and failed have no outgoing transitions.",
-      "suggestion": "No change needed."
+      "message": "Terminal states do not have outgoing transitions.",
+      "suggestion": "Move the outgoing transition to a non-terminal state or remove terminal=true.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:fsm.states_reachable",
+      "proposition": "V012",
+      "code": "FSM012",
+      "predicate": "states_reachable_from_initial",
+      "status": "passed",
+      "severity": "warning",
+      "subjects": [],
+      "evidence": {
+        "fsm": "fsm:runtime",
+        "unreachable_states": []
+      },
+      "message": "All states are reachable from the initial state.",
+      "suggestion": "Connect the state from the initial path or hide it through an explicit projection policy.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:fsm.event_handling_deterministic",
+      "proposition": "V015",
+      "code": "FSM015",
+      "predicate": "event_handling_deterministic",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "evidence": {
+        "failures": []
+      },
+      "message": "Transitions are deterministic by state and event.",
+      "suggestion": "Add mutually exclusive guards or merge the transitions.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:traceability.state_source_location_exists",
+      "proposition": "V033",
+      "code": "TRC033",
+      "predicate": "state_source_location_exists",
+      "status": "passed",
+      "severity": "warning",
+      "subjects": [],
+      "evidence": {
+        "fsm": "fsm:runtime",
+        "states_without_source": []
+      },
+      "message": "Every state has a direct or FSM-level source location.",
+      "suggestion": "Attach defined_at to each state or to the parent FSM.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:fsm.has_state",
+      "proposition": "V006",
+      "code": "FSM006",
+      "predicate": "fsm_has_state",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [
+        "fsm:agent"
+      ],
+      "evidence": {
+        "fsm": "fsm:agent",
+        "state_count": 6
+      },
+      "message": "AgentFSM has 6 states.",
+      "suggestion": "Define at least one state for every complete FSM.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:fsm.initial_exactly_one",
+      "proposition": "V007",
+      "code": "FSM007",
+      "predicate": "exactly_one_initial_state",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [
+        "fsm:agent",
+        "state:agent.idle"
+      ],
+      "evidence": {
+        "fsm": "fsm:agent",
+        "initial_count": 1,
+        "expected": 1,
+        "initial_states": [
+          "idle"
+        ]
+      },
+      "message": "AgentFSM has 1 initial states.",
+      "suggestion": "Mark exactly one state as initial.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:fsm.transition_from_exists",
+      "proposition": "V008",
+      "code": "FSM008",
+      "predicate": "transition_from_state_exists",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "evidence": {
+        "failures": []
+      },
+      "message": "All transition.from states resolve inside their FSM.",
+      "suggestion": "Use a state ID defined in the same FSM.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:fsm.transition_target_exists",
+      "proposition": "V009",
+      "code": "FSM009",
+      "predicate": "transition_to_state_exists",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "evidence": {
+        "failures": []
+      },
+      "message": "All transition.to states resolve inside their FSM.",
+      "suggestion": "Use a state ID defined in the same FSM.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:fsm.transition_event_exists",
+      "proposition": "V010",
+      "code": "FSM010",
+      "predicate": "transition_event_exists",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "evidence": {
+        "failures": []
+      },
+      "message": "All transition events resolve inside their FSM.",
+      "suggestion": "Declare the event or remove the transition event reference.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:guard.references_existing_capability",
+      "proposition": "V017",
+      "code": "GUA017",
+      "predicate": "guard_references_existing_capability",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "evidence": {
+        "failures": []
+      },
+      "message": "All guard/action references resolve inside their FSM.",
+      "suggestion": "Declare the guard or action before referencing it.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:action.uses_allowed_capability",
+      "proposition": "V018",
+      "code": "ACT018",
+      "predicate": "action_uses_allowed_capability",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "evidence": {
+        "failures": []
+      },
+      "message": "All transition requirements resolve to semantic subjects.",
+      "suggestion": "Reference an existing policy, capability, constraint, or semantic subject.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:fsm.terminal_has_no_outgoing",
+      "proposition": "V011",
+      "code": "FSM011",
+      "predicate": "terminal_has_no_outgoing",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "evidence": {
+        "failures": []
+      },
+      "message": "Terminal states do not have outgoing transitions.",
+      "suggestion": "Move the outgoing transition to a non-terminal state or remove terminal=true.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:fsm.states_reachable",
+      "proposition": "V012",
+      "code": "FSM012",
+      "predicate": "states_reachable_from_initial",
+      "status": "passed",
+      "severity": "warning",
+      "subjects": [],
+      "evidence": {
+        "fsm": "fsm:agent",
+        "unreachable_states": []
+      },
+      "message": "All states are reachable from the initial state.",
+      "suggestion": "Connect the state from the initial path or hide it through an explicit projection policy.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:fsm.event_handling_deterministic",
+      "proposition": "V015",
+      "code": "FSM015",
+      "predicate": "event_handling_deterministic",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "evidence": {
+        "failures": []
+      },
+      "message": "Transitions are deterministic by state and event.",
+      "suggestion": "Add mutually exclusive guards or merge the transitions.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:traceability.state_source_location_exists",
+      "proposition": "V033",
+      "code": "TRC033",
+      "predicate": "state_source_location_exists",
+      "status": "passed",
+      "severity": "warning",
+      "subjects": [],
+      "evidence": {
+        "fsm": "fsm:agent",
+        "states_without_source": []
+      },
+      "message": "Every state has a direct or FSM-level source location.",
+      "suggestion": "Attach defined_at to each state or to the parent FSM.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:fsm.has_state",
+      "proposition": "V006",
+      "code": "FSM006",
+      "predicate": "fsm_has_state",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [
+        "fsm:workspace"
+      ],
+      "evidence": {
+        "fsm": "fsm:workspace",
+        "state_count": 5
+      },
+      "message": "WorkspaceFSM has 5 states.",
+      "suggestion": "Define at least one state for every complete FSM.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:fsm.initial_exactly_one",
+      "proposition": "V007",
+      "code": "FSM007",
+      "predicate": "exactly_one_initial_state",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [
+        "fsm:workspace",
+        "state:workspace.clean"
+      ],
+      "evidence": {
+        "fsm": "fsm:workspace",
+        "initial_count": 1,
+        "expected": 1,
+        "initial_states": [
+          "clean"
+        ]
+      },
+      "message": "WorkspaceFSM has 1 initial states.",
+      "suggestion": "Mark exactly one state as initial.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:fsm.transition_from_exists",
+      "proposition": "V008",
+      "code": "FSM008",
+      "predicate": "transition_from_state_exists",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "evidence": {
+        "failures": []
+      },
+      "message": "All transition.from states resolve inside their FSM.",
+      "suggestion": "Use a state ID defined in the same FSM.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:fsm.transition_target_exists",
+      "proposition": "V009",
+      "code": "FSM009",
+      "predicate": "transition_to_state_exists",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "evidence": {
+        "failures": []
+      },
+      "message": "All transition.to states resolve inside their FSM.",
+      "suggestion": "Use a state ID defined in the same FSM.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:fsm.transition_event_exists",
+      "proposition": "V010",
+      "code": "FSM010",
+      "predicate": "transition_event_exists",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "evidence": {
+        "failures": []
+      },
+      "message": "All transition events resolve inside their FSM.",
+      "suggestion": "Declare the event or remove the transition event reference.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:guard.references_existing_capability",
+      "proposition": "V017",
+      "code": "GUA017",
+      "predicate": "guard_references_existing_capability",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "evidence": {
+        "failures": []
+      },
+      "message": "All guard/action references resolve inside their FSM.",
+      "suggestion": "Declare the guard or action before referencing it.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:action.uses_allowed_capability",
+      "proposition": "V018",
+      "code": "ACT018",
+      "predicate": "action_uses_allowed_capability",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "evidence": {
+        "failures": []
+      },
+      "message": "All transition requirements resolve to semantic subjects.",
+      "suggestion": "Reference an existing policy, capability, constraint, or semantic subject.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:fsm.terminal_has_no_outgoing",
+      "proposition": "V011",
+      "code": "FSM011",
+      "predicate": "terminal_has_no_outgoing",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "evidence": {
+        "failures": []
+      },
+      "message": "Terminal states do not have outgoing transitions.",
+      "suggestion": "Move the outgoing transition to a non-terminal state or remove terminal=true.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:fsm.states_reachable",
+      "proposition": "V012",
+      "code": "FSM012",
+      "predicate": "states_reachable_from_initial",
+      "status": "passed",
+      "severity": "warning",
+      "subjects": [],
+      "evidence": {
+        "fsm": "fsm:workspace",
+        "unreachable_states": []
+      },
+      "message": "All states are reachable from the initial state.",
+      "suggestion": "Connect the state from the initial path or hide it through an explicit projection policy.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:fsm.event_handling_deterministic",
+      "proposition": "V015",
+      "code": "FSM015",
+      "predicate": "event_handling_deterministic",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "evidence": {
+        "failures": []
+      },
+      "message": "Transitions are deterministic by state and event.",
+      "suggestion": "Add mutually exclusive guards or merge the transitions.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:traceability.state_source_location_exists",
+      "proposition": "V033",
+      "code": "TRC033",
+      "predicate": "state_source_location_exists",
+      "status": "passed",
+      "severity": "warning",
+      "subjects": [],
+      "evidence": {
+        "fsm": "fsm:workspace",
+        "states_without_source": []
+      },
+      "message": "Every state has a direct or FSM-level source location.",
+      "suggestion": "Attach defined_at to each state or to the parent FSM.",
+      "diagnostics": []
     },
     {
       "id": "assertion:composition.inputs_are_fsms",
       "proposition": "V021",
-      "code": "CMP001",
-      "predicate": "compose_inputs_are_fsms",
-      "status": "not_applicable",
+      "code": "CMP021",
+      "predicate": "composition_inputs_are_fsms",
+      "status": "passed",
       "severity": "error",
+      "subjects": [],
       "evidence": {
-        "composition_count": 0
+        "invalid_inputs": []
       },
-      "message": "RunScope bootstrap fixture has no compositions.",
-      "suggestion": "Add composition fixtures when composition support lands."
+      "message": "Composition inputs must resolve to FSM objects.",
+      "suggestion": "Reference fsm:* IDs in composition.inputs.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:composition.policy_explicit",
+      "proposition": "V027",
+      "code": "CMP027",
+      "predicate": "composition_policy_explicit",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "evidence": {
+        "missing_conflict_policy": []
+      },
+      "message": "Composition conflict policy must be explicit.",
+      "suggestion": "Add conflict_policy with deterministic nondeterminism handling.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:projection.root_exists",
+      "proposition": "V029",
+      "code": "PRJ029",
+      "predicate": "projection_root_exists",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "evidence": {
+        "failures": []
+      },
+      "message": "Projection roots resolve.",
+      "suggestion": "Point projection.source at an existing fsm, composition, or context.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:traceability.generated_artifact_traced",
+      "proposition": "V034",
+      "code": "TRC034",
+      "predicate": "generated_artifact_traced",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "evidence": {
+        "failures": []
+      },
+      "message": "Generated artifacts trace back to derivations.",
+      "suggestion": "Add the missing source/artifact or update the derivation target.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:artifact.generated_by_exists",
+      "proposition": "V036",
+      "code": "ART036",
+      "predicate": "generated_artifact_has_derivation",
+      "status": "passed",
+      "severity": "warning",
+      "subjects": [],
+      "evidence": {
+        "failures": []
+      },
+      "message": "Generated artifacts have derivation provenance.",
+      "suggestion": "Set generated_by to an existing derivation ID.",
+      "diagnostics": []
+    },
+    {
+      "id": "assertion:security.public_projection_no_secret",
+      "proposition": "V046",
+      "code": "SEC046",
+      "predicate": "public_projection_no_secret",
+      "status": "passed",
+      "severity": "error",
+      "subjects": [],
+      "evidence": {
+        "failures": []
+      },
+      "message": "Public IR fixture has no secret-bearing artifacts.",
+      "suggestion": "Remove the secret artifact or mark it private and exclude it from public projections.",
+      "diagnostics": []
     }
   ],
   "diagnostics": []

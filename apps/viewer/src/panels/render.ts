@@ -7,12 +7,18 @@ import { renderProjectTree } from "./project-tree";
 import { renderSearch } from "./search/render";
 import type { SelectSubject } from "./subject-buttons";
 
-export function renderPanels(elements: ViewerElements, store: AppStore, onSelect: SelectSubject): void {
+export type PanelActions = {
+  select: SelectSubject;
+  openFsm: (fsmId: string) => void;
+  openProjection: (projectionId: string) => void;
+};
+
+export function renderPanels(elements: ViewerElements, store: AppStore, actions: PanelActions): void {
   const subject = store.selection.selected;
   const panel = subject ? store.view.inspector_panels.find((candidate) => candidate.subject === subject) : undefined;
-  renderProjectTree(elements.projectTree, store, onSelect);
+  renderProjectTree(elements.projectTree, store, actions);
   renderCoverageSummary(elements.coverageSummary, store);
-  renderInspector(elements.inspector, panel, onSelect);
+  renderInspector(elements.inspector, panel, actions.select);
   renderDiagnostics(elements.diagnostics, store);
-  renderSearch(elements.searchInput, elements.searchResults, store, onSelect);
+  renderSearch(elements.searchInput, elements.searchResults, store, actions.select);
 }

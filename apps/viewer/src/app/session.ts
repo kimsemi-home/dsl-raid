@@ -8,10 +8,12 @@ export type ViewerSession = {
 };
 
 export function createSession(): ViewerSession {
+  const activeProjectionId = sampleIr.projections?.[0]?.id;
   return {
     store: {
       ir: sampleIr,
-      view: projectIr(sampleIr),
+      view: projectIr(sampleIr, activeProjectionId),
+      activeProjectionId,
       camera: createInitialCamera(),
       selection: {},
       focusDepth: 2,
@@ -25,7 +27,8 @@ export function setIr(session: ViewerSession, ir: CoreIr, coverage?: CoverageOve
     ...session.store,
     ir,
     coverage,
-    view: projectIr(ir, undefined, coverage),
+    activeProjectionId: ir.projections?.[0]?.id,
+    view: projectIr(ir, ir.projections?.[0]?.id, coverage),
     selection: { selected: ir.fsms?.[0]?.id }
   };
 }
@@ -34,6 +37,19 @@ export function setCoverage(session: ViewerSession, coverage: CoverageOverlay): 
   session.store = {
     ...session.store,
     coverage,
-    view: projectIr(session.store.ir, undefined, coverage)
+    view: projectIr(session.store.ir, session.store.activeProjectionId, coverage)
+  };
+}
+
+export function setProjection(session: ViewerSession, projectionId: string): void {
+  const projection = session.store.ir.projections?.find((candidate) => candidate.id === projectionId);
+  if (!projection) {
+    return;
+  }
+  session.store = {
+    ...session.store,
+    activeProjectionId: projection.id,
+    view: projectIr(session.store.ir, projection.id, session.store.coverage),
+    selection: { selected: projection.source }
   };
 }

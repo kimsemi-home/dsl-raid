@@ -4,6 +4,7 @@ export type AppStore = {
   ir: CoreIr;
   coverage?: CoverageOverlay;
   view: ViewModel;
+  activeProjectionId?: string;
   camera: Camera;
   selection: SelectionState;
   focusDepth: 1 | 2;

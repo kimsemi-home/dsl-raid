@@ -6,9 +6,9 @@
 
 | Metric | Count |
 | --- | --- |
-| FSMs | 1 |
+| FSMs | 3 |
 | Compositions | 1 |
-| Projections | 1 |
+| Projections | 3 |
 | Derivations | 2 |
 | Artifacts | 5 |
 
@@ -39,6 +39,67 @@
 | starting_to_running | starting | running | epsilon |  |
 | starting_to_failed | starting | failed | start_failed |  |
 | running_to_completed | running | completed | epsilon | policy:no_secret_leak, policy:artifact_signed |
+
+## FSM: AgentFSM
+
+### States
+
+| State | Initial | Terminal | Tags |
+| --- | --- | --- | --- |
+| idle | true | false |  |
+| planning | false | false |  |
+| acting | false | false |  |
+| waiting | false | false |  |
+| completed | false | true |  |
+| failed | false | true |  |
+
+### Events
+
+| Event | Kind |
+| --- | --- |
+| plan_requested | internal |
+| action_completed | internal |
+| action_failed | error |
+
+### Transitions
+
+| Transition | From | To | Event | Requires |
+| --- | --- | --- | --- | --- |
+| idle_to_planning | idle | planning | plan_requested |  |
+| planning_to_acting | planning | acting | epsilon |  |
+| acting_to_waiting | acting | waiting | action_completed |  |
+| waiting_to_completed | waiting | completed | epsilon |  |
+| acting_to_failed | acting | failed | action_failed |  |
+
+## FSM: WorkspaceFSM
+
+### States
+
+| State | Initial | Terminal | Tags |
+| --- | --- | --- | --- |
+| clean | true | false |  |
+| dirty | false | false |  |
+| syncing | false | false |  |
+| synced | false | true |  |
+| conflict | false | true |  |
+
+### Events
+
+| Event | Kind |
+| --- | --- |
+| file_changed | external |
+| sync_requested | internal |
+| sync_completed | internal |
+| sync_conflict | error |
+
+### Transitions
+
+| Transition | From | To | Event | Requires |
+| --- | --- | --- | --- | --- |
+| clean_to_dirty | clean | dirty | file_changed |  |
+| dirty_to_syncing | dirty | syncing | sync_requested |  |
+| syncing_to_synced | syncing | synced | sync_completed |  |
+| syncing_to_conflict | syncing | conflict | sync_conflict |  |
 
 ## Derivations
 

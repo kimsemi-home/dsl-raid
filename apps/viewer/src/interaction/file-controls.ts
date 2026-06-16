@@ -1,4 +1,4 @@
-import type { ViewerActions } from "../app/actions";
+import type { ViewerActions } from "../app/action-types";
 import type { ViewerElements } from "../app/elements";
 import { readJsonFile } from "../app/file-json";
 import type { CoreIr, CoverageOverlay } from "../types";

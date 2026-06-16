@@ -2,7 +2,7 @@
   "coverage_version": "0.1.0",
   "design_ir": {
     "path": "examples/runscope/runscope.raid.json",
-    "hash": "sha256:6a09165e1c9bac97230b818773e3eb6eb472f360332571eae021c1071620b220"
+    "hash": "sha256:217b0823ab442501c87c15260e6d804946700a0335292282e44b8d33c69ded6d"
   },
   "traces": [
     {
@@ -13,6 +13,13 @@
   "subjects": [
     {
       "subject": "artifact:fsm_runtime_running_golden",
+      "kind": "artifact",
+      "status": "not_deployed",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "artifact:runscope_generated_md",
       "kind": "artifact",
       "status": "not_deployed",
       "count": 0,
@@ -40,6 +47,27 @@
       "failure_rate": 0.0
     },
     {
+      "subject": "event:agent.action_completed",
+      "kind": "event",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "event:agent.action_failed",
+      "kind": "event",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "event:agent.plan_requested",
+      "kind": "event",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
       "subject": "event:runtime.start_failed",
       "kind": "event",
       "status": "uncovered",
@@ -53,6 +81,76 @@
       "count": 1,
       "failure_rate": 0.0,
       "last_seen": "2026-06-15T00:00:00Z"
+    },
+    {
+      "subject": "event:workspace.file_changed",
+      "kind": "event",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "event:workspace.sync_completed",
+      "kind": "event",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "event:workspace.sync_conflict",
+      "kind": "event",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "event:workspace.sync_requested",
+      "kind": "event",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "state:agent.acting",
+      "kind": "state",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "state:agent.completed",
+      "kind": "state",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "state:agent.failed",
+      "kind": "state",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "state:agent.idle",
+      "kind": "state",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "state:agent.planning",
+      "kind": "state",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "state:agent.waiting",
+      "kind": "state",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0.0
     },
     {
       "subject": "state:runtime.completed",
@@ -94,6 +192,76 @@
       "last_seen": "2026-06-15T00:00:02Z"
     },
     {
+      "subject": "state:workspace.clean",
+      "kind": "state",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "state:workspace.conflict",
+      "kind": "state",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "state:workspace.dirty",
+      "kind": "state",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "state:workspace.synced",
+      "kind": "state",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "state:workspace.syncing",
+      "kind": "state",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "transition:agent.acting_to_failed",
+      "kind": "transition",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "transition:agent.acting_to_waiting",
+      "kind": "transition",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "transition:agent.idle_to_planning",
+      "kind": "transition",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "transition:agent.planning_to_acting",
+      "kind": "transition",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "transition:agent.waiting_to_completed",
+      "kind": "transition",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
       "subject": "transition:runtime.idle_to_starting",
       "kind": "transition",
       "status": "covered",
@@ -123,6 +291,34 @@
       "count": 1,
       "failure_rate": 0.0,
       "last_seen": "2026-06-15T00:00:02Z"
+    },
+    {
+      "subject": "transition:workspace.clean_to_dirty",
+      "kind": "transition",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "transition:workspace.dirty_to_syncing",
+      "kind": "transition",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "transition:workspace.syncing_to_conflict",
+      "kind": "transition",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0.0
+    },
+    {
+      "subject": "transition:workspace.syncing_to_synced",
+      "kind": "transition",
+      "status": "uncovered",
+      "count": 0,
+      "failure_rate": 0.0
     }
   ],
   "metadata": {

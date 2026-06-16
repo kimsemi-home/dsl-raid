@@ -34,7 +34,8 @@
   (:use #:cl #:dslraid.ir)
   (:export
    #:emit-fsm-json
-   #:emit-project-json))
+   #:emit-project-json
+   #:runscope-fsms))
 
 (defpackage #:dslraid
   (:use #:cl)

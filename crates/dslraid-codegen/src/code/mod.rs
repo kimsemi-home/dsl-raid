@@ -30,8 +30,11 @@ fn write_family(
     header: &str,
 ) -> Result<()> {
     out.push_str(header);
-    for fsm in &ir.fsms {
+    for (index, fsm) in ir.fsms.iter().enumerate() {
         writer(out, fsm)?;
+        if index + 1 < ir.fsms.len() && !out.ends_with("\n\n") {
+            out.push('\n');
+        }
     }
     Ok(())
 }

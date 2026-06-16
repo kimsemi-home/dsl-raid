@@ -21,7 +21,9 @@
         "policy:no_secret_leak",
         "policy:artifact_signed",
         "command:runtime_start",
-        "fsm:runtime"
+        "fsm:runtime",
+        "fsm:agent",
+        "fsm:workspace"
       ]
     }
   ],
@@ -91,9 +93,9 @@
       "defined_at": {
         "uri": "lisp/runtime/runscope.lisp",
         "range": {
-          "start_line": 12,
+          "start_line": 4,
           "start_column": 1,
-          "end_line": 44,
+          "end_line": 16,
           "end_column": 2
         }
       },
@@ -113,8 +115,8 @@
           "defined_at": {
             "uri": "lisp/runtime/runscope.lisp",
             "range": {
-              "start_line": 24,
-              "end_line": 26
+              "start_line": 8,
+              "end_line": 8
             }
           },
           "visibility": "public",
@@ -181,11 +183,207 @@
           "defined_at": {
             "uri": "lisp/runtime/runscope.lisp",
             "range": {
-              "start_line": 36,
-              "end_line": 38
+              "start_line": 16,
+              "end_line": 16
             }
           },
           "visibility": "public"
+        }
+      ]
+    },
+    {
+      "id": "fsm:agent",
+      "name": "AgentFSM",
+      "context": "context:runtime",
+      "visibility": "public",
+      "tags": ["agent", "example"],
+      "defined_at": {
+        "uri": "lisp/runtime/runscope.lisp",
+        "range": {
+          "start_line": 19,
+          "end_line": 34
+        }
+      },
+      "states": [
+        {
+          "id": "idle",
+          "kind": "atomic",
+          "initial": true
+        },
+        {
+          "id": "planning",
+          "kind": "atomic"
+        },
+        {
+          "id": "acting",
+          "kind": "atomic"
+        },
+        {
+          "id": "waiting",
+          "kind": "atomic"
+        },
+        {
+          "id": "completed",
+          "kind": "atomic",
+          "terminal": true,
+          "terminal_semantics": "success"
+        },
+        {
+          "id": "failed",
+          "kind": "atomic",
+          "terminal": true,
+          "terminal_semantics": "failed"
+        }
+      ],
+      "events": [
+        {
+          "id": "plan_requested",
+          "kind": "internal"
+        },
+        {
+          "id": "action_completed",
+          "kind": "internal"
+        },
+        {
+          "id": "action_failed",
+          "kind": "error"
+        }
+      ],
+      "guards": [],
+      "actions": [],
+      "transitions": [
+        {
+          "id": "idle_to_planning",
+          "from": "idle",
+          "to": "planning",
+          "on": "plan_requested",
+          "guards": [],
+          "actions": []
+        },
+        {
+          "id": "planning_to_acting",
+          "from": "planning",
+          "to": "acting",
+          "guards": [],
+          "actions": []
+        },
+        {
+          "id": "acting_to_waiting",
+          "from": "acting",
+          "to": "waiting",
+          "on": "action_completed",
+          "guards": [],
+          "actions": []
+        },
+        {
+          "id": "waiting_to_completed",
+          "from": "waiting",
+          "to": "completed",
+          "guards": [],
+          "actions": []
+        },
+        {
+          "id": "acting_to_failed",
+          "from": "acting",
+          "to": "failed",
+          "on": "action_failed",
+          "guards": [],
+          "actions": []
+        }
+      ]
+    },
+    {
+      "id": "fsm:workspace",
+      "name": "WorkspaceFSM",
+      "context": "context:runtime",
+      "visibility": "public",
+      "tags": ["workspace", "example"],
+      "defined_at": {
+        "uri": "lisp/runtime/runscope.lisp",
+        "range": {
+          "start_line": 37,
+          "end_line": 51
+        }
+      },
+      "states": [
+        {
+          "id": "clean",
+          "kind": "atomic",
+          "initial": true
+        },
+        {
+          "id": "dirty",
+          "kind": "atomic"
+        },
+        {
+          "id": "syncing",
+          "kind": "atomic"
+        },
+        {
+          "id": "synced",
+          "kind": "atomic",
+          "terminal": true,
+          "terminal_semantics": "success"
+        },
+        {
+          "id": "conflict",
+          "kind": "atomic",
+          "terminal": true,
+          "terminal_semantics": "failed"
+        }
+      ],
+      "events": [
+        {
+          "id": "file_changed",
+          "kind": "external"
+        },
+        {
+          "id": "sync_requested",
+          "kind": "internal"
+        },
+        {
+          "id": "sync_completed",
+          "kind": "internal"
+        },
+        {
+          "id": "sync_conflict",
+          "kind": "error"
+        }
+      ],
+      "guards": [],
+      "actions": [],
+      "transitions": [
+        {
+          "id": "clean_to_dirty",
+          "from": "clean",
+          "to": "dirty",
+          "on": "file_changed",
+          "guards": [],
+          "actions": []
+        },
+        {
+          "id": "dirty_to_syncing",
+          "from": "dirty",
+          "to": "syncing",
+          "on": "sync_requested",
+          "guards": [],
+          "actions": []
+        },
+        {
+          "id": "syncing_to_synced",
+          "from": "syncing",
+          "to": "synced",
+          "on": "sync_completed",
+          "guards": [],
+          "actions": []
+        },
+        {
+          "id": "syncing_to_conflict",
+          "from": "syncing",
+          "to": "conflict",
+          "on": "sync_conflict",
+          "guards": [],
+          "actions": []
         }
       ]
     }
@@ -195,7 +393,7 @@
       "id": "composition:runscope",
       "name": "RunScopeFSM",
       "kind": "product",
-      "inputs": ["fsm:runtime"],
+      "inputs": ["fsm:runtime", "fsm:agent", "fsm:workspace"],
       "state_space": {
         "kind": "lazy",
         "max_materialized_states": 5000
@@ -225,6 +423,24 @@
         "derivations",
         "artifacts"
       ],
+      "filters": {
+        "unreachable": false
+      }
+    },
+    {
+      "id": "view:agent",
+      "kind": "projection",
+      "source": "fsm:agent",
+      "show": ["states", "transitions", "events", "artifacts"],
+      "filters": {
+        "unreachable": false
+      }
+    },
+    {
+      "id": "view:workspace",
+      "kind": "projection",
+      "source": "fsm:workspace",
+      "show": ["states", "transitions", "events", "artifacts"],
       "filters": {
         "unreachable": false
       }

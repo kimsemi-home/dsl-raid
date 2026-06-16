@@ -27,4 +27,8 @@
     :components
     ((:file "json-values")
      (:file "json-fsm")
-     (:file "json")))))
+     (:file "json")))
+   (:module "runtime"
+    :serial t
+    :components
+    ((:file "runscope")))))

@@ -12,7 +12,7 @@ export const sampleContexts: ContextObject[] = [
     id: "context:runtime",
     name: "Runtime Context",
     kind: "bounded_context",
-    owns: ["fsm:runtime"]
+    owns: ["fsm:runtime", "fsm:agent", "fsm:workspace"]
   }
 ];
 
