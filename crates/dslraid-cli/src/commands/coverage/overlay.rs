@@ -1,5 +1,5 @@
-use super::counter::base_coverage_counters;
 use super::events::apply_trace_event;
+use super::seed::base_coverage_counters;
 use super::subject::coverage_subject_value;
 use super::value::value_string;
 use anyhow::{anyhow, Result};

@@ -1,7 +1,9 @@
+mod added;
 mod fields;
 mod model;
 mod record;
 mod render_markdown;
+mod render_markdown_sections;
 mod render_text;
 mod report;
 mod run_cmd;

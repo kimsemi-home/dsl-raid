@@ -1,9 +1,12 @@
 mod counter;
 mod design;
 mod events;
+mod missing;
 mod output;
 mod overlay;
+mod seed;
 mod subject;
+mod trace_status;
 mod value;
 
 #[cfg(test)]

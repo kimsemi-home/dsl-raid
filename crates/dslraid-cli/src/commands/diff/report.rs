@@ -1,6 +1,5 @@
-use super::fields::item_string;
-use super::model::{DiffChange, DiffEndpoint, DiffReport, DiffSummary};
-use super::record::record_diff_change;
+use super::added::record_added;
+use super::model::{DiffEndpoint, DiffReport, DiffSummary};
 use super::scan::record_removed_and_changed;
 use super::terminal::terminal_state_subjects;
 use anyhow::Result;
@@ -21,33 +20,15 @@ pub(crate) fn report(
     let mut warnings = Vec::new();
     let mut summary = DiffSummary::default();
 
-    for subject in head_items
-        .keys()
-        .filter(|subject| !base_items.contains_key(*subject))
-    {
-        let after = head_items
-            .get(subject)
-            .expect("subject came from head")
-            .clone();
-        let change = DiffChange {
-            action: "added",
-            kind: item_string(&after, "kind"),
-            subject: subject.clone(),
-            label: item_string(&after, "label"),
-            fields: Vec::new(),
-            before: None,
-            after: Some(after),
-        };
-        record_diff_change(
-            &mut summary,
-            &mut warnings,
-            &change,
-            &base_terminal_states,
-            &head_terminal_states,
-        );
-        changes.push(change);
-    }
-
+    record_added(
+        &base_items,
+        &head_items,
+        &base_terminal_states,
+        &head_terminal_states,
+        &mut summary,
+        &mut warnings,
+        &mut changes,
+    );
     record_removed_and_changed(
         &base_items,
         &head_items,

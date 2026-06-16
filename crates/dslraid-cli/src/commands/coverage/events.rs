@@ -1,4 +1,5 @@
 use super::counter::{mark_coverage, CoverageCounters};
+use super::trace_status::event_failed;
 use serde_json::Value;
 
 pub(super) fn apply_trace_event(counters: &mut CoverageCounters, event: &Value) {
@@ -61,17 +62,4 @@ fn mark_transition_endpoint_subjects(
             mark_coverage(counters, subject, false, timestamp.clone(), None);
         }
     }
-}
-
-fn event_failed(event: &Value, kind: &str) -> bool {
-    event
-        .get("status")
-        .and_then(Value::as_str)
-        .is_some_and(|status| {
-            matches!(
-                status,
-                "failed" | "timeout" | "cancelled" | "policy_blocked" | "degraded"
-            )
-        })
-        || kind == "transition_failed"
 }

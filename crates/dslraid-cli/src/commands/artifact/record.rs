@@ -1,4 +1,5 @@
 use super::issue::artifact_issue;
+use super::record_hash::check_input_hash;
 use super::record_status::check_record_status;
 use dslraid_core::Artifact;
 use serde_json::Value;
@@ -57,27 +58,5 @@ fn check_field(
         &format!("artifact {field} differs from lock file"),
         actual,
         expected,
-    ));
-}
-
-fn check_input_hash(
-    artifact: &Artifact,
-    record: &Value,
-    current_hash: &str,
-    status: &mut &'static str,
-    issues: &mut Vec<Value>,
-) {
-    let input_hash = record.get("input_hash").and_then(Value::as_str);
-    if input_hash == Some(current_hash) {
-        return;
-    }
-    *status = "stale";
-    issues.push(artifact_issue(
-        "ART039",
-        "error",
-        &artifact.id,
-        "artifact input hash differs from current IR hash",
-        input_hash,
-        Some(current_hash),
     ));
 }
