@@ -1,5 +1,6 @@
 import type { CoverageSubject, Fsm, RuntimeEvent, SceneNode } from "../types";
 import { coverageBadges, coverageTone } from "./coverage";
+import { diagnosticBadges, diagnosticTone, type DiagnosticMark } from "./diagnostic-marks";
 import { layoutStateId, stateSubject } from "./ids";
 import { traceBadges, traceTone } from "./trace";
 
@@ -11,12 +12,14 @@ const rowGap = 150;
 export function projectStateNodes(
   fsm: Fsm,
   coverage: Map<string, CoverageSubject>,
-  trace: Map<string, RuntimeEvent[]>
+  trace: Map<string, RuntimeEvent[]>,
+  diagnostics: Map<string, DiagnosticMark>
 ): SceneNode[] {
   return (fsm.states ?? []).map((state, index) => {
     const subject = stateSubject(fsm.id, state.id);
     const coverageSubject = coverage.get(subject);
     const traceEvents = trace.get(subject);
+    const diagnostic = diagnostics.get(subject);
     return {
       id: layoutStateId(fsm.id, state.id),
       subject,
@@ -26,6 +29,7 @@ export function projectStateNodes(
       height,
       label: state.id,
       badges: [
+        ...diagnosticBadges(diagnostic),
         ...(state.initial ? ["initial"] : []),
         ...(state.terminal ? [state.terminal_semantics ?? "terminal"] : []),
         ...(state.tags ?? []),
@@ -33,7 +37,11 @@ export function projectStateNodes(
         ...traceBadges(traceEvents)
       ],
       style: {
-        tone: traceTone(traceEvents) ?? coverageTone(coverageSubject) ?? fallbackTone(state.terminal, state.terminal_semantics),
+        tone:
+          traceTone(traceEvents) ??
+          diagnosticTone(diagnostic) ??
+          coverageTone(coverageSubject) ??
+          fallbackTone(state.terminal, state.terminal_semantics),
         emphasis: coverageSubject?.status === "uncovered" ? "faint" : state.initial || state.terminal ? "strong" : "normal",
         coverage: coverageSubject?.status
       }

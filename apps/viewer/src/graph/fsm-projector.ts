@@ -1,6 +1,7 @@
 import type { CoreIr, CoverageSubject, Fsm, InspectorPanel, Projection, RuntimeEvent, ViewModel } from "../types";
 import { architecturePanels } from "./architecture-panels";
 import { coverageIndex } from "./coverage";
+import { diagnosticMarks } from "./diagnostic-marks";
 import { eventPanel } from "./inspector/event-panel";
 import { fsmPanel } from "./inspector/fsm-panel";
 import { statePanel } from "./inspector/state-panel";
@@ -16,8 +17,9 @@ export function projectFsm(
   coverage: Map<string, CoverageSubject>,
   trace: Map<string, RuntimeEvent[]>
 ): ViewModel {
-  const nodes = projectStateNodes(fsm, coverage, trace);
-  const edges = projectTransitionEdges(fsm, nodes, coverage, trace);
+  const diagnostics = diagnosticMarks(ir.diagnostics);
+  const nodes = projectStateNodes(fsm, coverage, trace, diagnostics);
+  const edges = projectTransitionEdges(fsm, nodes, coverage, trace, diagnostics);
   return {
     view_version: "0.1.0",
     source: {

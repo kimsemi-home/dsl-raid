@@ -16,9 +16,8 @@
 (defpackage #:dslraid.lang
   (:use #:cl #:dslraid.ir)
   (:export
-   #:parse-fsm-form
-   #:validate-fsm-ast
-   #:expand-fsm-ast))
+   #:language-contract-catalog #:language-pipeline-catalog
+   #:parse-fsm-form #:validate-fsm-ast #:expand-fsm-ast))
 
 (defpackage #:dslraid.dsl
   (:use #:cl #:dslraid.ir)

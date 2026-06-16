@@ -14,6 +14,7 @@
     :serial t
     :components
     ((:file "ast")
+     (:file "pipeline")
      (:file "codes")
      (:file "diagnostic")
      (:file "forms")

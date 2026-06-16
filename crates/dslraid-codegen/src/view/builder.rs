@@ -1,10 +1,10 @@
 use anyhow::Result;
 use dslraid_core::{CoreIr, Fsm, Projection};
 
-use super::edge::transition_edge;
-use super::node::state_node;
+use super::diagnostic::DiagnosticMarks;
+use super::fsm_scene::{state_nodes, transition_edges};
 use super::panels::{fsm_panel, state_panel, transition_panel};
-use super::{Layout, ViewEdge, ViewModel, ViewNode, ViewSource};
+use super::{Layout, ViewModel, ViewSource};
 
 pub(crate) const VIEW_VERSION: &str = "0.1.0";
 
@@ -14,8 +14,9 @@ pub(crate) fn build_fsm_view(
     fsm: &Fsm,
     core_path: String,
 ) -> Result<ViewModel> {
-    let nodes = state_nodes(fsm);
-    let edges = transition_edges(fsm, &nodes)?;
+    let diagnostics = DiagnosticMarks::from_ir(ir);
+    let nodes = state_nodes(fsm, &diagnostics);
+    let edges = transition_edges(fsm, &nodes, &diagnostics)?;
     let panels = inspector_panels(ir, fsm);
     Ok(ViewModel {
         view_version: VIEW_VERSION.to_string(),
@@ -33,21 +34,6 @@ pub(crate) fn build_fsm_view(
         edges,
         inspector_panels: panels,
     })
-}
-
-fn state_nodes(fsm: &Fsm) -> Vec<ViewNode> {
-    fsm.states
-        .iter()
-        .enumerate()
-        .map(|(index, state)| state_node(fsm, state, index))
-        .collect()
-}
-
-fn transition_edges(fsm: &Fsm, nodes: &[ViewNode]) -> Result<Vec<ViewEdge>> {
-    fsm.transitions
-        .iter()
-        .map(|transition| transition_edge(fsm, transition, nodes))
-        .collect()
 }
 
 fn inspector_panels(ir: &CoreIr, fsm: &Fsm) -> Vec<super::InspectorPanel> {
