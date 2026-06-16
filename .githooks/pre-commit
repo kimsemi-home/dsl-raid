@@ -8,3 +8,4 @@ bash scripts/check-source-lines.sh
 bash scripts/go-lint.sh
 bash scripts/lisp-docgen.sh check
 bash scripts/lisp-irgen.sh check
+bash scripts/roadmapgen.sh check

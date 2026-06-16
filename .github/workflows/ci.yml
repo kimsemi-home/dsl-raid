@@ -209,6 +209,9 @@ jobs:
       - name: Enforce source line budget
         run: bash scripts/check-source-lines.sh
 
+      - name: Check generated roadmap index
+        run: bash scripts/roadmapgen.sh check
+
   lisp:
     name: Lisp authoring
     runs-on: ubuntu-latest

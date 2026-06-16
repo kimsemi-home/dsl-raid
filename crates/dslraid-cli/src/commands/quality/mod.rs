@@ -4,6 +4,7 @@ mod generated;
 mod lisp;
 mod lock;
 mod projection;
+mod roadmap;
 mod runtime;
 mod schema;
 mod semantic;
@@ -22,6 +23,7 @@ pub(crate) fn run() -> Result<()> {
     lisp::check()?;
     demo::check(input)?;
     docs::check(input)?;
+    roadmap::check()?;
     lock::check(input)?;
     runtime::check(input)?;
     crate::commands::artifact::verify(input, None, crate::OutputFormat::Text)?;
