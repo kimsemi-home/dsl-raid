@@ -44,6 +44,7 @@ metadata to detect stale outputs.
 
 ```text
 current IR hash != artifact input hash -> artifact is stale
+disk content hash != artifact content hash -> artifact is stale
 ```
 
 Required command:
@@ -53,8 +54,9 @@ dslraid artifact verify
 ```
 
 The current CLI compares the lock file's core and artifact input hashes against
-the canonical IR hash. CI can fail when generated artifacts are stale unless the
-job is a pure documentation preview.
+the canonical IR hash, then compares artifact content hashes against files on
+disk. CI can fail when generated artifacts are stale unless the job is a pure
+documentation preview.
 
 ## Provider, Runtime, Protocol, Capability, and Constraint Model
 

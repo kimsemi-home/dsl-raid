@@ -32,6 +32,7 @@ pub(super) fn build(input: &Path, lock_path: Option<&Path>) -> Result<Value> {
                 artifact,
                 &lock::artifact_map(&lock_value),
                 &current_ir_hash,
+                input,
                 &mut issues,
             )
         })

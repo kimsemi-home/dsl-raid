@@ -5,18 +5,22 @@ use super::record::check_lock_record;
 use dslraid_core::{Artifact, CoreIr};
 use serde_json::Value;
 use std::collections::BTreeMap;
+use std::path::Path;
 
 pub(super) fn artifact_result(
     ir: &CoreIr,
     artifact: &Artifact,
     lock_artifacts: &BTreeMap<String, Value>,
     current_hash: &str,
+    input: &Path,
     issues: &mut Vec<Value>,
 ) -> Value {
     let mut status = "fresh";
     check_derivation_link(ir, artifact, &mut status, issues);
     match lock_artifacts.get(&artifact.id) {
-        Some(record) => check_lock_record(artifact, record, current_hash, &mut status, issues),
+        Some(record) => {
+            check_lock_record(artifact, record, current_hash, input, &mut status, issues)
+        }
         None if requires_lock_record(artifact) => {
             status = "missing";
             issues.push(artifact_issue(

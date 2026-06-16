@@ -1,10 +1,12 @@
 mod artifact_row;
 mod checks;
+mod content_hash;
 mod derivation;
 mod issue;
 mod kind;
 mod lock;
 mod output;
+mod path;
 mod record;
 mod record_hash;
 mod record_status;

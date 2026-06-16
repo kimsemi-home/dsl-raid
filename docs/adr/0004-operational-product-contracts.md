@@ -76,6 +76,7 @@ Generated artifacts must record the IR hash and derivation that produced them.
 
 ```text
 IR hash != artifact input hash -> stale artifact
+disk content hash != artifact content hash -> stale artifact
 ```
 
 `dslraid artifact verify` is the public gate. CI should include it once codegen

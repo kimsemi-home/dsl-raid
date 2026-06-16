@@ -1,13 +1,16 @@
+use super::content_hash::check_content_hash;
 use super::issue::artifact_issue;
 use super::record_hash::check_input_hash;
 use super::record_status::check_record_status;
 use dslraid_core::Artifact;
 use serde_json::Value;
+use std::path::Path;
 
 pub(super) fn check_lock_record(
     artifact: &Artifact,
     record: &Value,
     current_hash: &str,
+    input: &Path,
     status: &mut &'static str,
     issues: &mut Vec<Value>,
 ) {
@@ -36,6 +39,7 @@ pub(super) fn check_lock_record(
         issues,
     );
     check_input_hash(artifact, record, current_hash, status, issues);
+    check_content_hash(artifact, record, input, status, issues);
     check_record_status(artifact, record, status, issues);
 }
 

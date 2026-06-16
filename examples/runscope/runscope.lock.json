@@ -60,7 +60,7 @@
       "kind": "test",
       "generated_by": "derivation:runtime.codegen",
       "input_hash": "sha256:6a09165e1c9bac97230b818773e3eb6eb472f360332571eae021c1071620b220",
-      "content_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000005",
+      "content_hash": "sha256:aae50d9643c765684ad0bb9e500229e904966e468c926422137f7067c09a6618",
       "schema_version": "0.1.0",
       "status": "fresh"
     }
