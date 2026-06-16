@@ -1,9 +1,17 @@
-import type { CoreIr, CoverageSubject, Fsm, InspectorPanel } from "../../types";
+import type { CoreIr, CoverageSubject, Fsm, InspectorPanel, RuntimeEvent } from "../../types";
 import { coverageRows } from "../coverage";
 import { stateSubject } from "../ids";
+import { traceRows } from "../trace";
 import { artifactRow, artifactsForSubject } from "../traceability";
 
-export function statePanel(ir: CoreIr, fsm: Fsm, stateId: string, subject: string, coverage?: CoverageSubject): InspectorPanel {
+export function statePanel(
+  ir: CoreIr,
+  fsm: Fsm,
+  stateId: string,
+  subject: string,
+  coverage?: CoverageSubject,
+  traceEvents?: RuntimeEvent[]
+): InspectorPanel {
   const transitions = fsm.transitions ?? [];
   const incoming = transitions.filter((transition) => transition.to === stateId);
   const outgoing = transitions.filter((transition) => transition.from === stateId);
@@ -24,6 +32,10 @@ export function statePanel(ir: CoreIr, fsm: Fsm, stateId: string, subject: strin
       {
         title: "Coverage",
         rows: coverageRows(coverage)
+      },
+      {
+        title: "Runtime Trace",
+        rows: traceRows(traceEvents)
       },
       {
         title: "Traceability",

@@ -1,6 +1,7 @@
-import type { CoreIr, CoverageSubject, Fsm, InspectorPanel, Transition } from "../../types";
+import type { CoreIr, CoverageSubject, Fsm, InspectorPanel, RuntimeEvent, Transition } from "../../types";
 import { coverageRows } from "../coverage";
 import { eventSubject, stateSubject } from "../ids";
+import { traceRows } from "../trace";
 import { artifactRow, artifactsForSubject } from "../traceability";
 
 export function transitionPanel(
@@ -8,7 +9,8 @@ export function transitionPanel(
   fsm: Fsm,
   transition: Transition,
   subject: string,
-  coverage?: CoverageSubject
+  coverage?: CoverageSubject,
+  traceEvents?: RuntimeEvent[]
 ): InspectorPanel {
   const requires = transition.requires ?? [];
   return {
@@ -37,6 +39,10 @@ export function transitionPanel(
       {
         title: "Coverage",
         rows: coverageRows(coverage)
+      },
+      {
+        title: "Runtime Trace",
+        rows: traceRows(traceEvents)
       },
       {
         title: "Traceability",

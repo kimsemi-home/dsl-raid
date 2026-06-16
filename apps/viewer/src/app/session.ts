@@ -2,6 +2,7 @@ import { projectIr } from "../graph/projection";
 import { sampleIr } from "../sample-ir";
 import { createInitialCamera, type AppStore } from "../store/app-store";
 import type { CoreIr, CoverageOverlay, RuntimeTrace, SourceMapDocument } from "../types";
+import { projectStore } from "./project-store";
 
 export type ViewerSession = {
   store: AppStore;
@@ -30,24 +31,23 @@ export function setIr(session: ViewerSession, ir: CoreIr, coverage?: CoverageOve
     sourceMap,
     trace,
     activeProjectionId: ir.projections?.[0]?.id,
-    view: projectIr(ir, ir.projections?.[0]?.id, coverage),
+    view: projectIr(ir, ir.projections?.[0]?.id, coverage, trace),
     selection: { selected: ir.fsms?.[0]?.id }
   };
 }
 
 export function setTrace(session: ViewerSession, trace: RuntimeTrace): void {
-  session.store = {
+  session.store = projectStore({
     ...session.store,
     trace
-  };
+  });
 }
 
 export function setCoverage(session: ViewerSession, coverage: CoverageOverlay): void {
-  session.store = {
+  session.store = projectStore({
     ...session.store,
-    coverage,
-    view: projectIr(session.store.ir, session.store.activeProjectionId, coverage)
-  };
+    coverage
+  });
 }
 
 export function setSourceMap(session: ViewerSession, sourceMap: SourceMapDocument): void {
@@ -62,10 +62,9 @@ export function setProjection(session: ViewerSession, projectionId: string): voi
   if (!projection) {
     return;
   }
-  session.store = {
+  session.store = projectStore({
     ...session.store,
     activeProjectionId: projection.id,
-    view: projectIr(session.store.ir, projection.id, session.store.coverage),
     selection: { selected: projection.source }
-  };
+  });
 }
