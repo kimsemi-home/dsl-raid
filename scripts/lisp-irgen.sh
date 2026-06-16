@@ -6,12 +6,10 @@ mode="${1:-check}"
 out="${2:-examples/runscope/runscope.lisp.raid.json}"
 target="$repo/$out"
 
-run_sbcl() {
-  sbcl --noinform --non-interactive \
-    --eval '(require :asdf)' \
-    --eval '(asdf:load-asd (merge-pathnames "lisp/dslraid.asd" (uiop:getcwd)))' \
-    --eval '(let ((*standard-output* (make-broadcast-stream))) (asdf:load-system :dslraid))' \
-    --eval '(write-string (dslraid:emit-project-json "runscope" "RunScope" (dslraid:runscope-fsms)))'
+source "$repo/scripts/lib/lisp-runtime.sh"
+
+run_irgen() {
+  dslraid_lisp_eval '(write-string (dslraid:emit-project-json "runscope" "RunScope" (dslraid:runscope-fsms)))'
 }
 
 validate_ir() {
@@ -29,14 +27,14 @@ cd "$repo"
 case "$mode" in
   generate)
     mkdir -p "$(dirname "$target")"
-    run_sbcl > "$target"
+    run_irgen > "$target"
     validate_ir
     echo "generated $out"
     ;;
   check)
     tmp="$(mktemp)"
     trap 'rm -f "$tmp"' EXIT
-    run_sbcl > "$tmp"
+    run_irgen > "$tmp"
     if ! diff -u "$target" "$tmp"; then
       echo "generated Lisp IR is stale: run scripts/lisp-irgen.sh generate" >&2
       exit 1

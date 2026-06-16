@@ -6,12 +6,10 @@ mode="${1:-check}"
 out="${2:-docs/generated/lisp-pipeline.md}"
 target="$repo/$out"
 
-run_sbcl() {
-  sbcl --noinform --non-interactive \
-    --eval '(require :asdf)' \
-    --eval '(asdf:load-asd (merge-pathnames "lisp/dslraid.asd" (uiop:getcwd)))' \
-    --eval '(let ((*standard-output* (make-broadcast-stream))) (asdf:load-system :dslraid))' \
-    --eval '(write-string (dslraid:emit-language-pipeline-markdown))'
+source "$repo/scripts/lib/lisp-runtime.sh"
+
+run_docgen() {
+  dslraid_lisp_eval '(write-string (dslraid:emit-language-pipeline-markdown))'
 }
 
 cd "$repo"
@@ -19,13 +17,13 @@ cd "$repo"
 case "$mode" in
   generate)
     mkdir -p "$(dirname "$target")"
-    run_sbcl > "$target"
+    run_docgen > "$target"
     echo "generated $out"
     ;;
   check)
     tmp="$(mktemp)"
     trap 'rm -f "$tmp"' EXIT
-    run_sbcl > "$tmp"
+    run_docgen > "$tmp"
     if ! diff -u "$target" "$tmp"; then
       echo "generated Lisp pipeline doc is stale: run scripts/lisp-docgen.sh generate" >&2
       exit 1
