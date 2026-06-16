@@ -1,4 +1,5 @@
 import type { AppStore } from "../store/app-store";
+import { fsmSummary, fsmSummaryLabel } from "../graph/fsm-summary";
 import { escapeHtml } from "./html";
 
 export type ProjectTreeActions = {
@@ -32,7 +33,8 @@ function fsmRows(store: AppStore): string {
   return (store.ir.fsms ?? [])
     .map(
       (fsm) => `<button class="tree-row" data-fsm="${escapeHtml(fsm.id)}">
-        <span>${escapeHtml(fsm.name)}</span><small>${(fsm.states ?? []).length} states</small>
+        <span>${escapeHtml(fsm.name)}</span>
+        <small>${escapeHtml(fsmSummaryLabel(fsmSummary(fsm)))}</small>
       </button>`
     )
     .join("");
