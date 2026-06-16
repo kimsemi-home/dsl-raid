@@ -4,7 +4,7 @@ import path from "node:path";
 import { pathToFileURL } from "node:url";
 import ts from "typescript";
 
-const outRoot = path.join(tmpdir(), "dslraid-viewer-ts");
+const outRoot = path.join(tmpdir(), "dslraid-viewer-ts", String(process.pid));
 const compilerOptions = {
   module: ts.ModuleKind.ESNext,
   target: ts.ScriptTarget.ES2022,
