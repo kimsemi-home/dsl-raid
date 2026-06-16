@@ -4,7 +4,8 @@
   (append *authoring-diagnostic-codes*
           *transition-diagnostic-codes*
           *identifier-diagnostic-codes*
-          *keyword-diagnostic-codes*))
+          *keyword-diagnostic-codes*
+          *value-diagnostic-codes*))
 
 (defun language-code (key)
   (getf (or (find key *language-diagnostics*

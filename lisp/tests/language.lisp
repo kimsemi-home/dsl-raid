@@ -55,6 +55,15 @@
     (assert-language-codes diagnostics '("LANG014" "LANG015"))
     diagnostics))
 
+(defun run-language-value-smoke ()
+  (let* ((ast (parse-fsm-form
+               'value-demo
+               '((:state idle :initial yes)
+                 (:state done :terminal "true"))))
+         (diagnostics (validate-fsm-ast ast)))
+    (assert-language-codes diagnostics '("LANG016" "LANG016"))
+    diagnostics))
+
 (defun run-build-fsm-conformance-smoke ()
   (let ((blocked nil))
     (handler-case

@@ -10,6 +10,7 @@
     (run-language-identifier-smoke)
     (run-language-malformed-smoke)
     (run-language-keyword-smoke)
+    (run-language-value-smoke)
     (run-build-fsm-conformance-smoke)
     (dolist (fsm fsms)
       (assert (null (validate-fsm fsm))))

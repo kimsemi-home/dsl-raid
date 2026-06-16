@@ -21,3 +21,4 @@ Source: `lisp/lang/code-*.lisp`, `lisp/lang/codes.lisp`
 | LANG013 | error | FSM authoring forms | FSM authoring form must be a list. |
 | LANG014 | error | FSM authoring keyword arguments | Authoring form uses an unsupported keyword. |
 | LANG015 | error | FSM authoring keyword arguments | Authoring keyword arguments must be key/value pairs. |
+| LANG016 | error | FSM authoring values | Boolean authoring keyword values must be true or false. |

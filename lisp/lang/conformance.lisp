@@ -13,5 +13,6 @@
    (unknown-form-diagnostics ast)
    (primary-id-diagnostics ast)
    (keyword-argument-diagnostics ast)
+   (value-diagnostics ast)
    (transition-required-diagnostics ast)
    (transition-reference-diagnostics ast)))
