@@ -1,12 +1,12 @@
 (in-package #:dslraid.expansion)
 
 (defun normalize-fsm (fsm)
-  "Return FSM with deterministic local ordering for canonical IR emission."
+  "Return FSM with deterministic authoring order for canonical IR emission."
   (make-fsm :id (fsm-id fsm)
             :name (fsm-name fsm)
-            :states (stable-sort (copy-list (fsm-states fsm)) #'string< :key #'state-id)
-            :events (stable-sort (copy-list (fsm-events fsm)) #'string< :key #'event-id)
-            :transitions (stable-sort (copy-list (fsm-transitions fsm)) #'string< :key #'transition-id)
+            :states (copy-list (fsm-states fsm))
+            :events (copy-list (fsm-events fsm))
+            :transitions (copy-list (fsm-transitions fsm))
             :guards (copy-list (fsm-guards fsm))
             :actions (copy-list (fsm-actions fsm))
             :defined-at (fsm-defined-at fsm)

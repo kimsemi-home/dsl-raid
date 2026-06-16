@@ -6,18 +6,20 @@
     ("Macro expansion" "Surface syntax expands into ordinary authoring data.")
     ("Language AST" "Authoring forms keep source-level diagnostic context.")
     ("Language conformance" "Duplicate states, events, and transitions fail early.")
-    ("Canonical IR" "Stable interchange data consumed by Rust tooling.")
+    ("Canonical IR" "Stable interchange data consumed by Rust runtime tooling.")
     ("IR conformance" "Cross-language semantic contract and diagnostics.")
     ("Projection" "View models, docs, traces, and backend outputs derive here.")
     ("Backend output" "Rust, Go, TypeScript, Mermaid, DOT, SVG, and docs.")))
 
 (defparameter *language-contracts*
   '("Lisp forms are the native source of truth."
+    "Authoring order is preserved as deterministic semantic presentation order."
     "Macros must not hide IO, conformance, projection, or backend codegen."
     "Backends consume Canonical IR, not raw Lisp forms."
-    "Rust source can be generated output, not authoring truth."
+    "Rust source can be generated runtime output, not authoring truth."
     "Generated language docs are checked by lisp-docgen."
-    "Generated Lisp Canonical IR is checked by lisp-irgen and Rust validation."))
+    "Generated Lisp Canonical IR is checked by lisp-irgen and Rust validation."
+    "Generated Rust backend code is checked by lisp-rustgen."))
 
 (defun emit-language-pipeline-markdown (&optional stream)
   "Emit deterministic Markdown for the Lisp authoring pipeline."
@@ -56,4 +58,5 @@
   (format out "bash scripts/lisp-docgen.sh check~%")
   (format out "bash scripts/lisp-irgen.sh generate~%")
   (format out "bash scripts/lisp-irgen.sh check~%")
+  (format out "bash scripts/lisp-rustgen.sh check~%")
   (format out "```~%"))

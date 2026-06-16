@@ -10,7 +10,7 @@ Expansion may:
 
 - derive stable semantic IDs
 - expand shorthand syntax
-- normalize ordering
+- preserve deterministic authoring order
 - preserve source information
 
 Expansion must not:

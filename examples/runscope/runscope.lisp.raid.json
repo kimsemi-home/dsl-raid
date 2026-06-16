@@ -7,21 +7,21 @@
       "name": "RuntimeFSM",
       "defined_at": {"uri": "lisp/runtime/runscope.lisp", "range": {"start_line": 4, "end_line": 16}},
       "states": [
-        {"id": "completed", "kind": "atomic", "terminal": true, "terminal_semantics": "success"},
-        {"id": "failed", "kind": "atomic", "terminal": true, "terminal_semantics": "failed"},
         {"id": "idle", "kind": "atomic", "initial": true},
+        {"id": "starting", "kind": "atomic"},
         {"id": "running", "kind": "atomic"},
-        {"id": "starting", "kind": "atomic"}
+        {"id": "completed", "kind": "atomic", "terminal": true, "terminal_semantics": "success"},
+        {"id": "failed", "kind": "atomic", "terminal": true, "terminal_semantics": "failed"}
       ],
       "events": [
-        {"id": "start_failed", "kind": "error"},
-        {"id": "start_requested", "kind": "external"}
+        {"id": "start_requested", "kind": "external"},
+        {"id": "start_failed", "kind": "error"}
       ],
       "transitions": [
         {"id": "idle_to_starting", "from": "idle", "to": "starting", "on": "start_requested"},
-        {"id": "running_to_completed", "from": "running", "to": "completed"},
+        {"id": "starting_to_running", "from": "starting", "to": "running"},
         {"id": "starting_to_failed", "from": "starting", "to": "failed", "on": "start_failed"},
-        {"id": "starting_to_running", "from": "starting", "to": "running"}
+        {"id": "running_to_completed", "from": "running", "to": "completed"}
       ]
     },
     {
@@ -29,24 +29,24 @@
       "name": "AgentFSM",
       "defined_at": {"uri": "lisp/runtime/runscope.lisp", "range": {"start_line": 19, "end_line": 34}},
       "states": [
-        {"id": "acting", "kind": "atomic"},
-        {"id": "completed", "kind": "atomic", "terminal": true, "terminal_semantics": "success"},
-        {"id": "failed", "kind": "atomic", "terminal": true, "terminal_semantics": "failed"},
         {"id": "idle", "kind": "atomic", "initial": true},
         {"id": "planning", "kind": "atomic"},
-        {"id": "waiting", "kind": "atomic"}
+        {"id": "acting", "kind": "atomic"},
+        {"id": "waiting", "kind": "atomic"},
+        {"id": "completed", "kind": "atomic", "terminal": true, "terminal_semantics": "success"},
+        {"id": "failed", "kind": "atomic", "terminal": true, "terminal_semantics": "failed"}
       ],
       "events": [
+        {"id": "plan_requested", "kind": "internal"},
         {"id": "action_completed", "kind": "internal"},
-        {"id": "action_failed", "kind": "error"},
-        {"id": "plan_requested", "kind": "internal"}
+        {"id": "action_failed", "kind": "error"}
       ],
       "transitions": [
-        {"id": "acting_to_failed", "from": "acting", "to": "failed", "on": "action_failed"},
-        {"id": "acting_to_waiting", "from": "acting", "to": "waiting", "on": "action_completed"},
         {"id": "idle_to_planning", "from": "idle", "to": "planning", "on": "plan_requested"},
         {"id": "planning_to_acting", "from": "planning", "to": "acting"},
-        {"id": "waiting_to_completed", "from": "waiting", "to": "completed"}
+        {"id": "acting_to_waiting", "from": "acting", "to": "waiting", "on": "action_completed"},
+        {"id": "waiting_to_completed", "from": "waiting", "to": "completed"},
+        {"id": "acting_to_failed", "from": "acting", "to": "failed", "on": "action_failed"}
       ]
     },
     {
@@ -55,22 +55,22 @@
       "defined_at": {"uri": "lisp/runtime/runscope.lisp", "range": {"start_line": 37, "end_line": 51}},
       "states": [
         {"id": "clean", "kind": "atomic", "initial": true},
-        {"id": "conflict", "kind": "atomic", "terminal": true, "terminal_semantics": "failed"},
         {"id": "dirty", "kind": "atomic"},
+        {"id": "syncing", "kind": "atomic"},
         {"id": "synced", "kind": "atomic", "terminal": true, "terminal_semantics": "success"},
-        {"id": "syncing", "kind": "atomic"}
+        {"id": "conflict", "kind": "atomic", "terminal": true, "terminal_semantics": "failed"}
       ],
       "events": [
         {"id": "file_changed", "kind": "external"},
+        {"id": "sync_requested", "kind": "internal"},
         {"id": "sync_completed", "kind": "internal"},
-        {"id": "sync_conflict", "kind": "error"},
-        {"id": "sync_requested", "kind": "internal"}
+        {"id": "sync_conflict", "kind": "error"}
       ],
       "transitions": [
         {"id": "clean_to_dirty", "from": "clean", "to": "dirty", "on": "file_changed"},
         {"id": "dirty_to_syncing", "from": "dirty", "to": "syncing", "on": "sync_requested"},
-        {"id": "syncing_to_conflict", "from": "syncing", "to": "conflict", "on": "sync_conflict"},
-        {"id": "syncing_to_synced", "from": "syncing", "to": "synced", "on": "sync_completed"}
+        {"id": "syncing_to_synced", "from": "syncing", "to": "synced", "on": "sync_completed"},
+        {"id": "syncing_to_conflict", "from": "syncing", "to": "conflict", "on": "sync_conflict"}
       ]
     }
   ]
