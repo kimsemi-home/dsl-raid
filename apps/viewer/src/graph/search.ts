@@ -17,5 +17,25 @@ export function subjectsForSearch(view: ViewModel): SearchSubject[] {
     label: edge.label ?? edge.subject,
     kind: "transition"
   }));
-  return [...nodes, ...edges].sort((a, b) => a.subject.localeCompare(b.subject));
+  const panels = view.inspector_panels.map((panel) => ({
+    subject: panel.subject,
+    label: panel.title,
+    kind: panelKind(panel.subject)
+  }));
+  return unique([...nodes, ...edges, ...panels]).sort((a, b) => a.subject.localeCompare(b.subject));
+}
+
+function unique(subjects: SearchSubject[]): SearchSubject[] {
+  const seen = new Set<string>();
+  return subjects.filter((item) => {
+    if (seen.has(item.subject)) {
+      return false;
+    }
+    seen.add(item.subject);
+    return true;
+  });
+}
+
+function panelKind(subject: string): string {
+  return subject.includes(":") ? subject.split(":")[0] : "subject";
 }
