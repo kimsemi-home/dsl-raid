@@ -26,6 +26,7 @@ It expands executable forms into Canonical IR before Rust tooling runs.
 - Macros must not hide IO, conformance, projection, or backend codegen.
 - Backends consume Canonical IR, not raw Lisp forms.
 - Rust source can be generated runtime output, not authoring truth.
+- Backend target catalog is generated from Lisp data and checked by backendgen.
 - Generated language docs are checked by lisp-docgen.
 - Generated Lisp Canonical IR is checked by lisp-irgen and Rust validation.
 - Generated Rust backend code is checked by lisp-rustgen.
@@ -37,5 +38,6 @@ bash scripts/lisp-docgen.sh generate
 bash scripts/lisp-docgen.sh check
 bash scripts/lisp-irgen.sh generate
 bash scripts/lisp-irgen.sh check
+bash scripts/backendgen.sh check
 bash scripts/lisp-rustgen.sh check
 ```

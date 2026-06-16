@@ -7,6 +7,7 @@ Source: `docs/generated/*.md`
 | Document | Title | Generator |
 | --- | --- | --- |
 | [assertion-catalog.md](assertion-catalog.md) | DSLRaid Assertion Catalog | `scripts/assertiongen.sh` |
+| [backend-targets.md](backend-targets.md) | DSLRaid Backend Targets | `scripts/backendgen.sh` |
 | [cli-reference.md](cli-reference.md) | DSLRaid CLI Reference | `dslraid doc cli generate` |
 | [fsm-catalog.md](fsm-catalog.md) | DSLRaid FSM Catalog | `dslraid doc fsm-catalog` |
 | [language-diagnostics.md](language-diagnostics.md) | DSLRaid Lisp Language Diagnostics | `scripts/langdiaggen.sh` |

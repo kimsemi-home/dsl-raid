@@ -6,6 +6,7 @@ metadata.
 Expected files:
 
 - `json.lisp`
+- `backend.lisp`
 - future backend adapters only when they consume Canonical IR
 
 Never emit output directly from hash table iteration. Sort first.

@@ -45,6 +45,7 @@
      (:file "json-projection")
      (:file "json-derived")
      (:file "json")
+     (:file "backend")
      (:file "markdown")
      (:file "diagnostics")))
    (:module "runtime"

@@ -17,6 +17,7 @@
     "Macros must not hide IO, conformance, projection, or backend codegen."
     "Backends consume Canonical IR, not raw Lisp forms."
     "Rust source can be generated runtime output, not authoring truth."
+    "Backend target catalog is generated from Lisp data and checked by backendgen."
     "Generated language docs are checked by lisp-docgen."
     "Generated Lisp Canonical IR is checked by lisp-irgen and Rust validation."
     "Generated Rust backend code is checked by lisp-rustgen."))
@@ -58,5 +59,6 @@
   (format out "bash scripts/lisp-docgen.sh check~%")
   (format out "bash scripts/lisp-irgen.sh generate~%")
   (format out "bash scripts/lisp-irgen.sh check~%")
+  (format out "bash scripts/backendgen.sh check~%")
   (format out "bash scripts/lisp-rustgen.sh check~%")
   (format out "```~%"))
