@@ -4,7 +4,8 @@
   (let ((seen (make-hash-table :test 'equal))
         (diagnostics '()))
     (dolist (form (fsm-ast-forms ast))
-      (when (eq (dsl-form-head form) head)
+      (when (and (eq (dsl-form-head form) head)
+                 (primary-id-present-p form))
         (let ((key (form-key label form)))
           (when key
             (if (gethash key seen)

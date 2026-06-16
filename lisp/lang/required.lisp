@@ -4,7 +4,8 @@
   "Return diagnostics for required transition slots before IR expansion."
   (let ((diagnostics '()))
     (dolist (form (fsm-ast-forms ast))
-      (when (eq (dsl-form-head form) :transition)
+      (when (and (eq (dsl-form-head form) :transition)
+                 (primary-id-present-p form))
         (setf diagnostics
               (append-transition-required-diagnostics ast form diagnostics))))
     (nreverse diagnostics)))

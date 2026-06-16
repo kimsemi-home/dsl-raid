@@ -6,7 +6,8 @@
         (events (declared-ids ast :event "event"))
         (diagnostics '()))
     (dolist (form (fsm-ast-forms ast))
-      (when (eq (dsl-form-head form) :transition)
+      (when (and (eq (dsl-form-head form) :transition)
+                 (primary-id-present-p form))
         (setf diagnostics
               (append-transition-reference-diagnostics
                ast form states events diagnostics))))
@@ -40,7 +41,8 @@
 (defun declared-ids (ast head label)
   (let ((ids (make-hash-table :test 'equal)))
     (dolist (form (fsm-ast-forms ast))
-      (when (eq (dsl-form-head form) head)
+      (when (and (eq (dsl-form-head form) head)
+                 (primary-id-present-p form))
         (let ((key (form-key label form)))
           (when key
             (setf (gethash key ids) t)))))

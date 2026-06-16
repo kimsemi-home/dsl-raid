@@ -45,7 +45,22 @@
      :code "LANG009"
      :severity "error"
      :scope "transition authoring forms"
-     :summary "Transition is missing required :to state.")))
+     :summary "Transition is missing required :to state.")
+    (:key :missing-state-id
+     :code "LANG010"
+     :severity "error"
+     :scope "state authoring forms"
+     :summary "State form is missing its id.")
+    (:key :missing-event-id
+     :code "LANG011"
+     :severity "error"
+     :scope "event authoring forms"
+     :summary "Event form is missing its id.")
+    (:key :missing-transition-id
+     :code "LANG012"
+     :severity "error"
+     :scope "transition authoring forms"
+     :summary "Transition form is missing its id.")))
 
 (defun language-code (key)
   (getf (or (find key *language-diagnostics*

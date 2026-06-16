@@ -15,3 +15,6 @@ Source: `lisp/lang/codes.lisp`
 | LANG007 | error | transition authoring forms | Transition :on references an undeclared event. |
 | LANG008 | error | transition authoring forms | Transition is missing required :from state. |
 | LANG009 | error | transition authoring forms | Transition is missing required :to state. |
+| LANG010 | error | state authoring forms | State form is missing its id. |
+| LANG011 | error | event authoring forms | Event form is missing its id. |
+| LANG012 | error | transition authoring forms | Transition form is missing its id. |

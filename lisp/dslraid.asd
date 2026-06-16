@@ -18,6 +18,7 @@
      (:file "codes")
      (:file "diagnostic")
      (:file "forms")
+     (:file "identifiers")
      (:file "duplicates")
      (:file "references")
      (:file "required")
