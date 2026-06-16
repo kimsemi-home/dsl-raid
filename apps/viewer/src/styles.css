@@ -198,6 +198,11 @@ h4 {
   backdrop-filter: blur(8px);
 }
 
+.toolbar input[type="number"] {
+  width: 72px;
+  margin-left: 6px;
+}
+
 .toolbar button:hover,
 .toolbar label:hover,
 .file-button:hover,

@@ -1,4 +1,4 @@
-import type { Composition, CoreIr, Projection, ViewModel } from "../types";
+import type { Composition, CoreIr, Projection, ProjectionOptions, ViewModel } from "../types";
 import { architecturePanels } from "./architecture-panels";
 import { compositionEdges } from "./composition-edges";
 import { materializeComposition } from "./composition-materialize";
@@ -8,10 +8,11 @@ import { compositionPanels } from "./composition-panels";
 export function projectComposition(
   ir: CoreIr,
   projection: Projection,
-  composition: Composition
+  composition: Composition,
+  options?: ProjectionOptions
 ): ViewModel {
   const fsms = (composition.inputs ?? []).flatMap((id) => (ir.fsms ?? []).find((fsm) => fsm.id === id) ?? []);
-  const result = materializeComposition(composition, fsms);
+  const result = materializeComposition(composition, fsms, options);
   const nodes = compositionNodes(result.nodes);
   const edges = compositionEdges(result.edges, nodes);
   const panels = compositionPanels(composition, result);

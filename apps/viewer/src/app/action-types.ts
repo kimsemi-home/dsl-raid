@@ -16,6 +16,7 @@ export type ViewerActions = {
   fit: () => void;
   setDiagnosticsVisible: (visible: boolean) => void;
   setFocusDepth: (depth: 1 | 2) => void;
+  setCompositionLimit: (limit: number) => void;
   updateStatus: (world: Point) => void;
   syncPanels: () => void;
   queueRender: () => void;

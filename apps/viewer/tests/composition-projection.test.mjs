@@ -13,6 +13,17 @@ test("composition projection materializes bounded tuple view", async () => {
   assert.ok(subjects.includes("composition:runscope"));
 });
 
+test("composition projection accepts lazy materialization limit", async () => {
+  const { projectIr } = await loadTs("src/graph/projection.ts");
+  const view = projectIr(fixtureIr(), "view:runscope", undefined, undefined, { compositionLimit: 2 });
+  const panel = view.inspector_panels.find((item) => item.subject === "composition:runscope");
+  const rows = Object.fromEntries(panel.sections[0].rows.map((row) => [row.label, row.value]));
+
+  assert.equal(view.nodes.length, 2);
+  assert.equal(rows.Materialized, "2");
+  assert.equal(rows.Truncated, "true");
+});
+
 function fixtureIr() {
   return {
     ir_version: "0.1.0",

@@ -11,6 +11,8 @@ export function bindToolbarControls(elements: ViewerElements, actions: ViewerAct
   elements.focusToggle.addEventListener("change", () => {
     actions.setFocusDepth(elements.focusToggle.checked ? 1 : 2);
   });
+  elements.compositionLimit.addEventListener("change", () => syncCompositionLimit(elements, actions));
+  elements.compositionLimit.addEventListener("input", () => syncCompositionLimit(elements, actions));
 }
 
 function center(canvas: HTMLCanvasElement) {
@@ -18,4 +20,8 @@ function center(canvas: HTMLCanvasElement) {
     x: canvas.clientWidth / 2,
     y: canvas.clientHeight / 2
   };
+}
+
+function syncCompositionLimit(elements: ViewerElements, actions: ViewerActions): void {
+  actions.setCompositionLimit(Number.parseInt(elements.compositionLimit.value, 10));
 }

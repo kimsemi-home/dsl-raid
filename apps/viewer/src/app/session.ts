@@ -1,6 +1,6 @@
 import { projectIr } from "../graph/projection";
 import { sampleIr } from "../sample-ir";
-import { createInitialCamera, type AppStore } from "../store/app-store";
+import { createInitialCamera, DEFAULT_COMPOSITION_LIMIT, type AppStore } from "../store/app-store";
 import type { CoreIr, CoverageOverlay, RuntimeTrace, SourceMapDocument } from "../types";
 import { projectStore } from "./project-store";
 
@@ -18,7 +18,8 @@ export function createSession(): ViewerSession {
       camera: createInitialCamera(),
       selection: {},
       focusDepth: 2,
-      showDiagnostics: true
+      showDiagnostics: true,
+      compositionLimit: DEFAULT_COMPOSITION_LIMIT
     }
   };
 }

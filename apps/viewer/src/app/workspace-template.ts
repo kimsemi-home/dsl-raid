@@ -7,6 +7,7 @@ export function workspaceTemplate(): string {
         <button id="fit" title="Fit graph">Fit</button>
         <label><input id="diagnostic-toggle" type="checkbox" checked /> Diagnostics</label>
         <label><input id="focus-toggle" type="checkbox" /> 1-hop focus</label>
+        <label>States <input id="composition-limit" type="number" min="1" step="24" value="48" /></label>
       </div>
       <div class="canvas-stage">
         <canvas id="graph-canvas" aria-label="FSM projection canvas"></canvas>

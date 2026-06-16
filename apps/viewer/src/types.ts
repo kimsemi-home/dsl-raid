@@ -2,6 +2,7 @@ export * from "./types/core";
 export * from "./types/core-graph";
 export * from "./types/coverage";
 export * from "./types/fsm";
+export * from "./types/projection-options";
 export * from "./types/source";
 export * from "./types/source-map";
 export * from "./types/traceability";

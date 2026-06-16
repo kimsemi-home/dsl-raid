@@ -1,10 +1,10 @@
-import type { CoreIr, CoverageOverlay, Projection, RuntimeTrace, ViewModel } from "../types";
+import type { CoreIr, CoverageOverlay, Projection, ProjectionOptions, RuntimeTrace, ViewModel } from "../types";
 import { projectComposition } from "./composition-projector";
 import { coverageIndex, projectFsm } from "./fsm-projector";
 import { traceIndex } from "./trace";
 export { subjectsForSearch } from "./search";
 
-export function projectIr(ir: CoreIr, projectionId?: string, coverage?: CoverageOverlay, trace?: RuntimeTrace): ViewModel {
+export function projectIr(ir: CoreIr, projectionId?: string, coverage?: CoverageOverlay, trace?: RuntimeTrace, options?: ProjectionOptions): ViewModel {
   const projection = selectProjection(ir, projectionId);
   const fsm = (ir.fsms ?? []).find((candidate) => candidate.id === projection.source);
   if (fsm) {
@@ -12,7 +12,7 @@ export function projectIr(ir: CoreIr, projectionId?: string, coverage?: Coverage
   }
   const composition = (ir.compositions ?? []).find((candidate) => candidate.id === projection.source);
   if (composition) {
-    return projectComposition(ir, projection, composition);
+    return projectComposition(ir, projection, composition, options);
   }
   throw new Error(`Projection source is not supported: ${projection.source}`);
 }

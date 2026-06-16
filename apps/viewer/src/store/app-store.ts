@@ -1,5 +1,7 @@
 import type { Camera, CoreIr, CoverageOverlay, RuntimeTrace, SelectionState, SourceMapDocument, ViewModel } from "../types";
 
+export const DEFAULT_COMPOSITION_LIMIT = 48;
+
 export type AppStore = {
   ir: CoreIr;
   coverage?: CoverageOverlay;
@@ -11,6 +13,7 @@ export type AppStore = {
   selection: SelectionState;
   focusDepth: 1 | 2;
   showDiagnostics: boolean;
+  compositionLimit: number;
 };
 
 export function createInitialCamera(): Camera {

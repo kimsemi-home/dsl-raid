@@ -2,6 +2,7 @@ import { zoomAt } from "../canvas/camera";
 import { renderPanels } from "../panels/render";
 import type { CoverageOverlay, CoreIr, Point, RuntimeTrace, SourceMapDocument } from "../types";
 import type { ViewerActions } from "./action-types";
+import { setCompositionLimit } from "./composition-limit";
 import type { ViewerElements } from "./elements";
 import { fitGraph as fitCamera } from "./fit";
 import { followSelectedSubject } from "./follow-selected";
@@ -65,6 +66,7 @@ export function createActions(session: viewerSession.ViewerSession, elements: Vi
       session.store.focusDepth = depth;
       refresh();
     },
+    setCompositionLimit: (limit: number) => { setCompositionLimit(session, limit); actions.fit(); },
     updateStatus: (world: Point) => { elements.status.textContent = `zoom ${session.store.camera.zoom.toFixed(2)} / world ${world.x.toFixed(0)}, ${world.y.toFixed(0)}`; },
     syncPanels: () => renderPanels(elements, session.store, actions),
     queueRender
