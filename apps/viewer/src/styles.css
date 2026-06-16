@@ -112,6 +112,7 @@ button {
 .row span,
 .row strong,
 .search-results small,
+.visible-subject small,
 .tree-row small {
   overflow-wrap: anywhere;
 }
@@ -124,6 +125,7 @@ button {
 .brand span,
 .muted,
 .search-results small,
+.visible-subject small,
 .tree-row small {
   color: #68635a;
   font-size: 12px;
@@ -153,6 +155,7 @@ h4 {
 .toolbar label,
 .tree-row,
 .search-results button,
+.visible-subject,
 .row button,
 .diagnostic {
   border: 1px solid #cfc7b8;
@@ -198,12 +201,15 @@ h4 {
 .tree-row:hover,
 .tree-row.active,
 .search-results button:hover,
+.visible-subject:hover,
+.visible-subject.active,
 .row button:hover,
 .diagnostic:hover {
   border-color: #0f766e;
 }
 
-.tree-row.active {
+.tree-row.active,
+.visible-subject.active {
   background: #e6fffb;
 }
 
@@ -220,6 +226,7 @@ h4 {
 
 .tree,
 .search-results,
+.visible-list,
 .coverage-grid {
   display: grid;
   gap: 8px;
@@ -232,6 +239,7 @@ h4 {
 
 .tree-row,
 .search-results button,
+.visible-subject,
 .diagnostic {
   display: flex;
   justify-content: space-between;
@@ -335,6 +343,12 @@ h4 {
 
 .coverage-pill.not_deployed {
   border-color: #64748b;
+}
+
+.visible-summary {
+  margin-bottom: 8px;
+  color: #57534e;
+  font-size: 12px;
 }
 
 .trace-run {

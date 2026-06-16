@@ -7,6 +7,7 @@ import { renderProjectTree } from "./project-tree";
 import { renderSearch } from "./search/render";
 import type { SelectSubject } from "./subject-buttons";
 import { renderTimeline } from "./timeline/render";
+import { renderVisibleSubjects } from "./visible/render";
 
 export type PanelActions = {
   select: SelectSubject;
@@ -18,6 +19,7 @@ export function renderPanels(elements: ViewerElements, store: AppStore, actions:
   const subject = store.selection.selected;
   const panel = subject ? store.view.inspector_panels.find((candidate) => candidate.subject === subject) : undefined;
   renderProjectTree(elements.projectTree, store, actions);
+  renderVisibleSubjects(elements.visibleSubjects, store, actions.select);
   renderCoverageSummary(elements.coverageSummary, store);
   renderInspector(elements.inspector, panel, store.sourceMap, actions.select);
   renderDiagnostics(elements.diagnostics, store);
