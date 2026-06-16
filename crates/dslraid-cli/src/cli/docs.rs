@@ -19,9 +19,27 @@ pub(crate) enum DocCommand {
         #[arg(long)]
         golden: PathBuf,
     },
+    FsmCatalog {
+        #[command(subcommand)]
+        command: FsmCatalogDocCommand,
+    },
     Cli {
         #[command(subcommand)]
         command: CliDocCommand,
+    },
+}
+
+#[derive(Debug, Subcommand)]
+pub(crate) enum FsmCatalogDocCommand {
+    Generate {
+        input: PathBuf,
+        #[arg(long)]
+        out: Option<PathBuf>,
+    },
+    Check {
+        input: PathBuf,
+        #[arg(long)]
+        golden: PathBuf,
     },
 }
 

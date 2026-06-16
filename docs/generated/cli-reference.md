@@ -266,7 +266,7 @@ Usage: doc <COMMAND>
 | --- | --- | --- |
 | `-h`, `--help` | no | Print help |
 
-Subcommands: `generate`, `check`, `cli`, `help`
+Subcommands: `generate`, `check`, `fsm-catalog`, `cli`, `help`
 
 ## `dslraid doc generate`
 
@@ -291,6 +291,54 @@ Usage: check --golden <GOLDEN> <INPUT>
 | `input` | yes |  |
 | `--golden` | yes |  |
 | `-h`, `--help` | no | Print help |
+
+## `dslraid doc fsm-catalog`
+
+```text
+Usage: fsm-catalog <COMMAND>
+```
+
+| Argument | Required | Help |
+| --- | --- | --- |
+| `-h`, `--help` | no | Print help |
+
+Subcommands: `generate`, `check`, `help`
+
+## `dslraid doc fsm-catalog generate`
+
+```text
+Usage: generate [OPTIONS] <INPUT>
+```
+
+| Argument | Required | Help |
+| --- | --- | --- |
+| `input` | yes |  |
+| `--out` | no |  |
+| `-h`, `--help` | no | Print help |
+
+## `dslraid doc fsm-catalog check`
+
+```text
+Usage: check --golden <GOLDEN> <INPUT>
+```
+
+| Argument | Required | Help |
+| --- | --- | --- |
+| `input` | yes |  |
+| `--golden` | yes |  |
+| `-h`, `--help` | no | Print help |
+
+## `dslraid doc fsm-catalog help`
+
+Print this message or the help of the given subcommand(s)
+
+```text
+Usage: help [COMMAND]...
+```
+
+| Argument | Required | Help |
+| --- | --- | --- |
+| `subcommand` | no | Print help for the subcommand(s) |
 
 ## `dslraid doc cli`
 

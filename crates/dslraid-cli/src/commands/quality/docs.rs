@@ -17,6 +17,20 @@ pub(super) fn check(input: &Path) -> Result<()> {
         },
     })
     .with_context(|| hint(input))
+    .and_then(|_| check_fsm_catalog(input))
+}
+
+fn check_fsm_catalog(input: &Path) -> Result<()> {
+    crate::commands::outputs::doc(crate::DocArgs {
+        command: crate::DocCommand::FsmCatalog {
+            command: crate::FsmCatalogDocCommand::Check {
+                input: input.to_path_buf(),
+                golden: Path::new("docs/generated/fsm-catalog.md").to_path_buf(),
+            },
+        },
+    })?;
+    println!("fsm generated doc ok");
+    Ok(())
 }
 
 fn hint(input: &Path) -> String {
