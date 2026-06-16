@@ -9,4 +9,5 @@
                                (language-code :duplicate-event))
    (duplicate-form-diagnostics ast :transition "transition"
                                (language-code :duplicate-transition))
-   (unknown-form-diagnostics ast)))
+   (unknown-form-diagnostics ast)
+   (transition-reference-diagnostics ast)))

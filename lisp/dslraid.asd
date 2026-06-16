@@ -19,6 +19,7 @@
      (:file "diagnostic")
      (:file "forms")
      (:file "duplicates")
+     (:file "references")
      (:file "conformance")
      (:file "expand-items")
      (:file "expand")))

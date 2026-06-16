@@ -20,7 +20,22 @@
      :code "LANG004"
      :severity "error"
      :scope "FSM authoring forms"
-     :summary "Unknown FSM authoring form.")))
+     :summary "Unknown FSM authoring form.")
+    (:key :unknown-transition-from
+     :code "LANG005"
+     :severity "error"
+     :scope "transition authoring forms"
+     :summary "Transition :from references an undeclared state.")
+    (:key :unknown-transition-to
+     :code "LANG006"
+     :severity "error"
+     :scope "transition authoring forms"
+     :summary "Transition :to references an undeclared state.")
+    (:key :unknown-transition-event
+     :code "LANG007"
+     :severity "error"
+     :scope "transition authoring forms"
+     :summary "Transition :on references an undeclared event.")))
 
 (defun language-code (key)
   (getf (or (find key *language-diagnostics*

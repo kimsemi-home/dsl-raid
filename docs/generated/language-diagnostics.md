@@ -10,3 +10,6 @@ Source: `lisp/lang/codes.lisp`
 | LANG002 | error | event authoring forms | Duplicate event form. |
 | LANG003 | error | transition authoring forms | Duplicate transition form. |
 | LANG004 | error | FSM authoring forms | Unknown FSM authoring form. |
+| LANG005 | error | transition authoring forms | Transition :from references an undeclared state. |
+| LANG006 | error | transition authoring forms | Transition :to references an undeclared state. |
+| LANG007 | error | transition authoring forms | Transition :on references an undeclared event. |

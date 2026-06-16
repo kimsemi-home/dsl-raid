@@ -4,6 +4,7 @@ use std::path::Path;
 use std::process::Command;
 
 pub(super) fn check() -> Result<()> {
+    run_script("scripts/lisp-test.sh")?;
     run_script("scripts/lisp-docgen.sh")?;
     run_script("scripts/langdiaggen.sh")?;
     run_script("scripts/backendgen.sh")?;
