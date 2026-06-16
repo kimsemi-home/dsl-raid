@@ -1,6 +1,7 @@
 use super::result;
 use dslraid_core::load_core_ir;
 use serde_json::Value;
+use std::collections::BTreeSet;
 use std::path::{Path, PathBuf};
 
 #[test]
@@ -41,6 +42,20 @@ fn compose_reachable_materializes_fixture_state_space() {
         .and_then(Value::as_array)
         .unwrap()
         .is_empty());
+}
+
+#[test]
+fn compose_reachable_transition_ids_are_unique() {
+    let ir = load_core_ir(runscope_fixture()).unwrap();
+
+    let value = result(&ir, None, "reachable", 100, None, 1).unwrap();
+    let transitions = value.get("transitions").and_then(Value::as_array).unwrap();
+    let ids = transitions
+        .iter()
+        .filter_map(|transition| transition.get("id").and_then(Value::as_str))
+        .collect::<BTreeSet<_>>();
+
+    assert_eq!(ids.len(), transitions.len());
 }
 
 fn runscope_fixture() -> PathBuf {

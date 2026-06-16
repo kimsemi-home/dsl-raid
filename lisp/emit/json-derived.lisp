@@ -1,47 +1,13 @@
 (in-package #:dslraid.emit)
-(defparameter *default-projections*
-  '(("view:runtime" "fsm:runtime")
-    ("view:agent" "fsm:agent")
-    ("view:workspace" "fsm:workspace")))
 
 (defun write-derived-project-sections (out)
   (write-runtime-context out)
+  (write-compositions out)
   (write-projections out)
   (write-codegen-derivation out)
   (write-codegen-artifacts out)
   (indent out 1)
   (format out "\"diagnostics\": []~%"))
-
-(defun write-runtime-context (out)
-  (indent out 1)
-  (format out "\"contexts\": [~%")
-  (indent out 2)
-  (format out "{")
-  (format out "\"id\": \"context:runtime\", \"name\": \"Runtime Context\", ")
-  (format out "\"kind\": \"bounded_context\", ")
-  (format out "\"owns\": [\"fsm:runtime\", \"fsm:agent\", \"fsm:workspace\"]")
-  (format out "}~%")
-  (indent out 1)
-  (format out "],~%"))
-
-(defun write-projections (out)
-  (indent out 1)
-  (format out "\"projections\": [~%")
-  (loop for item in *default-projections*
-        for last = (eq item (car (last *default-projections*)))
-        do (write-projection out item last))
-  (indent out 1)
-  (format out "],~%"))
-
-(defun write-projection (out item last)
-  (destructuring-bind (id source) item
-    (indent out 2)
-    (format out "{")
-    (format out "\"id\": ~A, \"kind\": \"projection\", "
-            (json-string id))
-    (format out "\"source\": ~A, " (json-string source))
-    (format out "\"show\": [\"states\", \"transitions\", \"events\", \"artifacts\"]")
-    (format out "}~:[,~;~]~%" last)))
 
 (defun write-codegen-derivation (out)
   (indent out 1)

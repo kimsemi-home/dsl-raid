@@ -8,7 +8,7 @@
 | --- | --- |
 | FSMs | 3 |
 | Compositions | 1 |
-| Projections | 3 |
+| Projections | 4 |
 | Derivations | 2 |
 | Artifacts | 5 |
 

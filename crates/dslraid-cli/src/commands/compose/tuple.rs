@@ -1,3 +1,4 @@
+use super::id::tuple_transition_id;
 use anyhow::Result;
 use dslraid_core::{event_subject, state_subject, transition_subject, Fsm, Transition};
 use serde_json::Value;
@@ -37,7 +38,7 @@ pub(super) fn tuple_transition_value(
     let from_members = tuple_members(fsms, from_tuple);
     let to_members = tuple_members(fsms, to_tuple);
     Ok(serde_json::json!({
-        "id": format!("tuple_transition:{}:{}", composition_id.trim_start_matches("composition:"), transition.id),
+        "id": tuple_transition_id(composition_id, from_tuple, fsm_id, transition),
         "from": tuple_subject(composition_id, &from_members),
         "to": tuple_subject(composition_id, &to_members),
         "members": [transition_subject(fsm_id, &transition.id)],

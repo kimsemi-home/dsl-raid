@@ -18,5 +18,11 @@ export const sampleProjections: Projection[] = [
     kind: "projection",
     source: "fsm:workspace",
     show: ["states", "transitions", "events", "artifacts"]
+  },
+  {
+    id: "view:runscope",
+    kind: "projection",
+    source: "composition:runscope",
+    show: ["states", "transitions", "events", "artifacts"]
   }
 ];

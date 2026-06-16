@@ -1,0 +1,27 @@
+(in-package #:dslraid.emit)
+
+(defparameter *runscope-composition-inputs*
+  '("fsm:runtime" "fsm:agent" "fsm:workspace"))
+
+(defun write-compositions (out)
+  (indent out 1)
+  (format out "\"compositions\": [~%")
+  (write-runscope-composition out)
+  (indent out 1)
+  (format out "],~%"))
+
+(defun write-runscope-composition (out)
+  (indent out 2)
+  (format out "{")
+  (format out "\"id\": \"composition:runscope\", ")
+  (format out "\"name\": \"RunScopeFSM\", \"kind\": \"product\", ")
+  (format out "\"inputs\": ~A, " (json-string-array *runscope-composition-inputs*))
+  (format out "\"state_space\": {")
+  (format out "\"kind\": \"lazy\", \"max_materialized_states\": 48")
+  (format out "}, ")
+  (format out "\"conflict_policy\": {")
+  (format out "\"nondeterminism\": \"diagnostic\", ")
+  (format out "\"unreachable\": \"hide_by_default\"")
+  (format out "}, ")
+  (format out "\"tags\": [\"runtime\", \"lazy\", \"lisp-ssot\"]")
+  (format out "}~%"))

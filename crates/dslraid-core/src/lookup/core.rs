@@ -1,8 +1,14 @@
-use crate::{Artifact, CoreIr, Derivation, Fsm, Projection};
+use crate::{Artifact, Composition, CoreIr, Derivation, Fsm, Projection};
 
 impl CoreIr {
     pub fn find_fsm(&self, id: &str) -> Option<&Fsm> {
         self.fsms.iter().find(|fsm| fsm.id == id)
+    }
+
+    pub fn find_composition(&self, id: &str) -> Option<&Composition> {
+        self.compositions
+            .iter()
+            .find(|composition| composition.id == id)
     }
 
     pub fn find_projection(&self, id: Option<&str>) -> Option<&Projection> {

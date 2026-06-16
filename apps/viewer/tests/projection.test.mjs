@@ -15,5 +15,6 @@ test("RunScope fixture remains an FSM-centered Core IR", async () => {
   assert.equal(fsms.get("fsm:workspace").states.filter((state) => state.initial).length, 1);
   assert.ok(fsms.get("fsm:runtime").transitions.some((t) => t.id === "running_to_completed"));
   assert.deepEqual(ir.compositions[0].inputs, ["fsm:runtime", "fsm:agent", "fsm:workspace"]);
-  assert.deepEqual([...projections.keys()], ["view:runtime", "view:agent", "view:workspace"]);
+  assert.deepEqual([...projections.keys()], ["view:runtime", "view:agent", "view:workspace", "view:runscope"]);
+  assert.equal(projections.get("view:runscope").source, "composition:runscope");
 });

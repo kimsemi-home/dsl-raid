@@ -2,7 +2,7 @@
   "validation_version": "0.1.0",
   "source": {
     "core_ir": "examples/runscope/runscope.raid.json",
-    "ir_hash": "sha256:217b0823ab442501c87c15260e6d804946700a0335292282e44b8d33c69ded6d"
+    "ir_hash": "sha256:88d5c29334c5a2599bf98816506daa3eb6a1969b657441253d50600b68947222"
   },
   "run": {
     "tool": "dslraid-cli",

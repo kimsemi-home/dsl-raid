@@ -23,7 +23,8 @@
         "command:runtime_start",
         "fsm:runtime",
         "fsm:agent",
-        "fsm:workspace"
+        "fsm:workspace",
+        "composition:runscope"
       ]
     }
   ],
@@ -443,6 +444,15 @@
       "show": ["states", "transitions", "events", "artifacts"],
       "filters": {
         "unreachable": false
+      }
+    },
+    {
+      "id": "view:runscope",
+      "kind": "projection",
+      "source": "composition:runscope",
+      "show": ["states", "transitions", "events", "artifacts", "coverage"],
+      "filters": {
+        "reachable_only": true
       }
     }
   ],

@@ -17,7 +17,7 @@ export function sidebarTemplate(): string {
         <div id="project-tree" class="tree"></div>
       </section>
       <section>
-        <h2>Visible FSM</h2>
+        <h2>Visible Graph</h2>
         <div id="visible-subjects" class="visible-subjects"></div>
       </section>
       <section>
@@ -30,7 +30,7 @@ export function sidebarTemplate(): string {
       </section>
       <section>
         <h2>Search</h2>
-        <input id="search-input" class="search" type="search" placeholder="state, transition, artifact" />
+        <input id="search-input" class="search" type="search" placeholder="state, transition, artifact, tuple" />
         <div id="search-results" class="search-results"></div>
       </section>
     </aside>

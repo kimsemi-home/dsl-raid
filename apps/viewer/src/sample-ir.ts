@@ -18,6 +18,13 @@ export const sampleIr: CoreIr = {
   policies: samplePolicies,
   capabilities: sampleCapabilities,
   commands: sampleCommands,
+  compositions: [{
+    id: "composition:runscope",
+    name: "RunScopeFSM",
+    kind: "product",
+    inputs: ["fsm:runtime", "fsm:agent", "fsm:workspace"],
+    state_space: { kind: "lazy", max_materialized_states: 48 }
+  }],
   fsms: [sampleRuntimeFsm, sampleAgentFsm, sampleWorkspaceFsm],
   projections: sampleProjections,
   derivations: [],

@@ -75,12 +75,16 @@
     }
   ],
   "contexts": [
-    {"id": "context:runtime", "name": "Runtime Context", "kind": "bounded_context", "owns": ["fsm:runtime", "fsm:agent", "fsm:workspace"]}
+    {"id": "context:runtime", "name": "Runtime Context", "kind": "bounded_context", "owns": ["fsm:runtime", "fsm:agent", "fsm:workspace", "composition:runscope"]}
+  ],
+  "compositions": [
+    {"id": "composition:runscope", "name": "RunScopeFSM", "kind": "product", "inputs": ["fsm:runtime", "fsm:agent", "fsm:workspace"], "state_space": {"kind": "lazy", "max_materialized_states": 48}, "conflict_policy": {"nondeterminism": "diagnostic", "unreachable": "hide_by_default"}, "tags": ["runtime", "lazy", "lisp-ssot"]}
   ],
   "projections": [
     {"id": "view:runtime", "kind": "projection", "source": "fsm:runtime", "show": ["states", "transitions", "events", "artifacts"]},
     {"id": "view:agent", "kind": "projection", "source": "fsm:agent", "show": ["states", "transitions", "events", "artifacts"]},
-    {"id": "view:workspace", "kind": "projection", "source": "fsm:workspace", "show": ["states", "transitions", "events", "artifacts"]}
+    {"id": "view:workspace", "kind": "projection", "source": "fsm:workspace", "show": ["states", "transitions", "events", "artifacts"]},
+    {"id": "view:runscope", "kind": "projection", "source": "composition:runscope", "show": ["states", "transitions", "events", "artifacts", "coverage"], "filters": {"reachable_only": true}}
   ],
   "derivations": [
     {"id": "derivation:lisp_runtime_codegen", "source": "context:runtime", "rule": {"id": "fsm_codegen", "kind": "codegen", "generator": "dslraid-codegen", "version": "0.1.0"}, "targets": [{"artifact": "artifact:runtime_fsm.rs", "role": "generated"}]}

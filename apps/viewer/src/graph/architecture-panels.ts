@@ -2,6 +2,7 @@ import type { CoreIr, InspectorPanel } from "../types";
 import { artifactPanel } from "./inspector/artifact-panel";
 import { capabilityPanel } from "./inspector/capability-panel";
 import { commandPanel } from "./inspector/command-panel";
+import { compositionPanel } from "./inspector/composition-panel";
 import { contextPanel } from "./inspector/context-panel";
 import { derivationPanel } from "./inspector/derivation-panel";
 import { policyPanel } from "./inspector/policy-panel";
@@ -15,6 +16,7 @@ export function architecturePanels(ir: CoreIr): InspectorPanel[] {
     ...(ir.requirements ?? []).map(requirementPanel),
     ...(ir.capabilities ?? []).map(capabilityPanel),
     ...(ir.commands ?? []).map(commandPanel),
+    ...(ir.compositions ?? []).map((composition) => compositionPanel(composition)),
     ...(ir.policies ?? []).map(policyPanel),
     ...(ir.derivations ?? []).map(derivationPanel),
     ...(ir.artifacts ?? []).map((artifact) => artifactPanel(ir, artifact))
