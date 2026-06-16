@@ -23,7 +23,8 @@ pub(crate) fn diagnostic_fixture() -> CoreIr {
             "code": "FSM999",
             "severity": "error",
             "message": "state fixture",
-            "subjects": ["state:runtime.running"]
+            "subjects": ["state:runtime.running"],
+            "suggestion": "fix state"
         }, {
             "id": "diag:transition",
             "code": "FSM998",

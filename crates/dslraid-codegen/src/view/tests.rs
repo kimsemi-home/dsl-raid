@@ -33,6 +33,11 @@ fn project_fsm_view_marks_diagnostic_subjects() {
         .iter()
         .find(|node| node.subject == "state:runtime.running")
         .unwrap();
+    let panel = view
+        .inspector_panels
+        .iter()
+        .find(|panel| panel.subject == "state:runtime.running")
+        .unwrap();
     let finish = view
         .edges
         .iter()
@@ -42,6 +47,15 @@ fn project_fsm_view_marks_diagnostic_subjects() {
     assert!(running.badges.contains(&"diag:error".to_string()));
     assert_eq!(running.style.as_ref().unwrap().tone, "danger");
     assert_eq!(finish.style.as_ref().unwrap().tone, "warning");
+    assert!(panel.sections.iter().any(has_diagnostic_suggestion));
+}
+
+fn has_diagnostic_suggestion(section: &super::InspectorSection) -> bool {
+    section.title == "Diagnostics"
+        && section
+            .rows
+            .iter()
+            .any(|row| row.label == "Suggestion" && row.value == "fix state")
 }
 
 fn runscope_fixture() -> PathBuf {

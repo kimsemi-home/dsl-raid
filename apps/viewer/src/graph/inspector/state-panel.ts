@@ -3,6 +3,7 @@ import { coverageRows } from "../coverage";
 import { stateSubject } from "../ids";
 import { traceRows } from "../trace";
 import { artifactRow, artifactsForSubject } from "../traceability";
+import { diagnosticSection } from "./diagnostic-section";
 
 export function statePanel(
   ir: CoreIr,
@@ -40,7 +41,8 @@ export function statePanel(
       {
         title: "Traceability",
         rows: artifacts.length > 0 ? artifacts.map(artifactRow) : [{ label: "Artifacts", value: "none linked" }]
-      }
+      },
+      ...[diagnosticSection(ir, subject)].filter((section) => section !== undefined)
     ]
   };
 }

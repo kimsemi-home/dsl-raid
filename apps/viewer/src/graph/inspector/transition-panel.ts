@@ -3,6 +3,7 @@ import { coverageRows } from "../coverage";
 import { eventSubject, stateSubject } from "../ids";
 import { traceRows } from "../trace";
 import { artifactRow, artifactsForSubject } from "../traceability";
+import { diagnosticSection } from "./diagnostic-section";
 
 export function transitionPanel(
   ir: CoreIr,
@@ -47,7 +48,8 @@ export function transitionPanel(
       {
         title: "Traceability",
         rows: artifactsForSubject(ir, subject).map(artifactRow)
-      }
+      },
+      ...[diagnosticSection(ir, subject)].filter((section) => section !== undefined)
     ]
   };
 }

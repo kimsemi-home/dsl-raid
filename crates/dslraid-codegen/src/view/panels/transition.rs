@@ -1,19 +1,25 @@
-use dslraid_core::{event_subject, state_subject, Fsm, Transition};
+use dslraid_core::{event_subject, state_subject, CoreIr, Fsm, Transition};
 
+use super::diagnostic::diagnostic_section;
 use crate::view::{InspectorPanel, InspectorRow, InspectorSection};
 
 pub(crate) fn transition_panel(
+    ir: &CoreIr,
     fsm: &Fsm,
     transition: &Transition,
     subject: &str,
 ) -> InspectorPanel {
+    let mut sections = vec![InspectorSection {
+        title: "Transition".to_string(),
+        rows: rows(fsm, transition),
+    }];
+    if let Some(section) = diagnostic_section(ir, subject) {
+        sections.push(section);
+    }
     InspectorPanel {
         subject: subject.to_string(),
         title: transition.id.clone(),
-        sections: vec![InspectorSection {
-            title: "Transition".to_string(),
-            rows: rows(fsm, transition),
-        }],
+        sections,
     }
 }
 

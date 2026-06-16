@@ -40,6 +40,7 @@ fn inspector_panels(ir: &CoreIr, fsm: &Fsm) -> Vec<super::InspectorPanel> {
     let mut panels = Vec::new();
     panels.extend(fsm.states.iter().map(|state| {
         state_panel(
+            ir,
             fsm,
             &state.id,
             &dslraid_core::state_subject(&fsm.id, &state.id),
@@ -47,6 +48,7 @@ fn inspector_panels(ir: &CoreIr, fsm: &Fsm) -> Vec<super::InspectorPanel> {
     }));
     panels.extend(fsm.transitions.iter().map(|transition| {
         transition_panel(
+            ir,
             fsm,
             transition,
             &dslraid_core::transition_subject(&fsm.id, &transition.id),

@@ -7,10 +7,13 @@ test("FSM projection marks diagnostic state and transition subjects", async () =
   const view = projectIr(ir);
   const running = view.nodes.find((node) => node.subject === "state:runtime.running");
   const finish = view.edges.find((edge) => edge.subject === "transition:runtime.finish");
+  const panel = view.inspector_panels.find((item) => item.subject === "state:runtime.running");
+  const rows = panel.sections.find((section) => section.title === "Diagnostics").rows;
 
   assert.ok(running.badges.includes("diag:error"));
   assert.equal(running.style.tone, "danger");
   assert.equal(finish.style.tone, "warning");
+  assert.equal(rows.find((row) => row.label === "Suggestion").value, "fix state");
 });
 
 const ir = {
@@ -38,7 +41,8 @@ const ir = {
       code: "FSM999",
       severity: "error",
       message: "state fixture",
-      subjects: ["state:runtime.running"]
+      subjects: ["state:runtime.running"],
+      suggestion: "fix state"
     },
     {
       id: "diag:transition",

@@ -1,3 +1,4 @@
+mod diagnostic;
 mod fsm;
 mod state;
 mod transition;
