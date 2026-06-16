@@ -1,7 +1,6 @@
-use anyhow::{anyhow, bail, Context, Result};
+use anyhow::{bail, Context, Result};
 use clap::{Parser, Subcommand, ValueEnum};
 use dslraid_analyzer::{validate_core_ir, ValidateOptions, ValidationReport};
-use dslraid_codegen::{generate_code, project_view, render_svg, CodegenTarget};
 use dslraid_core::{load_core_ir, sha256_json, validate_json_schema, CORE_SCHEMA_PATH};
 use serde_json::Value;
 use std::fs;
@@ -275,14 +274,16 @@ fn run() -> Result<()> {
             input,
             projection,
             out,
-        } => project(&input, projection.as_deref(), out.as_deref()),
+        } => commands::outputs::project(&input, projection.as_deref(), out.as_deref()),
         Command::Render {
             input,
             projection,
             format,
             out,
-        } => render(&input, projection.as_deref(), format, out.as_deref()),
-        Command::Codegen { input, target, out } => codegen(&input, target, out.as_deref()),
+        } => commands::outputs::render(&input, projection.as_deref(), format, out.as_deref()),
+        Command::Codegen { input, target, out } => {
+            commands::outputs::codegen(&input, target, out.as_deref())
+        }
         Command::Compose {
             input,
             composition,
@@ -353,7 +354,9 @@ fn run() -> Result<()> {
         Command::Compat { command } => match command {
             CompatCommand::Check { input } => compat_check(&input),
         },
-        Command::Export { target, input, out } => export(&input, target, out.as_deref()),
+        Command::Export { target, input, out } => {
+            commands::outputs::export(&input, target, out.as_deref())
+        }
     }
 }
 
@@ -512,80 +515,6 @@ fn golden_update(path: &Path) -> Result<()> {
     Ok(())
 }
 
-fn project(input: &Path, projection: Option<&str>, out: Option<&Path>) -> Result<()> {
-    let ir = load_core_ir(input)?;
-    let view = project_view(&ir, projection, input.display().to_string())?;
-    let bytes = serde_json::to_vec_pretty(&view)?;
-    write_or_stdout(out, &bytes)
-}
-
-fn render(
-    input: &Path,
-    projection: Option<&str>,
-    format: RenderFormat,
-    out: Option<&Path>,
-) -> Result<()> {
-    let ir = load_core_ir(input)?;
-    let view = project_view(&ir, projection, input.display().to_string())?;
-    match out {
-        Some(path) if path.extension().is_none() || path.is_dir() => {
-            fs::create_dir_all(path)?;
-            let stem = input
-                .file_stem()
-                .and_then(|stem| stem.to_str())
-                .unwrap_or("dslraid");
-            let view_path = path.join(format!("{stem}.view.json"));
-            let svg_path = path.join(format!("{stem}.svg"));
-            let core_path = path.join(
-                input
-                    .file_name()
-                    .ok_or_else(|| anyhow!("input has no file name"))?,
-            );
-            write_bytes(&view_path, serde_json::to_string_pretty(&view)?.as_bytes())?;
-            write_bytes(&svg_path, render_svg(&view).as_bytes())?;
-            fs::copy(input, core_path)?;
-            println!("rendered {}", path.display());
-            Ok(())
-        }
-        Some(path) => match format {
-            RenderFormat::Svg => write_bytes(path, render_svg(&view).as_bytes()),
-            RenderFormat::Json => {
-                write_bytes(path, serde_json::to_string_pretty(&view)?.as_bytes())
-            }
-        },
-        None => match format {
-            RenderFormat::Svg => {
-                print!("{}", render_svg(&view));
-                Ok(())
-            }
-            RenderFormat::Json => {
-                println!("{}", serde_json::to_string_pretty(&view)?);
-                Ok(())
-            }
-        },
-    }
-}
-
-fn codegen(input: &Path, target: CliCodegenTarget, out: Option<&Path>) -> Result<()> {
-    let ir = load_core_ir(input)?;
-    let target: CodegenTarget = target.into();
-    let generated = generate_code(&ir, target)?;
-    match out {
-        Some(path) if path.extension().is_none() || path.is_dir() => {
-            fs::create_dir_all(path)?;
-            let file = path.join(format!("dslraid_generated.{}", target.extension()));
-            write_bytes(&file, generated.as_bytes())?;
-            println!("generated {}", file.display());
-            Ok(())
-        }
-        Some(path) => write_bytes(path, generated.as_bytes()),
-        None => {
-            print!("{generated}");
-            Ok(())
-        }
-    }
-}
-
 #[allow(clippy::too_many_arguments)]
 fn compat_check(input: &Path) -> Result<()> {
     let ir = load_core_ir(input)?;
@@ -594,23 +523,6 @@ fn compat_check(input: &Path) -> Result<()> {
         ir.ir_version, ir.project.id
     );
     Ok(())
-}
-
-fn export(input: &Path, target: CliExportTarget, out: Option<&Path>) -> Result<()> {
-    match target {
-        CliExportTarget::Json => normalize(input, out),
-        CliExportTarget::Svg => render(input, None, RenderFormat::Svg, out),
-        CliExportTarget::Mermaid => {
-            let ir = load_core_ir(input)?;
-            let generated = generate_code(&ir, CodegenTarget::Mermaid)?;
-            write_or_stdout(out, generated.as_bytes())
-        }
-        CliExportTarget::Dot => {
-            let ir = load_core_ir(input)?;
-            let generated = generate_code(&ir, CodegenTarget::Dot)?;
-            write_or_stdout(out, generated.as_bytes())
-        }
-    }
 }
 
 fn print_report_text(report: &ValidationReport) {
@@ -657,14 +569,4 @@ fn write_bytes(path: &Path, bytes: &[u8]) -> Result<()> {
         }
     }
     fs::write(path, bytes).with_context(|| format!("write {}", path.display()))
-}
-
-impl From<CliCodegenTarget> for CodegenTarget {
-    fn from(value: CliCodegenTarget) -> Self {
-        match value {
-            CliCodegenTarget::Rust => CodegenTarget::Rust,
-            CliCodegenTarget::Go => CodegenTarget::Go,
-            CliCodegenTarget::Typescript => CodegenTarget::TypeScript,
-        }
-    }
 }

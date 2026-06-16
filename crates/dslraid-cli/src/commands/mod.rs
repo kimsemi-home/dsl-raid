@@ -7,6 +7,7 @@ pub(crate) mod artifact;
 pub(crate) mod compose;
 pub(crate) mod coverage;
 pub(crate) mod diff;
+pub(crate) mod outputs;
 pub(crate) mod quality;
 pub(crate) mod query;
 pub(crate) mod trace;
