@@ -9,8 +9,8 @@
 | FSMs | 1 |
 | Compositions | 1 |
 | Projections | 1 |
-| Derivations | 1 |
-| Artifacts | 4 |
+| Derivations | 2 |
+| Artifacts | 5 |
 
 ## FSM: RuntimeFSM
 
@@ -45,6 +45,7 @@
 | Derivation | Source | Rule | Targets |
 | --- | --- | --- | --- |
 | derivation:runtime.codegen | fsm:runtime | fsm_codegen | artifact:runtime_fsm.go, artifact:runtime_fsm.rs, artifact:fsm_runtime_running_golden |
+| derivation:runscope.doc | fsm:runtime | markdown_doc | artifact:runscope_generated_md |
 
 ## Artifacts
 
@@ -54,4 +55,5 @@
 | artifact:runtime_fsm.go | generated | generated/runtime_fsm.go | derivation:runtime.codegen |
 | artifact:runtime_fsm.rs | generated | generated/runtime_fsm.rs | derivation:runtime.codegen |
 | artifact:fsm_runtime_running_golden | test | tests/golden/fsm-runtime-running.golden | derivation:runtime.codegen |
+| artifact:runscope_generated_md | doc | examples/runscope/runscope.generated.md | derivation:runscope.doc |
 

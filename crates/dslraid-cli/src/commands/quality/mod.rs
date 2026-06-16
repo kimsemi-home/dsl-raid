@@ -1,5 +1,6 @@
 mod docs;
 mod generated;
+mod lock;
 mod projection;
 mod runtime;
 mod schema;
@@ -15,6 +16,7 @@ pub(crate) fn run() -> Result<()> {
     projection::check(input, &ir)?;
     generated::check(input, &ir)?;
     docs::check(input)?;
+    lock::check(input)?;
     runtime::check(input)?;
     crate::commands::artifact::verify(input, None, crate::OutputFormat::Text)?;
     println!("quality ok");

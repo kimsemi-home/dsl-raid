@@ -254,6 +254,22 @@
           "role": "test"
         }
       ]
+    },
+    {
+      "id": "derivation:runscope.doc",
+      "source": "fsm:runtime",
+      "rule": {
+        "id": "markdown_doc",
+        "kind": "docgen",
+        "generator": "dslraid-doc",
+        "version": "0.1.0"
+      },
+      "targets": [
+        {
+          "artifact": "artifact:runscope_generated_md",
+          "role": "doc"
+        }
+      ]
     }
   ],
   "artifacts": [
@@ -287,6 +303,14 @@
       "generated_by": "derivation:runtime.codegen",
       "visibility": "public",
       "tags": ["test", "golden"]
+    },
+    {
+      "id": "artifact:runscope_generated_md",
+      "kind": "doc",
+      "path": "examples/runscope/runscope.generated.md",
+      "generated_by": "derivation:runscope.doc",
+      "visibility": "public",
+      "tags": ["doc", "generated"]
     }
   ],
   "diagnostics": []

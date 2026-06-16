@@ -3,7 +3,7 @@
   "core": {
     "path": "examples/runscope/runscope.raid.json",
     "schema_version": "0.1.0",
-    "ir_hash": "sha256:6a09165e1c9bac97230b818773e3eb6eb472f360332571eae021c1071620b220",
+    "ir_hash": "sha256:e90d2748a84c23b67b951f4eb5a8dc279d465822ee1a782343394cc55f395b58",
     "hash_algorithm": "sha256"
   },
   "resolver": {
@@ -25,11 +25,23 @@
         "name": "dslraid-codegen",
         "version": "0.1.0"
       },
-      "input_hash": "sha256:6a09165e1c9bac97230b818773e3eb6eb472f360332571eae021c1071620b220",
+      "input_hash": "sha256:e90d2748a84c23b67b951f4eb5a8dc279d465822ee1a782343394cc55f395b58",
       "targets": [
         "artifact:runtime_fsm.go",
         "artifact:runtime_fsm.rs",
         "artifact:fsm_runtime_running_golden"
+      ]
+    },
+    {
+      "derivation": "derivation:runscope.doc",
+      "rule": "markdown_doc",
+      "generator": {
+        "name": "dslraid-doc",
+        "version": "0.1.0"
+      },
+      "input_hash": "sha256:e90d2748a84c23b67b951f4eb5a8dc279d465822ee1a782343394cc55f395b58",
+      "targets": [
+        "artifact:runscope_generated_md"
       ]
     }
   ],
@@ -39,7 +51,7 @@
       "path": "generated/runtime_fsm.go",
       "kind": "generated",
       "generated_by": "derivation:runtime.codegen",
-      "input_hash": "sha256:6a09165e1c9bac97230b818773e3eb6eb472f360332571eae021c1071620b220",
+      "input_hash": "sha256:e90d2748a84c23b67b951f4eb5a8dc279d465822ee1a782343394cc55f395b58",
       "content_hash": "sha256:8022f4c84de1e3fa19af41727d91c67709ae41170ed616330d5972c9c9a4811a",
       "schema_version": "0.1.0",
       "status": "fresh"
@@ -49,7 +61,7 @@
       "path": "generated/runtime_fsm.rs",
       "kind": "generated",
       "generated_by": "derivation:runtime.codegen",
-      "input_hash": "sha256:6a09165e1c9bac97230b818773e3eb6eb472f360332571eae021c1071620b220",
+      "input_hash": "sha256:e90d2748a84c23b67b951f4eb5a8dc279d465822ee1a782343394cc55f395b58",
       "content_hash": "sha256:d575be2d1aabd2fd8c5e2552fcc0e600bf884882920bd890b503890676861ffa",
       "schema_version": "0.1.0",
       "status": "fresh"
@@ -59,8 +71,18 @@
       "path": "tests/golden/fsm-runtime-running.golden",
       "kind": "test",
       "generated_by": "derivation:runtime.codegen",
-      "input_hash": "sha256:6a09165e1c9bac97230b818773e3eb6eb472f360332571eae021c1071620b220",
+      "input_hash": "sha256:e90d2748a84c23b67b951f4eb5a8dc279d465822ee1a782343394cc55f395b58",
       "content_hash": "sha256:aae50d9643c765684ad0bb9e500229e904966e468c926422137f7067c09a6618",
+      "schema_version": "0.1.0",
+      "status": "fresh"
+    },
+    {
+      "artifact": "artifact:runscope_generated_md",
+      "path": "examples/runscope/runscope.generated.md",
+      "kind": "doc",
+      "generated_by": "derivation:runscope.doc",
+      "input_hash": "sha256:e90d2748a84c23b67b951f4eb5a8dc279d465822ee1a782343394cc55f395b58",
+      "content_hash": "sha256:284167605fab1d05f9e5b1eb57a8318600603170faa668420cd176b46ba60ea2",
       "schema_version": "0.1.0",
       "status": "fresh"
     }
