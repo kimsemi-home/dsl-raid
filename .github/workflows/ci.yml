@@ -212,6 +212,9 @@ jobs:
       - name: Check generated roadmap index
         run: bash scripts/roadmapgen.sh check
 
+      - name: Check generated docs index
+        run: bash scripts/gendocindex.sh check
+
   lisp:
     name: Lisp authoring
     runs-on: ubuntu-latest

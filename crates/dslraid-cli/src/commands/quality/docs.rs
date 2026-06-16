@@ -20,6 +20,7 @@ pub(super) fn check(input: &Path) -> Result<()> {
     .with_context(|| hint(input))
     .and_then(|_| check_fsm_catalog(input))
     .and_then(|_| check_assertion_catalog())
+    .and_then(|_| check_generated_docs_index())
 }
 
 fn check_fsm_catalog(input: &Path) -> Result<()> {
@@ -36,15 +37,23 @@ fn check_fsm_catalog(input: &Path) -> Result<()> {
 }
 
 fn check_assertion_catalog() -> Result<()> {
+    check_script("scripts/assertiongen.sh")
+}
+
+fn check_generated_docs_index() -> Result<()> {
+    check_script("scripts/gendocindex.sh")
+}
+
+fn check_script(script: &str) -> Result<()> {
     let status = Command::new("bash")
-        .arg("scripts/assertiongen.sh")
+        .arg(script)
         .arg("check")
         .status()
-        .context("run scripts/assertiongen.sh")?;
+        .with_context(|| format!("run {script}"))?;
     if status.success() {
         Ok(())
     } else {
-        bail!("scripts/assertiongen.sh check failed")
+        bail!("{script} check failed")
     }
 }
 

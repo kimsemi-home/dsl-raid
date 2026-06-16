@@ -78,6 +78,7 @@ design contracts.
   deterministic Canonical IR emitters
 
 - [Architecture](docs/architecture.md)
+- [Generated Docs Index](docs/generated/generated-docs.md)
 - [Generated CLI Reference](docs/generated/cli-reference.md)
 - [IR Design](docs/ir.md)
 - [Validation Proposition Catalog](docs/validation.md)
