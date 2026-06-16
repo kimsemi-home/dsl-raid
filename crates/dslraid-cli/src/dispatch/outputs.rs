@@ -1,4 +1,4 @@
-use crate::{commands, CodegenArgs, ExportArgs, ProjectArgs, RenderArgs};
+use crate::{commands, CodegenArgs, DocArgs, ExportArgs, ProjectArgs, RenderArgs};
 use anyhow::Result;
 
 pub(super) fn project(args: ProjectArgs) -> Result<()> {
@@ -16,6 +16,10 @@ pub(super) fn render(args: RenderArgs) -> Result<()> {
 
 pub(super) fn codegen(args: CodegenArgs) -> Result<()> {
     commands::outputs::codegen(&args.input, args.target, args.out.as_deref())
+}
+
+pub(super) fn doc(args: DocArgs) -> Result<()> {
+    commands::outputs::doc(args)
 }
 
 pub(super) fn export(args: ExportArgs) -> Result<()> {

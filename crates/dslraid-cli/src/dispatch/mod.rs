@@ -18,6 +18,7 @@ pub(crate) fn run(command: Command) -> Result<()> {
         Command::Project(args) => outputs::project(args),
         Command::Render(args) => outputs::render(args),
         Command::Codegen(args) => outputs::codegen(args),
+        Command::Doc(args) => outputs::doc(args),
         Command::Compose(args) => graph::compose(args),
         Command::Diff(args) => graph::diff(args),
         Command::Query(args) => graph::query(args),

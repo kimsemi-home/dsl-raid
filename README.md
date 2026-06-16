@@ -123,6 +123,8 @@ cargo run -p dslraid-cli -- migrate examples/runscope/runscope.raid.json --from 
 cargo run -p dslraid-cli -- project examples/runscope/runscope.raid.json --projection view:runtime
 cargo run -p dslraid-cli -- render examples/runscope/runscope.raid.json --format svg
 cargo run -p dslraid-cli -- codegen examples/runscope/runscope.raid.json --target rust
+cargo run -p dslraid-cli -- doc generate examples/runscope/runscope.raid.json --out examples/runscope/runscope.generated.md
+cargo run -p dslraid-cli -- doc check examples/runscope/runscope.raid.json --golden examples/runscope/runscope.generated.md
 cargo run -p dslraid-cli -- export mermaid examples/runscope/runscope.raid.json
 cargo run -p dslraid-cli -- diff base.json head.json
 cargo run -p dslraid-cli -- diff base.json head.json --format markdown --out dslraid-diff.md

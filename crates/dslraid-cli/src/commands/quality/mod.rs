@@ -1,3 +1,4 @@
+mod docs;
 mod generated;
 mod projection;
 mod runtime;
@@ -13,6 +14,7 @@ pub(crate) fn run() -> Result<()> {
     let ir = semantic::check(input)?;
     projection::check(input, &ir)?;
     generated::check(input, &ir)?;
+    docs::check(input)?;
     runtime::check(input)?;
     crate::commands::artifact::verify(input, None, crate::OutputFormat::Text)?;
     println!("quality ok");

@@ -13,6 +13,7 @@ pub(crate) enum Command {
     Project(ProjectArgs),
     Render(RenderArgs),
     Codegen(CodegenArgs),
+    Doc(DocArgs),
     Compose(ComposeArgs),
     Diff(DiffArgs),
     Query(QueryArgs),
