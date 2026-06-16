@@ -18,10 +18,7 @@ export function createActions(session: viewerSession.ViewerSession, elements: Vi
       viewerSession.setIr(session, ir, coverage, sourceMap, trace);
       actions.fit();
     },
-    setCoverage: (coverage: CoverageOverlay) => {
-      viewerSession.setCoverage(session, coverage);
-      refresh();
-    },
+    setCoverage: (coverage: CoverageOverlay) => { viewerSession.setCoverage(session, coverage); refresh(); },
     setTrace: (trace: RuntimeTrace) => syncTrace(session, actions, trace),
     setSourceMap: (sourceMap: SourceMapDocument) => syncSourceMap(session, actions, sourceMap),
     openProjection: (projectionId: string) => {
@@ -29,8 +26,9 @@ export function createActions(session: viewerSession.ViewerSession, elements: Vi
       actions.fit();
     },
     openFsm: (fsmId: string) => openFsm(actions, session, fsmId),
-    select: (subject: string | undefined) => {
+    select: (subject: string | undefined, related?: string[]) => {
       session.store.selection.selected = subject;
+      session.store.selection.related = related?.length ? related : undefined;
       refresh();
     },
     selectRelative: (step: -1 | 1) => {
@@ -58,10 +56,7 @@ export function createActions(session: viewerSession.ViewerSession, elements: Vi
       session.store.camera = fitCamera(session.store.view, elements.canvas);
       refresh();
     },
-    setDiagnosticsVisible: (visible: boolean) => {
-      session.store.showDiagnostics = visible;
-      actions.syncPanels();
-    },
+    setDiagnosticsVisible: (visible: boolean) => { session.store.showDiagnostics = visible; actions.syncPanels(); },
     setFocusDepth: (depth: 1 | 2) => {
       session.store.focusDepth = depth;
       refresh();

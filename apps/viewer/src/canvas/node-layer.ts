@@ -1,16 +1,16 @@
 import type { SceneNode, SelectionState } from "../types";
+import { activeLineWidth, activeStroke, subjectVisualState } from "./selection";
 import { roundedRect } from "./shape";
-import { badgeFill, toneStroke } from "./style";
+import { badgeFill } from "./style";
 
 export function drawNodes(context: CanvasRenderingContext2D, nodes: SceneNode[], selection: SelectionState): void {
   for (const node of nodes) {
-    const selected = selection.selected === node.subject;
-    const hovered = selection.hovered === node.subject;
+    const state = subjectVisualState(selection, node.subject);
     const tone = node.style?.tone ?? "default";
     context.globalAlpha = node.style?.emphasis === "faint" ? 0.68 : 1;
     context.fillStyle = "#fffefa";
-    context.strokeStyle = selected ? "#0f766e" : hovered ? "#b45309" : toneStroke(tone);
-    context.lineWidth = selected || hovered || node.style?.emphasis === "strong" ? 3 : 2;
+    context.strokeStyle = activeStroke(tone, state);
+    context.lineWidth = activeLineWidth(state, node.style?.emphasis === "strong");
     roundedRect(context, node.x, node.y, node.width, node.height, 8);
     context.fill();
     context.stroke();

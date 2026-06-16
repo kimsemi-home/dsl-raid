@@ -24,7 +24,7 @@ export function renderPanels(elements: ViewerElements, store: AppStore, actions:
   renderTerminalPath(elements.terminalPath, store, actions.select);
   renderCoverageSummary(elements.coverageSummary, store);
   renderInspector(elements.inspector, panel, store.sourceMap, actions.select);
-  renderDiagnostics(elements.diagnostics, store);
+  renderDiagnostics(elements.diagnostics, store, actions.select);
   renderTimeline(elements.timeline, store, actions.select);
   renderSearch(elements.searchInput, elements.searchResults, store, actions.select);
 }

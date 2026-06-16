@@ -7,4 +7,5 @@ export type Camera = {
 export type SelectionState = {
   selected?: string;
   hovered?: string;
+  related?: string[];
 };

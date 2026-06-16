@@ -6,5 +6,6 @@ export function followSelectedSubject(session: ViewerSession): void {
   const subject = followSubject(visibleView(session.store), session.store.selection.selected);
   if (subject) {
     session.store.selection.selected = subject;
+    session.store.selection.related = undefined;
   }
 }

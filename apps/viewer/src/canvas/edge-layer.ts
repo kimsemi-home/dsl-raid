@@ -1,17 +1,16 @@
 import type { SceneEdge, SelectionState } from "../types";
 import { drawLabel } from "./label";
-import { toneStroke } from "./style";
+import { activeLineWidth, activeStroke, subjectVisualState } from "./selection";
 
 export function drawEdges(context: CanvasRenderingContext2D, edges: SceneEdge[], selection: SelectionState): void {
   for (const edge of edges) {
     if (edge.route.length < 2) {
       continue;
     }
-    const selected = selection.selected === edge.subject;
-    const hovered = selection.hovered === edge.subject;
+    const state = subjectVisualState(selection, edge.subject);
     const tone = edge.style?.tone ?? "default";
-    context.strokeStyle = selected ? "#0f766e" : hovered ? "#b45309" : toneStroke(tone);
-    context.lineWidth = selected || hovered ? 3 : 2;
+    context.strokeStyle = activeStroke(tone, state);
+    context.lineWidth = activeLineWidth(state);
     context.globalAlpha = edge.style?.emphasis === "faint" ? 0.45 : 1;
     context.beginPath();
     context.moveTo(edge.route[0].x, edge.route[0].y);

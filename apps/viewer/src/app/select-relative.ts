@@ -8,5 +8,6 @@ export function selectRelativeSubject(session: ViewerSession, step: CursorStep):
   const subject = cursorSubject(subjects, session.store.selection.selected, step);
   if (subject) {
     session.store.selection.selected = subject;
+    session.store.selection.related = undefined;
   }
 }
