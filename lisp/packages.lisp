@@ -42,6 +42,7 @@
   (:export
    #:emit-fsm-json
    #:emit-project-json
+   #:emit-language-pipeline-markdown
    #:runscope-fsms))
 
 (defpackage #:dslraid
@@ -53,7 +54,10 @@
   (:import-from #:dslraid.dsl #:fsm #:defdsl-fsm #:build-fsm)
   (:import-from #:dslraid.expansion #:normalize-fsm)
   (:import-from #:dslraid.conformance #:validate-fsm)
-  (:import-from #:dslraid.emit #:emit-fsm-json #:emit-project-json)
+  (:import-from #:dslraid.emit
+                #:emit-fsm-json
+                #:emit-project-json
+                #:emit-language-pipeline-markdown)
   (:export
    #:fsm
    #:defdsl-fsm
@@ -64,4 +68,5 @@
    #:normalize-fsm
    #:validate-fsm
    #:emit-fsm-json
-   #:emit-project-json))
+   #:emit-project-json
+   #:emit-language-pipeline-markdown))

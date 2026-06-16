@@ -36,7 +36,8 @@
     :components
     ((:file "json-values")
      (:file "json-fsm")
-     (:file "json")))
+     (:file "json")
+     (:file "markdown")))
    (:module "runtime"
     :serial t
     :components

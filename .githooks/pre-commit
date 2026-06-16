@@ -6,3 +6,4 @@ cd "$repo"
 
 bash scripts/check-source-lines.sh
 bash scripts/go-lint.sh
+bash scripts/lisp-docgen.sh check
