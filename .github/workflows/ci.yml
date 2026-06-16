@@ -220,8 +220,15 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y sbcl
 
+      - uses: dtolnay/rust-toolchain@stable
+
+      - uses: Swatinem/rust-cache@v2
+
       - name: Check generated Lisp pipeline doc
         run: bash scripts/lisp-docgen.sh check
+
+      - name: Check generated Lisp canonical IR
+        run: bash scripts/lisp-irgen.sh check
 
   dslraid:
     name: DSLRaid quality

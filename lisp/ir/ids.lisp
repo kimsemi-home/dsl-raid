@@ -6,17 +6,35 @@
                 (symbol (symbol-name symbol-or-string))
                 (string symbol-or-string)))))
     (string-trim
-     "-"
+     "_"
      (with-output-to-string (out)
        (let ((previous-separator nil))
-         (loop for ch across raw
-               do (if (alphanumericp ch)
-                      (progn
-                        (write-char ch out)
-                        (setf previous-separator nil))
-                      (unless previous-separator
-                        (write-char #\- out)
-                        (setf previous-separator t)))))))))
+         (loop with index = 0
+               while (< index (length raw))
+               do (multiple-value-setq (index previous-separator)
+                    (write-canonical-id-part raw index out
+                                             previous-separator))))))))
+
+(defun write-canonical-id-part (raw index out previous-separator)
+  (let ((ch (char raw index)))
+    (cond
+      ((arrow-at-p raw index)
+       (write-string "_to_" out)
+       (values (+ index 2) nil))
+      ((alphanumericp ch)
+       (write-char ch out)
+       (values (1+ index) nil))
+      (previous-separator
+       (values (1+ index) t))
+      (t
+       (write-char #\_ out)
+       (values (1+ index) t)))))
+
+(defun arrow-at-p (raw index)
+  (and (char= (char raw index) #\-)
+       (< (1+ index) (length raw))
+       (char= (char raw (1+ index)) #\>)))
+
 
 (defun semantic-id (kind name)
   (format nil "~(~A~):~A" kind (kebab-name name)))

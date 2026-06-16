@@ -16,7 +16,8 @@
     "Macros must not hide IO, conformance, projection, or backend codegen."
     "Backends consume Canonical IR, not raw Lisp forms."
     "Rust source can be generated output, not authoring truth."
-    "Generated language docs are checked by lisp-docgen."))
+    "Generated language docs are checked by lisp-docgen."
+    "Generated Lisp Canonical IR is checked by lisp-irgen and Rust validation."))
 
 (defun emit-language-pipeline-markdown (&optional stream)
   "Emit deterministic Markdown for the Lisp authoring pipeline."
@@ -53,4 +54,6 @@
   (format out "```bash~%")
   (format out "bash scripts/lisp-docgen.sh generate~%")
   (format out "bash scripts/lisp-docgen.sh check~%")
+  (format out "bash scripts/lisp-irgen.sh generate~%")
+  (format out "bash scripts/lisp-irgen.sh check~%")
   (format out "```~%"))

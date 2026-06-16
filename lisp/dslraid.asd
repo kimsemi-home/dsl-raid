@@ -35,6 +35,7 @@
     :serial t
     :components
     ((:file "json-values")
+     (:file "json-source")
      (:file "json-fsm")
      (:file "json")
      (:file "markdown")))

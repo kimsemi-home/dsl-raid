@@ -26,10 +26,13 @@ It expands executable forms into Canonical IR before Rust tooling runs.
 - Backends consume Canonical IR, not raw Lisp forms.
 - Rust source can be generated output, not authoring truth.
 - Generated language docs are checked by lisp-docgen.
+- Generated Lisp Canonical IR is checked by lisp-irgen and Rust validation.
 
 ## Regeneration
 
 ```bash
 bash scripts/lisp-docgen.sh generate
 bash scripts/lisp-docgen.sh check
+bash scripts/lisp-irgen.sh generate
+bash scripts/lisp-irgen.sh check
 ```

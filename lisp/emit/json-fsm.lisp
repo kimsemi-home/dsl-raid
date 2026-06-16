@@ -5,6 +5,11 @@
   (format out "{~%")
   (json-field out (1+ level) "id" (fsm-id fsm) t)
   (json-field out (1+ level) "name" (fsm-name fsm) t)
+  (when (fsm-defined-at fsm)
+    (indent out (1+ level))
+    (format out "\"defined_at\": ")
+    (write-defined-at-json (fsm-defined-at fsm) out)
+    (format out ",~%"))
   (write-named-array out level "states" (fsm-states fsm) #'write-state-json t)
   (write-named-array out level "events" (fsm-events fsm) #'write-event-json t)
   (write-named-array out level "transitions" (fsm-transitions fsm) #'write-transition-json nil)
@@ -31,6 +36,7 @@
   (when (state-terminal-semantics state)
     (format out ", \"terminal_semantics\": ~A"
             (json-string (state-terminal-semantics state))))
+  (write-defined-at-property (state-defined-at state) out)
   (format out "}"))
 
 (defun write-event-json (event out level)
@@ -47,6 +53,7 @@
           (json-string (transition-from transition))
           (json-string (transition-to transition)))
   (write-optional-transition-fields transition out)
+  (write-defined-at-property (transition-defined-at transition) out)
   (format out "}"))
 
 (defun write-optional-transition-fields (transition out)
