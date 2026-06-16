@@ -172,6 +172,7 @@ Usage: generate [OPTIONS] <INPUT>
 | --- | --- | --- |
 | `input` | yes | Canonical IR input file |
 | `--cli-doc` | no | Also regenerate the generated CLI reference Markdown |
+| `--validation-report` | no | Also regenerate a validation proposition report JSON |
 | `--skip-lock` | no | Do not refresh the inferred lock file after generation |
 | `-h`, `--help` | no | Print help |
 
