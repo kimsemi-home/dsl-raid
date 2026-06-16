@@ -21,6 +21,10 @@ export function sidebarTemplate(): string {
         <div id="visible-subjects" class="visible-subjects"></div>
       </section>
       <section>
+        <h2>Terminal Path</h2>
+        <div id="terminal-path" class="terminal-path"></div>
+      </section>
+      <section>
         <h2>Coverage</h2>
         <div id="coverage-summary" class="coverage-summary"></div>
       </section>

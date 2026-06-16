@@ -11,7 +11,7 @@
    #:transition-requires #:transition-defined-at
    #:fsm #:make-fsm #:fsm-id #:fsm-name #:fsm-states #:fsm-events
    #:fsm-transitions #:fsm-guards #:fsm-actions #:fsm-defined-at #:fsm-tags
-   #:semantic-id #:state-subject #:transition-subject))
+   #:semantic-id #:state-subject #:transition-subject #:fsm-display-name))
 
 (defpackage #:dslraid.lang
   (:use #:cl #:dslraid.ir)

@@ -112,6 +112,7 @@ button {
 .row span,
 .row strong,
 .search-results small,
+.path-step small,
 .visible-subject small,
 .tree-row small {
   overflow-wrap: anywhere;
@@ -125,6 +126,7 @@ button {
 .brand span,
 .muted,
 .search-results small,
+.path-step small,
 .visible-subject small,
 .tree-row small {
   color: #68635a;
@@ -155,6 +157,7 @@ h4 {
 .toolbar label,
 .tree-row,
 .search-results button,
+.path-step,
 .visible-subject,
 .row button,
 .diagnostic {
@@ -201,6 +204,8 @@ h4 {
 .tree-row:hover,
 .tree-row.active,
 .search-results button:hover,
+.path-step:hover,
+.path-step.active,
 .visible-subject:hover,
 .visible-subject.active,
 .row button:hover,
@@ -209,6 +214,7 @@ h4 {
 }
 
 .tree-row.active,
+.path-step.active,
 .visible-subject.active {
   background: #e6fffb;
 }
@@ -226,6 +232,7 @@ h4 {
 
 .tree,
 .search-results,
+.path-list,
 .visible-list,
 .coverage-grid {
   display: grid;
@@ -239,6 +246,7 @@ h4 {
 
 .tree-row,
 .search-results button,
+.path-step,
 .visible-subject,
 .diagnostic {
   display: flex;

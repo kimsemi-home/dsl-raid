@@ -8,7 +8,8 @@
     :serial t
     :components
     ((:file "model")
-     (:file "ids")))
+     (:file "ids")
+     (:file "display")))
    (:module "lang"
     :serial t
     :components

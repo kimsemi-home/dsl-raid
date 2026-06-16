@@ -23,7 +23,7 @@
         (:guard (push (dsl-form-args form) guards))
         (:action (push (dsl-form-args form) actions))))
     (make-fsm :id (semantic-id "fsm" (fsm-ast-name ast))
-              :name (symbol-name (fsm-ast-name ast))
+              :name (fsm-display-name (fsm-ast-name ast))
               :states (nreverse states)
               :events (nreverse events)
               :transitions (nreverse transitions)

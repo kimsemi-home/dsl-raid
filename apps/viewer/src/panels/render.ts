@@ -3,6 +3,7 @@ import type { ViewerElements } from "../app/elements";
 import { renderCoverageSummary } from "./coverage-summary";
 import { renderDiagnostics } from "./diagnostics/render";
 import { renderInspector } from "./inspector/render";
+import { renderTerminalPath } from "./path/render";
 import { renderProjectTree } from "./project-tree";
 import { renderSearch } from "./search/render";
 import type { SelectSubject } from "./subject-buttons";
@@ -20,6 +21,7 @@ export function renderPanels(elements: ViewerElements, store: AppStore, actions:
   const panel = subject ? store.view.inspector_panels.find((candidate) => candidate.subject === subject) : undefined;
   renderProjectTree(elements.projectTree, store, actions);
   renderVisibleSubjects(elements.visibleSubjects, store, actions.select);
+  renderTerminalPath(elements.terminalPath, store, actions.select);
   renderCoverageSummary(elements.coverageSummary, store);
   renderInspector(elements.inspector, panel, store.sourceMap, actions.select);
   renderDiagnostics(elements.diagnostics, store);

@@ -6,6 +6,7 @@ export type ViewerElements = {
   inspector: HTMLDivElement;
   projectTree: HTMLDivElement;
   visibleSubjects: HTMLDivElement;
+  terminalPath: HTMLDivElement;
   diagnostics: HTMLDivElement;
   searchInput: HTMLInputElement;
   searchResults: HTMLDivElement;
@@ -29,6 +30,7 @@ export function collectElements(): ViewerElements {
     inspector: mustQuery("#inspector-content"),
     projectTree: mustQuery("#project-tree"),
     visibleSubjects: mustQuery("#visible-subjects"),
+    terminalPath: mustQuery("#terminal-path"),
     diagnostics: mustQuery("#diagnostic-list"),
     searchInput: mustQuery("#search-input"),
     searchResults: mustQuery("#search-results"),

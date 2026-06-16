@@ -4,7 +4,7 @@
   "fsms": [
     {
       "id": "fsm:runtime",
-      "name": "RUNTIME",
+      "name": "RuntimeFSM",
       "defined_at": {"uri": "lisp/runtime/runscope.lisp", "range": {"start_line": 4, "end_line": 16}},
       "states": [
         {"id": "completed", "kind": "atomic", "terminal": true, "terminal_semantics": "success"},
@@ -26,7 +26,7 @@
     },
     {
       "id": "fsm:agent",
-      "name": "AGENT",
+      "name": "AgentFSM",
       "defined_at": {"uri": "lisp/runtime/runscope.lisp", "range": {"start_line": 19, "end_line": 34}},
       "states": [
         {"id": "acting", "kind": "atomic"},
@@ -51,7 +51,7 @@
     },
     {
       "id": "fsm:workspace",
-      "name": "WORKSPACE",
+      "name": "WorkspaceFSM",
       "defined_at": {"uri": "lisp/runtime/runscope.lisp", "range": {"start_line": 37, "end_line": 51}},
       "states": [
         {"id": "clean", "kind": "atomic", "initial": true},
