@@ -5,5 +5,6 @@
 
 pub(crate) mod artifact;
 pub(crate) mod coverage;
+pub(crate) mod diff;
 pub(crate) mod query;
 pub(crate) mod trace;
