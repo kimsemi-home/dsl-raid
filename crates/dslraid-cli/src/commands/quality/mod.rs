@@ -6,12 +6,14 @@ mod projection;
 mod runtime;
 mod schema;
 mod semantic;
+mod source_shape;
 
 use anyhow::Result;
 use std::path::Path;
 
 pub(crate) fn run() -> Result<()> {
     let input = Path::new("examples/runscope/runscope.raid.json");
+    source_shape::check()?;
     schema::check_fixtures()?;
     let ir = semantic::check(input)?;
     projection::check(input, &ir)?;
