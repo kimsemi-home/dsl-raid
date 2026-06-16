@@ -55,6 +55,9 @@ jobs:
         if: steps.cli.outputs.present == 'true' && steps.viewer.outputs.present == 'true'
         run: |
           cargo run -p dslraid-cli -- render examples/runscope/runscope.raid.json --out apps/viewer/public/examples
+          cargo run -p dslraid-cli -- generate examples/runscope/runscope.raid.json \
+            --source-map apps/viewer/public/examples/runscope.sourcemap.json \
+            --skip-lock
           cargo run -p dslraid-cli -- coverage build \
             --trace examples/runscope/run-001.trace.json \
             --design-ir examples/runscope/runscope.raid.json \

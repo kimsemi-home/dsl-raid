@@ -1,7 +1,7 @@
 import { projectIr } from "../graph/projection";
 import { sampleIr } from "../sample-ir";
 import { createInitialCamera, type AppStore } from "../store/app-store";
-import type { CoreIr, CoverageOverlay } from "../types";
+import type { CoreIr, CoverageOverlay, SourceMapDocument } from "../types";
 
 export type ViewerSession = {
   store: AppStore;
@@ -22,11 +22,12 @@ export function createSession(): ViewerSession {
   };
 }
 
-export function setIr(session: ViewerSession, ir: CoreIr, coverage?: CoverageOverlay): void {
+export function setIr(session: ViewerSession, ir: CoreIr, coverage?: CoverageOverlay, sourceMap?: SourceMapDocument): void {
   session.store = {
     ...session.store,
     ir,
     coverage,
+    sourceMap,
     activeProjectionId: ir.projections?.[0]?.id,
     view: projectIr(ir, ir.projections?.[0]?.id, coverage),
     selection: { selected: ir.fsms?.[0]?.id }

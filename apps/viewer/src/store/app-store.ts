@@ -1,8 +1,9 @@
-import type { Camera, CoreIr, CoverageOverlay, SelectionState, ViewModel } from "../types";
+import type { Camera, CoreIr, CoverageOverlay, SelectionState, SourceMapDocument, ViewModel } from "../types";
 
 export type AppStore = {
   ir: CoreIr;
   coverage?: CoverageOverlay;
+  sourceMap?: SourceMapDocument;
   view: ViewModel;
   activeProjectionId?: string;
   camera: Camera;

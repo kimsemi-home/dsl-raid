@@ -10,6 +10,12 @@ ordinary data or data-construction calls.
 
 See [../docs/lisp-dsl.md](../docs/lisp-dsl.md).
 
+The executable authoring path is:
+
+```text
+Lisp forms -> language AST -> conformance -> expanded IR -> canonical JSON
+```
+
 ## Smoke Test
 
 ```bash
@@ -21,5 +27,6 @@ sbcl --noinform --non-interactive \
   --eval '(dslraid::run-golden-smoke)'
 ```
 
-The `fsm` macro expands to a `build-fsm` function call. Conformance and JSON
-emission are explicit functions, not hidden macro-expansion side effects.
+The `fsm` macro expands to a `build-fsm` function call. `build-fsm` delegates
+to `dslraid.lang` for AST parsing and expansion. Conformance and JSON emission
+are explicit functions, not hidden macro-expansion side effects.

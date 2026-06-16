@@ -32,6 +32,10 @@ lisp/
   ir/
     model.lisp
     ids.lisp
+  lang/
+    ast.lisp
+    conformance.lisp
+    expand.lisp
   dsl/
     syntax.lisp
     expand.lisp
@@ -134,8 +138,13 @@ Normalization responsibilities:
 - preserve enough structure for language conformance diagnostics
 
 Expansion must be ordinary, testable Lisp functions. Macro expansion can call
-builders, but it should not hide IO, conformance, projection, or backend
-generation.
+builders, and builders should delegate to the language layer:
+
+```text
+dsl/ macro -> lang/ AST -> lang/ expansion -> ir/ object
+```
+
+It should not hide IO, conformance, projection, or backend generation.
 
 ## Conformance and Projection
 

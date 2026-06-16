@@ -1,6 +1,6 @@
 import { zoomAt } from "../canvas/camera";
 import { renderPanels } from "../panels/render";
-import type { CoverageOverlay, CoreIr, Point } from "../types";
+import type { CoverageOverlay, CoreIr, Point, SourceMapDocument } from "../types";
 import type { ViewerActions } from "./action-types";
 import type { ViewerElements } from "./elements";
 import { fitGraph as fitCamera } from "./fit";
@@ -8,8 +8,8 @@ import { setCoverage as applyCoverage, setIr as applyIr, setProjection as applyP
 
 export function createActions(session: ViewerSession, elements: ViewerElements, queueRender: () => void): ViewerActions {
   const actions = {
-    setIr: (ir: CoreIr, coverage?: CoverageOverlay) => {
-      applyIr(session, ir, coverage);
+    setIr: (ir: CoreIr, coverage?: CoverageOverlay, sourceMap?: SourceMapDocument) => {
+      applyIr(session, ir, coverage, sourceMap);
       actions.fit();
     },
     setCoverage: (coverage: CoverageOverlay) => {

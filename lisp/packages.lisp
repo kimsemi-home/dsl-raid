@@ -13,6 +13,13 @@
    #:fsm-transitions #:fsm-guards #:fsm-actions #:fsm-defined-at #:fsm-tags
    #:semantic-id #:state-subject #:transition-subject))
 
+(defpackage #:dslraid.lang
+  (:use #:cl #:dslraid.ir)
+  (:export
+   #:parse-fsm-form
+   #:validate-fsm-ast
+   #:expand-fsm-ast))
+
 (defpackage #:dslraid.dsl
   (:use #:cl #:dslraid.ir)
   (:export
@@ -39,6 +46,10 @@
 
 (defpackage #:dslraid
   (:use #:cl)
+  (:import-from #:dslraid.lang
+                #:parse-fsm-form
+                #:validate-fsm-ast
+                #:expand-fsm-ast)
   (:import-from #:dslraid.dsl #:fsm #:defdsl-fsm #:build-fsm)
   (:import-from #:dslraid.expansion #:normalize-fsm)
   (:import-from #:dslraid.conformance #:validate-fsm)
@@ -47,6 +58,9 @@
    #:fsm
    #:defdsl-fsm
    #:build-fsm
+   #:parse-fsm-form
+   #:validate-fsm-ast
+   #:expand-fsm-ast
    #:normalize-fsm
    #:validate-fsm
    #:emit-fsm-json

@@ -1,5 +1,6 @@
 /target/
 /apps/viewer/node_modules/
 /apps/viewer/dist/
+/apps/viewer/public/examples/
 /.DS_Store
 *.fasl

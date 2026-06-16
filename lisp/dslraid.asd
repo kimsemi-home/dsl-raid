@@ -9,6 +9,15 @@
     :components
     ((:file "model")
      (:file "ids")))
+   (:module "lang"
+    :serial t
+    :components
+    ((:file "ast")
+     (:file "diagnostic")
+     (:file "duplicates")
+     (:file "conformance")
+     (:file "expand-items")
+     (:file "expand")))
    (:module "dsl"
     :serial t
     :components

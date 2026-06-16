@@ -18,7 +18,7 @@ export function renderPanels(elements: ViewerElements, store: AppStore, actions:
   const panel = subject ? store.view.inspector_panels.find((candidate) => candidate.subject === subject) : undefined;
   renderProjectTree(elements.projectTree, store, actions);
   renderCoverageSummary(elements.coverageSummary, store);
-  renderInspector(elements.inspector, panel, actions.select);
+  renderInspector(elements.inspector, panel, store.sourceMap, actions.select);
   renderDiagnostics(elements.diagnostics, store);
   renderSearch(elements.searchInput, elements.searchResults, store, actions.select);
 }
