@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-repo="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$script_dir/lib/generated.sh"
+
 mode="${1:-check}"
 trace="${2:-examples/runscope/run-001.trace.json}"
 coverage="${3:-examples/runscope/run-001.coverage.json}"
 out="${4:-docs/generated/trace-catalog.md}"
-target="$repo/$out"
+
 generate() {
   python3 - "$repo/$trace" "$repo/$coverage" <<'PY'
 import json, sys
@@ -49,25 +51,10 @@ for item in sorted(observed, key=lambda value: value["subject"]):
         item["failure_rate"], item.get("last_seen")])
 PY
 }
-cd "$repo"
-case "$mode" in
-  generate)
-    mkdir -p "$(dirname "$target")"
-    generate > "$target"
-    echo "generated $out"
-    ;;
-  check)
-    tmp="$(mktemp)"
-    trap 'rm -f "$tmp"' EXIT
-    generate > "$tmp"
-    if ! diff -u "$target" "$tmp"; then
-      echo "generated trace catalog is stale: run scripts/tracegen.sh generate" >&2
-      exit 1
-    fi
-    echo "trace generated doc ok"
-    ;;
-  *)
-    echo "usage: scripts/tracegen.sh [generate|check] [trace] [coverage] [out]" >&2
-    exit 2
-    ;;
-esac
+
+dslraid_enter_repo
+dslraid_generated_case \
+  "$mode" "$out" \
+  "generated trace catalog is stale: run scripts/tracegen.sh generate" \
+  "trace generated doc ok" \
+  "usage: scripts/tracegen.sh [generate|check] [trace] [coverage] [out]"

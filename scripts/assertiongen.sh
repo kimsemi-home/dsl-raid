@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-repo="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$script_dir/lib/generated.sh"
+
 mode="${1:-check}"
 registry="${2:-examples/runscope/runscope.assertions.json}"
 report="${3:-examples/runscope/runscope.validation.json}"
 out="${4:-docs/generated/assertion-catalog.md}"
-target="$repo/$out"
 
 generate() {
   python3 - "$repo/$registry" "$repo/$report" <<'PY'
@@ -44,26 +45,9 @@ for item in sorted(registry["assertions"], key=lambda value: value["id"]):
 PY
 }
 
-cd "$repo"
-
-case "$mode" in
-  generate)
-    mkdir -p "$(dirname "$target")"
-    generate > "$target"
-    echo "generated $out"
-    ;;
-  check)
-    tmp="$(mktemp)"
-    trap 'rm -f "$tmp"' EXIT
-    generate > "$tmp"
-    if ! diff -u "$target" "$tmp"; then
-      echo "generated assertion catalog is stale: run scripts/assertiongen.sh generate" >&2
-      exit 1
-    fi
-    echo "assertion generated doc ok"
-    ;;
-  *)
-    echo "usage: scripts/assertiongen.sh [generate|check] [registry] [report] [out]" >&2
-    exit 2
-    ;;
-esac
+dslraid_enter_repo
+dslraid_generated_case \
+  "$mode" "$out" \
+  "generated assertion catalog is stale: run scripts/assertiongen.sh generate" \
+  "assertion generated doc ok" \
+  "usage: scripts/assertiongen.sh [generate|check] [registry] [report] [out]"

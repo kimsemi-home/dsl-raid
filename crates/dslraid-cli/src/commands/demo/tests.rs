@@ -1,6 +1,9 @@
 use serde_json::Value;
 use std::fs;
 use std::path::{Path, PathBuf};
+use std::sync::atomic::{AtomicUsize, Ordering};
+
+static TEMP_ID: AtomicUsize = AtomicUsize::new(0);
 
 #[test]
 fn package_writes_viewer_demo_assets() {
@@ -47,9 +50,10 @@ fn repo_path(path: &str) -> PathBuf {
 
 fn temp_dir() -> PathBuf {
     let dir = std::env::temp_dir().join(format!(
-        "dslraid-demo-{}-{}",
+        "dslraid-demo-{}-{}-{}",
         std::process::id(),
-        timestamp()
+        timestamp(),
+        TEMP_ID.fetch_add(1, Ordering::SeqCst)
     ));
     fs::create_dir_all(&dir).unwrap();
     dir
