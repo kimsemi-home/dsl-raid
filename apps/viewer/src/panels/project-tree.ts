@@ -1,6 +1,7 @@
 import type { AppStore } from "../store/app-store";
 import { fsmSummary, fsmSummaryLabel } from "../graph/fsm-summary";
 import { escapeHtml } from "./html";
+import { activeFsmId } from "./project-tree-state";
 
 export type ProjectTreeActions = {
   openFsm: (fsmId: string) => void;
@@ -30,13 +31,15 @@ function projectionRows(store: AppStore): string {
 }
 
 function fsmRows(store: AppStore): string {
+  const activeId = activeFsmId(store);
   return (store.ir.fsms ?? [])
-    .map(
-      (fsm) => `<button class="tree-row" data-fsm="${escapeHtml(fsm.id)}">
+    .map((fsm) => {
+      const active = fsm.id === activeId ? " active" : "";
+      return `<button class="tree-row${active}" data-fsm="${escapeHtml(fsm.id)}">
         <span>${escapeHtml(fsm.name)}</span>
         <small>${escapeHtml(fsmSummaryLabel(fsmSummary(fsm)))}</small>
-      </button>`
-    )
+      </button>`;
+    })
     .join("");
 }
 
