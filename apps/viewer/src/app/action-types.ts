@@ -1,4 +1,4 @@
-import type { CoverageOverlay, CoreIr, Point, RuntimeTrace, SourceMapDocument } from "../types";
+import type { CoverageOverlay, CoreIr, DiagnosticSeverityFilter, Point, RuntimeTrace, SourceMapDocument } from "../types";
 
 export type ViewerActions = {
   setIr: (ir: CoreIr, coverage?: CoverageOverlay, sourceMap?: SourceMapDocument, trace?: RuntimeTrace) => void;
@@ -15,6 +15,7 @@ export type ViewerActions = {
   zoom: (point: Point, factor: number) => void;
   fit: () => void;
   setDiagnosticsVisible: (visible: boolean) => void;
+  setDiagnosticSeverity: (severity: DiagnosticSeverityFilter) => void;
   setFocusDepth: (depth: 1 | 2) => void;
   setCompositionLimit: (limit: number) => void;
   updateStatus: (world: Point) => void;

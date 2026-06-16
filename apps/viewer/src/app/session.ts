@@ -19,6 +19,7 @@ export function createSession(): ViewerSession {
       selection: {},
       focusDepth: 2,
       showDiagnostics: true,
+      diagnosticSeverity: "all",
       compositionLimit: DEFAULT_COMPOSITION_LIMIT
     }
   };

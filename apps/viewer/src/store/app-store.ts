@@ -1,4 +1,4 @@
-import type { Camera, CoreIr, CoverageOverlay, RuntimeTrace, SelectionState, SourceMapDocument, ViewModel } from "../types";
+import type { Camera, CoreIr, CoverageOverlay, DiagnosticSeverityFilter, RuntimeTrace, SelectionState, SourceMapDocument, ViewModel } from "../types";
 
 export const DEFAULT_COMPOSITION_LIMIT = 48;
 
@@ -13,6 +13,7 @@ export type AppStore = {
   selection: SelectionState;
   focusDepth: 1 | 2;
   showDiagnostics: boolean;
+  diagnosticSeverity: DiagnosticSeverityFilter;
   compositionLimit: number;
 };
 

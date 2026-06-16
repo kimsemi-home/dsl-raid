@@ -1,5 +1,6 @@
 import type { ViewerActions } from "../app/action-types";
 import type { ViewerElements } from "../app/elements";
+import { diagnosticFilterValue } from "../panels/diagnostics/filter";
 
 export function bindToolbarControls(elements: ViewerElements, actions: ViewerActions): void {
   elements.zoomOut.addEventListener("click", () => actions.zoom(center(elements.canvas), 0.85));
@@ -7,6 +8,9 @@ export function bindToolbarControls(elements: ViewerElements, actions: ViewerAct
   elements.fit.addEventListener("click", actions.fit);
   elements.diagnosticToggle.addEventListener("change", () => {
     actions.setDiagnosticsVisible(elements.diagnosticToggle.checked);
+  });
+  elements.diagnosticSeverity.addEventListener("change", () => {
+    actions.setDiagnosticSeverity(diagnosticFilterValue(elements.diagnosticSeverity.value));
   });
   elements.focusToggle.addEventListener("change", () => {
     actions.setFocusDepth(elements.focusToggle.checked ? 1 : 2);

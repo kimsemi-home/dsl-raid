@@ -20,6 +20,7 @@ export type ViewerElements = {
   zoomIn: HTMLButtonElement;
   fit: HTMLButtonElement;
   diagnosticToggle: HTMLInputElement;
+  diagnosticSeverity: HTMLSelectElement;
   focusToggle: HTMLInputElement;
   compositionLimit: HTMLInputElement;
 };
@@ -45,6 +46,7 @@ export function collectElements(): ViewerElements {
     zoomIn: mustQuery("#zoom-in"),
     fit: mustQuery("#fit"),
     diagnosticToggle: mustQuery("#diagnostic-toggle"),
+    diagnosticSeverity: mustQuery("#diagnostic-severity"),
     focusToggle: mustQuery("#focus-toggle"),
     compositionLimit: mustQuery("#composition-limit")
   };

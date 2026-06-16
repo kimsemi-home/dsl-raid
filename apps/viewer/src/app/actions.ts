@@ -1,6 +1,6 @@
 import { zoomAt } from "../canvas/camera";
 import { renderPanels } from "../panels/render";
-import type { CoverageOverlay, CoreIr, Point, RuntimeTrace, SourceMapDocument } from "../types";
+import type { CoverageOverlay, CoreIr, DiagnosticSeverityFilter, Point, RuntimeTrace, SourceMapDocument } from "../types";
 import type { ViewerActions } from "./action-types";
 import { setCompositionLimit } from "./composition-limit";
 import type { ViewerElements } from "./elements";
@@ -57,6 +57,10 @@ export function createActions(session: viewerSession.ViewerSession, elements: Vi
       refresh();
     },
     setDiagnosticsVisible: (visible: boolean) => { session.store.showDiagnostics = visible; actions.syncPanels(); },
+    setDiagnosticSeverity: (severity: DiagnosticSeverityFilter) => {
+      session.store.diagnosticSeverity = severity;
+      actions.syncPanels();
+    },
     setFocusDepth: (depth: 1 | 2) => {
       session.store.focusDepth = depth;
       refresh();

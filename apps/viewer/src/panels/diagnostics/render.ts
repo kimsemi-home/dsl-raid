@@ -2,6 +2,7 @@ import type { AppStore } from "../../store/app-store";
 import type { Diagnostic } from "../../types";
 import { escapeHtml } from "../html";
 import { bindSubjectButtons, type SelectSubject } from "../subject-buttons";
+import { filterDiagnostics } from "./filter";
 import { diagnosticSelection, relatedAttribute } from "./subjects";
 
 export function renderDiagnostics(element: HTMLElement, store: AppStore, onSelect: SelectSubject): void {
@@ -9,13 +10,19 @@ export function renderDiagnostics(element: HTMLElement, store: AppStore, onSelec
     element.innerHTML = `<p class="muted">Diagnostics hidden.</p>`;
     return;
   }
-  const diagnostics = store.ir.diagnostics ?? [];
+  const diagnostics = filterDiagnostics(store.ir.diagnostics ?? [], store.diagnosticSeverity);
   if (diagnostics.length === 0) {
-    element.innerHTML = `<p class="muted">No diagnostics in this IR. CLI validation can still produce assertion-level reports.</p>`;
+    element.innerHTML = emptyMessage(store.diagnosticSeverity);
     return;
   }
   element.innerHTML = diagnostics.map((item) => diagnosticHtml(item, store.selection.selected)).join("");
   bindSubjectButtons(element, onSelect);
+}
+
+function emptyMessage(filter: string): string {
+  return filter === "all"
+    ? `<p class="muted">No diagnostics in this IR. CLI validation can still produce assertion-level reports.</p>`
+    : `<p class="muted">No ${escapeHtml(filter)} diagnostics.</p>`;
 }
 
 function diagnosticHtml(diagnostic: Diagnostic, selected?: string): string {

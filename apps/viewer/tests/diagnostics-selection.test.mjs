@@ -37,3 +37,21 @@ test("subject buttons decode optional related subject lists", async () => {
 
   assert.deepEqual(relatedSubjects(button), ["state:a", "transition:b"]);
 });
+
+test("diagnostic filter narrows by exact severity", async () => {
+  const { diagnosticFilterValue, filterDiagnostics } = await loadTs("src/panels/diagnostics/filter.ts");
+  const diagnostics = [diagnostic("diag:1", "error"), diagnostic("diag:2", "warning")];
+
+  assert.deepEqual(filterDiagnostics(diagnostics, "warning").map((item) => item.id), ["diag:2"]);
+  assert.equal(filterDiagnostics(diagnostics, "all").length, 2);
+  assert.equal(diagnosticFilterValue("unexpected"), "all");
+});
+
+function diagnostic(id, severity) {
+  return {
+    id,
+    code: "FSM000",
+    severity,
+    message: "fixture"
+  };
+}

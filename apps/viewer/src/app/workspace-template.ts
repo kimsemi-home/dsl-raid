@@ -6,6 +6,7 @@ export function workspaceTemplate(): string {
         <button id="zoom-in" title="Zoom in">+</button>
         <button id="fit" title="Fit graph">Fit</button>
         <label><input id="diagnostic-toggle" type="checkbox" checked /> Diagnostics</label>
+        <label>Severity ${diagnosticSeveritySelect()}</label>
         <label><input id="focus-toggle" type="checkbox" /> 1-hop focus</label>
         <label>States <input id="composition-limit" type="number" min="1" step="24" value="48" /></label>
       </div>
@@ -29,4 +30,14 @@ export function workspaceTemplate(): string {
       </div>
     </section>
   `;
+}
+
+function diagnosticSeveritySelect(): string {
+  return `<select id="diagnostic-severity">
+    <option value="all">All</option>
+    <option value="error">Error</option>
+    <option value="warning">Warning</option>
+    <option value="info">Info</option>
+    <option value="hint">Hint</option>
+  </select>`;
 }

@@ -30,3 +30,5 @@ export type Diagnostic = {
   subjects?: string[];
   suggestion?: string;
 };
+
+export type DiagnosticSeverityFilter = "all" | Diagnostic["severity"];
