@@ -13,7 +13,7 @@
 
 (defun unknown-form-diagnostic (ast form)
   (language-diagnostic
-   "LANG004"
+   (language-code :unknown-form)
    :error
    (ast-form-subject ast form)
    (unknown-form-message (dsl-form-head form))

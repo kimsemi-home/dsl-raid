@@ -14,6 +14,7 @@
     :serial t
     :components
     ((:file "ast")
+     (:file "codes")
      (:file "diagnostic")
      (:file "forms")
      (:file "duplicates")
@@ -40,7 +41,8 @@
      (:file "json-source")
      (:file "json-fsm")
      (:file "json")
-     (:file "markdown")))
+     (:file "markdown")
+     (:file "diagnostics")))
    (:module "runtime"
     :serial t
     :components

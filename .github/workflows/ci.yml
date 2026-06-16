@@ -230,8 +230,14 @@ jobs:
       - name: Check generated Lisp pipeline doc
         run: bash scripts/lisp-docgen.sh check
 
+      - name: Check generated Lisp diagnostics doc
+        run: bash scripts/langdiaggen.sh check
+
       - name: Check generated Lisp canonical IR
         run: bash scripts/lisp-irgen.sh check
+
+      - name: Check generated Rust backend from Lisp IR
+        run: bash scripts/lisp-rustgen.sh check
 
   dslraid:
     name: DSLRaid quality

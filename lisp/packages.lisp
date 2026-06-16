@@ -42,7 +42,8 @@
   (:export
    #:emit-fsm-json
    #:emit-project-json
-   #:emit-language-pipeline-markdown))
+   #:emit-language-pipeline-markdown
+   #:emit-language-diagnostics-markdown))
 
 (defpackage #:dslraid
   (:use #:cl)
@@ -56,7 +57,8 @@
   (:import-from #:dslraid.emit
                 #:emit-fsm-json
                 #:emit-project-json
-                #:emit-language-pipeline-markdown)
+                #:emit-language-pipeline-markdown
+                #:emit-language-diagnostics-markdown)
   (:export
    #:fsm
    #:defdsl-fsm
@@ -69,4 +71,5 @@
    #:emit-fsm-json
    #:emit-project-json
    #:emit-language-pipeline-markdown
+   #:emit-language-diagnostics-markdown
    #:runscope-fsms))
