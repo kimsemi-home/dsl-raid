@@ -7,6 +7,7 @@ pub(crate) mod artifact;
 pub(crate) mod compose;
 pub(crate) mod coverage;
 pub(crate) mod diff;
+pub(crate) mod generate;
 pub(crate) mod golden;
 pub(crate) mod outputs;
 pub(crate) mod quality;

@@ -15,7 +15,7 @@ Usage: dslraid <COMMAND>
 | `-h`, `--help` | no | Print help |
 | `-V`, `--version` | no | Print version |
 
-Subcommands: `init`, `normalize`, `migrate`, `validate`, `schema`, `quality`, `golden`, `project`, `render`, `codegen`, `doc`, `compose`, `diff`, `query`, `trace`, `coverage`, `artifact`, `compat`, `export`, `help`
+Subcommands: `init`, `normalize`, `migrate`, `validate`, `schema`, `quality`, `golden`, `generate`, `project`, `render`, `codegen`, `doc`, `compose`, `diff`, `query`, `trace`, `coverage`, `artifact`, `compat`, `export`, `help`
 
 ## `dslraid init`
 
@@ -159,6 +159,21 @@ Usage: help [COMMAND]...
 | Argument | Required | Help |
 | --- | --- | --- |
 | `subcommand` | no | Print help for the subcommand(s) |
+
+## `dslraid generate`
+
+Regenerate artifacts declared by Canonical IR
+
+```text
+Usage: generate [OPTIONS] <INPUT>
+```
+
+| Argument | Required | Help |
+| --- | --- | --- |
+| `input` | yes | Canonical IR input file |
+| `--cli-doc` | no | Also regenerate the generated CLI reference Markdown |
+| `--skip-lock` | no | Do not refresh the inferred lock file after generation |
+| `-h`, `--help` | no | Print help |
 
 ## `dslraid project`
 

@@ -21,6 +21,8 @@ use anyhow::{bail, Result};
 use serde_json::Value;
 use std::path::Path;
 
+pub(crate) use path::resolve_artifact_path;
+
 pub(crate) fn verify(input: &Path, lock: Option<&Path>, format: OutputFormat) -> Result<()> {
     let report = report::build(input, lock)?;
     match format {

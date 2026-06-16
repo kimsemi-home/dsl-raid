@@ -16,15 +16,14 @@ pub(super) fn check(ir: &CoreIr, input: &Path) -> Result<()> {
 
 fn check_one(ir: &CoreIr, input: &Path, artifact: &Artifact, target: CodegenTarget) -> Result<()> {
     let expected = generate_code(ir, target)?;
-    let actual = fs::read_to_string(&artifact.path)
+    let path = crate::commands::artifact::resolve_artifact_path(input, &artifact.path);
+    let actual = fs::read_to_string(&path)
         .with_context(|| format!("read generated artifact {}", artifact.path))?;
     if actual != expected {
         bail!(
-            "generated artifact {} is stale: run `dslraid codegen {} --target {} --out {}`",
+            "generated artifact {} is stale: run `dslraid generate {}`",
             artifact.id,
             input.display(),
-            target_name(target),
-            artifact.path
         );
     }
     Ok(())
@@ -38,16 +37,8 @@ fn target_for(artifact: &Artifact) -> Option<CodegenTarget> {
         "rs" => Some(CodegenTarget::Rust),
         "go" => Some(CodegenTarget::Go),
         "ts" => Some(CodegenTarget::TypeScript),
+        "mmd" => Some(CodegenTarget::Mermaid),
+        "dot" => Some(CodegenTarget::Dot),
         _ => None,
-    }
-}
-
-fn target_name(target: CodegenTarget) -> &'static str {
-    match target {
-        CodegenTarget::Rust => "rust",
-        CodegenTarget::Go => "go",
-        CodegenTarget::TypeScript => "typescript",
-        CodegenTarget::Mermaid => "mermaid",
-        CodegenTarget::Dot => "dot",
     }
 }

@@ -12,7 +12,7 @@ pub(super) fn check(input: &Path) -> Result<()> {
     let expected = fs::read(lock_path)?;
     if actual != expected {
         bail!(
-            "lock file is stale: run `dslraid artifact lock update {}`",
+            "lock file is stale: run `dslraid generate {}`",
             input.display()
         );
     }

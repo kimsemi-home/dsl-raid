@@ -124,6 +124,7 @@ cargo run -p dslraid-cli -- schema validate schemas/dslraid-core.schema.json exa
 cargo run -p dslraid-cli -- migrate examples/runscope/runscope.raid.json --from 0.1.0 --to 0.1.0
 cargo run -p dslraid-cli -- project examples/runscope/runscope.raid.json --projection view:runtime
 cargo run -p dslraid-cli -- render examples/runscope/runscope.raid.json --format svg
+cargo run -p dslraid-cli -- generate examples/runscope/runscope.raid.json --cli-doc docs/generated/cli-reference.md
 cargo run -p dslraid-cli -- codegen examples/runscope/runscope.raid.json --target rust
 cargo run -p dslraid-cli -- codegen examples/runscope/runscope.raid.json --target rust --out generated/runtime_fsm.rs
 cargo run -p dslraid-cli -- codegen examples/runscope/runscope.raid.json --target go --out generated/runtime_fsm.go
@@ -151,10 +152,11 @@ cargo run -p dslraid-cli -- quality
 MVP implementations now exist for no-op version migration, richer IR queries,
 lazy reachable composition materialization, semantic diff review summaries,
 stale artifact verification against lock input and content hashes, deterministic
-lock updates, generated code and CLI-doc freshness checks, runtime trace
-import/check, trace-derived coverage overlays, and coverage-aware viewer
-overlays. Planned but not yet implemented as full product features: non-trivial
-migrations, synchronized product semantics, WASM packaging, and WebGL rendering.
+lock updates, IR-declared artifact regeneration, generated code and CLI-doc
+freshness checks, runtime trace import/check, trace-derived coverage overlays,
+and coverage-aware viewer overlays. Planned but not yet implemented as full
+product features: non-trivial migrations, synchronized product semantics, WASM
+packaging, and WebGL rendering.
 
 ## Viewer
 

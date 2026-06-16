@@ -1,4 +1,4 @@
-use anyhow::Result;
+use anyhow::{Context, Result};
 use std::path::Path;
 
 pub(super) fn check(input: &Path) -> Result<()> {
@@ -7,7 +7,8 @@ pub(super) fn check(input: &Path) -> Result<()> {
             input: input.to_path_buf(),
             golden: Path::new("examples/runscope/runscope.generated.md").to_path_buf(),
         },
-    })?;
+    })
+    .with_context(|| hint(input))?;
     crate::commands::outputs::doc(crate::DocArgs {
         command: crate::DocCommand::Cli {
             command: crate::CliDocCommand::Check {
@@ -15,4 +16,12 @@ pub(super) fn check(input: &Path) -> Result<()> {
             },
         },
     })
+    .with_context(|| hint(input))
+}
+
+fn hint(input: &Path) -> String {
+    format!(
+        "refresh generated docs with `dslraid generate {} --cli-doc docs/generated/cli-reference.md`",
+        input.display()
+    )
 }

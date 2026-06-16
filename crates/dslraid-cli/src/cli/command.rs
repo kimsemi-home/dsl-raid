@@ -10,6 +10,8 @@ pub(crate) enum Command {
     Schema(SchemaArgs),
     Quality,
     Golden(GoldenArgs),
+    /// Regenerate artifacts declared by Canonical IR.
+    Generate(GenerateArgs),
     Project(ProjectArgs),
     Render(RenderArgs),
     Codegen(CodegenArgs),
