@@ -15,6 +15,9 @@ run_sbcl() {
 }
 
 validate_ir() {
+  if [ "${DSLRAID_SKIP_RUST_VALIDATE:-0}" = "1" ]; then
+    return 0
+  fi
   cargo run --quiet -p dslraid-cli -- validate "$target" \
     --schema schemas/dslraid-core.schema.json \
     --format text \

@@ -48,6 +48,6 @@ fn included(entry: &DirEntry) -> bool {
 fn is_source(path: &Path) -> bool {
     matches!(
         path.extension().and_then(|value| value.to_str()),
-        Some("rs" | "ts" | "tsx" | "js" | "jsx" | "lisp")
+        Some("rs" | "ts" | "tsx" | "js" | "jsx" | "lisp" | "sh")
     )
 }

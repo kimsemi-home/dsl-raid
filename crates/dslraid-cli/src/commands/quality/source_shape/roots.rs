@@ -1,10 +1,11 @@
 use std::path::{Path, PathBuf};
 
-pub(super) fn source_roots(root: &Path) -> [PathBuf; 3] {
+pub(super) fn source_roots(root: &Path) -> [PathBuf; 4] {
     [
         root.join("crates"),
         root.join("apps/viewer/src"),
         root.join("lisp"),
+        root.join("scripts"),
     ]
 }
 

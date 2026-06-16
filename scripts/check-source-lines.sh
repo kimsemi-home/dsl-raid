@@ -22,12 +22,13 @@ scan_root() {
     check_file "$file"
   done < <(find "$path" \
     \( -path '*/node_modules/*' -o -path '*/dist/*' -o -path '*/target/*' \) -prune \
-    -o -type f \( -name '*.rs' -o -name '*.ts' -o -name '*.tsx' -o -name '*.js' -o -name '*.jsx' -o -name '*.lisp' \) -print0)
+    -o -type f \( -name '*.rs' -o -name '*.ts' -o -name '*.tsx' -o -name '*.js' -o -name '*.jsx' -o -name '*.lisp' -o -name '*.sh' \) -print0)
 }
 
 scan_root "$root/crates"
 scan_root "$root/apps/viewer/src"
 scan_root "$root/lisp"
+scan_root "$root/scripts"
 
 if [ "$failed" -ne 0 ]; then
   exit 1

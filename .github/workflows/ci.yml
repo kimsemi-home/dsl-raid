@@ -245,6 +245,12 @@ jobs:
             echo "present=false" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Install SBCL
+        if: steps.cli.outputs.present == 'true'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y sbcl
+
       - uses: dtolnay/rust-toolchain@stable
         if: steps.cli.outputs.present == 'true'
 
