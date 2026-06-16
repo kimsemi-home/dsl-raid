@@ -1,7 +1,7 @@
 (in-package #:dslraid.lang)
 
 (defparameter *known-fsm-form-heads*
-  '(:state :event :transition :defined-at :tags :guard :action))
+  '(:malformed :state :event :transition :defined-at :tags :guard :action))
 
 (defun unknown-form-diagnostics (ast)
   (let ((diagnostics '()))

@@ -23,7 +23,11 @@ Lisp authoring forms instead of only Canonical IR objects."
                 collect (parse-dsl-form form ordinal))))
 
 (defun parse-dsl-form (form ordinal)
-  (destructuring-bind (head &rest args) form
-    (make-dsl-form :head head
-                   :args args
-                   :ordinal ordinal)))
+  (if (consp form)
+      (destructuring-bind (head &rest args) form
+        (make-dsl-form :head head
+                       :args args
+                       :ordinal ordinal))
+      (make-dsl-form :head :malformed
+                     :args (list form)
+                     :ordinal ordinal)))

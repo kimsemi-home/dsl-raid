@@ -15,9 +15,13 @@
     :components
     ((:file "ast")
      (:file "pipeline")
+     (:file "code-authoring")
+     (:file "code-transition")
+     (:file "code-identifiers")
      (:file "codes")
      (:file "diagnostic")
      (:file "forms")
+     (:file "malformed")
      (:file "identifiers")
      (:file "duplicates")
      (:file "references")

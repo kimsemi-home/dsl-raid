@@ -9,6 +9,7 @@
                                (language-code :duplicate-event))
    (duplicate-form-diagnostics ast :transition "transition"
                                (language-code :duplicate-transition))
+   (malformed-form-diagnostics ast)
    (unknown-form-diagnostics ast)
    (primary-id-diagnostics ast)
    (transition-required-diagnostics ast)
