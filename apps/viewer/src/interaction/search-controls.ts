@@ -1,0 +1,6 @@
+import type { ViewerActions } from "../app/actions";
+import type { ViewerElements } from "../app/elements";
+
+export function bindSearchControls(elements: ViewerElements, actions: ViewerActions): void {
+  elements.searchInput.addEventListener("input", actions.syncPanels);
+}

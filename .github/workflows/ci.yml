@@ -200,6 +200,15 @@ jobs:
           GOLANGCI_LINT_VERSION: v2.12.2
         run: scripts/go-lint.sh
 
+  source-shape:
+    name: Source shape
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Enforce source line budget
+        run: bash scripts/check-source-lines.sh
+
   dslraid:
     name: DSLRaid quality
     runs-on: ubuntu-latest

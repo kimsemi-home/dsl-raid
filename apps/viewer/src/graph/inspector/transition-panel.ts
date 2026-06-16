@@ -1,0 +1,47 @@
+import type { CoreIr, CoverageSubject, Fsm, InspectorPanel, Transition } from "../../types";
+import { coverageRows } from "../coverage";
+import { eventSubject, stateSubject } from "../ids";
+import { artifactRow, artifactsForSubject } from "../traceability";
+
+export function transitionPanel(
+  ir: CoreIr,
+  fsm: Fsm,
+  transition: Transition,
+  subject: string,
+  coverage?: CoverageSubject
+): InspectorPanel {
+  const requires = transition.requires ?? [];
+  return {
+    subject,
+    title: transition.id,
+    sections: [
+      {
+        title: "Transition",
+        rows: [
+          { label: "From", value: transition.from, subject: stateSubject(fsm.id, transition.from) },
+          { label: "To", value: transition.to, subject: stateSubject(fsm.id, transition.to) },
+          {
+            label: "Event",
+            value: transition.on ?? "epsilon",
+            subject: transition.on ? eventSubject(fsm.id, transition.on) : undefined
+          }
+        ]
+      },
+      {
+        title: "Policy",
+        rows:
+          requires.length > 0
+            ? requires.map((required) => ({ label: "Requires", value: required, subject: required }))
+            : [{ label: "Requires", value: "none" }]
+      },
+      {
+        title: "Coverage",
+        rows: coverageRows(coverage)
+      },
+      {
+        title: "Traceability",
+        rows: artifactsForSubject(ir, subject).map(artifactRow)
+      }
+    ]
+  };
+}
