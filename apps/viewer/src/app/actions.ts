@@ -5,9 +5,11 @@ import type { ViewerActions } from "./action-types";
 import type { ViewerElements } from "./elements";
 import { fitGraph as fitCamera } from "./fit";
 import { openFsm } from "./open-fsm";
+import { selectRelativeSubject } from "./select-relative";
 import * as viewerSession from "./session";
 
 export function createActions(session: viewerSession.ViewerSession, elements: ViewerElements, queueRender: () => void): ViewerActions {
+  const refresh = () => { actions.syncPanels(); queueRender(); };
   const actions = {
     setIr: (ir: CoreIr, coverage?: CoverageOverlay, sourceMap?: SourceMapDocument, trace?: RuntimeTrace) => {
       viewerSession.setIr(session, ir, coverage, sourceMap, trace);
@@ -15,8 +17,7 @@ export function createActions(session: viewerSession.ViewerSession, elements: Vi
     },
     setCoverage: (coverage: CoverageOverlay) => {
       viewerSession.setCoverage(session, coverage);
-      actions.syncPanels();
-      queueRender();
+      refresh();
     },
     setTrace: (trace: RuntimeTrace) => {
       viewerSession.setTrace(session, trace);
@@ -33,8 +34,11 @@ export function createActions(session: viewerSession.ViewerSession, elements: Vi
     openFsm: (fsmId: string) => openFsm(actions, session, fsmId),
     select: (subject: string | undefined) => {
       session.store.selection.selected = subject;
-      actions.syncPanels();
-      queueRender();
+      refresh();
+    },
+    selectRelative: (step: -1 | 1) => {
+      selectRelativeSubject(session, step);
+      refresh();
     },
     hover: (subject: string | undefined) => {
       session.store.selection.hovered = subject;
@@ -51,8 +55,7 @@ export function createActions(session: viewerSession.ViewerSession, elements: Vi
     },
     fit: () => {
       session.store.camera = fitCamera(session.store.view, elements.canvas);
-      actions.syncPanels();
-      queueRender();
+      refresh();
     },
     setDiagnosticsVisible: (visible: boolean) => {
       session.store.showDiagnostics = visible;
@@ -60,12 +63,9 @@ export function createActions(session: viewerSession.ViewerSession, elements: Vi
     },
     setFocusDepth: (depth: 1 | 2) => {
       session.store.focusDepth = depth;
-      actions.syncPanels();
-      queueRender();
+      refresh();
     },
-    updateStatus: (world: Point) => {
-      elements.status.textContent = `zoom ${session.store.camera.zoom.toFixed(2)} / world ${world.x.toFixed(0)}, ${world.y.toFixed(0)}`;
-    },
+    updateStatus: (world: Point) => { elements.status.textContent = `zoom ${session.store.camera.zoom.toFixed(2)} / world ${world.x.toFixed(0)}, ${world.y.toFixed(0)}`; },
     syncPanels: () => renderPanels(elements, session.store, actions),
     queueRender
   };

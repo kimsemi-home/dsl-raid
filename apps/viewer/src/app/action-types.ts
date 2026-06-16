@@ -8,6 +8,7 @@ export type ViewerActions = {
   openProjection: (projectionId: string) => void;
   openFsm: (fsmId: string) => void;
   select: (subject: string | undefined) => void;
+  selectRelative: (step: -1 | 1) => void;
   hover: (subject: string | undefined) => void;
   pan: (dx: number, dy: number) => void;
   zoom: (point: Point, factor: number) => void;
