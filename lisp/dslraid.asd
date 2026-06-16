@@ -14,12 +14,17 @@
     :components
     ((:file "expand")
      (:file "syntax")))
-   (:module "passes"
+   (:module "expansion"
     :serial t
     :components
-    ((:file "normalize")
-     (:file "validation")))
+    ((:file "normalize")))
+   (:module "conformance"
+    :serial t
+    :components
+    ((:file "validation")))
    (:module "emit"
     :serial t
     :components
-    ((:file "json")))))
+    ((:file "json-values")
+     (:file "json-fsm")
+     (:file "json")))))

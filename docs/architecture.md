@@ -6,19 +6,23 @@ DSLRaid is a composable DSL runtime and interactive architecture explorer. The
 product category is closer to an executable architecture browser than a diagram
 tool.
 
-The core workflow is:
+The native DSLRaid workflow is:
 
 ```text
-SSOT / DSL sources
-  -> typed executable IR
-  -> analyzer / composer / matcher
+Common Lisp SSOT forms
+  -> reader / macro expansion
+  -> expanded authoring data
+  -> Canonical IR
+  -> IR conformance / analyzer / composer / matcher
   -> source maps / runtime traces / coverage overlays
   -> lock records / artifact freshness / compatibility checks
   -> codegen / docs / tests / derived graph index
   -> interactive renderer
 ```
 
-The executable IR is the source of truth. The graph index is generated from it.
+For native authoring, Lisp forms are the source of truth. Canonical IR is the
+stable interchange product consumed by Rust tooling and every backend. The
+graph index is generated from Canonical IR.
 
 ## Design Goals
 
@@ -35,7 +39,8 @@ The executable IR is the source of truth. The graph index is generated from it.
 - Keep the core usable without a server or hosted SaaS.
 - Let open source contributors work on independent layers without needing to
   understand the entire system.
-- Make the IR stable enough that external tools can build against it.
+- Make the Canonical IR stable enough that external tools can build against it.
+- Preserve Common Lisp macro expansion as the native authoring advantage.
 
 ## Non-Goals
 
@@ -135,9 +140,21 @@ Inputs may come from:
 Mermaid, DOT, PlantUML, or Structurizr import can be considered later. Early
 Mermaid/Graphviz support should be export-only.
 
-Common Lisp is the best initial authoring layer because it supports expressive
-macros, executable SSOT, and direct integration with existing Lisp-based domain
-models.
+Common Lisp is the native authoring layer because it supports reader syntax,
+macro expansion, executable SSOT, and direct integration with existing
+Lisp-based domain models. Lisp should not be reduced to a parser over a generic
+pass framework.
+
+Native authoring flow:
+
+```text
+Lisp form
+  -> macro expansion
+  -> expanded authoring data
+  -> canonical IR emission
+```
+
+Rust tools should consume Canonical IR rather than raw Lisp forms.
 
 ### 2. Core IR Layer
 
@@ -182,9 +199,15 @@ Required IR properties:
 The IR should not flatten transitions into generic relation records. A
 transition owns its `from`, `to`, `on`, guard, action, and emitted event fields.
 
-### 3. Analysis Layer
+### 3. Conformance and Analysis Layer
 
-The analyzer validates executable IR and computes diagnostics.
+Conformance has two levels:
+
+- Language conformance checks expanded Lisp authoring data before IR emission.
+- IR conformance checks Canonical IR after emission and is the cross-language
+  contract.
+
+The Rust analyzer validates executable IR and computes diagnostics.
 
 FSM analysis:
 
@@ -397,7 +420,8 @@ Owns:
 - expressive DSL authoring
 - SSOT macro layer
 - data-first DSL expansion
-- IR normalization and deterministic emitters
+- Canonical IR emission and deterministic emitters
+- language conformance diagnostics
 - existing Lisp project integration
 - optional REPL-driven model inspection
 
@@ -406,10 +430,11 @@ Does not own:
 - browser runtime
 - large graph rendering
 - canonical analyzer implementation long term
-- hidden validation, composition, IO, or codegen inside macro expansion
+- hidden conformance, composition, IO, projection, or codegen inside macro
+  expansion
 
-See [Common Lisp DSL Guide](lisp-dsl.md) for macro rules, pass structure, and
-deterministic emitter guidance.
+See [Common Lisp DSL Guide](lisp-dsl.md) for macro rules, expansion,
+conformance, projection, and deterministic emitter guidance.
 
 ### Rust
 
@@ -513,7 +538,9 @@ Owns:
 │   ├── packages.lisp
 │   ├── ir/
 │   ├── dsl/
-│   ├── passes/
+│   ├── expansion/
+│   ├── conformance/
+│   ├── projection/
 │   ├── emit/
 │   └── tests/
 ├── tests/

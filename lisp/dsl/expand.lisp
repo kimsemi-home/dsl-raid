@@ -3,8 +3,8 @@
 (defun build-fsm (name forms)
   "Convert human-friendly DSL forms into a plain DSLRaid IR FSM object.
 
-This function performs parsing only. Validation, composition, IO, and codegen
-belong to explicit passes outside macro expansion."
+This function performs parsing only. Conformance, composition, IO, projection,
+and backend codegen belong to explicit steps outside macro expansion."
   (let ((states '())
         (events '())
         (transitions '())

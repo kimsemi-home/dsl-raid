@@ -81,14 +81,18 @@ The initial validation catalog is documented as `V001` through `V050` in
 
 ## DSL Rollout
 
-Do not freeze a human DSL too early.
+Do not freeze a broad human DSL too early. The native DSLRaid authoring target
+is Common Lisp forms that expand into Canonical IR.
 
 Phases:
 
 1. JSON core IR
-2. Common Lisp DSL that emits JSON core IR
-3. human authoring DSL
+2. Common Lisp form expansion that emits Canonical IR
+3. language conformance over expanded authoring data
 4. LSP/editor support
+
+JSON Core IR is the initial bootstrap and interchange format. It is not the
+long-term native authoring SSOT for Lisp-first projects.
 
 ## Security and Visibility
 

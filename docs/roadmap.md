@@ -145,20 +145,22 @@ Exit criteria:
 Goal: support executable SSOT authoring.
 
 - create Common Lisp DSL package
-- keep data IR separate from DSL syntax
-- keep macros limited to surface syntax
-- implement normalize, resolve, validate, project, and diagnostics as ordinary
-  functions
+- treat Lisp forms as native authoring SSOT
+- keep DSL syntax separate from Canonical IR
+- keep macros limited to surface syntax and expansion
+- implement reader/macro expansion into ordinary authoring data
+- implement language conformance diagnostics before IR emission
 - add deterministic JSON emitter
 - export canonical typed core JSON IR
 - preserve source paths
 - add RunScope Lisp source example
 - validate exported IR with the Rust CLI
+- treat Rust code as a possible generated artifact, not native SSOT
 
 Exit criteria:
 
-- a Lisp-defined FSM becomes the same IR consumed by the analyzer, indexer, and
-  viewer
+- a Lisp-defined FSM expands into the same Canonical IR consumed by the Rust
+  analyzer, indexer, codegen backends, and viewer
 
 ## Milestone 7: Composition and Union
 

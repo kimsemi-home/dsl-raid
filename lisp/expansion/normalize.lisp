@@ -1,7 +1,7 @@
-(in-package #:dslraid.passes)
+(in-package #:dslraid.expansion)
 
 (defun normalize-fsm (fsm)
-  "Return FSM with deterministic local ordering for stable codegen and JSON."
+  "Return FSM with deterministic local ordering for canonical IR emission."
   (make-fsm :id (fsm-id fsm)
             :name (fsm-name fsm)
             :states (stable-sort (copy-list (fsm-states fsm)) #'string< :key #'state-id)

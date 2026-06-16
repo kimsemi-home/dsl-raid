@@ -6,17 +6,19 @@ DSLRaid is an executable architecture browser. It turns domain DSLs, finite
 state machines, DDD models, policies, commands, events, capabilities, generated
 code, and tests into one explorable executable architecture model.
 
-The project is not a diagram-first Mermaid or PlantUML replacement. Its center
-is a typed executable IR that can be analyzed, composed, matched, projected,
-rendered, diffed, and used for code generation.
+The project is not a diagram-first Mermaid or PlantUML replacement. Native
+authoring centers on Common Lisp forms as executable ontology. Those forms
+expand into Canonical IR, which can then be analyzed, composed, matched,
+projected, rendered, diffed, and used for code generation.
 
 ## Positioning
 
 DSLRaid is for teams that want architecture to be executable instead of
 decorative:
 
-- IR first, diagram second
-- Executable SSOT
+- Lisp-form SSOT for native DSLRaid authoring
+- Canonical IR first, diagram second
+- Executable ontology
 - FSM composition
 - Interactive architecture exploration
 - Source, test, doc, and generated artifact traceability
@@ -53,7 +55,7 @@ related policies.
 
 - Common Lisp for authoring DSLs and SSOT-friendly macros
 - Rust for canonical IR, JSON Schema validation, FSM analysis, projection,
-  code generation, and CLI workflows
+  code generation backends, runtime tooling, and CLI workflows
 - TypeScript for the web application shell
 - Canvas 2D for the interactive graph viewport
 - WASM, WebGL, ELK, and Graphviz remain later expansion points
@@ -71,8 +73,8 @@ design contracts.
 - `crates/dslraid-cli`: executable CLI over the core/analyzer/codegen crates
 - `apps/viewer`: TypeScript Canvas viewer with search, hit-testing, inspector,
   and diagnostics panels
-- `lisp`: Common Lisp data-first DSL macros, normalization, validation, and
-  deterministic JSON emitters
+- `lisp`: Common Lisp SSOT forms, expansion, language conformance, and
+  deterministic Canonical IR emitters
 
 - [Architecture](docs/architecture.md)
 - [IR Design](docs/ir.md)
@@ -90,6 +92,7 @@ design contracts.
 - [Product Scope ADR](docs/adr/0002-product-scope-and-risk-boundaries.md)
 - [Traceability ADR](docs/adr/0003-traceability-runtime-and-diff.md)
 - [Operational Contracts ADR](docs/adr/0004-operational-product-contracts.md)
+- [Lisp SSOT ADR](docs/adr/0006-lisp-ssot-and-canonical-ir.md)
 - [Core IR schema](schemas/dslraid-core.schema.json)
 - [Assertion registry schema](schemas/dslraid-assertion.schema.json)
 - [Index graph schema](schemas/dslraid-index.schema.json)
@@ -104,9 +107,9 @@ design contracts.
 
 ## Development Principle
 
-Start with a small, stable executable IR kernel. Let renderers, code
-generators, graph indexes, and language integrations grow around it as
-replaceable adapters.
+Start with a small, stable executable ontology authoring layer and a canonical
+IR interchange kernel. Let renderers, code generators, graph indexes, and
+language integrations grow around Canonical IR as replaceable adapters.
 
 The implemented product contract is CLI-first:
 

@@ -1,11 +1,12 @@
 # DSLRaid Common Lisp Layer
 
-The Common Lisp layer is for SSOT authoring, DSL expansion, normalization, and
-deterministic emitters.
+The Common Lisp layer is the language and executable ontology surface for
+DSLRaid. Lisp forms are the authoring SSOT; canonical IR is the deterministic
+interchange product emitted from those forms.
 
-It must not hide validation, composition, IO, or code generation inside macro
-expansion. Macros should expand readable declarations into ordinary data or
-data-construction calls.
+It must not hide conformance, composition, IO, or backend code generation
+inside macro expansion. Macros should expand readable declarations into
+ordinary data or data-construction calls.
 
 See [../docs/lisp-dsl.md](../docs/lisp-dsl.md).
 
@@ -20,5 +21,5 @@ sbcl --noinform --non-interactive \
   --eval '(dslraid::run-golden-smoke)'
 ```
 
-The `fsm` macro expands to a `build-fsm` function call. Validation and JSON
+The `fsm` macro expands to a `build-fsm` function call. Conformance and JSON
 emission are explicit functions, not hidden macro-expansion side effects.
