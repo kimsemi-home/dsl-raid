@@ -24,6 +24,10 @@ export function bindKeyboardControls(elements: ViewerElements, actions: ViewerAc
       event.preventDefault();
       actions.selectRelative(-1);
     }
+    if (event.key === "Enter") {
+      event.preventDefault();
+      actions.followSelected();
+    }
   });
 }
 

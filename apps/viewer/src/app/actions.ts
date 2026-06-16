@@ -4,9 +4,11 @@ import type { CoverageOverlay, CoreIr, Point, RuntimeTrace, SourceMapDocument } 
 import type { ViewerActions } from "./action-types";
 import type { ViewerElements } from "./elements";
 import { fitGraph as fitCamera } from "./fit";
+import { followSelectedSubject } from "./follow-selected";
 import { openFsm } from "./open-fsm";
 import { selectRelativeSubject } from "./select-relative";
 import * as viewerSession from "./session";
+import { syncSourceMap, syncTrace } from "./sync-metadata";
 
 export function createActions(session: viewerSession.ViewerSession, elements: ViewerElements, queueRender: () => void): ViewerActions {
   const refresh = () => { actions.syncPanels(); queueRender(); };
@@ -19,14 +21,8 @@ export function createActions(session: viewerSession.ViewerSession, elements: Vi
       viewerSession.setCoverage(session, coverage);
       refresh();
     },
-    setTrace: (trace: RuntimeTrace) => {
-      viewerSession.setTrace(session, trace);
-      actions.syncPanels();
-    },
-    setSourceMap: (sourceMap: SourceMapDocument) => {
-      viewerSession.setSourceMap(session, sourceMap);
-      actions.syncPanels();
-    },
+    setTrace: (trace: RuntimeTrace) => syncTrace(session, actions, trace),
+    setSourceMap: (sourceMap: SourceMapDocument) => syncSourceMap(session, actions, sourceMap),
     openProjection: (projectionId: string) => {
       viewerSession.setProjection(session, projectionId);
       actions.fit();
@@ -38,6 +34,10 @@ export function createActions(session: viewerSession.ViewerSession, elements: Vi
     },
     selectRelative: (step: -1 | 1) => {
       selectRelativeSubject(session, step);
+      refresh();
+    },
+    followSelected: () => {
+      followSelectedSubject(session);
       refresh();
     },
     hover: (subject: string | undefined) => {
