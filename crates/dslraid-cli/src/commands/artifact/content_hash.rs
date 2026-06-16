@@ -1,8 +1,7 @@
 use super::issue::artifact_issue;
-use super::path::resolve_artifact_path;
-use dslraid_core::{sha256_bytes, Artifact};
+use super::path::artifact_content_hash;
+use dslraid_core::Artifact;
 use serde_json::Value;
-use std::fs;
 use std::path::Path;
 
 pub(super) fn check_content_hash(
@@ -13,16 +12,11 @@ pub(super) fn check_content_hash(
     issues: &mut Vec<Value>,
 ) {
     let expected = record.get("content_hash").and_then(Value::as_str);
-    match read_hash(input, &artifact.path) {
+    match artifact_content_hash(input, &artifact.path) {
         Some(actual) if expected == Some(actual.as_str()) => {}
         Some(actual) => push_stale(artifact, expected, Some(actual.as_str()), status, issues),
         None => push_missing(artifact, expected, status, issues),
     }
-}
-
-fn read_hash(input: &Path, path: &str) -> Option<String> {
-    let path = resolve_artifact_path(input, path);
-    fs::read(path).ok().map(|bytes| sha256_bytes(&bytes))
 }
 
 fn push_stale(

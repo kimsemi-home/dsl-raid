@@ -1,6 +1,5 @@
-use crate::{
-    commands, ArtifactArgs, ArtifactCommand, CoverageArgs, CoverageCommand, TraceArgs, TraceCommand,
-};
+use crate::{commands, ArtifactArgs, ArtifactCommand, ArtifactLockCommand};
+use crate::{CoverageArgs, CoverageCommand, TraceArgs, TraceCommand};
 use anyhow::Result;
 
 pub(super) fn trace(args: TraceArgs) -> Result<()> {
@@ -46,5 +45,10 @@ pub(super) fn artifact(args: ArtifactArgs) -> Result<()> {
             lock,
             format,
         } => commands::artifact::verify(&input, lock.as_deref(), format),
+        ArtifactCommand::Lock { command } => match command {
+            ArtifactLockCommand::Update { input, out } => {
+                commands::artifact::update_lock(&input, out.as_deref())
+            }
+        },
     }
 }

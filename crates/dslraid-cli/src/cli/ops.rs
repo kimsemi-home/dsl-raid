@@ -17,6 +17,19 @@ pub(crate) enum ArtifactCommand {
         #[arg(long, value_enum, default_value_t = OutputFormat::Text)]
         format: OutputFormat,
     },
+    Lock {
+        #[command(subcommand)]
+        command: ArtifactLockCommand,
+    },
+}
+
+#[derive(Debug, Subcommand)]
+pub(crate) enum ArtifactLockCommand {
+    Update {
+        input: PathBuf,
+        #[arg(long)]
+        out: Option<PathBuf>,
+    },
 }
 
 #[derive(Debug, Args)]

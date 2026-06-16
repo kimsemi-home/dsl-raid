@@ -51,12 +51,14 @@ Required command:
 
 ```bash
 dslraid artifact verify
+dslraid artifact lock update
 ```
 
 The current CLI compares the lock file's core and artifact input hashes against
 the canonical IR hash, then compares artifact content hashes against files on
-disk. CI can fail when generated artifacts are stale unless the job is a pure
-documentation preview.
+disk. `dslraid artifact lock update` regenerates the deterministic lock records
+from the Canonical IR and current artifact files. CI can fail when generated
+artifacts are stale unless the job is a pure documentation preview.
 
 ## Provider, Runtime, Protocol, Capability, and Constraint Model
 

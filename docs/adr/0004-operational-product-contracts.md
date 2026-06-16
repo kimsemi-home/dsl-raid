@@ -79,8 +79,9 @@ IR hash != artifact input hash -> stale artifact
 disk content hash != artifact content hash -> stale artifact
 ```
 
-`dslraid artifact verify` is the public gate. CI should include it once codegen
-exists.
+`dslraid artifact verify` is the public gate. `dslraid artifact lock update`
+is the deterministic regeneration tool. CI should include verification once
+codegen exists.
 
 ## Severity Policy
 

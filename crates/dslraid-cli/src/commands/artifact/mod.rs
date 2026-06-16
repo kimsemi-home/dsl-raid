@@ -5,6 +5,7 @@ mod derivation;
 mod issue;
 mod kind;
 mod lock;
+mod lock_update;
 mod output;
 mod path;
 mod record;
@@ -31,4 +32,8 @@ pub(crate) fn verify(input: &Path, lock: Option<&Path>, format: OutputFormat) ->
     } else {
         bail!("artifact verification failed")
     }
+}
+
+pub(crate) fn update_lock(input: &Path, out: Option<&Path>) -> Result<()> {
+    lock_update::run(input, out)
 }

@@ -138,12 +138,14 @@ file.
 
 ```bash
 dslraid artifact verify
+dslraid artifact lock update
 ```
 
 If an artifact's recorded input hash differs from the current canonical IR hash,
 or its content hash differs from the file on disk, the artifact is stale.
 The current CLI infers the sibling lock file by default, validates it against
-the lock schema, and reports stale/missing artifact records in text or JSON.
+the lock schema, reports stale/missing artifact records in text or JSON, and can
+regenerate deterministic lock records from current IR/artifact evidence.
 
 ## Generated Docs
 
