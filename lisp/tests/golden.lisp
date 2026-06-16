@@ -25,6 +25,16 @@
                    '("LANG005" "LANG006" "LANG007")))
     diagnostics))
 
+(defun run-language-required-smoke ()
+  (let* ((ast (parse-fsm-form
+               'required-demo
+               '((:state idle)
+                 (:transition broken))))
+         (diagnostics (validate-fsm-ast ast)))
+    (assert (equal (mapcar (lambda (diag) (getf diag :code)) diagnostics)
+                   '("LANG008" "LANG009")))
+    diagnostics))
+
 (defun run-build-fsm-conformance-smoke ()
   (let ((blocked nil))
     (handler-case
@@ -39,6 +49,7 @@
   (let ((fsms (runscope-fsms)))
     (run-language-smoke)
     (run-language-reference-smoke)
+    (run-language-required-smoke)
     (run-build-fsm-conformance-smoke)
     (dolist (fsm fsms)
       (assert (null (validate-fsm fsm))))

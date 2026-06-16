@@ -20,6 +20,7 @@
      (:file "forms")
      (:file "duplicates")
      (:file "references")
+     (:file "required")
      (:file "conformance")
      (:file "expand-items")
      (:file "expand")))

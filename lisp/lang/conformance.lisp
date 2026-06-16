@@ -10,4 +10,5 @@
    (duplicate-form-diagnostics ast :transition "transition"
                                (language-code :duplicate-transition))
    (unknown-form-diagnostics ast)
+   (transition-required-diagnostics ast)
    (transition-reference-diagnostics ast)))

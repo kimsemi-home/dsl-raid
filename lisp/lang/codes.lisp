@@ -35,7 +35,17 @@
      :code "LANG007"
      :severity "error"
      :scope "transition authoring forms"
-     :summary "Transition :on references an undeclared event.")))
+     :summary "Transition :on references an undeclared event.")
+    (:key :missing-transition-from
+     :code "LANG008"
+     :severity "error"
+     :scope "transition authoring forms"
+     :summary "Transition is missing required :from state.")
+    (:key :missing-transition-to
+     :code "LANG009"
+     :severity "error"
+     :scope "transition authoring forms"
+     :summary "Transition is missing required :to state.")))
 
 (defun language-code (key)
   (getf (or (find key *language-diagnostics*

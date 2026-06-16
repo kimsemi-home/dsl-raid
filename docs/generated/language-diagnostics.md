@@ -13,3 +13,5 @@ Source: `lisp/lang/codes.lisp`
 | LANG005 | error | transition authoring forms | Transition :from references an undeclared state. |
 | LANG006 | error | transition authoring forms | Transition :to references an undeclared state. |
 | LANG007 | error | transition authoring forms | Transition :on references an undeclared event. |
+| LANG008 | error | transition authoring forms | Transition is missing required :from state. |
+| LANG009 | error | transition authoring forms | Transition is missing required :to state. |
