@@ -15,6 +15,7 @@
     :components
     ((:file "ast")
      (:file "diagnostic")
+     (:file "forms")
      (:file "duplicates")
      (:file "conformance")
      (:file "expand-items")

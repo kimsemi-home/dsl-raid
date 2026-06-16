@@ -5,6 +5,6 @@ dslraid_lisp_eval() {
   sbcl --noinform --non-interactive \
     --eval '(require :asdf)' \
     --eval '(asdf:load-asd (merge-pathnames "lisp/dslraid.asd" (uiop:getcwd)))' \
-    --eval '(let ((*standard-output* (make-broadcast-stream))) (asdf:load-system :dslraid))' \
+    --eval '(let ((*standard-output* (make-broadcast-stream))) (asdf:load-system :dslraid :force t))' \
     --eval "$form"
 }

@@ -4,9 +4,11 @@
   (let* ((ast (parse-fsm-form
                'duplicate-demo
                '((:state idle)
-                 (:state idle))))
+                 (:state idle)
+                 (:unknown-form value))))
          (diagnostics (validate-fsm-ast ast)))
-    (assert (= (length diagnostics) 1))
+    (assert (equal (mapcar (lambda (diag) (getf diag :code)) diagnostics)
+                   '("LANG001" "LANG004")))
     diagnostics))
 
 (defun run-golden-smoke ()

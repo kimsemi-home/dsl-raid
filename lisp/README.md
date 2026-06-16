@@ -22,7 +22,7 @@ Lisp forms -> language AST -> conformance -> expanded IR -> canonical JSON
 sbcl --noinform --non-interactive \
   --eval '(require :asdf)' \
   --eval '(asdf:load-asd (merge-pathnames "lisp/dslraid.asd" (uiop:getcwd)))' \
-  --eval '(asdf:load-system :dslraid)' \
+  --eval '(asdf:load-system :dslraid :force t)' \
   --load lisp/tests/golden.lisp \
   --eval '(dslraid::run-golden-smoke)'
 ```

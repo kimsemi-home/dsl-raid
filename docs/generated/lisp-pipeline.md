@@ -13,7 +13,7 @@ It expands executable forms into Canonical IR before Rust tooling runs.
 | Reader | Common Lisp reads forms without turning Lisp into plain text. |
 | Macro expansion | Surface syntax expands into ordinary authoring data. |
 | Language AST | Authoring forms keep source-level diagnostic context. |
-| Language conformance | Duplicate states, events, and transitions fail early. |
+| Language conformance | Duplicate and unknown authoring forms fail early. |
 | Canonical IR | Stable interchange data consumed by Rust runtime tooling. |
 | IR conformance | Cross-language semantic contract and diagnostics. |
 | Projection | View models, docs, traces, and backend outputs derive here. |
