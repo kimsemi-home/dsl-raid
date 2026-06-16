@@ -6,6 +6,7 @@ import { renderInspector } from "./inspector/render";
 import { renderProjectTree } from "./project-tree";
 import { renderSearch } from "./search/render";
 import type { SelectSubject } from "./subject-buttons";
+import { renderTimeline } from "./timeline/render";
 
 export type PanelActions = {
   select: SelectSubject;
@@ -20,5 +21,6 @@ export function renderPanels(elements: ViewerElements, store: AppStore, actions:
   renderCoverageSummary(elements.coverageSummary, store);
   renderInspector(elements.inspector, panel, store.sourceMap, actions.select);
   renderDiagnostics(elements.diagnostics, store);
+  renderTimeline(elements.timeline, store, actions.select);
   renderSearch(elements.searchInput, elements.searchResults, store, actions.select);
 }

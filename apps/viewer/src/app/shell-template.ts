@@ -18,6 +18,10 @@ export function shellTemplate(): string {
           Load Coverage
         </label>
         <label class="file-button">
+          <input id="trace-input" type="file" accept="application/json,.json" />
+          Load Trace
+        </label>
+        <label class="file-button">
           <input id="source-map-input" type="file" accept="application/json,.json" />
           Load Source Map
         </label>
@@ -52,9 +56,15 @@ export function shellTemplate(): string {
         <h2>Inspector</h2>
         <div id="inspector-content"></div>
       </aside>
-      <section class="bottom-panel" aria-label="Diagnostics">
-        <h2>Diagnostics</h2>
-        <div id="diagnostic-list"></div>
+      <section class="bottom-panel" aria-label="Runtime evidence">
+        <div>
+          <h2>Diagnostics</h2>
+          <div id="diagnostic-list"></div>
+        </div>
+        <div>
+          <h2>Timeline</h2>
+          <div id="timeline"></div>
+        </div>
       </section>
     </div>
   `;

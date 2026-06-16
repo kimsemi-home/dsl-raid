@@ -1,10 +1,11 @@
 import { sampleIr } from "../sample-ir";
-import type { CoreIr, CoverageOverlay, SourceMapDocument } from "../types";
+import type { CoreIr, CoverageOverlay, RuntimeTrace, SourceMapDocument } from "../types";
 
 export type DefaultIrBundle = {
   ir: CoreIr;
   coverage?: CoverageOverlay;
   sourceMap?: SourceMapDocument;
+  trace?: RuntimeTrace;
 };
 
 export async function loadDefaultIr(): Promise<DefaultIrBundle> {
@@ -15,7 +16,8 @@ export async function loadDefaultIr(): Promise<DefaultIrBundle> {
   return {
     ir,
     coverage: await loadJson<CoverageOverlay>("./examples/run-001.coverage.json"),
-    sourceMap: await loadJson<SourceMapDocument>("./examples/runscope.sourcemap.json")
+    sourceMap: await loadJson<SourceMapDocument>("./examples/runscope.sourcemap.json"),
+    trace: await loadJson<RuntimeTrace>("./examples/run-001.trace.json")
   };
 }
 

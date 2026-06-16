@@ -12,5 +12,5 @@ export function startViewer(elements: ViewerElements): void {
   bindControls(elements, session, actions);
   actions.syncPanels();
   queueRender();
-  void loadDefaultIr().then(({ ir, coverage, sourceMap }) => actions.setIr(ir, coverage, sourceMap));
+  void loadDefaultIr().then(({ ir, coverage, sourceMap, trace }) => actions.setIr(ir, coverage, sourceMap, trace));
 }

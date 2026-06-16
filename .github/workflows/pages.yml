@@ -62,6 +62,7 @@ jobs:
             --trace examples/runscope/run-001.trace.json \
             --design-ir examples/runscope/runscope.raid.json \
             --out apps/viewer/public/examples/run-001.coverage.json
+          cp examples/runscope/run-001.trace.json apps/viewer/public/examples/run-001.trace.json
 
       - name: Build viewer
         if: steps.viewer.outputs.present == 'true'

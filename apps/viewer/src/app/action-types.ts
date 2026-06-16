@@ -1,8 +1,9 @@
-import type { CoverageOverlay, CoreIr, Point, SourceMapDocument } from "../types";
+import type { CoverageOverlay, CoreIr, Point, RuntimeTrace, SourceMapDocument } from "../types";
 
 export type ViewerActions = {
-  setIr: (ir: CoreIr, coverage?: CoverageOverlay, sourceMap?: SourceMapDocument) => void;
+  setIr: (ir: CoreIr, coverage?: CoverageOverlay, sourceMap?: SourceMapDocument, trace?: RuntimeTrace) => void;
   setCoverage: (coverage: CoverageOverlay) => void;
+  setTrace: (trace: RuntimeTrace) => void;
   setSourceMap: (sourceMap: SourceMapDocument) => void;
   openProjection: (projectionId: string) => void;
   openFsm: (fsmId: string) => void;

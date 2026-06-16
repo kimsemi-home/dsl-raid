@@ -5,5 +5,6 @@ export * from "./types/fsm";
 export * from "./types/source";
 export * from "./types/source-map";
 export * from "./types/traceability";
+export * from "./types/trace";
 export * from "./types/ui";
 export * from "./types/view";

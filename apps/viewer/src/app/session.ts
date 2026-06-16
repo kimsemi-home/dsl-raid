@@ -1,7 +1,7 @@
 import { projectIr } from "../graph/projection";
 import { sampleIr } from "../sample-ir";
 import { createInitialCamera, type AppStore } from "../store/app-store";
-import type { CoreIr, CoverageOverlay, SourceMapDocument } from "../types";
+import type { CoreIr, CoverageOverlay, RuntimeTrace, SourceMapDocument } from "../types";
 
 export type ViewerSession = {
   store: AppStore;
@@ -22,15 +22,23 @@ export function createSession(): ViewerSession {
   };
 }
 
-export function setIr(session: ViewerSession, ir: CoreIr, coverage?: CoverageOverlay, sourceMap?: SourceMapDocument): void {
+export function setIr(session: ViewerSession, ir: CoreIr, coverage?: CoverageOverlay, sourceMap?: SourceMapDocument, trace?: RuntimeTrace): void {
   session.store = {
     ...session.store,
     ir,
     coverage,
     sourceMap,
+    trace,
     activeProjectionId: ir.projections?.[0]?.id,
     view: projectIr(ir, ir.projections?.[0]?.id, coverage),
     selection: { selected: ir.fsms?.[0]?.id }
+  };
+}
+
+export function setTrace(session: ViewerSession, trace: RuntimeTrace): void {
+  session.store = {
+    ...session.store,
+    trace
   };
 }
 

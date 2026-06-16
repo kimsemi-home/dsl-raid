@@ -57,6 +57,9 @@ button {
 }
 
 .bottom-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+  gap: 16px;
   grid-column: 2 / 4;
   border-top: 1px solid #dfd8c8;
   padding: 14px 18px;
@@ -334,6 +337,47 @@ h4 {
   border-color: #64748b;
 }
 
+.trace-run {
+  margin-bottom: 8px;
+  color: #0f766e;
+  font-size: 12px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.timeline-list {
+  display: grid;
+  gap: 8px;
+}
+
+.timeline-event {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 4px 8px;
+  width: 100%;
+  border: 1px solid #cfc7b8;
+  border-radius: 8px;
+  padding: 8px;
+  background: #fffefa;
+  text-align: left;
+}
+
+.timeline-event:hover {
+  border-color: #0f766e;
+}
+
+.timeline-event small {
+  grid-column: 2;
+  color: #68635a;
+  overflow-wrap: anywhere;
+}
+
+.timeline-event.failed,
+.timeline-event.timeout,
+.timeline-event.policy_blocked {
+  border-color: #b91c1c;
+}
+
 @media (max-width: 980px) {
   .shell {
     grid-template-columns: 1fr;
@@ -353,5 +397,9 @@ h4 {
 
   .viewport-wrap {
     height: 62vh;
+  }
+
+  .bottom-panel {
+    grid-template-columns: 1fr;
   }
 }

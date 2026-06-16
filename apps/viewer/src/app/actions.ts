@@ -1,21 +1,26 @@
 import { zoomAt } from "../canvas/camera";
 import { renderPanels } from "../panels/render";
-import type { CoverageOverlay, CoreIr, Point, SourceMapDocument } from "../types";
+import type { CoverageOverlay, CoreIr, Point, RuntimeTrace, SourceMapDocument } from "../types";
 import type { ViewerActions } from "./action-types";
 import type { ViewerElements } from "./elements";
 import { fitGraph as fitCamera } from "./fit";
+import { openFsm } from "./open-fsm";
 import * as viewerSession from "./session";
 
 export function createActions(session: viewerSession.ViewerSession, elements: ViewerElements, queueRender: () => void): ViewerActions {
   const actions = {
-    setIr: (ir: CoreIr, coverage?: CoverageOverlay, sourceMap?: SourceMapDocument) => {
-      viewerSession.setIr(session, ir, coverage, sourceMap);
+    setIr: (ir: CoreIr, coverage?: CoverageOverlay, sourceMap?: SourceMapDocument, trace?: RuntimeTrace) => {
+      viewerSession.setIr(session, ir, coverage, sourceMap, trace);
       actions.fit();
     },
     setCoverage: (coverage: CoverageOverlay) => {
       viewerSession.setCoverage(session, coverage);
       actions.syncPanels();
       queueRender();
+    },
+    setTrace: (trace: RuntimeTrace) => {
+      viewerSession.setTrace(session, trace);
+      actions.syncPanels();
     },
     setSourceMap: (sourceMap: SourceMapDocument) => {
       viewerSession.setSourceMap(session, sourceMap);
@@ -25,14 +30,7 @@ export function createActions(session: viewerSession.ViewerSession, elements: Vi
       viewerSession.setProjection(session, projectionId);
       actions.fit();
     },
-    openFsm: (fsmId: string) => {
-      const projection = session.store.ir.projections?.find((candidate) => candidate.source === fsmId);
-      if (projection) {
-        actions.openProjection(projection.id);
-      } else {
-        actions.select(fsmId);
-      }
-    },
+    openFsm: (fsmId: string) => openFsm(actions, session, fsmId),
     select: (subject: string | undefined) => {
       session.store.selection.selected = subject;
       actions.syncPanels();
