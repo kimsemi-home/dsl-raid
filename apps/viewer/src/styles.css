@@ -345,6 +345,13 @@ h4 {
   overflow-wrap: anywhere;
 }
 
+.trace-selection {
+  margin-bottom: 8px;
+  color: #57534e;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
 .timeline-list {
   display: grid;
   gap: 8px;
@@ -364,6 +371,11 @@ h4 {
 
 .timeline-event:hover {
   border-color: #0f766e;
+}
+
+.timeline-event.related {
+  border-color: #0f766e;
+  box-shadow: inset 3px 0 0 #0f766e;
 }
 
 .timeline-event small {
