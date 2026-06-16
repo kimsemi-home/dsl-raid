@@ -10,3 +10,4 @@ bash scripts/lisp-docgen.sh check
 bash scripts/lisp-irgen.sh check
 bash scripts/roadmapgen.sh check
 bash scripts/fsmgen.sh check
+bash scripts/assertiongen.sh check

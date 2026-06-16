@@ -1,5 +1,6 @@
-use anyhow::{Context, Result};
+use anyhow::{bail, Context, Result};
 use std::path::Path;
+use std::process::Command;
 
 pub(super) fn check(input: &Path) -> Result<()> {
     crate::commands::outputs::doc(crate::DocArgs {
@@ -18,6 +19,7 @@ pub(super) fn check(input: &Path) -> Result<()> {
     })
     .with_context(|| hint(input))
     .and_then(|_| check_fsm_catalog(input))
+    .and_then(|_| check_assertion_catalog())
 }
 
 fn check_fsm_catalog(input: &Path) -> Result<()> {
@@ -31,6 +33,19 @@ fn check_fsm_catalog(input: &Path) -> Result<()> {
     })?;
     println!("fsm generated doc ok");
     Ok(())
+}
+
+fn check_assertion_catalog() -> Result<()> {
+    let status = Command::new("bash")
+        .arg("scripts/assertiongen.sh")
+        .arg("check")
+        .status()
+        .context("run scripts/assertiongen.sh")?;
+    if status.success() {
+        Ok(())
+    } else {
+        bail!("scripts/assertiongen.sh check failed")
+    }
 }
 
 fn hint(input: &Path) -> String {
