@@ -69,6 +69,7 @@ need an ADR.
 - Keep the canonical executable IR deterministic.
 - Add fixtures for new typed object kinds or composition modes.
 - Add golden tests for generated output.
+- Run `scripts/install-hooks.sh` once after cloning so pre-commit checks are enforced locally.
 - Keep renderers, graph indexes, and code generators as consumers of IR, not
   alternate sources of truth.
 - Preserve source, derivation, and artifact traceability whenever possible.

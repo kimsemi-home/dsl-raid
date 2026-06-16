@@ -184,6 +184,22 @@ jobs:
         if: steps.rust.outputs.present != 'true'
         run: echo "No Cargo.toml yet; skipping Rust checks."
 
+  go:
+    name: Go lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-go@v6
+        with:
+          go-version: stable
+          cache: true
+
+      - name: Run golangci-lint
+        env:
+          GOLANGCI_LINT_VERSION: v2.12.2
+        run: scripts/go-lint.sh
+
   dslraid:
     name: DSLRaid quality
     runs-on: ubuntu-latest
