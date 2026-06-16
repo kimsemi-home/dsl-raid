@@ -2,7 +2,10 @@ import type { CoreIr, CoverageSubject, Fsm, InspectorPanel, Projection, RuntimeE
 import { coverageIndex } from "./coverage";
 import { artifactPanel } from "./inspector/artifact-panel";
 import { derivationPanel } from "./inspector/derivation-panel";
+import { eventPanel } from "./inspector/event-panel";
 import { fsmPanel } from "./inspector/fsm-panel";
+import { policyPanel } from "./inspector/policy-panel";
+import { projectPanel } from "./inspector/project-panel";
 import { statePanel } from "./inspector/state-panel";
 import { transitionPanel } from "./inspector/transition-panel";
 import { stateSubject, transitionSubject } from "./ids";
@@ -43,9 +46,12 @@ function inspectorPanels(
   trace: Map<string, RuntimeEvent[]>
 ): InspectorPanel[] {
   return [
+    projectPanel(ir),
     fsmPanel(ir, fsm),
     ...(ir.derivations ?? []).map(derivationPanel),
     ...(ir.artifacts ?? []).map((artifact) => artifactPanel(ir, artifact)),
+    ...(ir.policies ?? []).map(policyPanel),
+    ...(fsm.events ?? []).map((event) => eventPanel(fsm, event)),
     ...(fsm.states ?? []).map((state) => {
       const subject = stateSubject(fsm.id, state.id);
       return statePanel(ir, fsm, state.id, subject, coverage.get(subject), trace.get(subject));
