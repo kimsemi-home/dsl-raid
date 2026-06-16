@@ -36,8 +36,10 @@ fn coverage_status(counter: &CoverageCounter) -> String {
     if counter.kind == "artifact" {
         return artifact_status(counter);
     }
-    if counter.failures > 0 {
+    if counter.failures > 0 && counter.failures == counter.count {
         "failed".to_string()
+    } else if counter.failures > 0 {
+        "flaky".to_string()
     } else if counter.count > 0 {
         "covered".to_string()
     } else {

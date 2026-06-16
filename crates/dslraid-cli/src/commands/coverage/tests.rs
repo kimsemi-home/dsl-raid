@@ -1,9 +1,9 @@
 use super::design::coverage_design_issues;
 use super::overlay::coverage_overlay_value;
+use super::test_support::{failure_trace, find_subject, runscope_fixture, runscope_trace};
 use dslraid_core::load_core_ir;
 use serde_json::Value;
 use std::fs;
-use std::path::{Path, PathBuf};
 
 #[test]
 fn coverage_overlay_marks_fixture_transition_covered() {
@@ -41,14 +41,19 @@ fn coverage_design_issues_reports_missing_subject() {
         .any(|issue| issue.get("code").and_then(Value::as_str) == Some("COV002")));
 }
 
-fn runscope_fixture() -> PathBuf {
-    Path::new(env!("CARGO_MANIFEST_DIR"))
-        .join("../..")
-        .join("examples/runscope/runscope.raid.json")
-}
+#[test]
+fn coverage_overlay_reports_transition_failure_rate() {
+    let ir = load_core_ir(runscope_fixture()).unwrap();
+    let trace_path = runscope_trace();
+    let trace_value = failure_trace();
 
-fn runscope_trace() -> PathBuf {
-    Path::new(env!("CARGO_MANIFEST_DIR"))
-        .join("../..")
-        .join("examples/runscope/run-001.trace.json")
+    let coverage =
+        coverage_overlay_value(&ir, &runscope_fixture(), &trace_path, &trace_value).unwrap();
+    let subject = find_subject(&coverage, "transition:runtime.starting_to_failed");
+
+    assert_eq!(subject.get("status").and_then(Value::as_str), Some("flaky"));
+    assert_eq!(
+        subject.get("failure_rate").and_then(Value::as_f64),
+        Some(0.5)
+    );
 }

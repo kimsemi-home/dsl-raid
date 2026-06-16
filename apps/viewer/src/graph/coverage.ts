@@ -12,7 +12,17 @@ export function coverageBadges(coverage?: CoverageSubject): string[] {
   if ((coverage.count ?? 0) > 0) {
     badges.push(`seen ${coverage.count}`);
   }
+  if ((coverage.failure_rate ?? 0) > 0) {
+    badges.push(`fail ${formatRate(coverage.failure_rate)}`);
+  }
   return badges;
+}
+
+export function coverageLabel(label: string, coverage?: CoverageSubject): string {
+  if (!coverage || (coverage.failure_rate ?? 0) <= 0) {
+    return label;
+  }
+  return `${label} · fail ${formatRate(coverage.failure_rate)}`;
 }
 
 export function coverageTone(coverage?: CoverageSubject): "success" | "warning" | "danger" | "muted" | undefined {

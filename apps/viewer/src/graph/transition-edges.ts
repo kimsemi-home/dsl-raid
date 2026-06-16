@@ -1,5 +1,5 @@
 import type { CoverageSubject, Fsm, RuntimeEvent, SceneEdge, SceneNode } from "../types";
-import { coverageTone } from "./coverage";
+import { coverageLabel, coverageTone } from "./coverage";
 import { diagnosticTone, type DiagnosticMark } from "./diagnostic-marks";
 import { layoutTransitionId, stateSubject, transitionSubject } from "./ids";
 import { traceTone } from "./trace";
@@ -27,7 +27,7 @@ export function projectTransitionEdges(
         subject,
         from: from.id,
         to: to.id,
-        label: transition.on ?? "epsilon",
+        label: coverageLabel(transition.on ?? "epsilon", coverageSubject),
         route: [
           { x: from.x + from.width, y: from.y + from.height / 2 },
           { x: to.x, y: to.y + to.height / 2 }

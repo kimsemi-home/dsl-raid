@@ -14,3 +14,17 @@ test("RunScope coverage fixture carries state and transition evidence", async ()
   assert.equal(subjects.get("transition:runtime.starting_to_failed").status, "uncovered");
   assert.equal(subjects.get("artifact:runtime_fsm.rs").status, "not_deployed");
 });
+
+test("coverage helpers expose transition failure rates", async () => {
+  const { coverageBadges, coverageLabel, coverageTone } = await loadCoverage();
+  const coverage = { subject: "transition:runtime.retry", kind: "transition", status: "flaky", count: 2, failure_rate: 0.5 };
+
+  assert.deepEqual(coverageBadges(coverage), ["flaky", "seen 2", "fail 50%"]);
+  assert.equal(coverageLabel("retry", coverage), "retry · fail 50%");
+  assert.equal(coverageTone(coverage), "warning");
+});
+
+async function loadCoverage() {
+  const { loadTs } = await import("./helpers/load-ts.mjs");
+  return loadTs("src/graph/coverage.ts");
+}
