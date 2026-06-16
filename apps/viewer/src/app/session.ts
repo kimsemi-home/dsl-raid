@@ -42,6 +42,13 @@ export function setCoverage(session: ViewerSession, coverage: CoverageOverlay): 
   };
 }
 
+export function setSourceMap(session: ViewerSession, sourceMap: SourceMapDocument): void {
+  session.store = {
+    ...session.store,
+    sourceMap
+  };
+}
+
 export function setProjection(session: ViewerSession, projectionId: string): void {
   const projection = session.store.ir.projections?.find((candidate) => candidate.id === projectionId);
   if (!projection) {

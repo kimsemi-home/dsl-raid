@@ -4,21 +4,25 @@ import type { CoverageOverlay, CoreIr, Point, SourceMapDocument } from "../types
 import type { ViewerActions } from "./action-types";
 import type { ViewerElements } from "./elements";
 import { fitGraph as fitCamera } from "./fit";
-import { setCoverage as applyCoverage, setIr as applyIr, setProjection as applyProjection, type ViewerSession } from "./session";
+import * as viewerSession from "./session";
 
-export function createActions(session: ViewerSession, elements: ViewerElements, queueRender: () => void): ViewerActions {
+export function createActions(session: viewerSession.ViewerSession, elements: ViewerElements, queueRender: () => void): ViewerActions {
   const actions = {
     setIr: (ir: CoreIr, coverage?: CoverageOverlay, sourceMap?: SourceMapDocument) => {
-      applyIr(session, ir, coverage, sourceMap);
+      viewerSession.setIr(session, ir, coverage, sourceMap);
       actions.fit();
     },
     setCoverage: (coverage: CoverageOverlay) => {
-      applyCoverage(session, coverage);
+      viewerSession.setCoverage(session, coverage);
       actions.syncPanels();
       queueRender();
     },
+    setSourceMap: (sourceMap: SourceMapDocument) => {
+      viewerSession.setSourceMap(session, sourceMap);
+      actions.syncPanels();
+    },
     openProjection: (projectionId: string) => {
-      applyProjection(session, projectionId);
+      viewerSession.setProjection(session, projectionId);
       actions.fit();
     },
     openFsm: (fsmId: string) => {

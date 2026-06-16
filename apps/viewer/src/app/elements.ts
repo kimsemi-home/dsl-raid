@@ -10,6 +10,7 @@ export type ViewerElements = {
   searchResults: HTMLDivElement;
   fileInput: HTMLInputElement;
   coverageInput: HTMLInputElement;
+  sourceMapInput: HTMLInputElement;
   coverageSummary: HTMLDivElement;
   zoomOut: HTMLButtonElement;
   zoomIn: HTMLButtonElement;
@@ -29,6 +30,7 @@ export function collectElements(): ViewerElements {
     searchResults: mustQuery("#search-results"),
     fileInput: mustQuery("#file-input"),
     coverageInput: mustQuery("#coverage-input"),
+    sourceMapInput: mustQuery("#source-map-input"),
     coverageSummary: mustQuery("#coverage-summary"),
     zoomOut: mustQuery("#zoom-out"),
     zoomIn: mustQuery("#zoom-in"),

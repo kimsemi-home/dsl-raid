@@ -17,6 +17,10 @@ export function shellTemplate(): string {
           <input id="coverage-input" type="file" accept="application/json,.json" />
           Load Coverage
         </label>
+        <label class="file-button">
+          <input id="source-map-input" type="file" accept="application/json,.json" />
+          Load Source Map
+        </label>
         <section>
           <h2>Project</h2>
           <div id="project-tree" class="tree"></div>
