@@ -3,11 +3,10 @@ use clap::{Parser, Subcommand, ValueEnum};
 use dslraid_analyzer::{validate_core_ir, ValidateOptions, ValidationReport};
 use dslraid_codegen::{generate_code, project_view, render_svg, CodegenTarget};
 use dslraid_core::{
-    event_subject, load_core_ir, sha256_json, state_subject, transition_subject,
-    validate_json_schema, CORE_SCHEMA_PATH, VALIDATION_SCHEMA_PATH, VIEW_SCHEMA_PATH,
+    load_core_ir, sha256_json, validate_json_schema, CORE_SCHEMA_PATH, VALIDATION_SCHEMA_PATH,
+    VIEW_SCHEMA_PATH,
 };
 use serde_json::Value;
-use std::collections::{BTreeSet, VecDeque};
 use std::fs;
 use std::io::Write;
 use std::path::{Path, PathBuf};
@@ -296,16 +295,16 @@ fn run() -> Result<()> {
             depth,
             format,
             out,
-        } => compose(
-            &input,
-            composition.as_deref(),
-            &materialize,
+        } => commands::compose::run(commands::compose::RunOptions {
+            input: &input,
+            composition: composition.as_deref(),
+            materialize: &materialize,
             limit,
-            focus.as_deref(),
+            focus: focus.as_deref(),
             depth,
             format,
-            out.as_deref(),
-        ),
+            out: out.as_deref(),
+        }),
         Command::Diff {
             base,
             head,
@@ -559,7 +558,7 @@ fn quality() -> Result<()> {
     if richer_query.is_empty() {
         bail!("richer query returned no results");
     }
-    let composition = compose_result(&ir, None, "reachable", 100, None, 1)?;
+    let composition = commands::compose::result(&ir, None, "reachable", 100, None, 1)?;
     if composition
         .get("composition")
         .and_then(|value| value.get("state_space"))
@@ -717,354 +716,6 @@ fn codegen(input: &Path, target: CliCodegenTarget, out: Option<&Path>) -> Result
 }
 
 #[allow(clippy::too_many_arguments)]
-fn compose(
-    input: &Path,
-    composition: Option<&str>,
-    materialize: &str,
-    limit: usize,
-    focus: Option<&str>,
-    depth: usize,
-    format: OutputFormat,
-    out: Option<&Path>,
-) -> Result<()> {
-    let ir = load_core_ir(input)?;
-    let result = compose_result(&ir, composition, materialize, limit, focus, depth)?;
-    let bytes = match format {
-        OutputFormat::Json => serde_json::to_vec_pretty(&result)?,
-        OutputFormat::Text => {
-            let composition = result
-                .get("composition")
-                .ok_or_else(|| anyhow!("compose result is missing composition"))?;
-            let states = result
-                .get("states")
-                .and_then(Value::as_array)
-                .map_or(0, Vec::len);
-            let transitions = result
-                .get("transitions")
-                .and_then(Value::as_array)
-                .map_or(0, Vec::len);
-            format!(
-                "composition {} kind={} mode={} state_space={} materialized_states={} materialized_transitions={} truncated={}\n",
-                composition
-                    .get("id")
-                    .and_then(Value::as_str)
-                    .unwrap_or("<none>"),
-                composition
-                    .get("kind")
-                    .and_then(Value::as_str)
-                    .unwrap_or("<unknown>"),
-                composition
-                    .get("mode")
-                    .and_then(Value::as_str)
-                    .unwrap_or(materialize),
-                composition
-                    .get("state_space")
-                    .and_then(Value::as_u64)
-                    .unwrap_or_default(),
-                states,
-                transitions,
-                composition
-                    .get("truncated")
-                    .and_then(Value::as_bool)
-                    .unwrap_or(false)
-            )
-            .into_bytes()
-        }
-    };
-    write_or_stdout(out, &bytes)
-}
-
-fn compose_result(
-    ir: &dslraid_core::CoreIr,
-    composition: Option<&str>,
-    materialize: &str,
-    limit: usize,
-    focus: Option<&str>,
-    depth: usize,
-) -> Result<Value> {
-    if limit == 0 {
-        bail!("--limit must be greater than 0");
-    }
-    let selected = composition
-        .and_then(|id| ir.compositions.iter().find(|item| item.id == id))
-        .or_else(|| ir.compositions.first());
-    match selected {
-        Some(composition) => {
-            let input_fsms = composition
-                .inputs
-                .iter()
-                .map(|id| {
-                    ir.find_fsm(id).ok_or_else(|| {
-                        anyhow!(
-                            "composition {} references unknown FSM {}",
-                            composition.id,
-                            id
-                        )
-                    })
-                })
-                .collect::<Result<Vec<_>>>()?;
-            let state_space: usize = input_fsms
-                .iter()
-                .map(|fsm| fsm.states.len().max(1))
-                .product();
-            let mode = materialize.to_ascii_lowercase();
-            let mut diagnostics = Vec::new();
-            if !matches!(
-                mode.as_str(),
-                "diagnostics-only" | "reachable" | "reachable-only" | "focus"
-            ) {
-                bail!("unsupported materialization mode: {materialize}");
-            }
-            if state_space > limit {
-                diagnostics.push(serde_json::json!({
-                    "code": "CMP026",
-                    "severity": "warning",
-                    "message": "Composition state space exceeds materialization limit.",
-                    "subjects": [composition.id]
-                }));
-            }
-            let should_materialize = mode != "diagnostics-only";
-            let (states, transitions, truncated) = if should_materialize {
-                materialize_reachable_product(
-                    &composition.id,
-                    &input_fsms,
-                    limit,
-                    focus,
-                    if mode == "focus" {
-                        depth.max(1)
-                    } else {
-                        usize::MAX
-                    },
-                )?
-            } else {
-                (Vec::new(), Vec::new(), false)
-            };
-            Ok(serde_json::json!({
-                "composition_version": "0.1.0",
-                "composition": {
-                    "id": composition.id,
-                    "name": composition.name,
-                    "kind": composition.kind,
-                    "inputs": composition.inputs,
-                    "mode": materialize,
-                    "state_space": state_space,
-                    "limit": limit,
-                    "lazy": true,
-                    "truncated": truncated,
-                    "focus": focus,
-                    "depth": depth
-                },
-                "states": states,
-                "transitions": transitions,
-                "diagnostics": diagnostics
-            }))
-        }
-        None => Ok(serde_json::json!({
-            "composition_version": "0.1.0",
-            "composition": {
-                "id": null,
-                "name": null,
-                "kind": null,
-                "inputs": [],
-                "mode": materialize,
-                "state_space": 0,
-                "limit": limit,
-                "lazy": true,
-                "truncated": false,
-                "focus": focus,
-                "depth": depth
-            },
-            "states": [],
-            "transitions": [],
-            "diagnostics": [{
-                "code": "CMP000",
-                "severity": "info",
-                "message": "No compositions defined; nothing to compose.",
-                "subjects": []
-            }]
-        })),
-    }
-}
-
-fn materialize_reachable_product(
-    composition_id: &str,
-    fsms: &[&dslraid_core::Fsm],
-    limit: usize,
-    focus: Option<&str>,
-    focus_depth: usize,
-) -> Result<(Vec<Value>, Vec<Value>, bool)> {
-    if fsms.is_empty() {
-        return Ok((Vec::new(), Vec::new(), false));
-    }
-    let initial: Vec<String> = fsms
-        .iter()
-        .map(|fsm| {
-            fsm.states
-                .iter()
-                .find(|state| state.initial)
-                .or_else(|| fsm.states.first())
-                .map(|state| state.id.clone())
-                .ok_or_else(|| anyhow!("{} has no states", fsm.id))
-        })
-        .collect::<Result<Vec<_>>>()?;
-    let mut queue = VecDeque::from([(initial, 0usize)]);
-    let mut seen = BTreeSet::new();
-    let mut states = Vec::new();
-    let mut transitions = Vec::new();
-    let mut truncated = false;
-
-    while let Some((tuple, depth)) = queue.pop_front() {
-        let current_key = tuple_key(&tuple);
-        if !seen.insert(current_key.clone()) {
-            continue;
-        }
-        if seen.len() > limit {
-            truncated = true;
-            break;
-        }
-        if focus
-            .is_none_or(|subject| tuple_matches_focus(fsms, &tuple, subject, focus_depth, depth))
-        {
-            states.push(tuple_state_value(composition_id, fsms, &tuple)?);
-        }
-        if focus.is_some() && depth >= focus_depth {
-            continue;
-        }
-        for (index, fsm) in fsms.iter().enumerate() {
-            let current = &tuple[index];
-            for transition in fsm
-                .transitions
-                .iter()
-                .filter(|transition| &transition.from == current)
-            {
-                let mut next_tuple = tuple.clone();
-                next_tuple[index] = transition.to.clone();
-                let next_key = tuple_key(&next_tuple);
-                if seen.len() + queue.len() >= limit && !seen.contains(&next_key) {
-                    truncated = true;
-                    continue;
-                }
-                let edge = tuple_transition_value(
-                    composition_id,
-                    fsms,
-                    &tuple,
-                    &next_tuple,
-                    &fsm.id,
-                    transition,
-                )?;
-                if focus.is_none_or(|subject| transition_matches_focus(&edge, subject)) {
-                    transitions.push(edge);
-                }
-                if !seen.contains(&next_key) {
-                    queue.push_back((next_tuple, depth + 1));
-                }
-            }
-        }
-    }
-    states.sort_by_key(|left| value_string(left, "id"));
-    transitions.sort_by_key(|left| value_string(left, "id"));
-    Ok((states, transitions, truncated))
-}
-
-fn tuple_state_value(
-    composition_id: &str,
-    fsms: &[&dslraid_core::Fsm],
-    tuple: &[String],
-) -> Result<Value> {
-    let members = tuple_members(fsms, tuple);
-    let initial = fsms.iter().zip(tuple.iter()).all(|(fsm, state_id)| {
-        fsm.states
-            .iter()
-            .any(|state| state.id == *state_id && state.initial)
-    });
-    let terminal = fsms.iter().zip(tuple.iter()).all(|(fsm, state_id)| {
-        fsm.states
-            .iter()
-            .any(|state| state.id == *state_id && state.terminal)
-    });
-    Ok(serde_json::json!({
-        "id": tuple_subject(composition_id, &members),
-        "members": members,
-        "initial": initial,
-        "terminal": terminal
-    }))
-}
-
-fn tuple_transition_value(
-    composition_id: &str,
-    fsms: &[&dslraid_core::Fsm],
-    from_tuple: &[String],
-    to_tuple: &[String],
-    fsm_id: &str,
-    transition: &dslraid_core::Transition,
-) -> Result<Value> {
-    let from_members = tuple_members(fsms, from_tuple);
-    let to_members = tuple_members(fsms, to_tuple);
-    Ok(serde_json::json!({
-        "id": format!("tuple_transition:{}:{}", composition_id.trim_start_matches("composition:"), transition.id),
-        "from": tuple_subject(composition_id, &from_members),
-        "to": tuple_subject(composition_id, &to_members),
-        "members": [transition_subject(fsm_id, &transition.id)],
-        "event": transition.on.as_ref().map(|event| event_subject(fsm_id, event))
-    }))
-}
-
-fn tuple_members(fsms: &[&dslraid_core::Fsm], tuple: &[String]) -> Vec<String> {
-    fsms.iter()
-        .zip(tuple.iter())
-        .map(|(fsm, state)| state_subject(&fsm.id, state))
-        .collect()
-}
-
-fn tuple_subject(composition_id: &str, members: &[String]) -> String {
-    format!(
-        "state_tuple:{}.{}",
-        composition_id.trim_start_matches("composition:"),
-        members
-            .iter()
-            .map(|member| member.replace([':', '.'], "_"))
-            .collect::<Vec<_>>()
-            .join("__")
-    )
-}
-
-fn tuple_key(tuple: &[String]) -> String {
-    tuple.join("\u{1f}")
-}
-
-fn tuple_matches_focus(
-    fsms: &[&dslraid_core::Fsm],
-    tuple: &[String],
-    subject: &str,
-    focus_depth: usize,
-    depth: usize,
-) -> bool {
-    depth <= focus_depth
-        && tuple_members(fsms, tuple)
-            .iter()
-            .any(|member| member == subject)
-}
-
-fn transition_matches_focus(edge: &Value, subject: &str) -> bool {
-    edge.get("members")
-        .and_then(Value::as_array)
-        .is_some_and(|members| {
-            members
-                .iter()
-                .any(|member| member.as_str() == Some(subject))
-        })
-        || edge.get("from").and_then(Value::as_str) == Some(subject)
-        || edge.get("to").and_then(Value::as_str) == Some(subject)
-}
-
-fn value_string(value: &Value, key: &str) -> String {
-    value
-        .get(key)
-        .and_then(Value::as_str)
-        .unwrap_or_default()
-        .to_string()
-}
-
 fn compat_check(input: &Path) -> Result<()> {
     let ir = load_core_ir(input)?;
     println!(

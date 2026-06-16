@@ -4,6 +4,7 @@
 //! should only need when changing that workflow.
 
 pub(crate) mod artifact;
+pub(crate) mod compose;
 pub(crate) mod coverage;
 pub(crate) mod diff;
 pub(crate) mod query;
