@@ -32,6 +32,21 @@ fn high_risk_authority_accepts_adversarial_reviewer() {
     );
 }
 
+#[test]
+fn audit_authority_requires_adversarial_reviewer() {
+    let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
+    value["producer"]["trust_tier"] = json!("T3");
+    value["authority_gate"]["scope"] = json!("audit");
+    value["authority_gate"]["human_review_required"] = json!(true);
+    value["authority_gate"]["approved_by"] = json!("human:alice");
+    value["review_capacity"] = capacity();
+
+    assert_eq!(
+        super::super::agent_run::semantic_issues(&value),
+        vec!["high-risk authority requires adversarial reviewer"]
+    );
+}
+
 fn capacity() -> Value {
     json!({
         "status": "available",

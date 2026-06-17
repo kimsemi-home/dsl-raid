@@ -31,6 +31,20 @@ fn security_authority_accepts_trusted_producer() {
     );
 }
 
+#[test]
+fn audit_authority_requires_trusted_producer() {
+    let mut value = base_manifest(adversarial(), "finished", high());
+    value["authority_gate"]["scope"] = json!("audit");
+    value["authority_gate"]["human_review_required"] = json!(true);
+    value["authority_gate"]["approved_by"] = json!("human:alice");
+    value["review_capacity"] = capacity();
+
+    assert_eq!(
+        super::super::agent_run::semantic_issues(&value),
+        vec!["audit authority requires producer trust tier T3 or T4"]
+    );
+}
+
 fn capacity() -> serde_json::Value {
     json!({
         "status": "available",

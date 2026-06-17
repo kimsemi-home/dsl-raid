@@ -39,7 +39,7 @@ fn push_automatic_issue(value: &Value, issues: &mut Vec<String>) {
 fn push_high_risk_issue(value: &Value, issues: &mut Vec<String>) {
     if !matches!(
         scope(value),
-        Some("security" | "ontology" | "incident" | "authority")
+        Some("security" | "audit" | "ontology" | "incident" | "authority")
     ) {
         return;
     }

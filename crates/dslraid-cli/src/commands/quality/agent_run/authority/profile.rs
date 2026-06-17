@@ -32,7 +32,7 @@ fn push_human_review_issue(value: &Value, issues: &mut Vec<String>) {
 fn push_scope_issue(value: &Value, scope: Option<&str>, issues: &mut Vec<String>) {
     if !matches!(
         scope,
-        Some("security" | "ontology" | "incident" | "authority")
+        Some("security" | "audit" | "ontology" | "incident" | "authority")
     ) {
         return;
     }

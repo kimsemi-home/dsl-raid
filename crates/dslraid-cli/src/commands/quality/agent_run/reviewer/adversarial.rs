@@ -16,6 +16,6 @@ pub(super) fn push_issues(value: &Value, reviewers: &[&Value], issues: &mut Vec<
 fn is_high_risk(value: &Value) -> bool {
     matches!(
         text(value, &["authority_gate", "scope"]),
-        Some("security" | "ontology" | "incident" | "authority")
+        Some("security" | "audit" | "ontology" | "incident" | "authority")
     )
 }
