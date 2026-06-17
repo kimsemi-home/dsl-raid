@@ -5,6 +5,7 @@ mod artifact;
 mod authority;
 mod authority_policy;
 mod claim;
+mod claim_confidence;
 mod claim_ontology;
 mod containment;
 mod containment_release;
