@@ -35,6 +35,7 @@ mod producer;
 mod review_capacity;
 mod reviewer;
 mod reviewer_adversarial;
+mod reviewer_isolation;
 mod semantic_diff;
 mod ssot;
 mod trace_ref;

@@ -1,4 +1,5 @@
 mod adversarial;
+mod isolation;
 
 use super::fields::{field_text, items, text};
 use serde_json::Value;
@@ -8,6 +9,7 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     if reviewers.is_empty() {
         issues.push("approved run requires independent reviewer".to_string());
     }
+    isolation::push_issues(value, issues);
     adversarial::push_issues(value, &reviewers, issues);
     for reviewer in reviewers {
         push_required_issue(reviewer, "role", "role", issues);
