@@ -1,3 +1,5 @@
+mod ontology;
+
 use super::fields::{field_is, field_text, items, text};
 use serde_json::Value;
 
@@ -9,6 +11,7 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
         has_high_snapshot |= snapshots.iter().any(is_high_snapshot);
         push_claim_issue(evidence, &snapshots, issues);
         push_assessor_issue(evidence, &snapshots, producer, issues);
+        ontology::push_issues(value, evidence, &snapshots, issues);
     }
     if !has_high_snapshot {
         issues.push("approved run requires high quality evidence snapshot".to_string());

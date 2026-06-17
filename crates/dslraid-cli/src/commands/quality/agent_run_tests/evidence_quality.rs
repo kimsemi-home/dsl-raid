@@ -30,7 +30,8 @@ fn approved_manifest_rejects_self_assessed_quality_snapshot() {
     value["evidence"][0]["id"] = json!("evidence:quality");
     value["evidence"][0]["quality_snapshots"] = json!([{
         "assessor": "agent:codex",
-        "quality": "high"
+        "quality": "high",
+        "ontology_version": "0.1.0"
     }]);
 
     assert_eq!(
