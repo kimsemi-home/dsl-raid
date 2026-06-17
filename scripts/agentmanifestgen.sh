@@ -29,6 +29,12 @@ revalidation_dates = sum(
     1 for debt in manifest.get("debts", [])
     if "revalidate_at" in debt
 )
+translations = manifest.get("translations", [])
+losses = [loss for item in translations for loss in item.get("losses", [])]
+forbidden_losses = sum(
+    1 for loss in losses
+    if loss.get("level") == "L4" or loss.get("status") == "forbidden"
+)
 
 def cell(value):
     return str(value).replace("|", "\\|").replace("\n", " ")
@@ -47,6 +53,8 @@ print(f"| reviewers | {len(manifest.get('reviewers', []))} | independent sidecar
 print(f"| evidence | {len(manifest.get('evidence', []))} | linked records |")
 print(f"| evidence quality | {quality_snapshots} | sidecar snapshots |")
 print(f"| artifacts | {len(manifest.get('artifacts', []))} | generated outputs |")
+print(f"| translations | {len(translations)} | context handoffs |")
+print(f"| loss ledger | {len(losses)} | forbidden `{forbidden_losses}` |")
 print(f"| debts | {len(manifest.get('debts', []))} | tracked open work |")
 print(f"| debt revalidation | {revalidation_dates} | authority dates |")
 print("| semantic gate | checked | `dslraid quality` |")

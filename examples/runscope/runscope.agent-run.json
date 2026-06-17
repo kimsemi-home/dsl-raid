@@ -125,5 +125,26 @@
       "status": "verified"
     }
   ],
+  "translations": [
+    {
+      "id": "translation:lisp-ssot-to-core-ir",
+      "source_context": "context:lisp-ssot",
+      "target_context": "context:canonical-ir",
+      "status": "lossy",
+      "conformance": "target",
+      "round_trip": false,
+      "approved_by": "gate:quality",
+      "evidence": ["evidence:quality"],
+      "losses": [
+        {
+          "id": "loss:lisp-authoring-surface",
+          "level": "L1",
+          "description": "Reader-friendly Lisp authoring surface is normalized into canonical IR fields.",
+          "status": "accepted",
+          "evidence": ["evidence:quality"]
+        }
+      ]
+    }
+  ],
   "debts": []
 }

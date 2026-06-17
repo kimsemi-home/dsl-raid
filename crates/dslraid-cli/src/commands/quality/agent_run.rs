@@ -1,3 +1,4 @@
+mod approved;
 mod authority;
 mod coverage_ref;
 mod debt;
@@ -9,24 +10,26 @@ mod lock_ref;
 mod reviewer;
 mod ssot;
 mod trace_ref;
+mod translation;
 
 use anyhow::{bail, Context, Result};
 use serde_json::Value;
 use std::{fs, path::Path};
 
 pub(super) fn check(path: &Path, lock_path: &Path) -> Result<()> {
-    let value: Value = serde_json::from_slice(
-        &fs::read(path).with_context(|| format!("read {}", path.display()))?,
-    )?;
-    let lock: Value = serde_json::from_slice(
-        &fs::read(lock_path).with_context(|| format!("read {}", lock_path.display()))?,
-    )?;
+    let value = read_json(path)?;
+    let lock = read_json(lock_path)?;
     let issues = semantic_issues_with_context(&value, &lock, Path::new("."));
     if issues.is_empty() {
         println!("agent run semantic gate ok");
         return Ok(());
     }
     bail!("agent run semantic gate failed: {}", issues.join("; "))
+}
+
+fn read_json(path: &Path) -> Result<Value> {
+    serde_json::from_slice(&fs::read(path).with_context(|| format!("read {}", path.display()))?)
+        .with_context(|| format!("parse {}", path.display()))
 }
 
 #[cfg(test)]
@@ -52,24 +55,6 @@ fn semantic_issues_with_optional_context(
     if !authority::is_approved(value) {
         return issues;
     }
-    push_approved_issues(value, lock, root, &mut issues);
+    approved::push_issues(value, lock, root, &mut issues);
     issues
-}
-
-fn push_approved_issues(
-    value: &Value,
-    lock: Option<&Value>,
-    root: Option<&Path>,
-    issues: &mut Vec<String>,
-) {
-    authority::push_self_approval_issue(value, issues);
-    ssot::push_issues(value, issues);
-    lease::push_issues(value, issues);
-    evidence::push_issues(value, issues);
-    evidence_quality::push_issues(value, issues);
-    reviewer::push_issues(value, issues);
-    debt::push_issues(value, issues);
-    lock_ref::push_issues(value, lock, issues);
-    trace_ref::push_issues(value, root, issues);
-    coverage_ref::push_issues(value, root, issues);
 }
