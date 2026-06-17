@@ -34,6 +34,7 @@ mod orchestration_verifier;
 mod producer;
 mod review_capacity;
 mod reviewer;
+mod reviewer_adversarial;
 mod semantic_diff;
 mod ssot;
 mod trace_ref;

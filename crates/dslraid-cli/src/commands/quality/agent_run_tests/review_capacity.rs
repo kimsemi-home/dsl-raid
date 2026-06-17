@@ -1,4 +1,5 @@
 use super::fixtures::{base_manifest, high};
+use super::fixtures_reviewer::adversarial;
 use serde_json::{json, Value};
 
 #[test]
@@ -52,7 +53,7 @@ fn review_capacity_rejects_unknown_evidence() {
 }
 
 fn high_risk_manifest() -> Value {
-    let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
+    let mut value = base_manifest(adversarial(), "finished", high());
     value["evidence"][0]["id"] = json!("evidence:quality");
     value["authority_gate"]["scope"] = json!("ontology");
     value["authority_gate"]["human_review_required"] = json!(true);

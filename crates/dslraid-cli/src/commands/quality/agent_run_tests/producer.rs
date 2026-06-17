@@ -1,4 +1,5 @@
 use super::fixtures::{base_manifest, high};
+use super::fixtures_reviewer::adversarial;
 use serde_json::json;
 
 #[test]
@@ -47,7 +48,7 @@ fn automatic_authority_requires_trusted_producer() {
 
 #[test]
 fn high_risk_authority_requires_high_reasoning_producer() {
-    let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
+    let mut value = base_manifest(adversarial(), "finished", high());
     value["producer"]["reasoning_level"] = json!("R2");
     value["authority_gate"]["scope"] = json!("ontology");
 

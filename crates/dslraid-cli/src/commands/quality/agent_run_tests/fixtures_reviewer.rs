@@ -1,5 +1,9 @@
 use serde_json::{json, Value};
 
+pub(super) fn adversarial() -> Value {
+    json!([{ "id": "reviewer:red-team", "role": "adversarial-review" }])
+}
+
 pub(super) fn with_defaults(value: Value) -> Value {
     let Some(items) = value.as_array() else {
         return value;

@@ -1,4 +1,5 @@
 use super::fixtures::{base_manifest, high};
+use super::fixtures_reviewer::adversarial;
 use serde_json::json;
 
 #[test]
@@ -55,7 +56,7 @@ fn human_review_requires_human_or_steward_approver() {
 
 #[test]
 fn ontology_scope_requires_human_review() {
-    let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
+    let mut value = base_manifest(adversarial(), "finished", high());
     value["authority_gate"]["scope"] = json!("ontology");
 
     assert_eq!(
