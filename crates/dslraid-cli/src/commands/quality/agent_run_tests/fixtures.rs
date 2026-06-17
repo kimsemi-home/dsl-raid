@@ -1,6 +1,7 @@
 use serde_json::{json, Value};
 
-pub(super) fn base_manifest(reviewers: Value, lease: &str, evidence: Value) -> Value {
+pub(super) fn base_manifest(reviewers: Value, lease: &str, mut evidence: Value) -> Value {
+    let gate_evidence = authority_evidence(&mut evidence);
     json!({
         "run": { "status": "verified" },
         "ssot": {
@@ -17,13 +18,30 @@ pub(super) fn base_manifest(reviewers: Value, lease: &str, evidence: Value) -> V
         "reviewers": reviewers,
         "authority_gate": {
             "decision": "approved",
-            "approved_by": "gate:quality"
+            "profile": "sidecar",
+            "scope": "routine",
+            "approved_by": "gate:quality",
+            "evidence": gate_evidence
         },
         "lease": { "status": lease },
         "evidence": evidence,
         "artifacts": [],
         "debts": []
     })
+}
+
+fn authority_evidence(evidence: &mut Value) -> Value {
+    let Some(items) = evidence.as_array_mut() else {
+        return json!([]);
+    };
+    if let Some(id) = items.iter().find_map(|item| item.get("id").cloned()) {
+        return json!([id]);
+    }
+    let Some(first) = items.first_mut() else {
+        return json!([]);
+    };
+    first["id"] = json!("evidence:authority");
+    json!(["evidence:authority"])
 }
 
 pub(super) fn high() -> Value {

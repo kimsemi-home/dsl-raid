@@ -11,7 +11,7 @@ pub(super) fn push_issues(
     root: Option<&Path>,
     issues: &mut Vec<String>,
 ) {
-    authority::push_self_approval_issue(value, issues);
+    authority::push_approved_issues(value, issues);
     ssot::push_issues(value, issues);
     lease::push_issues(value, issues);
     evidence::push_issues(value, issues);

@@ -1,3 +1,4 @@
+mod authority;
 mod claim;
 mod containment;
 mod containment_release;

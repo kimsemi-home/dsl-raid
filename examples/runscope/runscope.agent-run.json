@@ -37,8 +37,11 @@
   "authority_gate": {
     "decision": "approved",
     "policy_hash": "sha256:agent-principles-001",
+    "profile": "sidecar",
+    "scope": "routine",
     "human_review_required": false,
-    "approved_by": "gate:quality"
+    "approved_by": "gate:quality",
+    "evidence": ["evidence:quality", "evidence:precommit"]
   },
   "lease": {
     "id": "lease:runscope-quality-001",

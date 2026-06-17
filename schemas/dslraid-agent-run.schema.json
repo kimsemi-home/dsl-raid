@@ -106,8 +106,15 @@
       "properties": {
         "decision": { "type": "string", "enum": ["approved", "rejected", "escalated", "blocked"] },
         "policy_hash": { "$ref": "#/$defs/hash" },
+        "profile": { "type": "string", "enum": ["automatic", "sidecar", "human", "governance"] },
+        "scope": { "type": "string", "enum": ["routine", "security", "ontology", "incident", "authority"] },
         "human_review_required": { "type": "boolean" },
-        "approved_by": { "$ref": "#/$defs/id" }
+        "approved_by": { "$ref": "#/$defs/id" },
+        "evidence": {
+          "type": "array",
+          "default": [],
+          "items": { "$ref": "#/$defs/id" }
+        }
       }
     },
     "lease": {
