@@ -7,6 +7,7 @@ fn high_quality_snapshot_requires_matching_ontology() {
     value["evidence"][0]["quality_snapshots"] = json!([{
         "assessor": "sidecar:dslraid-quality",
         "quality": "high",
+        "revalidate_at": "2026-07-17T00:00:00Z",
         "ontology_version": "9.9.9"
     }]);
 
@@ -23,7 +24,8 @@ fn high_quality_snapshot_requires_ontology_version() {
     let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
     value["evidence"][0]["quality_snapshots"] = json!([{
         "assessor": "sidecar:dslraid-quality",
-        "quality": "high"
+        "quality": "high",
+        "revalidate_at": "2026-07-17T00:00:00Z"
     }]);
 
     assert_eq!(

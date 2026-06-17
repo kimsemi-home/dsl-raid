@@ -43,6 +43,7 @@ pub(super) fn high_snapshot() -> Value {
         "assessor": "sidecar:dslraid-quality",
         "purpose": "authority",
         "quality": "high",
+        "revalidate_at": "2026-07-17T00:00:00Z",
         "ontology_version": "0.1.0"
     }])
 }

@@ -272,6 +272,7 @@
         "assessor": { "$ref": "#/$defs/id" },
         "purpose": { "type": "string", "enum": ["authority", "root_cause", "regression", "traceability", "security"] },
         "quality": { "type": "string", "enum": ["low", "medium", "high"] },
+        "revalidate_at": { "type": "string", "format": "date-time" },
         "ontology_version": { "$ref": "#/$defs/semver" },
         "notes": { "$ref": "#/$defs/text" }
       }

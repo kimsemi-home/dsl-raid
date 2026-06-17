@@ -29,8 +29,11 @@ fn approved_manifest_rejects_self_assessed_quality_snapshot() {
     let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
     value["evidence"][0]["id"] = json!("evidence:quality");
     value["evidence"][0]["quality_snapshots"] = json!([{
+        "assessed_at": "2026-06-17T00:00:00Z",
         "assessor": "agent:codex",
+        "purpose": "authority",
         "quality": "high",
+        "revalidate_at": "2026-07-17T00:00:00Z",
         "ontology_version": "0.1.0"
     }]);
 

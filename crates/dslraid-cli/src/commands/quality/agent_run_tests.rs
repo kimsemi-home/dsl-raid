@@ -37,6 +37,7 @@ mod evidence_provenance;
 mod evidence_pruning;
 mod evidence_pruning_incident;
 mod evidence_quality;
+mod evidence_quality_freshness;
 mod evidence_quality_ontology;
 mod evidence_subject;
 mod fixtures;
