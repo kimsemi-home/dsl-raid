@@ -1,4 +1,5 @@
 mod authority;
+mod coverage_ref;
 mod debt;
 mod evidence;
 mod fields;
@@ -29,11 +30,6 @@ pub(super) fn check(path: &Path, lock_path: &Path) -> Result<()> {
 #[cfg(test)]
 pub(super) fn semantic_issues(value: &Value) -> Vec<String> {
     semantic_issues_with_optional_context(value, None, None)
-}
-
-#[cfg(test)]
-pub(super) fn semantic_issues_with_lock(value: &Value, lock: &Value) -> Vec<String> {
-    semantic_issues_with_optional_context(value, Some(lock), None)
 }
 
 pub(super) fn semantic_issues_with_context(
@@ -71,4 +67,5 @@ fn push_approved_issues(
     debt::push_issues(value, issues);
     lock_ref::push_issues(value, lock, issues);
     trace_ref::push_issues(value, root, issues);
+    coverage_ref::push_issues(value, root, issues);
 }

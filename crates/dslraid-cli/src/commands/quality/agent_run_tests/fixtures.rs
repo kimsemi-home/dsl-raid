@@ -20,7 +20,8 @@ pub(super) fn base_manifest(reviewers: Value, lease: &str, evidence: Value) -> V
 pub(super) fn high() -> Value {
     json!([
         { "quality": "high", "kind": "validation" },
-        { "quality": "high", "kind": "trace" }
+        { "quality": "high", "kind": "trace" },
+        { "quality": "high", "kind": "coverage" }
     ])
 }
 

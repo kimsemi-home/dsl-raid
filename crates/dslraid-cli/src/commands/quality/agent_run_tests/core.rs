@@ -11,22 +11,9 @@ fn approved_manifest_rejects_missing_review_evidence_and_lease() {
             "approved run requires finished lease",
             "approved run requires high quality evidence",
             "approved run requires trace evidence",
+            "approved run requires coverage evidence",
             "approved run requires independent reviewer"
         ]
-    );
-}
-
-#[test]
-fn approved_manifest_rejects_missing_trace_evidence() {
-    let value = base_manifest(
-        json!([{ "id": "reviewer:quality" }]),
-        "finished",
-        json!([{ "quality": "high", "kind": "validation" }]),
-    );
-
-    assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
-        vec!["approved run requires trace evidence"]
     );
 }
 

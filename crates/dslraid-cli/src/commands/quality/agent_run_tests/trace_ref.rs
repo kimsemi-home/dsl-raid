@@ -32,7 +32,8 @@ fn manifest_with_trace(uri: &str) -> serde_json::Value {
         "finished",
         json!([
             { "quality": "high", "kind": "validation" },
-            { "quality": "high", "kind": "trace", "uri": uri }
+            { "quality": "high", "kind": "trace", "uri": uri },
+            { "quality": "high", "kind": "coverage" }
         ]),
     )
 }
