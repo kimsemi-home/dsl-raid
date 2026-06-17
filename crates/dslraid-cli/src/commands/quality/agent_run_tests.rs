@@ -32,6 +32,7 @@ mod lock_ref;
 mod orchestration;
 mod orchestration_verifier;
 mod producer;
+mod producer_sensitive;
 mod review_capacity;
 mod reviewer;
 mod reviewer_adversarial;

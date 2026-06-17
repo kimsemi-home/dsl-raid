@@ -1,3 +1,5 @@
+mod sensitive;
+
 use super::fields::text;
 use serde_json::Value;
 
@@ -7,6 +9,7 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     push_cold_start_issue(value, issues);
     push_automatic_issue(value, issues);
     push_high_risk_issue(value, issues);
+    sensitive::push_issues(value, issues);
 }
 
 fn push_required_issue(value: &Value, key: &str, label: &str, issues: &mut Vec<String>) {
