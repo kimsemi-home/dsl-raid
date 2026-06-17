@@ -27,7 +27,7 @@ export function createActions(session: viewerSession.ViewerSession, elements: Vi
       actions.fit();
     },
     openFsm: (fsmId: string) => openFsm(actions, session, fsmId),
-    select: (subject: string | undefined, related?: string[]) => { selectSubject(session, subject, related); refresh(); },
+    select: (subject: string | undefined, related?: string[]) => (selectSubject(session, subject, related) ? actions.fit() : refresh()),
     selectRelative: (step: -1 | 1) => {
       selectRelativeSubject(session, step);
       refresh();
