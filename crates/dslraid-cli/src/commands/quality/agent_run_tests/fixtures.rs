@@ -30,7 +30,13 @@ pub(super) fn base_manifest(reviewers: Value, lease: &str, mut evidence: Value) 
         },
         "lease": { "status": lease },
         "evidence": evidence,
-        "artifacts": [],
+        "artifacts": [
+            {
+                "id": "artifact:runtime-rust",
+                "path": "generated/runtime_fsm.rs",
+                "status": "verified"
+            }
+        ],
         "debts": []
     })
 }

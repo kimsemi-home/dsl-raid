@@ -1,4 +1,5 @@
 mod agreement;
+mod artifact;
 mod authority;
 mod claim;
 mod containment;
