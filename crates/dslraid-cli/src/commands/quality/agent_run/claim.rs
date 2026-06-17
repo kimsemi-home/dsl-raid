@@ -1,3 +1,4 @@
+mod assessor;
 mod confidence;
 mod evidence;
 mod ontology;
@@ -11,6 +12,7 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     for claim in items(value, "claims") {
         push_interpreter_issue(claim, issues);
         push_supported_issue(claim, issues);
+        assessor::push_issues(value, claim, issues);
         ontology::push_issues(value, claim, issues);
         confidence::push_issues(value, claim, producer, issues);
         evidence::push_unknown_refs(claim, &evidence_ids, issues);
