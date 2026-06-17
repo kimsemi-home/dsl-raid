@@ -239,14 +239,27 @@
         "id": { "$ref": "#/$defs/id" },
         "kind": { "type": "string", "enum": ["observation", "validation", "trace", "coverage", "artifact", "review", "decision", "debt"] },
         "uri": { "$ref": "#/$defs/path" },
+        "status": { "type": "string", "enum": ["active", "archived", "pruned"] },
         "quality": { "type": "string", "enum": ["low", "medium", "high"] },
         "subject": { "$ref": "#/$defs/id" },
         "provenance": { "$ref": "#/$defs/provenance" },
+        "tombstone": { "$ref": "#/$defs/evidence_tombstone" },
         "quality_snapshots": {
           "type": "array",
           "default": [],
           "items": { "$ref": "#/$defs/quality_snapshot" }
         }
+      }
+    },
+    "evidence_tombstone": {
+      "type": "object",
+      "required": ["reason", "pruned_by", "pruned_at", "policy_hash"],
+      "additionalProperties": false,
+      "properties": {
+        "reason": { "$ref": "#/$defs/text" },
+        "pruned_by": { "$ref": "#/$defs/id" },
+        "pruned_at": { "type": "string", "format": "date-time" },
+        "policy_hash": { "$ref": "#/$defs/hash" }
       }
     },
     "quality_snapshot": {
