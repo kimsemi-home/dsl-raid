@@ -20,6 +20,7 @@ pub(super) fn check(input: &Path) -> Result<()> {
     .with_context(|| hint(input))
     .and_then(|_| check_fsm_catalog(input))
     .and_then(|_| check_assertion_catalog())
+    .and_then(|_| super::docs_markers::check())
     .and_then(|_| check_generated_docs_index())
 }
 

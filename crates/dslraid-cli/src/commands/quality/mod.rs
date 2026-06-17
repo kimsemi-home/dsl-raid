@@ -1,5 +1,6 @@
 mod demo;
 mod docs;
+mod docs_markers;
 mod generated;
 mod lisp;
 mod lock;
