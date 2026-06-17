@@ -1,3 +1,5 @@
+mod snapshot;
+
 use super::super::fields::text;
 use serde_json::Value;
 
@@ -15,4 +17,5 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     {
         issues.push("approved authority gate requires human review flag".to_string());
     }
+    snapshot::push_issues(value, issues);
 }

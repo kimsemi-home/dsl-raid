@@ -42,3 +42,15 @@ fn approved_manifest_requires_approver() {
         vec!["approved authority gate requires approver"]
     );
 }
+
+#[test]
+fn approved_manifest_rejects_mutable_policy_pointer() {
+    let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
+    value["authority_gate"]["policy_hash"] = json!("policy:latest");
+    value["orchestration"]["policy_hash"] = json!("policy:latest");
+
+    assert_eq!(
+        super::super::agent_run::semantic_issues(&value),
+        vec!["approved authority gate cannot use mutable policy pointer policy:latest"]
+    );
+}
