@@ -1,4 +1,5 @@
 mod agreement;
+mod agreement_participants;
 mod agreement_subject;
 mod artifact;
 mod authority;

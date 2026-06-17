@@ -5,6 +5,7 @@ use std::collections::BTreeSet;
 
 pub(super) fn push_issues(
     agreement: &Value,
+    producer: Option<&str>,
     reviewers: &BTreeSet<String>,
     issues: &mut Vec<String>,
 ) {
@@ -12,6 +13,12 @@ pub(super) fn push_issues(
     if participants.len() < 2 {
         issues.push(format!(
             "agreement {} requires at least two participants",
+            id(agreement)
+        ));
+    }
+    if producer.is_some_and(|id| !participants.iter().any(|item| item == id)) {
+        issues.push(format!(
+            "agreement {} requires producer participant",
             id(agreement)
         ));
     }
