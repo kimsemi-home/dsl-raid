@@ -25,6 +25,20 @@ fn high_confidence_claim_requires_external_assessor() {
     );
 }
 
+#[test]
+fn high_confidence_claim_revalidates_degraded_evidence() {
+    let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
+    value["evidence"][0]["quality"] = json!("medium");
+    value["claims"] = json!([claim(json!(["evidence:quality"]))]);
+
+    assert_eq!(
+        super::super::agent_run::semantic_issues(&value),
+        vec![
+            "high confidence claim claim:fresh-artifacts requires revalidation for degraded evidence evidence:quality"
+        ]
+    );
+}
+
 fn claim(evidence: Value) -> Value {
     json!({
         "id": "claim:fresh-artifacts",

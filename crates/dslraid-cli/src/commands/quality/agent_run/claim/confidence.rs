@@ -1,3 +1,5 @@
+mod quality;
+
 use super::{evidence, id};
 use crate::commands::quality::agent_run::fields::{field_is, field_text, items};
 use serde_json::Value;
@@ -36,6 +38,7 @@ pub(super) fn push_issues(
         ));
     }
     push_validation_issue(value, claim, issues);
+    quality::push_issues(value, claim, issues);
 }
 
 fn push_validation_issue(value: &Value, claim: &Value, issues: &mut Vec<String>) {
