@@ -7,7 +7,7 @@ fn claim_interpreter_must_match_ssot_ontology() {
     value["claims"] = json!([{
         "id": "claim:fresh-artifacts",
         "subject": "agent-run:runscope-quality-001",
-        "statement": "Generated artifacts match the canonical IR.",
+        "statement": "Fresh conformance matches the canonical IR.",
         "confidence": "medium",
         "assessor": "sidecar:dslraid-quality",
         "interpreted_under": "9.9.9",

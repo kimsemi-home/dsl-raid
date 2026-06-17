@@ -59,7 +59,7 @@ fn claim(confidence: &str, assessor: &str, evidence: Value) -> Value {
     json!({
         "id": "claim:fresh-artifacts",
         "subject": "agent-run:runscope-quality-001",
-        "statement": "Generated artifacts match the canonical IR.",
+        "statement": "Fresh conformance matches the canonical IR.",
         "confidence": confidence,
         "assessor": assessor,
         "interpreted_under": "0.1.0",

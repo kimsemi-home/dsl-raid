@@ -16,7 +16,7 @@ SSOT: `runscope` / ontology `0.1.0`
 | reviewers | 1 | independent sidecars |
 | agreements | 1 | cross-agent receipts |
 | semantic diffs | 1 | meaning-level receipts |
-| evidence | 4 | linked records |
+| evidence | 5 | linked records |
 | evidence quality | 4 | sidecar snapshots |
 | artifacts | 2 | generated outputs |
 | claims | 1 | high confidence `1` |

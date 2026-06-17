@@ -11,6 +11,7 @@ mod authority_evidence_pruning;
 mod authority_governance;
 mod authority_policy;
 mod claim;
+mod claim_artifact;
 mod claim_confidence;
 mod claim_ontology;
 mod containment;

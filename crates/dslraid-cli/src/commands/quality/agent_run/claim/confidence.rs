@@ -1,3 +1,4 @@
+mod artifact;
 mod quality;
 
 use super::{evidence, id};
@@ -38,6 +39,7 @@ pub(super) fn push_issues(
         ));
     }
     push_validation_issue(value, claim, issues);
+    artifact::push_issues(value, claim, issues);
     quality::push_issues(value, claim, issues);
 }
 
