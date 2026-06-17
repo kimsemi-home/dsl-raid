@@ -6,8 +6,21 @@ const REQUIRED: [&str; 4] = ["reason", "pruned_by", "pruned_at", "policy_hash"];
 pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     for evidence in items(value, "evidence") {
         if field_is(evidence, "status", "pruned") {
+            push_retention_issue(evidence, issues);
             push_tombstone_issues(evidence, issues);
         }
+    }
+}
+
+fn push_retention_issue(evidence: &Value, issues: &mut Vec<String>) {
+    let Some(retention) = field_text(evidence, "retention") else {
+        return;
+    };
+    if matches!(retention, "protected" | "legal_hold") {
+        issues.push(format!(
+            "evidence {} retention {retention} blocks pruning",
+            id(evidence)
+        ));
     }
 }
 

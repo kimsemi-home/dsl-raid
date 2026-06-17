@@ -41,6 +41,23 @@ fn pruned_evidence_does_not_count_as_active_support() {
     );
 }
 
+#[test]
+fn protected_retention_blocks_pruning() {
+    for retention in ["protected", "legal_hold"] {
+        let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
+        value["evidence"][0]["status"] = json!("pruned");
+        value["evidence"][0]["retention"] = json!(retention);
+        value["evidence"][0]["tombstone"] = tombstone();
+
+        assert_eq!(
+            super::super::agent_run::semantic_issues(&value),
+            vec![format!(
+                "evidence evidence:quality retention {retention} blocks pruning"
+            )]
+        );
+    }
+}
+
 fn tombstone() -> serde_json::Value {
     json!({
         "reason": "superseded by newer validation",

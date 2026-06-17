@@ -240,6 +240,7 @@
         "kind": { "type": "string", "enum": ["observation", "validation", "trace", "coverage", "artifact", "review", "decision", "debt"] },
         "uri": { "$ref": "#/$defs/path" },
         "status": { "type": "string", "enum": ["active", "archived", "pruned"] },
+        "retention": { "type": "string", "enum": ["normal", "protected", "legal_hold"] },
         "quality": { "type": "string", "enum": ["low", "medium", "high"] },
         "subject": { "$ref": "#/$defs/id" },
         "provenance": { "$ref": "#/$defs/provenance" },
