@@ -1,5 +1,6 @@
 mod confidence;
 mod evidence;
+mod ontology;
 
 use super::fields::{field_is, field_text, items, text};
 use serde_json::Value;
@@ -10,6 +11,7 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     for claim in items(value, "claims") {
         push_interpreter_issue(claim, issues);
         push_supported_issue(claim, issues);
+        ontology::push_issues(value, claim, issues);
         confidence::push_issues(claim, producer, issues);
         evidence::push_unknown_refs(claim, &evidence_ids, issues);
     }
