@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dslraid.dev/schemas/dslraid-agent-run.schema.json",
+  "title": "DSLRaid Agent Run Manifest",
+  "type": "object",
+  "required": ["agent_run_version", "run", "ssot", "producer", "authority_gate", "lease", "evidence"],
+  "additionalProperties": false,
+  "properties": {
+    "agent_run_version": { "$ref": "#/$defs/semver" },
+    "run": { "$ref": "#/$defs/run" },
+    "ssot": { "$ref": "#/$defs/ssot" },
+    "producer": { "$ref": "#/$defs/agent" },
+    "reviewers": {
+      "type": "array",
+      "default": [],
+      "items": { "$ref": "#/$defs/agent" }
+    },
+    "authority_gate": { "$ref": "#/$defs/authority_gate" },
+    "lease": { "$ref": "#/$defs/lease" },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/evidence" }
+    },
+    "artifacts": {
+      "type": "array",
+      "default": [],
+      "items": { "$ref": "#/$defs/artifact" }
+    },
+    "debts": {
+      "type": "array",
+      "default": [],
+      "items": { "$ref": "#/$defs/debt" }
+    }
+  },
+  "$defs": {
+    "run": {
+      "type": "object",
+      "required": ["id", "purpose", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "purpose": { "$ref": "#/$defs/text" },
+        "started_at": { "type": "string", "format": "date-time" },
+        "status": { "type": "string", "enum": ["proposed", "running", "verified", "rejected", "quarantined", "aborted"] }
+      }
+    },
+    "ssot": {
+      "type": "object",
+      "required": ["context", "ontology_version", "core_ir"],
+      "additionalProperties": false,
+      "properties": {
+        "context": { "$ref": "#/$defs/id" },
+        "ontology_version": { "$ref": "#/$defs/semver" },
+        "contract_version": { "$ref": "#/$defs/semver" },
+        "core_ir": { "$ref": "#/$defs/path" },
+        "core_ir_hash": { "$ref": "#/$defs/hash" }
+      }
+    },
+    "agent": {
+      "type": "object",
+      "required": ["id", "role", "reasoning_level"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "role": { "$ref": "#/$defs/id" },
+        "reasoning_level": { "type": "string", "enum": ["R0", "R1", "R2", "R3", "R4"] },
+        "trust_tier": { "type": "string", "enum": ["T0", "T1", "T2", "T3", "T4"] }
+      }
+    },
+    "authority_gate": {
+      "type": "object",
+      "required": ["decision", "policy_hash", "human_review_required"],
+      "additionalProperties": false,
+      "properties": {
+        "decision": { "type": "string", "enum": ["approved", "rejected", "escalated", "blocked"] },
+        "policy_hash": { "$ref": "#/$defs/hash" },
+        "human_review_required": { "type": "boolean" },
+        "approved_by": { "$ref": "#/$defs/id" }
+      }
+    },
+    "lease": {
+      "type": "object",
+      "required": ["id", "status", "issued_at", "expires_at"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "status": { "type": "string", "enum": ["issued", "active", "expiring", "expired", "rebase_required", "finished", "aborted", "escalated", "quarantined"] },
+        "issued_at": { "type": "string", "format": "date-time" },
+        "expires_at": { "type": "string", "format": "date-time" },
+        "ontology_version": { "$ref": "#/$defs/semver" }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["id", "kind", "uri"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "kind": { "type": "string", "enum": ["observation", "validation", "trace", "coverage", "artifact", "review", "decision", "debt"] },
+        "uri": { "$ref": "#/$defs/path" },
+        "quality": { "type": "string", "enum": ["low", "medium", "high"] },
+        "subject": { "$ref": "#/$defs/id" }
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "required": ["id", "path", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "path": { "$ref": "#/$defs/path" },
+        "status": { "type": "string", "enum": ["candidate", "verified", "stale", "quarantined", "aborted"] }
+      }
+    },
+    "debt": {
+      "type": "object",
+      "required": ["id", "kind", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "kind": { "type": "string", "enum": ["evidence", "review", "revalidation", "quarantine", "translation"] },
+        "status": { "type": "string", "enum": ["open", "closed", "waived"] },
+        "owner": { "$ref": "#/$defs/id" }
+      }
+    },
+    "id": { "type": "string", "minLength": 1 },
+    "path": { "type": "string", "minLength": 1 },
+    "text": { "type": "string", "minLength": 1 },
+    "hash": { "type": "string", "pattern": "^[a-z0-9]+:[A-Za-z0-9._:-]+$" },
+    "semver": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" }
+  }
+}

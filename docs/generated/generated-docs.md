@@ -7,6 +7,7 @@ Source: `docs/generated/*.md`
 | Document | Title | Generator |
 | --- | --- | --- |
 | [agent-cluster-principles.md](agent-cluster-principles.md) | DSLRaid Agent Cluster Principles | `scripts/agentprinciplegen.sh` |
+| [agent-run-manifest.md](agent-run-manifest.md) | DSLRaid Agent Run Manifest | `scripts/agentmanifestgen.sh` |
 | [assertion-catalog.md](assertion-catalog.md) | DSLRaid Assertion Catalog | `scripts/assertiongen.sh` |
 | [backend-targets.md](backend-targets.md) | DSLRaid Backend Targets | `scripts/backendgen.sh` |
 | [cli-reference.md](cli-reference.md) | DSLRaid CLI Reference | `dslraid doc cli generate` |

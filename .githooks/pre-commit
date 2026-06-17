@@ -10,6 +10,7 @@ bash scripts/lisp-docgen.sh check
 bash scripts/langdiaggen.sh check
 bash scripts/backendgen.sh check
 bash scripts/agentprinciplegen.sh check
+bash scripts/agentmanifestgen.sh check
 bash scripts/lisp-irgen.sh check
 bash scripts/lisp-rustgen.sh check
 bash scripts/gendocindex.sh check

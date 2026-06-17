@@ -1,4 +1,5 @@
 mod demo;
+mod doc_scripts;
 mod docs;
 mod docs_markers;
 mod generated;

@@ -9,7 +9,7 @@ pub(super) fn check() -> Result<()> {
     Ok(())
 }
 
-fn fixture_schemas() -> [(&'static str, &'static str); 8] {
+fn fixture_schemas() -> [(&'static str, &'static str); 9] {
     [
         (CORE_SCHEMA_PATH, "examples/runscope/runscope.raid.json"),
         (
@@ -39,6 +39,10 @@ fn fixture_schemas() -> [(&'static str, &'static str); 8] {
         (
             "schemas/dslraid-coverage.schema.json",
             "examples/runscope/run-001.coverage.json",
+        ),
+        (
+            "schemas/dslraid-agent-run.schema.json",
+            "examples/runscope/runscope.agent-run.json",
         ),
     ]
 }

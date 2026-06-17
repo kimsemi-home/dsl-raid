@@ -19,8 +19,7 @@ pub(super) fn check(input: &Path) -> Result<()> {
     })
     .with_context(|| hint(input))
     .and_then(|_| check_fsm_catalog(input))
-    .and_then(|_| check_assertion_catalog())
-    .and_then(|_| check_agent_principles())
+    .and_then(|_| check_generated_scripts())
     .and_then(|_| super::docs_markers::check())
     .and_then(|_| check_generated_docs_index())
 }
@@ -38,12 +37,11 @@ fn check_fsm_catalog(input: &Path) -> Result<()> {
     Ok(())
 }
 
-fn check_assertion_catalog() -> Result<()> {
-    check_script("scripts/assertiongen.sh")
-}
-
-fn check_agent_principles() -> Result<()> {
-    check_script("scripts/agentprinciplegen.sh")
+fn check_generated_scripts() -> Result<()> {
+    for script in super::doc_scripts::generated_doc_scripts() {
+        check_script(script)?;
+    }
+    Ok(())
 }
 
 fn check_generated_docs_index() -> Result<()> {

@@ -1,0 +1,72 @@
+{
+  "agent_run_version": "0.1.0",
+  "run": {
+    "id": "agent-run:runscope-quality-001",
+    "purpose": "Verify generated RunScope architecture artifacts from Canonical IR.",
+    "started_at": "2026-06-17T00:00:00Z",
+    "status": "verified"
+  },
+  "ssot": {
+    "context": "runscope",
+    "ontology_version": "0.1.0",
+    "contract_version": "0.1.0",
+    "core_ir": "examples/runscope/runscope.raid.json",
+    "core_ir_hash": "sha256:fixture-runscope-core"
+  },
+  "producer": {
+    "id": "agent:codex",
+    "role": "implementation",
+    "reasoning_level": "R3",
+    "trust_tier": "T2"
+  },
+  "reviewers": [
+    {
+      "id": "sidecar:dslraid-quality",
+      "role": "verification",
+      "reasoning_level": "R0",
+      "trust_tier": "T3"
+    }
+  ],
+  "authority_gate": {
+    "decision": "approved",
+    "policy_hash": "sha256:agent-principles-001",
+    "human_review_required": false,
+    "approved_by": "gate:quality"
+  },
+  "lease": {
+    "id": "lease:runscope-quality-001",
+    "status": "finished",
+    "issued_at": "2026-06-17T00:00:00Z",
+    "expires_at": "2026-06-18T00:00:00Z",
+    "ontology_version": "0.1.0"
+  },
+  "evidence": [
+    {
+      "id": "evidence:quality",
+      "kind": "validation",
+      "uri": "cargo run -p dslraid-cli -- quality",
+      "quality": "high",
+      "subject": "agent-run:runscope-quality-001"
+    },
+    {
+      "id": "evidence:precommit",
+      "kind": "validation",
+      "uri": "bash .githooks/pre-commit",
+      "quality": "high",
+      "subject": "agent-run:runscope-quality-001"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "artifact:runtime-rust",
+      "path": "generated/runtime_fsm.rs",
+      "status": "verified"
+    },
+    {
+      "id": "artifact:runtime-go",
+      "path": "generated/runtime_fsm.go",
+      "status": "verified"
+    }
+  ],
+  "debts": []
+}
