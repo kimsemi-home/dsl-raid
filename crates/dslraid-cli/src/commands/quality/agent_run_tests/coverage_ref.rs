@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, fresh_lock};
+use super::fixtures::{base_manifest, fresh_lock, high_snapshot};
 use serde_json::json;
 use std::path::PathBuf;
 
@@ -31,9 +31,9 @@ fn manifest_with_coverage(uri: &str) -> serde_json::Value {
         json!([{ "id": "reviewer:quality" }]),
         "finished",
         json!([
-            { "quality": "high", "kind": "validation" },
-            { "quality": "high", "kind": "trace", "uri": "examples/runscope/run-001.trace.json" },
-            { "quality": "high", "kind": "coverage", "uri": uri }
+            { "quality": "high", "kind": "validation", "quality_snapshots": high_snapshot() },
+            { "quality": "high", "kind": "trace", "uri": "examples/runscope/run-001.trace.json", "quality_snapshots": high_snapshot() },
+            { "quality": "high", "kind": "coverage", "uri": uri, "quality_snapshots": high_snapshot() }
         ]),
     )
 }

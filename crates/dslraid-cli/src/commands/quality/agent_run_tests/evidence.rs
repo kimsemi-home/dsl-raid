@@ -1,4 +1,4 @@
-use super::fixtures::base_manifest;
+use super::fixtures::{base_manifest, high_snapshot};
 use serde_json::json;
 
 #[test]
@@ -7,8 +7,8 @@ fn approved_manifest_rejects_missing_trace_evidence() {
         json!([{ "id": "reviewer:quality" }]),
         "finished",
         json!([
-            { "quality": "high", "kind": "validation" },
-            { "quality": "high", "kind": "coverage" }
+            { "quality": "high", "kind": "validation", "quality_snapshots": high_snapshot() },
+            { "quality": "high", "kind": "coverage", "quality_snapshots": high_snapshot() }
         ]),
     );
 
@@ -24,8 +24,8 @@ fn approved_manifest_rejects_missing_coverage_evidence() {
         json!([{ "id": "reviewer:quality" }]),
         "finished",
         json!([
-            { "quality": "high", "kind": "validation" },
-            { "quality": "high", "kind": "trace" }
+            { "quality": "high", "kind": "validation", "quality_snapshots": high_snapshot() },
+            { "quality": "high", "kind": "trace", "quality_snapshots": high_snapshot() }
         ]),
     );
 

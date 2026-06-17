@@ -20,6 +20,10 @@ run = manifest["run"]
 gate = manifest["authority_gate"]
 lease = manifest["lease"]
 ssot = manifest["ssot"]
+quality_snapshots = sum(
+    len(evidence.get("quality_snapshots", []))
+    for evidence in manifest.get("evidence", [])
+)
 
 def cell(value):
     return str(value).replace("|", "\\|").replace("\n", " ")
@@ -35,6 +39,7 @@ print(f"| lease | {cell(lease['status'])} | `{cell(lease['id'])}` |")
 print(f"| producer | {cell(manifest['producer']['id'])} | {cell(manifest['producer']['reasoning_level'])} / {cell(manifest['producer'].get('trust_tier', ''))} |")
 print(f"| reviewers | {len(manifest.get('reviewers', []))} | independent sidecars |")
 print(f"| evidence | {len(manifest.get('evidence', []))} | linked records |")
+print(f"| evidence quality | {quality_snapshots} | sidecar snapshots |")
 print(f"| artifacts | {len(manifest.get('artifacts', []))} | generated outputs |")
 print(f"| debts | {len(manifest.get('debts', []))} | tracked open work |")
 print("| semantic gate | checked | `dslraid quality` |")

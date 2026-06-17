@@ -46,28 +46,64 @@
       "kind": "validation",
       "uri": "cargo run -p dslraid-cli -- quality",
       "quality": "high",
-      "subject": "agent-run:runscope-quality-001"
+      "subject": "agent-run:runscope-quality-001",
+      "quality_snapshots": [
+        {
+          "assessed_at": "2026-06-17T00:00:00Z",
+          "assessor": "sidecar:dslraid-quality",
+          "purpose": "authority",
+          "quality": "high",
+          "ontology_version": "0.1.0"
+        }
+      ]
     },
     {
       "id": "evidence:precommit",
       "kind": "validation",
       "uri": "bash .githooks/pre-commit",
       "quality": "high",
-      "subject": "agent-run:runscope-quality-001"
+      "subject": "agent-run:runscope-quality-001",
+      "quality_snapshots": [
+        {
+          "assessed_at": "2026-06-17T00:00:00Z",
+          "assessor": "sidecar:dslraid-quality",
+          "purpose": "authority",
+          "quality": "high",
+          "ontology_version": "0.1.0"
+        }
+      ]
     },
     {
       "id": "evidence:trace-run-001",
       "kind": "trace",
       "uri": "examples/runscope/run-001.trace.json",
       "quality": "high",
-      "subject": "agent-run:runscope-quality-001"
+      "subject": "agent-run:runscope-quality-001",
+      "quality_snapshots": [
+        {
+          "assessed_at": "2026-06-17T00:00:00Z",
+          "assessor": "sidecar:dslraid-quality",
+          "purpose": "traceability",
+          "quality": "high",
+          "ontology_version": "0.1.0"
+        }
+      ]
     },
     {
       "id": "evidence:coverage-run-001",
       "kind": "coverage",
       "uri": "examples/runscope/run-001.coverage.json",
       "quality": "high",
-      "subject": "agent-run:runscope-quality-001"
+      "subject": "agent-run:runscope-quality-001",
+      "quality_snapshots": [
+        {
+          "assessed_at": "2026-06-17T00:00:00Z",
+          "assessor": "sidecar:dslraid-quality",
+          "purpose": "traceability",
+          "quality": "high",
+          "ontology_version": "0.1.0"
+        }
+      ]
     }
   ],
   "artifacts": [

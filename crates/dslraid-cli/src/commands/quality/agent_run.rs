@@ -2,6 +2,7 @@ mod authority;
 mod coverage_ref;
 mod debt;
 mod evidence;
+mod evidence_quality;
 mod fields;
 mod lease;
 mod lock_ref;
@@ -63,6 +64,7 @@ fn push_approved_issues(
     authority::push_self_approval_issue(value, issues);
     lease::push_issues(value, issues);
     evidence::push_issues(value, issues);
+    evidence_quality::push_issues(value, issues);
     reviewer::push_issues(value, issues);
     debt::push_issues(value, issues);
     lock_ref::push_issues(value, lock, issues);

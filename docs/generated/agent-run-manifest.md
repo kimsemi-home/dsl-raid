@@ -12,6 +12,7 @@ SSOT: `runscope` / ontology `0.1.0`
 | producer | agent:codex | R3 / T2 |
 | reviewers | 1 | independent sidecars |
 | evidence | 4 | linked records |
+| evidence quality | 4 | sidecar snapshots |
 | artifacts | 2 | generated outputs |
 | debts | 0 | tracked open work |
 | semantic gate | checked | `dslraid quality` |

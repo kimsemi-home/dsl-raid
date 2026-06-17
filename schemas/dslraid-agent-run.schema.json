@@ -100,7 +100,25 @@
         "kind": { "type": "string", "enum": ["observation", "validation", "trace", "coverage", "artifact", "review", "decision", "debt"] },
         "uri": { "$ref": "#/$defs/path" },
         "quality": { "type": "string", "enum": ["low", "medium", "high"] },
-        "subject": { "$ref": "#/$defs/id" }
+        "subject": { "$ref": "#/$defs/id" },
+        "quality_snapshots": {
+          "type": "array",
+          "default": [],
+          "items": { "$ref": "#/$defs/quality_snapshot" }
+        }
+      }
+    },
+    "quality_snapshot": {
+      "type": "object",
+      "required": ["assessed_at", "assessor", "purpose", "quality"],
+      "additionalProperties": false,
+      "properties": {
+        "assessed_at": { "type": "string", "format": "date-time" },
+        "assessor": { "$ref": "#/$defs/id" },
+        "purpose": { "type": "string", "enum": ["authority", "root_cause", "regression", "traceability", "security"] },
+        "quality": { "type": "string", "enum": ["low", "medium", "high"] },
+        "ontology_version": { "$ref": "#/$defs/semver" },
+        "notes": { "$ref": "#/$defs/text" }
       }
     },
     "artifact": {
