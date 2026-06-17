@@ -172,5 +172,25 @@
       ]
     }
   ],
-  "debts": []
+  "debts": [
+    {
+      "id": "debt:feedback-closure-policy",
+      "kind": "review",
+      "status": "closed",
+      "owner": "sidecar:dslraid-quality",
+      "opened_at": "2026-06-17T00:00:00Z",
+      "revalidate_at": "2026-07-17T00:00:00Z",
+      "closed_at": "2026-06-17T01:00:00Z",
+      "evidence": ["evidence:quality"],
+      "updates": [
+        {
+          "id": "update:feedback-closure-policy",
+          "kind": "policy",
+          "subject": "policy:agent-quality",
+          "status": "applied",
+          "evidence": ["evidence:quality"]
+        }
+      ]
+    }
+  ]
 }

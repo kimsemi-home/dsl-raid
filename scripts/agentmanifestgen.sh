@@ -25,10 +25,9 @@ quality_snapshots = sum(
     len(evidence.get("quality_snapshots", []))
     for evidence in manifest.get("evidence", [])
 )
-revalidation_dates = sum(
-    1 for debt in manifest.get("debts", [])
-    if "revalidate_at" in debt
-)
+debts = manifest.get("debts", [])
+revalidation_dates = sum(1 for debt in debts if "revalidate_at" in debt)
+closure_updates = sum(len(debt.get("updates", [])) for debt in debts)
 translations = manifest.get("translations", [])
 losses = [loss for item in translations for loss in item.get("losses", [])]
 forbidden_losses = sum(
@@ -62,8 +61,7 @@ print(f"| claims | {len(claims)} | high confidence `{high_claims}` |")
 print(f"| containments | {len(containments)} | abort/quarantine bundles |")
 print(f"| translations | {len(translations)} | context handoffs |")
 print(f"| loss ledger | {len(losses)} | forbidden `{forbidden_losses}` |")
-print(f"| debts | {len(manifest.get('debts', []))} | tracked open work |")
-print(f"| debt revalidation | {revalidation_dates} | authority dates |")
+print(f"| debts | {len(debts)} | closure updates `{closure_updates}`, revalidation `{revalidation_dates}` |")
 print("| semantic gate | checked | `dslraid quality` |")
 PY
 }

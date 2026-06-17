@@ -271,7 +271,28 @@
           "default": [],
           "items": { "$ref": "#/$defs/id" }
         },
+        "updates": {
+          "type": "array",
+          "default": [],
+          "items": { "$ref": "#/$defs/knowledge_update" }
+        },
         "notes": { "$ref": "#/$defs/text" }
+      }
+    },
+    "knowledge_update": {
+      "type": "object",
+      "required": ["id", "kind", "subject", "status", "evidence"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "kind": { "type": "string", "enum": ["policy", "ontology", "spec", "owner", "revalidation"] },
+        "subject": { "$ref": "#/$defs/id" },
+        "status": { "type": "string", "enum": ["proposed", "applied", "accepted"] },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/id" }
+        }
       }
     },
     "translation": {

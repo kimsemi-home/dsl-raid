@@ -15,7 +15,8 @@ fn approved_manifest_rejects_unaccountable_closed_debt() {
             "debt debt:review requires owner",
             "debt debt:review requires opened_at",
             "debt debt:review requires revalidate_at",
-            "debt debt:review requires closure evidence"
+            "debt debt:review requires closure evidence",
+            "debt debt:review requires feedback closure update"
         ]
     );
 }
@@ -44,14 +45,5 @@ fn approved_manifest_accepts_closed_debt_with_evidence() {
 }
 
 fn tracked_debt(evidence: serde_json::Value) -> serde_json::Value {
-    json!([{
-        "id": "debt:review",
-        "kind": "review",
-        "status": "closed",
-        "owner": "sidecar:dslraid-quality",
-        "opened_at": "2026-06-17T00:00:00Z",
-        "revalidate_at": "2026-06-18T00:00:00Z",
-        "closed_at": "2026-06-17T01:00:00Z",
-        "evidence": evidence
-    }])
+    super::debt_fixture::closed_with(evidence, "applied")
 }

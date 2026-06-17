@@ -8,6 +8,8 @@ mod coverage_fixture;
 mod coverage_link;
 mod coverage_ref;
 mod debt;
+mod debt_feedback;
+mod debt_fixture;
 mod evidence;
 mod evidence_quality;
 mod fixtures;

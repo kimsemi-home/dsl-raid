@@ -20,6 +20,5 @@ SSOT: `runscope` / ontology `0.1.0`
 | containments | 0 | abort/quarantine bundles |
 | translations | 1 | context handoffs |
 | loss ledger | 1 | forbidden `0` |
-| debts | 0 | tracked open work |
-| debt revalidation | 0 | authority dates |
+| debts | 1 | closure updates `1`, revalidation `1` |
 | semantic gate | checked | `dslraid quality` |
