@@ -1,4 +1,4 @@
-use super::super::fields::{field_text, items};
+use super::super::fields::{field_is, field_text, items};
 use serde_json::Value;
 use std::collections::BTreeSet;
 
@@ -29,6 +29,29 @@ pub(super) fn push_unknown(
         if !evidence.contains(reference) {
             issues.push(format!(
                 "{kind} {id} references unknown evidence {reference}"
+            ));
+        }
+    }
+}
+
+pub(super) fn pruned_ids(value: &Value) -> BTreeSet<String> {
+    items(value, "evidence")
+        .filter(|item| field_is(item, "status", "pruned"))
+        .filter_map(|item| field_text(item, "id").map(str::to_string))
+        .collect()
+}
+
+pub(super) fn push_pruned(
+    kind: &str,
+    id: &str,
+    refs: Vec<&str>,
+    pruned: &BTreeSet<String>,
+    issues: &mut Vec<String>,
+) {
+    for reference in refs {
+        if pruned.contains(reference) {
+            issues.push(format!(
+                "{kind} {id} references pruned evidence {reference}"
             ));
         }
     }

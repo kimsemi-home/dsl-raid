@@ -13,11 +13,14 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     abort::push_issues(value, issues);
     quarantine::push_issues(value, issues);
     let evidence_ids = evidence::ids(value);
+    let pruned_ids = evidence::pruned_ids(value);
     for item in items(value, "containments") {
         subject::push_issues(value, item, issues);
         push_accountability_issue(item, issues);
         let refs = evidence::refs(item);
         evidence::push_unknown("containment", id(item), refs, &evidence_ids, issues);
+        let refs = evidence::refs(item);
+        evidence::push_pruned("containment", id(item), refs, &pruned_ids, issues);
         release::push_issues(item, &evidence_ids, issues);
     }
 }
