@@ -129,8 +129,8 @@ jobs:
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
-          sudo apt-get update -o Acquire::Retries=3
-          sudo apt-get install -y --no-install-recommends sbcl
+          timeout 300 sudo apt-get update -o Acquire::Retries=3
+          timeout 300 sudo apt-get install -y --no-install-recommends sbcl
 
       - uses: dtolnay/rust-toolchain@stable
 
@@ -154,6 +154,7 @@ jobs:
   dslraid:
     name: DSLRaid quality
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v6
 
@@ -171,8 +172,8 @@ jobs:
         env:
           DEBIAN_FRONTEND: noninteractive
         run: |
-          sudo apt-get update -o Acquire::Retries=3
-          sudo apt-get install -y --no-install-recommends sbcl
+          timeout 300 sudo apt-get update -o Acquire::Retries=3
+          timeout 300 sudo apt-get install -y --no-install-recommends sbcl
 
       - uses: dtolnay/rust-toolchain@stable
         if: steps.cli.outputs.present == 'true'
