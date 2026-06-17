@@ -77,6 +77,7 @@ coverage check
 diff --check
 artifact verify
 compat check
+generated Rust compile smoke
 golden check
 ```
 
@@ -175,6 +176,7 @@ hierarchies, huge compositions, unusual display text, and ID namespace edges.
 
 ## Bootstrap Behavior
 
-The repository is currently in design bootstrap mode. Workflows therefore skip
-Rust or viewer jobs when `Cargo.toml` or `apps/viewer/package-lock.json` do not
-exist yet, while still enforcing JSON syntax and RunScope semantic sanity.
+The repository has moved past early bootstrap. Workflows still detect optional
+surfaces such as the viewer, but domain semantics live in the Rust analyzer and
+the unified `dslraid quality` gate. CI workflow YAML should stay orchestration
+only: JSON syntax, tool setup, and command invocation.
