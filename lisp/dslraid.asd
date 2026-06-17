@@ -26,6 +26,7 @@
      (:file "malformed")
      (:file "identifiers")
      (:file "keywords")
+     (:file "collection-values")
      (:file "values")
      (:file "duplicates")
      (:file "references")

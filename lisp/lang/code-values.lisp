@@ -5,4 +5,9 @@
      :code "LANG016"
      :severity "error"
      :scope "FSM authoring values"
-     :summary "Boolean authoring keyword values must be true or false.")))
+     :summary "Boolean authoring keyword values must be true or false.")
+    (:key :invalid-collection-value
+     :code "LANG017"
+     :severity "error"
+     :scope "FSM authoring values"
+     :summary "Collection authoring keyword values must be lists.")))
