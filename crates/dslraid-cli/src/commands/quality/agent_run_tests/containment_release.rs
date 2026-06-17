@@ -9,6 +9,7 @@ fn released_containment_requires_met_conditions() {
     value["containments"] = json!([{
         "id": "containment:quarantine",
         "kind": "quarantine",
+        "subject": "agent-run:runscope-quality-001",
         "reason": "Contain suspicious work.",
         "status": "released",
         "owner": "sidecar:dslraid-quality",

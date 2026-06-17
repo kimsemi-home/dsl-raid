@@ -7,6 +7,7 @@ mod authority_policy;
 mod claim;
 mod containment;
 mod containment_release;
+mod containment_subject;
 mod core;
 mod coverage_fixture;
 mod coverage_link;

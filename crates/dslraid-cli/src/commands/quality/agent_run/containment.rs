@@ -1,5 +1,6 @@
 mod evidence;
 mod required;
+mod subject;
 
 use super::fields::{field_is, field_text, items};
 use serde_json::Value;
@@ -9,6 +10,7 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     required::push_issues(value, issues);
     let evidence_ids = evidence::ids(value);
     for item in items(value, "containments") {
+        subject::push_issues(value, item, issues);
         push_accountability_issue(item, issues);
         let refs = evidence::refs(item);
         evidence::push_unknown("containment", id(item), refs, &evidence_ids, issues);

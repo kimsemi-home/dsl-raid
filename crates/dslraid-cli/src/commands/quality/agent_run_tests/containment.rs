@@ -48,6 +48,7 @@ fn bundle(kind: &str, status: &str, evidence: Value, conditions: Value) -> Value
     json!({
         "id": format!("containment:{kind}"),
         "kind": kind,
+        "subject": "agent-run:runscope-quality-001",
         "reason": "Contain suspicious or interrupted work.",
         "status": status,
         "owner": "sidecar:dslraid-quality",
