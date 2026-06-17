@@ -8,6 +8,7 @@ SSOT: `runscope` / ontology `0.1.0`
 | Surface | Status | Evidence |
 | --- | --- | --- |
 | authority gate | approved | policy `sha256:agent-principles-001` |
+| ssot revalidation | valid | `2026-07-17T00:00:00Z` |
 | lease | finished | `lease:runscope-quality-001` |
 | producer | agent:codex | R3 / T2 |
 | reviewers | 1 | independent sidecars |

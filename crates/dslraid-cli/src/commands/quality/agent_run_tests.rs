@@ -7,4 +7,5 @@ mod evidence;
 mod evidence_quality;
 mod fixtures;
 mod lock_ref;
+mod ssot;
 mod trace_ref;

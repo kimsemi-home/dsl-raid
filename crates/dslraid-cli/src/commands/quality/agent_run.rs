@@ -7,6 +7,7 @@ mod fields;
 mod lease;
 mod lock_ref;
 mod reviewer;
+mod ssot;
 mod trace_ref;
 
 use anyhow::{bail, Context, Result};
@@ -62,6 +63,7 @@ fn push_approved_issues(
     issues: &mut Vec<String>,
 ) {
     authority::push_self_approval_issue(value, issues);
+    ssot::push_issues(value, issues);
     lease::push_issues(value, issues);
     evidence::push_issues(value, issues);
     evidence_quality::push_issues(value, issues);

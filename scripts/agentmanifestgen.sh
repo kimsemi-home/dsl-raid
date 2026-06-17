@@ -20,6 +20,7 @@ run = manifest["run"]
 gate = manifest["authority_gate"]
 lease = manifest["lease"]
 ssot = manifest["ssot"]
+ssot_revalidation = ssot.get("revalidation", {})
 quality_snapshots = sum(
     len(evidence.get("quality_snapshots", []))
     for evidence in manifest.get("evidence", [])
@@ -39,6 +40,7 @@ print(f"SSOT: `{cell(ssot['context'])}` / ontology `{cell(ssot['ontology_version
 print("| Surface | Status | Evidence |")
 print("| --- | --- | --- |")
 print(f"| authority gate | {cell(gate['decision'])} | policy `{cell(gate['policy_hash'])}` |")
+print(f"| ssot revalidation | {cell(ssot_revalidation.get('status', 'missing'))} | `{cell(ssot_revalidation.get('revalidate_at', ''))}` |")
 print(f"| lease | {cell(lease['status'])} | `{cell(lease['id'])}` |")
 print(f"| producer | {cell(manifest['producer']['id'])} | {cell(manifest['producer']['reasoning_level'])} / {cell(manifest['producer'].get('trust_tier', ''))} |")
 print(f"| reviewers | {len(manifest.get('reviewers', []))} | independent sidecars |")

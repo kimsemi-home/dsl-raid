@@ -54,7 +54,23 @@
         "ontology_version": { "$ref": "#/$defs/semver" },
         "contract_version": { "$ref": "#/$defs/semver" },
         "core_ir": { "$ref": "#/$defs/path" },
-        "core_ir_hash": { "$ref": "#/$defs/hash" }
+        "core_ir_hash": { "$ref": "#/$defs/hash" },
+        "revalidation": { "$ref": "#/$defs/revalidation" }
+      }
+    },
+    "revalidation": {
+      "type": "object",
+      "required": ["status", "assessed_at", "assessor", "revalidate_at"],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["valid", "due_soon", "due", "grace", "expired", "frozen", "revalidated", "superseded", "retired"]
+        },
+        "assessed_at": { "type": "string", "format": "date-time" },
+        "assessor": { "$ref": "#/$defs/id" },
+        "revalidate_at": { "type": "string", "format": "date-time" },
+        "evidence": { "$ref": "#/$defs/id" }
       }
     },
     "agent": {
