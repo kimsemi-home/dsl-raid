@@ -1,6 +1,7 @@
 use serde_json::{json, Value};
 
 pub(super) fn base_manifest(reviewers: Value, lease: &str, mut evidence: Value) -> Value {
+    let reviewers = super::fixtures_reviewer::with_defaults(reviewers);
     let gate_evidence = super::fixtures_authority::evidence(&mut evidence);
     let agreements = super::fixtures_agreement::agreements(&reviewers, &gate_evidence);
     let semantic_diffs = super::fixtures_semantic::diffs(&evidence);
