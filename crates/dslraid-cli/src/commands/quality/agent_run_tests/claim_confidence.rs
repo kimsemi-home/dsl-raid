@@ -39,6 +39,21 @@ fn high_confidence_claim_revalidates_degraded_evidence() {
     );
 }
 
+#[test]
+fn high_confidence_claim_rejects_control_plane_assessor() {
+    let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
+    let mut item = claim(json!(["evidence:quality"]));
+    item["assessor"] = json!("control-plane:dslraid");
+    value["claims"] = json!([item]);
+
+    assert_eq!(
+        super::super::agent_run::semantic_issues(&value),
+        vec![
+            "high confidence claim claim:fresh-artifacts cannot be assessed by control plane control-plane:dslraid"
+        ]
+    );
+}
+
 fn claim(evidence: Value) -> Value {
     json!({
         "id": "claim:fresh-artifacts",
