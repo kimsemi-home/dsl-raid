@@ -4,6 +4,10 @@
   :serial t
   :components
   ((:file "packages")
+   (:module "agent"
+    :serial t
+    :components
+    ((:file "package") (:file "principles") (:file "markdown")))
    (:module "ir"
     :serial t
     :components
