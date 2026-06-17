@@ -50,7 +50,8 @@ fn approved_manifest_rejects_self_approval_and_open_debt() {
         super::super::agent_run::semantic_issues(&value),
         vec![
             "producer cannot approve its own output",
-            "approved run cannot carry open debt"
+            "approved run cannot carry open debt",
+            "open debt debt:evidence requires loop gap evidence"
         ]
     );
 }

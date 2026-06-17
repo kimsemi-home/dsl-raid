@@ -1,4 +1,5 @@
 mod closure;
+mod gap;
 mod incident;
 
 use super::fields::{field_is, items};
@@ -9,6 +10,7 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     if has_open_debt(value) {
         issues.push("approved run cannot carry open debt".to_string());
     }
+    gap::push_issues(value, issues);
     for debt in items(value, "debts") {
         closure::push_issues(value, debt, issues);
     }
