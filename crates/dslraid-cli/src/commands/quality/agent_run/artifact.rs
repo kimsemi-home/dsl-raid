@@ -1,7 +1,10 @@
+mod orchestration;
+
 use super::fields::{field_text, items};
 use serde_json::Value;
 
 pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
+    orchestration::push_issues(value, issues);
     let mut has_artifact = false;
     for artifact in items(value, "artifacts") {
         has_artifact = true;

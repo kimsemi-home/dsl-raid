@@ -2,6 +2,7 @@ mod agreement;
 mod agreement_participants;
 mod agreement_subject;
 mod artifact;
+mod artifact_orchestration;
 mod authority;
 mod authority_audit;
 mod authority_evidence_pruning;
