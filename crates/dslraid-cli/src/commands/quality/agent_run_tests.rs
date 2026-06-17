@@ -38,3 +38,4 @@ mod semantic_diff;
 mod ssot;
 mod trace_ref;
 mod translation;
+mod translation_approval;

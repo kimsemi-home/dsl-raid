@@ -1,3 +1,4 @@
+mod approval;
 mod evidence;
 mod loss;
 
@@ -7,6 +8,7 @@ use serde_json::Value;
 pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     let evidence_ids = evidence::ids(value);
     for translation in items(value, "translations") {
+        approval::push_issues(value, translation, issues);
         push_lossy_issue(translation, issues);
         push_conformance_issue(translation, issues);
         evidence::push_unknown(

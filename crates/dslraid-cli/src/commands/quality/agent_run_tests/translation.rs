@@ -58,6 +58,7 @@ fn translation(status: &str, conformance: &str, round_trip: bool, losses: Value)
         "status": status,
         "conformance": conformance,
         "round_trip": round_trip,
+        "approved_by": "gate:quality",
         "evidence": ["evidence:quality"],
         "losses": losses
     })
