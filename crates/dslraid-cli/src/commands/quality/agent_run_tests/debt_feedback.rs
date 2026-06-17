@@ -52,3 +52,16 @@ fn feedback_update_rejects_unknown_evidence() {
         vec!["feedback update update:review-policy references unknown evidence evidence:missing"]
     );
 }
+
+#[test]
+fn review_debt_requires_policy_ontology_or_spec_update() {
+    let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
+    value["evidence"][0]["id"] = json!("evidence:quality");
+    value["debts"] = closed_with(json!(["evidence:quality"]), "applied");
+    value["debts"][0]["updates"][0]["kind"] = json!("revalidation");
+
+    assert_eq!(
+        super::super::agent_run::semantic_issues(&value),
+        vec!["debt debt:review requires policy, ontology, or spec knowledge update"]
+    );
+}

@@ -1,4 +1,5 @@
 mod evidence;
+mod learning;
 mod update;
 
 use crate::commands::quality::agent_run::fields::{field_is, field_text};
@@ -11,6 +12,7 @@ pub(super) fn push_issues(value: &Value, debt: &Value, issues: &mut Vec<String>)
     }
     let evidence_ids = evidence::ids(value);
     evidence::push_issues(debt, &evidence_ids, issues);
+    learning::push_issues(debt, issues);
     update::push_issues(debt, &evidence_ids, issues);
 }
 
