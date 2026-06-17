@@ -1,5 +1,6 @@
 mod evidence;
 mod refs;
+mod verifier;
 
 use super::fields::{field_text, text};
 use serde_json::Value;
@@ -27,6 +28,7 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     push_match(item, "lease", lease(value), "lease", issues);
     evidence::push_issues(value, item, issues);
     refs::push_issues(value, item, issues);
+    verifier::push_issues(value, item, issues);
 }
 
 fn push_match(

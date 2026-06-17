@@ -9,7 +9,7 @@ SSOT: `runscope` / ontology `0.1.0`
 | --- | --- | --- |
 | authority gate | approved / sidecar | scope `routine`, policy `sha256:agent-principles-001` |
 | review capacity | available | queue `1/5` |
-| orchestration | orchestration:runscope-quality | profile `sidecar` |
+| orchestration | orchestration:runscope-quality | route `control-plane:dslraid`, verifier `sidecar:dslraid-quality` |
 | ssot revalidation | valid | `2026-07-17T00:00:00Z` |
 | lease | finished | `lease:runscope-quality-001` |
 | producer | agent:codex | R3 / T2 |

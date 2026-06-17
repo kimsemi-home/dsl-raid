@@ -57,6 +57,8 @@
   "orchestration": {
     "id": "orchestration:runscope-quality",
     "policy_hash": "sha256:agent-principles-001",
+    "routed_by": "control-plane:dslraid",
+    "verified_by": "sidecar:dslraid-quality",
     "selected_producer": "agent:codex",
     "selected_reviewers": ["sidecar:dslraid-quality"],
     "lease": "lease:runscope-quality-001",

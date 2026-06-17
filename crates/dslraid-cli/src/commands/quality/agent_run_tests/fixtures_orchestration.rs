@@ -4,6 +4,8 @@ pub(super) fn receipt(reviewers: &Value, evidence: &Value) -> Value {
     json!({
         "id": "orchestration:runscope-quality",
         "policy_hash": "sha256:policy",
+        "routed_by": "control-plane:dslraid",
+        "verified_by": "reviewer:quality",
         "selected_producer": "agent:codex",
         "selected_reviewers": reviewer_ids(reviewers),
         "lease": "lease:runscope-quality-001",

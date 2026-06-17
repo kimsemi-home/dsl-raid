@@ -27,6 +27,7 @@ mod fixtures_semantic;
 mod lease;
 mod lock_ref;
 mod orchestration;
+mod orchestration_verifier;
 mod producer;
 mod review_capacity;
 mod reviewer;
