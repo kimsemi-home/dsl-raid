@@ -1,3 +1,4 @@
+mod change;
 mod evidence;
 mod hash;
 
@@ -13,6 +14,7 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
         push_status_issue(item, issues);
         hash::push_issues(value, item, issues);
         evidence::push_issues(item, &evidence_ids, issues);
+        change::push_issues(value, item, issues);
     }
 }
 

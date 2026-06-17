@@ -35,6 +35,17 @@ fn semantic_diff_rejects_unknown_evidence() {
 }
 
 #[test]
+fn changed_semantic_diff_requires_validation_evidence() {
+    let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
+    value["semantic_diffs"] = json!([diff("sha256:core", json!(["evidence:trace"]))]);
+
+    assert_eq!(
+        super::super::agent_run::semantic_issues(&value),
+        vec!["changed semantic diff semantic-diff:quality requires validation evidence"]
+    );
+}
+
+#[test]
 fn blocked_semantic_diff_cannot_approve() {
     let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
     let mut item = diff("sha256:core", json!(["evidence:quality"]));
