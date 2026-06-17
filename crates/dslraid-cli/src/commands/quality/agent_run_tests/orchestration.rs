@@ -38,3 +38,14 @@ fn orchestration_receipt_must_match_manifest_routing() {
         ]
     );
 }
+
+#[test]
+fn producer_cannot_route_reviewer_selection() {
+    let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
+    value["orchestration"]["routed_by"] = json!("agent:codex");
+
+    assert_eq!(
+        super::super::agent_run::semantic_issues(&value),
+        vec!["producer agent:codex cannot route reviewer selection"]
+    );
+}
