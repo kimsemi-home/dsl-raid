@@ -232,7 +232,7 @@
     },
     "evidence": {
       "type": "object",
-      "required": ["id", "kind", "uri"],
+      "required": ["id", "kind", "uri", "provenance"],
       "additionalProperties": false,
       "properties": {
         "id": { "$ref": "#/$defs/id" },
@@ -240,6 +240,7 @@
         "uri": { "$ref": "#/$defs/path" },
         "quality": { "type": "string", "enum": ["low", "medium", "high"] },
         "subject": { "$ref": "#/$defs/id" },
+        "provenance": { "$ref": "#/$defs/provenance" },
         "quality_snapshots": {
           "type": "array",
           "default": [],
@@ -258,6 +259,19 @@
         "quality": { "type": "string", "enum": ["low", "medium", "high"] },
         "ontology_version": { "$ref": "#/$defs/semver" },
         "notes": { "$ref": "#/$defs/text" }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["kind", "observed_by", "observed_at"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["sidecar-assessment", "runtime-trace", "generated", "external", "human-annotation"]
+        },
+        "observed_by": { "$ref": "#/$defs/id" },
+        "observed_at": { "type": "string", "format": "date-time" }
       }
     },
     "artifact": {

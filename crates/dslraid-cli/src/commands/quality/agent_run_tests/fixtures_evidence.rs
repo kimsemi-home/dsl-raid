@@ -10,6 +10,21 @@ pub(super) fn with_subject(value: &mut Value) {
         if item.get("subject").is_none() {
             item["subject"] = json!(RUN_ID);
         }
+        if item.get("provenance").is_none() {
+            item["provenance"] = json!({
+                "kind": provenance_kind(item),
+                "observed_by": "sidecar:dslraid-quality",
+                "observed_at": "2026-06-17T00:00:00Z"
+            });
+        }
+    }
+}
+
+fn provenance_kind(value: &Value) -> &str {
+    match value.get("kind").and_then(Value::as_str) {
+        Some("trace") => "runtime-trace",
+        Some("coverage") => "generated",
+        _ => "sidecar-assessment",
     }
 }
 

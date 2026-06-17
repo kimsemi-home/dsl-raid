@@ -17,6 +17,7 @@ mod debt;
 mod debt_feedback;
 mod debt_fixture;
 mod evidence;
+mod evidence_provenance;
 mod evidence_quality;
 mod evidence_quality_ontology;
 mod evidence_subject;
