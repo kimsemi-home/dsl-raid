@@ -1,11 +1,11 @@
-import { subjectsForSearch } from "../../graph/projection";
+import { subjectsForWorkspaceSearch } from "../../graph/workspace-search";
 import type { AppStore } from "../../store/app-store";
 import { escapeHtml } from "../html";
 import { bindSubjectButtons, type SelectSubject } from "../subject-buttons";
 
 export function renderSearch(input: HTMLInputElement, results: HTMLElement, store: AppStore, onSelect: SelectSubject): void {
   const query = input.value.trim().toLowerCase();
-  const subjects = subjectsForSearch(store.view)
+  const subjects = subjectsForWorkspaceSearch(store)
     .filter((item) => !query || item.subject.toLowerCase().includes(query) || item.label.toLowerCase().includes(query))
     .slice(0, 16);
   results.innerHTML = subjects.map(itemHtml).join("");

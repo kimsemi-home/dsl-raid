@@ -8,6 +8,7 @@ import { fitGraph as fitCamera } from "./fit";
 import { followSelectedSubject } from "./follow-selected";
 import { openFsm } from "./open-fsm";
 import { selectRelativeSubject } from "./select-relative";
+import { selectSubject } from "./select-subject";
 import * as viewerSession from "./session";
 import { syncSourceMap, syncTrace } from "./sync-metadata";
 
@@ -26,11 +27,7 @@ export function createActions(session: viewerSession.ViewerSession, elements: Vi
       actions.fit();
     },
     openFsm: (fsmId: string) => openFsm(actions, session, fsmId),
-    select: (subject: string | undefined, related?: string[]) => {
-      session.store.selection.selected = subject;
-      session.store.selection.related = related?.length ? related : undefined;
-      refresh();
-    },
+    select: (subject: string | undefined, related?: string[]) => { selectSubject(session, subject, related); refresh(); },
     selectRelative: (step: -1 | 1) => {
       selectRelativeSubject(session, step);
       refresh();
