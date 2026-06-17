@@ -1,9 +1,11 @@
 mod closure;
+mod incident;
 
 use super::fields::{field_is, items};
 use serde_json::Value;
 
 pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
+    incident::push_issues(value, issues);
     if has_open_debt(value) {
         issues.push("approved run cannot carry open debt".to_string());
     }

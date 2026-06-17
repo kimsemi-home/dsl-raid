@@ -22,6 +22,7 @@ mod coverage_ref;
 mod debt;
 mod debt_feedback;
 mod debt_fixture;
+mod debt_incident;
 mod evidence;
 mod evidence_provenance;
 mod evidence_pruning;
