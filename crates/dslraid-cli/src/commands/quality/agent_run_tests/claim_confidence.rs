@@ -12,6 +12,19 @@ fn high_confidence_claim_requires_validation_evidence() {
     );
 }
 
+#[test]
+fn high_confidence_claim_requires_external_assessor() {
+    let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
+    let mut item = claim(json!(["evidence:quality"]));
+    item["assessor"] = json!("agent:reviewer");
+    value["claims"] = json!([item]);
+
+    assert_eq!(
+        super::super::agent_run::semantic_issues(&value),
+        vec!["high confidence claim claim:fresh-artifacts requires external assessor"]
+    );
+}
+
 fn claim(evidence: Value) -> Value {
     json!({
         "id": "claim:fresh-artifacts",

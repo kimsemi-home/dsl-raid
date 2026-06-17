@@ -29,6 +29,11 @@ pub(super) fn push_issues(
             "high confidence claim {} cannot be self-assessed",
             id(claim)
         ));
+    } else if assessor.starts_with("agent:") {
+        issues.push(format!(
+            "high confidence claim {} requires external assessor",
+            id(claim)
+        ));
     }
     push_validation_issue(value, claim, issues);
 }
