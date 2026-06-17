@@ -3,6 +3,7 @@
 (load "lisp/tests/language.lisp")
 (load "lisp/tests/collection-values.lisp")
 (load "lisp/tests/enum-values.lisp")
+(load "lisp/tests/source-values.lisp")
 
 (defun run-golden-smoke ()
   (let ((fsms (runscope-fsms)))
@@ -16,6 +17,8 @@
     (run-language-collection-value-smoke)
     (run-language-enum-value-smoke)
     (run-language-enum-normalization-smoke)
+    (run-language-source-value-smoke)
+    (run-language-source-required-smoke)
     (run-build-fsm-conformance-smoke)
     (dolist (fsm fsms)
       (assert (null (validate-fsm fsm))))

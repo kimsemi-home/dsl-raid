@@ -28,6 +28,7 @@
      (:file "keywords")
      (:file "collection-values")
      (:file "enum-values")
+     (:file "source-values")
      (:file "values")
      (:file "duplicates")
      (:file "references")

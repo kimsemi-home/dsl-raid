@@ -15,4 +15,9 @@
      :code "LANG018"
      :severity "error"
      :scope "FSM authoring values"
-     :summary "Enum authoring keyword values must match Core IR enums.")))
+     :summary "Enum authoring keyword values must match Core IR enums.")
+    (:key :invalid-source-location-value
+     :code "LANG019"
+     :severity "error"
+     :scope "FSM authoring source locations"
+     :summary "Source location values must match Core IR source maps.")))

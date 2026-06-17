@@ -22,7 +22,9 @@
             do (push (value-diagnostic ast form key value) next))
     (append-enum-value-diagnostics
      ast form tail
-     (append-collection-value-diagnostics ast form tail next))))
+     (append-source-value-diagnostics
+      ast form tail
+      (append-collection-value-diagnostics ast form tail next)))))
 
 (defun invalid-boolean-value-p (key value)
   (and (member key *boolean-keywords*)
