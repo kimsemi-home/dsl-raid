@@ -1,3 +1,4 @@
+mod decision;
 mod evidence;
 mod governance;
 mod policy;
@@ -6,7 +7,12 @@ mod profile;
 use super::fields::text;
 use serde_json::Value;
 
-pub(super) fn push_verified_gate_issue(value: &Value, issues: &mut Vec<String>) {
+pub(super) fn push_gate_issues(value: &Value, issues: &mut Vec<String>) {
+    decision::push_issues(value, issues);
+    push_verified_gate_issue(value, issues);
+}
+
+fn push_verified_gate_issue(value: &Value, issues: &mut Vec<String>) {
     if text(value, &["run", "status"]) == Some("verified") && !is_approved(value) {
         issues.push("verified run requires approved authority gate".to_string());
     }

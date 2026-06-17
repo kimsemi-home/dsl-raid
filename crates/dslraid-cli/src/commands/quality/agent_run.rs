@@ -59,7 +59,7 @@ fn semantic_issues_with_optional_context(
     root: Option<&Path>,
 ) -> Vec<String> {
     let mut issues = Vec::new();
-    authority::push_verified_gate_issue(value, &mut issues);
+    authority::push_gate_issues(value, &mut issues);
     containment::push_issues(value, &mut issues);
     if !authority::is_approved(value) {
         return issues;

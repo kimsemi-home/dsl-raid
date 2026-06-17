@@ -5,6 +5,7 @@ mod artifact;
 mod artifact_orchestration;
 mod authority;
 mod authority_audit;
+mod authority_decision;
 mod authority_evidence_pruning;
 mod authority_governance;
 mod authority_policy;
