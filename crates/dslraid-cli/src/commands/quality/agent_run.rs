@@ -10,6 +10,7 @@ mod evidence_quality;
 mod fields;
 mod lease;
 mod lock_ref;
+mod review_capacity;
 mod reviewer;
 mod ssot;
 mod trace_ref;

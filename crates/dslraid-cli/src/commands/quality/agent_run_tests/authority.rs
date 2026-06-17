@@ -49,6 +49,9 @@ fn ontology_scope_requires_human_review() {
 
     assert_eq!(
         super::super::agent_run::semantic_issues(&value),
-        vec!["authority scope ontology requires human review"]
+        vec![
+            "authority scope ontology requires human review",
+            "high-risk authority requires review capacity receipt"
+        ]
     );
 }

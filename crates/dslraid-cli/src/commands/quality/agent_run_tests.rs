@@ -16,6 +16,7 @@ mod fixtures;
 mod fixtures_agreement;
 mod fixtures_authority;
 mod lock_ref;
+mod review_capacity;
 mod ssot;
 mod trace_ref;
 mod translation;

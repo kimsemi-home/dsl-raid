@@ -53,6 +53,14 @@
     "approved_by": "gate:quality",
     "evidence": ["evidence:quality", "evidence:precommit"]
   },
+  "review_capacity": {
+    "status": "available",
+    "queue_depth": 1,
+    "max_queue_depth": 5,
+    "assessed_at": "2026-06-17T00:00:00Z",
+    "assessor": "sidecar:dslraid-quality",
+    "evidence": ["evidence:quality"]
+  },
   "lease": {
     "id": "lease:runscope-quality-001",
     "status": "finished",
