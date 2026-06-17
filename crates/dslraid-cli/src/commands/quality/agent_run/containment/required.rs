@@ -10,7 +10,7 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     }
 }
 
-fn aborted_signal(value: &Value) -> bool {
+pub(super) fn aborted_signal(value: &Value) -> bool {
     text(value, &["run", "status"]) == Some("aborted")
         || text(value, &["lease", "status"]) == Some("aborted")
         || items(value, "artifacts").any(|item| field_is(item, "status", "aborted"))

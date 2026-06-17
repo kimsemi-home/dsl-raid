@@ -11,6 +11,7 @@ mod claim;
 mod claim_confidence;
 mod claim_ontology;
 mod containment;
+mod containment_abort;
 mod containment_quarantine;
 mod containment_release;
 mod containment_subject;
