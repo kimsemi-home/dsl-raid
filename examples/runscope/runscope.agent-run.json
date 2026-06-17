@@ -125,6 +125,18 @@
       "status": "verified"
     }
   ],
+  "claims": [
+    {
+      "id": "claim:runscope-artifacts-fresh",
+      "subject": "agent-run:runscope-quality-001",
+      "statement": "Generated RunScope artifacts match the canonical IR and lock metadata.",
+      "confidence": "high",
+      "assessor": "sidecar:dslraid-quality",
+      "interpreted_under": "0.1.0",
+      "status": "supported",
+      "evidence": ["evidence:quality", "evidence:precommit"]
+    }
+  ],
   "translations": [
     {
       "id": "translation:lisp-ssot-to-core-ir",

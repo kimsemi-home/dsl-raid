@@ -1,5 +1,6 @@
 mod approved;
 mod authority;
+mod claim;
 mod coverage_ref;
 mod debt;
 mod evidence;

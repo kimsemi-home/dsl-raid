@@ -35,6 +35,8 @@ forbidden_losses = sum(
     1 for loss in losses
     if loss.get("level") == "L4" or loss.get("status") == "forbidden"
 )
+claims = manifest.get("claims", [])
+high_claims = sum(1 for claim in claims if claim.get("confidence") == "high")
 
 def cell(value):
     return str(value).replace("|", "\\|").replace("\n", " ")
@@ -53,6 +55,7 @@ print(f"| reviewers | {len(manifest.get('reviewers', []))} | independent sidecar
 print(f"| evidence | {len(manifest.get('evidence', []))} | linked records |")
 print(f"| evidence quality | {quality_snapshots} | sidecar snapshots |")
 print(f"| artifacts | {len(manifest.get('artifacts', []))} | generated outputs |")
+print(f"| claims | {len(claims)} | high confidence `{high_claims}` |")
 print(f"| translations | {len(translations)} | context handoffs |")
 print(f"| loss ledger | {len(losses)} | forbidden `{forbidden_losses}` |")
 print(f"| debts | {len(manifest.get('debts', []))} | tracked open work |")

@@ -1,3 +1,4 @@
+mod claim;
 mod core;
 mod coverage_fixture;
 mod coverage_link;

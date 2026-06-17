@@ -27,6 +27,11 @@
       "default": [],
       "items": { "$ref": "#/$defs/artifact" }
     },
+    "claims": {
+      "type": "array",
+      "default": [],
+      "items": { "$ref": "#/$defs/claim" }
+    },
     "debts": {
       "type": "array",
       "default": [],
@@ -150,6 +155,25 @@
         "id": { "$ref": "#/$defs/id" },
         "path": { "$ref": "#/$defs/path" },
         "status": { "type": "string", "enum": ["candidate", "verified", "stale", "quarantined", "aborted"] }
+      }
+    },
+    "claim": {
+      "type": "object",
+      "required": ["id", "subject", "statement", "confidence", "interpreted_under", "status", "evidence"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "subject": { "$ref": "#/$defs/id" },
+        "statement": { "$ref": "#/$defs/text" },
+        "confidence": { "type": "string", "enum": ["low", "medium", "high"] },
+        "assessor": { "$ref": "#/$defs/id" },
+        "interpreted_under": { "$ref": "#/$defs/semver" },
+        "status": { "type": "string", "enum": ["proposed", "supported", "rejected", "superseded"] },
+        "evidence": {
+          "type": "array",
+          "default": [],
+          "items": { "$ref": "#/$defs/id" }
+        }
       }
     },
     "debt": {
