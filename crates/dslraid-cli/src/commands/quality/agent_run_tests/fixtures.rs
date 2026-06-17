@@ -31,7 +31,7 @@ pub(super) fn base_manifest(reviewers: Value, lease: &str, mut evidence: Value) 
             "approved_by": "gate:quality",
             "evidence": gate_evidence
         },
-        "lease": { "status": lease },
+        "lease": { "status": lease, "ontology_version": "0.1.0" },
         "evidence": evidence,
         "artifacts": [
             {

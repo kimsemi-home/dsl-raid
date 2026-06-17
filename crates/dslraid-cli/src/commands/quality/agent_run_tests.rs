@@ -20,6 +20,7 @@ mod fixtures_agreement;
 mod fixtures_authority;
 mod fixtures_reviewer;
 mod fixtures_semantic;
+mod lease;
 mod lock_ref;
 mod producer;
 mod review_capacity;
