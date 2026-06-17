@@ -121,13 +121,16 @@ jobs:
   lisp:
     name: Lisp authoring
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v6
 
       - name: Install SBCL
+        env:
+          DEBIAN_FRONTEND: noninteractive
         run: |
-          sudo apt-get update
-          sudo apt-get install -y sbcl
+          sudo apt-get update -o Acquire::Retries=3
+          sudo apt-get install -y --no-install-recommends sbcl
 
       - uses: dtolnay/rust-toolchain@stable
 
@@ -165,9 +168,11 @@ jobs:
 
       - name: Install SBCL
         if: steps.cli.outputs.present == 'true'
+        env:
+          DEBIAN_FRONTEND: noninteractive
         run: |
-          sudo apt-get update
-          sudo apt-get install -y sbcl
+          sudo apt-get update -o Acquire::Retries=3
+          sudo apt-get install -y --no-install-recommends sbcl
 
       - uses: dtolnay/rust-toolchain@stable
         if: steps.cli.outputs.present == 'true'
