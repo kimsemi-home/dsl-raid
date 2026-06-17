@@ -10,4 +10,9 @@
      :code "LANG017"
      :severity "error"
      :scope "FSM authoring values"
-     :summary "Collection authoring keyword values must be lists.")))
+     :summary "Collection authoring keyword values must be lists.")
+    (:key :invalid-enum-value
+     :code "LANG018"
+     :severity "error"
+     :scope "FSM authoring values"
+     :summary "Enum authoring keyword values must match Core IR enums.")))

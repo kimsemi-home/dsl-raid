@@ -27,6 +27,7 @@
      (:file "identifiers")
      (:file "keywords")
      (:file "collection-values")
+     (:file "enum-values")
      (:file "values")
      (:file "duplicates")
      (:file "references")

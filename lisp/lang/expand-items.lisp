@@ -5,17 +5,19 @@
       (id &key (kind "atomic") initial terminal terminal-semantics defined-at tags)
       args
     (make-state :id (dslraid.ir::kebab-name id)
-                :kind kind
+                :kind (authoring-enum-value kind)
                 :initial-p initial
                 :terminal-p terminal
-                :terminal-semantics terminal-semantics
+                :terminal-semantics
+                (when terminal-semantics
+                  (authoring-enum-value terminal-semantics))
                 :defined-at defined-at
                 :tags tags)))
 
 (defun expand-event (args)
   (destructuring-bind (id &key (kind "external")) args
     (make-event :id (dslraid.ir::kebab-name id)
-                :kind kind)))
+                :kind (authoring-enum-value kind))))
 
 (defun expand-transition (args)
   (destructuring-bind

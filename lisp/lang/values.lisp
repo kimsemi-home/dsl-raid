@@ -20,7 +20,9 @@
           for value = (second pair)
           when (invalid-boolean-value-p key value)
             do (push (value-diagnostic ast form key value) next))
-    (append-collection-value-diagnostics ast form tail next)))
+    (append-enum-value-diagnostics
+     ast form tail
+     (append-collection-value-diagnostics ast form tail next))))
 
 (defun invalid-boolean-value-p (key value)
   (and (member key *boolean-keywords*)
