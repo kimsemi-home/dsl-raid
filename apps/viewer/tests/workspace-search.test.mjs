@@ -5,11 +5,13 @@ import { workspaceStore } from "./helpers/workspace-store.mjs";
 
 test("workspace search includes inactive FSM states and transitions", async () => {
   const { subjectsForWorkspaceSearch } = await loadTs("src/graph/workspace-search.ts");
-  const subjects = subjectsForWorkspaceSearch(workspaceStore()).map((item) => item.subject);
+  const subjects = subjectsForWorkspaceSearch(workspaceStore());
+  const subjectIds = subjects.map((item) => item.subject);
 
-  assert.ok(subjects.includes("fsm:agent"));
-  assert.ok(subjects.includes("state:agent.planning"));
-  assert.ok(subjects.includes("transition:agent.plan"));
+  assert.ok(subjectIds.includes("fsm:agent"));
+  assert.ok(subjectIds.includes("state:agent.planning"));
+  assert.ok(subjectIds.includes("transition:agent.plan"));
+  assert.equal(subjects.find((item) => item.subject === "state:agent.planning").detail, "AgentFSM");
 });
 
 test("selectSubject opens the owning FSM projection", async () => {

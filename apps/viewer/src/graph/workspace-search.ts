@@ -12,27 +12,32 @@ function fsmSubjects(store: AppStore): SearchSubject[] {
     ...(fsm.states ?? []).map((state) => ({
       subject: stateSubject(fsm.id, state.id),
       label: state.id,
-      kind: "state"
+      kind: "state",
+      detail: fsm.name
     })),
     ...(fsm.transitions ?? []).map((transition) => ({
       subject: transitionSubject(fsm.id, transition.id),
       label: transition.id,
-      kind: "transition"
+      kind: "transition",
+      detail: fsm.name
     })),
     ...(fsm.events ?? []).map((event) => ({
       subject: eventSubject(fsm.id, event.id),
       label: event.name ?? event.id,
-      kind: "event"
+      kind: "event",
+      detail: fsm.name
     })),
     ...(fsm.guards ?? []).map((guard) => ({
       subject: guardSubject(fsm.id, guard.id),
       label: guard.name ?? guard.id,
-      kind: "guard"
+      kind: "guard",
+      detail: fsm.name
     })),
     ...(fsm.actions ?? []).map((action) => ({
       subject: actionSubject(fsm.id, action.id),
       label: action.name ?? action.id,
-      kind: "action"
+      kind: "action",
+      detail: fsm.name
     }))
   ]);
 }

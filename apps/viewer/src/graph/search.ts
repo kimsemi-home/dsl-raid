@@ -4,6 +4,7 @@ export type SearchSubject = {
   subject: string;
   label: string;
   kind: string;
+  detail?: string;
 };
 
 export function subjectsForSearch(view: ViewModel): SearchSubject[] {
