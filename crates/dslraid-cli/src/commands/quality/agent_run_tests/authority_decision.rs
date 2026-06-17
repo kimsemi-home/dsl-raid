@@ -25,3 +25,17 @@ fn escalated_authority_requires_human_review() {
         vec!["escalated authority gate requires human review"]
     );
 }
+
+#[test]
+fn escalated_authority_requires_human_or_steward_target() {
+    let mut value = base_manifest(json!([]), "finished", high());
+    value["run"]["status"] = json!("rejected");
+    value["authority_gate"]["decision"] = json!("escalated");
+    value["authority_gate"]["human_review_required"] = json!(true);
+    value["authority_gate"]["approved_by"] = json!("gate:quality");
+
+    assert_eq!(
+        super::super::agent_run::semantic_issues(&value),
+        vec!["escalated authority gate requires human or steward target"]
+    );
+}

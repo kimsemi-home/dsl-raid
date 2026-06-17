@@ -1,6 +1,8 @@
 use crate::commands::quality::agent_run::fields::text;
 use serde_json::Value;
 
+mod escalation;
+
 pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     if non_approved_decision(value) && !has_evidence(value) {
         issues.push("non-approved authority gate requires evidence".to_string());
@@ -8,6 +10,7 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     if escalated_decision(value) && !human_review_required(value) {
         issues.push("escalated authority gate requires human review".to_string());
     }
+    escalation::push_issues(value, issues);
 }
 
 fn non_approved_decision(value: &Value) -> bool {
