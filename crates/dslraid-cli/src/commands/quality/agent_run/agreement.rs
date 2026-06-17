@@ -1,5 +1,6 @@
 mod evidence;
 mod participants;
+mod subject;
 
 use super::fields::{field_text, items, text};
 use serde_json::Value;
@@ -11,8 +12,10 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     let evidence_ids = evidence::ids(value);
     let reviewers = participants::reviewer_ids(value);
     let ontology = text(value, &["ssot", "ontology_version"]);
+    let run_id = text(value, &["run", "id"]);
     for agreement in items(value, "agreements") {
         push_decision_issue(agreement, issues);
+        subject::push_issues(agreement, run_id, issues);
         participants::push_issues(agreement, &reviewers, issues);
         push_ontology_issue(agreement, ontology, issues);
         evidence::push_issues(agreement, &evidence_ids, issues);

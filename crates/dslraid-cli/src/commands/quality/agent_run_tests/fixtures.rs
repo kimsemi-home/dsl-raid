@@ -6,7 +6,7 @@ pub(super) fn base_manifest(reviewers: Value, lease: &str, mut evidence: Value) 
     let agreements = super::fixtures_agreement::agreements(&reviewers, &gate_evidence);
     let semantic_diffs = super::fixtures_semantic::diffs(&evidence);
     json!({
-        "run": { "status": "verified" },
+        "run": { "id": "agent-run:runscope-quality-001", "status": "verified" },
         "ssot": {
             "core_ir": "examples/runscope/runscope.raid.json",
             "core_ir_hash": "sha256:core",
