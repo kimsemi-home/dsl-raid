@@ -1,3 +1,5 @@
+mod review;
+
 use super::id;
 use crate::commands::quality::agent_run::fields::{field_text, items};
 use serde_json::Value;
@@ -10,6 +12,7 @@ pub(super) fn ids(value: &Value) -> BTreeSet<String> {
 }
 
 pub(super) fn push_issues(
+    root: &Value,
     agreement: &Value,
     evidence: &BTreeSet<String>,
     issues: &mut Vec<String>,
@@ -18,7 +21,7 @@ pub(super) fn push_issues(
     if refs.is_empty() {
         issues.push(format!("agreement {} requires evidence", id(agreement)));
     }
-    for reference in refs {
+    for reference in refs.iter().copied() {
         if !evidence.contains(reference) {
             issues.push(format!(
                 "agreement {} references unknown evidence {reference}",
@@ -26,6 +29,7 @@ pub(super) fn push_issues(
             ));
         }
     }
+    review::push_issue(root, agreement, &refs, evidence, issues);
 }
 
 fn refs(value: &Value) -> Vec<&str> {

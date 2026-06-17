@@ -19,7 +19,7 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
         subject::push_issues(agreement, run_id, issues);
         participants::push_issues(agreement, producer_id, &reviewers, issues);
         push_ontology_issue(agreement, ontology, issues);
-        evidence::push_issues(agreement, &evidence_ids, issues);
+        evidence::push_issues(value, agreement, &evidence_ids, issues);
     }
 }
 
