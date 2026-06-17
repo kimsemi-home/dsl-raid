@@ -15,10 +15,10 @@ use crate::target::CodegenTarget;
 pub fn generate_code(ir: &CoreIr, target: CodegenTarget) -> Result<String> {
     let mut out = String::new();
     match target {
-        CodegenTarget::Rust => write_family(&mut out, ir, rust::write_fsm, rust_header())?,
+        CodegenTarget::Rust => write_family(&mut out, ir, rust::write_fsm, canonical_header())?,
         CodegenTarget::Go => write_family(&mut out, ir, go::write_fsm, go_header())?,
         CodegenTarget::TypeScript => {
-            write_family(&mut out, ir, typescript::write_fsm, rust_header())?
+            write_family(&mut out, ir, typescript::write_fsm, canonical_header())?
         }
         CodegenTarget::Mermaid => write_family(&mut out, ir, mermaid::write_fsm, "")?,
         CodegenTarget::Dot => write_family(&mut out, ir, dot::write_fsm, "")?,
@@ -42,7 +42,7 @@ fn write_family(
     Ok(())
 }
 
-fn rust_header() -> &'static str {
+fn canonical_header() -> &'static str {
     "// Generated from DSLRaid Canonical IR by dslraid-codegen. Do not edit by hand.\n\n"
 }
 

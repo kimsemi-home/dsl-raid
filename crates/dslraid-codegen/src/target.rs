@@ -1,3 +1,7 @@
+mod contract;
+
+pub use contract::CodegenContract;
+
 #[derive(Debug, Clone, Copy)]
 pub enum CodegenTarget {
     Rust,
@@ -8,6 +12,18 @@ pub enum CodegenTarget {
 }
 
 impl CodegenTarget {
+    pub const ALL: [Self; 5] = [
+        Self::Rust,
+        Self::Go,
+        Self::TypeScript,
+        Self::Mermaid,
+        Self::Dot,
+    ];
+
+    pub fn contract(self) -> CodegenContract {
+        contract::for_target(self)
+    }
+
     pub fn extension(self) -> &'static str {
         match self {
             Self::Rust => "rs",
