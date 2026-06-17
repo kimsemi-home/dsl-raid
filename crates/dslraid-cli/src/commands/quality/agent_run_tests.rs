@@ -1,4 +1,6 @@
 mod core;
+mod coverage_fixture;
+mod coverage_link;
 mod coverage_ref;
 mod evidence;
 mod fixtures;
