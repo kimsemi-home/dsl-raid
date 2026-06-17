@@ -16,6 +16,16 @@
      :severity "error"
      :scope "transition authoring forms"
      :summary "Duplicate transition form.")
+    (:key :duplicate-guard
+     :code "LANG023"
+     :severity "error"
+     :scope "guard authoring forms"
+     :summary "Duplicate guard form.")
+    (:key :duplicate-action
+     :code "LANG024"
+     :severity "error"
+     :scope "action authoring forms"
+     :summary "Duplicate action form.")
     (:key :unknown-form
      :code "LANG004"
      :severity "error"

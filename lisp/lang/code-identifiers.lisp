@@ -15,4 +15,14 @@
      :code "LANG012"
      :severity "error"
      :scope "transition authoring forms"
-     :summary "Transition form is missing its id.")))
+     :summary "Transition form is missing its id.")
+    (:key :missing-guard-id
+     :code "LANG021"
+     :severity "error"
+     :scope "guard authoring forms"
+     :summary "Guard form is missing its id.")
+    (:key :missing-action-id
+     :code "LANG022"
+     :severity "error"
+     :scope "action authoring forms"
+     :summary "Action form is missing its id.")))

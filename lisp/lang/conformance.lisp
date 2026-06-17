@@ -9,6 +9,10 @@
                                (language-code :duplicate-event))
    (duplicate-form-diagnostics ast :transition "transition"
                                (language-code :duplicate-transition))
+   (duplicate-form-diagnostics ast :guard "guard"
+                               (language-code :duplicate-guard))
+   (duplicate-form-diagnostics ast :action "action"
+                               (language-code :duplicate-action))
    (malformed-form-diagnostics ast)
    (unknown-form-diagnostics ast)
    (primary-id-diagnostics ast)

@@ -26,3 +26,7 @@ Source: `lisp/lang/code-*.lisp`, `lisp/lang/codes.lisp`
 | LANG018 | error | FSM authoring values | Enum authoring keyword values must match Core IR enums. |
 | LANG019 | error | FSM authoring source locations | Source location values must match Core IR source maps. |
 | LANG020 | error | FSM authoring source locations | Source location ranges must be ordered. |
+| LANG021 | error | guard authoring forms | Guard form is missing its id. |
+| LANG022 | error | action authoring forms | Action form is missing its id. |
+| LANG023 | error | guard authoring forms | Duplicate guard form. |
+| LANG024 | error | action authoring forms | Duplicate action form. |

@@ -19,6 +19,8 @@
     (:state (list :missing-state-id "state"))
     (:event (list :missing-event-id "event"))
     (:transition (list :missing-transition-id "transition"))
+    (:guard (list :missing-guard-id "guard"))
+    (:action (list :missing-action-id "action"))
     (otherwise nil)))
 
 (defun missing-primary-id-diagnostic (ast form rule)

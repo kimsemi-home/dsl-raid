@@ -4,6 +4,7 @@
 (load "lisp/tests/collection-values.lisp")
 (load "lisp/tests/enum-values.lisp")
 (load "lisp/tests/source-values.lisp")
+(load "lisp/tests/guard-action.lisp")
 
 (defun run-golden-smoke ()
   (let ((fsms (runscope-fsms)))
@@ -20,6 +21,8 @@
     (run-language-source-value-smoke)
     (run-language-source-required-smoke)
     (run-language-source-range-smoke)
+    (run-language-guard-action-identifier-smoke)
+    (run-language-guard-action-duplicate-smoke)
     (run-build-fsm-conformance-smoke)
     (dolist (fsm fsms)
       (assert (null (validate-fsm fsm))))
