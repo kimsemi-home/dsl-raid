@@ -61,6 +61,7 @@ fn semantic_issues_with_optional_context(
     let mut issues = Vec::new();
     authority::push_gate_issues(value, &mut issues);
     containment::push_issues(value, &mut issues);
+    lease::push_gate_issues(value, &mut issues);
     if !authority::is_approved(value) {
         return issues;
     }

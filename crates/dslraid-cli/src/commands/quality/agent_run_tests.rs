@@ -43,6 +43,7 @@ mod fixtures_pruning;
 mod fixtures_reviewer;
 mod fixtures_semantic;
 mod lease;
+mod lease_artifact;
 mod lock_ref;
 mod orchestration;
 mod orchestration_ontology;

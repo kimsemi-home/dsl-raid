@@ -1,7 +1,12 @@
+mod artifact;
 mod ontology;
 
 use super::fields::text;
 use serde_json::Value;
+
+pub(super) fn push_gate_issues(value: &Value, issues: &mut Vec<String>) {
+    artifact::push_issues(value, issues);
+}
 
 pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     if text(value, &["lease", "status"]) != Some("finished") {
