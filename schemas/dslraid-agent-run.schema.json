@@ -3,7 +3,7 @@
   "$id": "https://dslraid.dev/schemas/dslraid-agent-run.schema.json",
   "title": "DSLRaid Agent Run Manifest",
   "type": "object",
-  "required": ["agent_run_version", "run", "ssot", "producer", "authority_gate", "lease", "evidence"],
+  "required": ["agent_run_version", "run", "ssot", "producer", "orchestration", "authority_gate", "lease", "evidence"],
   "additionalProperties": false,
   "properties": {
     "agent_run_version": { "$ref": "#/$defs/semver" },
@@ -25,6 +25,7 @@
       "default": [],
       "items": { "$ref": "#/$defs/semantic_diff" }
     },
+    "orchestration": { "$ref": "#/$defs/orchestration" },
     "authority_gate": { "$ref": "#/$defs/authority_gate" },
     "review_capacity": { "$ref": "#/$defs/review_capacity" },
     "lease": { "$ref": "#/$defs/lease" },
@@ -142,6 +143,38 @@
         },
         "decision": { "type": "string", "enum": ["agree", "disagree", "escalate"] },
         "interpreted_under": { "$ref": "#/$defs/semver" },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/id" }
+        }
+      }
+    },
+    "orchestration": {
+      "type": "object",
+      "required": ["id", "policy_hash", "selected_producer", "selected_reviewers", "lease", "authority_profile", "input_evidence", "output_artifacts", "evidence"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "policy_hash": { "$ref": "#/$defs/hash" },
+        "selected_producer": { "$ref": "#/$defs/id" },
+        "selected_reviewers": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "lease": { "$ref": "#/$defs/id" },
+        "authority_profile": { "type": "string", "enum": ["automatic", "sidecar", "human", "governance"] },
+        "input_evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "output_artifacts": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/id" }
+        },
         "evidence": {
           "type": "array",
           "minItems": 1,

@@ -7,6 +7,7 @@ pub(super) fn base_manifest(reviewers: Value, lease: &str, mut evidence: Value) 
     super::fixtures_evidence::with_subject(&mut evidence);
     let gate_evidence = super::fixtures_authority::evidence(&mut evidence);
     let agreements = super::fixtures_agreement::agreements(&reviewers, &gate_evidence);
+    let orchestration = super::fixtures_orchestration::receipt(&reviewers, &gate_evidence);
     let semantic_diffs = super::fixtures_semantic::diffs(&evidence);
     json!({
         "run": { "id": "agent-run:runscope-quality-001", "status": "verified" },
@@ -34,7 +35,8 @@ pub(super) fn base_manifest(reviewers: Value, lease: &str, mut evidence: Value) 
             "approved_by": "gate:quality",
             "evidence": gate_evidence
         },
-        "lease": { "status": lease, "ontology_version": "0.1.0" },
+        "orchestration": orchestration,
+        "lease": { "id": "lease:runscope-quality-001", "status": lease, "ontology_version": "0.1.0" },
         "evidence": evidence,
         "artifacts": [
             {

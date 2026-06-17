@@ -54,6 +54,17 @@
       "evidence": ["evidence:quality"]
     }
   ],
+  "orchestration": {
+    "id": "orchestration:runscope-quality",
+    "policy_hash": "sha256:agent-principles-001",
+    "selected_producer": "agent:codex",
+    "selected_reviewers": ["sidecar:dslraid-quality"],
+    "lease": "lease:runscope-quality-001",
+    "authority_profile": "sidecar",
+    "input_evidence": ["evidence:quality", "evidence:precommit"],
+    "output_artifacts": ["artifact:runtime-rust", "artifact:runtime-go"],
+    "evidence": ["evidence:quality"]
+  },
   "authority_gate": {
     "decision": "approved",
     "policy_hash": "sha256:agent-principles-001",

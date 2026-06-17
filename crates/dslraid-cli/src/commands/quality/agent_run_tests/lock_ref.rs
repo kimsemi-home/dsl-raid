@@ -5,7 +5,11 @@ use std::path::Path;
 #[test]
 fn approved_manifest_rejects_stale_lock_link() {
     let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
-    value["artifacts"] = json!([{ "path": "generated/runtime_fsm.rs", "status": "verified" }]);
+    value["artifacts"] = json!([{
+        "id": "artifact:runtime-rust",
+        "path": "generated/runtime_fsm.rs",
+        "status": "verified"
+    }]);
     let mut lock = fresh_lock();
     lock["artifacts"][0]["status"] = json!("stale");
 

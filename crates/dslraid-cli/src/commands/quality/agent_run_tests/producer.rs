@@ -37,6 +37,7 @@ fn approved_manifest_rejects_cold_start_producer() {
 fn automatic_authority_requires_trusted_producer() {
     let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
     value["authority_gate"]["profile"] = json!("automatic");
+    value["orchestration"]["authority_profile"] = json!("automatic");
 
     assert_eq!(
         super::super::agent_run::semantic_issues(&value),

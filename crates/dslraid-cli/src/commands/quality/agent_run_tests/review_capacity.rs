@@ -30,6 +30,7 @@ fn frozen_capacity_blocks_high_risk_sidecar_authority() {
 fn governance_authority_survives_frozen_capacity() {
     let mut value = high_risk_manifest();
     value["authority_gate"]["profile"] = json!("governance");
+    value["orchestration"]["authority_profile"] = json!("governance");
     value["authority_gate"]["approved_by"] = json!("steward:ops");
     value["review_capacity"] = capacity("frozen", 5, 5, json!(["evidence:quality"]));
 
