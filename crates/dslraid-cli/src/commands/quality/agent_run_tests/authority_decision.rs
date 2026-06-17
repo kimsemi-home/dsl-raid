@@ -13,3 +13,15 @@ fn non_approved_authority_requires_evidence() {
         vec!["non-approved authority gate requires evidence"]
     );
 }
+
+#[test]
+fn escalated_authority_requires_human_review() {
+    let mut value = base_manifest(json!([]), "finished", high());
+    value["run"]["status"] = json!("rejected");
+    value["authority_gate"]["decision"] = json!("escalated");
+
+    assert_eq!(
+        super::super::agent_run::semantic_issues(&value),
+        vec!["escalated authority gate requires human review"]
+    );
+}
