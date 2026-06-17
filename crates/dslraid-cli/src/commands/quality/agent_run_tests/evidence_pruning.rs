@@ -1,18 +1,19 @@
 use super::fixtures::{base_manifest, high};
+use super::fixtures_pruning::{push_pruned_extra, tombstone};
 use serde_json::json;
 
 #[test]
 fn pruned_evidence_requires_tombstone_fields() {
     let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
-    value["evidence"][0]["status"] = json!("pruned");
+    push_pruned_extra(&mut value);
 
     assert_eq!(
         super::super::agent_run::semantic_issues(&value),
         vec![
-            "pruned evidence evidence:quality requires tombstone reason",
-            "pruned evidence evidence:quality requires tombstone pruned_by",
-            "pruned evidence evidence:quality requires tombstone pruned_at",
-            "pruned evidence evidence:quality requires tombstone policy_hash"
+            "pruned evidence evidence:old-validation requires tombstone reason",
+            "pruned evidence evidence:old-validation requires tombstone pruned_by",
+            "pruned evidence evidence:old-validation requires tombstone pruned_at",
+            "pruned evidence evidence:old-validation requires tombstone policy_hash"
         ]
     );
 }
@@ -20,8 +21,8 @@ fn pruned_evidence_requires_tombstone_fields() {
 #[test]
 fn pruned_evidence_with_tombstone_is_accepted() {
     let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
-    value["evidence"][0]["status"] = json!("pruned");
-    value["evidence"][0]["tombstone"] = tombstone();
+    push_pruned_extra(&mut value);
+    value["evidence"][3]["tombstone"] = tombstone();
 
     assert_eq!(
         super::super::agent_run::semantic_issues(&value),
@@ -45,24 +46,15 @@ fn pruned_evidence_does_not_count_as_active_support() {
 fn protected_retention_blocks_pruning() {
     for retention in ["protected", "legal_hold"] {
         let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
-        value["evidence"][0]["status"] = json!("pruned");
-        value["evidence"][0]["retention"] = json!(retention);
-        value["evidence"][0]["tombstone"] = tombstone();
+        push_pruned_extra(&mut value);
+        value["evidence"][3]["retention"] = json!(retention);
+        value["evidence"][3]["tombstone"] = tombstone();
 
         assert_eq!(
             super::super::agent_run::semantic_issues(&value),
             vec![format!(
-                "evidence evidence:quality retention {retention} blocks pruning"
+                "evidence evidence:old-validation retention {retention} blocks pruning"
             )]
         );
     }
-}
-
-fn tombstone() -> serde_json::Value {
-    json!({
-        "reason": "superseded by newer validation",
-        "pruned_by": "sidecar:dslraid-quality",
-        "pruned_at": "2026-06-18T00:00:00Z",
-        "policy_hash": "sha256:policy"
-    })
 }

@@ -1,6 +1,11 @@
-use super::super::fields::{field_text, items};
+use super::super::fields::{field_is, field_text, items};
 use serde_json::Value;
 use std::collections::BTreeMap;
+
+struct EvidenceMeta {
+    kind: String,
+    pruned: bool,
+}
 
 pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     let refs = authority_refs(value);
@@ -11,9 +16,15 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     let mut has_known_ref = false;
     let mut has_control_ref = false;
     for reference in &refs {
-        if let Some(kind) = evidence.get(*reference) {
+        if let Some(meta) = evidence.get(*reference) {
             has_known_ref = true;
-            has_control_ref |= is_control_kind(kind);
+            if meta.pruned {
+                issues.push(format!(
+                    "authority gate references pruned evidence {reference}"
+                ));
+                continue;
+            }
+            has_control_ref |= is_control_kind(&meta.kind);
         } else {
             issues.push(format!(
                 "authority gate references unknown evidence {reference}"
@@ -36,12 +47,18 @@ fn authority_refs(value: &Value) -> Vec<&str> {
         .collect()
 }
 
-fn evidence_kinds(value: &Value) -> BTreeMap<String, String> {
+fn evidence_kinds(value: &Value) -> BTreeMap<String, EvidenceMeta> {
     items(value, "evidence")
         .filter_map(|item| {
             let id = field_text(item, "id")?;
             let kind = field_text(item, "kind")?;
-            Some((id.to_string(), kind.to_string()))
+            Some((
+                id.to_string(),
+                EvidenceMeta {
+                    kind: kind.to_string(),
+                    pruned: field_is(item, "status", "pruned"),
+                },
+            ))
         })
         .collect()
 }
