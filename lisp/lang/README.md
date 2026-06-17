@@ -12,5 +12,8 @@ Lisp forms
   -> canonical JSON emission
 ```
 
+The product-facing concepts are Expansion, Conformance, and Projection. Passes
+may exist internally, but they are not the language surface.
+
 `dsl/` should stay small and macro-facing. `lang/` owns testable parsing,
 authoring-time diagnostics, and AST-to-IR expansion.

@@ -15,6 +15,7 @@
   (format out "The Common Lisp layer is DSLRaid's native authoring surface.~%")
   (format out "It expands executable forms into Canonical IR before Rust tooling runs.~%~%")
   (write-stage-table out)
+  (write-boundaries out)
   (write-contracts out)
   (write-command out))
 
@@ -23,6 +24,16 @@
   (format out "| Stage | Contract |~%| --- | --- |~%")
   (dolist (stage (dslraid.lang:language-pipeline-catalog))
     (format out "| ~A | ~A |~%" (first stage) (second stage)))
+  (terpri out))
+
+(defun write-boundaries (out)
+  (format out "## Product Boundaries~%~%")
+  (format out "| Boundary | Input | Output | Owner | Contract |~%")
+  (format out "| --- | --- | --- | --- | --- |~%")
+  (dolist (row (dslraid.lang::language-boundary-catalog))
+    (destructuring-bind (name input output owner contract) row
+      (format out "| ~A | ~A | ~A | ~A | ~A |~%"
+              name input output owner contract)))
   (terpri out))
 
 (defun write-contracts (out)

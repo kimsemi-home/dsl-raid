@@ -21,6 +21,14 @@ It expands executable forms into Canonical IR before Rust tooling runs.
 | Projection | View models, docs, traces, and backend outputs derive here. |
 | Backend output | Rust, Go, TypeScript, Mermaid, DOT, SVG, and docs. |
 
+## Product Boundaries
+
+| Boundary | Input | Output | Owner | Contract |
+| --- | --- | --- | --- | --- |
+| Expansion | Lisp forms / AST | Canonical IR-shaped data | Common Lisp | No IO, conformance execution, projection, or backend codegen. |
+| Conformance | Language AST and Canonical IR | diagnostics | Common Lisp and Rust | Authoring checks happen before IR emission; semantic checks run on IR. |
+| Projection | Canonical IR | view models and backend artifacts | Rust tooling | Rust, Go, TypeScript, Mermaid, DOT, SVG, and docs are derived outputs. |
+
 ## Contracts
 
 - Lisp forms are the native source of truth.

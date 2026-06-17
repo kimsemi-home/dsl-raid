@@ -15,6 +15,7 @@
     :components
     ((:file "ast")
      (:file "pipeline")
+     (:file "boundaries")
      (:file "code-authoring")
      (:file "code-transition")
      (:file "code-identifiers")
