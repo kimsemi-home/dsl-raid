@@ -44,6 +44,16 @@
       "evidence": ["evidence:quality", "evidence:precommit"]
     }
   ],
+  "semantic_diffs": [
+    {
+      "id": "semantic-diff:runscope-self",
+      "base_hash": "sha256:88d5c29334c5a2599bf98816506daa3eb6a1969b657441253d50600b68947222",
+      "head_hash": "sha256:88d5c29334c5a2599bf98816506daa3eb6a1969b657441253d50600b68947222",
+      "status": "unchanged",
+      "summary": "Current RunScope IR self-diff is unchanged.",
+      "evidence": ["evidence:quality"]
+    }
+  ],
   "authority_gate": {
     "decision": "approved",
     "policy_hash": "sha256:agent-principles-001",

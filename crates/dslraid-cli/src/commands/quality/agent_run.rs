@@ -12,6 +12,7 @@ mod lease;
 mod lock_ref;
 mod review_capacity;
 mod reviewer;
+mod semantic_diff;
 mod ssot;
 mod trace_ref;
 mod translation;

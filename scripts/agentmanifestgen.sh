@@ -22,23 +22,18 @@ lease = manifest["lease"]
 ssot = manifest["ssot"]
 capacity = manifest.get("review_capacity", {})
 ssot_revalidation = ssot.get("revalidation", {})
-quality_snapshots = sum(
-    len(evidence.get("quality_snapshots", []))
-    for evidence in manifest.get("evidence", [])
-)
+quality_snapshots = sum(len(e.get("quality_snapshots", [])) for e in manifest.get("evidence", []))
 debts = manifest.get("debts", [])
 revalidation_dates = sum(1 for debt in debts if "revalidate_at" in debt)
 closure_updates = sum(len(debt.get("updates", [])) for debt in debts)
 translations = manifest.get("translations", [])
 losses = [loss for item in translations for loss in item.get("losses", [])]
-forbidden_losses = sum(
-    1 for loss in losses
-    if loss.get("level") == "L4" or loss.get("status") == "forbidden"
-)
+forbidden_losses = sum(1 for loss in losses if loss.get("level") == "L4" or loss.get("status") == "forbidden")
 claims = manifest.get("claims", [])
 high_claims = sum(1 for claim in claims if claim.get("confidence") == "high")
 containments = manifest.get("containments", [])
 agreements = manifest.get("agreements", [])
+semantic_diffs = manifest.get("semantic_diffs", [])
 
 def cell(value):
     return str(value).replace("|", "\\|").replace("\n", " ")
@@ -56,6 +51,7 @@ print(f"| lease | {cell(lease['status'])} | `{cell(lease['id'])}` |")
 print(f"| producer | {cell(manifest['producer']['id'])} | {cell(manifest['producer']['reasoning_level'])} / {cell(manifest['producer'].get('trust_tier', ''))} |")
 print(f"| reviewers | {len(manifest.get('reviewers', []))} | independent sidecars |")
 print(f"| agreements | {len(agreements)} | cross-agent receipts |")
+print(f"| semantic diffs | {len(semantic_diffs)} | meaning-level receipts |")
 print(f"| evidence | {len(manifest.get('evidence', []))} | linked records |")
 print(f"| evidence quality | {quality_snapshots} | sidecar snapshots |")
 print(f"| artifacts | {len(manifest.get('artifacts', []))} | generated outputs |")
