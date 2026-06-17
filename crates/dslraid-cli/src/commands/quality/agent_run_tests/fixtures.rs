@@ -17,19 +17,16 @@ pub(super) fn base_manifest(reviewers: Value, lease: &str, mut evidence: Value) 
                 "revalidate_at": "2026-07-17T00:00:00Z"
             }
         },
-        "producer": {
-            "id": "agent:codex",
-            "role": "implementation",
-            "reasoning_level": "R3",
-            "trust_tier": "T2"
-        },
+        "producer": { "id": "agent:codex", "role": "implementation", "reasoning_level": "R3", "trust_tier": "T2" },
         "reviewers": reviewers,
         "agreements": agreements,
         "semantic_diffs": semantic_diffs,
         "authority_gate": {
             "decision": "approved",
+            "policy_hash": "sha256:policy",
             "profile": "sidecar",
             "scope": "routine",
+            "human_review_required": false,
             "approved_by": "gate:quality",
             "evidence": gate_evidence
         },

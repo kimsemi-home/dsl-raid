@@ -1,6 +1,7 @@
 mod agreement;
 mod artifact;
 mod authority;
+mod authority_policy;
 mod claim;
 mod containment;
 mod containment_release;
