@@ -1,3 +1,5 @@
+mod docs;
+
 use anyhow::{bail, Result};
 use dslraid_codegen::CodegenTarget;
 
@@ -5,7 +7,7 @@ pub(super) fn check() -> Result<()> {
     for target in CodegenTarget::ALL {
         check_contract(target)?;
     }
-    Ok(())
+    docs::check()
 }
 
 fn check_contract(target: CodegenTarget) -> Result<()> {

@@ -8,6 +8,16 @@ pub struct CodegenContract {
     pub contract: &'static str,
 }
 
+impl CodegenContract {
+    pub fn lossy_label(self) -> &'static str {
+        if self.lossy {
+            "yes"
+        } else {
+            "no"
+        }
+    }
+}
+
 pub(super) fn for_target(target: CodegenTarget) -> CodegenContract {
     match target {
         CodegenTarget::Rust => generated("generated runtime source", rust_contract()),

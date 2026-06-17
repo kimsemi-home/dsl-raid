@@ -24,6 +24,16 @@ impl CodegenTarget {
         contract::for_target(self)
     }
 
+    pub fn id(self) -> &'static str {
+        match self {
+            Self::Rust => "rust",
+            Self::Go => "go",
+            Self::TypeScript => "typescript",
+            Self::Mermaid => "mermaid",
+            Self::Dot => "dot",
+        }
+    }
+
     pub fn extension(self) -> &'static str {
         match self {
             Self::Rust => "rs",
