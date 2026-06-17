@@ -14,3 +14,4 @@ SSOT: `runscope` / ontology `0.1.0`
 | evidence | 2 | linked records |
 | artifacts | 2 | generated outputs |
 | debts | 0 | tracked open work |
+| semantic gate | checked | `dslraid quality` |

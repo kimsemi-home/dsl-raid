@@ -37,6 +37,7 @@ print(f"| reviewers | {len(manifest.get('reviewers', []))} | independent sidecar
 print(f"| evidence | {len(manifest.get('evidence', []))} | linked records |")
 print(f"| artifacts | {len(manifest.get('artifacts', []))} | generated outputs |")
 print(f"| debts | {len(manifest.get('debts', []))} | tracked open work |")
+print("| semantic gate | checked | `dslraid quality` |")
 PY
 }
 
