@@ -1,6 +1,7 @@
 mod decision;
 mod evidence;
 mod governance;
+mod orchestrator;
 mod policy;
 mod profile;
 
@@ -26,6 +27,7 @@ pub(super) fn push_approved_issues(value: &Value, issues: &mut Vec<String>) {
     push_self_approval_issue(value, issues);
     evidence::push_issues(value, issues);
     governance::push_issues(value, issues);
+    orchestrator::push_issues(value, issues);
     policy::push_issues(value, issues);
     profile::push_issues(value, issues);
 }

@@ -9,6 +9,7 @@ mod authority_audit;
 mod authority_decision;
 mod authority_evidence_pruning;
 mod authority_governance;
+mod authority_orchestrator;
 mod authority_policy;
 mod claim;
 mod claim_artifact;
