@@ -17,7 +17,12 @@ pub(super) fn base_manifest(reviewers: Value, lease: &str, mut evidence: Value) 
                 "revalidate_at": "2026-07-17T00:00:00Z"
             }
         },
-        "producer": { "id": "agent:codex" },
+        "producer": {
+            "id": "agent:codex",
+            "role": "implementation",
+            "reasoning_level": "R3",
+            "trust_tier": "T2"
+        },
         "reviewers": reviewers,
         "agreements": agreements,
         "semantic_diffs": semantic_diffs,

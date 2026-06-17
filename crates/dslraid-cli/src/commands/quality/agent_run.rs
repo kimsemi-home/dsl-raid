@@ -11,6 +11,7 @@ mod evidence_quality;
 mod fields;
 mod lease;
 mod lock_ref;
+mod producer;
 mod review_capacity;
 mod reviewer;
 mod semantic_diff;

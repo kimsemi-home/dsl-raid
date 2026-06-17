@@ -18,6 +18,7 @@ mod fixtures_agreement;
 mod fixtures_authority;
 mod fixtures_semantic;
 mod lock_ref;
+mod producer;
 mod review_capacity;
 mod semantic_diff;
 mod ssot;
