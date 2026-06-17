@@ -16,6 +16,7 @@ mod containment;
 mod containment_abort;
 mod containment_pruning;
 mod containment_quarantine;
+mod containment_quarantine_artifact;
 mod containment_release;
 mod containment_subject;
 mod core;

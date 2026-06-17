@@ -7,6 +7,7 @@ fn open_quarantine_blocks_high_confidence_claim() {
     value["run"]["status"] = json!("quarantined");
     value["authority_gate"]["decision"] = json!("blocked");
     value["containments"] = json!([quarantine()]);
+    value["artifacts"] = json!([]);
     value["claims"] = json!([claim()]);
 
     assert_eq!(

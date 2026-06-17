@@ -5,6 +5,12 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     if !has_open_quarantine(value) {
         return;
     }
+    for artifact in items(value, "artifacts").filter(|item| field_is(item, "status", "verified")) {
+        issues.push(format!(
+            "open quarantine blocks verified artifact {}",
+            id(artifact)
+        ));
+    }
     for claim in items(value, "claims").filter(|item| field_is(item, "confidence", "high")) {
         issues.push(format!(
             "open quarantine blocks high confidence claim {}",
