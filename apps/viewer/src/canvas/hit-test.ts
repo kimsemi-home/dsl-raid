@@ -1,4 +1,5 @@
 import type { Point, SceneEdge, SceneNode, ViewModel } from "../types";
+import { edgesNear, hitIndexFor, nodesAt, nodesInBounds } from "./spatial-index";
 
 export type HitResult =
   | { kind: "node"; subject: string; id: string }
@@ -6,14 +7,15 @@ export type HitResult =
   | undefined;
 
 export function hitTest(view: ViewModel, point: Point): HitResult {
-  const node = [...view.nodes]
+  const index = hitIndexFor(view);
+  const node = nodesAt(index, point)
     .reverse()
     .find((candidate) => point.x >= candidate.x && point.x <= candidate.x + candidate.width && point.y >= candidate.y && point.y <= candidate.y + candidate.height);
   if (node) {
     return { kind: "node", subject: node.subject, id: node.id };
   }
 
-  const edge = view.edges.find((candidate) => edgeDistance(candidate, point) < 10);
+  const edge = edgesNear(index, point, 10).find((candidate) => edgeDistance(candidate, point) < 10);
   if (edge) {
     return { kind: "edge", subject: edge.subject, id: edge.id };
   }
@@ -44,5 +46,5 @@ function distance(a: Point, b: Point): number {
 }
 
 export function visibleNodes(view: ViewModel, bounds: { x: number; y: number; width: number; height: number }): SceneNode[] {
-  return view.nodes.filter((node) => node.x + node.width >= bounds.x && node.x <= bounds.x + bounds.width && node.y + node.height >= bounds.y && node.y <= bounds.y + bounds.height);
+  return nodesInBounds(hitIndexFor(view), bounds).filter((node) => node.x + node.width >= bounds.x && node.x <= bounds.x + bounds.width && node.y + node.height >= bounds.y && node.y <= bounds.y + bounds.height);
 }
