@@ -8,6 +8,8 @@ pub struct Guard {
     pub id: String,
     #[serde(default)]
     pub name: Option<String>,
+    #[serde(default = "default_guard_kind")]
+    pub kind: String,
     #[serde(default)]
     pub capability: Option<String>,
     #[serde(default)]
@@ -25,6 +27,8 @@ pub struct Action {
     pub id: String,
     #[serde(default)]
     pub name: Option<String>,
+    #[serde(default = "default_action_kind")]
+    pub kind: String,
     #[serde(default)]
     pub capability: Option<String>,
     #[serde(default)]
@@ -37,4 +41,12 @@ pub struct Action {
     pub tags: Vec<String>,
     #[serde(default)]
     pub metadata: Option<Value>,
+}
+
+fn default_guard_kind() -> String {
+    "predicate".to_string()
+}
+
+fn default_action_kind() -> String {
+    "effect".to_string()
 }

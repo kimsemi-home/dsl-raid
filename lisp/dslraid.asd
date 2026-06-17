@@ -54,6 +54,7 @@
     :components
     ((:file "json-values")
      (:file "json-source")
+     (:file "json-effect")
      (:file "json-fsm")
      (:file "json-context")
      (:file "json-composition")

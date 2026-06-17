@@ -19,6 +19,29 @@
     (make-event :id (dslraid.ir::kebab-name id)
                 :kind (authoring-enum-value kind))))
 
+(defun expand-guard (args)
+  (destructuring-bind
+      (id &key (kind "predicate") expression input defined-at tags)
+      args
+    (make-guard :id (dslraid.ir::kebab-name id)
+                :kind (authoring-enum-value kind)
+                :expression expression
+                :input (when input (dslraid.ir::kebab-name input))
+                :defined-at defined-at
+                :tags (mapcar #'dslraid.ir::kebab-name tags))))
+
+(defun expand-action (args)
+  (destructuring-bind
+      (id &key (kind "effect") command emits expression defined-at tags)
+      args
+    (make-action :id (dslraid.ir::kebab-name id)
+                 :kind (authoring-enum-value kind)
+                 :command command
+                 :emits (mapcar #'dslraid.ir::kebab-name emits)
+                 :expression expression
+                 :defined-at defined-at
+                 :tags (mapcar #'dslraid.ir::kebab-name tags))))
+
 (defun expand-transition (args)
   (destructuring-bind
       (id &key from to on guards actions requires defined-at tags)

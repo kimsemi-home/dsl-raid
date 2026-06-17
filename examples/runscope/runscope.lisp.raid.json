@@ -17,6 +17,10 @@
         {"id": "start_requested", "kind": "external"},
         {"id": "start_failed", "kind": "error"}
       ],
+      "guards": [
+      ],
+      "actions": [
+      ],
       "transitions": [
         {"id": "idle_to_starting", "from": "idle", "to": "starting", "on": "start_requested"},
         {"id": "starting_to_running", "from": "starting", "to": "running"},
@@ -40,6 +44,10 @@
         {"id": "plan_requested", "kind": "internal"},
         {"id": "action_completed", "kind": "internal"},
         {"id": "action_failed", "kind": "error"}
+      ],
+      "guards": [
+      ],
+      "actions": [
       ],
       "transitions": [
         {"id": "idle_to_planning", "from": "idle", "to": "planning", "on": "plan_requested"},
@@ -65,6 +73,10 @@
         {"id": "sync_requested", "kind": "internal"},
         {"id": "sync_completed", "kind": "internal"},
         {"id": "sync_conflict", "kind": "error"}
+      ],
+      "guards": [
+      ],
+      "actions": [
       ],
       "transitions": [
         {"id": "clean_to_dirty", "from": "clean", "to": "dirty", "on": "file_changed"},

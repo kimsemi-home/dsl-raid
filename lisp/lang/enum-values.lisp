@@ -5,7 +5,9 @@
     (:state :terminal-semantics
      ("success" "cancelled" "timeout" "failed" "retriable_failed"
       "policy_blocked" "degraded"))
-    (:event :kind ("external" "internal" "generated" "timer" "error"))))
+    (:event :kind ("external" "internal" "generated" "timer" "error"))
+    (:guard :kind ("predicate" "expression" "policy" "capability"))
+    (:action :kind ("command" "emit" "call" "effect" "assign" "log"))))
 
 (defun append-enum-value-diagnostics (ast form tail diagnostics)
   (let ((next diagnostics))

@@ -19,6 +19,25 @@
   id
   kind)
 
+(defstruct (guard (:constructor make-guard
+                   (&key id (kind "predicate") expression input defined-at tags)))
+  id
+  kind
+  expression
+  input
+  defined-at
+  tags)
+
+(defstruct (action (:constructor make-action
+                    (&key id (kind "effect") command emits expression defined-at tags)))
+  id
+  kind
+  command
+  emits
+  expression
+  defined-at
+  tags)
+
 (defstruct (transition (:constructor make-transition
                         (&key id from to on guards actions requires defined-at tags)))
   id

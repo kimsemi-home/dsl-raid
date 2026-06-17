@@ -12,6 +12,8 @@
     (format out ",~%"))
   (write-named-array out level "states" (fsm-states fsm) #'write-state-json t)
   (write-named-array out level "events" (fsm-events fsm) #'write-event-json t)
+  (write-named-array out level "guards" (fsm-guards fsm) #'write-guard-json t)
+  (write-named-array out level "actions" (fsm-actions fsm) #'write-action-json t)
   (write-named-array out level "transitions" (fsm-transitions fsm) #'write-transition-json nil)
   (indent out level)
   (format out "}"))

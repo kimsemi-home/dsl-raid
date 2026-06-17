@@ -13,7 +13,7 @@
 
 (defun keyword-tail (form)
   (case (dsl-form-head form)
-    ((:state :event :transition)
+    ((:state :event :transition :guard :action)
      (when (primary-id-present-p form)
        (rest (dsl-form-args form))))
     (:defined-at (dsl-form-args form))
@@ -24,6 +24,8 @@
     (:state '(:kind :initial :terminal :terminal-semantics :defined-at :tags))
     (:event '(:kind))
     (:transition '(:from :to :on :guards :actions :requires :defined-at :tags))
+    (:guard '(:kind :expression :input :defined-at :tags))
+    (:action '(:kind :command :emits :expression :defined-at :tags))
     (:defined-at '(:uri :start-line :end-line))
     (otherwise nil)))
 
