@@ -7,3 +7,8 @@ export type DefinedAt = {
     end_column?: number;
   };
 };
+
+export type Expression = {
+  language: string;
+  source: string;
+};

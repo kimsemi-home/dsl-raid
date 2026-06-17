@@ -1,0 +1,29 @@
+{
+  "ir_version": "0.1.0",
+  "project": {"id": "effects", "name": "Effects"},
+  "fsms": [
+    {
+      "id": "fsm:runtime",
+      "name": "RuntimeFSM",
+      "states": [{"id": "idle", "kind": "atomic", "initial": true}],
+      "guards": [
+        {
+          "id": "can_start",
+          "kind": "capability",
+          "input": "runtime",
+          "expression": {"language": "lisp", "source": "runtime-ready"}
+        }
+      ],
+      "actions": [
+        {
+          "id": "emit_started",
+          "kind": "emit",
+          "command": "command:runtime_start",
+          "emits": ["started"],
+          "expression": {"language": "lisp", "source": "emit-started"}
+        }
+      ],
+      "transitions": []
+    }
+  ]
+}

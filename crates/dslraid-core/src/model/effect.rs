@@ -13,6 +13,10 @@ pub struct Guard {
     #[serde(default)]
     pub capability: Option<String>,
     #[serde(default)]
+    pub expression: Option<Value>,
+    #[serde(default)]
+    pub input: Option<String>,
+    #[serde(default)]
     pub defined_at: Option<DefinedAt>,
     #[serde(default)]
     pub visibility: Option<String>,
@@ -31,6 +35,12 @@ pub struct Action {
     pub kind: String,
     #[serde(default)]
     pub capability: Option<String>,
+    #[serde(default)]
+    pub command: Option<String>,
+    #[serde(default)]
+    pub emits: Vec<String>,
+    #[serde(default)]
+    pub expression: Option<Value>,
     #[serde(default)]
     pub depends_on: Vec<String>,
     #[serde(default)]

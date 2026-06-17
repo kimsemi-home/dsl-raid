@@ -10,6 +10,14 @@ export function eventSubject(fsmId: string, eventId: string): string {
   return `event:${fsmLocalName(fsmId)}.${eventId}`;
 }
 
+export function guardSubject(fsmId: string, guardId: string): string {
+  return `guard:${fsmLocalName(fsmId)}.${guardId}`;
+}
+
+export function actionSubject(fsmId: string, actionId: string): string {
+  return `action:${fsmLocalName(fsmId)}.${actionId}`;
+}
+
 export function layoutStateId(fsmId: string, stateId: string): string {
   return `layout:${fsmLocalName(fsmId)}.state.${stateId}`;
 }

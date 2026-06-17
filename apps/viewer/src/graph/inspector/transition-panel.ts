@@ -4,6 +4,7 @@ import { eventSubject, stateSubject } from "../ids";
 import { traceRows } from "../trace";
 import { artifactRow, artifactsForSubject } from "../traceability";
 import { diagnosticSection } from "./diagnostic-section";
+import { transitionEffectSection } from "./transition-effects";
 
 export function transitionPanel(
   ir: CoreIr,
@@ -30,6 +31,7 @@ export function transitionPanel(
           }
         ]
       },
+      transitionEffectSection(fsm, transition),
       {
         title: "Policy",
         rows:

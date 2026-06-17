@@ -2,6 +2,7 @@ import type { CoreIr, CoverageSubject, Fsm, InspectorPanel, Projection, RuntimeE
 import { architecturePanels } from "./architecture-panels";
 import { coverageIndex } from "./coverage";
 import { diagnosticMarks } from "./diagnostic-marks";
+import { actionPanel, guardPanel } from "./inspector/effect-panel";
 import { eventPanel } from "./inspector/event-panel";
 import { fsmPanel } from "./inspector/fsm-panel";
 import { statePanel } from "./inspector/state-panel";
@@ -48,6 +49,8 @@ function inspectorPanels(
     ...architecturePanels(ir),
     fsmPanel(ir, fsm),
     ...(fsm.events ?? []).map((event) => eventPanel(fsm, event)),
+    ...(fsm.guards ?? []).map((guard) => guardPanel(fsm, guard)),
+    ...(fsm.actions ?? []).map((action) => actionPanel(fsm, action)),
     ...(fsm.states ?? []).map((state) => {
       const subject = stateSubject(fsm.id, state.id);
       return statePanel(ir, fsm, state.id, subject, coverage.get(subject), trace.get(subject));

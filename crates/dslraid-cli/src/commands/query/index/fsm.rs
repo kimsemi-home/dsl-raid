@@ -1,4 +1,5 @@
 use super::fsm_behavior::push_behavior_items;
+use super::fsm_effects::push_effect_items;
 use super::fsm_states::push_state_event_items;
 use super::item::push_query_item;
 use super::marks::DerivationMarks;
@@ -28,6 +29,7 @@ pub(in crate::commands::query::index) fn push_fsm_items(
             })),
         );
         push_state_event_items(items, fsm, marks);
+        push_effect_items(items, fsm, marks);
         push_behavior_items(items, fsm, marks);
     }
 }

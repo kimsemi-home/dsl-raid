@@ -3,6 +3,7 @@ mod derivation;
 mod diagnostic;
 mod fsm;
 mod fsm_behavior;
+mod fsm_effects;
 mod fsm_states;
 mod item;
 mod marks;
