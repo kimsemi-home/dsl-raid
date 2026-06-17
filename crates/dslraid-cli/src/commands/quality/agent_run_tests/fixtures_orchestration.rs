@@ -5,6 +5,7 @@ pub(super) fn receipt(reviewers: &Value, evidence: &Value) -> Value {
     let verifier = reviewer_ids.first().cloned().unwrap_or_default();
     json!({
         "id": "orchestration:runscope-quality",
+        "ontology_version": "0.1.0",
         "policy_hash": "sha256:policy",
         "routed_by": "control-plane:dslraid",
         "verified_by": verifier,

@@ -152,10 +152,11 @@
     },
     "orchestration": {
       "type": "object",
-      "required": ["id", "policy_hash", "routed_by", "verified_by", "selected_producer", "selected_reviewers", "lease", "authority_profile", "input_evidence", "output_artifacts", "evidence"],
+      "required": ["id", "ontology_version", "policy_hash", "routed_by", "verified_by", "selected_producer", "selected_reviewers", "lease", "authority_profile", "input_evidence", "output_artifacts", "evidence"],
       "additionalProperties": false,
       "properties": {
         "id": { "$ref": "#/$defs/id" },
+        "ontology_version": { "$ref": "#/$defs/semver" },
         "policy_hash": { "$ref": "#/$defs/hash" },
         "routed_by": { "$ref": "#/$defs/id" },
         "verified_by": { "$ref": "#/$defs/id" },

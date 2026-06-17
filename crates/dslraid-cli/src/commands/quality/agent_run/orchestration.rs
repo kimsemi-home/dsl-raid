@@ -1,4 +1,5 @@
 mod evidence;
+mod ontology;
 mod refs;
 mod verifier;
 
@@ -26,6 +27,7 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     );
     push_match(item, "policy_hash", policy(value), "policy hash", issues);
     push_match(item, "lease", lease(value), "lease", issues);
+    ontology::push_issues(value, item, issues);
     evidence::push_issues(value, item, issues);
     refs::push_issues(value, item, issues);
     verifier::push_issues(value, item, issues);
