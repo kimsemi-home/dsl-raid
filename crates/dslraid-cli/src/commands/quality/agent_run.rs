@@ -1,15 +1,23 @@
+mod authority;
+mod debt;
+mod evidence;
 mod fields;
+mod lease;
+mod lock_ref;
+mod reviewer;
 
 use anyhow::{bail, Context, Result};
-use fields::{field_is, items, text};
 use serde_json::Value;
 use std::{fs, path::Path};
 
-pub(super) fn check(path: &Path) -> Result<()> {
+pub(super) fn check(path: &Path, lock_path: &Path) -> Result<()> {
     let value: Value = serde_json::from_slice(
         &fs::read(path).with_context(|| format!("read {}", path.display()))?,
     )?;
-    let issues = semantic_issues(&value);
+    let lock: Value = serde_json::from_slice(
+        &fs::read(lock_path).with_context(|| format!("read {}", lock_path.display()))?,
+    )?;
+    let issues = semantic_issues_with_lock(&value, &lock);
     if issues.is_empty() {
         println!("agent run semantic gate ok");
         return Ok(());
@@ -17,49 +25,30 @@ pub(super) fn check(path: &Path) -> Result<()> {
     bail!("agent run semantic gate failed: {}", issues.join("; "))
 }
 
+#[cfg(test)]
 pub(super) fn semantic_issues(value: &Value) -> Vec<String> {
+    semantic_issues_with_optional_lock(value, None)
+}
+
+pub(super) fn semantic_issues_with_lock(value: &Value, lock: &Value) -> Vec<String> {
+    semantic_issues_with_optional_lock(value, Some(lock))
+}
+
+fn semantic_issues_with_optional_lock(value: &Value, lock: Option<&Value>) -> Vec<String> {
     let mut issues = Vec::new();
-    if text(value, &["run", "status"]) == Some("verified")
-        && text(value, &["authority_gate", "decision"]) != Some("approved")
-    {
-        issues.push("verified run requires approved authority gate".to_string());
-    }
-    if text(value, &["authority_gate", "decision"]) != Some("approved") {
+    authority::push_verified_gate_issue(value, &mut issues);
+    if !authority::is_approved(value) {
         return issues;
     }
-    push_approved_issues(value, &mut issues);
+    push_approved_issues(value, lock, &mut issues);
     issues
 }
 
-fn push_approved_issues(value: &Value, issues: &mut Vec<String>) {
-    let producer = text(value, &["producer", "id"]);
-    if text(value, &["authority_gate", "approved_by"]) == producer {
-        issues.push("producer cannot approve its own output".to_string());
-    }
-    if text(value, &["lease", "status"]) != Some("finished") {
-        issues.push("approved run requires finished lease".to_string());
-    }
-    if !has_high_quality_evidence(value) {
-        issues.push("approved run requires high quality evidence".to_string());
-    }
-    if independent_reviewers(value, producer) == 0 {
-        issues.push("approved run requires independent reviewer".to_string());
-    }
-    if has_open_debt(value) {
-        issues.push("approved run cannot carry open debt".to_string());
-    }
-}
-
-fn has_high_quality_evidence(value: &Value) -> bool {
-    items(value, "evidence").any(|item| field_is(item, "quality", "high"))
-}
-
-fn independent_reviewers(value: &Value, producer: Option<&str>) -> usize {
-    items(value, "reviewers")
-        .filter(|item| item.get("id").and_then(Value::as_str) != producer)
-        .count()
-}
-
-fn has_open_debt(value: &Value) -> bool {
-    items(value, "debts").any(|item| field_is(item, "status", "open"))
+fn push_approved_issues(value: &Value, lock: Option<&Value>, issues: &mut Vec<String>) {
+    authority::push_self_approval_issue(value, issues);
+    lease::push_issues(value, issues);
+    evidence::push_issues(value, issues);
+    reviewer::push_issues(value, issues);
+    debt::push_issues(value, issues);
+    lock_ref::push_issues(value, lock, issues);
 }

@@ -22,7 +22,10 @@ pub(crate) fn run() -> Result<()> {
     let input = Path::new("examples/runscope/runscope.raid.json");
     source_shape::check()?;
     schema::check_fixtures()?;
-    agent_run::check(Path::new("examples/runscope/runscope.agent-run.json"))?;
+    agent_run::check(
+        Path::new("examples/runscope/runscope.agent-run.json"),
+        Path::new("examples/runscope/runscope.lock.json"),
+    )?;
     let ir = semantic::check(input)?;
     projection::check(input, &ir)?;
     generated::check(input, &ir)?;

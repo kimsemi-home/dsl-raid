@@ -11,7 +11,7 @@ SSOT: `runscope` / ontology `0.1.0`
 | lease | finished | `lease:runscope-quality-001` |
 | producer | agent:codex | R3 / T2 |
 | reviewers | 1 | independent sidecars |
-| evidence | 2 | linked records |
+| evidence | 3 | linked records |
 | artifacts | 2 | generated outputs |
 | debts | 0 | tracked open work |
 | semantic gate | checked | `dslraid quality` |

@@ -17,3 +17,7 @@ pub(super) fn items<'a>(value: &'a Value, key: &str) -> impl Iterator<Item = &'a
 pub(super) fn field_is(value: &Value, key: &str, expected: &str) -> bool {
     value.get(key).and_then(Value::as_str) == Some(expected)
 }
+
+pub(super) fn field_text<'a>(value: &'a Value, key: &str) -> Option<&'a str> {
+    value.get(key).and_then(Value::as_str)
+}
