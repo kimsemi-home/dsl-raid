@@ -133,13 +133,22 @@
     },
     "debt": {
       "type": "object",
-      "required": ["id", "kind", "status"],
+      "required": ["id", "kind", "status", "owner", "opened_at", "revalidate_at"],
       "additionalProperties": false,
       "properties": {
         "id": { "$ref": "#/$defs/id" },
         "kind": { "type": "string", "enum": ["evidence", "review", "revalidation", "quarantine", "translation"] },
         "status": { "type": "string", "enum": ["open", "closed", "waived"] },
-        "owner": { "$ref": "#/$defs/id" }
+        "owner": { "$ref": "#/$defs/id" },
+        "opened_at": { "type": "string", "format": "date-time" },
+        "revalidate_at": { "type": "string", "format": "date-time" },
+        "closed_at": { "type": "string", "format": "date-time" },
+        "evidence": {
+          "type": "array",
+          "default": [],
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "notes": { "$ref": "#/$defs/text" }
       }
     },
     "id": { "type": "string", "minLength": 1 },

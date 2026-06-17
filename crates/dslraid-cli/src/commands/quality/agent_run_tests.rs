@@ -2,6 +2,7 @@ mod core;
 mod coverage_fixture;
 mod coverage_link;
 mod coverage_ref;
+mod debt;
 mod evidence;
 mod evidence_quality;
 mod fixtures;

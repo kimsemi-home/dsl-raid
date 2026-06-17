@@ -15,4 +15,5 @@ SSOT: `runscope` / ontology `0.1.0`
 | evidence quality | 4 | sidecar snapshots |
 | artifacts | 2 | generated outputs |
 | debts | 0 | tracked open work |
+| debt revalidation | 0 | authority dates |
 | semantic gate | checked | `dslraid quality` |

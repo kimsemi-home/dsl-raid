@@ -24,6 +24,10 @@ quality_snapshots = sum(
     len(evidence.get("quality_snapshots", []))
     for evidence in manifest.get("evidence", [])
 )
+revalidation_dates = sum(
+    1 for debt in manifest.get("debts", [])
+    if "revalidate_at" in debt
+)
 
 def cell(value):
     return str(value).replace("|", "\\|").replace("\n", " ")
@@ -42,6 +46,7 @@ print(f"| evidence | {len(manifest.get('evidence', []))} | linked records |")
 print(f"| evidence quality | {quality_snapshots} | sidecar snapshots |")
 print(f"| artifacts | {len(manifest.get('artifacts', []))} | generated outputs |")
 print(f"| debts | {len(manifest.get('debts', []))} | tracked open work |")
+print(f"| debt revalidation | {revalidation_dates} | authority dates |")
 print("| semantic gate | checked | `dslraid quality` |")
 PY
 }

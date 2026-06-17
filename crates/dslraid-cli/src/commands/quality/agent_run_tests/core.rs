@@ -33,7 +33,14 @@ fn verified_manifest_requires_approved_gate() {
 fn approved_manifest_rejects_self_approval_and_open_debt() {
     let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
     value["authority_gate"]["approved_by"] = json!("agent:codex");
-    value["debts"] = json!([{ "status": "open" }]);
+    value["debts"] = json!([{
+        "id": "debt:evidence",
+        "kind": "evidence",
+        "status": "open",
+        "owner": "agent:codex",
+        "opened_at": "2026-06-17T00:00:00Z",
+        "revalidate_at": "2026-06-18T00:00:00Z"
+    }]);
 
     assert_eq!(
         super::super::agent_run::semantic_issues(&value),
