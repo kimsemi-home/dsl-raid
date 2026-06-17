@@ -194,6 +194,7 @@ jobs:
         with:
           go-version: stable
           cache: true
+          cache-dependency-path: generated/go.mod
 
       - name: Run golangci-lint
         env:
