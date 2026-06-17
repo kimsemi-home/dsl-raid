@@ -4,6 +4,7 @@ mod agreement_subject;
 mod artifact;
 mod authority;
 mod authority_audit;
+mod authority_governance;
 mod authority_policy;
 mod claim;
 mod claim_confidence;

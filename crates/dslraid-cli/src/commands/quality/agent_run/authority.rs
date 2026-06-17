@@ -1,4 +1,5 @@
 mod evidence;
+mod governance;
 mod policy;
 mod profile;
 
@@ -18,6 +19,7 @@ pub(super) fn is_approved(value: &Value) -> bool {
 pub(super) fn push_approved_issues(value: &Value, issues: &mut Vec<String>) {
     push_self_approval_issue(value, issues);
     evidence::push_issues(value, issues);
+    governance::push_issues(value, issues);
     policy::push_issues(value, issues);
     profile::push_issues(value, issues);
 }
