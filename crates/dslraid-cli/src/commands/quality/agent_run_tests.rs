@@ -1,3 +1,4 @@
+mod agreement;
 mod authority;
 mod claim;
 mod containment;
@@ -10,6 +11,8 @@ mod debt;
 mod evidence;
 mod evidence_quality;
 mod fixtures;
+mod fixtures_agreement;
+mod fixtures_authority;
 mod lock_ref;
 mod ssot;
 mod trace_ref;

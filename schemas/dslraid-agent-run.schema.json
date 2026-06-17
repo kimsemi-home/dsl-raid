@@ -15,6 +15,11 @@
       "default": [],
       "items": { "$ref": "#/$defs/agent" }
     },
+    "agreements": {
+      "type": "array",
+      "default": [],
+      "items": { "$ref": "#/$defs/agreement" }
+    },
     "authority_gate": { "$ref": "#/$defs/authority_gate" },
     "lease": { "$ref": "#/$defs/lease" },
     "evidence": {
@@ -113,6 +118,27 @@
         "evidence": {
           "type": "array",
           "default": [],
+          "items": { "$ref": "#/$defs/id" }
+        }
+      }
+    },
+    "agreement": {
+      "type": "object",
+      "required": ["id", "subject", "participants", "decision", "interpreted_under", "evidence"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "subject": { "$ref": "#/$defs/id" },
+        "participants": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "decision": { "type": "string", "enum": ["agree", "disagree", "escalate"] },
+        "interpreted_under": { "$ref": "#/$defs/semver" },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
           "items": { "$ref": "#/$defs/id" }
         }
       }

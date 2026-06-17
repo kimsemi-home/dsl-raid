@@ -38,6 +38,7 @@ forbidden_losses = sum(
 claims = manifest.get("claims", [])
 high_claims = sum(1 for claim in claims if claim.get("confidence") == "high")
 containments = manifest.get("containments", [])
+agreements = manifest.get("agreements", [])
 
 def cell(value):
     return str(value).replace("|", "\\|").replace("\n", " ")
@@ -53,6 +54,7 @@ print(f"| ssot revalidation | {cell(ssot_revalidation.get('status', 'missing'))}
 print(f"| lease | {cell(lease['status'])} | `{cell(lease['id'])}` |")
 print(f"| producer | {cell(manifest['producer']['id'])} | {cell(manifest['producer']['reasoning_level'])} / {cell(manifest['producer'].get('trust_tier', ''))} |")
 print(f"| reviewers | {len(manifest.get('reviewers', []))} | independent sidecars |")
+print(f"| agreements | {len(agreements)} | cross-agent receipts |")
 print(f"| evidence | {len(manifest.get('evidence', []))} | linked records |")
 print(f"| evidence quality | {quality_snapshots} | sidecar snapshots |")
 print(f"| artifacts | {len(manifest.get('artifacts', []))} | generated outputs |")
