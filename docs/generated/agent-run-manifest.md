@@ -16,6 +16,7 @@ SSOT: `runscope` / ontology `0.1.0`
 | evidence quality | 4 | sidecar snapshots |
 | artifacts | 2 | generated outputs |
 | claims | 1 | high confidence `1` |
+| containments | 0 | abort/quarantine bundles |
 | translations | 1 | context handoffs |
 | loss ledger | 1 | forbidden `0` |
 | debts | 0 | tracked open work |

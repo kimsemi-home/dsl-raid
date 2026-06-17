@@ -1,6 +1,7 @@
 mod approved;
 mod authority;
 mod claim;
+mod containment;
 mod coverage_ref;
 mod debt;
 mod evidence;
@@ -53,6 +54,7 @@ fn semantic_issues_with_optional_context(
 ) -> Vec<String> {
     let mut issues = Vec::new();
     authority::push_verified_gate_issue(value, &mut issues);
+    containment::push_issues(value, &mut issues);
     if !authority::is_approved(value) {
         return issues;
     }

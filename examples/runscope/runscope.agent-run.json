@@ -137,6 +137,7 @@
       "evidence": ["evidence:quality", "evidence:precommit"]
     }
   ],
+  "containments": [],
   "translations": [
     {
       "id": "translation:lisp-ssot-to-core-ir",

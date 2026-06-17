@@ -1,4 +1,6 @@
 mod claim;
+mod containment;
+mod containment_release;
 mod core;
 mod coverage_fixture;
 mod coverage_link;
