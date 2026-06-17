@@ -19,6 +19,7 @@
     (run-language-enum-normalization-smoke)
     (run-language-source-value-smoke)
     (run-language-source-required-smoke)
+    (run-language-source-range-smoke)
     (run-build-fsm-conformance-smoke)
     (dolist (fsm fsms)
       (assert (null (validate-fsm fsm))))

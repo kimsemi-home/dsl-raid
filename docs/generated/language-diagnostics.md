@@ -25,3 +25,4 @@ Source: `lisp/lang/code-*.lisp`, `lisp/lang/codes.lisp`
 | LANG017 | error | FSM authoring values | Collection authoring keyword values must be lists. |
 | LANG018 | error | FSM authoring values | Enum authoring keyword values must match Core IR enums. |
 | LANG019 | error | FSM authoring source locations | Source location values must match Core IR source maps. |
+| LANG020 | error | FSM authoring source locations | Source location ranges must be ordered. |

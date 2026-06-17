@@ -20,4 +20,9 @@
      :code "LANG019"
      :severity "error"
      :scope "FSM authoring source locations"
-     :summary "Source location values must match Core IR source maps.")))
+     :summary "Source location values must match Core IR source maps.")
+    (:key :invalid-source-range-order
+     :code "LANG020"
+     :severity "error"
+     :scope "FSM authoring source locations"
+     :summary "Source location ranges must be ordered.")))

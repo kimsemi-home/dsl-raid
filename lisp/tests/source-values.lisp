@@ -18,3 +18,12 @@
          (diagnostics (validate-fsm-ast ast)))
     (assert-language-codes diagnostics '("LANG019"))
     diagnostics))
+
+(defun run-language-source-range-smoke ()
+  (let* ((ast (parse-fsm-form
+               'source-range-demo
+               '((:defined-at :uri "fsm.lisp" :start-line 8 :end-line 3)
+                 (:state idle :initial t))))
+         (diagnostics (validate-fsm-ast ast)))
+    (assert-language-codes diagnostics '("LANG020"))
+    diagnostics))
