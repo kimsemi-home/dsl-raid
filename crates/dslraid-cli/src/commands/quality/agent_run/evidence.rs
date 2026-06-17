@@ -1,7 +1,10 @@
+mod subject;
+
 use super::fields::{field_is, items};
 use serde_json::Value;
 
 pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
+    subject::push_issues(value, issues);
     if !has_high_quality_evidence(value) {
         issues.push("approved run requires high quality evidence".to_string());
     }

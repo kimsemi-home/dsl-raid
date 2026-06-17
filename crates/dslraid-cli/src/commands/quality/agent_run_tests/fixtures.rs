@@ -1,7 +1,10 @@
 use serde_json::{json, Value};
 
+pub(super) use super::fixtures_evidence::{fresh_lock, high, high_snapshot};
+
 pub(super) fn base_manifest(reviewers: Value, lease: &str, mut evidence: Value) -> Value {
     let reviewers = super::fixtures_reviewer::with_defaults(reviewers);
+    super::fixtures_evidence::with_subject(&mut evidence);
     let gate_evidence = super::fixtures_authority::evidence(&mut evidence);
     let agreements = super::fixtures_agreement::agreements(&reviewers, &gate_evidence);
     let semantic_diffs = super::fixtures_semantic::diffs(&evidence);
@@ -41,33 +44,5 @@ pub(super) fn base_manifest(reviewers: Value, lease: &str, mut evidence: Value) 
             }
         ],
         "debts": []
-    })
-}
-
-pub(super) fn high() -> Value {
-    let snapshot = high_snapshot();
-    json!([
-        { "id": "evidence:quality", "quality": "high", "kind": "validation", "quality_snapshots": snapshot.clone() },
-        { "id": "evidence:trace", "quality": "high", "kind": "trace", "quality_snapshots": snapshot.clone() },
-        { "id": "evidence:coverage", "quality": "high", "kind": "coverage", "quality_snapshots": snapshot }
-    ])
-}
-
-pub(super) fn high_snapshot() -> Value {
-    json!([{
-        "assessed_at": "2026-06-17T00:00:00Z",
-        "assessor": "sidecar:dslraid-quality",
-        "purpose": "authority",
-        "quality": "high",
-        "ontology_version": "0.1.0"
-    }])
-}
-
-pub(super) fn fresh_lock() -> Value {
-    json!({
-        "core": { "ir_hash": "sha256:core" },
-        "artifacts": [
-            { "path": "generated/runtime_fsm.rs", "status": "fresh" }
-        ]
     })
 }
