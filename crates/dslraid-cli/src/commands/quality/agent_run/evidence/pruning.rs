@@ -8,6 +8,7 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
         if field_is(evidence, "status", "pruned") {
             push_retention_issue(evidence, issues);
             push_tombstone_issues(evidence, issues);
+            push_incident_issue(value, evidence, issues);
         }
     }
 }
@@ -32,6 +33,15 @@ fn push_tombstone_issues(evidence: &Value, issues: &mut Vec<String>) {
                 id(evidence)
             ));
         }
+    }
+}
+
+fn push_incident_issue(value: &Value, evidence: &Value, issues: &mut Vec<String>) {
+    if text(value, &["authority_gate", "scope"]) == Some("incident") {
+        issues.push(format!(
+            "incident authority cannot prune evidence {}",
+            id(evidence)
+        ));
     }
 }
 
