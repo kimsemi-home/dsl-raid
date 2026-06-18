@@ -1,4 +1,5 @@
 mod artifact;
+mod links;
 mod orchestrator;
 mod quality;
 
@@ -41,6 +42,7 @@ pub(super) fn push_issues(
     }
     push_validation_issue(value, claim, issues);
     artifact::push_issues(value, claim, issues);
+    links::push_issues(value, claim, issues);
     orchestrator::push_issues(value, claim, issues);
     quality::push_issues(value, claim, issues);
 }

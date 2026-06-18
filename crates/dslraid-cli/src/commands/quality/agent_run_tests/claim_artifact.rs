@@ -49,6 +49,7 @@ fn artifact_evidence() -> Value {
         "kind": "artifact",
         "uri": "cargo run -p dslraid-cli -- artifact verify",
         "subject": "agent-run:runscope-quality-001",
+        "links": [{ "relation": "derived_from", "target": "evidence:quality" }],
         "provenance": {
             "kind": "sidecar-assessment",
             "observed_by": "sidecar:dslraid-quality",
