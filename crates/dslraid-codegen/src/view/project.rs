@@ -1,7 +1,7 @@
 use anyhow::{anyhow, Result};
 use dslraid_core::CoreIr;
 
-use super::{build_fsm_view, composition, ViewModel};
+use super::{composition, fsm, ViewModel};
 
 pub fn project_view(
     ir: &CoreIr,
@@ -17,7 +17,7 @@ pub fn project_view(
             let fsm = ir
                 .find_fsm(source)
                 .ok_or_else(|| anyhow!("projection source {} is not an FSM", source))?;
-            build_fsm_view(ir, projection, fsm, core_path.into())
+            fsm::build_fsm_view(ir, projection, fsm, core_path.into())
         }
         source if source.starts_with("composition:") => {
             let composition = ir

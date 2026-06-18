@@ -26,7 +26,7 @@ pub(crate) fn build(
     let edges = edge::edges(&result.edges, &nodes);
     let panels = panel::panels(composition, &result);
     Ok(ViewModel {
-        view_version: super::builder::VIEW_VERSION.to_string(),
+        view_version: super::VIEW_VERSION.to_string(),
         source: ViewSource {
             core_ir: core_path,
             projection: projection.id.clone(),
@@ -35,7 +35,7 @@ pub(crate) fn build(
         },
         layout: Layout {
             engine: "bounded-reachable-product".to_string(),
-            version: super::builder::VIEW_VERSION.to_string(),
+            version: super::VIEW_VERSION.to_string(),
         },
         nodes,
         edges,

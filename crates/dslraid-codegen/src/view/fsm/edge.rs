@@ -3,7 +3,8 @@ use dslraid_core::{transition_subject, Fsm, Transition};
 
 use super::diagnostic::DiagnosticMarks;
 use super::edge_route::route;
-use super::{layout_transition_id, StyleToken, ViewEdge, ViewNode};
+use super::ids::layout_transition_id;
+use crate::view::{StyleToken, ViewEdge, ViewNode};
 
 pub(crate) fn transition_edge(
     fsm: &Fsm,

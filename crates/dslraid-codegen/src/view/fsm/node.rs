@@ -1,7 +1,8 @@
 use dslraid_core::{state_subject, Fsm, State};
 
 use super::diagnostic::DiagnosticMarks;
-use super::{layout_state_id, StyleToken, ViewNode};
+use super::ids::layout_state_id;
+use crate::view::{StyleToken, ViewNode};
 
 const WIDTH: f64 = 168.0;
 const HEIGHT: f64 = 58.0;

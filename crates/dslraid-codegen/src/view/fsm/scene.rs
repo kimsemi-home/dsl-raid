@@ -4,7 +4,7 @@ use dslraid_core::Fsm;
 use super::diagnostic::DiagnosticMarks;
 use super::edge::transition_edge;
 use super::node::state_node;
-use super::{ViewEdge, ViewNode};
+use crate::view::{ViewEdge, ViewNode};
 
 pub(crate) fn state_nodes(fsm: &Fsm, diagnostics: &DiagnosticMarks) -> Vec<ViewNode> {
     fsm.states

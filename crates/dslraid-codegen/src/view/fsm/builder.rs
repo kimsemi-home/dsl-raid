@@ -2,11 +2,9 @@ use anyhow::Result;
 use dslraid_core::{CoreIr, Fsm, Projection};
 
 use super::diagnostic::DiagnosticMarks;
-use super::fsm_scene::{state_nodes, transition_edges};
 use super::panels::{fsm_panel, state_panel, transition_panel};
-use super::{Layout, ViewModel, ViewSource};
-
-pub(crate) const VIEW_VERSION: &str = "0.1.0";
+use super::scene::{state_nodes, transition_edges};
+use crate::view::{InspectorPanel, Layout, ViewModel, ViewSource, VIEW_VERSION};
 
 pub(crate) fn build_fsm_view(
     ir: &CoreIr,
@@ -36,7 +34,7 @@ pub(crate) fn build_fsm_view(
     })
 }
 
-fn inspector_panels(ir: &CoreIr, fsm: &Fsm) -> Vec<super::InspectorPanel> {
+fn inspector_panels(ir: &CoreIr, fsm: &Fsm) -> Vec<InspectorPanel> {
     let mut panels = Vec::new();
     panels.extend(fsm.states.iter().map(|state| {
         state_panel(

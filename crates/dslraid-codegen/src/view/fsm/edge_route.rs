@@ -1,4 +1,4 @@
-use super::{Point, ViewNode};
+use crate::view::{Point, ViewNode};
 
 pub(crate) fn route(from: &ViewNode, to: &ViewNode) -> Vec<Point> {
     vec![
