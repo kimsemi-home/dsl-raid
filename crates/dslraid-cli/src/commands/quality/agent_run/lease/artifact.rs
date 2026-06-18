@@ -2,12 +2,15 @@ use crate::commands::quality::agent_run::fields::{field_is, field_text, items, t
 use serde_json::Value;
 
 pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
-    if text(value, &["lease", "status"]) != Some("expired") {
+    let Some(status) = text(value, &["lease", "status"]) else {
+        return;
+    };
+    if status == "finished" {
         return;
     }
     for artifact in items(value, "artifacts").filter(|item| field_is(item, "status", "verified")) {
         issues.push(format!(
-            "expired lease blocks verified artifact {}",
+            "{status} lease blocks verified artifact {}",
             id(artifact)
         ));
     }

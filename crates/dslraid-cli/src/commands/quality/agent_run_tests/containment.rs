@@ -9,7 +9,10 @@ fn aborted_manifest_requires_abort_bundle() {
 
     assert_eq!(
         super::super::agent_run::semantic_issues(&value),
-        vec!["aborted run requires abort evidence bundle"]
+        vec![
+            "aborted run requires abort evidence bundle",
+            "aborted lease blocks verified artifact artifact:runtime-rust"
+        ]
     );
 }
 

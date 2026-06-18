@@ -25,7 +25,10 @@ fn abort_blocks_verified_artifact() {
 
     assert_eq!(
         super::super::agent_run::semantic_issues(&value),
-        vec!["abort blocks verified artifact artifact:runtime-rust"]
+        vec![
+            "abort blocks verified artifact artifact:runtime-rust",
+            "aborted lease blocks verified artifact artifact:runtime-rust"
+        ]
     );
 }
 

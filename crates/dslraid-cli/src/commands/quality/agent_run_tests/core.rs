@@ -8,6 +8,7 @@ fn approved_manifest_rejects_missing_review_evidence_and_lease() {
     assert_eq!(
         super::super::agent_run::semantic_issues(&value),
         vec![
+            "active lease blocks verified artifact artifact:runtime-rust",
             "approved authority gate requires evidence",
             "approved run requires finished lease",
             "approved run requires high quality evidence",
