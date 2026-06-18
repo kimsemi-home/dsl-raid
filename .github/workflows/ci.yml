@@ -154,7 +154,7 @@ jobs:
 
       - name: Install SBCL
         if: steps.cli.outputs.present == 'true'
-        timeout-minutes: 5
+        timeout-minutes: 10
         run: bash scripts/install-sbcl.sh
 
       - uses: dtolnay/rust-toolchain@stable

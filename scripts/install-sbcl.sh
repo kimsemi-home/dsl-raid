@@ -10,8 +10,8 @@ export DEBIAN_FRONTEND=noninteractive
 
 APT_OPTS=(
   -o Acquire::Retries=3
-  -o Acquire::http::Timeout=20
-  -o Acquire::https::Timeout=20
+  -o Acquire::http::Timeout=60
+  -o Acquire::https::Timeout=60
   -o Acquire::ForceIPv4=true
   -o DPkg::Lock::Timeout=30
   -o Dpkg::Use-Pty=0
@@ -19,7 +19,7 @@ APT_OPTS=(
 
 with_timeout() {
   if command -v timeout >/dev/null 2>&1; then
-    timeout --kill-after=15s 180s sudo -n "$@"
+    timeout --kill-after=15s "${SBCL_APT_TIMEOUT:-300s}" sudo -n "$@"
   else
     sudo -n "$@"
   fi
