@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, fresh_lock, high};
+use super::super::fixtures::{base_manifest, fresh_lock, high};
 use serde_json::json;
 use std::path::Path;
 
@@ -14,7 +14,7 @@ fn approved_manifest_rejects_stale_lock_link() {
     lock["artifacts"][0]["status"] = json!("stale");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues_with_context(&value, &lock, Path::new(".")),
+        super::super::super::agent_run::semantic_issues_with_context(&value, &lock, Path::new(".")),
         vec!["verified artifact generated/runtime_fsm.rs must be fresh in lock"]
     );
 }
@@ -26,7 +26,7 @@ fn approved_manifest_rejects_core_hash_mismatch() {
     lock["core"]["ir_hash"] = json!("sha256:other");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues_with_context(&value, &lock, Path::new(".")),
+        super::super::super::agent_run::semantic_issues_with_context(&value, &lock, Path::new(".")),
         vec!["manifest core_ir_hash differs from lock core hash"]
     );
 }

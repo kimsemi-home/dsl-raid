@@ -1,8 +1,5 @@
-mod fixture;
-mod overload;
-
-use super::fixtures::{base_manifest, high};
-use fixture::{capacity, high_risk_manifest};
+use super::super::fixtures::{base_manifest, high};
+use super::fixture::{capacity, high_risk_manifest};
 use serde_json::json;
 
 #[test]
@@ -11,7 +8,7 @@ fn high_risk_authority_requires_review_capacity() {
     value.as_object_mut().unwrap().remove("review_capacity");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["high-risk authority requires review capacity receipt"]
     );
 }
@@ -22,7 +19,7 @@ fn frozen_capacity_blocks_high_risk_sidecar_authority() {
     value["review_capacity"] = capacity("frozen", 5, 3, json!(["evidence:quality"]));
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec![
             "review capacity queue depth exceeds max",
             "review capacity frozen freezes high-risk sidecar authority"
@@ -38,7 +35,7 @@ fn governance_authority_survives_frozen_capacity() {
     value["authority_gate"]["approved_by"] = json!("steward:ops");
     value["review_capacity"] = capacity("frozen", 5, 5, json!(["evidence:quality"]));
 
-    let issues = super::super::agent_run::semantic_issues(&value);
+    let issues = super::super::super::agent_run::semantic_issues(&value);
     assert!(issues.is_empty());
 }
 
@@ -48,7 +45,7 @@ fn review_capacity_rejects_unknown_evidence() {
     value["review_capacity"] = capacity("available", 1, 5, json!(["evidence:missing"]));
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["review capacity references unknown evidence evidence:missing"]
     );
 }

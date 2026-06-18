@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, high};
+use super::super::fixtures::{base_manifest, high};
 use serde_json::json;
 
 #[test]
@@ -7,7 +7,7 @@ fn approved_manifest_requires_output_artifact_record() {
     value["artifacts"] = json!([]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["approved run requires output artifact record"]
     );
 }
@@ -18,7 +18,7 @@ fn approved_manifest_rejects_stale_artifact() {
     value["artifacts"][0]["status"] = json!("stale");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["approved run cannot carry stale artifact artifact:runtime-rust"]
     );
 }
@@ -29,7 +29,7 @@ fn approved_manifest_rejects_candidate_artifact() {
     value["artifacts"][0]["status"] = json!("candidate");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["approved run cannot carry candidate artifact artifact:runtime-rust"]
     );
 }

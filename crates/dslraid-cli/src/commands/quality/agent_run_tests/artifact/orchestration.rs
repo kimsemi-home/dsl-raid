@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, high};
+use super::super::fixtures::{base_manifest, high};
 use serde_json::json;
 
 #[test]
@@ -18,7 +18,7 @@ fn artifact_must_be_listed_in_orchestration_outputs() {
     ]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["artifact artifact:runtime-go must be listed in orchestration output_artifacts"]
     );
 }

@@ -1,4 +1,4 @@
-use super::coverage_fixture::{issues, temp_root, write_coverage, write_trace};
+use super::fixture::{issues, temp_root, write_coverage, write_trace};
 
 #[test]
 fn approved_manifest_rejects_coverage_design_mismatch() {

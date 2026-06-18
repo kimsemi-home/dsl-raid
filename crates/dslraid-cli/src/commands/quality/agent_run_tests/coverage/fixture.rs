@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, fresh_lock, high_snapshot};
+use super::super::fixtures::{base_manifest, fresh_lock, high_snapshot};
 use serde_json::{json, Value};
 use std::{
     fs,
@@ -6,7 +6,7 @@ use std::{
 };
 
 pub(super) fn issues(root: &Path, coverage: &str, trace: &str) -> Vec<String> {
-    super::super::agent_run::semantic_issues_with_context(
+    super::super::super::agent_run::semantic_issues_with_context(
         &manifest(coverage, trace),
         &fresh_lock(),
         root,
