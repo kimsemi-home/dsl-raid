@@ -1,8 +1,9 @@
 use super::expand::{push_next_edges, Expansion};
 use super::focus::tuple_matches_focus;
+use super::initial::initial_tuple;
 use super::tuple::{tuple_key, tuple_state_value};
 use super::value::value_string;
-use anyhow::{anyhow, Result};
+use anyhow::Result;
 use dslraid_core::Fsm;
 use serde_json::Value;
 use std::collections::{BTreeSet, VecDeque};
@@ -57,17 +58,4 @@ pub(super) fn materialize_reachable_product(
     states.sort_by_key(|left| value_string(left, "id"));
     transitions.sort_by_key(|left| value_string(left, "id"));
     Ok((states, transitions, truncated))
-}
-
-fn initial_tuple(fsms: &[&Fsm]) -> Result<Vec<String>> {
-    fsms.iter()
-        .map(|fsm| {
-            fsm.states
-                .iter()
-                .find(|state| state.initial)
-                .or_else(|| fsm.states.first())
-                .map(|state| state.id.clone())
-                .ok_or_else(|| anyhow!("{} has no states", fsm.id))
-        })
-        .collect()
 }
