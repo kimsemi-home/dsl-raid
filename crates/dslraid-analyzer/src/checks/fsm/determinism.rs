@@ -1,13 +1,14 @@
-use std::collections::BTreeMap;
+mod conflicts;
+mod groups;
+mod subjects;
 
-use dslraid_core::{transition_subject, Fsm};
-use serde_json::{json, Value};
+use dslraid_core::Fsm;
 
 use crate::builder::ReportBuilder;
 use crate::checks::{record_collection_check, CollectionCheck};
 
 pub(crate) fn check(fsm: &Fsm, builder: &mut ReportBuilder) {
-    let conflicts = conflicts(fsm);
+    let conflicts = conflicts::from_fsm(fsm);
     record_collection_check(
         builder,
         CollectionCheck {
@@ -23,41 +24,4 @@ pub(crate) fn check(fsm: &Fsm, builder: &mut ReportBuilder) {
             suggestion: "Add mutually exclusive guards or merge the transitions.",
         },
     );
-}
-
-fn conflicts(fsm: &Fsm) -> Vec<Value> {
-    grouped_transitions(fsm)
-        .into_iter()
-        .filter(|(_, transitions)| transitions.len() > 1)
-        .map(|((state, event), transitions)| {
-            json!({
-                "fsm": fsm.id,
-                "state": state,
-                "event": event,
-                "transitions": transition_subjects(fsm, &transitions)
-            })
-        })
-        .collect()
-}
-
-fn grouped_transitions(fsm: &Fsm) -> BTreeMap<(String, String), Vec<String>> {
-    let mut by_key = BTreeMap::new();
-    for transition in &fsm.transitions {
-        let event = transition
-            .on
-            .clone()
-            .unwrap_or_else(|| "epsilon".to_string());
-        by_key
-            .entry((transition.from.clone(), event))
-            .or_insert_with(Vec::new)
-            .push(transition.id.clone());
-    }
-    by_key
-}
-
-fn transition_subjects(fsm: &Fsm, transitions: &[String]) -> Vec<String> {
-    transitions
-        .iter()
-        .map(|transition| transition_subject(&fsm.id, transition))
-        .collect()
 }
