@@ -47,6 +47,10 @@ pub(super) fn unverified_learning_update() -> Value {
     learning::unverified_learning_update()
 }
 
+pub(super) fn unowned_learning_update() -> Value {
+    learning::unowned_learning_update()
+}
+
 fn govern(value: &mut Value) {
     value["producer"]["trust_tier"] = json!("T3");
     value["authority_gate"]["profile"] = json!("governance");

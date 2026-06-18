@@ -1,7 +1,4 @@
-use super::defect_fixture::{
-    governed, routine, stale_learning_update, unlinked_learning_update, unlinked_prior_update,
-    unlinked_retrospective, unscoped_learning_update, unverified_learning_update,
-};
+use super::defect_fixture::{governed, routine, unlinked_retrospective};
 
 #[test]
 fn ssot_defect_claim_requires_governance_plan_freeze_and_diff() {
@@ -30,45 +27,5 @@ fn ssot_defect_review_debt_must_link_claim_evidence() {
     assert_eq!(
         super::super::super::agent_run::semantic_issues(&unlinked_retrospective()),
         vec!["ssot defect claim claim:ssot-defect requires linked closed review debt"]
-    );
-}
-
-#[test]
-fn ssot_defect_learning_update_must_link_claim_evidence() {
-    assert_eq!(
-        super::super::super::agent_run::semantic_issues(&unlinked_learning_update()),
-        vec!["ssot defect claim claim:ssot-defect requires linked knowledge update"]
-    );
-}
-
-#[test]
-fn ssot_defect_learning_update_must_match_current_ontology() {
-    assert_eq!(
-        super::super::super::agent_run::semantic_issues(&stale_learning_update()),
-        vec!["ssot defect claim claim:ssot-defect requires current ontology knowledge update"]
-    );
-}
-
-#[test]
-fn ssot_defect_learning_update_must_name_affected_subject() {
-    assert_eq!(
-        super::super::super::agent_run::semantic_issues(&unscoped_learning_update()),
-        vec!["ssot defect claim claim:ssot-defect requires affected knowledge update subject"]
-    );
-}
-
-#[test]
-fn ssot_defect_learning_update_must_link_prior_knowledge() {
-    assert_eq!(
-        super::super::super::agent_run::semantic_issues(&unlinked_prior_update()),
-        vec!["ssot defect claim claim:ssot-defect requires prior knowledge link"]
-    );
-}
-
-#[test]
-fn ssot_defect_learning_update_must_link_verification_plan() {
-    assert_eq!(
-        super::super::super::agent_run::semantic_issues(&unverified_learning_update()),
-        vec!["ssot defect claim claim:ssot-defect requires knowledge update verification plan"]
     );
 }

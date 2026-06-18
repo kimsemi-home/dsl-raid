@@ -22,6 +22,10 @@ pub(super) fn unverified_learning_update() -> Value {
     mutated("verification_plan", json!("verification:other"))
 }
 
+pub(super) fn unowned_learning_update() -> Value {
+    mutated("owner", json!("sidecar:dslraid-quality"))
+}
+
 fn mutated(field: &str, replacement: Value) -> Value {
     let mut value = base_manifest(adversarial(), "finished", high());
     super::govern(&mut value);
