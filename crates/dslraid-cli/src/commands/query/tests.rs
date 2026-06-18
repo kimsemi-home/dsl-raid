@@ -1,5 +1,9 @@
 use super::*;
-use std::path::PathBuf;
+use dslraid_core::load_core_ir;
+use fixtures::{effect_fixture, runscope_fixture};
+use serde_json::Value;
+
+mod fixtures;
 
 #[test]
 fn values_support_policy_or_terminal_query() {
@@ -11,13 +15,12 @@ fn values_support_policy_or_terminal_query() {
     )
     .unwrap();
 
-    assert!(results.iter().any(|item| {
-        item.get("subject").and_then(Value::as_str)
-            == Some("transition:runtime.running_to_completed")
-    }));
-    assert!(results.iter().any(|item| {
-        item.get("subject").and_then(Value::as_str) == Some("state:runtime.completed")
-    }));
+    assert!(results
+        .iter()
+        .any(|item| subject(item) == Some("transition:runtime.running_to_completed")));
+    assert!(results
+        .iter()
+        .any(|item| subject(item) == Some("state:runtime.completed")));
 }
 
 #[test]
@@ -28,7 +31,7 @@ fn values_support_numeric_query() {
 
     assert!(results
         .iter()
-        .any(|item| item.get("subject").and_then(Value::as_str) == Some("fsm:runtime")));
+        .any(|item| subject(item) == Some("fsm:runtime")));
 }
 
 #[test]
@@ -63,12 +66,6 @@ fn item_map_exposes_guard_action_effects() {
     let filtered = values(&ir, "kind=guard and expression.source~=ready").unwrap();
     assert_eq!(filtered[0]["subject"], "guard:runtime.can_start");
 }
-fn runscope_fixture() -> PathBuf {
-    Path::new(env!("CARGO_MANIFEST_DIR"))
-        .join("../..")
-        .join("examples/runscope/runscope.raid.json")
-}
-
-fn effect_fixture() -> PathBuf {
-    Path::new(env!("CARGO_MANIFEST_DIR")).join("../../tests/golden/query/guard-action.input.json")
+fn subject(item: &Value) -> Option<&str> {
+    item.get("subject").and_then(Value::as_str)
 }
