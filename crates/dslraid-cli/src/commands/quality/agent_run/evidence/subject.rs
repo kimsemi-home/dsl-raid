@@ -1,3 +1,5 @@
+mod actors;
+
 use crate::commands::quality::agent_run::fields::{field_text, items, text};
 use serde_json::Value;
 use std::collections::BTreeSet;
@@ -6,7 +8,7 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     let Some(run_id) = text(value, &["run", "id"]) else {
         return;
     };
-    let actors = authority_actors(value);
+    let actors = actors::collect(value);
     let refs = authority_refs(value);
     for evidence in items(value, "evidence") {
         if subject_matches(evidence, run_id, &actors, &refs) {
@@ -40,17 +42,6 @@ fn authority_actor_subject(
         return false;
     };
     actors.contains(subject) && refs.contains(evidence_id(evidence))
-}
-
-fn authority_actors(value: &Value) -> BTreeSet<String> {
-    [
-        text(value, &["authority_gate", "approved_by"]),
-        text(value, &["producer", "id"]),
-    ]
-    .into_iter()
-    .flatten()
-    .map(str::to_string)
-    .collect()
 }
 
 fn authority_refs(value: &Value) -> BTreeSet<String> {

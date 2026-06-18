@@ -18,6 +18,6 @@ fn with_default(item: &Value) -> Value {
     };
     object.entry("role").or_insert(json!("verification"));
     object.entry("reasoning_level").or_insert(json!("R0"));
-    object.entry("trust_tier").or_insert(json!("T3"));
+    object.entry("trust_tier").or_insert(json!("T2"));
     item
 }

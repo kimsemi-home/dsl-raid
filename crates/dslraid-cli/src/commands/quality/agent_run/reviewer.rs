@@ -1,5 +1,6 @@
 mod adversarial;
 mod isolation;
+mod reliability;
 
 use super::fields::{field_text, items, text};
 use serde_json::Value;
@@ -11,6 +12,7 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     }
     isolation::push_issues(value, issues);
     adversarial::push_issues(value, &reviewers, issues);
+    reliability::push_issues(value, &reviewers, issues);
     for reviewer in reviewers {
         push_required_issue(reviewer, "role", "role", issues);
         push_required_issue(reviewer, "reasoning_level", "reasoning level", issues);

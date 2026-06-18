@@ -80,7 +80,7 @@
     "scope": "routine",
     "human_review_required": false,
     "approved_by": "gate:quality",
-    "evidence": ["evidence:quality", "evidence:precommit"]
+    "evidence": ["evidence:quality", "evidence:precommit", "evidence:reviewer-reliability"]
   },
   "review_capacity": {
     "status": "available",
@@ -206,6 +206,19 @@
           "ontology_version": "0.1.0"
         }
       ]
+    },
+    {
+      "id": "evidence:reviewer-reliability",
+      "kind": "decision",
+      "uri": "evidence/reviewer-reliability.json",
+      "subject": "sidecar:dslraid-quality",
+      "links": [{ "relation": "corroborates", "target": "evidence:quality" }],
+      "provenance": {
+        "kind": "human-annotation",
+        "observed_by": "human:alice",
+        "observed_at": "2026-06-17T00:00:00Z",
+        "ontology_version": "0.1.0"
+      }
     }
   ],
   "artifacts": [

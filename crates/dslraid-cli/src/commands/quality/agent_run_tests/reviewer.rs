@@ -1,3 +1,5 @@
+mod reliability;
+
 use super::fixtures::{base_manifest, high};
 use serde_json::json;
 
