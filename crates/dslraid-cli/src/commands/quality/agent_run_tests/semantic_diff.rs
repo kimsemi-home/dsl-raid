@@ -1,3 +1,5 @@
+mod change;
+
 use super::fixtures::{base_manifest, high};
 use serde_json::{json, Value};
 
@@ -15,7 +17,10 @@ fn approved_manifest_requires_semantic_diff() {
 #[test]
 fn semantic_diff_head_must_match_ssot_hash() {
     let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
-    value["semantic_diffs"] = json!([diff("sha256:other", json!(["evidence:quality"]))]);
+    value["semantic_diffs"] = json!([diff(
+        "sha256:other",
+        json!(["evidence:quality", "evidence:trace"])
+    )]);
 
     assert_eq!(
         super::super::agent_run::semantic_issues(&value),

@@ -24,7 +24,7 @@ pub(super) fn semantic_diff() -> Value {
         "head_hash": "sha256:core",
         "status": "changed",
         "summary": "Canonical IR changed to patch the SSOT defect.",
-        "evidence": ["evidence:quality"]
+        "evidence": ["evidence:quality", "evidence:trace"]
     })
 }
 

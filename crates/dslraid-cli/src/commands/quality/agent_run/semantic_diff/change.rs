@@ -1,3 +1,5 @@
+mod cause;
+
 use super::id;
 use crate::commands::quality::agent_run::fields::{field_is, field_text, items};
 use serde_json::Value;
@@ -19,6 +21,7 @@ pub(super) fn push_issues(value: &Value, item: &Value, issues: &mut Vec<String>)
             id(item)
         ));
     }
+    cause::push_issues(value, id(item), &refs, issues);
 }
 
 fn refs(value: &Value) -> Vec<&str> {
@@ -35,7 +38,7 @@ fn has_evidence(value: &Value, reference: &str) -> bool {
     items(value, "evidence").any(|item| field_text(item, "id") == Some(reference))
 }
 
-fn has_kind(value: &Value, reference: &str, kind: &str) -> bool {
+pub(super) fn has_kind(value: &Value, reference: &str, kind: &str) -> bool {
     items(value, "evidence")
         .any(|item| field_text(item, "id") == Some(reference) && field_is(item, "kind", kind))
 }
