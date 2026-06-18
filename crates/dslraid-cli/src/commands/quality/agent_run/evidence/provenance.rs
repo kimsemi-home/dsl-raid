@@ -1,3 +1,5 @@
+mod bridge;
+
 use crate::commands::quality::agent_run::fields::{field_text, items, text};
 use serde_json::Value;
 
@@ -43,9 +45,9 @@ fn push_ontology_issue(value: &Value, evidence: &Value, issues: &mut Vec<String>
     let Some(expected) = text(value, &["ssot", "ontology_version"]) else {
         return;
     };
-    if actual != expected {
+    if actual != expected && !bridge::covers(value, id(evidence), expected) {
         issues.push(format!(
-            "evidence {} provenance ontology {actual} differs from ssot {expected}",
+            "evidence {} provenance ontology {actual} requires translation bridge to ssot {expected}",
             id(evidence)
         ));
     }

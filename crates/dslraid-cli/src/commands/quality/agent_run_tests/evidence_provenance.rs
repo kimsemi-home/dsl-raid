@@ -1,3 +1,5 @@
+mod bridge;
+
 use super::fixtures::{base_manifest, high};
 use serde_json::json;
 
@@ -38,6 +40,6 @@ fn evidence_provenance_ontology_must_match_ssot() {
 
     assert_eq!(
         super::super::agent_run::semantic_issues(&value),
-        vec!["evidence evidence:quality provenance ontology 9.9.9 differs from ssot 0.1.0"]
+        vec!["evidence evidence:quality provenance ontology 9.9.9 requires translation bridge to ssot 0.1.0"]
     );
 }
