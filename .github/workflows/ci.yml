@@ -121,31 +121,20 @@ jobs:
   lisp:
     name: Lisp authoring
     runs-on: ubuntu-latest
-    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v6
 
-      - name: Install SBCL
-        run: bash scripts/install-sbcl.sh
-
-      - uses: dtolnay/rust-toolchain@stable
-
-      - uses: Swatinem/rust-cache@v2
-
-      - name: Check generated Lisp pipeline doc
-        run: bash scripts/lisp-docgen.sh check
-
-      - name: Check generated Lisp diagnostics doc
-        run: bash scripts/langdiaggen.sh check
-
-      - name: Check generated backend target doc
-        run: bash scripts/backendgen.sh check
-
-      - name: Check generated Lisp canonical IR
-        run: bash scripts/lisp-irgen.sh check
-
-      - name: Check generated Rust backend from Lisp IR
-        run: bash scripts/lisp-rustgen.sh check
+      - name: Verify Lisp checks are owned by quality
+        run: |
+          set -euo pipefail
+          owner=crates/dslraid-cli/src/commands/quality/lisp.rs
+          grep -q 'scripts/lisp-test.sh' "$owner"
+          grep -q 'scripts/lisp-docgen.sh' "$owner"
+          grep -q 'scripts/langdiaggen.sh' "$owner"
+          grep -q 'scripts/backendgen.sh' "$owner"
+          grep -q 'scripts/lisp-irgen.sh' "$owner"
+          grep -q 'scripts/lisp-rustgen.sh' "$owner"
+          echo "lisp authoring checks are covered by dslraid quality"
 
   dslraid:
     name: DSLRaid quality
