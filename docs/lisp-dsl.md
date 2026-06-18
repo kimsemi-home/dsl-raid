@@ -28,7 +28,10 @@ Conformance and Projection derive everything else.
 
 ```text
 lisp/
-  packages.lisp
+  packages/
+    ir.lisp
+    lang.lisp
+    surface.lisp
   ir/
     model.lisp
     ids.lisp

@@ -3,7 +3,11 @@
   :license "Apache-2.0"
   :serial t
   :components
-  ((:file "packages")
+  ((:module "packages"
+    :serial t
+    :components
+    ((:file "ir") (:file "lang") (:file "dsl") (:file "expansion")
+     (:file "conformance") (:file "emit") (:file "surface")))
    (:module "agent"
     :serial t
     :components
@@ -40,19 +44,9 @@
      (:file "conformance")
      (:file "expand-items")
      (:file "expand")))
-   (:module "dsl"
-    :serial t
-    :components
-    ((:file "expand")
-     (:file "syntax")))
-   (:module "expansion"
-    :serial t
-    :components
-    ((:file "normalize")))
-   (:module "conformance"
-    :serial t
-    :components
-    ((:file "validation")))
+   (:module "dsl" :serial t :components ((:file "expand") (:file "syntax")))
+   (:module "expansion" :serial t :components ((:file "normalize")))
+   (:module "conformance" :serial t :components ((:file "validation")))
    (:module "emit"
     :serial t
     :components
@@ -68,7 +62,4 @@
      (:file "backend")
      (:file "markdown")
      (:file "diagnostics")))
-   (:module "runtime"
-    :serial t
-    :components
-    ((:file "runscope")))))
+   (:module "runtime" :serial t :components ((:file "runscope")))))
