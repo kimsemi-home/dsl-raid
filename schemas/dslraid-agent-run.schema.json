@@ -428,6 +428,12 @@
         "kind": { "type": "string", "enum": ["policy", "ontology", "spec", "owner", "revalidation"] },
         "subject": { "$ref": "#/$defs/id" },
         "status": { "type": "string", "enum": ["proposed", "applied", "accepted"] },
+        "ontology_version": { "$ref": "#/$defs/semver" },
+        "affected_subjects": {
+          "type": "array",
+          "default": [],
+          "items": { "$ref": "#/$defs/id" }
+        },
         "evidence": {
           "type": "array",
           "minItems": 1,

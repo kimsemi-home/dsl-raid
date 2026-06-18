@@ -1,4 +1,8 @@
-use crate::commands::quality::agent_run::fields::{field_is, field_text, items, text};
+mod evidence;
+mod impact;
+mod version;
+
+use crate::commands::quality::agent_run::fields::{field_is, field_text, items};
 use serde_json::Value;
 
 pub(super) fn push_issues(value: &Value, claim: &Value, issues: &mut Vec<String>) {
@@ -11,9 +15,15 @@ pub(super) fn push_issues(value: &Value, claim: &Value, issues: &mut Vec<String>
         ));
         return;
     };
-    if !version_matches(value, update) {
+    if !version::matches(value, update) {
         issues.push(format!(
             "ssot defect claim {} requires current ontology knowledge update",
+            claim_id
+        ));
+    }
+    if !impact::covers(update, claim) {
+        issues.push(format!(
+            "ssot defect claim {} requires affected knowledge update subject",
             claim_id
         ));
     }
@@ -22,7 +32,7 @@ pub(super) fn push_issues(value: &Value, claim: &Value, issues: &mut Vec<String>
 fn linked_update<'a>(value: &'a Value, refs: &[&str]) -> Option<&'a Value> {
     items(value, "debts")
         .filter(is_closed_review)
-        .filter(|debt| refs.iter().any(|reference| has_evidence(debt, reference)))
+        .filter(|debt| refs.iter().any(|reference| evidence::has(debt, reference)))
         .find_map(|debt| learning_update(debt, refs))
 }
 
@@ -33,7 +43,10 @@ fn learning_update<'a>(value: &'a Value, refs: &[&str]) -> Option<&'a Value> {
         .into_iter()
         .flatten()
         .filter(|update| is_applied_learning(update))
-        .find(|update| refs.iter().any(|reference| has_evidence(update, reference)))
+        .find(|update| {
+            refs.iter()
+                .any(|reference| evidence::has(update, reference))
+        })
 }
 
 fn is_applied_learning(value: &Value) -> bool {
@@ -48,26 +61,6 @@ fn is_closed_review(value: &&Value) -> bool {
     field_is(value, "kind", "review") && field_is(value, "status", "closed")
 }
 
-fn version_matches(value: &Value, update: &Value) -> bool {
-    text(value, &["ssot", "ontology_version"])
-        .is_some_and(|version| field_text(update, "ontology_version") == Some(version))
-}
-
-fn has_evidence(value: &Value, reference: &str) -> bool {
-    value
-        .get("evidence")
-        .and_then(Value::as_array)
-        .into_iter()
-        .flatten()
-        .any(|item| item.as_str() == Some(reference))
-}
-
 fn refs(value: &Value) -> Vec<&str> {
-    value
-        .get("evidence")
-        .and_then(Value::as_array)
-        .into_iter()
-        .flatten()
-        .filter_map(Value::as_str)
-        .collect()
+    evidence::ids(value)
 }
