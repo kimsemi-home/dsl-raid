@@ -1,8 +1,8 @@
 import type { Composition, Fsm, ProjectionOptions } from "../types";
-import { allFlag } from "./composition-flags";
+import { tupleEdge, tupleNode } from "./composition-builders";
 import { compositionLimit } from "./composition-limit";
 import type { CompositionMaterialization, TupleEdge, TupleNode } from "./composition-types";
-import { initialTuple, tupleEdgeSubject, tupleKey, tupleMembers, tupleSubject } from "./composition-tuples";
+import { initialTuple, tupleKey } from "./composition-tuples";
 
 export function materializeComposition(composition: Composition, fsms: Fsm[], options?: ProjectionOptions): CompositionMaterialization {
   const limit = compositionLimit(composition, options);
@@ -43,25 +43,4 @@ function pushOutgoing(
       }
     }
   });
-}
-
-function tupleNode(compositionId: string, fsms: Fsm[], tuple: string[]): TupleNode {
-  const members = tupleMembers(fsms, tuple);
-  return {
-    subject: tupleSubject(compositionId, members),
-    members,
-    states: tuple,
-    initial: allFlag(fsms, tuple, "initial"),
-    terminal: allFlag(fsms, tuple, "terminal")
-  };
-}
-
-function tupleEdge(compositionId: string, fsms: Fsm[], from: string[], to: string[], fsm: Fsm, transition: NonNullable<Fsm["transitions"]>[number]): TupleEdge {
-  return {
-    subject: tupleEdgeSubject(compositionId, from, to, fsm, transition),
-    from: tupleSubject(compositionId, tupleMembers(fsms, from)),
-    to: tupleSubject(compositionId, tupleMembers(fsms, to)),
-    members: [`transition:${fsm.id.replace("fsm:", "")}.${transition.id}`],
-    event: transition.on ? `event:${fsm.id.replace("fsm:", "")}.${transition.on}` : undefined
-  };
 }
