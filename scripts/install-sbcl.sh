@@ -8,13 +8,29 @@ fi
 
 export DEBIAN_FRONTEND=noninteractive
 
+APT_OPTS=(
+  -o Acquire::Retries=3
+  -o Acquire::http::Timeout=20
+  -o Acquire::https::Timeout=20
+  -o Acquire::ForceIPv4=true
+  -o Dpkg::Use-Pty=0
+)
+
+with_timeout() {
+  if command -v timeout >/dev/null 2>&1; then
+    timeout --kill-after=15s 180s sudo "$@"
+  else
+    sudo "$@"
+  fi
+}
+
 apt_with_retry() {
   local label="$1"
   shift
   local attempt
-  for attempt in 1 2 3; do
-    echo "${label} (attempt ${attempt}/3)"
-    if timeout 420 sudo "$@"; then
+  for attempt in 1 2; do
+    echo "${label} (attempt ${attempt}/2)"
+    if with_timeout "$@"; then
       return 0
     fi
     sudo apt-get clean
@@ -23,19 +39,16 @@ apt_with_retry() {
   return 1
 }
 
-apt_with_retry \
-  "apt update" \
-  apt-get update \
-  -o Acquire::Retries=5 \
-  -o Acquire::http::Timeout=30 \
-  -o Acquire::https::Timeout=30
+install_sbcl() {
+  apt_with_retry \
+    "install sbcl" \
+    apt-get "${APT_OPTS[@]}" install -y --no-install-recommends \
+    sbcl
+}
 
-apt_with_retry \
-  "install sbcl" \
-  apt-get install -y --no-install-recommends \
-  -o Acquire::Retries=5 \
-  -o Acquire::http::Timeout=30 \
-  -o Acquire::https::Timeout=30 \
-  sbcl
+if ! install_sbcl; then
+  apt_with_retry "apt update" apt-get "${APT_OPTS[@]}" update
+  install_sbcl
+fi
 
 sbcl --version
