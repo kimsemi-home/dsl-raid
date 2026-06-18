@@ -1,14 +1,27 @@
 use serde_json::{json, Value};
 
-pub(super) use super::fixtures_evidence::{fresh_lock, high, high_snapshot};
+mod agreement;
+mod authority;
+mod evidence;
+mod links;
+mod orchestration;
+mod pruning;
+mod reviewer;
+mod semantic;
+mod surface;
+
+pub(super) use surface::{
+    adversarial, attach_producer_reliability, fresh_lock, high, high_snapshot, push_pruned_extra,
+    tombstone,
+};
 
 pub(super) fn base_manifest(reviewers: Value, lease: &str, mut evidence: Value) -> Value {
-    let reviewers = super::fixtures_reviewer::with_defaults(reviewers);
-    super::fixtures_evidence::with_subject(&mut evidence);
-    let gate_evidence = super::fixtures_authority::evidence(&mut evidence);
-    let agreements = super::fixtures_agreement::agreements(&reviewers, &gate_evidence);
-    let orchestration = super::fixtures_orchestration::receipt(&reviewers, &gate_evidence);
-    let semantic_diffs = super::fixtures_semantic::diffs(&evidence);
+    let reviewers = reviewer::with_defaults(reviewers);
+    evidence::with_subject(&mut evidence);
+    let gate_evidence = authority::evidence(&mut evidence);
+    let agreements = agreement::agreements(&reviewers, &gate_evidence);
+    let orchestration = orchestration::receipt(&reviewers, &gate_evidence);
+    let semantic_diffs = semantic::diffs(&evidence);
     json!({
         "run": { "id": "agent-run:runscope-quality-001", "status": "verified" },
         "ssot": {

@@ -1,7 +1,7 @@
 use super::super::debt::fixture::closed_with;
+use super::super::fixtures::adversarial;
 use super::super::fixtures::{base_manifest, high};
-use super::super::fixtures_pruning::{push_pruned_extra, tombstone};
-use super::super::fixtures_reviewer::adversarial;
+use super::super::fixtures::{push_pruned_extra, tombstone};
 use serde_json::json;
 
 #[test]

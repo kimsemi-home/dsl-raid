@@ -1,5 +1,5 @@
+use super::super::super::fixtures::adversarial;
 use super::super::super::fixtures::{base_manifest, high};
-use super::super::super::fixtures_reviewer::adversarial;
 use serde_json::{json, Value};
 
 pub(super) fn unlinked_learning_update() -> Value {

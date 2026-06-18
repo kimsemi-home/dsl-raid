@@ -1,5 +1,5 @@
+use super::super::fixtures::adversarial;
 use super::super::fixtures::{base_manifest, high};
-use super::super::fixtures_reviewer::adversarial;
 use super::fixture::closed_with;
 use serde_json::json;
 

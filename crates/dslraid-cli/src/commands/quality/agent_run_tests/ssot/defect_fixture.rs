@@ -2,9 +2,9 @@ mod learning;
 mod payload;
 mod retrospective;
 
+use super::super::fixtures::adversarial;
+use super::super::fixtures::attach_producer_reliability;
 use super::super::fixtures::{base_manifest, high};
-use super::super::fixtures_authority::attach_producer_reliability;
-use super::super::fixtures_reviewer::adversarial;
 use payload::{attach_steward_evidence, capacity, claim, quarantine, semantic_diff};
 use retrospective::review_debt;
 use serde_json::{json, Value};

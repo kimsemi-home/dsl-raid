@@ -1,5 +1,5 @@
+use super::super::fixtures::adversarial;
 use super::super::fixtures::{base_manifest, high};
-use super::super::fixtures_reviewer::adversarial;
 use serde_json::{json, Value};
 
 pub(super) fn high_risk_manifest() -> Value {

@@ -22,7 +22,7 @@ pub(super) fn with_subject(value: &mut Value) {
             });
         }
     }
-    super::fixtures_evidence_links::with_links(items);
+    super::links::with_links(items);
 }
 
 fn provenance_kind(value: &Value) -> &str {
