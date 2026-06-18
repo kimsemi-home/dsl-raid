@@ -51,3 +51,23 @@ fn approved_manifest_rejects_unknown_ssot_revalidation_evidence() {
         vec!["ssot revalidation references unknown evidence evidence:missing"]
     );
 }
+
+#[test]
+fn ssot_defect_claim_requires_authority_scope() {
+    let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
+    value["claims"] = json!([{
+        "id": "claim:ssot-defect",
+        "subject": "agent-run:runscope-quality-001",
+        "statement": "SSOT Defect is confirmed in the canonical IR.",
+        "confidence": "medium",
+        "assessor": "sidecar:dslraid-quality",
+        "interpreted_under": "0.1.0",
+        "status": "supported",
+        "evidence": ["evidence:quality"]
+    }]);
+
+    assert_eq!(
+        super::super::agent_run::semantic_issues(&value),
+        vec!["ssot defect claim claim:ssot-defect requires authority governance scope"]
+    );
+}

@@ -3,6 +3,7 @@ mod confidence;
 mod evidence;
 mod ontology;
 mod root_cause;
+mod ssot_defect;
 
 use super::fields::{field_is, field_text, items, text};
 use serde_json::Value;
@@ -16,6 +17,7 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
         assessor::push_issues(value, claim, issues);
         ontology::push_issues(value, claim, issues);
         root_cause::push_issues(value, claim, issues);
+        ssot_defect::push_issues(value, claim, issues);
         confidence::push_issues(value, claim, producer, issues);
         evidence::push_unknown_refs(claim, &evidence_ids, issues);
     }
