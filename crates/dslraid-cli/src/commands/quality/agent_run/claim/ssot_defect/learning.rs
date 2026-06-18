@@ -1,6 +1,7 @@
 mod evidence;
 mod impact;
 mod lineage;
+mod verification;
 mod version;
 
 use crate::commands::quality::agent_run::fields::{field_is, field_text, items};
@@ -17,22 +18,16 @@ pub(super) fn push_issues(value: &Value, claim: &Value, issues: &mut Vec<String>
         return;
     };
     if !version::matches(value, update) {
-        issues.push(format!(
-            "ssot defect claim {} requires current ontology knowledge update",
-            claim_id
-        ));
+        push(claim_id, "current ontology knowledge update", issues);
     }
     if !impact::covers(update, claim) {
-        issues.push(format!(
-            "ssot defect claim {} requires affected knowledge update subject",
-            claim_id
-        ));
+        push(claim_id, "affected knowledge update subject", issues);
     }
     if !lineage::has_prior(update) {
-        issues.push(format!(
-            "ssot defect claim {} requires prior knowledge link",
-            claim_id
-        ));
+        push(claim_id, "prior knowledge link", issues);
+    }
+    if !verification::matches(update, claim) {
+        push(claim_id, "knowledge update verification plan", issues);
     }
 }
 
@@ -70,4 +65,10 @@ fn is_closed_review(value: &&Value) -> bool {
 
 fn refs(value: &Value) -> Vec<&str> {
     evidence::ids(value)
+}
+
+fn push(claim_id: &str, requirement: &str, issues: &mut Vec<String>) {
+    issues.push(format!(
+        "ssot defect claim {claim_id} requires {requirement}"
+    ));
 }

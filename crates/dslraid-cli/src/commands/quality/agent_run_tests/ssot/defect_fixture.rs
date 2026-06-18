@@ -1,3 +1,4 @@
+mod learning;
 mod payload;
 mod retrospective;
 
@@ -27,31 +28,23 @@ pub(super) fn unlinked_retrospective() -> Value {
 }
 
 pub(super) fn unlinked_learning_update() -> Value {
-    let mut value = base_manifest(adversarial(), "finished", high());
-    govern(&mut value);
-    value["debts"][0]["updates"][0]["evidence"] = json!(["evidence:trace"]);
-    value
+    learning::unlinked_learning_update()
 }
 
 pub(super) fn stale_learning_update() -> Value {
-    let mut value = base_manifest(adversarial(), "finished", high());
-    govern(&mut value);
-    value["debts"][0]["updates"][0]["ontology_version"] = json!("0.0.9");
-    value
+    learning::stale_learning_update()
 }
 
 pub(super) fn unscoped_learning_update() -> Value {
-    let mut value = base_manifest(adversarial(), "finished", high());
-    govern(&mut value);
-    value["debts"][0]["updates"][0]["affected_subjects"] = json!(["agent-run:other"]);
-    value
+    learning::unscoped_learning_update()
 }
 
 pub(super) fn unlinked_prior_update() -> Value {
-    let mut value = base_manifest(adversarial(), "finished", high());
-    govern(&mut value);
-    value["debts"][0]["updates"][0]["supersedes"] = json!([]);
-    value
+    learning::unlinked_prior_update()
+}
+
+pub(super) fn unverified_learning_update() -> Value {
+    learning::unverified_learning_update()
 }
 
 fn govern(value: &mut Value) {

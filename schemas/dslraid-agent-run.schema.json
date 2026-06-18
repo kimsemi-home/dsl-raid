@@ -439,6 +439,7 @@
           "default": [],
           "items": { "$ref": "#/$defs/id" }
         },
+        "verification_plan": { "$ref": "#/$defs/id" },
         "evidence": {
           "type": "array",
           "minItems": 1,
