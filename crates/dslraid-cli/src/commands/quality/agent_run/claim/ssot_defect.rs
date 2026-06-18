@@ -30,6 +30,12 @@ pub(super) fn push_issues(value: &Value, claim: &Value, issues: &mut Vec<String>
             id(claim)
         ));
     }
+    if !has_described_changed_semantic_diff(value) {
+        issues.push(format!(
+            "ssot defect claim {} requires changed semantic diff summary",
+            id(claim)
+        ));
+    }
 }
 
 fn is_supported_ssot_defect(value: &Value) -> bool {
@@ -45,4 +51,9 @@ fn has_open_quarantine(value: &Value) -> bool {
 
 fn has_changed_semantic_diff(value: &Value) -> bool {
     items(value, "semantic_diffs").any(|item| field_is(item, "status", "changed"))
+}
+
+fn has_described_changed_semantic_diff(value: &Value) -> bool {
+    items(value, "semantic_diffs")
+        .any(|item| field_is(item, "status", "changed") && field_text(item, "summary").is_some())
 }

@@ -69,6 +69,7 @@ fn ssot_defect_claim_requires_governance_plan_freeze_and_diff() {
         "ssot defect claim claim:ssot-defect requires verification plan",
         "ssot defect claim claim:ssot-defect requires open quarantine containment",
         "ssot defect claim claim:ssot-defect requires changed semantic diff",
+        "ssot defect claim claim:ssot-defect requires changed semantic diff summary",
     ];
     assert_eq!(issues, expected);
 }
