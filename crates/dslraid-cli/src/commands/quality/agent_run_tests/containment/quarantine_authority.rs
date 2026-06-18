@@ -1,5 +1,5 @@
-use super::fixtures::{base_manifest, high};
-use super::fixtures_authority::attach_producer_reliability;
+use super::super::fixtures::{base_manifest, high};
+use super::super::fixtures_authority::attach_producer_reliability;
 use serde_json::{json, Value};
 
 #[test]
@@ -12,7 +12,7 @@ fn open_quarantine_blocks_automatic_authority() {
     value["containments"] = json!([quarantine()]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec![
             "open quarantine blocks verified artifact artifact:runtime-rust",
             "open quarantine blocks automatic authority approval",

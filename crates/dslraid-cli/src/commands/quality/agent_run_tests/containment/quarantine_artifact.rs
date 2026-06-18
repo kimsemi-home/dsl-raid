@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, high};
+use super::super::fixtures::{base_manifest, high};
 use serde_json::json;
 
 #[test]
@@ -18,7 +18,7 @@ fn open_quarantine_blocks_verified_artifact() {
     }]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec![
             "open quarantine blocks verified artifact artifact:runtime-rust",
             "quarantined lease blocks verified artifact artifact:runtime-rust"

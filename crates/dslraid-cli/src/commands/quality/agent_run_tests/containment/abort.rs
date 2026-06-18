@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, high};
+use super::super::fixtures::{base_manifest, high};
 use serde_json::{json, Value};
 
 #[test]
@@ -8,7 +8,7 @@ fn aborted_run_blocks_approved_authority() {
     value["containments"] = json!([abort_bundle()]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec![
             "aborted run cannot have approved authority gate",
             "abort blocks verified artifact artifact:runtime-rust",
@@ -24,7 +24,7 @@ fn abort_blocks_verified_artifact() {
     value["containments"] = json!([abort_bundle()]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec![
             "abort blocks verified artifact artifact:runtime-rust",
             "aborted lease blocks verified artifact artifact:runtime-rust"

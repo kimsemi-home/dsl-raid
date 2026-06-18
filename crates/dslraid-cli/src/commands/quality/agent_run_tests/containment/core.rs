@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, high};
+use super::super::fixtures::{base_manifest, high};
 use serde_json::{json, Value};
 
 #[test]
@@ -8,7 +8,7 @@ fn aborted_manifest_requires_abort_bundle() {
     value["authority_gate"]["decision"] = json!("rejected");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec![
             "aborted run requires abort evidence bundle",
             "aborted lease blocks verified artifact artifact:runtime-rust"
@@ -24,7 +24,7 @@ fn quarantined_artifact_requires_quarantine_bundle() {
     value["artifacts"] = json!([{ "path": "generated/runtime_fsm.rs", "status": "quarantined" }]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["quarantined output requires quarantine evidence bundle"]
     );
 }
@@ -42,7 +42,7 @@ fn containment_rejects_unknown_evidence() {
     )]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["containment containment:abort references unknown evidence evidence:missing"]
     );
 }

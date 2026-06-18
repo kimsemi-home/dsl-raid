@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, high};
+use super::super::fixtures::{base_manifest, high};
 use serde_json::json;
 
 #[test]
@@ -25,7 +25,7 @@ fn released_containment_requires_met_conditions() {
     }]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["released containment containment:quarantine has unmet release condition"]
     );
 }
@@ -54,7 +54,7 @@ fn released_quarantine_requires_steward_release() {
     }]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["released quarantine containment:quarantine requires steward release"]
     );
 }

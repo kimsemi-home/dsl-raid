@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, high};
+use super::super::fixtures::{base_manifest, high};
 use serde_json::{json, Value};
 
 #[test]
@@ -11,7 +11,7 @@ fn open_quarantine_blocks_high_confidence_claim() {
     value["claims"] = json!([claim()]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["open quarantine blocks high confidence claim claim:fresh-artifacts"]
     );
 }

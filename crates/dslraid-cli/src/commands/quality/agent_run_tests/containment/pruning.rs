@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, high};
+use super::super::fixtures::{base_manifest, high};
 use serde_json::json;
 
 #[test]
@@ -19,7 +19,7 @@ fn containment_rejects_pruned_evidence() {
     }]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["containment containment:abort references pruned evidence evidence:quality"]
     );
 }
