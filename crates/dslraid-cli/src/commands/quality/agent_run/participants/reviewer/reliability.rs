@@ -1,5 +1,5 @@
+use super::super::reliability::has_authority_subject;
 use crate::commands::quality::agent_run::fields::field_text;
-use crate::commands::quality::agent_run::reliability::has_authority_subject;
 use serde_json::Value;
 
 pub(super) fn push_issues(value: &Value, reviewers: &[&Value], issues: &mut Vec<String>) {

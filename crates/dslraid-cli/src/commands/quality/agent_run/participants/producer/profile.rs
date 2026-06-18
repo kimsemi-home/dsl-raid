@@ -1,6 +1,6 @@
 mod classification;
 
-use super::super::fields::text;
+use super::super::super::fields::text;
 use serde_json::Value;
 
 pub(super) struct ProducerProfile<'a> {

@@ -1,4 +1,4 @@
-use crate::commands::quality::agent_run::reliability::has_authority_subject;
+use super::super::reliability::has_authority_subject;
 use serde_json::Value;
 
 use super::profile::ProducerProfile;

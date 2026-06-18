@@ -1,4 +1,4 @@
-use super::fields::{field_text, items};
+use super::super::fields::{field_text, items};
 use serde_json::Value;
 
 pub(super) fn has_authority_subject(value: &Value, subject: &str) -> bool {

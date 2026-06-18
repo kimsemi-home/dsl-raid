@@ -2,7 +2,7 @@ mod adversarial;
 mod isolation;
 mod reliability;
 
-use super::fields::{field_text, items, text};
+use super::super::fields::{field_text, items, text};
 use serde_json::Value;
 
 pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {

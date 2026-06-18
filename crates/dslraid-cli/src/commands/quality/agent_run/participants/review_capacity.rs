@@ -2,7 +2,7 @@ mod evidence;
 mod queue;
 mod scope;
 
-use super::fields::text;
+use super::super::fields::text;
 use serde_json::Value;
 
 pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
