@@ -2,6 +2,7 @@ mod evidence;
 mod ontology;
 mod refs;
 mod selection;
+mod shadow;
 mod verifier;
 
 use super::fields::{field_text, text};
@@ -32,6 +33,7 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     evidence::push_issues(value, item, issues);
     refs::push_issues(value, item, issues);
     selection::push_issues(value, item, issues);
+    shadow::push_issues(value, item, issues);
     verifier::push_issues(value, item, issues);
 }
 

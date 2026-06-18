@@ -15,7 +15,12 @@ pub(super) fn receipt(reviewers: &Value, evidence: &Value) -> Value {
         "authority_profile": "sidecar",
         "input_evidence": evidence,
         "output_artifacts": ["artifact:runtime-rust"],
-        "evidence": evidence
+        "evidence": evidence,
+        "shadow": {
+            "routed_by": "control-plane:dslraid-shadow",
+            "severity": "D0",
+            "evidence": evidence
+        }
     })
 }
 

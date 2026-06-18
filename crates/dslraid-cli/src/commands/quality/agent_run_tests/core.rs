@@ -15,6 +15,7 @@ fn approved_manifest_rejects_missing_review_evidence_and_lease() {
             "approved run requires coverage evidence",
             "approved run requires high quality evidence snapshot",
             "orchestration receipt requires evidence",
+            "shadow orchestration requires evidence",
             "approved run requires independent reviewer",
             "approved run requires cross-agent agreement",
             "approved run requires semantic diff receipt"

@@ -66,7 +66,12 @@
     "authority_profile": "sidecar",
     "input_evidence": ["evidence:quality", "evidence:precommit"],
     "output_artifacts": ["artifact:runtime-rust", "artifact:runtime-go"],
-    "evidence": ["evidence:quality"]
+    "evidence": ["evidence:quality"],
+    "shadow": {
+      "routed_by": "control-plane:dslraid-shadow",
+      "severity": "D0",
+      "evidence": ["evidence:quality"]
+    }
   },
   "authority_gate": {
     "decision": "approved",

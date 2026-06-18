@@ -57,6 +57,7 @@ mod lease_artifact;
 mod lock_ref;
 mod orchestration;
 mod orchestration_ontology;
+mod orchestration_shadow;
 mod orchestration_verifier;
 mod producer;
 mod producer_sensitive;

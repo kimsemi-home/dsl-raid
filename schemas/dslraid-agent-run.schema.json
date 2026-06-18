@@ -152,7 +152,7 @@
     },
     "orchestration": {
       "type": "object",
-      "required": ["id", "ontology_version", "policy_hash", "routed_by", "verified_by", "selected_producer", "selected_reviewers", "lease", "authority_profile", "input_evidence", "output_artifacts", "evidence"],
+      "required": ["id", "ontology_version", "policy_hash", "routed_by", "verified_by", "selected_producer", "selected_reviewers", "lease", "authority_profile", "input_evidence", "output_artifacts", "evidence", "shadow"],
       "additionalProperties": false,
       "properties": {
         "id": { "$ref": "#/$defs/id" },
@@ -178,6 +178,21 @@
           "minItems": 1,
           "items": { "$ref": "#/$defs/id" }
         },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "shadow": { "$ref": "#/$defs/shadow_orchestration" }
+      }
+    },
+    "shadow_orchestration": {
+      "type": "object",
+      "required": ["routed_by", "severity", "evidence"],
+      "additionalProperties": false,
+      "properties": {
+        "routed_by": { "$ref": "#/$defs/id" },
+        "severity": { "type": "string", "enum": ["D0", "D1", "D2", "D3", "D4"] },
         "evidence": {
           "type": "array",
           "minItems": 1,
