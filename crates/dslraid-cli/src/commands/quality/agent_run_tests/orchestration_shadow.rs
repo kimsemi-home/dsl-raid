@@ -36,3 +36,14 @@ fn severe_shadow_difference_requires_human_review() {
         vec!["shadow severity D3 requires human review"]
     );
 }
+
+#[test]
+fn shadow_evidence_must_exist() {
+    let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
+    value["orchestration"]["shadow"]["evidence"] = json!(["evidence:missing"]);
+
+    assert_eq!(
+        super::super::agent_run::semantic_issues(&value),
+        vec!["shadow orchestration references unknown evidence evidence:missing"]
+    );
+}

@@ -1,6 +1,7 @@
-use crate::commands::quality::agent_run::fields::{field_text, items};
+mod evidence;
+
+use crate::commands::quality::agent_run::fields::field_text;
 use serde_json::Value;
-use std::collections::BTreeSet;
 
 pub(super) fn push_issues(value: &Value, item: &Value, issues: &mut Vec<String>) {
     let Some(shadow) = item.get("shadow") else {
@@ -9,7 +10,7 @@ pub(super) fn push_issues(value: &Value, item: &Value, issues: &mut Vec<String>)
     };
     push_orchestrator_issue(item, shadow, issues);
     push_severity_issue(value, shadow, issues);
-    push_evidence_issues(value, shadow, issues);
+    evidence::push_issues(value, shadow, issues);
 }
 
 fn push_orchestrator_issue(item: &Value, shadow: &Value, issues: &mut Vec<String>) {
@@ -45,27 +46,4 @@ fn human_review_required(value: &Value) -> bool {
         .pointer("/authority_gate/human_review_required")
         .and_then(Value::as_bool)
         .unwrap_or(false)
-}
-
-fn push_evidence_issues(value: &Value, shadow: &Value, issues: &mut Vec<String>) {
-    let refs: Vec<_> = items(shadow, "evidence")
-        .filter_map(Value::as_str)
-        .collect();
-    if refs.is_empty() {
-        issues.push("shadow orchestration requires evidence".to_string());
-    }
-    let known = evidence_ids(value);
-    for reference in refs {
-        if !known.contains(reference) {
-            issues.push(format!(
-                "shadow orchestration references unknown evidence {reference}"
-            ));
-        }
-    }
-}
-
-fn evidence_ids(value: &Value) -> BTreeSet<String> {
-    items(value, "evidence")
-        .filter_map(|item| field_text(item, "id").map(str::to_string))
-        .collect()
 }
