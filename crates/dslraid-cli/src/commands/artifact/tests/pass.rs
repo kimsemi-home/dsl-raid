@@ -1,10 +1,10 @@
 use super::fixture::{runscope_fixture, runscope_lock};
-use crate::commands::artifact::report;
 use serde_json::Value;
 
 #[test]
 fn artifact_verify_passes_fixture_lock() {
-    let report = report::build(&runscope_fixture(), Some(&runscope_lock())).unwrap();
+    let report =
+        super::super::verify::build_report(&runscope_fixture(), Some(&runscope_lock())).unwrap();
 
     assert_eq!(report.get("status").and_then(Value::as_str), Some("passed"));
     assert_eq!(

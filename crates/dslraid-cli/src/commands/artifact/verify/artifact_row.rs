@@ -1,6 +1,6 @@
+use super::super::kind::requires_lock_record;
 use super::derivation::check_derivation_link;
 use super::issue::artifact_issue;
-use super::kind::requires_lock_record;
 use super::record::check_lock_record;
 use dslraid_core::{Artifact, CoreIr};
 use serde_json::Value;

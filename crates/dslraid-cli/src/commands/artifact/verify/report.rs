@@ -1,7 +1,7 @@
+use super::super::lock;
 use super::artifact_row::artifact_result;
 use super::checks::{check_core_hash, check_derivations};
 use super::issue::value_string;
-use super::lock;
 use anyhow::Result;
 use dslraid_core::{load_core_ir, sha256_json};
 use serde_json::Value;

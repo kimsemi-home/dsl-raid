@@ -1,5 +1,4 @@
 use super::fixture::{runscope_fixture, runscope_lock, temp_lock_path};
-use crate::commands::artifact::report;
 use serde_json::Value;
 use std::fs;
 
@@ -12,7 +11,7 @@ fn artifact_verify_detects_stale_input_hash() {
     let temp = temp_lock_path("stale-input-hash-test");
     fs::write(&temp, serde_json::to_vec_pretty(&lock).unwrap()).unwrap();
 
-    let report = report::build(&runscope_fixture(), Some(&temp)).unwrap();
+    let report = super::super::verify::build_report(&runscope_fixture(), Some(&temp)).unwrap();
     fs::remove_file(&temp).ok();
 
     assert_eq!(report.get("status").and_then(Value::as_str), Some("failed"));

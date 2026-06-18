@@ -1,5 +1,5 @@
+use super::super::kind::requires_lock_record;
 use super::issue::artifact_issue;
-use super::kind::requires_lock_record;
 use dslraid_core::{Artifact, CoreIr};
 use serde_json::Value;
 

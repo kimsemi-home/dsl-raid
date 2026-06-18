@@ -1,5 +1,5 @@
+use super::super::path::artifact_content_hash;
 use super::issue::artifact_issue;
-use super::path::artifact_content_hash;
 use dslraid_core::Artifact;
 use serde_json::Value;
 use std::path::Path;
