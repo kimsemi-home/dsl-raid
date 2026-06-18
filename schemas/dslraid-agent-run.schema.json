@@ -279,7 +279,7 @@
     },
     "provenance": {
       "type": "object",
-      "required": ["kind", "observed_by", "observed_at"],
+      "required": ["kind", "observed_by", "observed_at", "ontology_version"],
       "additionalProperties": false,
       "properties": {
         "kind": {
@@ -287,7 +287,8 @@
           "enum": ["sidecar-assessment", "runtime-trace", "generated", "external", "human-annotation"]
         },
         "observed_by": { "$ref": "#/$defs/id" },
-        "observed_at": { "type": "string", "format": "date-time" }
+        "observed_at": { "type": "string", "format": "date-time" },
+        "ontology_version": { "$ref": "#/$defs/semver" }
       }
     },
     "artifact": {

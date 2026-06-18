@@ -24,7 +24,8 @@ fn review_evidence() -> serde_json::Value {
         "provenance": {
             "kind": "human-annotation",
             "observed_by": "human:alice",
-            "observed_at": "2026-06-17T00:00:00Z"
+            "observed_at": "2026-06-17T00:00:00Z",
+            "ontology_version": "0.1.0"
         }
     })
 }

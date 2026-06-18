@@ -6,7 +6,9 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
         push_required(evidence, "kind", issues);
         push_required(evidence, "observed_by", issues);
         push_required(evidence, "observed_at", issues);
+        push_required(evidence, "ontology_version", issues);
         push_kind_issue(evidence, issues);
+        push_ontology_issue(value, evidence, issues);
     }
 }
 
@@ -29,6 +31,21 @@ fn push_kind_issue(evidence: &Value, issues: &mut Vec<String>) {
     ) {
         issues.push(format!(
             "evidence {} has unsupported provenance kind {kind}",
+            id(evidence)
+        ));
+    }
+}
+
+fn push_ontology_issue(value: &Value, evidence: &Value, issues: &mut Vec<String>) {
+    let Some(actual) = text(evidence, &["provenance", "ontology_version"]) else {
+        return;
+    };
+    let Some(expected) = text(value, &["ssot", "ontology_version"]) else {
+        return;
+    };
+    if actual != expected {
+        issues.push(format!(
+            "evidence {} provenance ontology {actual} differs from ssot {expected}",
             id(evidence)
         ));
     }

@@ -14,7 +14,8 @@ pub(super) fn with_subject(value: &mut Value) {
             item["provenance"] = json!({
                 "kind": provenance_kind(item),
                 "observed_by": "sidecar:dslraid-quality",
-                "observed_at": "2026-06-17T00:00:00Z"
+                "observed_at": "2026-06-17T00:00:00Z",
+                "ontology_version": "0.1.0"
             });
         }
     }

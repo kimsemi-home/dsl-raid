@@ -10,7 +10,8 @@ pub(super) fn push_pruned_extra(value: &mut Value) {
         "provenance": {
             "kind": "sidecar-assessment",
             "observed_by": "sidecar:dslraid-quality",
-            "observed_at": "2026-06-17T00:00:00Z"
+            "observed_at": "2026-06-17T00:00:00Z",
+            "ontology_version": "0.1.0"
         }
     }));
 }

@@ -26,7 +26,8 @@ fn open_debt_accepts_debt_kind_gap_evidence() {
         "provenance": {
             "kind": "sidecar-assessment",
             "observed_by": "sidecar:dslraid-quality",
-            "observed_at": "2026-06-17T00:00:00Z"
+            "observed_at": "2026-06-17T00:00:00Z",
+            "ontology_version": "0.1.0"
         }
     }));
     value["debts"] = open_debt(json!(["evidence:loop-gap"]));
