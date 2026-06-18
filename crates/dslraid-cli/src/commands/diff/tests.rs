@@ -1,4 +1,3 @@
-use super::render_markdown;
 use super::report::report;
 use dslraid_core::load_core_ir;
 use std::path::{Path, PathBuf};
@@ -45,7 +44,7 @@ fn diff_report_detects_added_untested_transition() {
 fn diff_markdown_renders_unchanged_summary() {
     let ir = load_core_ir(runscope_fixture()).unwrap();
     let report = report(&ir, &ir, Path::new("base.json"), Path::new("head.json")).unwrap();
-    let markdown = render_markdown::render(&report);
+    let markdown = super::render::markdown_report(&report);
 
     assert_eq!(report.status, "unchanged");
     assert!(markdown.contains("Status: **unchanged**"));

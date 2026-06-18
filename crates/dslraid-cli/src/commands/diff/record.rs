@@ -1,6 +1,6 @@
 use super::model::{DiffChange, DiffSummary, DiffWarning};
 use super::state_review::record_state_review;
-use super::transition_review::record_transition_review;
+use super::transition::record_transition_review;
 use std::collections::BTreeSet;
 
 pub(super) fn record_diff_change(

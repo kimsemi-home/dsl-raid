@@ -1,4 +1,4 @@
-use super::model::DiffReport;
+use super::super::model::DiffReport;
 
 pub(super) fn render(report: &DiffReport) -> String {
     let mut lines = Vec::new();

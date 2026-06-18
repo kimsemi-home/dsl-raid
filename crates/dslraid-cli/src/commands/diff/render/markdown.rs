@@ -1,5 +1,5 @@
-use super::model::DiffReport;
-use super::render_markdown_sections::{push_changes, push_summary, push_warnings};
+use super::super::model::DiffReport;
+use super::sections::{push_changes, push_summary, push_warnings};
 
 pub(super) fn render(report: &DiffReport) -> String {
     let mut lines = Vec::new();

@@ -1,6 +1,6 @@
-use super::model::{DiffChange, DiffSummary, DiffWarning};
-use super::terminal::transition_terminal_path_changed;
-use super::warning::diff_warning;
+use super::super::model::{DiffChange, DiffSummary, DiffWarning};
+use super::super::terminal::transition_terminal_path_changed;
+use super::super::warning::diff_warning;
 use std::collections::BTreeSet;
 
 pub(super) fn record_changed_transition(

@@ -1,4 +1,4 @@
-use super::model::DiffReport;
+use super::super::model::DiffReport;
 
 pub(super) fn push_summary(report: &DiffReport, lines: &mut Vec<String>) {
     lines.push("## Summary".to_string());

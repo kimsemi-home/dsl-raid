@@ -9,8 +9,8 @@ pub(crate) fn run(base: &Path, head: &Path, format: DiffFormat, out: Option<&Pat
     let report = super::report::report(&base_ir, &head_ir, base, head)?;
     let bytes = match format {
         DiffFormat::Json => serde_json::to_vec_pretty(&report)?,
-        DiffFormat::Markdown => super::render_markdown::render(&report).into_bytes(),
-        DiffFormat::Text => super::render_text::render(&report).into_bytes(),
+        DiffFormat::Markdown => super::render::markdown_report(&report).into_bytes(),
+        DiffFormat::Text => super::render::text_report(&report).into_bytes(),
     };
     write_or_stdout(out, &bytes)
 }

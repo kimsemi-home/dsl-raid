@@ -1,7 +1,11 @@
+mod added;
+mod changed;
+mod removed;
+
 use super::model::{DiffChange, DiffSummary, DiffWarning};
-use super::transition_added::record_added_transition;
-use super::transition_changed::record_changed_transition;
-use super::transition_removed::record_removed_transition;
+use added::record_added_transition;
+use changed::record_changed_transition;
+use removed::record_removed_transition;
 use std::collections::BTreeSet;
 
 pub(super) fn record_transition_review(
