@@ -1,11 +1,18 @@
-use super::events::apply_trace_event;
-use super::seed::base_coverage_counters;
-use super::subject::coverage_subject_value;
-use super::value::value_string;
+mod counter;
+mod events;
+mod seed;
+mod subject;
+mod trace_status;
+mod value;
+
 use anyhow::{anyhow, Result};
 use dslraid_core::{sha256_json, CoreIr};
+use events::apply_trace_event;
+use seed::base_coverage_counters;
 use serde_json::Value;
 use std::path::Path;
+use subject::coverage_subject_value;
+use value::value_string;
 
 pub(super) fn coverage_overlay_value(
     ir: &CoreIr,
