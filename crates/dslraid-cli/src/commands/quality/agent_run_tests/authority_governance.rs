@@ -1,3 +1,5 @@
+mod steward;
+
 use super::fixtures::{base_manifest, high};
 use super::fixtures_reviewer::adversarial;
 use serde_json::{json, Value};

@@ -1,4 +1,7 @@
+mod steward;
+
 use serde_json::{json, Value};
+pub(super) use steward::attach_steward_evidence;
 
 pub(super) fn claim(plan: Option<&str>) -> Value {
     let mut value = json!({

@@ -1,18 +1,56 @@
 use crate::commands::quality::agent_run::fields::{field_text, items, text};
 use serde_json::Value;
+use std::collections::BTreeSet;
 
 pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     let Some(run_id) = text(value, &["run", "id"]) else {
         return;
     };
+    let approver = text(value, &["authority_gate", "approved_by"]);
+    let refs = authority_refs(value);
     for evidence in items(value, "evidence") {
-        if field_text(evidence, "subject") != Some(run_id) {
+        if subject_matches(evidence, run_id, approver, &refs) {
+            continue;
+        }
+        if let Some(subject) = field_text(evidence, "subject") {
             issues.push(format!(
-                "evidence {} subject differs from run {run_id}",
+                "evidence {} subject {subject} is not authorized for run {run_id}",
                 evidence_id(evidence)
             ));
         }
     }
+}
+
+fn subject_matches(
+    evidence: &Value,
+    run_id: &str,
+    approver: Option<&str>,
+    refs: &BTreeSet<String>,
+) -> bool {
+    field_text(evidence, "subject") == Some(run_id)
+        || authority_approver_subject(evidence, approver, refs)
+}
+
+fn authority_approver_subject(
+    evidence: &Value,
+    approver: Option<&str>,
+    refs: &BTreeSet<String>,
+) -> bool {
+    let Some(approver) = approver else {
+        return false;
+    };
+    field_text(evidence, "subject") == Some(approver) && refs.contains(evidence_id(evidence))
+}
+
+fn authority_refs(value: &Value) -> BTreeSet<String> {
+    value
+        .pointer("/authority_gate/evidence")
+        .and_then(Value::as_array)
+        .into_iter()
+        .flatten()
+        .filter_map(Value::as_str)
+        .map(str::to_string)
+        .collect()
 }
 
 fn evidence_id(value: &Value) -> &str {

@@ -4,7 +4,7 @@ mod retrospective;
 
 use super::super::fixtures::{base_manifest, high};
 use super::super::fixtures_reviewer::adversarial;
-use payload::{capacity, claim, quarantine, semantic_diff};
+use payload::{attach_steward_evidence, capacity, claim, quarantine, semantic_diff};
 use retrospective::review_debt;
 use serde_json::{json, Value};
 
@@ -57,6 +57,7 @@ fn govern(value: &mut Value) {
     value["authority_gate"]["scope"] = json!("authority");
     value["authority_gate"]["human_review_required"] = json!(true);
     value["authority_gate"]["approved_by"] = json!("steward:ops");
+    attach_steward_evidence(value);
     value["orchestration"]["authority_profile"] = json!("governance");
     value["review_capacity"] = capacity();
     value["semantic_diffs"] = json!([semantic_diff()]);
