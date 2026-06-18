@@ -35,3 +35,14 @@ fn evidence_link_cannot_target_itself() {
         vec!["evidence evidence:quality link cannot target itself"]
     );
 }
+
+#[test]
+fn evidence_link_relation_must_be_supported() {
+    let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
+    value["evidence"][0]["links"][0]["relation"] = json!("handwaves");
+
+    assert_eq!(
+        super::super::agent_run::semantic_issues(&value),
+        vec!["evidence evidence:quality has unsupported link relation handwaves"]
+    );
+}

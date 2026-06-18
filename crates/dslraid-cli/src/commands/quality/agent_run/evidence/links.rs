@@ -1,3 +1,6 @@
+mod relation;
+mod target;
+
 use crate::commands::quality::agent_run::fields::{field_is, field_text, items};
 use serde_json::Value;
 use std::collections::HashSet;
@@ -9,48 +12,9 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     }
     for evidence in active_items(value) {
         for link in items(evidence, "links") {
-            push_relation_issue(evidence, link, issues);
-            push_target_issue(&ids, evidence, link, issues);
+            relation::push_issue(evidence, link, issues);
+            target::push_issue(&ids, evidence, link, issues);
         }
-    }
-}
-
-fn push_relation_issue(evidence: &Value, link: &Value, issues: &mut Vec<String>) {
-    let Some(relation) = field_text(link, "relation") else {
-        issues.push(format!("evidence {} link requires relation", id(evidence)));
-        return;
-    };
-    if !matches!(
-        relation,
-        "corroborates" | "derived_from" | "reproduces" | "observed_with" | "supersedes"
-    ) {
-        issues.push(format!(
-            "evidence {} has unsupported link relation {relation}",
-            id(evidence)
-        ));
-    }
-}
-
-fn push_target_issue(
-    ids: &HashSet<&str>,
-    evidence: &Value,
-    link: &Value,
-    issues: &mut Vec<String>,
-) {
-    let Some(target) = field_text(link, "target") else {
-        issues.push(format!("evidence {} link requires target", id(evidence)));
-        return;
-    };
-    if target == id(evidence) {
-        issues.push(format!(
-            "evidence {} link cannot target itself",
-            id(evidence)
-        ));
-    } else if !ids.contains(target) {
-        issues.push(format!(
-            "evidence {} link target {target} is not evidence",
-            id(evidence)
-        ));
     }
 }
 
