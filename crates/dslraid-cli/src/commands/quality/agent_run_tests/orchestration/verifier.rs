@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, high};
+use super::super::fixtures::{base_manifest, high};
 use serde_json::json;
 
 #[test]
@@ -10,7 +10,7 @@ fn orchestration_requires_control_plane_verifier() {
         .remove("verified_by");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["orchestration receipt requires verified_by"]
     );
 }
@@ -22,7 +22,7 @@ fn control_plane_verifier_must_be_independent_reviewer() {
     value["orchestration"]["verified_by"] = json!("agent:codex");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec![
             "control plane verifier cannot be selected producer agent:codex",
             "control plane verifier cannot be manifest producer agent:codex",
@@ -37,7 +37,7 @@ fn control_plane_verifier_cannot_be_orchestrator() {
     value["orchestration"]["verified_by"] = json!("control-plane:dslraid");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec![
             "control plane verifier cannot be orchestrator control-plane:dslraid",
             "control plane verifier control-plane:dslraid must be a reviewer"

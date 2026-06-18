@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, high};
+use super::super::fixtures::{base_manifest, high};
 use serde_json::{json, Value};
 
 #[test]
@@ -11,7 +11,7 @@ fn lossy_translation_requires_approver() {
         .remove("approved_by");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["translation translation:lisp-to-ir requires approver"]
     );
 }
@@ -22,7 +22,7 @@ fn translation_cannot_be_self_approved() {
     value["translations"] = json!([translation("verified", json!("agent:codex"))]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["translation translation:lisp-to-ir cannot be self-approved"]
     );
 }

@@ -5,7 +5,7 @@ use serde_json::json;
 #[test]
 fn lossy_translation_requires_loss_ledger() {
     let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
-    value["translations"] = json!([super::translation("lossy", "target", true, json!([]))]);
+    value["translations"] = json!([super::core::translation("lossy", "target", true, json!([]))]);
 
     assert_eq!(
         agent_run::semantic_issues(&value),
@@ -16,9 +16,14 @@ fn lossy_translation_requires_loss_ledger() {
 #[test]
 fn loss_requires_evidence() {
     let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
-    let mut loss = super::loss("L1");
+    let mut loss = super::core::loss("L1");
     loss["evidence"] = json!([]);
-    value["translations"] = json!([super::translation("lossy", "target", true, json!([loss]))]);
+    value["translations"] = json!([super::core::translation(
+        "lossy",
+        "target",
+        true,
+        json!([loss])
+    )]);
 
     assert_eq!(
         agent_run::semantic_issues(&value),
@@ -29,8 +34,8 @@ fn loss_requires_evidence() {
 #[test]
 fn forbidden_loss_blocks_translation() {
     let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
-    let losses = json!([super::loss("L4")]);
-    value["translations"] = json!([super::translation("lossy", "target", false, losses)]);
+    let losses = json!([super::core::loss("L4")]);
+    value["translations"] = json!([super::core::translation("lossy", "target", false, losses)]);
 
     assert_eq!(
         agent_run::semantic_issues(&value),

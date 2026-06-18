@@ -1,6 +1,4 @@
-mod ledger;
-
-use super::fixtures::{base_manifest, high};
+use super::super::fixtures::{base_manifest, high};
 use serde_json::{json, Value};
 
 #[test]
@@ -11,7 +9,7 @@ fn approved_manifest_rejects_unknown_translation_evidence() {
     value["translations"] = json!([item]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["translation translation:lisp-to-ir references unknown evidence evidence:missing"]
     );
 }
@@ -22,7 +20,7 @@ fn approved_manifest_rejects_lossy_source_conformance_claim() {
     value["translations"] = json!([translation("lossy", "source", false, json!([loss("L1")]))]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec![
             "lossy translation translation:lisp-to-ir cannot claim source conformance",
             "non-round-trip translation translation:lisp-to-ir cannot claim source conformance"

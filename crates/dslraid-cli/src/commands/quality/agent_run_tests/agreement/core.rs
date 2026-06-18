@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, high};
+use super::super::fixtures::{base_manifest, high};
 use serde_json::{json, Value};
 
 #[test]
@@ -7,7 +7,7 @@ fn approved_manifest_requires_agreement() {
     value["agreements"] = json!([]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["approved run requires cross-agent agreement"]
     );
 }
@@ -18,7 +18,7 @@ fn agreement_requires_independent_reviewer_participant() {
     value["agreements"] = json!([agreement(json!(["agent:codex", "agent:other"]))]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["agreement agreement:quality requires independent reviewer participant"]
     );
 }
@@ -31,7 +31,7 @@ fn agreement_rejects_unknown_evidence() {
     value["agreements"] = json!([item]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["agreement agreement:quality references unknown evidence evidence:missing"]
     );
 }
@@ -44,7 +44,7 @@ fn agreement_requires_same_ontology() {
     value["agreements"] = json!([item]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["agreement agreement:quality interpreted_under differs from ssot ontology"]
     );
 }

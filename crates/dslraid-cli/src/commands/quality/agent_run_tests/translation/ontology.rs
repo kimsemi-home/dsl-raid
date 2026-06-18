@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, high};
+use super::super::fixtures::{base_manifest, high};
 use serde_json::{json, Value};
 
 #[test]
@@ -9,7 +9,7 @@ fn translation_requires_interpreted_under() {
     value["translations"] = json!([item]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["translation translation:lisp-to-ir requires interpreted_under"]
     );
 }
@@ -20,7 +20,7 @@ fn translation_interpreter_must_match_ssot_ontology() {
     value["translations"] = json!([translation("9.9.9")]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["translation translation:lisp-to-ir interpreted_under 9.9.9 differs from ssot 0.1.0"]
     );
 }

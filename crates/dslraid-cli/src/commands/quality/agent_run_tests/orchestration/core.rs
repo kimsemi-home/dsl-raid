@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, high};
+use super::super::fixtures::{base_manifest, high};
 use serde_json::json;
 
 #[test]
@@ -7,7 +7,7 @@ fn approved_manifest_requires_orchestration_receipt() {
     value.as_object_mut().unwrap().remove("orchestration");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["approved run requires orchestration receipt"]
     );
 }
@@ -25,7 +25,7 @@ fn orchestration_receipt_must_match_manifest_routing() {
     value["orchestration"]["evidence"] = json!(["evidence:missing"]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec![
             "orchestration producer agent:other differs from manifest agent:codex",
             "orchestration authority profile automatic differs from manifest sidecar",
@@ -45,7 +45,7 @@ fn producer_cannot_route_reviewer_selection() {
     value["orchestration"]["routed_by"] = json!("agent:codex");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["producer agent:codex cannot route reviewer selection"]
     );
 }

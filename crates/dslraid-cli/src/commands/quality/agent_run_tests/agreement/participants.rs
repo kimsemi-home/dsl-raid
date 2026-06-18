@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, high};
+use super::super::fixtures::{base_manifest, high};
 use serde_json::json;
 
 #[test]
@@ -7,7 +7,7 @@ fn agreement_requires_producer_participant() {
     value["agreements"][0]["participants"] = json!(["agent:other", "reviewer:quality"]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["agreement agreement:quality requires producer participant"]
     );
 }

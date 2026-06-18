@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, high};
+use super::super::fixtures::{base_manifest, high};
 use serde_json::json;
 
 #[test]
@@ -11,7 +11,7 @@ fn agreement_rejects_review_only_evidence() {
     value["agreements"][0]["evidence"] = json!(["evidence:review-only"]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["agreement agreement:quality cannot rely only on review evidence"]
     );
 }

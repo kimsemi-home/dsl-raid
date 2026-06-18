@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, high};
+use super::super::fixtures::{base_manifest, high};
 use serde_json::json;
 
 #[test]
@@ -10,7 +10,7 @@ fn orchestration_requires_shadow_receipt() {
         .remove("shadow");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["orchestration receipt requires shadow"]
     );
 }
@@ -21,7 +21,7 @@ fn shadow_orchestrator_must_be_independent() {
     value["orchestration"]["shadow"]["routed_by"] = json!("control-plane:dslraid");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["shadow orchestrator cannot be primary control-plane:dslraid"]
     );
 }
@@ -32,7 +32,7 @@ fn severe_shadow_difference_requires_human_review() {
     value["orchestration"]["shadow"]["severity"] = json!("D3");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["shadow severity D3 requires human review"]
     );
 }
@@ -43,7 +43,7 @@ fn shadow_evidence_must_exist() {
     value["orchestration"]["shadow"]["evidence"] = json!(["evidence:missing"]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["shadow orchestration references unknown evidence evidence:missing"]
     );
 }
