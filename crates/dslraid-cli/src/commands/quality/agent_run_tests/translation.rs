@@ -1,27 +1,7 @@
+mod ledger;
+
 use super::fixtures::{base_manifest, high};
 use serde_json::{json, Value};
-
-#[test]
-fn approved_manifest_rejects_lossy_translation_without_ledger() {
-    let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
-    value["translations"] = json!([translation("lossy", "target", true, json!([]))]);
-
-    assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
-        vec!["lossy translation translation:lisp-to-ir requires loss ledger"]
-    );
-}
-
-#[test]
-fn approved_manifest_rejects_forbidden_loss() {
-    let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
-    value["translations"] = json!([translation("lossy", "target", false, json!([loss("L4")]))]);
-
-    assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
-        vec!["translation translation:lisp-to-ir contains forbidden loss loss:macro-detail"]
-    );
-}
 
 #[test]
 fn approved_manifest_rejects_unknown_translation_evidence() {
@@ -50,7 +30,12 @@ fn approved_manifest_rejects_lossy_source_conformance_claim() {
     );
 }
 
-fn translation(status: &str, conformance: &str, round_trip: bool, losses: Value) -> Value {
+pub(super) fn translation(
+    status: &str,
+    conformance: &str,
+    round_trip: bool,
+    losses: Value,
+) -> Value {
     json!({
         "id": "translation:lisp-to-ir",
         "source_context": "context:lisp-ssot",
@@ -64,7 +49,7 @@ fn translation(status: &str, conformance: &str, round_trip: bool, losses: Value)
         "losses": losses
     })
 }
-fn loss(level: &str) -> Value {
+pub(super) fn loss(level: &str) -> Value {
     json!({
         "id": "loss:macro-detail",
         "level": level,

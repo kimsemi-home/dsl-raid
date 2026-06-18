@@ -21,14 +21,7 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
             issues,
         );
         for item in loss::items(translation) {
-            push_forbidden_issue(translation, item, issues);
-            evidence::push_unknown(
-                "loss",
-                loss::id(item),
-                evidence::refs(item),
-                &evidence_ids,
-                issues,
-            );
+            loss::push_issues(translation_id(translation), item, &evidence_ids, issues);
         }
     }
 }
@@ -56,16 +49,6 @@ fn push_conformance_issue(translation: &Value, issues: &mut Vec<String>) {
         issues.push(format!(
             "non-round-trip translation {} cannot claim source conformance",
             translation_id(translation)
-        ));
-    }
-}
-
-fn push_forbidden_issue(translation: &Value, loss: &Value, issues: &mut Vec<String>) {
-    if loss::is_forbidden(loss) {
-        issues.push(format!(
-            "translation {} contains forbidden loss {}",
-            translation_id(translation),
-            loss::id(loss)
         ));
     }
 }
