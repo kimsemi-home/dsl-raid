@@ -1,7 +1,6 @@
 use super::{
-    agreement, artifact, authority, claim, coverage_ref, debt, evidence, evidence_quality, lease,
-    lock_ref, orchestration, producer, review_capacity, reviewer, semantic_diff, ssot, trace_ref,
-    translation,
+    agreement, artifact, authority, claim, debt, evidence, lease, orchestration, producer, refs,
+    review_capacity, reviewer, semantic_diff, ssot, translation,
 };
 use serde_json::Value;
 use std::path::Path;
@@ -17,7 +16,7 @@ pub(super) fn push_issues(
     ssot::push_issues(value, issues);
     lease::push_issues(value, issues);
     evidence::push_issues(value, issues);
-    evidence_quality::push_issues(value, issues);
+    evidence::push_quality_issues(value, issues);
     orchestration::push_issues(value, issues);
     reviewer::push_issues(value, issues);
     review_capacity::push_issues(value, issues);
@@ -27,7 +26,5 @@ pub(super) fn push_issues(
     claim::push_issues(value, issues);
     translation::push_issues(value, issues);
     debt::push_issues(value, issues);
-    lock_ref::push_issues(value, lock, issues);
-    trace_ref::push_issues(value, root, issues);
-    coverage_ref::push_issues(value, root, issues);
+    refs::push_issues(value, lock, root, issues);
 }

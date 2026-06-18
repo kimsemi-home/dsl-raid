@@ -1,6 +1,6 @@
 mod link;
 
-use super::fields::{field_is, field_text, items};
+use super::super::fields::{field_is, field_text, items};
 use serde_json::Value;
 use std::{fs, path::Path};
 

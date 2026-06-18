@@ -1,4 +1,4 @@
-use super::super::fields::{field_is, field_text};
+use super::super::super::fields::{field_is, field_text};
 use serde_json::Value;
 
 pub(super) fn collect(value: &Value) -> Vec<&Value> {

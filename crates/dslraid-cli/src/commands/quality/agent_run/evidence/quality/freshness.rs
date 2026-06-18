@@ -1,4 +1,4 @@
-use super::super::fields::{field_is, field_text};
+use super::super::super::fields::{field_is, field_text};
 use serde_json::Value;
 
 pub(super) fn push_issues(evidence: &Value, snapshots: &[&Value], issues: &mut Vec<String>) {

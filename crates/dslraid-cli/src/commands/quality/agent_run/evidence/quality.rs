@@ -2,7 +2,7 @@ mod freshness;
 mod ontology;
 mod snapshot;
 
-use super::fields::{field_is, field_text, items, text};
+use super::super::fields::{field_is, field_text, items, text};
 use serde_json::Value;
 
 pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {

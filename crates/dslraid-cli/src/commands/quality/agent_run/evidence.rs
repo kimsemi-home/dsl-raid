@@ -1,6 +1,7 @@
 mod links;
 mod provenance;
 mod pruning;
+mod quality;
 mod subject;
 
 use super::fields::{field_is, items};
@@ -20,6 +21,10 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     if !has_coverage_evidence(value) {
         issues.push("approved run requires coverage evidence".to_string());
     }
+}
+
+pub(super) fn push_quality_issues(value: &Value, issues: &mut Vec<String>) {
+    quality::push_issues(value, issues);
 }
 
 fn has_high_quality_evidence(value: &Value) -> bool {
