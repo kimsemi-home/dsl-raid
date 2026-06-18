@@ -12,6 +12,12 @@ pub(super) fn push_issues(value: &Value, claim: &Value, issues: &mut Vec<String>
             id(claim)
         ));
     }
+    if field_text(claim, "verification_plan").is_none() {
+        issues.push(format!(
+            "ssot defect claim {} requires verification plan",
+            id(claim)
+        ));
+    }
 }
 
 fn is_supported_ssot_defect(value: &Value) -> bool {

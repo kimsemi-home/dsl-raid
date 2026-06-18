@@ -53,7 +53,7 @@ fn approved_manifest_rejects_unknown_ssot_revalidation_evidence() {
 }
 
 #[test]
-fn ssot_defect_claim_requires_authority_scope() {
+fn ssot_defect_claim_requires_governance_scope_and_plan() {
     let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
     value["claims"] = json!([{
         "id": "claim:ssot-defect",
@@ -66,8 +66,10 @@ fn ssot_defect_claim_requires_authority_scope() {
         "evidence": ["evidence:quality"]
     }]);
 
-    assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
-        vec!["ssot defect claim claim:ssot-defect requires authority governance scope"]
-    );
+    let issues = super::super::agent_run::semantic_issues(&value);
+    let expected = [
+        "ssot defect claim claim:ssot-defect requires authority governance scope",
+        "ssot defect claim claim:ssot-defect requires verification plan",
+    ];
+    assert_eq!(issues, expected);
 }
