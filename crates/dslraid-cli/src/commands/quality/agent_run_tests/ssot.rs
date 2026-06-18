@@ -4,10 +4,8 @@ use serde_json::json;
 #[test]
 fn approved_manifest_rejects_missing_ssot_revalidation() {
     let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
-    value["ssot"]
-        .as_object_mut()
-        .unwrap()
-        .remove("revalidation");
+    let ssot = value["ssot"].as_object_mut().unwrap();
+    ssot.remove("revalidation");
 
     assert_eq!(
         super::super::agent_run::semantic_issues(&value),
@@ -53,7 +51,7 @@ fn approved_manifest_rejects_unknown_ssot_revalidation_evidence() {
 }
 
 #[test]
-fn ssot_defect_claim_requires_governance_plan_and_freeze() {
+fn ssot_defect_claim_requires_governance_plan_freeze_and_diff() {
     let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
     value["claims"] = json!([{
         "id": "claim:ssot-defect",
@@ -70,6 +68,7 @@ fn ssot_defect_claim_requires_governance_plan_and_freeze() {
         "ssot defect claim claim:ssot-defect requires authority governance scope",
         "ssot defect claim claim:ssot-defect requires verification plan",
         "ssot defect claim claim:ssot-defect requires open quarantine containment",
+        "ssot defect claim claim:ssot-defect requires changed semantic diff",
     ];
     assert_eq!(issues, expected);
 }
