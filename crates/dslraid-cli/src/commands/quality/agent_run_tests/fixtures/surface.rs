@@ -1,5 +1,9 @@
 use serde_json::Value;
 
+pub(in super::super) fn base_manifest(reviewers: Value, lease: &str, evidence: Value) -> Value {
+    super::manifest::base_manifest(reviewers, lease, evidence)
+}
+
 pub(in super::super) fn adversarial() -> Value {
     super::reviewer::adversarial()
 }
