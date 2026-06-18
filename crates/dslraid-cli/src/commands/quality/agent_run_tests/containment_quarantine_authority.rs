@@ -1,10 +1,12 @@
 use super::fixtures::{base_manifest, high};
+use super::fixtures_authority::attach_producer_reliability;
 use serde_json::{json, Value};
 
 #[test]
 fn open_quarantine_blocks_automatic_authority() {
     let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
     value["producer"]["trust_tier"] = json!("T3");
+    attach_producer_reliability(&mut value);
     value["authority_gate"]["profile"] = json!("automatic");
     value["orchestration"]["authority_profile"] = json!("automatic");
     value["containments"] = json!([quarantine()]);

@@ -15,7 +15,10 @@ fn governance_steward_requires_authority_evidence() {
 fn governance_steward_accepts_authority_evidence() {
     let mut value = super::authority_manifest("governance", "steward:ops");
     value["orchestration"]["authority_profile"] = json!("governance");
-    value["authority_gate"]["evidence"] = json!(["evidence:quality", "evidence:steward-ops"]);
+    value["authority_gate"]["evidence"]
+        .as_array_mut()
+        .unwrap()
+        .push(json!("evidence:steward-ops"));
     value["evidence"]
         .as_array_mut()
         .unwrap()

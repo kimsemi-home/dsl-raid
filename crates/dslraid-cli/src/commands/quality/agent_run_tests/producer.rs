@@ -1,4 +1,7 @@
+mod reliability;
+
 use super::fixtures::{base_manifest, high};
+use super::fixtures_authority::attach_producer_reliability;
 use super::fixtures_reviewer::adversarial;
 use serde_json::json;
 
@@ -51,6 +54,7 @@ fn high_risk_authority_requires_high_reasoning_producer() {
     let mut value = base_manifest(adversarial(), "finished", high());
     value["producer"]["reasoning_level"] = json!("R2");
     value["authority_gate"]["scope"] = json!("ontology");
+    attach_producer_reliability(&mut value);
 
     assert_eq!(
         super::super::agent_run::semantic_issues(&value),

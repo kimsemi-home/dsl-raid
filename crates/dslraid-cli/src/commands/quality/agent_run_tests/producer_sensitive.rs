@@ -1,4 +1,5 @@
 use super::fixtures::{base_manifest, high};
+use super::fixtures_authority::attach_producer_reliability;
 use super::fixtures_reviewer::adversarial;
 use serde_json::json;
 
@@ -9,6 +10,7 @@ fn security_authority_requires_trusted_producer() {
     value["authority_gate"]["human_review_required"] = json!(true);
     value["authority_gate"]["approved_by"] = json!("human:alice");
     value["review_capacity"] = capacity();
+    attach_producer_reliability(&mut value);
 
     assert_eq!(
         super::super::agent_run::semantic_issues(&value),
@@ -24,6 +26,7 @@ fn security_authority_accepts_trusted_producer() {
     value["authority_gate"]["human_review_required"] = json!(true);
     value["authority_gate"]["approved_by"] = json!("human:alice");
     value["review_capacity"] = capacity();
+    attach_producer_reliability(&mut value);
 
     assert_eq!(
         super::super::agent_run::semantic_issues(&value),

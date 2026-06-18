@@ -6,10 +6,10 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     let Some(run_id) = text(value, &["run", "id"]) else {
         return;
     };
-    let approver = text(value, &["authority_gate", "approved_by"]);
+    let actors = authority_actors(value);
     let refs = authority_refs(value);
     for evidence in items(value, "evidence") {
-        if subject_matches(evidence, run_id, approver, &refs) {
+        if subject_matches(evidence, run_id, &actors, &refs) {
             continue;
         }
         if let Some(subject) = field_text(evidence, "subject") {
@@ -24,22 +24,33 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
 fn subject_matches(
     evidence: &Value,
     run_id: &str,
-    approver: Option<&str>,
+    actors: &BTreeSet<String>,
     refs: &BTreeSet<String>,
 ) -> bool {
     field_text(evidence, "subject") == Some(run_id)
-        || authority_approver_subject(evidence, approver, refs)
+        || authority_actor_subject(evidence, actors, refs)
 }
 
-fn authority_approver_subject(
+fn authority_actor_subject(
     evidence: &Value,
-    approver: Option<&str>,
+    actors: &BTreeSet<String>,
     refs: &BTreeSet<String>,
 ) -> bool {
-    let Some(approver) = approver else {
+    let Some(subject) = field_text(evidence, "subject") else {
         return false;
     };
-    field_text(evidence, "subject") == Some(approver) && refs.contains(evidence_id(evidence))
+    actors.contains(subject) && refs.contains(evidence_id(evidence))
+}
+
+fn authority_actors(value: &Value) -> BTreeSet<String> {
+    [
+        text(value, &["authority_gate", "approved_by"]),
+        text(value, &["producer", "id"]),
+    ]
+    .into_iter()
+    .flatten()
+    .map(str::to_string)
+    .collect()
 }
 
 fn authority_refs(value: &Value) -> BTreeSet<String> {

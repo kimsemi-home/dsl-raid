@@ -1,3 +1,4 @@
+mod reliability;
 mod sensitive;
 
 use super::fields::text;
@@ -9,6 +10,7 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     push_cold_start_issue(value, issues);
     push_automatic_issue(value, issues);
     push_high_risk_issue(value, issues);
+    reliability::push_issues(value, issues);
     sensitive::push_issues(value, issues);
 }
 

@@ -1,6 +1,7 @@
 mod steward;
 
 use super::fixtures::{base_manifest, high};
+use super::fixtures_authority::attach_producer_reliability;
 use super::fixtures_reviewer::adversarial;
 use serde_json::{json, Value};
 
@@ -28,6 +29,7 @@ fn governance_profile_requires_steward_approver() {
 fn authority_manifest(profile: &str, approver: &str) -> Value {
     let mut value = base_manifest(adversarial(), "finished", high());
     value["producer"]["trust_tier"] = json!("T3");
+    attach_producer_reliability(&mut value);
     value["authority_gate"]["profile"] = json!(profile);
     value["authority_gate"]["scope"] = json!("authority");
     value["authority_gate"]["human_review_required"] = json!(true);

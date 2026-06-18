@@ -3,6 +3,7 @@ mod payload;
 mod retrospective;
 
 use super::super::fixtures::{base_manifest, high};
+use super::super::fixtures_authority::attach_producer_reliability;
 use super::super::fixtures_reviewer::adversarial;
 use payload::{attach_steward_evidence, capacity, claim, quarantine, semantic_diff};
 use retrospective::review_debt;
@@ -53,6 +54,7 @@ pub(super) fn unowned_learning_update() -> Value {
 
 fn govern(value: &mut Value) {
     value["producer"]["trust_tier"] = json!("T3");
+    attach_producer_reliability(value);
     value["authority_gate"]["profile"] = json!("governance");
     value["authority_gate"]["scope"] = json!("authority");
     value["authority_gate"]["human_review_required"] = json!(true);
