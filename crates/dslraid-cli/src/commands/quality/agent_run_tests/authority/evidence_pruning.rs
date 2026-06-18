@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, high};
+use super::super::fixtures::{base_manifest, high};
 use serde_json::json;
 
 #[test]
@@ -8,7 +8,7 @@ fn authority_gate_rejects_pruned_evidence() {
     value["evidence"][0]["tombstone"] = tombstone();
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec![
             "authority gate references pruned evidence evidence:quality",
             "approved authority gate requires validation or decision evidence"

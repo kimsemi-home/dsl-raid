@@ -6,7 +6,7 @@ fn governance_steward_requires_authority_evidence() {
     value["orchestration"]["authority_profile"] = json!("governance");
 
     assert_eq!(
-        super::super::super::agent_run::semantic_issues(&value),
+        super::super::super::super::agent_run::semantic_issues(&value),
         vec!["governance steward approver steward:ops requires authority evidence"]
     );
 }
@@ -25,7 +25,7 @@ fn governance_steward_accepts_authority_evidence() {
         .push(steward_evidence());
 
     assert_eq!(
-        super::super::super::agent_run::semantic_issues(&value),
+        super::super::super::super::agent_run::semantic_issues(&value),
         Vec::<String>::new()
     );
 }

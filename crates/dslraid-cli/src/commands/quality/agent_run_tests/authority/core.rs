@@ -1,5 +1,5 @@
-use super::fixtures::{base_manifest, high};
-use super::fixtures_reviewer::adversarial;
+use super::super::fixtures::{base_manifest, high};
+use super::super::fixtures_reviewer::adversarial;
 use serde_json::json;
 
 #[test]
@@ -11,7 +11,7 @@ fn approved_manifest_requires_authority_profile_scope_and_evidence() {
     gate.remove("evidence");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec![
             "approved authority gate requires evidence",
             "approved authority gate requires profile",
@@ -26,7 +26,7 @@ fn approved_manifest_rejects_unknown_authority_evidence() {
     value["authority_gate"]["evidence"] = json!(["evidence:missing"]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["authority gate references unknown evidence evidence:missing"]
     );
 }
@@ -37,7 +37,7 @@ fn authority_evidence_requires_validation_or_decision() {
     value["authority_gate"]["evidence"] = json!(["evidence:trace"]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["approved authority gate requires validation or decision evidence"]
     );
 }
@@ -49,7 +49,7 @@ fn human_review_requires_human_or_steward_approver() {
     value["authority_gate"]["approved_by"] = json!("gate:quality");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["human review authority gate requires human or steward approver"]
     );
 }
@@ -60,7 +60,7 @@ fn ontology_scope_requires_human_review() {
     value["authority_gate"]["scope"] = json!("ontology");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec![
             "authority scope ontology requires human review",
             "high-risk authority requires review capacity receipt"

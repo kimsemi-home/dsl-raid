@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, high};
+use super::super::fixtures::{base_manifest, high};
 use serde_json::json;
 
 #[test]
@@ -10,7 +10,7 @@ fn approved_manifest_requires_policy_hash() {
         .remove("policy_hash");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["approved authority gate requires policy hash"]
     );
 }
@@ -24,7 +24,7 @@ fn approved_manifest_requires_human_review_flag() {
         .remove("human_review_required");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["approved authority gate requires human review flag"]
     );
 }
@@ -38,7 +38,7 @@ fn approved_manifest_requires_approver() {
         .remove("approved_by");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["approved authority gate requires approver"]
     );
 }
@@ -50,7 +50,7 @@ fn approved_manifest_rejects_mutable_policy_pointer() {
     value["orchestration"]["policy_hash"] = json!("policy:latest");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["approved authority gate cannot use mutable policy pointer policy:latest"]
     );
 }

@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, high};
+use super::super::fixtures::{base_manifest, high};
 use serde_json::json;
 
 #[test]
@@ -7,7 +7,7 @@ fn orchestrator_cannot_approve_authority_gate() {
     value["authority_gate"]["approved_by"] = json!("control-plane:dslraid");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["control plane orchestrator control-plane:dslraid cannot approve authority gate"]
     );
 }

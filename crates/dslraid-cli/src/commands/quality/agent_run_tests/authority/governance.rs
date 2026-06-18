@@ -1,8 +1,8 @@
 mod steward;
 
-use super::fixtures::{base_manifest, high};
-use super::fixtures_authority::attach_producer_reliability;
-use super::fixtures_reviewer::adversarial;
+use super::super::fixtures::{base_manifest, high};
+use super::super::fixtures_authority::attach_producer_reliability;
+use super::super::fixtures_reviewer::adversarial;
 use serde_json::{json, Value};
 
 #[test]
@@ -10,7 +10,7 @@ fn authority_scope_requires_governance_profile() {
     let value = authority_manifest("sidecar", "steward:ops");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["authority scope authority requires governance profile"]
     );
 }
@@ -21,7 +21,7 @@ fn governance_profile_requires_steward_approver() {
     value["orchestration"]["authority_profile"] = json!("governance");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["governance authority profile requires steward approver"]
     );
 }
