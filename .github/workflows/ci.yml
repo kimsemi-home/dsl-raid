@@ -139,7 +139,7 @@ jobs:
   dslraid:
     name: DSLRaid quality
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v6
 
@@ -154,7 +154,7 @@ jobs:
 
       - name: Install SBCL
         if: steps.cli.outputs.present == 'true'
-        timeout-minutes: 10
+        timeout-minutes: 20
         run: bash scripts/install-sbcl.sh
 
       - uses: dtolnay/rust-toolchain@stable

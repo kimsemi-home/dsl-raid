@@ -19,7 +19,7 @@ APT_OPTS=(
 
 with_timeout() {
   if command -v timeout >/dev/null 2>&1; then
-    timeout --kill-after=15s "${SBCL_APT_TIMEOUT:-300s}" sudo -n "$@"
+    timeout --kill-after=15s "${SBCL_APT_TIMEOUT:-600s}" sudo -n "$@"
   else
     sudo -n "$@"
   fi
