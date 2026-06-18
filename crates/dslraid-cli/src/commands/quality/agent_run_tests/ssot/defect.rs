@@ -1,6 +1,6 @@
 use super::defect_fixture::{
-    governed, routine, stale_learning_update, unlinked_learning_update, unlinked_retrospective,
-    unscoped_learning_update,
+    governed, routine, stale_learning_update, unlinked_learning_update, unlinked_prior_update,
+    unlinked_retrospective, unscoped_learning_update,
 };
 
 #[test]
@@ -54,5 +54,13 @@ fn ssot_defect_learning_update_must_name_affected_subject() {
     assert_eq!(
         super::super::super::agent_run::semantic_issues(&unscoped_learning_update()),
         vec!["ssot defect claim claim:ssot-defect requires affected knowledge update subject"]
+    );
+}
+
+#[test]
+fn ssot_defect_learning_update_must_link_prior_knowledge() {
+    assert_eq!(
+        super::super::super::agent_run::semantic_issues(&unlinked_prior_update()),
+        vec!["ssot defect claim claim:ssot-defect requires prior knowledge link"]
     );
 }

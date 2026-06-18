@@ -1,5 +1,6 @@
 mod evidence;
 mod impact;
+mod lineage;
 mod version;
 
 use crate::commands::quality::agent_run::fields::{field_is, field_text, items};
@@ -24,6 +25,12 @@ pub(super) fn push_issues(value: &Value, claim: &Value, issues: &mut Vec<String>
     if !impact::covers(update, claim) {
         issues.push(format!(
             "ssot defect claim {} requires affected knowledge update subject",
+            claim_id
+        ));
+    }
+    if !lineage::has_prior(update) {
+        issues.push(format!(
+            "ssot defect claim {} requires prior knowledge link",
             claim_id
         ));
     }

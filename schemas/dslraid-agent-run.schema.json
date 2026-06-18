@@ -434,6 +434,11 @@
           "default": [],
           "items": { "$ref": "#/$defs/id" }
         },
+        "supersedes": {
+          "type": "array",
+          "default": [],
+          "items": { "$ref": "#/$defs/id" }
+        },
         "evidence": {
           "type": "array",
           "minItems": 1,

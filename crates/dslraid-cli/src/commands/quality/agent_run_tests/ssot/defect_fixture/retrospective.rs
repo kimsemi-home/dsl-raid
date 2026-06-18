@@ -22,6 +22,7 @@ fn knowledge_update() -> Value {
         "status": "applied",
         "ontology_version": "0.1.0",
         "affected_subjects": ["agent-run:runscope-quality-001"],
+        "supersedes": ["policy:agent-quality"],
         "evidence": ["evidence:quality"]
     })
 }
