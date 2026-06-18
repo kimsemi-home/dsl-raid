@@ -13,34 +13,40 @@ pub(super) fn add_transition(
     end: usize,
     lines: &[&str],
 ) {
-    let Some(case_line) = find_case(lines, fsm, transition, start, end) else {
-        return;
-    };
-    let next_case =
-        super::super::lines::find(lines, case_line + 1, end, "\tcase ").unwrap_or(end + 1);
-    let pattern = format!("if event == \"{}\"", transition.on.as_deref().unwrap_or(""));
-    if let Some(line) = super::super::lines::find(lines, case_line, next_case - 1, &pattern) {
+    if let Some(line) = find_table_entry(lines, fsm, transition, start, end) {
         super::super::push::generated(
             index,
             artifact,
             transition_subject(&fsm.id, &transition.id),
             line,
-            line + 2,
+            line,
         );
     }
 }
 
-fn find_case(
+fn find_table_entry(
     lines: &[&str],
     fsm: &Fsm,
     transition: &Transition,
     start: usize,
     end: usize,
 ) -> Option<usize> {
-    let case = format!(
-        "case {}State{}:",
+    let state = format!("{}State{}", go_type(&fsm.name), go_type(&transition.from));
+    let target = table_target(fsm, transition);
+    lines
+        .iter()
+        .enumerate()
+        .skip(start.saturating_sub(1))
+        .take(end.saturating_sub(start) + 1)
+        .find(|(_, line)| line.contains(&state) && line.contains(&target))
+        .map(|(index, _)| index + 1)
+}
+
+fn table_target(fsm: &Fsm, transition: &Transition) -> String {
+    let event = transition.on.as_deref().unwrap_or("");
+    format!(
+        "\"{event}\": {}State{}",
         go_type(&fsm.name),
-        go_type(&transition.from)
-    );
-    super::super::lines::find(lines, start, end, &case)
+        go_type(&transition.to)
+    )
 }

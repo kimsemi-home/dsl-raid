@@ -2,6 +2,14 @@
 
 package generated
 
+func dslraidNext[S comparable](state S, event string, transitions map[S]map[string]S) (S, bool) {
+	next, ok := transitions[state][event]
+	if !ok {
+		return state, false
+	}
+	return next, true
+}
+
 type RuntimeFSMState string
 
 const (
@@ -12,25 +20,14 @@ const (
 	RuntimeFSMStateFailed    RuntimeFSMState = "failed"
 )
 
+var runtimeFSMTransitions = map[RuntimeFSMState]map[string]RuntimeFSMState{
+	RuntimeFSMStateIdle:     {"start_requested": RuntimeFSMStateStarting},
+	RuntimeFSMStateStarting: {"": RuntimeFSMStateRunning, "start_failed": RuntimeFSMStateFailed},
+	RuntimeFSMStateRunning:  {"": RuntimeFSMStateCompleted},
+}
+
 func RuntimeFSMTransition(state RuntimeFSMState, event string) (RuntimeFSMState, bool) {
-	switch state {
-	case RuntimeFSMStateIdle:
-		if event == "start_requested" {
-			return RuntimeFSMStateStarting, true
-		}
-	case RuntimeFSMStateStarting:
-		if event == "" {
-			return RuntimeFSMStateRunning, true
-		}
-		if event == "start_failed" {
-			return RuntimeFSMStateFailed, true
-		}
-	case RuntimeFSMStateRunning:
-		if event == "" {
-			return RuntimeFSMStateCompleted, true
-		}
-	}
-	return state, false
+	return dslraidNext(state, event, runtimeFSMTransitions)
 }
 
 type AgentFSMState string
@@ -44,29 +41,15 @@ const (
 	AgentFSMStateFailed    AgentFSMState = "failed"
 )
 
+var agentFSMTransitions = map[AgentFSMState]map[string]AgentFSMState{
+	AgentFSMStateIdle:     {"plan_requested": AgentFSMStatePlanning},
+	AgentFSMStatePlanning: {"": AgentFSMStateActing},
+	AgentFSMStateActing:   {"action_completed": AgentFSMStateWaiting, "action_failed": AgentFSMStateFailed},
+	AgentFSMStateWaiting:  {"": AgentFSMStateCompleted},
+}
+
 func AgentFSMTransition(state AgentFSMState, event string) (AgentFSMState, bool) {
-	switch state {
-	case AgentFSMStateIdle:
-		if event == "plan_requested" {
-			return AgentFSMStatePlanning, true
-		}
-	case AgentFSMStatePlanning:
-		if event == "" {
-			return AgentFSMStateActing, true
-		}
-	case AgentFSMStateActing:
-		if event == "action_completed" {
-			return AgentFSMStateWaiting, true
-		}
-		if event == "action_failed" {
-			return AgentFSMStateFailed, true
-		}
-	case AgentFSMStateWaiting:
-		if event == "" {
-			return AgentFSMStateCompleted, true
-		}
-	}
-	return state, false
+	return dslraidNext(state, event, agentFSMTransitions)
 }
 
 type WorkspaceFSMState string
@@ -79,23 +62,12 @@ const (
 	WorkspaceFSMStateConflict WorkspaceFSMState = "conflict"
 )
 
+var workspaceFSMTransitions = map[WorkspaceFSMState]map[string]WorkspaceFSMState{
+	WorkspaceFSMStateClean:   {"file_changed": WorkspaceFSMStateDirty},
+	WorkspaceFSMStateDirty:   {"sync_requested": WorkspaceFSMStateSyncing},
+	WorkspaceFSMStateSyncing: {"sync_completed": WorkspaceFSMStateSynced, "sync_conflict": WorkspaceFSMStateConflict},
+}
+
 func WorkspaceFSMTransition(state WorkspaceFSMState, event string) (WorkspaceFSMState, bool) {
-	switch state {
-	case WorkspaceFSMStateClean:
-		if event == "file_changed" {
-			return WorkspaceFSMStateDirty, true
-		}
-	case WorkspaceFSMStateDirty:
-		if event == "sync_requested" {
-			return WorkspaceFSMStateSyncing, true
-		}
-	case WorkspaceFSMStateSyncing:
-		if event == "sync_completed" {
-			return WorkspaceFSMStateSynced, true
-		}
-		if event == "sync_conflict" {
-			return WorkspaceFSMStateConflict, true
-		}
-	}
-	return state, false
+	return dslraidNext(state, event, workspaceFSMTransitions)
 }
