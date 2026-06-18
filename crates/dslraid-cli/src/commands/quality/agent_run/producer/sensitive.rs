@@ -1,14 +1,13 @@
-use crate::commands::quality::agent_run::fields::text;
-use serde_json::Value;
+use super::profile::ProducerProfile;
 
-pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
-    let Some(scope) = text(value, &["authority_gate", "scope"]) else {
+pub(super) fn push_issues(producer: &ProducerProfile, issues: &mut Vec<String>) {
+    let Some(scope) = producer.scope() else {
         return;
     };
-    if !matches!(scope, "security" | "audit" | "authority") {
+    if !producer.is_sensitive_scope() {
         return;
     }
-    if !matches!(text(value, &["producer", "trust_tier"]), Some("T3" | "T4")) {
+    if !producer.is_trusted() {
         issues.push(format!(
             "{scope} authority requires producer trust tier T3 or T4"
         ));
