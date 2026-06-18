@@ -17,6 +17,7 @@ mod claim_assessor;
 mod claim_confidence;
 mod claim_confidence_links;
 mod claim_ontology;
+mod claim_root_cause;
 mod containment;
 mod containment_abort;
 mod containment_pruning;
