@@ -1,13 +1,13 @@
-use super::fixtures::{base_manifest, high};
+use super::super::fixtures::{base_manifest, high};
 use serde_json::{json, Value};
 
 #[test]
 fn artifact_claim_requires_artifact_evidence() {
     let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
-    value["claims"] = json!([super::claim::fixture::artifact(json!(["evidence:quality"]))]);
+    value["claims"] = json!([super::fixture::artifact(json!(["evidence:quality"]))]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["high confidence artifact claim claim:fresh-artifacts requires artifact evidence"]
     );
 }
@@ -19,13 +19,13 @@ fn artifact_claim_accepts_artifact_evidence() {
         .as_array_mut()
         .unwrap()
         .push(artifact_evidence());
-    value["claims"] = json!([super::claim::fixture::artifact(json!([
+    value["claims"] = json!([super::fixture::artifact(json!([
         "evidence:quality",
         "evidence:artifact-compare"
     ]))]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         Vec::<String>::new()
     );
 }

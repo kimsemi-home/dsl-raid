@@ -1,6 +1,6 @@
 use serde_json::{json, Value};
 
-pub(in super::super) fn fresh(confidence: &str, assessor: &str, evidence: Value) -> Value {
+pub(super) fn fresh(confidence: &str, assessor: &str, evidence: Value) -> Value {
     claim(
         "claim:fresh-artifacts",
         "Fresh conformance matches the canonical IR.",
@@ -10,7 +10,11 @@ pub(in super::super) fn fresh(confidence: &str, assessor: &str, evidence: Value)
     )
 }
 
-pub(in super::super) fn artifact(evidence: Value) -> Value {
+pub(super) fn fresh_high(evidence: Value) -> Value {
+    fresh("high", "sidecar:dslraid-quality", evidence)
+}
+
+pub(super) fn artifact(evidence: Value) -> Value {
     claim(
         "claim:fresh-artifacts",
         "Generated artifacts match the canonical IR.",
@@ -20,7 +24,7 @@ pub(in super::super) fn artifact(evidence: Value) -> Value {
     )
 }
 
-pub(in super::super) fn root_cause(evidence: Value) -> Value {
+pub(super) fn root_cause(evidence: Value) -> Value {
     claim(
         "claim:root-cause",
         "Root cause is the stale generated artifact path.",

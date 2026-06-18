@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, high};
+use super::super::fixtures::{base_manifest, high};
 use serde_json::json;
 
 #[test]
@@ -16,7 +16,7 @@ fn claim_interpreter_must_match_ssot_ontology() {
     }]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["claim claim:fresh-artifacts interpreted_under 9.9.9 differs from ssot 0.1.0"]
     );
 }

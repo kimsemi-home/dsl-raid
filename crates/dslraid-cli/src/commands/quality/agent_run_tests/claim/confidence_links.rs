@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, high};
+use super::super::fixtures::{base_manifest, high};
 use serde_json::json;
 
 #[test]
@@ -8,14 +8,10 @@ fn high_confidence_claim_requires_linked_evidence() {
         .as_object_mut()
         .unwrap()
         .remove("links");
-    value["claims"] = json!([super::claim::fixture::fresh(
-        "high",
-        "sidecar:dslraid-quality",
-        json!(["evidence:quality"])
-    )]);
+    value["claims"] = json!([super::fixture::fresh_high(json!(["evidence:quality"]))]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec![
             "high confidence claim claim:fresh-artifacts requires linked evidence evidence:quality"
         ]
