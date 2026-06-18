@@ -1,3 +1,4 @@
+mod diff;
 mod learning;
 mod retrospective;
 
@@ -27,18 +28,7 @@ pub(super) fn push_issues(value: &Value, claim: &Value, issues: &mut Vec<String>
             id(claim)
         ));
     }
-    if !has_changed_semantic_diff(value) {
-        issues.push(format!(
-            "ssot defect claim {} requires changed semantic diff",
-            id(claim)
-        ));
-    }
-    if !has_described_changed_semantic_diff(value) {
-        issues.push(format!(
-            "ssot defect claim {} requires changed semantic diff summary",
-            id(claim)
-        ));
-    }
+    diff::push_issues(value, claim, issues);
     let has_review_debt = retrospective::has_linked_review_debt(value, claim);
     if !has_review_debt {
         issues.push(format!(
@@ -58,13 +48,4 @@ fn is_supported_ssot_defect(value: &Value) -> bool {
 
 fn has_quarantine_containment(value: &Value) -> bool {
     items(value, "containments").any(|item| field_is(item, "kind", "quarantine"))
-}
-
-fn has_changed_semantic_diff(value: &Value) -> bool {
-    items(value, "semantic_diffs").any(|item| field_is(item, "status", "changed"))
-}
-
-fn has_described_changed_semantic_diff(value: &Value) -> bool {
-    items(value, "semantic_diffs")
-        .any(|item| field_is(item, "status", "changed") && field_text(item, "summary").is_some())
 }
