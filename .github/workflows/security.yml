@@ -35,7 +35,17 @@ jobs:
 
       - name: Install cargo-deny
         if: steps.rust.outputs.present == 'true'
-        run: cargo install cargo-deny --locked
+        env:
+          CARGO_HTTP_MULTIPLEXING: "false"
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3; do
+            if cargo install cargo-deny --locked; then
+              exit 0
+            fi
+            sleep "$((attempt * 5))"
+          done
+          exit 1
 
       - name: Run cargo-deny
         if: steps.rust.outputs.present == 'true'
