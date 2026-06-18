@@ -2,14 +2,11 @@ mod agent_run;
 #[cfg(test)]
 mod agent_run_tests;
 mod demo;
-mod doc_scripts;
 mod docs;
-mod docs_markers;
 mod generated;
 mod lisp;
 mod lock;
 mod projection;
-mod roadmap;
 mod runtime;
 mod schema;
 mod semantic;
@@ -32,7 +29,6 @@ pub(crate) fn run() -> Result<()> {
     lisp::check()?;
     demo::check(input)?;
     docs::check(input)?;
-    roadmap::check()?;
     lock::check(input)?;
     runtime::check(input)?;
     crate::commands::artifact::verify(input, None, crate::OutputFormat::Text)?;
