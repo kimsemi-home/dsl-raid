@@ -1,6 +1,7 @@
 mod contract;
+mod model;
 
-pub use contract::CodegenContract;
+pub use model::CodegenContract;
 
 #[derive(Debug, Clone, Copy)]
 pub enum CodegenTarget {
