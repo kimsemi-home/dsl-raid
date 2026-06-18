@@ -1,3 +1,4 @@
+mod badge;
 mod edge;
 mod node;
 mod render;
