@@ -2,6 +2,8 @@ use super::report::report;
 use dslraid_core::load_core_ir;
 use std::path::{Path, PathBuf};
 
+mod removed;
+
 #[test]
 fn diff_report_detects_added_untested_transition() {
     let base = load_core_ir(runscope_fixture()).unwrap();
@@ -52,7 +54,7 @@ fn diff_markdown_renders_unchanged_summary() {
     assert!(markdown.contains("- none"));
 }
 
-fn runscope_fixture() -> PathBuf {
+pub(super) fn runscope_fixture() -> PathBuf {
     Path::new(env!("CARGO_MANIFEST_DIR"))
         .join("../..")
         .join("examples/runscope/runscope.raid.json")
