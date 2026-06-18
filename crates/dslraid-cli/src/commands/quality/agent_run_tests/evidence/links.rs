@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, high};
+use super::super::fixtures::{base_manifest, high};
 use serde_json::json;
 
 #[test]
@@ -9,7 +9,7 @@ fn approved_manifest_requires_evidence_graph_link() {
     }
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["approved run requires evidence graph link"]
     );
 }
@@ -20,7 +20,7 @@ fn evidence_link_target_must_exist() {
     value["evidence"][0]["links"][0]["target"] = json!("evidence:missing");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["evidence evidence:quality link target evidence:missing is not evidence"]
     );
 }
@@ -31,7 +31,7 @@ fn evidence_link_cannot_target_itself() {
     value["evidence"][0]["links"][0]["target"] = json!("evidence:quality");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["evidence evidence:quality link cannot target itself"]
     );
 }
@@ -42,7 +42,7 @@ fn evidence_link_relation_must_be_supported() {
     value["evidence"][0]["links"][0]["relation"] = json!("handwaves");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["evidence evidence:quality has unsupported link relation handwaves"]
     );
 }

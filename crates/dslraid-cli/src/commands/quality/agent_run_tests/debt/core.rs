@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, high};
+use super::super::fixtures::{base_manifest, high};
 use serde_json::json;
 
 #[test]
@@ -10,7 +10,7 @@ fn approved_manifest_rejects_unaccountable_closed_debt() {
     }]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec![
             "debt debt:review requires owner",
             "debt debt:review requires opened_at",
@@ -27,7 +27,7 @@ fn approved_manifest_rejects_debt_unknown_evidence() {
     value["debts"] = tracked_debt(json!(["evidence:missing"]));
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["debt debt:review references unknown evidence evidence:missing"]
     );
 }
@@ -39,11 +39,11 @@ fn approved_manifest_accepts_closed_debt_with_evidence() {
     value["debts"] = tracked_debt(json!(["evidence:quality"]));
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         Vec::<String>::new()
     );
 }
 
 fn tracked_debt(evidence: serde_json::Value) -> serde_json::Value {
-    super::debt_fixture::closed_with(evidence, "applied")
+    super::fixture::closed_with(evidence, "applied")
 }

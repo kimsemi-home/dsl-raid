@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, high_snapshot};
+use super::super::fixtures::{base_manifest, high_snapshot};
 use serde_json::json;
 
 #[test]
@@ -13,7 +13,7 @@ fn approved_manifest_rejects_missing_trace_evidence() {
     );
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["approved run requires trace evidence"]
     );
 }
@@ -30,7 +30,7 @@ fn approved_manifest_rejects_missing_coverage_evidence() {
     );
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["approved run requires coverage evidence"]
     );
 }

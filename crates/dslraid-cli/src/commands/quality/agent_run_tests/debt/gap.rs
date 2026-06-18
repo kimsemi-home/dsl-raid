@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, high};
+use super::super::fixtures::{base_manifest, high};
 use serde_json::json;
 
 #[test]
@@ -7,7 +7,7 @@ fn open_debt_requires_debt_kind_gap_evidence() {
     value["debts"] = open_debt(json!(["evidence:quality"]));
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec![
             "approved run cannot carry open debt",
             "open debt debt:loop-gap requires loop gap evidence"
@@ -33,7 +33,7 @@ fn open_debt_accepts_debt_kind_gap_evidence() {
     value["debts"] = open_debt(json!(["evidence:loop-gap"]));
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["approved run cannot carry open debt"]
     );
 }

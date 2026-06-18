@@ -1,5 +1,5 @@
-use super::debt_fixture::{closed_with, update};
-use super::fixtures::{base_manifest, high};
+use super::super::fixtures::{base_manifest, high};
+use super::fixture::{closed_with, update};
 use serde_json::json;
 
 #[test]
@@ -10,7 +10,7 @@ fn closed_debt_requires_feedback_update() {
     value["debts"][0]["updates"] = json!([]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["debt debt:review requires feedback closure update"]
     );
 }
@@ -22,7 +22,7 @@ fn feedback_update_must_be_applied() {
     value["debts"] = closed_with(json!(["evidence:quality"]), "proposed");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["debt debt:review has unapplied feedback update update:review-policy"]
     );
 }
@@ -35,7 +35,7 @@ fn feedback_update_requires_evidence() {
     value["debts"][0]["updates"] = json!([update("applied", json!([]))]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["feedback update update:review-policy requires evidence"]
     );
 }
@@ -48,7 +48,7 @@ fn feedback_update_rejects_unknown_evidence() {
     value["debts"][0]["updates"] = json!([update("applied", json!(["evidence:missing"]))]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["feedback update update:review-policy references unknown evidence evidence:missing"]
     );
 }
@@ -61,7 +61,7 @@ fn review_debt_requires_policy_ontology_or_spec_update() {
     value["debts"][0]["updates"][0]["kind"] = json!("revalidation");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["debt debt:review requires policy, ontology, or spec knowledge update"]
     );
 }

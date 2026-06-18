@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, high, high_snapshot};
+use super::super::fixtures::{base_manifest, high, high_snapshot};
 use serde_json::json;
 
 #[test]
@@ -14,7 +14,7 @@ fn approved_manifest_rejects_high_evidence_without_snapshot() {
     );
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec![
             "evidence evidence:quality requires high quality snapshot",
             "evidence evidence:trace requires high quality snapshot",
@@ -38,7 +38,7 @@ fn approved_manifest_rejects_self_assessed_quality_snapshot() {
     }]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["evidence evidence:quality quality snapshot must be independent"]
     );
 }
@@ -56,7 +56,7 @@ fn approved_manifest_accepts_sidecar_quality_snapshot() {
     );
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         Vec::<String>::new()
     );
 }

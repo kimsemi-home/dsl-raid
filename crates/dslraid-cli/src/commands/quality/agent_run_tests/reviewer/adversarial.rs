@@ -1,11 +1,12 @@
-use super::fixtures::{base_manifest, high};
-use super::fixtures_authority::attach_producer_reliability;
-use super::fixtures_reviewer::adversarial;
-use serde_json::json;
+use super::super::fixtures::{base_manifest, high};
+use super::super::fixtures_authority::attach_producer_reliability;
+use super::super::fixtures_reviewer::adversarial;
+use serde_json::{json, Value};
 
 #[test]
-fn security_authority_requires_trusted_producer() {
-    let mut value = base_manifest(adversarial(), "finished", high());
+fn high_risk_authority_requires_adversarial_reviewer() {
+    let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
+    value["producer"]["trust_tier"] = json!("T3");
     value["authority_gate"]["scope"] = json!("security");
     value["authority_gate"]["human_review_required"] = json!(true);
     value["authority_gate"]["approved_by"] = json!("human:alice");
@@ -13,13 +14,13 @@ fn security_authority_requires_trusted_producer() {
     attach_producer_reliability(&mut value);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
-        vec!["security authority requires producer trust tier T3 or T4"]
+        super::super::super::agent_run::semantic_issues(&value),
+        vec!["high-risk authority requires adversarial reviewer"]
     );
 }
 
 #[test]
-fn security_authority_accepts_trusted_producer() {
+fn high_risk_authority_accepts_adversarial_reviewer() {
     let mut value = base_manifest(adversarial(), "finished", high());
     value["producer"]["trust_tier"] = json!("T3");
     value["authority_gate"]["scope"] = json!("security");
@@ -29,26 +30,28 @@ fn security_authority_accepts_trusted_producer() {
     attach_producer_reliability(&mut value);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         Vec::<String>::new()
     );
 }
 
 #[test]
-fn audit_authority_requires_trusted_producer() {
-    let mut value = base_manifest(adversarial(), "finished", high());
+fn audit_authority_requires_adversarial_reviewer() {
+    let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
+    value["producer"]["trust_tier"] = json!("T3");
     value["authority_gate"]["scope"] = json!("audit");
     value["authority_gate"]["human_review_required"] = json!(true);
     value["authority_gate"]["approved_by"] = json!("human:alice");
     value["review_capacity"] = capacity();
+    attach_producer_reliability(&mut value);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
-        vec!["audit authority requires producer trust tier T3 or T4"]
+        super::super::super::agent_run::semantic_issues(&value),
+        vec!["high-risk authority requires adversarial reviewer"]
     );
 }
 
-fn capacity() -> serde_json::Value {
+fn capacity() -> Value {
     json!({
         "status": "available",
         "queue_depth": 1,

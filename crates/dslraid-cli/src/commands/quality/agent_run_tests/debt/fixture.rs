@@ -1,6 +1,9 @@
 use serde_json::{json, Value};
 
-pub(super) fn closed_with(evidence: Value, status: &str) -> Value {
+pub(in crate::commands::quality::agent_run_tests) fn closed_with(
+    evidence: Value,
+    status: &str,
+) -> Value {
     json!([{
         "id": "debt:review",
         "kind": "review",
@@ -14,7 +17,10 @@ pub(super) fn closed_with(evidence: Value, status: &str) -> Value {
     }])
 }
 
-pub(super) fn update(status: &str, evidence: Value) -> Value {
+pub(in crate::commands::quality::agent_run_tests) fn update(
+    status: &str,
+    evidence: Value,
+) -> Value {
     json!({
         "id": "update:review-policy",
         "kind": "policy",

@@ -1,4 +1,4 @@
-use super::fixtures::{base_manifest, high};
+use super::super::fixtures::{base_manifest, high};
 use serde_json::json;
 
 #[test]
@@ -13,7 +13,7 @@ fn high_quality_snapshot_requires_revalidation_deadline() {
     }]);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["evidence evidence:quality high quality snapshot requires revalidate_at"]
     );
 }

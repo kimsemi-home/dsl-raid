@@ -1,4 +1,4 @@
-use super::super::fixtures::{base_manifest, high};
+use super::super::super::fixtures::{base_manifest, high};
 use serde_json::json;
 
 #[test]
@@ -8,7 +8,7 @@ fn historical_evidence_accepts_translation_bridge() {
     value["translations"] = json!([translation()]);
 
     assert_eq!(
-        super::super::super::agent_run::semantic_issues(&value),
+        super::super::super::super::agent_run::semantic_issues(&value),
         Vec::<String>::new()
     );
 }

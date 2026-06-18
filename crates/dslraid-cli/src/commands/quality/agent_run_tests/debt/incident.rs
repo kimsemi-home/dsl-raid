@@ -1,6 +1,6 @@
-use super::debt_fixture::closed_with;
-use super::fixtures::{base_manifest, high};
-use super::fixtures_reviewer::adversarial;
+use super::super::fixtures::{base_manifest, high};
+use super::super::fixtures_reviewer::adversarial;
+use super::fixture::closed_with;
 use serde_json::json;
 
 #[test]
@@ -8,7 +8,7 @@ fn incident_authority_requires_debt_record() {
     let value = incident_manifest();
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["incident authority requires debt record"]
     );
 }
@@ -19,7 +19,7 @@ fn incident_authority_requires_evidence_debt() {
     value["debts"] = closed_with(json!(["evidence:quality"]), "applied");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["incident authority requires evidence debt record"]
     );
 }
@@ -31,7 +31,7 @@ fn incident_authority_accepts_evidence_debt() {
     value["debts"][0]["kind"] = json!("evidence");
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         Vec::<String>::new()
     );
 }

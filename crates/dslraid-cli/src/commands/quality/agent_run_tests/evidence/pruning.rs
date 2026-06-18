@@ -1,5 +1,5 @@
-use super::fixtures::{base_manifest, high};
-use super::fixtures_pruning::{push_pruned_extra, tombstone};
+use super::super::fixtures::{base_manifest, high};
+use super::super::fixtures_pruning::{push_pruned_extra, tombstone};
 use serde_json::json;
 
 #[test]
@@ -8,7 +8,7 @@ fn pruned_evidence_requires_tombstone_fields() {
     push_pruned_extra(&mut value);
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec![
             "pruned evidence evidence:old-validation requires tombstone reason",
             "pruned evidence evidence:old-validation requires tombstone pruned_by",
@@ -25,7 +25,7 @@ fn pruned_evidence_with_tombstone_is_accepted() {
     value["evidence"][3]["tombstone"] = tombstone();
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         Vec::<String>::new()
     );
 }
@@ -37,7 +37,7 @@ fn pruned_evidence_does_not_count_as_active_support() {
     value["evidence"][1]["tombstone"] = tombstone();
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["approved run requires trace evidence"]
     );
 }
@@ -51,7 +51,7 @@ fn protected_retention_blocks_pruning() {
         value["evidence"][3]["tombstone"] = tombstone();
 
         assert_eq!(
-            super::super::agent_run::semantic_issues(&value),
+            super::super::super::agent_run::semantic_issues(&value),
             vec![format!(
                 "evidence evidence:old-validation retention {retention} blocks pruning"
             )]

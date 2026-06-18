@@ -1,7 +1,7 @@
-use super::debt_fixture::closed_with;
-use super::fixtures::{base_manifest, high};
-use super::fixtures_pruning::{push_pruned_extra, tombstone};
-use super::fixtures_reviewer::adversarial;
+use super::super::debt::fixture::closed_with;
+use super::super::fixtures::{base_manifest, high};
+use super::super::fixtures_pruning::{push_pruned_extra, tombstone};
+use super::super::fixtures_reviewer::adversarial;
 use serde_json::json;
 
 #[test]
@@ -11,7 +11,7 @@ fn incident_authority_blocks_pruned_evidence() {
     value["evidence"][3]["tombstone"] = tombstone();
 
     assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
+        super::super::super::agent_run::semantic_issues(&value),
         vec!["incident authority cannot prune evidence evidence:old-validation"]
     );
 }
