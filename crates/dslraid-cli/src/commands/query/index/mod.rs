@@ -1,4 +1,5 @@
 mod architecture;
+mod capability;
 mod derivation;
 mod diagnostic;
 mod fsm;
