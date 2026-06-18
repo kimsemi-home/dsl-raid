@@ -1,12 +1,17 @@
 mod collect;
+mod event_collect;
 mod event_record;
 mod failures;
+mod guard_action_collect;
 mod guard_action_record;
 mod push;
 mod record;
+mod requires_collect;
 mod requires_record;
 mod sets;
+mod state_collect;
 mod state_record;
+mod transition_collect;
 
 use dslraid_core::{CoreIr, Fsm};
 
