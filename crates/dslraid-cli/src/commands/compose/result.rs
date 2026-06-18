@@ -1,8 +1,8 @@
 use super::diagnostics::state_space_diagnostics;
 use super::empty::empty_result;
 use super::input::{resolve_input_fsms, state_space};
-use super::materialize::materialize_reachable_product;
 use super::mode::{focus_depth, normalized_mode, should_materialize};
+use super::product::materialize_reachable_product;
 use super::select::selected_composition;
 use anyhow::{bail, Result};
 use dslraid_core::CoreIr;

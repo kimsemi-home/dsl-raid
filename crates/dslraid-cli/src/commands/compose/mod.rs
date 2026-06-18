@@ -1,18 +1,12 @@
 mod diagnostics;
 mod empty;
-mod expand;
-mod focus;
-mod id;
-mod initial;
 mod input;
-mod materialize;
 mod mode;
 mod output;
+mod product;
 mod result;
 mod run_cmd;
 mod select;
-mod tuple;
-mod value;
 
 #[cfg(test)]
 mod tests;

@@ -1,6 +1,6 @@
+use super::super::id::tuple_transition_id;
 use super::members::tuple_members;
 use super::subject::tuple_subject;
-use crate::commands::compose::id::tuple_transition_id;
 use anyhow::Result;
 use dslraid_core::{event_subject, transition_subject, Fsm, Transition};
 use serde_json::Value;
