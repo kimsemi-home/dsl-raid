@@ -3,6 +3,7 @@ use serde_json::Value;
 use std::collections::BTreeSet;
 
 pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
+    push_versioned_authority_issues(value, issues);
     let status = text(value, &["ssot", "revalidation", "status"]);
     if status.is_none() {
         issues.push("approved run requires ssot revalidation status".to_string());
@@ -20,6 +21,14 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
         }
     }
     push_evidence_issue(value, issues);
+}
+
+fn push_versioned_authority_issues(value: &Value, issues: &mut Vec<String>) {
+    for field in ["context", "ontology_version", "contract_version"] {
+        if text(value, &["ssot", field]).is_none() {
+            issues.push(format!("approved run requires ssot {field}"));
+        }
+    }
 }
 
 fn blocks_authority(status: &str) -> bool {

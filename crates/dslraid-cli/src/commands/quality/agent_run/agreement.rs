@@ -33,7 +33,10 @@ fn push_decision_issue(agreement: &Value, issues: &mut Vec<String>) {
 }
 
 fn push_ontology_issue(agreement: &Value, ontology: Option<&str>, issues: &mut Vec<String>) {
-    if field_text(agreement, "interpreted_under") != ontology {
+    let Some(ontology) = ontology else {
+        return;
+    };
+    if field_text(agreement, "interpreted_under") != Some(ontology) {
         issues.push(format!(
             "agreement {} interpreted_under differs from ssot ontology",
             id(agreement)

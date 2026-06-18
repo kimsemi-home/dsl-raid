@@ -1,6 +1,7 @@
 mod defect;
 mod defect_fixture;
 mod defect_learning;
+mod versioned;
 
 use super::fixtures::{base_manifest, high};
 use serde_json::json;
