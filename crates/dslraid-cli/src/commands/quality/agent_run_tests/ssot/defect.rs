@@ -9,6 +9,7 @@ fn ssot_defect_claim_requires_governance_plan_freeze_and_diff() {
         "ssot defect claim claim:ssot-defect requires quarantine containment record",
         "ssot defect claim claim:ssot-defect requires changed semantic diff",
         "ssot defect claim claim:ssot-defect requires changed semantic diff summary",
+        "ssot defect claim claim:ssot-defect requires closed review debt",
     ];
     assert_eq!(issues, expected);
 }

@@ -1,8 +1,10 @@
 mod payload;
+mod retrospective;
 
 use super::super::fixtures::{base_manifest, high};
 use super::super::fixtures_reviewer::adversarial;
 use payload::{capacity, claim, quarantine, semantic_diff};
+use retrospective::review_debt;
 use serde_json::{json, Value};
 
 pub(super) fn routine() -> Value {
@@ -23,5 +25,6 @@ pub(super) fn governed() -> Value {
     value["semantic_diffs"] = json!([semantic_diff()]);
     value["containments"] = json!([quarantine()]);
     value["claims"] = json!([claim(Some("verification:quality"))]);
+    value["debts"] = json!([review_debt()]);
     value
 }
