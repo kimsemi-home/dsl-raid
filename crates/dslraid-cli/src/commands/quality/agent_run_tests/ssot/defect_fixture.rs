@@ -15,6 +15,18 @@ pub(super) fn routine() -> Value {
 
 pub(super) fn governed() -> Value {
     let mut value = base_manifest(adversarial(), "finished", high());
+    govern(&mut value);
+    value
+}
+
+pub(super) fn unlinked_retrospective() -> Value {
+    let mut value = base_manifest(adversarial(), "finished", high());
+    govern(&mut value);
+    value["debts"][0]["evidence"] = json!(["evidence:trace"]);
+    value
+}
+
+fn govern(value: &mut Value) {
     value["producer"]["trust_tier"] = json!("T3");
     value["authority_gate"]["profile"] = json!("governance");
     value["authority_gate"]["scope"] = json!("authority");
@@ -26,5 +38,4 @@ pub(super) fn governed() -> Value {
     value["containments"] = json!([quarantine()]);
     value["claims"] = json!([claim(Some("verification:quality"))]);
     value["debts"] = json!([review_debt()]);
-    value
 }

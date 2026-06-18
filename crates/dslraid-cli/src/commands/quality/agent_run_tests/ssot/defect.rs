@@ -1,4 +1,4 @@
-use super::defect_fixture::{governed, routine};
+use super::defect_fixture::{governed, routine, unlinked_retrospective};
 
 #[test]
 fn ssot_defect_claim_requires_governance_plan_freeze_and_diff() {
@@ -9,7 +9,7 @@ fn ssot_defect_claim_requires_governance_plan_freeze_and_diff() {
         "ssot defect claim claim:ssot-defect requires quarantine containment record",
         "ssot defect claim claim:ssot-defect requires changed semantic diff",
         "ssot defect claim claim:ssot-defect requires changed semantic diff summary",
-        "ssot defect claim claim:ssot-defect requires closed review debt",
+        "ssot defect claim claim:ssot-defect requires linked closed review debt",
     ];
     assert_eq!(issues, expected);
 }
@@ -19,5 +19,13 @@ fn governed_ssot_defect_accepts_released_quarantine_history() {
     assert_eq!(
         super::super::super::agent_run::semantic_issues(&governed()),
         Vec::<String>::new()
+    );
+}
+
+#[test]
+fn ssot_defect_review_debt_must_link_claim_evidence() {
+    assert_eq!(
+        super::super::super::agent_run::semantic_issues(&unlinked_retrospective()),
+        vec!["ssot defect claim claim:ssot-defect requires linked closed review debt"]
     );
 }

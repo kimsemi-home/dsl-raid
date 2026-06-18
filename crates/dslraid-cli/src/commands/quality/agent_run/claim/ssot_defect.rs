@@ -1,3 +1,5 @@
+mod retrospective;
+
 use super::id;
 use crate::commands::quality::agent_run::fields::{field_is, field_text, items, text};
 use serde_json::Value;
@@ -36,9 +38,9 @@ pub(super) fn push_issues(value: &Value, claim: &Value, issues: &mut Vec<String>
             id(claim)
         ));
     }
-    if !has_closed_review_debt(value) {
+    if !retrospective::has_linked_review_debt(value, claim) {
         issues.push(format!(
-            "ssot defect claim {} requires closed review debt",
+            "ssot defect claim {} requires linked closed review debt",
             id(claim)
         ));
     }
@@ -61,9 +63,4 @@ fn has_changed_semantic_diff(value: &Value) -> bool {
 fn has_described_changed_semantic_diff(value: &Value) -> bool {
     items(value, "semantic_diffs")
         .any(|item| field_is(item, "status", "changed") && field_text(item, "summary").is_some())
-}
-
-fn has_closed_review_debt(value: &Value) -> bool {
-    items(value, "debts")
-        .any(|item| field_is(item, "kind", "review") && field_is(item, "status", "closed"))
 }
