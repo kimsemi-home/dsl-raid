@@ -1,4 +1,5 @@
 mod evidence;
+mod queue;
 mod scope;
 
 use super::fields::text;
@@ -13,27 +14,27 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
         return;
     };
     evidence::push_issues(value, capacity, issues);
-    push_queue_issue(capacity, issues);
+    queue::push_issues(capacity, issues);
     push_freeze_issue(value, high_risk, capacity, issues);
-}
-
-fn push_queue_issue(capacity: &Value, issues: &mut Vec<String>) {
-    let depth = capacity.get("queue_depth").and_then(Value::as_u64);
-    let max = capacity.get("max_queue_depth").and_then(Value::as_u64);
-    if depth.zip(max).is_some_and(|(depth, max)| depth > max) {
-        issues.push("review capacity queue depth exceeds max".to_string());
-    }
 }
 
 fn push_freeze_issue(value: &Value, high_risk: bool, capacity: &Value, issues: &mut Vec<String>) {
     if !high_risk || !scope::is_automation_profile(value) {
         return;
     }
-    if matches!(text(capacity, &["status"]), Some("overloaded" | "frozen")) {
+    if let Some(reason) = freeze_reason(capacity) {
         issues.push(format!(
-            "review capacity {} freezes high-risk {} authority",
-            text(capacity, &["status"]).unwrap(),
+            "review capacity {reason} freezes high-risk {} authority",
             text(value, &["authority_gate", "profile"]).unwrap_or("unknown")
         ));
+    }
+}
+
+fn freeze_reason(capacity: &Value) -> Option<&str> {
+    match text(capacity, &["status"]) {
+        Some("overloaded") => Some("overloaded"),
+        Some("frozen") => Some("frozen"),
+        _ if queue::overflows(capacity) => Some("queue overflow"),
+        _ => None,
     }
 }

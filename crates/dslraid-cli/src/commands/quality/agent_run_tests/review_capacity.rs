@@ -1,3 +1,5 @@
+mod overload;
+
 use super::fixtures::{base_manifest, high};
 use super::fixtures_reviewer::adversarial;
 use serde_json::{json, Value};
@@ -35,10 +37,8 @@ fn governance_authority_survives_frozen_capacity() {
     value["authority_gate"]["approved_by"] = json!("steward:ops");
     value["review_capacity"] = capacity("frozen", 5, 5, json!(["evidence:quality"]));
 
-    assert_eq!(
-        super::super::agent_run::semantic_issues(&value),
-        Vec::<String>::new()
-    );
+    let issues = super::super::agent_run::semantic_issues(&value);
+    assert!(issues.is_empty());
 }
 
 #[test]
