@@ -4,6 +4,8 @@ mod content_hash;
 mod derivation;
 mod issue;
 mod output;
+mod output_issue;
+mod output_summary;
 mod record;
 mod record_hash;
 mod record_status;
