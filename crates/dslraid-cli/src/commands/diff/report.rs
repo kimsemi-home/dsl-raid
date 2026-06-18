@@ -1,9 +1,11 @@
 use super::added::record_added;
-use super::model::{DiffEndpoint, DiffReport, DiffSummary};
+use super::endpoint::endpoint;
+use super::model::{DiffReport, DiffSummary};
+use super::order::sort_report_entries;
 use super::scan::record_removed_and_changed;
 use super::terminal::terminal_state_subjects;
 use anyhow::Result;
-use dslraid_core::{sha256_json, CoreIr};
+use dslraid_core::CoreIr;
 use std::path::Path;
 
 pub(crate) fn report(
@@ -38,16 +40,7 @@ pub(crate) fn report(
         &mut warnings,
         &mut changes,
     );
-    changes.sort_by(|left, right| {
-        (left.action, left.kind.as_str(), left.subject.as_str()).cmp(&(
-            right.action,
-            right.kind.as_str(),
-            right.subject.as_str(),
-        ))
-    });
-    warnings.sort_by(|left, right| {
-        (left.code, left.subject.as_str()).cmp(&(right.code, right.subject.as_str()))
-    });
+    sort_report_entries(&mut changes, &mut warnings);
     Ok(DiffReport {
         diff_version: "0.1.0",
         status: if changes.is_empty() && warnings.is_empty() {
@@ -60,13 +53,5 @@ pub(crate) fn report(
         summary,
         changes,
         warnings,
-    })
-}
-
-fn endpoint(path: &Path, ir: &CoreIr) -> Result<DiffEndpoint> {
-    Ok(DiffEndpoint {
-        path: path.display().to_string(),
-        hash: sha256_json(ir)?,
-        ir_version: ir.ir_version.clone(),
     })
 }
