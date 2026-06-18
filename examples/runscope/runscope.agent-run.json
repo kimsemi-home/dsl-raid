@@ -228,6 +228,7 @@
       "confidence": "high",
       "assessor": "sidecar:dslraid-quality",
       "interpreted_under": "0.1.0",
+      "verification_plan": "verification:runscope-quality",
       "status": "supported",
       "evidence": ["evidence:quality", "evidence:precommit", "evidence:artifact-compare"]
     }

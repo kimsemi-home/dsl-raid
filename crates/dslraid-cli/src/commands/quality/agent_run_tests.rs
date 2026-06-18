@@ -16,6 +16,7 @@ mod claim_artifact;
 mod claim_assessor;
 mod claim_confidence;
 mod claim_confidence_links;
+mod claim_confidence_plan;
 mod claim_ontology;
 mod claim_root_cause;
 mod containment;

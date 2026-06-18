@@ -344,6 +344,7 @@
         "confidence": { "type": "string", "enum": ["low", "medium", "high"] },
         "assessor": { "$ref": "#/$defs/id" },
         "interpreted_under": { "$ref": "#/$defs/semver" },
+        "verification_plan": { "$ref": "#/$defs/id" },
         "status": { "type": "string", "enum": ["proposed", "supported", "rejected", "superseded"] },
         "evidence": {
           "type": "array",

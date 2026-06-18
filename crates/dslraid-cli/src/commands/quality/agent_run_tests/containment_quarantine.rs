@@ -37,6 +37,7 @@ fn claim() -> Value {
         "confidence": "high",
         "assessor": "sidecar:dslraid-quality",
         "interpreted_under": "0.1.0",
+        "verification_plan": "verification:quality",
         "status": "supported",
         "evidence": ["evidence:quality"]
     })

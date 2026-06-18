@@ -1,6 +1,7 @@
 mod artifact;
 mod links;
 mod orchestrator;
+mod plan;
 mod quality;
 
 use super::{evidence, id};
@@ -44,6 +45,7 @@ pub(super) fn push_issues(
     artifact::push_issues(value, claim, issues);
     links::push_issues(value, claim, issues);
     orchestrator::push_issues(value, claim, issues);
+    plan::push_issues(claim, issues);
     quality::push_issues(value, claim, issues);
 }
 
