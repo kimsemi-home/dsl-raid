@@ -1,3 +1,5 @@
+mod classification;
+
 use super::super::fields::text;
 use serde_json::Value;
 
@@ -35,25 +37,22 @@ impl<'a> ProducerProfile<'a> {
     }
 
     pub(super) fn is_cold_start(&self) -> bool {
-        matches!(self.trust(), Some("T0" | "T1"))
+        classification::is_cold_start(self.trust())
     }
 
     pub(super) fn is_high_reasoning(&self) -> bool {
-        matches!(self.reasoning(), Some("R3" | "R4"))
+        classification::is_high_reasoning(self.reasoning())
     }
 
     pub(super) fn is_high_risk_scope(&self) -> bool {
-        matches!(
-            self.scope(),
-            Some("security" | "audit" | "ontology" | "incident" | "authority")
-        )
+        classification::is_high_risk_scope(self.scope())
     }
 
     pub(super) fn is_sensitive_scope(&self) -> bool {
-        matches!(self.scope(), Some("security" | "audit" | "authority"))
+        classification::is_sensitive_scope(self.scope())
     }
 
     pub(super) fn is_trusted(&self) -> bool {
-        matches!(self.trust(), Some("T3" | "T4"))
+        classification::is_trusted(self.trust())
     }
 }
