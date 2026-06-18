@@ -13,14 +13,15 @@ APT_OPTS=(
   -o Acquire::http::Timeout=20
   -o Acquire::https::Timeout=20
   -o Acquire::ForceIPv4=true
+  -o DPkg::Lock::Timeout=30
   -o Dpkg::Use-Pty=0
 )
 
 with_timeout() {
   if command -v timeout >/dev/null 2>&1; then
-    timeout --kill-after=15s 180s sudo "$@"
+    timeout --kill-after=15s 180s sudo -n "$@"
   else
-    sudo "$@"
+    sudo -n "$@"
   fi
 }
 
