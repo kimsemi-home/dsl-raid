@@ -1,11 +1,7 @@
-use super::super::fields::{field_is, field_text, items};
-use serde_json::Value;
-use std::collections::BTreeMap;
+mod catalog;
 
-struct EvidenceMeta {
-    kind: String,
-    pruned: bool,
-}
+use catalog::{EvidenceCatalog, EvidenceStatus};
+use serde_json::Value;
 
 pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     let refs = authority_refs(value);
@@ -16,19 +12,25 @@ pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
     let mut has_known_ref = false;
     let mut has_control_ref = false;
     for reference in &refs {
-        if let Some(meta) = evidence.get(*reference) {
-            has_known_ref = true;
-            if meta.pruned {
+        match evidence.status(reference) {
+            EvidenceStatus::Missing => {
+                issues.push(format!(
+                    "authority gate references unknown evidence {reference}"
+                ));
+            }
+            EvidenceStatus::Pruned => {
+                has_known_ref = true;
                 issues.push(format!(
                     "authority gate references pruned evidence {reference}"
                 ));
-                continue;
             }
-            has_control_ref |= is_control_kind(&meta.kind);
-        } else {
-            issues.push(format!(
-                "authority gate references unknown evidence {reference}"
-            ));
+            EvidenceStatus::ActiveControl => {
+                has_known_ref = true;
+                has_control_ref = true;
+            }
+            EvidenceStatus::ActiveOther => {
+                has_known_ref = true;
+            }
         }
     }
     if has_known_ref && !has_control_ref {
@@ -47,22 +49,6 @@ fn authority_refs(value: &Value) -> Vec<&str> {
         .collect()
 }
 
-fn evidence_kinds(value: &Value) -> BTreeMap<String, EvidenceMeta> {
-    items(value, "evidence")
-        .filter_map(|item| {
-            let id = field_text(item, "id")?;
-            let kind = field_text(item, "kind")?;
-            Some((
-                id.to_string(),
-                EvidenceMeta {
-                    kind: kind.to_string(),
-                    pruned: field_is(item, "status", "pruned"),
-                },
-            ))
-        })
-        .collect()
-}
-
-fn is_control_kind(kind: &str) -> bool {
-    matches!(kind, "validation" | "decision")
+fn evidence_kinds(value: &Value) -> EvidenceCatalog {
+    EvidenceCatalog::from_manifest(value)
 }
