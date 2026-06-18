@@ -18,6 +18,19 @@ fn supported_claim_rejects_control_plane_assessor() {
     );
 }
 
+#[test]
+fn supported_claim_rejects_producer_assessor() {
+    let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
+    value["claims"] = json!([claim("medium", "agent:codex", json!(["evidence:quality"]))]);
+
+    assert_eq!(
+        super::super::agent_run::semantic_issues(&value),
+        vec![
+            "supported claim claim:fresh-artifacts cannot be self-assessed by producer agent:codex"
+        ]
+    );
+}
+
 fn claim(confidence: &str, assessor: &str, evidence: Value) -> Value {
     json!({
         "id": "claim:fresh-artifacts",
