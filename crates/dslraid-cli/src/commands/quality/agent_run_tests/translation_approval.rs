@@ -34,6 +34,7 @@ fn translation(status: &str, approver: Value) -> Value {
         "target_context": "context:canonical-ir",
         "status": status,
         "conformance": "target",
+        "interpreted_under": "0.1.0",
         "approved_by": approver,
         "evidence": ["evidence:quality"],
         "losses": [{

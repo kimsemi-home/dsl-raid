@@ -225,6 +225,7 @@
       "target_context": "context:canonical-ir",
       "status": "lossy",
       "conformance": "target",
+      "interpreted_under": "0.1.0",
       "round_trip": false,
       "approved_by": "gate:quality",
       "evidence": ["evidence:quality"],

@@ -58,12 +58,12 @@ fn translation(status: &str, conformance: &str, round_trip: bool, losses: Value)
         "status": status,
         "conformance": conformance,
         "round_trip": round_trip,
+        "interpreted_under": "0.1.0",
         "approved_by": "gate:quality",
         "evidence": ["evidence:quality"],
         "losses": losses
     })
 }
-
 fn loss(level: &str) -> Value {
     json!({
         "id": "loss:macro-detail",

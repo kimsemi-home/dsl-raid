@@ -403,7 +403,7 @@
     },
     "translation": {
       "type": "object",
-      "required": ["id", "source_context", "target_context", "status", "conformance", "losses"],
+      "required": ["id", "source_context", "target_context", "status", "conformance", "interpreted_under", "losses"],
       "additionalProperties": false,
       "properties": {
         "id": { "$ref": "#/$defs/id" },
@@ -411,6 +411,7 @@
         "target_context": { "$ref": "#/$defs/id" },
         "status": { "type": "string", "enum": ["lossless", "lossy", "verified", "blocked"] },
         "conformance": { "type": "string", "enum": ["source", "target", "dual", "partial"] },
+        "interpreted_under": { "$ref": "#/$defs/semver" },
         "round_trip": { "type": "boolean" },
         "approved_by": { "$ref": "#/$defs/id" },
         "evidence": {
