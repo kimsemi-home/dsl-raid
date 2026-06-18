@@ -1,19 +1,5 @@
-mod agreement;
-mod approved;
-mod artifact;
-mod authority;
-mod claim;
-mod containment;
-mod debt;
-mod evidence;
+mod domains;
 mod fields;
-mod lease;
-mod orchestration;
-mod participants;
-mod refs;
-mod semantic_diff;
-mod ssot;
-mod translation;
 
 use anyhow::{bail, Context, Result};
 use serde_json::Value;
@@ -53,13 +39,5 @@ fn semantic_issues_with_optional_context(
     lock: Option<&Value>,
     root: Option<&Path>,
 ) -> Vec<String> {
-    let mut issues = Vec::new();
-    authority::push_gate_issues(value, &mut issues);
-    containment::push_issues(value, &mut issues);
-    lease::push_gate_issues(value, &mut issues);
-    if !authority::is_approved(value) {
-        return issues;
-    }
-    approved::push_issues(value, lock, root, &mut issues);
-    issues
+    domains::semantic_issues(value, lock, root)
 }
