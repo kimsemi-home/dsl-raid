@@ -53,6 +53,8 @@
     ((:file "json-values")
      (:file "json-source")
      (:file "json-effect")
+     (:file "json-state") (:file "json-event")
+     (:file "json-transition")
      (:file "json-fsm")
      (:file "json-context")
      (:file "json-composition")
