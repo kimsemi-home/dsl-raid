@@ -4,7 +4,7 @@ use serde_json::{json, Value};
 #[test]
 fn artifact_claim_requires_artifact_evidence() {
     let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
-    value["claims"] = json!([claim(json!(["evidence:quality"]))]);
+    value["claims"] = json!([super::claim::fixture::artifact(json!(["evidence:quality"]))]);
 
     assert_eq!(
         super::super::agent_run::semantic_issues(&value),
@@ -19,7 +19,7 @@ fn artifact_claim_accepts_artifact_evidence() {
         .as_array_mut()
         .unwrap()
         .push(artifact_evidence());
-    value["claims"] = json!([claim(json!([
+    value["claims"] = json!([super::claim::fixture::artifact(json!([
         "evidence:quality",
         "evidence:artifact-compare"
     ]))]);
@@ -28,20 +28,6 @@ fn artifact_claim_accepts_artifact_evidence() {
         super::super::agent_run::semantic_issues(&value),
         Vec::<String>::new()
     );
-}
-
-fn claim(evidence: Value) -> Value {
-    json!({
-        "id": "claim:fresh-artifacts",
-        "subject": "agent-run:runscope-quality-001",
-        "statement": "Generated artifacts match the canonical IR.",
-        "confidence": "high",
-        "assessor": "sidecar:dslraid-quality",
-        "interpreted_under": "0.1.0",
-        "verification_plan": "verification:quality",
-        "status": "supported",
-        "evidence": evidence
-    })
 }
 
 fn artifact_evidence() -> Value {

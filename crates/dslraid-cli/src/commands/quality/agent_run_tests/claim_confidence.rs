@@ -1,10 +1,14 @@
 use super::fixtures::{base_manifest, high};
-use serde_json::{json, Value};
+use serde_json::json;
 
 #[test]
 fn high_confidence_claim_requires_validation_evidence() {
     let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
-    value["claims"] = json!([claim(json!(["evidence:trace"]))]);
+    value["claims"] = json!([super::claim::fixture::fresh(
+        "high",
+        "sidecar:dslraid-quality",
+        json!(["evidence:trace"])
+    )]);
 
     assert_eq!(
         super::super::agent_run::semantic_issues(&value),
@@ -15,7 +19,11 @@ fn high_confidence_claim_requires_validation_evidence() {
 #[test]
 fn high_confidence_claim_requires_external_assessor() {
     let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
-    let mut item = claim(json!(["evidence:quality"]));
+    let mut item = super::claim::fixture::fresh(
+        "high",
+        "sidecar:dslraid-quality",
+        json!(["evidence:quality"]),
+    );
     item["assessor"] = json!("agent:reviewer");
     value["claims"] = json!([item]);
 
@@ -29,7 +37,11 @@ fn high_confidence_claim_requires_external_assessor() {
 fn high_confidence_claim_revalidates_degraded_evidence() {
     let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
     value["evidence"][0]["quality"] = json!("medium");
-    value["claims"] = json!([claim(json!(["evidence:quality"]))]);
+    value["claims"] = json!([super::claim::fixture::fresh(
+        "high",
+        "sidecar:dslraid-quality",
+        json!(["evidence:quality"])
+    )]);
 
     assert_eq!(
         super::super::agent_run::semantic_issues(&value),
@@ -42,7 +54,11 @@ fn high_confidence_claim_revalidates_degraded_evidence() {
 #[test]
 fn high_confidence_claim_rejects_control_plane_assessor() {
     let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
-    let mut item = claim(json!(["evidence:quality"]));
+    let mut item = super::claim::fixture::fresh(
+        "high",
+        "sidecar:dslraid-quality",
+        json!(["evidence:quality"]),
+    );
     item["assessor"] = json!("control-plane:dslraid");
     value["claims"] = json!([item]);
 
@@ -52,18 +68,4 @@ fn high_confidence_claim_rejects_control_plane_assessor() {
             "high confidence claim claim:fresh-artifacts cannot be assessed by control plane control-plane:dslraid"
         ]
     );
-}
-
-fn claim(evidence: Value) -> Value {
-    json!({
-        "id": "claim:fresh-artifacts",
-        "subject": "agent-run:runscope-quality-001",
-        "statement": "Fresh conformance matches the canonical IR.",
-        "confidence": "high",
-        "assessor": "sidecar:dslraid-quality",
-        "interpreted_under": "0.1.0",
-        "verification_plan": "verification:quality",
-        "status": "supported",
-        "evidence": evidence
-    })
 }
