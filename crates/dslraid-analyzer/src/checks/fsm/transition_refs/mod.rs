@@ -1,7 +1,10 @@
 mod collect;
+mod event_record;
 mod failures;
+mod guard_action_record;
 mod push;
 mod record;
+mod requires_record;
 mod sets;
 mod state_record;
 
