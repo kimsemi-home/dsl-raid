@@ -1,8 +1,9 @@
+mod fixture;
 mod overload;
 
 use super::fixtures::{base_manifest, high};
-use super::fixtures_reviewer::adversarial;
-use serde_json::{json, Value};
+use fixture::{capacity, high_risk_manifest};
+use serde_json::json;
 
 #[test]
 fn high_risk_authority_requires_review_capacity() {
@@ -50,25 +51,4 @@ fn review_capacity_rejects_unknown_evidence() {
         super::super::agent_run::semantic_issues(&value),
         vec!["review capacity references unknown evidence evidence:missing"]
     );
-}
-
-fn high_risk_manifest() -> Value {
-    let mut value = base_manifest(adversarial(), "finished", high());
-    value["evidence"][0]["id"] = json!("evidence:quality");
-    value["authority_gate"]["scope"] = json!("ontology");
-    value["authority_gate"]["human_review_required"] = json!(true);
-    value["authority_gate"]["approved_by"] = json!("human:alice");
-    value["review_capacity"] = capacity("available", 1, 5, json!(["evidence:quality"]));
-    value
-}
-
-fn capacity(status: &str, depth: u64, max: u64, evidence: Value) -> Value {
-    json!({
-        "status": status,
-        "queue_depth": depth,
-        "max_queue_depth": max,
-        "assessed_at": "2026-06-17T00:00:00Z",
-        "assessor": "sidecar:dslraid-quality",
-        "evidence": evidence
-    })
 }

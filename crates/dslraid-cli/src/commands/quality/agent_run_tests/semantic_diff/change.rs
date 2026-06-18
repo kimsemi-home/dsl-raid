@@ -5,7 +5,10 @@ use serde_json::json;
 #[test]
 fn changed_semantic_diff_requires_cause_evidence() {
     let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
-    value["semantic_diffs"] = json!([super::diff("sha256:core", json!(["evidence:quality"]))]);
+    value["semantic_diffs"] = json!([super::fixture::diff(
+        "sha256:core",
+        json!(["evidence:quality"])
+    )]);
 
     assert_eq!(
         agent_run::semantic_issues(&value),

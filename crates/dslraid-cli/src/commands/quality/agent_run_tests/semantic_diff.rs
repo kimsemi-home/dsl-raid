@@ -1,7 +1,9 @@
 mod change;
+mod fixture;
 
 use super::fixtures::{base_manifest, high};
-use serde_json::{json, Value};
+use fixture::diff;
+use serde_json::json;
 
 #[test]
 fn approved_manifest_requires_semantic_diff() {
@@ -61,14 +63,4 @@ fn blocked_semantic_diff_cannot_approve() {
         super::super::agent_run::semantic_issues(&value),
         vec!["approved run cannot use blocked semantic diff semantic-diff:quality"]
     );
-}
-
-fn diff(head_hash: &str, evidence: Value) -> Value {
-    json!({
-        "id": "semantic-diff:quality",
-        "base_hash": "sha256:base",
-        "head_hash": head_hash,
-        "status": "changed",
-        "evidence": evidence
-    })
 }
