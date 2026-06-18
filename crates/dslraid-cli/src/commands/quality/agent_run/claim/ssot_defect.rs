@@ -18,9 +18,9 @@ pub(super) fn push_issues(value: &Value, claim: &Value, issues: &mut Vec<String>
             id(claim)
         ));
     }
-    if !has_open_quarantine(value) {
+    if !has_quarantine_containment(value) {
         issues.push(format!(
-            "ssot defect claim {} requires open quarantine containment",
+            "ssot defect claim {} requires quarantine containment record",
             id(claim)
         ));
     }
@@ -44,9 +44,8 @@ fn is_supported_ssot_defect(value: &Value) -> bool {
             .is_some_and(|text| text.to_ascii_lowercase().contains("ssot defect"))
 }
 
-fn has_open_quarantine(value: &Value) -> bool {
-    items(value, "containments")
-        .any(|item| field_is(item, "kind", "quarantine") && field_is(item, "status", "open"))
+fn has_quarantine_containment(value: &Value) -> bool {
+    items(value, "containments").any(|item| field_is(item, "kind", "quarantine"))
 }
 
 fn has_changed_semantic_diff(value: &Value) -> bool {

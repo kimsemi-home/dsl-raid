@@ -1,3 +1,6 @@
+mod defect;
+mod defect_fixture;
+
 use super::fixtures::{base_manifest, high};
 use serde_json::json;
 
@@ -48,28 +51,4 @@ fn approved_manifest_rejects_unknown_ssot_revalidation_evidence() {
         super::super::agent_run::semantic_issues(&value),
         vec!["ssot revalidation references unknown evidence evidence:missing"]
     );
-}
-
-#[test]
-fn ssot_defect_claim_requires_governance_plan_freeze_and_diff() {
-    let mut value = base_manifest(json!([{ "id": "reviewer:quality" }]), "finished", high());
-    value["claims"] = json!([{
-        "id": "claim:ssot-defect",
-        "subject": "agent-run:runscope-quality-001",
-        "statement": "SSOT Defect is confirmed in the canonical IR.",
-        "confidence": "medium",
-        "assessor": "sidecar:dslraid-quality",
-        "interpreted_under": "0.1.0",
-        "status": "supported",
-        "evidence": ["evidence:quality"]
-    }]);
-    let issues = super::super::agent_run::semantic_issues(&value);
-    let expected = [
-        "ssot defect claim claim:ssot-defect requires authority governance scope",
-        "ssot defect claim claim:ssot-defect requires verification plan",
-        "ssot defect claim claim:ssot-defect requires open quarantine containment",
-        "ssot defect claim claim:ssot-defect requires changed semantic diff",
-        "ssot defect claim claim:ssot-defect requires changed semantic diff summary",
-    ];
-    assert_eq!(issues, expected);
 }
