@@ -33,6 +33,13 @@ pub(super) fn unlinked_learning_update() -> Value {
     value
 }
 
+pub(super) fn stale_learning_update() -> Value {
+    let mut value = base_manifest(adversarial(), "finished", high());
+    govern(&mut value);
+    value["debts"][0]["updates"][0]["ontology_version"] = json!("0.0.9");
+    value
+}
+
 fn govern(value: &mut Value) {
     value["producer"]["trust_tier"] = json!("T3");
     value["authority_gate"]["profile"] = json!("governance");

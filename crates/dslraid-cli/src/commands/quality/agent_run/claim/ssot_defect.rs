@@ -45,11 +45,8 @@ pub(super) fn push_issues(value: &Value, claim: &Value, issues: &mut Vec<String>
             "ssot defect claim {} requires linked closed review debt",
             id(claim)
         ));
-    } else if !learning::has_linked_update(value, claim) {
-        issues.push(format!(
-            "ssot defect claim {} requires linked knowledge update",
-            id(claim)
-        ));
+    } else {
+        learning::push_issues(value, claim, issues);
     }
 }
 

@@ -20,6 +20,7 @@ fn knowledge_update() -> Value {
         "kind": "policy",
         "subject": "policy:agent-quality",
         "status": "applied",
+        "ontology_version": "0.1.0",
         "evidence": ["evidence:quality"]
     })
 }

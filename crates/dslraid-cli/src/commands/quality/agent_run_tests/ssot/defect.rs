@@ -1,4 +1,6 @@
-use super::defect_fixture::{governed, routine, unlinked_learning_update, unlinked_retrospective};
+use super::defect_fixture::{
+    governed, routine, stale_learning_update, unlinked_learning_update, unlinked_retrospective,
+};
 
 #[test]
 fn ssot_defect_claim_requires_governance_plan_freeze_and_diff() {
@@ -35,5 +37,13 @@ fn ssot_defect_learning_update_must_link_claim_evidence() {
     assert_eq!(
         super::super::super::agent_run::semantic_issues(&unlinked_learning_update()),
         vec!["ssot defect claim claim:ssot-defect requires linked knowledge update"]
+    );
+}
+
+#[test]
+fn ssot_defect_learning_update_must_match_current_ontology() {
+    assert_eq!(
+        super::super::super::agent_run::semantic_issues(&stale_learning_update()),
+        vec!["ssot defect claim claim:ssot-defect requires current ontology knowledge update"]
     );
 }
