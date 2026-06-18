@@ -1,4 +1,10 @@
+mod capability_refs;
 mod collect;
+mod command_refs;
+mod context_refs;
+mod missing;
+mod policy_refs;
+mod requirement_refs;
 
 use dslraid_core::CoreIr;
 use serde_json::{json, Value};
