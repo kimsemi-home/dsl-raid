@@ -1,3 +1,4 @@
+mod learning;
 mod retrospective;
 
 use super::id;
@@ -38,9 +39,15 @@ pub(super) fn push_issues(value: &Value, claim: &Value, issues: &mut Vec<String>
             id(claim)
         ));
     }
-    if !retrospective::has_linked_review_debt(value, claim) {
+    let has_review_debt = retrospective::has_linked_review_debt(value, claim);
+    if !has_review_debt {
         issues.push(format!(
             "ssot defect claim {} requires linked closed review debt",
+            id(claim)
+        ));
+    } else if !learning::has_linked_update(value, claim) {
+        issues.push(format!(
+            "ssot defect claim {} requires linked knowledge update",
             id(claim)
         ));
     }

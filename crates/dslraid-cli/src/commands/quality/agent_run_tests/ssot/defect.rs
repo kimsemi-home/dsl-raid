@@ -1,4 +1,4 @@
-use super::defect_fixture::{governed, routine, unlinked_retrospective};
+use super::defect_fixture::{governed, routine, unlinked_learning_update, unlinked_retrospective};
 
 #[test]
 fn ssot_defect_claim_requires_governance_plan_freeze_and_diff() {
@@ -27,5 +27,13 @@ fn ssot_defect_review_debt_must_link_claim_evidence() {
     assert_eq!(
         super::super::super::agent_run::semantic_issues(&unlinked_retrospective()),
         vec!["ssot defect claim claim:ssot-defect requires linked closed review debt"]
+    );
+}
+
+#[test]
+fn ssot_defect_learning_update_must_link_claim_evidence() {
+    assert_eq!(
+        super::super::super::agent_run::semantic_issues(&unlinked_learning_update()),
+        vec!["ssot defect claim claim:ssot-defect requires linked knowledge update"]
     );
 }
