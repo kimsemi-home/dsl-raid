@@ -243,6 +243,11 @@
         "retention": { "type": "string", "enum": ["normal", "protected", "legal_hold"] },
         "quality": { "type": "string", "enum": ["low", "medium", "high"] },
         "subject": { "$ref": "#/$defs/id" },
+        "links": {
+          "type": "array",
+          "default": [],
+          "items": { "$ref": "#/$defs/evidence_link" }
+        },
         "provenance": { "$ref": "#/$defs/provenance" },
         "tombstone": { "$ref": "#/$defs/evidence_tombstone" },
         "quality_snapshots": {
@@ -250,6 +255,18 @@
           "default": [],
           "items": { "$ref": "#/$defs/quality_snapshot" }
         }
+      }
+    },
+    "evidence_link": {
+      "type": "object",
+      "required": ["relation", "target"],
+      "additionalProperties": false,
+      "properties": {
+        "relation": {
+          "type": "string",
+          "enum": ["corroborates", "derived_from", "reproduces", "observed_with", "supersedes"]
+        },
+        "target": { "$ref": "#/$defs/id" }
       }
     },
     "evidence_tombstone": {

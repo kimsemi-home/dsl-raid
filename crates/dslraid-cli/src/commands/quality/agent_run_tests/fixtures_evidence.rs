@@ -6,7 +6,10 @@ pub(super) fn with_subject(value: &mut Value) {
     let Some(items) = value.as_array_mut() else {
         return;
     };
-    for item in items {
+    for (index, item) in items.iter_mut().enumerate() {
+        if item.get("id").is_none() {
+            item["id"] = json!(format!("evidence:fixture-{}", index + 1));
+        }
         if item.get("subject").is_none() {
             item["subject"] = json!(RUN_ID);
         }
@@ -19,6 +22,7 @@ pub(super) fn with_subject(value: &mut Value) {
             });
         }
     }
+    super::fixtures_evidence_links::with_links(items);
 }
 
 fn provenance_kind(value: &Value) -> &str {

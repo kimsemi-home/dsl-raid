@@ -1,3 +1,4 @@
+mod links;
 mod provenance;
 mod pruning;
 mod subject;
@@ -6,6 +7,7 @@ use super::fields::{field_is, items};
 use serde_json::Value;
 
 pub(super) fn push_issues(value: &Value, issues: &mut Vec<String>) {
+    links::push_issues(value, issues);
     provenance::push_issues(value, issues);
     pruning::push_issues(value, issues);
     subject::push_issues(value, issues);
