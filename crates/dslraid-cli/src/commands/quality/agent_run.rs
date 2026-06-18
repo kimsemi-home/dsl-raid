@@ -13,6 +13,7 @@ mod lease;
 mod lock_ref;
 mod orchestration;
 mod producer;
+mod reliability;
 mod review_capacity;
 mod reviewer;
 mod semantic_diff;

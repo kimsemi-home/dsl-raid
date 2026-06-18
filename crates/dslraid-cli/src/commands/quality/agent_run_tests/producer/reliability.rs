@@ -1,4 +1,5 @@
 use super::super::fixtures::{base_manifest, high};
+use super::super::fixtures_authority::attach_producer_reliability;
 use super::super::fixtures_reviewer::adversarial;
 use serde_json::json;
 
@@ -12,4 +13,16 @@ fn trusted_producer_requires_reliability_evidence() {
 
     assert!(super::super::super::agent_run::semantic_issues(&value)
         .contains(&"trusted producer agent:codex requires reliability evidence".to_string()));
+}
+
+#[test]
+fn trusted_producer_accepts_reliability_evidence() {
+    let mut value = base_manifest(adversarial(), "finished", high());
+    value["producer"]["trust_tier"] = json!("T3");
+    attach_producer_reliability(&mut value);
+
+    assert_eq!(
+        super::super::super::agent_run::semantic_issues(&value),
+        Vec::<String>::new()
+    );
 }
