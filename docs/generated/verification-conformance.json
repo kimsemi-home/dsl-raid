@@ -1,0 +1,68 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationconformancegen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification.lisp",
+    "rules": [
+        {
+            "id": "conformance:quality-gate",
+            "subject": "verify:daemon/conformance",
+            "check": "cargo run -p dslraid-cli -- quality",
+            "status": "required"
+        },
+        {
+            "id": "conformance:backend.github-actions",
+            "subject": ".github/workflows/verification.yml",
+            "check": "scripts/workflowgen.sh check",
+            "status": "required"
+        },
+        {
+            "id": "conformance:backend.gitlab-ci",
+            "subject": ".gitlab-ci.yml",
+            "check": "scripts/gitlabgen.sh check",
+            "status": "required"
+        },
+        {
+            "id": "conformance:backend.local-makefile",
+            "subject": "Makefile",
+            "check": "scripts/makegen.sh check",
+            "status": "required"
+        },
+        {
+            "id": "conformance:backend.bazel",
+            "subject": "BUILD.bazel",
+            "check": "scripts/bazelgen.sh check",
+            "status": "required"
+        },
+        {
+            "id": "conformance:backend.github-release",
+            "subject": ".github/workflows/release.yml",
+            "check": "scripts/releasegen.sh check",
+            "status": "required"
+        },
+        {
+            "id": "conformance:backend.conformance-report",
+            "subject": "docs/generated/verification-conformance.json",
+            "check": "scripts/verificationconformancegen.sh check",
+            "status": "required"
+        },
+        {
+            "id": "conformance:backend.evidence-schema",
+            "subject": "schemas/dslraid-verification-evidence.schema.json",
+            "check": "scripts/verificationschemagen.sh check",
+            "status": "required"
+        },
+        {
+            "id": "conformance:backend.test-manifest",
+            "subject": "tests/golden/verification-graph.generated.json",
+            "check": "scripts/verificationtestgen.sh check",
+            "status": "required"
+        },
+        {
+            "id": "conformance:backend.evidence-json",
+            "subject": "docs/generated/verification-evidence.json",
+            "check": "scripts/verificationevidencegen.sh check",
+            "status": "required"
+        }
+    ]
+}

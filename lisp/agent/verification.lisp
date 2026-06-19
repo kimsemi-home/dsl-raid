@@ -36,6 +36,7 @@
        "bash scripts/makegen.sh check"
        "bash scripts/bazelgen.sh check"
        "bash scripts/releasegen.sh check"
+       "bash scripts/verificationconformancegen.sh check"
        "bash scripts/verificationschemagen.sh check"
        "bash scripts/verificationtestgen.sh check"
        "bash scripts/verificationevidencegen.sh check"
@@ -48,6 +49,8 @@
     ("local-makefile" "Makefile" "scripts/makegen.sh")
     ("bazel" "BUILD.bazel" "scripts/bazelgen.sh")
     ("github-release" ".github/workflows/release.yml" "scripts/releasegen.sh")
+    ("conformance-report" "docs/generated/verification-conformance.json"
+     "scripts/verificationconformancegen.sh")
     ("evidence-schema" "schemas/dslraid-verification-evidence.schema.json"
      "scripts/verificationschemagen.sh")
     ("test-manifest" "tests/golden/verification-graph.generated.json"

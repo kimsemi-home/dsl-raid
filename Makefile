@@ -28,6 +28,7 @@ release-check: conformance
 	bash scripts/makegen.sh check
 	bash scripts/bazelgen.sh check
 	bash scripts/releasegen.sh check
+	bash scripts/verificationconformancegen.sh check
 	bash scripts/verificationschemagen.sh check
 	bash scripts/verificationtestgen.sh check
 	bash scripts/verificationevidencegen.sh check

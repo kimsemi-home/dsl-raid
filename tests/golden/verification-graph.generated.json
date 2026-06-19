@@ -32,7 +32,7 @@
             "id": "test:verification.node.release-check",
             "subject": "verify:daemon/release-check",
             "kind": "verification-node",
-            "commands": 10
+            "commands": 11
         },
         {
             "id": "test:verification.backend.github-actions",
@@ -63,6 +63,12 @@
             "subject": ".github/workflows/release.yml",
             "kind": "generated-backend",
             "generator": "scripts/releasegen.sh"
+        },
+        {
+            "id": "test:verification.backend.conformance-report",
+            "subject": "docs/generated/verification-conformance.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationconformancegen.sh"
         },
         {
             "id": "test:verification.backend.evidence-schema",
