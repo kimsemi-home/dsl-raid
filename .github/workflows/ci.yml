@@ -150,6 +150,7 @@ jobs:
           grep -q 'scripts/verificationfeedbackgen.sh' "$owner"
           grep -q 'scripts/verificationquarantinegen.sh' "$owner"
           grep -q 'scripts/verificationconfidencegen.sh' "$owner"
+          grep -q 'scripts/verificationsidecargen.sh' "$owner"
           grep -q 'scripts/verificationcodegengen.sh' "$owner"
           grep -q 'scripts/verificationontologygen.sh' "$owner"
           grep -q 'scripts/verificationconformancegen.sh' "$owner"

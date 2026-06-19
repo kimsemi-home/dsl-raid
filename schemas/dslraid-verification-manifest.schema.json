@@ -585,6 +585,51 @@
                     }
                 }
             }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
+                "sidecar_profile",
+                "receipts",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationsidecargen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "sidecar_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "receipts": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/sidecar_receipt"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
         }
     ],
     "$defs": {
@@ -1179,6 +1224,43 @@
                 },
                 "requires": {
                     "$ref": "#/$defs/strings"
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "sidecar_receipt": {
+            "type": "object",
+            "required": [
+                "id",
+                "producer",
+                "output",
+                "verifier",
+                "independent",
+                "evidence",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "producer": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "output": {
+                    "$ref": "#/$defs/path"
+                },
+                "verifier": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "independent": {
+                    "const": true
                 },
                 "evidence": {
                     "$ref": "#/$defs/strings"

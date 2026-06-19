@@ -32,4 +32,8 @@
     ("evidence-quality:confidence"
      "docs/generated/verification-confidence.json" "high" "external-confidence"
      "gate:evidence-quality" ("ceilings" "closure_rules")
-     "Confidence evidence is suitable when self confidence is ignored.")))
+     "Confidence evidence is suitable when self confidence is ignored.")
+    ("evidence-quality:sidecar"
+     "docs/generated/verification-sidecar.json" "high" "verification-sidecar"
+     "gate:evidence-quality" ("receipts" "closure_rules")
+     "Sidecar evidence is suitable when producer and verifier differ.")))

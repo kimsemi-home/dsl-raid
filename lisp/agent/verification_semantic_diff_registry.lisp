@@ -22,4 +22,6 @@
     ("semantic-diff:quarantine" "semantic:quarantine"
      "Quarantine semantic receipt.")
     ("semantic-diff:confidence" "semantic:confidence"
-     "External confidence semantic receipt.")))
+     "External confidence semantic receipt.")
+    ("semantic-diff:sidecar" "semantic:sidecar"
+     "Verification sidecar semantic receipt.")))

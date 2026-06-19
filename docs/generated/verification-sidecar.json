@@ -1,0 +1,62 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationsidecargen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification.lisp",
+    "sidecar_profile": "independent-verifier",
+    "receipts": [
+        {
+            "id": "sidecar:generated-workflow",
+            "producer": "generator:verification-workflow",
+            "output": ".github/workflows/verification.yml",
+            "verifier": "gate:quality",
+            "independent": true,
+            "evidence": [
+                "docs/generated/verification-evidence.json",
+                "docs/generated/verification-conformance.json"
+            ],
+            "meaning": "Generated workflow is checked by an independent quality gate."
+        },
+        {
+            "id": "sidecar:semantic-hash",
+            "producer": "generator:semantic-hash",
+            "output": "docs/generated/verification-semantic-hash.json",
+            "verifier": "gate:semantic-review",
+            "independent": true,
+            "evidence": [
+                "docs/generated/verification-semantic-diff.json",
+                "docs/generated/verification-evidence-quality.json"
+            ],
+            "meaning": "Semantic hashes are reviewed through separate diff evidence."
+        },
+        {
+            "id": "sidecar:confidence",
+            "producer": "generator:confidence",
+            "output": "docs/generated/verification-confidence.json",
+            "verifier": "gate:evidence-quality",
+            "independent": true,
+            "evidence": [
+                "docs/generated/verification-evidence-quality.json",
+                "docs/generated/verification-authority.json"
+            ],
+            "meaning": "Confidence ceilings are checked by evidence quality and authority gates."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "sidecar:producer-separated",
+            "meaning": "Producer and final verifier differ.",
+            "check": "scripts/verificationsidecargen.sh check"
+        },
+        {
+            "id": "sidecar:evidence-generated",
+            "meaning": "Sidecar evidence is generated evidence.",
+            "check": "scripts/verificationsidecargen.sh check"
+        },
+        {
+            "id": "sidecar:independent",
+            "meaning": "Final verification is independent.",
+            "check": "scripts/verificationsidecargen.sh check"
+        }
+    ]
+}

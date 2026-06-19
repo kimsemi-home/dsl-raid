@@ -40,6 +40,7 @@
         "review-capacity",
         "feedback-closure",
         "quarantine",
-        "external-confidence"
+        "external-confidence",
+        "verification-sidecar"
     ]
 }

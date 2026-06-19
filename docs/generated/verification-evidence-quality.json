@@ -100,6 +100,18 @@
                 "closure_rules"
             ],
             "meaning": "Confidence evidence is suitable when self confidence is ignored."
+        },
+        {
+            "id": "evidence-quality:sidecar",
+            "target": "docs/generated/verification-sidecar.json",
+            "quality": "high",
+            "purpose": "verification-sidecar",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "receipts",
+                "closure_rules"
+            ],
+            "meaning": "Sidecar evidence is suitable when producer and verifier differ."
         }
     ],
     "closure_rules": [

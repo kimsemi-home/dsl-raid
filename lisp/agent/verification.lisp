@@ -55,6 +55,7 @@
        "bash scripts/verificationfeedbackgen.sh check"
        "bash scripts/verificationquarantinegen.sh check"
        "bash scripts/verificationconfidencegen.sh check"
+       "bash scripts/verificationsidecargen.sh check"
        "bash scripts/lisp-rustgen.sh check"
        "bash scripts/verificationdocgen.sh check"
        "bash scripts/verificationcodegengen.sh check"

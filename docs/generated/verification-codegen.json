@@ -114,6 +114,12 @@
             "backends": [
                 "confidence-manifest"
             ]
+        },
+        {
+            "axis": "verification-sidecar",
+            "backends": [
+                "sidecar-manifest"
+            ]
         }
     ],
     "closure_rules": [

@@ -18,7 +18,8 @@
     ("review-capacity" ("review-capacity"))
     ("feedback-closure" ("feedback-closure"))
     ("quarantine" ("quarantine-manifest"))
-    ("external-confidence" ("confidence-manifest"))))
+    ("external-confidence" ("confidence-manifest"))
+    ("verification-sidecar" ("sidecar-manifest"))))
 
 (defparameter *verification-codegen-rules*
   '(("codegen:axis-covered" "Every ontology codegen axis maps to a backend.")
