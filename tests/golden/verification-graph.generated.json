@@ -1,0 +1,80 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationtestgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification.lisp",
+    "assertions": [
+        {
+            "id": "test:verification.node.lint",
+            "subject": "verify:daemon/lint",
+            "kind": "verification-node",
+            "commands": 6
+        },
+        {
+            "id": "test:verification.node.unit-test",
+            "subject": "verify:daemon/unit-test",
+            "kind": "verification-node",
+            "commands": 1
+        },
+        {
+            "id": "test:verification.node.integration-test",
+            "subject": "verify:daemon/integration-test",
+            "kind": "verification-node",
+            "commands": 3
+        },
+        {
+            "id": "test:verification.node.conformance",
+            "subject": "verify:daemon/conformance",
+            "kind": "verification-node",
+            "commands": 1
+        },
+        {
+            "id": "test:verification.node.release-check",
+            "subject": "verify:daemon/release-check",
+            "kind": "verification-node",
+            "commands": 9
+        },
+        {
+            "id": "test:verification.backend.github-actions",
+            "subject": ".github/workflows/verification.yml",
+            "kind": "generated-backend",
+            "generator": "scripts/workflowgen.sh"
+        },
+        {
+            "id": "test:verification.backend.gitlab-ci",
+            "subject": ".gitlab-ci.yml",
+            "kind": "generated-backend",
+            "generator": "scripts/gitlabgen.sh"
+        },
+        {
+            "id": "test:verification.backend.local-makefile",
+            "subject": "Makefile",
+            "kind": "generated-backend",
+            "generator": "scripts/makegen.sh"
+        },
+        {
+            "id": "test:verification.backend.bazel",
+            "subject": "BUILD.bazel",
+            "kind": "generated-backend",
+            "generator": "scripts/bazelgen.sh"
+        },
+        {
+            "id": "test:verification.backend.evidence-schema",
+            "subject": "schemas/dslraid-verification-evidence.schema.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationschemagen.sh"
+        },
+        {
+            "id": "test:verification.backend.test-manifest",
+            "subject": "tests/golden/verification-graph.generated.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationtestgen.sh"
+        },
+        {
+            "id": "test:verification.backend.evidence-json",
+            "subject": "docs/generated/verification-evidence.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationevidencegen.sh"
+        }
+    ]
+}

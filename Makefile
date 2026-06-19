@@ -28,6 +28,7 @@ release-check: conformance
 	bash scripts/makegen.sh check
 	bash scripts/bazelgen.sh check
 	bash scripts/verificationschemagen.sh check
+	bash scripts/verificationtestgen.sh check
 	bash scripts/verificationevidencegen.sh check
 	bash scripts/gendocindex.sh check
 	cargo run -p dslraid-cli -- artifact verify examples/runscope/runscope.raid.json
