@@ -16,6 +16,8 @@
   (format out "CI is evidence generation, not final authority.~%")
   (format out "The generated workflow is `.github/workflows/verification.yml`.~%~%")
   (write-verification-table out)
+  (write-verification-backends out)
+  (write-pdca-loop out)
   (write-verification-contract out))
 
 (defun write-verification-table (out)
@@ -28,6 +30,21 @@
             (join-verification (verification-field node :needs) ", ")
             (verification-field node :evidence)
             (length (verification-field node :commands)))))
+
+(defun write-verification-backends (out)
+  (format out "~%## Generated Backends~%~%")
+  (format out "| Backend | Output | Generator |~%")
+  (format out "| --- | --- | --- |~%")
+  (dolist (row (verification-backends))
+    (destructuring-bind (backend output generator) row
+      (format out "| ~A | `~A` | `~A` |~%" backend output generator))))
+
+(defun write-pdca-loop (out)
+  (format out "~%## Evidence Loop~%~%")
+  (format out "- Plan: edit the Common Lisp verification graph.~%")
+  (format out "- Do: generate CI, local, and Bazel surfaces.~%")
+  (format out "- Check: run generator checks and quality gates.~%")
+  (format out "- Act: update the SSOT when a generated backend fails.~%"))
 
 (defun write-verification-contract (out)
   (format out "~%## Contract~%~%")

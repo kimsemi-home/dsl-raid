@@ -17,7 +17,23 @@ The generated workflow is `.github/workflows/verification.yml`.
 | unit-test | lint | Rust workspace unit test evidence. | 1 |
 | integration-test | unit-test | Viewer test and build evidence. | 3 |
 | conformance | integration-test | Unified DSLRaid semantic and generated-output gate. | 1 |
-| release-check | conformance | Generated workflow, docs index, and artifact freshness. | 3 |
+| release-check | conformance | Generated workflow, docs index, and artifact freshness. | 6 |
+
+## Generated Backends
+
+| Backend | Output | Generator |
+| --- | --- | --- |
+| github-actions | `.github/workflows/verification.yml` | `scripts/workflowgen.sh` |
+| gitlab-ci | `.gitlab-ci.yml` | `scripts/gitlabgen.sh` |
+| local-makefile | `Makefile` | `scripts/makegen.sh` |
+| bazel | `BUILD.bazel` | `scripts/bazelgen.sh` |
+
+## Evidence Loop
+
+- Plan: edit the Common Lisp verification graph.
+- Do: generate CI, local, and Bazel surfaces.
+- Check: run generator checks and quality gates.
+- Act: update the SSOT when a generated backend fails.
 
 ## Contract
 

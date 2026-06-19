@@ -8,7 +8,7 @@
       :evidence "Source shape, workflow lint, Go lint, Rust fmt/clippy."
       :commands
       ("go install github.com/rhysd/actionlint/cmd/actionlint@v1.7.12"
-       "actionlint_bin=\"$(go env GOPATH)/bin/actionlint\"; \"$actionlint_bin\""
+       "actionlint_bin=\"$(go env GOPATH)/bin/actionlint\" && \"$actionlint_bin\""
        "bash scripts/check-source-lines.sh"
        "bash scripts/go-lint.sh"
        "cargo fmt --all -- --check"
@@ -32,8 +32,17 @@
       :evidence "Generated workflow, docs index, and artifact freshness."
       :commands
       ("bash scripts/workflowgen.sh check"
+       "bash scripts/gitlabgen.sh check"
+       "bash scripts/makegen.sh check"
+       "bash scripts/bazelgen.sh check"
        "bash scripts/gendocindex.sh check"
        "cargo run -p dslraid-cli -- artifact verify examples/runscope/runscope.raid.json")))))
+
+(defparameter *verification-backends*
+  '(("github-actions" ".github/workflows/verification.yml" "scripts/workflowgen.sh")
+    ("gitlab-ci" ".gitlab-ci.yml" "scripts/gitlabgen.sh")
+    ("local-makefile" "Makefile" "scripts/makegen.sh")
+    ("bazel" "BUILD.bazel" "scripts/bazelgen.sh")))
 
 (defun verification-graph ()
   (copy-tree *verification-graph*))
@@ -43,6 +52,9 @@
 
 (defun verification-field (node key)
   (getf node key))
+
+(defun verification-backends ()
+  (copy-tree *verification-backends*))
 
 (defun verification-id (node)
   (verification-field node :id))

@@ -13,6 +13,9 @@ bash scripts/agentprinciplegen.sh check
 bash scripts/agentmanifestgen.sh check
 bash scripts/verificationdocgen.sh check
 bash scripts/workflowgen.sh check
+bash scripts/gitlabgen.sh check
+bash scripts/makegen.sh check
+bash scripts/bazelgen.sh check
 bash scripts/lisp-irgen.sh check
 bash scripts/lisp-rustgen.sh check
 bash scripts/gendocindex.sh check

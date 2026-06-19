@@ -31,7 +31,7 @@ jobs:
       - name: Run lint command 1
         run: go install github.com/rhysd/actionlint/cmd/actionlint@v1.7.12
       - name: Run lint command 2
-        run: actionlint_bin="$(go env GOPATH)/bin/actionlint"; "$actionlint_bin"
+        run: actionlint_bin="$(go env GOPATH)/bin/actionlint" && "$actionlint_bin"
       - name: Run lint command 3
         run: bash scripts/check-source-lines.sh
       - name: Run lint command 4
@@ -96,6 +96,12 @@ jobs:
       - name: Run release-check command 1
         run: bash scripts/workflowgen.sh check
       - name: Run release-check command 2
-        run: bash scripts/gendocindex.sh check
+        run: bash scripts/gitlabgen.sh check
       - name: Run release-check command 3
+        run: bash scripts/makegen.sh check
+      - name: Run release-check command 4
+        run: bash scripts/bazelgen.sh check
+      - name: Run release-check command 5
+        run: bash scripts/gendocindex.sh check
+      - name: Run release-check command 6
         run: cargo run -p dslraid-cli -- artifact verify examples/runscope/runscope.raid.json
