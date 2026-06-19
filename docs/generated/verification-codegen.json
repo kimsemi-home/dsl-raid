@@ -195,6 +195,12 @@
             ]
         },
         {
+            "axis": "genesis-charter",
+            "backends": [
+                "genesis-charter"
+            ]
+        },
+        {
             "axis": "versioned-ssot",
             "backends": [
                 "versioned-ssot"

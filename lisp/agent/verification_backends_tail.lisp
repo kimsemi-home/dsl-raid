@@ -11,6 +11,7 @@
     ("github-actions-suite" "docs/generated/verification-github-actions.json" "scripts/verificationactionsgen.sh")
     ("release-provenance" "docs/generated/verification-release-provenance.json" "scripts/verificationreleaseprovenancegen.sh")
     ("incident-learning" "docs/generated/verification-incident-learning.json" "scripts/verificationincidentgen.sh")
+    ("genesis-charter" "docs/generated/verification-genesis-charter.json" "scripts/verificationgenesisgen.sh")
     ("evidence-before-change" "docs/generated/verification-evidence-before-change.json" "scripts/verificationevidencebeforechangegen.sh")
     ("versioned-ssot" "docs/generated/verification-versioned-ssot.json" "scripts/verificationversionedssotgen.sh")
     ("context-map" "docs/generated/verification-context-map.json" "scripts/verificationcontextmapgen.sh")

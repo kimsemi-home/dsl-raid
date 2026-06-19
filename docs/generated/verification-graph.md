@@ -17,7 +17,7 @@ The generated workflow is `.github/workflows/verification.yml`.
 | unit-test | lint | Rust workspace unit test evidence. | 1 |
 | integration-test | unit-test | Viewer test and build evidence. | 3 |
 | conformance | integration-test | Unified DSLRaid semantic and generated-output gate. | 1 |
-| release-check | conformance | Generated workflow, docs index, and artifact freshness. | 54 |
+| release-check | conformance | Generated workflow, docs index, and artifact freshness. | 55 |
 
 ## Generated Backends
 
@@ -53,6 +53,7 @@ The generated workflow is `.github/workflows/verification.yml`.
 | github-actions-suite | `docs/generated/verification-github-actions.json` | `scripts/verificationactionsgen.sh` |
 | release-provenance | `docs/generated/verification-release-provenance.json` | `scripts/verificationreleaseprovenancegen.sh` |
 | incident-learning | `docs/generated/verification-incident-learning.json` | `scripts/verificationincidentgen.sh` |
+| genesis-charter | `docs/generated/verification-genesis-charter.json` | `scripts/verificationgenesisgen.sh` |
 | evidence-before-change | `docs/generated/verification-evidence-before-change.json` | `scripts/verificationevidencebeforechangegen.sh` |
 | versioned-ssot | `docs/generated/verification-versioned-ssot.json` | `scripts/verificationversionedssotgen.sh` |
 | context-map | `docs/generated/verification-context-map.json` | `scripts/verificationcontextmapgen.sh` |

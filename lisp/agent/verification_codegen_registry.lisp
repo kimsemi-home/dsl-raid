@@ -32,6 +32,7 @@
     ("github-actions-suite" ("github-actions-suite"))
     ("evidence-before-change" ("evidence-before-change"))
     ("incident-learning" ("incident-learning"))
+    ("genesis-charter" ("genesis-charter"))
     ("versioned-ssot" ("versioned-ssot"))
     ("context-map" ("context-map"))
     ("historical-interpreter" ("historical-interpreter"))

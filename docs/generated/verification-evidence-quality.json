@@ -400,6 +400,18 @@
                 "closure_rules"
             ],
             "meaning": "Incident learning evidence is suitable when owner, update, and recheck are explicit."
+        },
+        {
+            "id": "evidence-quality:genesis-charter",
+            "target": "docs/generated/verification-genesis-charter.json",
+            "quality": "high",
+            "purpose": "genesis-charter",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "charter",
+                "closure_rules"
+            ],
+            "meaning": "Genesis charter evidence is suitable when owner and revalidation are explicit."
         }
     ],
     "closure_rules": [

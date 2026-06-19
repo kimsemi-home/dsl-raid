@@ -1,0 +1,77 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationgenesisgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_genesis_charter.lisp",
+    "genesis_profile": "bounded-starting-contract",
+    "charter": {
+        "id": "genesis:verification-daemon",
+        "purpose": "Executable verification graph for generated quality surfaces.",
+        "bounded_contexts": [
+            "context:verification",
+            "context:codegen",
+            "context:release"
+        ],
+        "actors": [
+            "agent:verification-daemon",
+            "gate:quality",
+            "owner:verification"
+        ],
+        "artifacts": [
+            "lisp/agent/verification.lisp",
+            ".github/workflows/verification.yml"
+        ],
+        "evidence_types": [
+            "evidence:semantic-hash",
+            "evidence:conformance",
+            "evidence:artifact-freshness"
+        ],
+        "authority_rules": [
+            "authority:governance",
+            "gate:quality",
+            "gate:release"
+        ],
+        "assumptions": [
+            "assumption:file-generated-artifacts",
+            "assumption:generated-checks-are-authoritative"
+        ],
+        "non_goals": [
+            "non-goal:manual-diagram-source",
+            "non-goal:private-data-publication"
+        ],
+        "risk_boundaries": [
+            "risk:private-data",
+            "risk:authority-bypass",
+            "risk:ssot-drift"
+        ],
+        "review_owner": "owner:verification",
+        "revalidation": "revalidate:on-ontology-change",
+        "evidence": [
+            "docs/generated/verification-ontology.json",
+            "docs/generated/verification-evidence.json"
+        ],
+        "meaning": "Genesis charter names the first bounded responsibility record."
+    },
+    "closure_rules": [
+        {
+            "id": "genesis:owner-required",
+            "meaning": "Genesis charter has a non-agent owner.",
+            "check": "scripts/verificationgenesisgen.sh check"
+        },
+        {
+            "id": "genesis:revalidation-required",
+            "meaning": "Genesis charter names revalidation.",
+            "check": "scripts/verificationgenesisgen.sh check"
+        },
+        {
+            "id": "genesis:evidence-linked",
+            "meaning": "Genesis charter cites generated evidence.",
+            "check": "scripts/verificationgenesisgen.sh check"
+        },
+        {
+            "id": "genesis:non-goals-explicit",
+            "meaning": "Genesis charter names what it will not do.",
+            "check": "scripts/verificationgenesisgen.sh check"
+        }
+    ]
+}

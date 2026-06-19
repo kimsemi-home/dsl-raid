@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "279516fae108f586395150fede485c6a6cde45e91174e612ac4efcc69a99ef08"
+            "hash": "ceb12f7a9f16260471dd7c14a339b6a5392e296e9406590a22e5165fe7304bb5"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "1848779dcb54a81a873c22d844ec0b228a7b4f7f300944c64cfd524b091bf899"
+            "hash": "791c39a0493719e16937ac4a41775e637cb849644e0b5db2d3990718c2406776"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "655a1ec9062684206bfc10767596f567b3d11742ed8843cb947f1d60f0828d09"
+            "hash": "c767bc82a310f20aa528bbdd19358309eab19ef4d3e844568a105f0411f7633e"
         },
         {
             "id": "semantic:authority",
@@ -97,7 +97,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "93b761835511171f62361c0d399c0dca76a6fa570e07f86535bb215818f0c535"
+            "hash": "295ec6cd37ad675e61cdc9121c803773160d75e2f55bcd4d1c062be519993179"
         },
         {
             "id": "semantic:lease",
@@ -397,6 +397,17 @@
             ],
             "meaning": "Incident learning observe, owner, update, and prevention contract.",
             "hash": "292058cb070d2ecc13521d5a29f844a5d2f6aee4d29e488bef9659c106b89652"
+        },
+        {
+            "id": "semantic:genesis-charter",
+            "source": "docs/generated/verification-genesis-charter.json",
+            "fields": [
+                "genesis_profile",
+                "charter",
+                "closure_rules"
+            ],
+            "meaning": "Genesis charter purpose, assumption, owner, and risk contract.",
+            "hash": "37e04d669b2d4998dbe5479dbd2027964c0310dfa2ede09fad099ece4970285c"
         }
     ],
     "closure_rules": [

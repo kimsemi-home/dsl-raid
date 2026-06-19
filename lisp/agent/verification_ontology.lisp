@@ -13,7 +13,7 @@
     "reliability-registry" "cross-agent-agreement"
     "evidence-quality" "lease-and-abort" "review-capacity" "feedback-closure" "quarantine"
     "external-confidence" "verification-sidecar" "orchestration-manifest"
-    "control-plane-verifier" "provider-compat" "runtime-trace" "adr-governance" "backend-parity" "github-actions-suite" "evidence-before-change" "incident-learning" "versioned-ssot" "context-map"
+    "control-plane-verifier" "provider-compat" "runtime-trace" "adr-governance" "backend-parity" "github-actions-suite" "evidence-before-change" "incident-learning" "genesis-charter" "versioned-ssot" "context-map"
     "historical-interpreter" "ontology-transition" "ssot-defect"
     "root-cause" "semantic-debugger" "evidence-pruning" "security-audit"
     "failure-conditions" "debt-register"))

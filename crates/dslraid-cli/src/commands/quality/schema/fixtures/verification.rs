@@ -1,8 +1,14 @@
 use super::Fixture;
 
-const MANIFEST: &str = "schemas/dslraid-verification-manifest.schema.json";
+mod tail;
 
-pub(super) fn schemas() -> [Fixture; 39] {
+pub(super) const MANIFEST: &str = "schemas/dslraid-verification-manifest.schema.json";
+
+pub(super) fn schemas() -> impl Iterator<Item = Fixture> {
+    core_schemas().into_iter().chain(tail::schemas())
+}
+
+fn core_schemas() -> [Fixture; 25] {
     [
         (
             "schemas/dslraid-verification-evidence.schema.json",
@@ -38,37 +44,5 @@ pub(super) fn schemas() -> [Fixture; 39] {
             MANIFEST,
             "docs/generated/verification-release-provenance.json",
         ),
-        (
-            MANIFEST,
-            "docs/generated/verification-incident-learning.json",
-        ),
-        (
-            MANIFEST,
-            "docs/generated/verification-evidence-before-change.json",
-        ),
-        (MANIFEST, "docs/generated/verification-versioned-ssot.json"),
-        (MANIFEST, "docs/generated/verification-context-map.json"),
-        (
-            MANIFEST,
-            "docs/generated/verification-historical-interpreter.json",
-        ),
-        (
-            MANIFEST,
-            "docs/generated/verification-ontology-transition.json",
-        ),
-        (MANIFEST, "docs/generated/verification-ssot-defect.json"),
-        (MANIFEST, "docs/generated/verification-root-cause.json"),
-        (
-            MANIFEST,
-            "docs/generated/verification-semantic-debugger.json",
-        ),
-        (MANIFEST, "docs/generated/verification-pruning.json"),
-        (MANIFEST, "docs/generated/verification-security-audit.json"),
-        (
-            MANIFEST,
-            "docs/generated/verification-failure-conditions.json",
-        ),
-        (MANIFEST, "docs/generated/verification-debt.json"),
-        (MANIFEST, "docs/generated/verification-codegen.json"),
     ]
 }

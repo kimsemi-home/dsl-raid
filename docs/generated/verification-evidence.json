@@ -42,6 +42,7 @@
     {"backend": "github-actions-suite", "output": "docs/generated/verification-github-actions.json", "generator": "scripts/verificationactionsgen.sh", "check": "scripts/verificationactionsgen.sh check"},
     {"backend": "release-provenance", "output": "docs/generated/verification-release-provenance.json", "generator": "scripts/verificationreleaseprovenancegen.sh", "check": "scripts/verificationreleaseprovenancegen.sh check"},
     {"backend": "incident-learning", "output": "docs/generated/verification-incident-learning.json", "generator": "scripts/verificationincidentgen.sh", "check": "scripts/verificationincidentgen.sh check"},
+    {"backend": "genesis-charter", "output": "docs/generated/verification-genesis-charter.json", "generator": "scripts/verificationgenesisgen.sh", "check": "scripts/verificationgenesisgen.sh check"},
     {"backend": "evidence-before-change", "output": "docs/generated/verification-evidence-before-change.json", "generator": "scripts/verificationevidencebeforechangegen.sh", "check": "scripts/verificationevidencebeforechangegen.sh check"},
     {"backend": "versioned-ssot", "output": "docs/generated/verification-versioned-ssot.json", "generator": "scripts/verificationversionedssotgen.sh", "check": "scripts/verificationversionedssotgen.sh check"},
     {"backend": "context-map", "output": "docs/generated/verification-context-map.json", "generator": "scripts/verificationcontextmapgen.sh", "check": "scripts/verificationcontextmapgen.sh check"},
@@ -70,7 +71,7 @@
     {"id": "unit-test", "commands": 1, "evidence": "Rust workspace unit test evidence."},
     {"id": "integration-test", "commands": 3, "evidence": "Viewer test and build evidence."},
     {"id": "conformance", "commands": 1, "evidence": "Unified DSLRaid semantic and generated-output gate."},
-    {"id": "release-check", "commands": 54, "evidence": "Generated workflow, docs index, and artifact freshness."}
+    {"id": "release-check", "commands": 55, "evidence": "Generated workflow, docs index, and artifact freshness."}
   ],
   "pdca": [
     "plan",
