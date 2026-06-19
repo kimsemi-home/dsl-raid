@@ -8,6 +8,7 @@ pub(super) fn check() -> Result<()> {
     run_script("scripts/lisp-docgen.sh")?;
     run_script("scripts/langdiaggen.sh")?;
     run_script("scripts/backendgen.sh")?;
+    run_script("scripts/workflowgen.sh")?;
     run_lisp_irgen()?;
     run_script("scripts/lisp-rustgen.sh")?;
     validate_lisp_ir(Path::new("examples/runscope/runscope.lisp.raid.json"))

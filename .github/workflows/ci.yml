@@ -132,8 +132,11 @@ jobs:
           grep -q 'scripts/lisp-docgen.sh' "$owner"
           grep -q 'scripts/langdiaggen.sh' "$owner"
           grep -q 'scripts/backendgen.sh' "$owner"
+          grep -q 'scripts/workflowgen.sh' "$owner"
           grep -q 'scripts/lisp-irgen.sh' "$owner"
           grep -q 'scripts/lisp-rustgen.sh' "$owner"
+          grep -q 'scripts/verificationdocgen.sh' \
+            crates/dslraid-cli/src/commands/quality/docs/scripts.rs
           echo "lisp authoring checks are covered by dslraid quality"
 
   dslraid:

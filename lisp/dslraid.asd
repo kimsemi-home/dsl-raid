@@ -11,7 +11,9 @@
    (:module "agent"
     :serial t
     :components
-    ((:file "package") (:file "principles") (:file "markdown")))
+    ((:file "package") (:file "principles") (:file "markdown")
+     (:file "verification") (:file "verification_markdown")
+     (:file "verification_workflow")))
    (:module "ir"
     :serial t
     :components

@@ -16,3 +16,4 @@ Source: `docs/generated/*.md`
 | [lisp-pipeline.md](lisp-pipeline.md) | DSLRaid Lisp Pipeline | `scripts/lisp-docgen.sh` |
 | [roadmap-index.md](roadmap-index.md) | DSLRaid Roadmap Index | `scripts/roadmapgen.sh` |
 | [trace-catalog.md](trace-catalog.md) | DSLRaid Trace Catalog | `scripts/tracegen.sh` |
+| [verification-graph.md](verification-graph.md) | DSLRaid Verification Graph | `scripts/verificationdocgen.sh` |
