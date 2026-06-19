@@ -143,6 +143,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.control-plane-verifier",
+            "subject": "docs/generated/verification-control-plane.json",
+            "check": "scripts/verificationcontrolgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.evidence-before-change",
             "subject": "docs/generated/verification-evidence-before-change.json",
             "check": "scripts/verificationevidencebeforechangegen.sh check",

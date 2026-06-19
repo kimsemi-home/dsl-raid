@@ -13,7 +13,7 @@
     "reliability-registry" "cross-agent-agreement"
     "evidence-quality" "lease-and-abort" "review-capacity" "feedback-closure" "quarantine"
     "external-confidence" "verification-sidecar" "orchestration-manifest"
-    "evidence-before-change" "versioned-ssot" "context-map"
+    "control-plane-verifier" "evidence-before-change" "versioned-ssot" "context-map"
     "historical-interpreter" "ontology-transition" "ssot-defect"
     "root-cause" "semantic-debugger" "evidence-pruning" "security-audit"
     "failure-conditions" "debt-register"))

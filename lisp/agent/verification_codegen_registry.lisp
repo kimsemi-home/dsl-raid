@@ -24,6 +24,7 @@
     ("external-confidence" ("confidence-manifest"))
     ("verification-sidecar" ("sidecar-manifest"))
     ("orchestration-manifest" ("orchestration-manifest"))
+    ("control-plane-verifier" ("control-plane-verifier"))
     ("evidence-before-change" ("evidence-before-change"))
     ("versioned-ssot" ("versioned-ssot"))
     ("context-map" ("context-map"))

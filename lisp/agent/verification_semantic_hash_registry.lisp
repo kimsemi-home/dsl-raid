@@ -41,6 +41,7 @@
     ("semantic:orchestration" "docs/generated/verification-orchestration.json"
      ("orchestration_profile" "routes" "closure_rules")
      "Policy-bound orchestration routing receipt contract.")
+    ("semantic:control-plane" "docs/generated/verification-control-plane.json" ("control_plane_profile" "routes" "closure_rules") "Control-plane sidecar and shadow verifier contract.")
     ("semantic:evidence-before-change"
      "docs/generated/verification-evidence-before-change.json"
      ("evidence_before_change_profile" "changes" "closure_rules")

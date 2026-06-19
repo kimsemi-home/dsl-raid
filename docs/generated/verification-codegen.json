@@ -146,6 +146,12 @@
             ]
         },
         {
+            "axis": "control-plane-verifier",
+            "backends": [
+                "control-plane-verifier"
+            ]
+        },
+        {
             "axis": "evidence-before-change",
             "backends": [
                 "evidence-before-change"

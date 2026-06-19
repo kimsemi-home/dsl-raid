@@ -1,0 +1,71 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationcontrolgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_control_plane.lisp",
+    "control_plane_profile": "independent-shadow-verifier",
+    "routes": [
+        {
+            "id": "control-plane:release-route",
+            "route": "route:release-check",
+            "control_plane": "control-plane:primary",
+            "verifier": "sidecar:control-plane-verifier",
+            "shadow": "shadow:release-orchestrator",
+            "divergence": "D2",
+            "severity": "review",
+            "authority": "authority:governance",
+            "evidence": [
+                "docs/generated/verification-orchestration.json",
+                "docs/generated/verification-sidecar.json"
+            ],
+            "meaning": "Release routing is checked by an independent verifier and shadow route."
+        },
+        {
+            "id": "control-plane:authority-route",
+            "route": "route:authority-gate",
+            "control_plane": "control-plane:primary",
+            "verifier": "sidecar:control-plane-verifier",
+            "shadow": "shadow:authority-orchestrator",
+            "divergence": "D3",
+            "severity": "human-review",
+            "authority": "authority:governance",
+            "evidence": [
+                "docs/generated/verification-authority.json",
+                "docs/generated/verification-review-capacity.json"
+            ],
+            "meaning": "Authority routing divergence requires human governance review."
+        },
+        {
+            "id": "control-plane:policy-route",
+            "route": "route:policy-boundary",
+            "control_plane": "control-plane:primary",
+            "verifier": "sidecar:control-plane-verifier",
+            "shadow": "shadow:policy-orchestrator",
+            "divergence": "D4",
+            "severity": "authority-blocked",
+            "authority": "authority:security",
+            "evidence": [
+                "docs/generated/verification-access-policy.json",
+                "docs/generated/verification-security-audit.json"
+            ],
+            "meaning": "Policy hash or trust-boundary divergence blocks control-plane authority."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "control-plane:verifier-separated",
+            "meaning": "Control plane cannot verify itself.",
+            "check": "scripts/verificationcontrolgen.sh check"
+        },
+        {
+            "id": "control-plane:shadow-required",
+            "meaning": "High-risk routes require a shadow route.",
+            "check": "scripts/verificationcontrolgen.sh check"
+        },
+        {
+            "id": "control-plane:divergence-gated",
+            "meaning": "D3 and D4 divergence require authority gates.",
+            "check": "scripts/verificationcontrolgen.sh check"
+        }
+    ]
+}

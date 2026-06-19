@@ -162,6 +162,18 @@
             "meaning": "Orchestration evidence is suitable when routes link policy and outputs."
         },
         {
+            "id": "evidence-quality:control-plane",
+            "target": "docs/generated/verification-control-plane.json",
+            "quality": "high",
+            "purpose": "control-plane-verifier",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "routes",
+                "closure_rules"
+            ],
+            "meaning": "Control-plane verifier evidence is suitable when shadow and sidecar checks are explicit."
+        },
+        {
             "id": "evidence-quality:evidence-before-change",
             "target": "docs/generated/verification-evidence-before-change.json",
             "quality": "high",

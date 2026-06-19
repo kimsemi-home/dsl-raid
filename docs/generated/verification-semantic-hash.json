@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "d21e0de5b2b942109f8edc91ee158671e9a3b6401c4e3f6134ad4c3c979d4e26"
+            "hash": "83f227019e06123f642d6de0bbe95bc741dab906f4d752bff831c1ea6ed70b3d"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "5b6f56b1c5a1e4a2b2dab34f585400d7c39d72e4779523e9ee10b5eba59b2807"
+            "hash": "9e1ef70a9f1d65ffb72641bed16bb58504623b41b1b880433bde1c57df8bf99b"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "dc2cb2ea479bbba06377566f1f772884a3d922881d25a98674382f038ffa2a59"
+            "hash": "3b9cdad691f48539f73158b39c9bfcaacd8a2bebf3e993f0883cb189abca6660"
         },
         {
             "id": "semantic:authority",
@@ -97,7 +97,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "cbf28f230285bb4e92a7c6ba4a3d3380fc618f918ecb84224cb0cb448fdc1a72"
+            "hash": "c7e52d2453c219694aa5dca12df4a34aafa3abef168bfaffbfe095e2af3b94ce"
         },
         {
             "id": "semantic:lease",
@@ -177,6 +177,17 @@
             ],
             "meaning": "Policy-bound orchestration routing receipt contract.",
             "hash": "aabc6bf91c66f48d3811cf1cc5dc18c3ece5fa7b4f478845677786cb7daaaff6"
+        },
+        {
+            "id": "semantic:control-plane",
+            "source": "docs/generated/verification-control-plane.json",
+            "fields": [
+                "control_plane_profile",
+                "routes",
+                "closure_rules"
+            ],
+            "meaning": "Control-plane sidecar and shadow verifier contract.",
+            "hash": "13ef6b38216c302a0f14388e8c3623ad16957ec0ff5f462a487269634ebec592"
         },
         {
             "id": "semantic:evidence-before-change",

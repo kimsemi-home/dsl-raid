@@ -46,6 +46,7 @@
         "external-confidence",
         "verification-sidecar",
         "orchestration-manifest",
+        "control-plane-verifier",
         "evidence-before-change",
         "versioned-ssot",
         "context-map",
