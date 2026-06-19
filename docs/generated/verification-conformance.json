@@ -185,6 +185,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.failure-conditions",
+            "subject": "docs/generated/verification-failure-conditions.json",
+            "check": "scripts/verificationfailuregen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.rust-code",
             "subject": "generated/runtime_fsm.rs",
             "check": "scripts/lisp-rustgen.sh check",

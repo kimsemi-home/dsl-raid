@@ -67,9 +67,6 @@
     ("semantic:semantic-debugger" "docs/generated/verification-semantic-debugger.json"
      ("semantic_debugger_profile" "sessions" "closure_rules")
      "Semantic debugger question and evidence contract.")
-    ("semantic:evidence-pruning" "docs/generated/verification-pruning.json"
-     ("evidence_pruning_profile" "decisions" "closure_rules")
-     "Evidence pruning retention and tombstone contract.")
-    ("semantic:security-audit" "docs/generated/verification-security-audit.json"
-     ("security_audit_profile" "boundaries" "closure_rules")
-     "Security audit permission boundary contract.")))
+    ("semantic:evidence-pruning" "docs/generated/verification-pruning.json" ("evidence_pruning_profile" "decisions" "closure_rules") "Evidence pruning retention and tombstone contract.")
+    ("semantic:security-audit" "docs/generated/verification-security-audit.json" ("security_audit_profile" "boundaries" "closure_rules") "Security audit permission boundary contract.")
+    ("semantic:failure-conditions" "docs/generated/verification-failure-conditions.json" ("failure_profile" "conditions" "closure_rules") "Operational failure condition contract.")))

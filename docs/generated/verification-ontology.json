@@ -52,6 +52,7 @@
         "root-cause",
         "semantic-debugger",
         "evidence-pruning",
-        "security-audit"
+        "security-audit",
+        "failure-conditions"
     ]
 }

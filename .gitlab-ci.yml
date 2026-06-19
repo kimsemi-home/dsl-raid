@@ -134,6 +134,8 @@ release-check:
     - |
       bash scripts/verificationsecuritygen.sh check
     - |
+      bash scripts/verificationfailuregen.sh check
+    - |
       bash scripts/lisp-rustgen.sh check
     - |
       bash scripts/verificationdocgen.sh check

@@ -30,7 +30,8 @@
     ("root-cause" ("root-cause"))
     ("semantic-debugger" ("semantic-debugger"))
     ("evidence-pruning" ("evidence-pruning"))
-    ("security-audit" ("security-audit"))))
+    ("security-audit" ("security-audit"))
+    ("failure-conditions" ("failure-conditions"))))
 
 (defparameter *verification-codegen-rules*
   '(("codegen:axis-covered" "Every ontology codegen axis maps to a backend.")

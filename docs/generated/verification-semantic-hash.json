@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "f0236268e35622d146a0454bfac266d84b2cf81074fc1da2c5d0ecdc85527b72"
+            "hash": "11875209d825e4091828b200354c99b87605717186e07843673802fbb4956bdc"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "267a81f9754bb17f3c16666c003ad771897472144571832611eba854c854902b"
+            "hash": "aa154f9f8c18eaf34bb33891cd2595ce3dd25c0295291e4388c6b5529d1eb3e6"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "3d893d2d26f04bf5cffd78f069d442bdfc0ecad7dc2020dde0fa28b6b71226a0"
+            "hash": "0b147e040a45db31f999213c3bf33fd5f8815d3e4623a48050615393caf3a02b"
         },
         {
             "id": "semantic:authority",
@@ -64,7 +64,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "645a8c1992eb621a2d3e7cdcdeaf4742b7b4de1a70c5ffbd455b6d640a028809"
+            "hash": "bc9a6931712634dbb5002d55db61868fe180fc1b6df7372cca8fba8ffa650439"
         },
         {
             "id": "semantic:lease",
@@ -254,6 +254,17 @@
             ],
             "meaning": "Security audit permission boundary contract.",
             "hash": "30db81d4c2a3ea33d4a93718996cda5190ab6dc0770c7e3402e5c920349198fb"
+        },
+        {
+            "id": "semantic:failure-conditions",
+            "source": "docs/generated/verification-failure-conditions.json",
+            "fields": [
+                "failure_profile",
+                "conditions",
+                "closure_rules"
+            ],
+            "meaning": "Operational failure condition contract.",
+            "hash": "a90bda8bd56100158b0d53df729c40112394e78dff2ac5c73469c6f15852d996"
         }
     ],
     "closure_rules": [

@@ -186,6 +186,12 @@
             "backends": [
                 "security-audit"
             ]
+        },
+        {
+            "axis": "failure-conditions",
+            "backends": [
+                "failure-conditions"
+            ]
         }
     ],
     "closure_rules": [

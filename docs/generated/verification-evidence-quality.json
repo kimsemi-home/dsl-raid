@@ -244,6 +244,18 @@
                 "closure_rules"
             ],
             "meaning": "Security audit evidence is suitable when approval and rollback are explicit."
+        },
+        {
+            "id": "evidence-quality:failure-conditions",
+            "target": "docs/generated/verification-failure-conditions.json",
+            "quality": "high",
+            "purpose": "failure-conditions",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "conditions",
+                "closure_rules"
+            ],
+            "meaning": "Failure condition evidence is suitable when blocked authority is explicit."
         }
     ],
     "closure_rules": [

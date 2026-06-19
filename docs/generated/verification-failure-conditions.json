@@ -1,0 +1,154 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationfailuregen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification.lisp",
+    "failure_profile": "operational-breakage",
+    "conditions": [
+        {
+            "id": "failure:ontology-context",
+            "domain": "ontology",
+            "signal": "contextless-concept",
+            "severity": "error",
+            "blocks": [
+                "approve-change"
+            ],
+            "evidence": [
+                "docs/generated/verification-ontology.json",
+                "docs/generated/verification-context-map.json"
+            ],
+            "response": "response:add-context-version",
+            "owner": "owner:ontology",
+            "meaning": "Concepts without context or version break ontology authority."
+        },
+        {
+            "id": "failure:confidence-self",
+            "domain": "confidence",
+            "signal": "self-confidence-final",
+            "severity": "error",
+            "blocks": [
+                "increase-confidence"
+            ],
+            "evidence": [
+                "docs/generated/verification-confidence.json",
+                "docs/generated/verification-evidence-quality.json"
+            ],
+            "response": "response:external-confidence",
+            "owner": "owner:quality",
+            "meaning": "Agent confidence is not final confidence."
+        },
+        {
+            "id": "failure:reviewer-isolation",
+            "domain": "reviewer",
+            "signal": "producer-selected-reviewer",
+            "severity": "warning",
+            "blocks": [
+                "approve-review"
+            ],
+            "evidence": [
+                "docs/generated/verification-sidecar.json",
+                "docs/generated/verification-review-capacity.json"
+            ],
+            "response": "response:independent-review",
+            "owner": "owner:review",
+            "meaning": "Reviewer agreement needs isolation and canonical artifacts."
+        },
+        {
+            "id": "failure:control-plane-manifest",
+            "domain": "control-plane",
+            "signal": "missing-orchestration-manifest",
+            "severity": "error",
+            "blocks": [
+                "route-work"
+            ],
+            "evidence": [
+                "docs/generated/verification-orchestration.json",
+                "docs/generated/verification-authority.json"
+            ],
+            "response": "response:create-manifest",
+            "owner": "owner:control-plane",
+            "meaning": "Control plane decisions require manifest evidence."
+        },
+        {
+            "id": "failure:lease-missing",
+            "domain": "lease",
+            "signal": "no-active-lease",
+            "severity": "error",
+            "blocks": [
+                "commit-artifact"
+            ],
+            "evidence": [
+                "docs/generated/verification-lease.json",
+                "docs/generated/verification-quarantine.json"
+            ],
+            "response": "response:abort-or-rebase",
+            "owner": "owner:lease",
+            "meaning": "Lease failures block artifact authority."
+        },
+        {
+            "id": "failure:translation-loss",
+            "domain": "translation",
+            "signal": "lossy-without-ledger",
+            "severity": "error",
+            "blocks": [
+                "promote-adapter"
+            ],
+            "evidence": [
+                "docs/generated/verification-loss-ledger.json",
+                "docs/generated/verification-context-map.json"
+            ],
+            "response": "response:record-loss",
+            "owner": "owner:translation",
+            "meaning": "Lossy translation needs a loss ledger."
+        },
+        {
+            "id": "failure:evidence-quality-stale",
+            "domain": "evidence-quality",
+            "signal": "quality-snapshot-stale",
+            "severity": "warning",
+            "blocks": [
+                "raise-confidence"
+            ],
+            "evidence": [
+                "docs/generated/verification-evidence-quality.json",
+                "docs/generated/verification-pruning.json"
+            ],
+            "response": "response:reassess-quality",
+            "owner": "owner:evidence",
+            "meaning": "Evidence quality snapshots must be refreshed after meaning changes."
+        },
+        {
+            "id": "failure:feedback-open",
+            "domain": "feedback",
+            "signal": "loop-gap-without-owner",
+            "severity": "warning",
+            "blocks": [
+                "close-incident"
+            ],
+            "evidence": [
+                "docs/generated/verification-feedback.json",
+                "docs/generated/verification-codegen.json"
+            ],
+            "response": "response:assign-owner",
+            "owner": "owner:feedback",
+            "meaning": "Open feedback loops stay evidence until knowledge updates."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "failure:blocks-explicit",
+            "meaning": "Every failure condition declares blocked authority.",
+            "check": "scripts/verificationfailuregen.sh check"
+        },
+        {
+            "id": "failure:evidence-linked",
+            "meaning": "Failure conditions link generated evidence.",
+            "check": "scripts/verificationfailuregen.sh check"
+        },
+        {
+            "id": "failure:owner-required",
+            "meaning": "Each failure condition has a non-agent owner.",
+            "check": "scripts/verificationfailuregen.sh check"
+        }
+    ]
+}

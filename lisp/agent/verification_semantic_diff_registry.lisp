@@ -46,4 +46,6 @@
     ("semantic-diff:evidence-pruning" "semantic:evidence-pruning"
      "Evidence pruning semantic receipt.")
     ("semantic-diff:security-audit" "semantic:security-audit"
-     "Security audit semantic receipt.")))
+     "Security audit semantic receipt.")
+    ("semantic-diff:failure-conditions" "semantic:failure-conditions"
+     "Failure conditions semantic receipt.")))
