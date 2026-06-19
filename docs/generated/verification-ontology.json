@@ -51,6 +51,7 @@
         "ssot-defect",
         "root-cause",
         "semantic-debugger",
-        "evidence-pruning"
+        "evidence-pruning",
+        "security-audit"
     ]
 }

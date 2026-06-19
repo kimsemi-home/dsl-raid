@@ -1,0 +1,50 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationsecuritygen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification.lisp",
+    "security_audit_profile": "permission-boundary",
+    "boundaries": [
+        {
+            "id": "security-audit:permission-boundary",
+            "change_kind": "permission-change",
+            "policy": "policy:verification-permission-change",
+            "semantic_hash": "docs/generated/verification-semantic-hash.json",
+            "affected_paths": [
+                "authz:verification-release",
+                "authz:generated-artifact"
+            ],
+            "rbac_check": "rbac:verification-gate",
+            "abac_check": "abac:public-generated-evidence",
+            "audit_check": "audit:permission-change",
+            "conformance": "docs/generated/verification-conformance.json",
+            "approval": "human:security-steward",
+            "rollback": "rollback:restore-prior-policy",
+            "authority": "gate:security",
+            "risk": "high",
+            "evidence": [
+                "docs/generated/verification-authority.json",
+                "docs/generated/verification-semantic-hash.json",
+                "docs/generated/verification-conformance.json"
+            ],
+            "meaning": "Permission changes require policy, audit, approval, and rollback."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "security:policy-first",
+            "meaning": "Permission changes start from policy DSL.",
+            "check": "scripts/verificationsecuritygen.sh check"
+        },
+        {
+            "id": "security:audit-required",
+            "meaning": "Audit and conformance evidence are required.",
+            "check": "scripts/verificationsecuritygen.sh check"
+        },
+        {
+            "id": "security:human-approval",
+            "meaning": "High risk permission changes require human approval.",
+            "check": "scripts/verificationsecuritygen.sh check"
+        }
+    ]
+}

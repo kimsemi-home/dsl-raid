@@ -180,6 +180,12 @@
             "backends": [
                 "evidence-pruning"
             ]
+        },
+        {
+            "axis": "security-audit",
+            "backends": [
+                "security-audit"
+            ]
         }
     ],
     "closure_rules": [

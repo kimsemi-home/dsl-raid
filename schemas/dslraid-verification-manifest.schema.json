@@ -1080,6 +1080,51 @@
                     }
                 }
             }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
+                "security_audit_profile",
+                "boundaries",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationsecuritygen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "security_audit_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "boundaries": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/security_audit_boundary"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
         }
     ],
     "$defs": {
@@ -2227,6 +2272,79 @@
                 },
                 "authority": {
                     "$ref": "#/$defs/semantic_ref"
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "security_audit_boundary": {
+            "type": "object",
+            "required": [
+                "id",
+                "change_kind",
+                "policy",
+                "semantic_hash",
+                "affected_paths",
+                "rbac_check",
+                "abac_check",
+                "audit_check",
+                "conformance",
+                "approval",
+                "rollback",
+                "authority",
+                "risk",
+                "evidence",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "change_kind": {
+                    "const": "permission-change"
+                },
+                "policy": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "semantic_hash": {
+                    "$ref": "#/$defs/path"
+                },
+                "affected_paths": {
+                    "$ref": "#/$defs/strings"
+                },
+                "rbac_check": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "abac_check": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "audit_check": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "conformance": {
+                    "$ref": "#/$defs/path"
+                },
+                "approval": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "rollback": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "authority": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "risk": {
+                    "enum": [
+                        "low",
+                        "medium",
+                        "high"
+                    ]
                 },
                 "evidence": {
                     "$ref": "#/$defs/strings"

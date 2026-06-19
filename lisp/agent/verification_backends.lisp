@@ -52,6 +52,8 @@
      "scripts/verificationdebuggergen.sh")
     ("evidence-pruning" "docs/generated/verification-pruning.json"
      "scripts/verificationpruninggen.sh")
+    ("security-audit" "docs/generated/verification-security-audit.json"
+     "scripts/verificationsecuritygen.sh")
     ("rust-code" "generated/runtime_fsm.rs" "scripts/lisp-rustgen.sh")
     ("verification-doc" "docs/generated/verification-graph.md"
      "scripts/verificationdocgen.sh")

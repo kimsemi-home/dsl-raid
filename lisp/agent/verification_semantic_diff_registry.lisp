@@ -44,4 +44,6 @@
     ("semantic-diff:semantic-debugger" "semantic:semantic-debugger"
      "Semantic debugger semantic receipt.")
     ("semantic-diff:evidence-pruning" "semantic:evidence-pruning"
-     "Evidence pruning semantic receipt.")))
+     "Evidence pruning semantic receipt.")
+    ("semantic-diff:security-audit" "semantic:security-audit"
+     "Security audit semantic receipt.")))

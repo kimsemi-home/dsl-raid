@@ -232,6 +232,18 @@
                 "closure_rules"
             ],
             "meaning": "Pruning evidence is suitable when tombstones and authority are explicit."
+        },
+        {
+            "id": "evidence-quality:security-audit",
+            "target": "docs/generated/verification-security-audit.json",
+            "quality": "high",
+            "purpose": "security-audit",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "boundaries",
+                "closure_rules"
+            ],
+            "meaning": "Security audit evidence is suitable when approval and rollback are explicit."
         }
     ],
     "closure_rules": [
