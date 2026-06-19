@@ -450,6 +450,51 @@
                     }
                 }
             }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
+                "feedback_profile",
+                "closures",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationfeedbackgen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "feedback_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "closures": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/feedback_closure"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
         }
     ],
     "$defs": {
@@ -913,6 +958,53 @@
                         "freeze-governed-automation",
                         "create-review-debt"
                     ]
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "feedback_closure": {
+            "type": "object",
+            "required": [
+                "id",
+                "trigger",
+                "update",
+                "owner",
+                "status",
+                "revalidation",
+                "evidence",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "trigger": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "update": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "owner": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "status": {
+                    "enum": [
+                        "open",
+                        "closed",
+                        "revalidating"
+                    ]
+                },
+                "revalidation": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
                 },
                 "meaning": {
                     "type": "string",

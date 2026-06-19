@@ -64,6 +64,18 @@
                 "overload_rules"
             ],
             "meaning": "Review capacity evidence is suitable when overload freezes automation."
+        },
+        {
+            "id": "evidence-quality:feedback",
+            "target": "docs/generated/verification-feedback.json",
+            "quality": "high",
+            "purpose": "feedback-closure",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "closures",
+                "closure_rules"
+            ],
+            "meaning": "Feedback evidence is suitable when closures name update and revalidation."
         }
     ],
     "closure_rules": [

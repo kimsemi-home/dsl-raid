@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "3ce697c5bd49abbd87fcaa75de6db72aabc05f7d067f23ded9c0f85ec37abb7d"
+            "hash": "d44ff58b0cc41e6a7bb7c7a8d1892e32ae973c338f4e71f97e89abbb1c06dab7"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "9e9acc57ce11ddfcf9cddd22164bbb8f102382f47e73709685ad806f2b7308ff"
+            "hash": "fd1ee35ed46dad0cf91863f8a5b2761b4fb203cdb9ce5c15822ec0a32dff288a"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "db836519acc765b6b8ab2fcd23076b107ead1c661014ea72c63c69361efa8ced"
+            "hash": "3882018760c30ecb5a9a40e5aa96c7f11826adaaa60618a04f1dafead9e67502"
         },
         {
             "id": "semantic:authority",
@@ -64,7 +64,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "ce29e7ddfd9561e66271731a073dea6cf0e35d247cdc337910294e5c9721c1b8"
+            "hash": "dbced4a16ea68381af1f931ac7f333eda6eafa16e381490bae224dda397333a5"
         },
         {
             "id": "semantic:lease",
@@ -89,6 +89,17 @@
             ],
             "meaning": "Review capacity and overload freeze boundary for verification work.",
             "hash": "c5e333203482a9ebc8652561adfe97d342f20777127427e4a821422de8772654"
+        },
+        {
+            "id": "semantic:feedback-closure",
+            "source": "docs/generated/verification-feedback.json",
+            "fields": [
+                "feedback_profile",
+                "closures",
+                "closure_rules"
+            ],
+            "meaning": "Feedback closure and revalidation contract for verification learning.",
+            "hash": "ea15550ba5248d3726573559bf1f7769874e89020ea2d288e677e247c47e641b"
         }
     ],
     "closure_rules": [

@@ -95,6 +95,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.feedback-closure",
+            "subject": "docs/generated/verification-feedback.json",
+            "check": "scripts/verificationfeedbackgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.rust-code",
             "subject": "generated/runtime_fsm.rs",
             "check": "scripts/lisp-rustgen.sh check",

@@ -104,6 +104,8 @@ release-check:
     - |
       bash scripts/verificationreviewgen.sh check
     - |
+      bash scripts/verificationfeedbackgen.sh check
+    - |
       bash scripts/lisp-rustgen.sh check
     - |
       bash scripts/verificationdocgen.sh check

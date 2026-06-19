@@ -24,4 +24,7 @@
      "Lease and abort authority boundary for verification work.")
     ("semantic:review-capacity" "docs/generated/verification-review-capacity.json"
      ("review_capacity_profile" "queues" "overload_rules" "closure_rules")
-     "Review capacity and overload freeze boundary for verification work.")))
+     "Review capacity and overload freeze boundary for verification work.")
+    ("semantic:feedback-closure" "docs/generated/verification-feedback.json"
+     ("feedback_profile" "closures" "closure_rules")
+     "Feedback closure and revalidation contract for verification learning.")))

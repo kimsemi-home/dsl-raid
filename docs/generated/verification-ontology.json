@@ -37,6 +37,7 @@
         "authority-gate",
         "evidence-quality",
         "lease-and-abort",
-        "review-capacity"
+        "review-capacity",
+        "feedback-closure"
     ]
 }

@@ -24,6 +24,8 @@
      "scripts/verificationleasegen.sh")
     ("review-capacity" "docs/generated/verification-review-capacity.json"
      "scripts/verificationreviewgen.sh")
+    ("feedback-closure" "docs/generated/verification-feedback.json"
+     "scripts/verificationfeedbackgen.sh")
     ("rust-code" "generated/runtime_fsm.rs" "scripts/lisp-rustgen.sh")
     ("verification-doc" "docs/generated/verification-graph.md"
      "scripts/verificationdocgen.sh")

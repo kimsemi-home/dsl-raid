@@ -16,4 +16,6 @@
     ("semantic-diff:lease" "semantic:lease"
      "Lease and abort semantic receipt.")
     ("semantic-diff:review-capacity" "semantic:review-capacity"
-     "Review capacity semantic receipt.")))
+     "Review capacity semantic receipt.")
+    ("semantic-diff:feedback-closure" "semantic:feedback-closure"
+     "Feedback closure semantic receipt.")))

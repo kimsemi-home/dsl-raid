@@ -1,0 +1,57 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationfeedbackgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification.lisp",
+    "feedback_profile": "knowledge-closure-loop",
+    "closures": [
+        {
+            "id": "feedback:stale-generated-output",
+            "trigger": "stale-output",
+            "update": "spec:update-generated-freshness",
+            "owner": "gate:quality",
+            "status": "closed",
+            "revalidation": "revalidate-generated-output",
+            "evidence": [
+                "docs/generated/verification-conformance.json",
+                "docs/generated/verification-semantic-diff.json"
+            ],
+            "meaning": "Stale output feedback closes through regeneration and semantic recheck."
+        },
+        {
+            "id": "feedback:review-overload",
+            "trigger": "review-overload",
+            "update": "policy:update-review-capacity",
+            "owner": "gate:review-capacity",
+            "status": "closed",
+            "revalidation": "revalidate-review-capacity",
+            "evidence": [
+                "docs/generated/verification-review-capacity.json",
+                "docs/generated/verification-evidence-quality.json"
+            ],
+            "meaning": "Review overload feedback closes through capacity policy update."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "feedback:owner-required",
+            "meaning": "Every feedback item has a governance owner.",
+            "check": "scripts/verificationfeedbackgen.sh check"
+        },
+        {
+            "id": "feedback:update-required",
+            "meaning": "Every closed feedback item names a knowledge update.",
+            "check": "scripts/verificationfeedbackgen.sh check"
+        },
+        {
+            "id": "feedback:evidence-linked",
+            "meaning": "Every feedback item links generated evidence.",
+            "check": "scripts/verificationfeedbackgen.sh check"
+        },
+        {
+            "id": "feedback:revalidation-required",
+            "meaning": "Closure requires a revalidation target.",
+            "check": "scripts/verificationfeedbackgen.sh check"
+        }
+    ]
+}

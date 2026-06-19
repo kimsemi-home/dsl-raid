@@ -96,6 +96,12 @@
             "backends": [
                 "review-capacity"
             ]
+        },
+        {
+            "axis": "feedback-closure",
+            "backends": [
+                "feedback-closure"
+            ]
         }
     ],
     "closure_rules": [
