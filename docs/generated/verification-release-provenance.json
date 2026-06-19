@@ -1,0 +1,94 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationreleaseprovenancegen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_release_provenance.lisp",
+    "release_profile": "tag-bound-generated-release",
+    "gates": [
+        {
+            "id": "release-provenance:tag-trigger",
+            "gate": "tag-trigger",
+            "workflow": ".github/workflows/release.yml",
+            "requires": [
+                "tags:",
+                "- 'v*'"
+            ],
+            "evidence": [
+                "docs/generated/verification-github-actions.json"
+            ],
+            "status": "required",
+            "meaning": "Release promotion starts from an explicit version tag."
+        },
+        {
+            "id": "release-provenance:generated-check",
+            "gate": "generated-workflow-check",
+            "workflow": ".github/workflows/release.yml",
+            "requires": [
+                "bash scripts/releasegen.sh check"
+            ],
+            "evidence": [
+                "docs/generated/verification-conformance.json"
+            ],
+            "status": "required",
+            "meaning": "Generated release workflow must prove it is fresh."
+        },
+        {
+            "id": "release-provenance:build-test",
+            "gate": "release-build-test",
+            "workflow": ".github/workflows/release.yml",
+            "requires": [
+                "cargo test --workspace"
+            ],
+            "evidence": [
+                "docs/generated/verification-conformance.json"
+            ],
+            "status": "required",
+            "meaning": "Release promotion requires workspace test evidence."
+        },
+        {
+            "id": "release-provenance:publish-permission",
+            "gate": "publish-permission",
+            "workflow": ".github/workflows/release.yml",
+            "requires": [
+                "permissions:",
+                "contents: write"
+            ],
+            "evidence": [
+                "docs/generated/verification-access-policy.json"
+            ],
+            "status": "required",
+            "meaning": "Release publishing requires explicit write permission."
+        },
+        {
+            "id": "release-provenance:create-release",
+            "gate": "publish-command",
+            "workflow": ".github/workflows/release.yml",
+            "requires": [
+                "GH_TOKEN",
+                "gh release create"
+            ],
+            "evidence": [
+                "docs/generated/verification-security-audit.json"
+            ],
+            "status": "required",
+            "meaning": "Release command uses GitHub-provided token only inside the workflow."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "release-provenance:tag-bound",
+            "meaning": "Release publication must be tag-bound.",
+            "check": "scripts/verificationreleaseprovenancegen.sh check"
+        },
+        {
+            "id": "release-provenance:fresh-generated-workflow",
+            "meaning": "Generated release workflow must be fresh.",
+            "check": "scripts/verificationreleaseprovenancegen.sh check"
+        },
+        {
+            "id": "release-provenance:evidence-linked",
+            "meaning": "Each release gate links generated evidence.",
+            "check": "scripts/verificationreleaseprovenancegen.sh check"
+        }
+    ]
+}

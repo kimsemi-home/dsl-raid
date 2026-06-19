@@ -7,7 +7,7 @@
     ("tests" ("test-manifest"))
     ("conformance" ("conformance-report" "evidence-json"))
     ("github-actions" ("github-actions"))
-    ("release-pipelines" ("github-release"))
+    ("release-pipelines" ("github-release" "release-provenance"))
     ("pdca-evidence" ("pdca-manifest"))
     ("loss-ledger" ("loss-ledger"))
     ("semantic-hash" ("semantic-hash"))

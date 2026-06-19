@@ -1583,6 +1583,51 @@
                 "generated_by",
                 "subject",
                 "source",
+                "release_profile",
+                "gates",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationreleaseprovenancegen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "release_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "gates": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/release_provenance_gate"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
                 "adr_profile",
                 "records",
                 "closure_rules"
@@ -3402,6 +3447,44 @@
                 },
                 "evidence": {
                     "$ref": "#/$defs/strings"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "release_provenance_gate": {
+            "type": "object",
+            "required": [
+                "id",
+                "gate",
+                "workflow",
+                "requires",
+                "evidence",
+                "status",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "gate": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "workflow": {
+                    "$ref": "#/$defs/path"
+                },
+                "requires": {
+                    "$ref": "#/$defs/strings"
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "status": {
+                    "const": "required"
                 },
                 "meaning": {
                     "type": "string",

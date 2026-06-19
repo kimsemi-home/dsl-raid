@@ -234,6 +234,18 @@
             "meaning": "GitHub Actions suite evidence is suitable when ownership and permissions are explicit."
         },
         {
+            "id": "evidence-quality:release-provenance",
+            "target": "docs/generated/verification-release-provenance.json",
+            "quality": "high",
+            "purpose": "release-provenance",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "gates",
+                "closure_rules"
+            ],
+            "meaning": "Release provenance evidence is suitable when promotion gates are explicit."
+        },
+        {
             "id": "evidence-quality:evidence-before-change",
             "target": "docs/generated/verification-evidence-before-change.json",
             "quality": "high",
