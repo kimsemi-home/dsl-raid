@@ -8,7 +8,7 @@
       :evidence "Source shape, workflow lint, Go lint, Rust fmt/clippy."
       :commands
       ("go install github.com/rhysd/actionlint/cmd/actionlint@v1.7.12"
-       "$(go env GOPATH)/bin/actionlint"
+       "\"$(go env GOPATH)/bin/actionlint\""
        "bash scripts/check-source-lines.sh"
        "bash scripts/go-lint.sh"
        "cargo fmt --all -- --check"
