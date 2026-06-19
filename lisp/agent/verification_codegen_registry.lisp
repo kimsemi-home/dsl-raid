@@ -9,6 +9,7 @@
     ("github-actions" ("github-actions"))
     ("release-pipelines" ("github-release" "release-provenance"))
     ("bootstrap-sequence" ("bootstrap-sequence"))
+    ("experiment-loop" ("experiment-loop"))
     ("pdca-evidence" ("pdca-manifest"))
     ("evidence-ops" ("evidence-ops"))
     ("loss-ledger" ("loss-ledger"))

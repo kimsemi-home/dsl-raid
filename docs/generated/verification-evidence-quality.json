@@ -534,6 +534,18 @@
             "meaning": "Bootstrap evidence is suitable when each generated file is checkable."
         },
         {
+            "id": "evidence-quality:experiment-loop",
+            "target": "docs/generated/verification-experiment-loop.json",
+            "quality": "high",
+            "purpose": "experiment-loop",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "experiments",
+                "closure_rules"
+            ],
+            "meaning": "Experiment evidence is suitable when PDCA records cite checks and act evidence."
+        },
+        {
             "id": "evidence-quality:incompleteness-ledger",
             "target": "docs/generated/verification-incompleteness-ledger.json",
             "quality": "high",

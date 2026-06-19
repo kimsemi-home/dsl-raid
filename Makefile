@@ -60,6 +60,7 @@ release-check: conformance
 	bash scripts/verificationruntimegen.sh check
 	bash scripts/verificationrunmanifestgen.sh check
 	bash scripts/verificationbootstrapgen.sh check
+	bash scripts/verificationexperimentgen.sh check
 	bash scripts/verificationadrgen.sh check
 	bash scripts/verificationparitygen.sh check
 	bash scripts/verificationactionsgen.sh check

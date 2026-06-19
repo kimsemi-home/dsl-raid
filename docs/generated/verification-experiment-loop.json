@@ -1,0 +1,61 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationexperimentgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_experiment_loop.lisp",
+    "experiment_profile": "pdca-file-backed-experiments",
+    "experiments": [
+        {
+            "id": "experiment:bootstrap-sequence",
+            "hypothesis": "Bootstrap order should be explicit evidence.",
+            "plan": "lisp/agent/verification_bootstrap_sequence.lisp",
+            "do": "docs/generated/verification-bootstrap-sequence.json",
+            "check": "scripts/verificationbootstrapgen.sh check",
+            "act": "docs/generated/verification-conformance.json",
+            "evidence": [
+                "docs/generated/verification-bootstrap-sequence.json",
+                "docs/generated/verification-semantic-diff.json"
+            ],
+            "status": "checked",
+            "promoted": true,
+            "meaning": "Bootstrap sequence is promoted when schema, semantic diff, and release checks pass."
+        },
+        {
+            "id": "experiment:run-manifest",
+            "hypothesis": "Agent runs should be file-backed evidence.",
+            "plan": "lisp/agent/verification_run_manifest.lisp",
+            "do": "docs/generated/verification-run-manifest.json",
+            "check": "scripts/verificationrunmanifestgen.sh check",
+            "act": "docs/generated/verification-evidence-quality.json",
+            "evidence": [
+                "docs/generated/verification-run-manifest.json",
+                "docs/generated/verification-evidence-quality.json"
+            ],
+            "status": "checked",
+            "promoted": true,
+            "meaning": "Run manifests are promoted when schema and generated docs agree."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "experiment:plan-file",
+            "meaning": "Each experiment names the Lisp plan file.",
+            "check": "scripts/verificationexperimentgen.sh check"
+        },
+        {
+            "id": "experiment:do-file",
+            "meaning": "Each experiment creates a generated evidence file.",
+            "check": "scripts/verificationexperimentgen.sh check"
+        },
+        {
+            "id": "experiment:check-command",
+            "meaning": "Each experiment has a deterministic check command.",
+            "check": "scripts/verificationexperimentgen.sh check"
+        },
+        {
+            "id": "experiment:act-evidence",
+            "meaning": "Each experiment names the follow-up act evidence.",
+            "check": "scripts/verificationexperimentgen.sh check"
+        }
+    ]
+}

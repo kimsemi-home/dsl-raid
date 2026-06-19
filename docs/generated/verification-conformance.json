@@ -191,6 +191,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.experiment-loop",
+            "subject": "docs/generated/verification-experiment-loop.json",
+            "check": "scripts/verificationexperimentgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.adr-governance",
             "subject": "docs/generated/verification-adr-governance.json",
             "check": "scripts/verificationadrgen.sh check",

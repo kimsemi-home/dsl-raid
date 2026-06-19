@@ -136,6 +136,8 @@ release-check:
     - |
       bash scripts/verificationbootstrapgen.sh check
     - |
+      bash scripts/verificationexperimentgen.sh check
+    - |
       bash scripts/verificationadrgen.sh check
     - |
       bash scripts/verificationparitygen.sh check

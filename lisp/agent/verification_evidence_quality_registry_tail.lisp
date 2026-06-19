@@ -56,6 +56,11 @@
      "high" "bootstrap-sequence" "gate:evidence-quality"
      ("stages" "closure_rules")
      "Bootstrap evidence is suitable when each generated file is checkable.")
+    ("evidence-quality:experiment-loop"
+     "docs/generated/verification-experiment-loop.json"
+     "high" "experiment-loop" "gate:evidence-quality"
+     ("experiments" "closure_rules")
+     "Experiment evidence is suitable when PDCA records cite checks and act evidence.")
     ("evidence-quality:incompleteness-ledger"
      "docs/generated/verification-incompleteness-ledger.json"
      "high" "incompleteness-ledger" "gate:evidence-quality"

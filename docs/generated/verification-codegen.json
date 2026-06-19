@@ -57,6 +57,12 @@
             ]
         },
         {
+            "axis": "experiment-loop",
+            "backends": [
+                "experiment-loop"
+            ]
+        },
+        {
             "axis": "pdca-evidence",
             "backends": [
                 "pdca-manifest"

@@ -23,6 +23,8 @@
      "Evidence separation semantic receipt.")
     ("semantic-diff:bootstrap-sequence" "semantic:bootstrap-sequence"
      "Bootstrap sequence semantic receipt.")
+    ("semantic-diff:experiment-loop" "semantic:experiment-loop"
+     "Experiment loop semantic receipt.")
     ("semantic-diff:incompleteness-ledger" "semantic:incompleteness-ledger"
      "Incompleteness ledger semantic receipt.")))
 

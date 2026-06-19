@@ -1857,6 +1857,104 @@
                 "generated_by",
                 "subject",
                 "source",
+                "experiment_profile",
+                "experiments",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationexperimentgen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "experiment_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "experiments": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "id",
+                            "hypothesis",
+                            "plan",
+                            "do",
+                            "check",
+                            "act",
+                            "evidence",
+                            "status",
+                            "promoted",
+                            "meaning"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "id": {
+                                "$ref": "#/$defs/semantic_ref"
+                            },
+                            "hypothesis": {
+                                "type": "string",
+                                "minLength": 1
+                            },
+                            "plan": {
+                                "$ref": "#/$defs/path"
+                            },
+                            "do": {
+                                "$ref": "#/$defs/path"
+                            },
+                            "check": {
+                                "type": "string",
+                                "pattern": "^scripts/.+ check$"
+                            },
+                            "act": {
+                                "$ref": "#/$defs/path"
+                            },
+                            "evidence": {
+                                "$ref": "#/$defs/strings"
+                            },
+                            "status": {
+                                "enum": [
+                                    "proposed",
+                                    "running",
+                                    "checked",
+                                    "promoted"
+                                ]
+                            },
+                            "promoted": {
+                                "type": "boolean"
+                            },
+                            "meaning": {
+                                "type": "string",
+                                "minLength": 1
+                            }
+                        }
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
                 "parity_profile",
                 "projections",
                 "closure_rules"
