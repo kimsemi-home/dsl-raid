@@ -59,6 +59,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.semantic-hash",
+            "subject": "docs/generated/verification-semantic-hash.json",
+            "check": "scripts/verificationsemanticgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.rust-code",
             "subject": "generated/runtime_fsm.rs",
             "check": "scripts/lisp-rustgen.sh check",

@@ -92,6 +92,8 @@ release-check:
     - |
       bash scripts/verificationevidencegen.sh check
     - |
+      bash scripts/verificationsemanticgen.sh check
+    - |
       bash scripts/lisp-rustgen.sh check
     - |
       bash scripts/verificationdocgen.sh check

@@ -60,6 +60,12 @@
             "backends": [
                 "loss-ledger"
             ]
+        },
+        {
+            "axis": "semantic-hash",
+            "backends": [
+                "semantic-hash"
+            ]
         }
     ],
     "closure_rules": [

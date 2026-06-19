@@ -9,7 +9,8 @@
     ("github-actions" ("github-actions"))
     ("release-pipelines" ("github-release"))
     ("pdca-evidence" ("pdca-manifest"))
-    ("loss-ledger" ("loss-ledger"))))
+    ("loss-ledger" ("loss-ledger"))
+    ("semantic-hash" ("semantic-hash"))))
 
 (defparameter *verification-codegen-rules*
   '(("codegen:axis-covered" "Every ontology codegen axis maps to a backend.")

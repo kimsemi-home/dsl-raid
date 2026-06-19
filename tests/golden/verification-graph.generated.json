@@ -32,7 +32,7 @@
             "id": "test:verification.node.release-check",
             "subject": "verify:daemon/release-check",
             "kind": "verification-node",
-            "commands": 20
+            "commands": 21
         },
         {
             "id": "test:verification.backend.github-actions",
@@ -81,6 +81,12 @@
             "subject": "docs/generated/verification-loss-ledger.json",
             "kind": "generated-backend",
             "generator": "scripts/verificationlossgen.sh"
+        },
+        {
+            "id": "test:verification.backend.semantic-hash",
+            "subject": "docs/generated/verification-semantic-hash.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationsemanticgen.sh"
         },
         {
             "id": "test:verification.backend.rust-code",

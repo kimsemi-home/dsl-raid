@@ -46,6 +46,7 @@
        "bash scripts/verificationmanifestschemagen.sh check"
        "bash scripts/verificationtestgen.sh check"
        "bash scripts/verificationevidencegen.sh check"
+       "bash scripts/verificationsemanticgen.sh check"
        "bash scripts/lisp-rustgen.sh check"
        "bash scripts/verificationdocgen.sh check"
        "bash scripts/verificationcodegengen.sh check"

@@ -1,0 +1,65 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationsemanticgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification.lisp",
+    "algorithm": "sha256",
+    "hashes": [
+        {
+            "id": "semantic:verification-graph",
+            "source": "docs/generated/verification-evidence.json",
+            "fields": [
+                "form",
+                "ontology_chain",
+                "verification_nodes",
+                "generated_backends"
+            ],
+            "meaning": "Verification graph shape and generated backend contract.",
+            "hash": "e73f69d1941eabc2d8e5f94bb4070e4fe2c66acce15fe6397914a845b277ad95"
+        },
+        {
+            "id": "semantic:codegen-map",
+            "source": "docs/generated/verification-codegen.json",
+            "fields": [
+                "axes"
+            ],
+            "meaning": "Ontology codegen axes mapped to generated backends.",
+            "hash": "5a6991f727d70f8dd1baffa38786b13402fc7747604029b26e7af043a49f3103"
+        },
+        {
+            "id": "semantic:loss-ledger",
+            "source": "docs/generated/verification-loss-ledger.json",
+            "fields": [
+                "ledger"
+            ],
+            "meaning": "Declared adapter translation loss without forbidden L4 loss.",
+            "hash": "f9db22577ae6810e01e7807c11dd4f1947955825dfbc1fc0a74ba2a80a3b2714"
+        },
+        {
+            "id": "semantic:conformance",
+            "source": "docs/generated/verification-conformance.json",
+            "fields": [
+                "rules"
+            ],
+            "meaning": "Required checks for generated backend freshness.",
+            "hash": "d7e8030a5046ecc0a33805f861453e942a44b80f857d48715afd06bafb4cab2e"
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "semantic:hash-recomputes",
+            "meaning": "Every semantic hash recomputes from source fields.",
+            "check": "scripts/verificationsemanticgen.sh check"
+        },
+        {
+            "id": "semantic:source-exists",
+            "meaning": "Every semantic hash source is generated evidence.",
+            "check": "scripts/verificationsemanticgen.sh check"
+        },
+        {
+            "id": "semantic:stable-canonical-json",
+            "meaning": "Hash input uses sorted canonical JSON.",
+            "check": "scripts/verificationsemanticgen.sh check"
+        }
+    ]
+}

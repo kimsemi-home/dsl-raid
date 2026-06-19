@@ -162,6 +162,50 @@
                     }
                 }
             }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
+                "algorithm",
+                "hashes",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationsemanticgen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "algorithm": {
+                    "const": "sha256"
+                },
+                "hashes": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/semantic_hash"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
         }
     ],
     "$defs": {
@@ -317,6 +361,36 @@
                 "policy": {
                     "type": "string",
                     "minLength": 1
+                }
+            }
+        },
+        "semantic_hash": {
+            "type": "object",
+            "required": [
+                "id",
+                "source",
+                "fields",
+                "meaning",
+                "hash"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "fields": {
+                    "$ref": "#/$defs/strings"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "hash": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
                 }
             }
         }

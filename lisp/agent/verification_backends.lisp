@@ -12,6 +12,8 @@
      "scripts/verificationpdcagen.sh")
     ("loss-ledger" "docs/generated/verification-loss-ledger.json"
      "scripts/verificationlossgen.sh")
+    ("semantic-hash" "docs/generated/verification-semantic-hash.json"
+     "scripts/verificationsemanticgen.sh")
     ("rust-code" "generated/runtime_fsm.rs" "scripts/lisp-rustgen.sh")
     ("verification-doc" "docs/generated/verification-graph.md"
      "scripts/verificationdocgen.sh")

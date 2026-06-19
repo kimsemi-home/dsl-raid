@@ -24,6 +24,7 @@ pub(super) fn check() -> Result<()> {
     run_script("scripts/verificationmanifestschemagen.sh")?;
     run_script("scripts/verificationtestgen.sh")?;
     run_script("scripts/verificationevidencegen.sh")?;
+    run_script("scripts/verificationsemanticgen.sh")?;
     run_lisp_irgen()?;
     run_script("scripts/lisp-rustgen.sh")?;
     validate_lisp_ir(Path::new("examples/runscope/runscope.lisp.raid.json"))

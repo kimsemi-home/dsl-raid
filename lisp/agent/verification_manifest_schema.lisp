@@ -33,6 +33,13 @@
    "\"generated_by\":{\"const\":\"scripts/verificationlossgen.sh\"},"
    "\"subject\":{\"$ref\":\"#/$defs/semantic_ref\"},\"source\":{\"$ref\":\"#/$defs/path\"},"
    "\"ledger\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"$ref\":\"#/$defs/loss_entry\"}},"
+   "\"closure_rules\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"$ref\":\"#/$defs/rule\"}}}},"
+   "{\"type\":\"object\",\"required\":[\"manifest_version\",\"generated_by\",\"subject\","
+   "\"source\",\"algorithm\",\"hashes\",\"closure_rules\"],\"additionalProperties\":false,"
+   "\"properties\":{\"manifest_version\":{\"$ref\":\"#/$defs/semver\"},"
+   "\"generated_by\":{\"const\":\"scripts/verificationsemanticgen.sh\"},\"subject\":{\"$ref\":\"#/$defs/semantic_ref\"},"
+   "\"source\":{\"$ref\":\"#/$defs/path\"},\"algorithm\":{\"const\":\"sha256\"},"
+   "\"hashes\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"$ref\":\"#/$defs/semantic_hash\"}},"
    "\"closure_rules\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"$ref\":\"#/$defs/rule\"}}}}],"
    "\"$defs\":{\"path\":{\"type\":\"string\",\"minLength\":1},"
    "\"semantic_ref\":{\"type\":\"string\",\"pattern\":\"^[a-z][a-z0-9_\\\\-]*:[a-z][a-z0-9_.\\\\-]*$\"},"
@@ -57,7 +64,8 @@
    "\"source\":{\"$ref\":\"#/$defs/semantic_ref\"},\"target\":{\"$ref\":\"#/$defs/path\"},"
    "\"loss_level\":{\"enum\":[\"L1\",\"L2\",\"L3\"]},"
    "\"meaning\":{\"type\":\"string\",\"minLength\":1},\"evidence\":{\"$ref\":\"#/$defs/path\"},"
-   "\"policy\":{\"type\":\"string\",\"minLength\":1}}}}}"))
+   "\"policy\":{\"type\":\"string\",\"minLength\":1}}},"
+   "\"semantic_hash\":{\"type\":\"object\",\"required\":[\"id\",\"source\",\"fields\",\"meaning\",\"hash\"],\"additionalProperties\":false,\"properties\":{\"id\":{\"$ref\":\"#/$defs/semantic_ref\"},\"source\":{\"$ref\":\"#/$defs/path\"},\"fields\":{\"$ref\":\"#/$defs/strings\"},\"meaning\":{\"type\":\"string\",\"minLength\":1},\"hash\":{\"type\":\"string\",\"pattern\":\"^[a-f0-9]{64}$\"}}}}}"))
 
 (defun emit-verification-manifest-schema-json (&optional stream)
   "Emit JSON Schema for generated verification manifests."
