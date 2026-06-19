@@ -51,6 +51,7 @@
   (format out "- Common Lisp is the executable verification SSOT.~%")
   (format out "- GitHub Actions YAML is generated evidence plumbing.~%")
   (format out "- Every generated workflow change must pass workflowgen check.~%")
+  (format out "- Machine-readable evidence must pass verificationevidencegen check.~%")
   (format out "- Release checks must prove docs, workflows, and artifacts are fresh.~%"))
 
 (defun join-verification (items separator)

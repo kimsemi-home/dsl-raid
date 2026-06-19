@@ -14,7 +14,8 @@
     ((:file "package") (:file "principles") (:file "markdown")
      (:file "verification") (:file "verification_markdown")
      (:file "verification_workflow") (:file "verification_gitlab")
-     (:file "verification_makefile") (:file "verification_bazel")))
+     (:file "verification_makefile") (:file "verification_bazel")
+     (:file "verification_evidence")))
    (:module "ir"
     :serial t
     :components

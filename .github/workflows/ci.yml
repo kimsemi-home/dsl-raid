@@ -136,6 +136,7 @@ jobs:
           grep -q 'scripts/gitlabgen.sh' "$owner"
           grep -q 'scripts/makegen.sh' "$owner"
           grep -q 'scripts/bazelgen.sh' "$owner"
+          grep -q 'scripts/verificationevidencegen.sh' "$owner"
           grep -q 'scripts/lisp-irgen.sh' "$owner"
           grep -q 'scripts/lisp-rustgen.sh' "$owner"
           grep -q 'scripts/verificationdocgen.sh' \

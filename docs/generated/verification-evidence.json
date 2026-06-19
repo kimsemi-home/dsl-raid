@@ -1,0 +1,33 @@
+{
+  "schema_version": "0.1.0",
+  "generated_by": "scripts/verificationevidencegen.sh",
+  "subject": "verify:daemon",
+  "ssot": "lisp/agent/verification.lisp",
+  "form": "(verify daemon (lint) (unit-test) (integration-test) (conformance) (release-check))",
+  "ontology_chain": [
+    "ontology",
+    "executable-ssot",
+    "verification-graph",
+    "codegen"
+  ],
+  "generated_backends": [
+    {"backend": "github-actions", "output": ".github/workflows/verification.yml", "generator": "scripts/workflowgen.sh", "check": "scripts/workflowgen.sh check"},
+    {"backend": "gitlab-ci", "output": ".gitlab-ci.yml", "generator": "scripts/gitlabgen.sh", "check": "scripts/gitlabgen.sh check"},
+    {"backend": "local-makefile", "output": "Makefile", "generator": "scripts/makegen.sh", "check": "scripts/makegen.sh check"},
+    {"backend": "bazel", "output": "BUILD.bazel", "generator": "scripts/bazelgen.sh", "check": "scripts/bazelgen.sh check"},
+    {"backend": "evidence-json", "output": "docs/generated/verification-evidence.json", "generator": "scripts/verificationevidencegen.sh", "check": "scripts/verificationevidencegen.sh check"}
+  ],
+  "verification_nodes": [
+    {"id": "lint", "commands": 6, "evidence": "Source shape, workflow lint, Go lint, Rust fmt/clippy."},
+    {"id": "unit-test", "commands": 1, "evidence": "Rust workspace unit test evidence."},
+    {"id": "integration-test", "commands": 3, "evidence": "Viewer test and build evidence."},
+    {"id": "conformance", "commands": 1, "evidence": "Unified DSLRaid semantic and generated-output gate."},
+    {"id": "release-check", "commands": 7, "evidence": "Generated workflow, docs index, and artifact freshness."}
+  ],
+  "pdca": [
+    "plan",
+    "do",
+    "check",
+    "act"
+  ]
+}

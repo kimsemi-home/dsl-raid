@@ -17,7 +17,7 @@ The generated workflow is `.github/workflows/verification.yml`.
 | unit-test | lint | Rust workspace unit test evidence. | 1 |
 | integration-test | unit-test | Viewer test and build evidence. | 3 |
 | conformance | integration-test | Unified DSLRaid semantic and generated-output gate. | 1 |
-| release-check | conformance | Generated workflow, docs index, and artifact freshness. | 6 |
+| release-check | conformance | Generated workflow, docs index, and artifact freshness. | 7 |
 
 ## Generated Backends
 
@@ -27,6 +27,7 @@ The generated workflow is `.github/workflows/verification.yml`.
 | gitlab-ci | `.gitlab-ci.yml` | `scripts/gitlabgen.sh` |
 | local-makefile | `Makefile` | `scripts/makegen.sh` |
 | bazel | `BUILD.bazel` | `scripts/bazelgen.sh` |
+| evidence-json | `docs/generated/verification-evidence.json` | `scripts/verificationevidencegen.sh` |
 
 ## Evidence Loop
 
@@ -40,4 +41,5 @@ The generated workflow is `.github/workflows/verification.yml`.
 - Common Lisp is the executable verification SSOT.
 - GitHub Actions YAML is generated evidence plumbing.
 - Every generated workflow change must pass workflowgen check.
+- Machine-readable evidence must pass verificationevidencegen check.
 - Release checks must prove docs, workflows, and artifacts are fresh.
