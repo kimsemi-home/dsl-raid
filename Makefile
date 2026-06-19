@@ -55,6 +55,7 @@ release-check: conformance
 	bash scripts/verificationcontrolgen.sh check
 	bash scripts/verificationprovidergen.sh check
 	bash scripts/verificationruntimegen.sh check
+	bash scripts/verificationadrgen.sh check
 	bash scripts/verificationevidencebeforechangegen.sh check
 	bash scripts/verificationversionedssotgen.sh check
 	bash scripts/verificationcontextmapgen.sh check

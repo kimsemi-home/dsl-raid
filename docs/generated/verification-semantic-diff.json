@@ -10,8 +10,8 @@
             "id": "semantic-diff:verification-graph",
             "hash_id": "semantic:verification-graph",
             "summary": "Verification graph semantic receipt.",
-            "base_hash": "86058073596b60313b19d70314fdb03a3b7d30a190333e23f537d0291ab797da",
-            "head_hash": "86058073596b60313b19d70314fdb03a3b7d30a190333e23f537d0291ab797da",
+            "base_hash": "82586cff6d408765c855a724da642f6a2db103e8dcb52f85a21abcb371070fdb",
+            "head_hash": "82586cff6d408765c855a724da642f6a2db103e8dcb52f85a21abcb371070fdb",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },
@@ -19,8 +19,8 @@
             "id": "semantic-diff:codegen-map",
             "hash_id": "semantic:codegen-map",
             "summary": "Codegen axis semantic receipt.",
-            "base_hash": "9a80655f48344cd2675015f05e12d157a4c57361aebbf5d8a2003687452a140a",
-            "head_hash": "9a80655f48344cd2675015f05e12d157a4c57361aebbf5d8a2003687452a140a",
+            "base_hash": "221f178a1712970c0fc4b1c308950680999aab3a6ecfc6b58368944655c3b2e4",
+            "head_hash": "221f178a1712970c0fc4b1c308950680999aab3a6ecfc6b58368944655c3b2e4",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },
@@ -37,8 +37,8 @@
             "id": "semantic-diff:conformance",
             "hash_id": "semantic:conformance",
             "summary": "Conformance contract semantic receipt.",
-            "base_hash": "99343963a7066978caf0a24fa5159e33e6e66b0ec3abe251ca75c084730a2a34",
-            "head_hash": "99343963a7066978caf0a24fa5159e33e6e66b0ec3abe251ca75c084730a2a34",
+            "base_hash": "4ed8c2c07b3461e4cd34d49bdbbd792fdea230f2cbd9230122ec919e364ed973",
+            "head_hash": "4ed8c2c07b3461e4cd34d49bdbbd792fdea230f2cbd9230122ec919e364ed973",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },
@@ -82,8 +82,8 @@
             "id": "semantic-diff:evidence-quality",
             "hash_id": "semantic:evidence-quality",
             "summary": "Evidence quality semantic receipt.",
-            "base_hash": "f3d6365ba017c35de6d8fdc1d18166f90f1f40578b70b496d9cfd580c13f74df",
-            "head_hash": "f3d6365ba017c35de6d8fdc1d18166f90f1f40578b70b496d9cfd580c13f74df",
+            "base_hash": "55a85870e35fe061dafd6d49fd680109992f414eae395daa3b1601a6ae280d78",
+            "head_hash": "55a85870e35fe061dafd6d49fd680109992f414eae395daa3b1601a6ae280d78",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },
@@ -174,6 +174,15 @@
             "summary": "Runtime trace mapping semantic receipt.",
             "base_hash": "c542201cbc67ccbf80ba2ddbbeb30c8f55a59100d05e640733813cd522bc06e0",
             "head_hash": "c542201cbc67ccbf80ba2ddbbeb30c8f55a59100d05e640733813cd522bc06e0",
+            "status": "unchanged",
+            "evidence": "docs/generated/verification-semantic-hash.json"
+        },
+        {
+            "id": "semantic-diff:adr-governance",
+            "hash_id": "semantic:adr-governance",
+            "summary": "ADR governance semantic receipt.",
+            "base_hash": "237610786438237ae9bdbab1bda0f9a4be9b7133225f2028941f97e00ada4f10",
+            "head_hash": "237610786438237ae9bdbab1bda0f9a4be9b7133225f2028941f97e00ada4f10",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },

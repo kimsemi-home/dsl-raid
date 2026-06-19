@@ -1485,6 +1485,51 @@
                     }
                 }
             }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
+                "adr_profile",
+                "records",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationadrgen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "adr_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "records": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/adr_governance_record"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
         }
     ],
     "$defs": {
@@ -3177,6 +3222,54 @@
                         "uncovered",
                         "failed"
                     ]
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "adr_governance_record": {
+            "type": "object",
+            "required": [
+                "id",
+                "surface",
+                "change_kind",
+                "decision",
+                "authority",
+                "policy_doc",
+                "evidence",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "surface": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "change_kind": {
+                    "enum": [
+                        "semantic-contract",
+                        "implementation-detail"
+                    ]
+                },
+                "decision": {
+                    "enum": [
+                        "adr-required",
+                        "autonomous-allowed"
+                    ]
+                },
+                "authority": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "policy_doc": {
+                    "$ref": "#/$defs/path"
                 },
                 "evidence": {
                     "$ref": "#/$defs/strings"

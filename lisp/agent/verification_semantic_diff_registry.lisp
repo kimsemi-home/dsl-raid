@@ -39,6 +39,8 @@
      "Provider compatibility semantic receipt.")
     ("semantic-diff:runtime-trace" "semantic:runtime-trace"
      "Runtime trace mapping semantic receipt.")
+    ("semantic-diff:adr-governance" "semantic:adr-governance"
+     "ADR governance semantic receipt.")
     ("semantic-diff:evidence-before-change" "semantic:evidence-before-change"
      "Evidence-before-change semantic receipt.")
     ("semantic-diff:versioned-ssot" "semantic:versioned-ssot"

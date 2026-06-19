@@ -1,0 +1,78 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationadrgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_adr_governance.lisp",
+    "adr_profile": "semantic-change-boundary",
+    "records": [
+        {
+            "id": "adr-governance:core-ir-schema",
+            "surface": "core-ir-schema",
+            "change_kind": "semantic-contract",
+            "decision": "adr-required",
+            "authority": "governance:architecture",
+            "policy_doc": "docs/adr/0002-product-scope-and-risk-boundaries.md",
+            "evidence": [
+                "docs/generated/verification-ontology.json",
+                "docs/generated/verification-semantic-diff.json"
+            ],
+            "meaning": "Core IR schema changes require an ADR before implementation."
+        },
+        {
+            "id": "adr-governance:composition",
+            "surface": "fsm-composition",
+            "change_kind": "semantic-contract",
+            "decision": "adr-required",
+            "authority": "governance:architecture",
+            "policy_doc": "docs/adr/0002-product-scope-and-risk-boundaries.md",
+            "evidence": [
+                "docs/generated/verification-control-plane.json",
+                "docs/generated/verification-provider-compat.json"
+            ],
+            "meaning": "Composition semantics are public behavior and require ADR review."
+        },
+        {
+            "id": "adr-governance:diagnostic-code",
+            "surface": "diagnostic-code",
+            "change_kind": "semantic-contract",
+            "decision": "adr-required",
+            "authority": "governance:quality",
+            "policy_doc": "docs/validation.md",
+            "evidence": [
+                "docs/generated/verification-failure-conditions.json",
+                "docs/generated/verification-evidence-quality.json"
+            ],
+            "meaning": "Diagnostic code or severity changes require governance review."
+        },
+        {
+            "id": "adr-governance:viewer-ui",
+            "surface": "viewer-ui",
+            "change_kind": "implementation-detail",
+            "decision": "autonomous-allowed",
+            "authority": "steward:implementation",
+            "policy_doc": "docs/adr/0005-observable-surface-area.md",
+            "evidence": [
+                "docs/generated/verification-sidecar.json",
+                "docs/generated/verification-runtime-trace.json"
+            ],
+            "meaning": "Viewer and renderer internals may move while preserving public meaning."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "adr:semantic-contract-gated",
+            "meaning": "Semantic contract changes need ADR.",
+            "check": "scripts/verificationadrgen.sh check"
+        },
+        {
+            "id": "adr:policy-doc-exists",
+            "meaning": "Governance rows cite an existing policy document.",
+            "check": "scripts/verificationadrgen.sh check"
+        },
+        {
+            "id": "adr:evidence-generated",
+            "meaning": "Governance rows cite generated evidence.",
+            "check": "scripts/verificationadrgen.sh check"
+        }
+    ]
+}

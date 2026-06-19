@@ -164,6 +164,12 @@
             ]
         },
         {
+            "axis": "adr-governance",
+            "backends": [
+                "adr-governance"
+            ]
+        },
+        {
             "axis": "evidence-before-change",
             "backends": [
                 "evidence-before-change"

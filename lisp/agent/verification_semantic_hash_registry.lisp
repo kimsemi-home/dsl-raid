@@ -4,9 +4,7 @@
   '(("semantic:verification-graph" "docs/generated/verification-evidence.json" ("form" "ontology_chain" "verification_nodes" "generated_backends") "Verification graph shape and generated backend contract.")
     ("semantic:codegen-map" "docs/generated/verification-codegen.json" ("axes") "Ontology codegen axes mapped to generated backends.")
     ("semantic:loss-ledger" "docs/generated/verification-loss-ledger.json" ("ledger") "Declared adapter translation loss without forbidden L4 loss.")
-    ("semantic:conformance" "docs/generated/verification-conformance.json"
-     ("rules")
-     "Required checks for generated backend freshness.")
+    ("semantic:conformance" "docs/generated/verification-conformance.json" ("rules") "Required checks for generated backend freshness.")
     ("semantic:authority" "docs/generated/verification-authority.json"
      ("authority_profile" "decisions" "closure_rules")
      "Governance authority gate and review decision contract.")
@@ -42,6 +40,7 @@
     ("semantic:control-plane" "docs/generated/verification-control-plane.json" ("control_plane_profile" "routes" "closure_rules") "Control-plane sidecar and shadow verifier contract.")
     ("semantic:provider-compat" "docs/generated/verification-provider-compat.json" ("provider_compat_profile" "records" "closure_rules") "Provider protocol and capability compatibility contract.")
     ("semantic:runtime-trace" "docs/generated/verification-runtime-trace.json" ("runtime_trace_profile" "mappings" "closure_rules") "Runtime trace mapping and coverage overlay contract.")
+    ("semantic:adr-governance" "docs/generated/verification-adr-governance.json" ("adr_profile" "records" "closure_rules") "ADR boundary contract for semantic and implementation changes.")
     ("semantic:evidence-before-change"
      "docs/generated/verification-evidence-before-change.json"
      ("evidence_before_change_profile" "changes" "closure_rules")

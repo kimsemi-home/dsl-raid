@@ -198,6 +198,18 @@
             "meaning": "Runtime trace evidence is suitable when design and coverage checks pass."
         },
         {
+            "id": "evidence-quality:adr-governance",
+            "target": "docs/generated/verification-adr-governance.json",
+            "quality": "high",
+            "purpose": "adr-governance",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "records",
+                "closure_rules"
+            ],
+            "meaning": "ADR governance evidence is suitable when semantic changes are gated."
+        },
+        {
             "id": "evidence-quality:evidence-before-change",
             "target": "docs/generated/verification-evidence-before-change.json",
             "quality": "high",

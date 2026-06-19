@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "86058073596b60313b19d70314fdb03a3b7d30a190333e23f537d0291ab797da"
+            "hash": "82586cff6d408765c855a724da642f6a2db103e8dcb52f85a21abcb371070fdb"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "9a80655f48344cd2675015f05e12d157a4c57361aebbf5d8a2003687452a140a"
+            "hash": "221f178a1712970c0fc4b1c308950680999aab3a6ecfc6b58368944655c3b2e4"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "99343963a7066978caf0a24fa5159e33e6e66b0ec3abe251ca75c084730a2a34"
+            "hash": "4ed8c2c07b3461e4cd34d49bdbbd792fdea230f2cbd9230122ec919e364ed973"
         },
         {
             "id": "semantic:authority",
@@ -97,7 +97,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "f3d6365ba017c35de6d8fdc1d18166f90f1f40578b70b496d9cfd580c13f74df"
+            "hash": "55a85870e35fe061dafd6d49fd680109992f414eae395daa3b1601a6ae280d78"
         },
         {
             "id": "semantic:lease",
@@ -210,6 +210,17 @@
             ],
             "meaning": "Runtime trace mapping and coverage overlay contract.",
             "hash": "c542201cbc67ccbf80ba2ddbbeb30c8f55a59100d05e640733813cd522bc06e0"
+        },
+        {
+            "id": "semantic:adr-governance",
+            "source": "docs/generated/verification-adr-governance.json",
+            "fields": [
+                "adr_profile",
+                "records",
+                "closure_rules"
+            ],
+            "meaning": "ADR boundary contract for semantic and implementation changes.",
+            "hash": "237610786438237ae9bdbab1bda0f9a4be9b7133225f2028941f97e00ada4f10"
         },
         {
             "id": "semantic:evidence-before-change",

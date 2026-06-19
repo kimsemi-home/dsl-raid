@@ -49,6 +49,7 @@
         "control-plane-verifier",
         "provider-compat",
         "runtime-trace",
+        "adr-governance",
         "evidence-before-change",
         "versioned-ssot",
         "context-map",

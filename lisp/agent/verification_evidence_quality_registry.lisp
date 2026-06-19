@@ -2,14 +2,8 @@
 
 (defparameter *verification-evidence-quality-assessments*
   '(("evidence-quality:generated-evidence" "docs/generated/verification-evidence.json" "high" "release-check" "gate:evidence-quality" ("generated_backends" "verification_nodes") "Generated backend inventory is suitable for conformance checks.")
-    ("evidence-quality:semantic-diff"
-     "docs/generated/verification-semantic-diff.json" "high" "review"
-     "gate:evidence-quality" ("diffs" "closure_rules")
-     "Semantic diff receipts are suitable for meaning-level review.")
-    ("evidence-quality:authority"
-     "docs/generated/verification-authority.json" "high" "authority-gate"
-     "gate:evidence-quality" ("decisions" "closure_rules")
-     "Authority decisions are suitable when linked generated evidence is fresh.")
+    ("evidence-quality:semantic-diff" "docs/generated/verification-semantic-diff.json" "high" "review" "gate:evidence-quality" ("diffs" "closure_rules") "Semantic diff receipts are suitable for meaning-level review.")
+    ("evidence-quality:authority" "docs/generated/verification-authority.json" "high" "authority-gate" "gate:evidence-quality" ("decisions" "closure_rules") "Authority decisions are suitable when linked generated evidence is fresh.")
     ("evidence-quality:access-policy" "docs/generated/verification-access-policy.json" "high" "access-policy" "gate:evidence-quality" ("policies" "closure_rules") "Access evidence is suitable when RBAC and ABAC gates are explicit.")
     ("evidence-quality:reliability" "docs/generated/verification-reliability.json" "high" "reliability-registry" "gate:evidence-quality" ("records" "closure_rules") "Reliability evidence is suitable when cold-start limits are explicit.")
     ("evidence-quality:agreement" "docs/generated/verification-agreement.json" "high" "cross-agent-agreement" "gate:evidence-quality" ("agreements" "closure_rules") "Agreement evidence is suitable when isolation and adversarial review are explicit.")
@@ -41,6 +35,7 @@
     ("evidence-quality:control-plane" "docs/generated/verification-control-plane.json" "high" "control-plane-verifier" "gate:evidence-quality" ("routes" "closure_rules") "Control-plane verifier evidence is suitable when shadow and sidecar checks are explicit.")
     ("evidence-quality:provider-compat" "docs/generated/verification-provider-compat.json" "high" "provider-compat" "gate:evidence-quality" ("records" "closure_rules") "Provider compatibility evidence is suitable when required capabilities are explicit.")
     ("evidence-quality:runtime-trace" "docs/generated/verification-runtime-trace.json" "high" "runtime-trace" "gate:evidence-quality" ("mappings" "closure_rules") "Runtime trace evidence is suitable when design and coverage checks pass.")
+    ("evidence-quality:adr-governance" "docs/generated/verification-adr-governance.json" "high" "adr-governance" "gate:evidence-quality" ("records" "closure_rules") "ADR governance evidence is suitable when semantic changes are gated.")
     ("evidence-quality:evidence-before-change"
      "docs/generated/verification-evidence-before-change.json" "high"
      "evidence-before-change" "gate:evidence-quality" ("changes" "closure_rules")

@@ -27,6 +27,7 @@
     ("control-plane-verifier" ("control-plane-verifier"))
     ("provider-compat" ("provider-compat"))
     ("runtime-trace" ("runtime-trace"))
+    ("adr-governance" ("adr-governance"))
     ("evidence-before-change" ("evidence-before-change"))
     ("versioned-ssot" ("versioned-ssot"))
     ("context-map" ("context-map"))
