@@ -256,6 +256,18 @@
                 "closure_rules"
             ],
             "meaning": "Failure condition evidence is suitable when blocked authority is explicit."
+        },
+        {
+            "id": "evidence-quality:debt-register",
+            "target": "docs/generated/verification-debt.json",
+            "quality": "high",
+            "purpose": "debt-register",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "records",
+                "closure_rules"
+            ],
+            "meaning": "Debt evidence is suitable when owner and repayment are explicit."
         }
     ],
     "closure_rules": [

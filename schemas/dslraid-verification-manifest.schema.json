@@ -1170,6 +1170,51 @@
                     }
                 }
             }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
+                "debt_profile",
+                "records",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationdebtgen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "debt_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "records": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/debt_record"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
         }
     ],
     "$defs": {
@@ -2393,6 +2438,65 @@
                 },
                 "evidence": {
                     "$ref": "#/$defs/strings"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "debt_record": {
+            "type": "object",
+            "required": [
+                "id",
+                "debt_kind",
+                "source",
+                "status",
+                "owner",
+                "owed_to",
+                "evidence",
+                "repayment",
+                "revalidation",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "debt_kind": {
+                    "enum": [
+                        "review",
+                        "verification",
+                        "evidence",
+                        "automation",
+                        "governance"
+                    ]
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "status": {
+                    "enum": [
+                        "open",
+                        "mitigated",
+                        "closed"
+                    ]
+                },
+                "owner": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "owed_to": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "repayment": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "revalidation": {
+                    "$ref": "#/$defs/semantic_ref"
                 },
                 "meaning": {
                     "type": "string",

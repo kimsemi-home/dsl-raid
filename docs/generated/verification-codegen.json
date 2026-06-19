@@ -192,6 +192,12 @@
             "backends": [
                 "failure-conditions"
             ]
+        },
+        {
+            "axis": "debt-register",
+            "backends": [
+                "debt-register"
+            ]
         }
     ],
     "closure_rules": [

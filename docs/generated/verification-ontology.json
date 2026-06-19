@@ -53,6 +53,7 @@
         "semantic-debugger",
         "evidence-pruning",
         "security-audit",
-        "failure-conditions"
+        "failure-conditions",
+        "debt-register"
     ]
 }

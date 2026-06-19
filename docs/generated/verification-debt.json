@@ -1,0 +1,86 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationdebtgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_debt.lisp",
+    "debt_profile": "operational-learning",
+    "records": [
+        {
+            "id": "debt:review-capacity",
+            "debt_kind": "review",
+            "source": "docs/generated/verification-review-capacity.json",
+            "status": "open",
+            "owner": "owner:review",
+            "owed_to": "scope:human-review",
+            "evidence": [
+                "docs/generated/verification-review-capacity.json",
+                "docs/generated/verification-feedback.json"
+            ],
+            "repayment": "repay:add-backup-steward",
+            "revalidation": "revalidate:next-release",
+            "meaning": "Review overload becomes review debt until capacity is restored."
+        },
+        {
+            "id": "debt:evidence-freshness",
+            "debt_kind": "evidence",
+            "source": "docs/generated/verification-evidence-quality.json",
+            "status": "open",
+            "owner": "owner:evidence",
+            "owed_to": "scope:evidence-quality",
+            "evidence": [
+                "docs/generated/verification-evidence-quality.json",
+                "docs/generated/verification-pruning.json"
+            ],
+            "repayment": "repay:refresh-snapshots",
+            "revalidation": "revalidate:on-semantic-change",
+            "meaning": "Stale quality snapshots stay visible as evidence debt."
+        },
+        {
+            "id": "debt:verification-surface",
+            "debt_kind": "verification",
+            "source": "docs/generated/verification-conformance.json",
+            "status": "mitigated",
+            "owner": "owner:verification",
+            "owed_to": "scope:release-check",
+            "evidence": [
+                "docs/generated/verification-conformance.json",
+                "docs/generated/verification-codegen.json"
+            ],
+            "repayment": "repay:add-generated-gate",
+            "revalidation": "revalidate:each-release",
+            "meaning": "Conformance gaps are tracked until generated gates cover them."
+        },
+        {
+            "id": "debt:automation-freeze",
+            "debt_kind": "automation",
+            "source": "docs/generated/verification-failure-conditions.json",
+            "status": "open",
+            "owner": "owner:control-plane",
+            "owed_to": "scope:authority",
+            "evidence": [
+                "docs/generated/verification-failure-conditions.json",
+                "docs/generated/verification-authority.json"
+            ],
+            "repayment": "repay:restore-authority-path",
+            "revalidation": "revalidate:after-failure",
+            "meaning": "Frozen automation is debt until authority can route safely again."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "debt:owner-required",
+            "meaning": "Every debt record has a non-agent owner.",
+            "check": "scripts/verificationdebtgen.sh check"
+        },
+        {
+            "id": "debt:evidence-required",
+            "meaning": "Debt must cite generated evidence.",
+            "check": "scripts/verificationdebtgen.sh check"
+        },
+        {
+            "id": "debt:repayment-required",
+            "meaning": "Open debt must name repayment and revalidation.",
+            "check": "scripts/verificationdebtgen.sh check"
+        }
+    ]
+}

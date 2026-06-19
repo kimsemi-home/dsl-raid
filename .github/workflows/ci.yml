@@ -163,6 +163,7 @@ jobs:
           grep -q 'scripts/verificationpruninggen.sh' "$owner"
           grep -q 'scripts/verificationsecuritygen.sh' "$owner"
           grep -q 'scripts/verificationfailuregen.sh' "$owner"
+          grep -q 'scripts/verificationdebtgen.sh' "$owner"
           grep -q 'scripts/verificationcodegengen.sh' "$owner"
           grep -q 'scripts/verificationontologygen.sh' "$owner"
           grep -q 'scripts/verificationconformancegen.sh' "$owner"

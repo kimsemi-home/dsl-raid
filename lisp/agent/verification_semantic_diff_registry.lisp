@@ -48,4 +48,6 @@
     ("semantic-diff:security-audit" "semantic:security-audit"
      "Security audit semantic receipt.")
     ("semantic-diff:failure-conditions" "semantic:failure-conditions"
-     "Failure conditions semantic receipt.")))
+     "Failure conditions semantic receipt.")
+    ("semantic-diff:debt-register" "semantic:debt-register"
+     "Debt register semantic receipt.")))

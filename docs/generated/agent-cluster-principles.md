@@ -29,6 +29,7 @@ Failures must become evidence, diagnostics, or generated knowledge updates.
 | evidence-pruning | Evidence retention or replacement request | Tombstone and authority decision | Evidence pruning changes memory, so protected evidence is retained and replacements leave tombstones. |
 | security-audit | Permission or security boundary change | Policy, semantic hash, audit, approval, rollback | Security changes start from policy and require audit evidence before deploy. |
 | failure-conditions | Operational breakage signal | Blocked authority and response owner | The system defines how it is failing, not only how it succeeds. |
+| debt-register | Unclosed learning gap | Owner, repayment, and revalidation | Debt is not failure, but invisible debt is failure. |
 | review-capacity | Human review queue | Prioritized review or debt | Human review is finite; overload freezes high-risk automation. |
 | feedback-closure | Failure, gap, or retrospective | Policy, ontology, spec, owner, or revalidation update | A loop that does not update knowledge remains open evidence. |
 
