@@ -33,6 +33,7 @@
         "bootstrap-sequence",
         "experiment-loop",
         "merge-readiness",
+        "merge-automation",
         "pdca-evidence",
         "evidence-ops",
         "loss-ledger",

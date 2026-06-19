@@ -203,6 +203,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.merge-automation",
+            "subject": "docs/generated/verification-merge-automation.json",
+            "check": "scripts/verificationautomergegen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.adr-governance",
             "subject": "docs/generated/verification-adr-governance.json",
             "check": "scripts/verificationadrgen.sh check",

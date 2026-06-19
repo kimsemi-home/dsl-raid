@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "3b60161c16d52e46513f2dd860ab24f95707cdfbeb103f22f0e8d63f1051ed3c"
+            "hash": "9109cc49eafd15fde5ae646350c0044c3eaeae2532d91622a5d466c91bf9912e"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "f9b6b325c0f67b2c33f6f631ae23cc6bd59fc1d2e92c864e333ba0d5ce2c2fb4"
+            "hash": "9a6a1cdbfde2a56519579ecc8f046e482058e19436520d60c2965ba3811ff583"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "1bcafe53f8be7e758766e665cd990161e7315dc609b22af0c233e01265c3e9f7"
+            "hash": "98b398d170ab955a6b84a50700c27359a9b7656fb6bae794005066d18575d14c"
         },
         {
             "id": "semantic:authority",
@@ -97,7 +97,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "a677e495bd82b55a0d598bad3a4d504fd8375964856c5dc5f66a36255f3f7309"
+            "hash": "8d7d0d4856b781526da94d21c354878620ce0ae5003ee0c7dc26b7a832a79b69"
         },
         {
             "id": "semantic:lease",
@@ -540,6 +540,17 @@
             ],
             "meaning": "Autonomous merge gate, evidence, and privacy contract.",
             "hash": "c2329fd979cb5b42a071cc71de6d0d29f6e591ad7c84bf0309467c404fb9de68"
+        },
+        {
+            "id": "semantic:merge-automation",
+            "source": "docs/generated/verification-merge-automation.json",
+            "fields": [
+                "automation_profile",
+                "policies",
+                "closure_rules"
+            ],
+            "meaning": "Automatic merge source, workflow, permission, and forbidden-event contract.",
+            "hash": "3e21ab53843ac88a7bcb1b336869f0110701b76b11ebc95c5da2f9cb2cef13e7"
         },
         {
             "id": "semantic:incompleteness-ledger",

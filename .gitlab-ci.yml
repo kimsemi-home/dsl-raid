@@ -196,4 +196,6 @@ release-check:
     - |
       bash scripts/gendocindex.sh check
     - |
+      bash scripts/verificationautomergegen.sh check
+    - |
       cargo run -p dslraid-cli -- artifact verify examples/runscope/runscope.raid.json

@@ -1,0 +1,86 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationautomergegen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_merge_automation.lisp",
+    "automation_profile": "pr-gated-automerge",
+    "policies": [
+        {
+            "id": "merge-auto:pr-source",
+            "policy": "source",
+            "requirement": "pull_request",
+            "target": ".github/workflows/ci.yml",
+            "evidence": [
+                "docs/generated/verification-github-actions.json"
+            ],
+            "status": "required",
+            "meaning": "Automatic merge authority starts from pull request checks."
+        },
+        {
+            "id": "merge-auto:required-checks",
+            "policy": "required-checks",
+            "requirement": "CI, Security, Golden, Pages, Verification Graph",
+            "target": "docs/generated/verification-merge-readiness.json",
+            "evidence": [
+                "docs/generated/verification-conformance.json"
+            ],
+            "status": "required",
+            "meaning": "Every required workflow must be represented in merge readiness."
+        },
+        {
+            "id": "merge-auto:no-target-event",
+            "policy": "forbidden-event",
+            "requirement": "pull_request_target",
+            "target": ".github/workflows",
+            "evidence": [
+                "docs/generated/verification-security-audit.json"
+            ],
+            "status": "required",
+            "meaning": "Merge automation must not use target-context PR execution."
+        },
+        {
+            "id": "merge-auto:least-permission",
+            "policy": "permission",
+            "requirement": "contents: read",
+            "target": ".github/workflows/ci.yml",
+            "evidence": [
+                "docs/generated/verification-access-policy.json"
+            ],
+            "status": "required",
+            "meaning": "Merge checks run with read-only repository contents."
+        },
+        {
+            "id": "merge-auto:delete-branch",
+            "policy": "cleanup",
+            "requirement": "delete-branch",
+            "target": "docs/generated/verification-merge-readiness.json",
+            "evidence": [
+                "docs/generated/verification-evidence-quality.json"
+            ],
+            "status": "required",
+            "meaning": "Successful automation may clean feature branches after merge."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "merge-auto:readiness-required",
+            "meaning": "Automation must depend on merge readiness.",
+            "check": "scripts/verificationautomergegen.sh check"
+        },
+        {
+            "id": "merge-auto:no-target-event",
+            "meaning": "Automation must forbid pull_request_target.",
+            "check": "scripts/verificationautomergegen.sh check"
+        },
+        {
+            "id": "merge-auto:required-workflows",
+            "meaning": "Automation must name required workflows.",
+            "check": "scripts/verificationautomergegen.sh check"
+        },
+        {
+            "id": "merge-auto:least-permission",
+            "meaning": "Automation must keep check workflows read-only.",
+            "check": "scripts/verificationautomergegen.sh check"
+        }
+    ]
+}

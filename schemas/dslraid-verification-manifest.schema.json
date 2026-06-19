@@ -2032,6 +2032,88 @@
                 "generated_by",
                 "subject",
                 "source",
+                "automation_profile",
+                "policies",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationautomergegen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "automation_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "policies": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "id",
+                            "policy",
+                            "requirement",
+                            "target",
+                            "evidence",
+                            "status",
+                            "meaning"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "id": {
+                                "$ref": "#/$defs/semantic_ref"
+                            },
+                            "policy": {
+                                "type": "string",
+                                "minLength": 1
+                            },
+                            "requirement": {
+                                "type": "string",
+                                "minLength": 1
+                            },
+                            "target": {
+                                "type": "string",
+                                "minLength": 1
+                            },
+                            "evidence": {
+                                "$ref": "#/$defs/strings"
+                            },
+                            "status": {
+                                "const": "required"
+                            },
+                            "meaning": {
+                                "type": "string",
+                                "minLength": 1
+                            }
+                        }
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
                 "parity_profile",
                 "projections",
                 "closure_rules"

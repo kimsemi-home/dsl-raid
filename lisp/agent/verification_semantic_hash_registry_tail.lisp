@@ -53,6 +53,10 @@
      "docs/generated/verification-merge-readiness.json"
      ("merge_profile" "gates" "closure_rules")
      "Autonomous merge gate, evidence, and privacy contract.")
+    ("semantic:merge-automation"
+     "docs/generated/verification-merge-automation.json"
+     ("automation_profile" "policies" "closure_rules")
+     "Automatic merge source, workflow, permission, and forbidden-event contract.")
     ("semantic:incompleteness-ledger"
      "docs/generated/verification-incompleteness-ledger.json"
      ("incompleteness_profile" "unknowns" "closure_rules")

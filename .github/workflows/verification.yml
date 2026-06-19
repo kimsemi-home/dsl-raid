@@ -228,4 +228,6 @@ jobs:
       - name: Run release-check command 67
         run: bash scripts/gendocindex.sh check
       - name: Run release-check command 68
+        run: bash scripts/verificationautomergegen.sh check
+      - name: Run release-check command 69
         run: cargo run -p dslraid-cli -- artifact verify examples/runscope/runscope.raid.json

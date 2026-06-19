@@ -11,6 +11,7 @@
     ("bootstrap-sequence" ("bootstrap-sequence"))
     ("experiment-loop" ("experiment-loop"))
     ("merge-readiness" ("merge-readiness"))
+    ("merge-automation" ("merge-automation"))
     ("pdca-evidence" ("pdca-manifest"))
     ("evidence-ops" ("evidence-ops"))
     ("loss-ledger" ("loss-ledger"))

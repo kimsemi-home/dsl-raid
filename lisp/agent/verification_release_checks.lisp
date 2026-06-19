@@ -1,5 +1,6 @@
 (in-package #:dslraid.agent)
 
+(defvar *verification-release-check-extra-commands* nil)
 (defparameter *verification-release-check-commands*
   '("bash scripts/workflowgen.sh check"
     "bash scripts/gitlabgen.sh check"
@@ -67,9 +68,8 @@
     "bash scripts/lisp-rustgen.sh check"
     "bash scripts/verificationdocgen.sh check"
     "bash scripts/verificationcodegengen.sh check"
-    "bash scripts/gendocindex.sh check"
-    "cargo run -p dslraid-cli -- artifact verify examples/runscope/runscope.raid.json"))
+    "bash scripts/gendocindex.sh check"))
 
 (defun verification-release-check-commands ()
   "Return release-check commands for generated verification surfaces."
-  *verification-release-check-commands*)
+  (append *verification-release-check-commands* *verification-release-check-extra-commands*))

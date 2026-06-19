@@ -558,6 +558,18 @@
             "meaning": "Merge evidence is suitable when privacy and generated workflow gates are required."
         },
         {
+            "id": "evidence-quality:merge-automation",
+            "target": "docs/generated/verification-merge-automation.json",
+            "quality": "high",
+            "purpose": "merge-automation",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "policies",
+                "closure_rules"
+            ],
+            "meaning": "Merge automation evidence is suitable when PR source and forbidden events are checked."
+        },
+        {
             "id": "evidence-quality:incompleteness-ledger",
             "target": "docs/generated/verification-incompleteness-ledger.json",
             "quality": "high",

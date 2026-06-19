@@ -27,6 +27,8 @@
      "Experiment loop semantic receipt.")
     ("semantic-diff:merge-readiness" "semantic:merge-readiness"
      "Merge readiness semantic receipt.")
+    ("semantic-diff:merge-automation" "semantic:merge-automation"
+     "Merge automation semantic receipt.")
     ("semantic-diff:incompleteness-ledger" "semantic:incompleteness-ledger"
      "Incompleteness ledger semantic receipt.")))
 
