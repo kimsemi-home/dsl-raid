@@ -41,6 +41,7 @@
         "feedback-closure",
         "quarantine",
         "external-confidence",
-        "verification-sidecar"
+        "verification-sidecar",
+        "orchestration-manifest"
     ]
 }

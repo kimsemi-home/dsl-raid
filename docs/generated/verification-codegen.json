@@ -120,6 +120,12 @@
             "backends": [
                 "sidecar-manifest"
             ]
+        },
+        {
+            "axis": "orchestration-manifest",
+            "backends": [
+                "orchestration-manifest"
+            ]
         }
     ],
     "closure_rules": [

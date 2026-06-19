@@ -36,4 +36,8 @@
     ("evidence-quality:sidecar"
      "docs/generated/verification-sidecar.json" "high" "verification-sidecar"
      "gate:evidence-quality" ("receipts" "closure_rules")
-     "Sidecar evidence is suitable when producer and verifier differ.")))
+     "Sidecar evidence is suitable when producer and verifier differ.")
+    ("evidence-quality:orchestration"
+     "docs/generated/verification-orchestration.json" "high" "orchestration"
+     "gate:evidence-quality" ("routes" "closure_rules")
+     "Orchestration evidence is suitable when routes link policy and outputs.")))

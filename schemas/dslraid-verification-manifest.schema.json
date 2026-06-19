@@ -630,6 +630,51 @@
                     }
                 }
             }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
+                "orchestration_profile",
+                "routes",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationorchestrationgen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "orchestration_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "routes": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/orchestration_route"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
         }
     ],
     "$defs": {
@@ -1263,6 +1308,51 @@
                     "const": true
                 },
                 "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "orchestration_route": {
+            "type": "object",
+            "required": [
+                "id",
+                "decision",
+                "control_plane",
+                "agent",
+                "policy",
+                "authority",
+                "evidence",
+                "outputs",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "decision": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "control_plane": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "agent": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "policy": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "authority": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "outputs": {
                     "$ref": "#/$defs/strings"
                 },
                 "meaning": {

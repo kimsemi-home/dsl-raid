@@ -2,7 +2,7 @@ use super::Fixture;
 
 const MANIFEST: &str = "schemas/dslraid-verification-manifest.schema.json";
 
-pub(super) fn schemas() -> [Fixture; 15] {
+pub(super) fn schemas() -> [Fixture; 16] {
     [
         (
             "schemas/dslraid-verification-evidence.schema.json",
@@ -24,6 +24,7 @@ pub(super) fn schemas() -> [Fixture; 15] {
         (MANIFEST, "docs/generated/verification-quarantine.json"),
         (MANIFEST, "docs/generated/verification-confidence.json"),
         (MANIFEST, "docs/generated/verification-sidecar.json"),
+        (MANIFEST, "docs/generated/verification-orchestration.json"),
         (MANIFEST, "docs/generated/verification-codegen.json"),
     ]
 }

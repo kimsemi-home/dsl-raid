@@ -24,4 +24,6 @@
     ("semantic-diff:confidence" "semantic:confidence"
      "External confidence semantic receipt.")
     ("semantic-diff:sidecar" "semantic:sidecar"
-     "Verification sidecar semantic receipt.")))
+     "Verification sidecar semantic receipt.")
+    ("semantic-diff:orchestration" "semantic:orchestration"
+     "Orchestration routing semantic receipt.")))

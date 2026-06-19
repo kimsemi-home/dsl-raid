@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "feae2b4d98615e5124f8cc4f933caa73063c90e9e6b847d59f44732ccab086a1"
+            "hash": "f1b5716be8f88a7051ce791157b045f85156c3e66e467242d27cc746da398c99"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "3f9e3307bd99fd97abfbf557286ef870d46467d847211c38e36de370eb762c3c"
+            "hash": "bcb34b512dc77ee92b2b5081d75fdb3d035bb300bb0712cf87f3721fac79baf1"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "943ecab40d1a78c3c2f75d9d0691537c3e78a4530a49db79cfa24c86a1f82001"
+            "hash": "bb738ef6b606ad277c16095a38423db1afa318c0f4691c6dd1694e26a81312e6"
         },
         {
             "id": "semantic:authority",
@@ -64,7 +64,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "1915b112a2b30a9c905bbdebfed1b3bd7a6c57c8b1656074bf176f85af1a661a"
+            "hash": "7a86473a12441d05516323a58ebaee73dfb6d0d410dbe2c48017d27581c151e7"
         },
         {
             "id": "semantic:lease",
@@ -133,6 +133,17 @@
             ],
             "meaning": "Independent verification sidecar receipt contract.",
             "hash": "4b5704adf3058aba41f5fec0ab9de6981a5a5e2e3cef85bca4ddfa766dc90c23"
+        },
+        {
+            "id": "semantic:orchestration",
+            "source": "docs/generated/verification-orchestration.json",
+            "fields": [
+                "orchestration_profile",
+                "routes",
+                "closure_rules"
+            ],
+            "meaning": "Policy-bound orchestration routing receipt contract.",
+            "hash": "aabc6bf91c66f48d3811cf1cc5dc18c3ece5fa7b4f478845677786cb7daaaff6"
         }
     ],
     "closure_rules": [

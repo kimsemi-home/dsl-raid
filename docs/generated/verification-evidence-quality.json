@@ -112,6 +112,18 @@
                 "closure_rules"
             ],
             "meaning": "Sidecar evidence is suitable when producer and verifier differ."
+        },
+        {
+            "id": "evidence-quality:orchestration",
+            "target": "docs/generated/verification-orchestration.json",
+            "quality": "high",
+            "purpose": "orchestration",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "routes",
+                "closure_rules"
+            ],
+            "meaning": "Orchestration evidence is suitable when routes link policy and outputs."
         }
     ],
     "closure_rules": [

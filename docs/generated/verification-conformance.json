@@ -119,6 +119,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.orchestration-manifest",
+            "subject": "docs/generated/verification-orchestration.json",
+            "check": "scripts/verificationorchestrationgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.rust-code",
             "subject": "generated/runtime_fsm.rs",
             "check": "scripts/lisp-rustgen.sh check",

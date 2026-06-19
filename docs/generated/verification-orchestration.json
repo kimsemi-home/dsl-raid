@@ -1,0 +1,62 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationorchestrationgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification.lisp",
+    "orchestration_profile": "policy-bound-routing",
+    "routes": [
+        {
+            "id": "orchestration:release-check",
+            "decision": "decision:release-check-route",
+            "control_plane": "control-plane:verification",
+            "agent": "agent:verification-daemon",
+            "policy": "policy:verification-graph",
+            "authority": "gate:release",
+            "evidence": [
+                "docs/generated/verification-evidence.json",
+                "docs/generated/verification-sidecar.json"
+            ],
+            "outputs": [
+                ".github/workflows/verification.yml",
+                ".gitlab-ci.yml",
+                "Makefile",
+                "BUILD.bazel"
+            ],
+            "meaning": "Release routing is authoritative only with policy, agent, evidence, and outputs."
+        },
+        {
+            "id": "orchestration:conformance",
+            "decision": "decision:conformance-route",
+            "control_plane": "control-plane:verification",
+            "agent": "agent:quality-runner",
+            "policy": "policy:quality-gate",
+            "authority": "gate:quality",
+            "evidence": [
+                "docs/generated/verification-conformance.json",
+                "docs/generated/verification-evidence-quality.json"
+            ],
+            "outputs": [
+                "docs/generated/verification-conformance.json",
+                "tests/golden/verification-graph.generated.json"
+            ],
+            "meaning": "Conformance routing records the quality gate evidence and outputs."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "orchestration:policy-present",
+            "meaning": "Every route names policy.",
+            "check": "scripts/verificationorchestrationgen.sh check"
+        },
+        {
+            "id": "orchestration:agent-present",
+            "meaning": "Every route names agent.",
+            "check": "scripts/verificationorchestrationgen.sh check"
+        },
+        {
+            "id": "orchestration:evidence-output-present",
+            "meaning": "Every route links evidence and outputs.",
+            "check": "scripts/verificationorchestrationgen.sh check"
+        }
+    ]
+}

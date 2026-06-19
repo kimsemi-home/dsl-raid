@@ -32,6 +32,8 @@
      "scripts/verificationconfidencegen.sh")
     ("sidecar-manifest" "docs/generated/verification-sidecar.json"
      "scripts/verificationsidecargen.sh")
+    ("orchestration-manifest" "docs/generated/verification-orchestration.json"
+     "scripts/verificationorchestrationgen.sh")
     ("rust-code" "generated/runtime_fsm.rs" "scripts/lisp-rustgen.sh")
     ("verification-doc" "docs/generated/verification-graph.md"
      "scripts/verificationdocgen.sh")
