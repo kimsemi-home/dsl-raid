@@ -1,0 +1,52 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationhistoricalgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification.lisp",
+    "historical_interpreter_profile": "bridge-not-rewrite",
+    "interpretations": [
+        {
+            "id": "historical:workflow-evidence",
+            "evidence": "docs/generated/verification-evidence.json",
+            "interpreted_under": "ontology:verification.0.1.0",
+            "reinterpreted_under": "ontology:github-actions.0.1.0",
+            "translation_edge": "context-map:lisp-to-github-actions",
+            "policy": "keep-original",
+            "supporting_evidence": [
+                "docs/generated/verification-context-map.json",
+                "docs/generated/verification-semantic-diff.json"
+            ],
+            "meaning": "Generated workflow evidence is reinterpreted through a bridge."
+        },
+        {
+            "id": "historical:schema-evidence",
+            "evidence": "docs/generated/verification-evidence.json",
+            "interpreted_under": "ontology:verification.0.1.0",
+            "reinterpreted_under": "ontology:manifest-contract.0.1.0",
+            "translation_edge": "context-map:lisp-to-manifest-schema",
+            "policy": "keep-original",
+            "supporting_evidence": [
+                "docs/generated/verification-context-map.json",
+                "docs/generated/verification-versioned-ssot.json"
+            ],
+            "meaning": "Schema evidence is not rewritten under the target ontology."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "historical:no-silent-rewrite",
+            "meaning": "Old evidence keeps its original ontology.",
+            "check": "scripts/verificationhistoricalgen.sh check"
+        },
+        {
+            "id": "historical:bridge-required",
+            "meaning": "Reinterpretation uses a context-map bridge.",
+            "check": "scripts/verificationhistoricalgen.sh check"
+        },
+        {
+            "id": "historical:evidence-linked",
+            "meaning": "Interpreter decisions link generated evidence.",
+            "check": "scripts/verificationhistoricalgen.sh check"
+        }
+    ]
+}

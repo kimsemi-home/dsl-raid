@@ -143,6 +143,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.historical-interpreter",
+            "subject": "docs/generated/verification-historical-interpreter.json",
+            "check": "scripts/verificationhistoricalgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.rust-code",
             "subject": "generated/runtime_fsm.rs",
             "check": "scripts/lisp-rustgen.sh check",

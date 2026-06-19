@@ -49,4 +49,8 @@
      "Context and version scoped SSOT authority contract.")
     ("semantic:context-map" "docs/generated/verification-context-map.json"
      ("context_map_profile" "translations" "closure_rules")
-     "Versioned context translation bridge contract.")))
+     "Versioned context translation bridge contract.")
+    ("semantic:historical-interpreter"
+     "docs/generated/verification-historical-interpreter.json"
+     ("historical_interpreter_profile" "interpretations" "closure_rules")
+     "Historical evidence interpretation bridge contract.")))

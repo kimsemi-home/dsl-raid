@@ -32,4 +32,6 @@
     ("semantic-diff:versioned-ssot" "semantic:versioned-ssot"
      "Versioned SSOT semantic receipt.")
     ("semantic-diff:context-map" "semantic:context-map"
-     "Context map semantic receipt.")))
+     "Context map semantic receipt.")
+    ("semantic-diff:historical-interpreter" "semantic:historical-interpreter"
+     "Historical interpreter semantic receipt.")))

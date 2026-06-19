@@ -144,6 +144,12 @@
             "backends": [
                 "context-map"
             ]
+        },
+        {
+            "axis": "historical-interpreter",
+            "backends": [
+                "historical-interpreter"
+            ]
         }
     ],
     "closure_rules": [

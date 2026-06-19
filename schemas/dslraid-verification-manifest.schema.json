@@ -810,6 +810,51 @@
                     }
                 }
             }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
+                "historical_interpreter_profile",
+                "interpretations",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationhistoricalgen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "historical_interpreter_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "interpretations": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/historical_interpretation"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
         }
     ],
     "$defs": {
@@ -1620,6 +1665,47 @@
                     "$ref": "#/$defs/semantic_ref"
                 },
                 "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "historical_interpretation": {
+            "type": "object",
+            "required": [
+                "id",
+                "evidence",
+                "interpreted_under",
+                "reinterpreted_under",
+                "translation_edge",
+                "policy",
+                "supporting_evidence",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "evidence": {
+                    "$ref": "#/$defs/path"
+                },
+                "interpreted_under": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "reinterpreted_under": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "translation_edge": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "policy": {
+                    "const": "keep-original"
+                },
+                "supporting_evidence": {
                     "$ref": "#/$defs/strings"
                 },
                 "meaning": {

@@ -160,6 +160,18 @@
                 "closure_rules"
             ],
             "meaning": "Context map evidence is suitable when translation loss is linked."
+        },
+        {
+            "id": "evidence-quality:historical-interpreter",
+            "target": "docs/generated/verification-historical-interpreter.json",
+            "quality": "high",
+            "purpose": "historical-interpreter",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "interpretations",
+                "closure_rules"
+            ],
+            "meaning": "Historical interpreter evidence is suitable when old evidence is bridged."
         }
     ],
     "closure_rules": [

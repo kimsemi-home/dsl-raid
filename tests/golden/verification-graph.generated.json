@@ -32,7 +32,7 @@
             "id": "test:verification.node.release-check",
             "subject": "verify:daemon/release-check",
             "kind": "verification-node",
-            "commands": 34
+            "commands": 35
         },
         {
             "id": "test:verification.backend.github-actions",
@@ -165,6 +165,12 @@
             "subject": "docs/generated/verification-context-map.json",
             "kind": "generated-backend",
             "generator": "scripts/verificationcontextmapgen.sh"
+        },
+        {
+            "id": "test:verification.backend.historical-interpreter",
+            "subject": "docs/generated/verification-historical-interpreter.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationhistoricalgen.sh"
         },
         {
             "id": "test:verification.backend.rust-code",

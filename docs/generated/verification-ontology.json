@@ -45,6 +45,7 @@
         "orchestration-manifest",
         "evidence-before-change",
         "versioned-ssot",
-        "context-map"
+        "context-map",
+        "historical-interpreter"
     ]
 }

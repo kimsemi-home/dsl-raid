@@ -40,6 +40,8 @@
      "scripts/verificationversionedssotgen.sh")
     ("context-map" "docs/generated/verification-context-map.json"
      "scripts/verificationcontextmapgen.sh")
+    ("historical-interpreter" "docs/generated/verification-historical-interpreter.json"
+     "scripts/verificationhistoricalgen.sh")
     ("rust-code" "generated/runtime_fsm.rs" "scripts/lisp-rustgen.sh")
     ("verification-doc" "docs/generated/verification-graph.md"
      "scripts/verificationdocgen.sh")
