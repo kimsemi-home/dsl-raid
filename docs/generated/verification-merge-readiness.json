@@ -1,0 +1,82 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationmergegen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_merge_readiness.lisp",
+    "merge_profile": "autonomous-merge-gated",
+    "gates": [
+        {
+            "id": "merge-ready:quality",
+            "gate": "quality",
+            "check": "cargo run -p dslraid-cli -- quality",
+            "evidence": [
+                "docs/generated/verification-conformance.json"
+            ],
+            "status": "required",
+            "meaning": "Unified quality must pass before merge."
+        },
+        {
+            "id": "merge-ready:golden",
+            "gate": "golden",
+            "check": "cargo run -p dslraid-cli -- golden check tests/golden",
+            "evidence": [
+                "tests/golden/verification-graph.generated.json"
+            ],
+            "status": "required",
+            "meaning": "Golden evidence must match generated outputs before merge."
+        },
+        {
+            "id": "merge-ready:privacy",
+            "gate": "privacy",
+            "check": "bash scripts/privacycheck.sh check",
+            "evidence": [
+                "docs/generated/verification-privacy.json"
+            ],
+            "status": "required",
+            "meaning": "Public surfaces must exclude private paths and credential values."
+        },
+        {
+            "id": "merge-ready:line-budget",
+            "gate": "line-budget",
+            "check": "bash scripts/check-source-lines.sh",
+            "evidence": [
+                "docs/generated/verification-codegen.json"
+            ],
+            "status": "required",
+            "meaning": "Small-file architecture must stay within the line budget."
+        },
+        {
+            "id": "merge-ready:pages",
+            "gate": "pages",
+            "check": "bash scripts/workflowgen.sh check",
+            "evidence": [
+                ".github/workflows/pages.yml",
+                "docs/generated/verification-github-actions.json"
+            ],
+            "status": "required",
+            "meaning": "Published demo must be backed by generated workflow evidence."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "merge-ready:all-gates-pass",
+            "meaning": "Every merge gate must have a check command.",
+            "check": "scripts/verificationmergegen.sh check"
+        },
+        {
+            "id": "merge-ready:evidence-present",
+            "meaning": "Every gate must cite file-backed evidence.",
+            "check": "scripts/verificationmergegen.sh check"
+        },
+        {
+            "id": "merge-ready:privacy-required",
+            "meaning": "Privacy is a merge gate, not a post-check.",
+            "check": "scripts/verificationmergegen.sh check"
+        },
+        {
+            "id": "merge-ready:generated-workflows-fresh",
+            "meaning": "Generated workflows must be fresh.",
+            "check": "scripts/verificationmergegen.sh check"
+        }
+    ]
+}

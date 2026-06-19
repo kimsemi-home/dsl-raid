@@ -138,6 +138,8 @@ release-check:
     - |
       bash scripts/verificationexperimentgen.sh check
     - |
+      bash scripts/verificationmergegen.sh check
+    - |
       bash scripts/verificationadrgen.sh check
     - |
       bash scripts/verificationparitygen.sh check

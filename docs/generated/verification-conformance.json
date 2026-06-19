@@ -197,6 +197,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.merge-readiness",
+            "subject": "docs/generated/verification-merge-readiness.json",
+            "check": "scripts/verificationmergegen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.adr-governance",
             "subject": "docs/generated/verification-adr-governance.json",
             "check": "scripts/verificationadrgen.sh check",

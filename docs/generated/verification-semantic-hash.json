@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "de383ee9a48f3ff184aff339937b143d8d51ad35f3eebf6b61d4da991f3f0273"
+            "hash": "3b60161c16d52e46513f2dd860ab24f95707cdfbeb103f22f0e8d63f1051ed3c"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "c55f33e8e134409d409ca205ce16e9030373b9b7208bf89faccf3a3f9b8ed9be"
+            "hash": "f9b6b325c0f67b2c33f6f631ae23cc6bd59fc1d2e92c864e333ba0d5ce2c2fb4"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "9f3a82b81c544e88bec4fe6df798453e617726c418fd1fbeb678d2b921da73ee"
+            "hash": "1bcafe53f8be7e758766e665cd990161e7315dc609b22af0c233e01265c3e9f7"
         },
         {
             "id": "semantic:authority",
@@ -97,7 +97,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "fe333a65dcadcd1249af1f8979225b64b90b835fc0eb5dc1e45193db4e2bb29e"
+            "hash": "a677e495bd82b55a0d598bad3a4d504fd8375964856c5dc5f66a36255f3f7309"
         },
         {
             "id": "semantic:lease",
@@ -529,6 +529,17 @@
             ],
             "meaning": "PDCA experiment plan, evidence, check, and act contract.",
             "hash": "d79a9ee47e69ad69476db6c7d6a865396ec3ec000bdc6731bb3eb3251ad5c180"
+        },
+        {
+            "id": "semantic:merge-readiness",
+            "source": "docs/generated/verification-merge-readiness.json",
+            "fields": [
+                "merge_profile",
+                "gates",
+                "closure_rules"
+            ],
+            "meaning": "Autonomous merge gate, evidence, and privacy contract.",
+            "hash": "c2329fd979cb5b42a071cc71de6d0d29f6e591ad7c84bf0309467c404fb9de68"
         },
         {
             "id": "semantic:incompleteness-ledger",

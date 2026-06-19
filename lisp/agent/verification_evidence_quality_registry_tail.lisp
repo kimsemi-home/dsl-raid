@@ -60,13 +60,4 @@
      "docs/generated/verification-experiment-loop.json"
      "high" "experiment-loop" "gate:evidence-quality"
      ("experiments" "closure_rules")
-     "Experiment evidence is suitable when PDCA records cite checks and act evidence.")
-    ("evidence-quality:incompleteness-ledger"
-     "docs/generated/verification-incompleteness-ledger.json"
-     "high" "incompleteness-ledger" "gate:evidence-quality"
-     ("unknowns" "closure_rules")
-     "Incomplete knowledge evidence is suitable when unknowns are owned and classified.")))
-
-(defparameter *verification-evidence-quality-assessments*
-  (append *verification-evidence-quality-core-assessments*
-          *verification-evidence-quality-tail-assessments*))
+     "Experiment evidence is suitable when PDCA records cite checks and act evidence.")))

@@ -546,6 +546,18 @@
             "meaning": "Experiment evidence is suitable when PDCA records cite checks and act evidence."
         },
         {
+            "id": "evidence-quality:merge-readiness",
+            "target": "docs/generated/verification-merge-readiness.json",
+            "quality": "high",
+            "purpose": "merge-readiness",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "gates",
+                "closure_rules"
+            ],
+            "meaning": "Merge evidence is suitable when privacy and generated workflow gates are required."
+        },
+        {
             "id": "evidence-quality:incompleteness-ledger",
             "target": "docs/generated/verification-incompleteness-ledger.json",
             "quality": "high",

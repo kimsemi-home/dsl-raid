@@ -49,6 +49,10 @@
      "docs/generated/verification-experiment-loop.json"
      ("experiment_profile" "experiments" "closure_rules")
      "PDCA experiment plan, evidence, check, and act contract.")
+    ("semantic:merge-readiness"
+     "docs/generated/verification-merge-readiness.json"
+     ("merge_profile" "gates" "closure_rules")
+     "Autonomous merge gate, evidence, and privacy contract.")
     ("semantic:incompleteness-ledger"
      "docs/generated/verification-incompleteness-ledger.json"
      ("incompleteness_profile" "unknowns" "closure_rules")

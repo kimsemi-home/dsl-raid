@@ -25,6 +25,8 @@
      "Bootstrap sequence semantic receipt.")
     ("semantic-diff:experiment-loop" "semantic:experiment-loop"
      "Experiment loop semantic receipt.")
+    ("semantic-diff:merge-readiness" "semantic:merge-readiness"
+     "Merge readiness semantic receipt.")
     ("semantic-diff:incompleteness-ledger" "semantic:incompleteness-ledger"
      "Incompleteness ledger semantic receipt.")))
 

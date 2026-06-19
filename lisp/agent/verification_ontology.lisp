@@ -8,7 +8,7 @@
 
 (defparameter *verification-codegen-axes*
   '("code" "docs" "schemas" "tests" "conformance"
-    "github-actions" "release-pipelines" "bootstrap-sequence" "experiment-loop" "pdca-evidence" "evidence-ops" "loss-ledger"
+    "github-actions" "release-pipelines" "bootstrap-sequence" "experiment-loop" "merge-readiness" "pdca-evidence" "evidence-ops" "loss-ledger"
     "semantic-hash" "semantic-diff" "authority-gate" "access-policy"
     "reasoning-access" "reliability-registry" "cross-agent-agreement" "adversarial-review"
     "evidence-quality" "lease-and-abort" "review-capacity" "feedback-closure" "quarantine"

@@ -5,6 +5,7 @@
     ("executable-knowledge" "Policy, DSL, schema, manifest, IR" "Generated docs and artifacts" "Human prose explains generated knowledge; it is not the SSOT.")
     ("bootstrap-sequence" "Language SSOT and generated files" "Checked IR, runtime, schema, tests, and pipelines" "The system boots from Lisp forms into file-backed evidence.")
     ("experiment-loop" "PDCA experiment record" "Reviewed evidence and promoted or rejected act" "Experiments are first-class evidence before policy.")
+    ("merge-readiness" "Change candidate and generated gates" "Required merge gate evidence" "Autonomous merge is allowed only when privacy, quality, golden, and generated workflow gates pass.")
     ("versioned-ssot" "Context, ontology version, contract version" "Scoped authority" "SSOT authority is valid only inside an explicit context and version.")
     ("evidence-graph" "Raw evidence, interpretation, claim, artifact" "Traceable evidence links" "Unlinked evidence cannot justify high confidence or authority.")
     ("evidence-ops" "CI, deploy, experiment, and incident loop" "Evidence graph update and conformance claim" "Operations are evidence generation, not mere automation.")
