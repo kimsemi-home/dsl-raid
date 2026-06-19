@@ -152,6 +152,12 @@
             ]
         },
         {
+            "axis": "provider-compat",
+            "backends": [
+                "provider-compat"
+            ]
+        },
+        {
             "axis": "evidence-before-change",
             "backends": [
                 "evidence-before-change"

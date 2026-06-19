@@ -1395,6 +1395,51 @@
                     }
                 }
             }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
+                "provider_compat_profile",
+                "records",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationprovidergen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "provider_compat_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "records": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/provider_compat_record"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
         }
     ],
     "$defs": {
@@ -2990,6 +3035,54 @@
                 },
                 "authority": {
                     "$ref": "#/$defs/semantic_ref"
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "provider_compat_record": {
+            "type": "object",
+            "required": [
+                "id",
+                "provider",
+                "runtime",
+                "protocol",
+                "requires",
+                "supports",
+                "status",
+                "evidence",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "provider": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "runtime": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "protocol": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "requires": {
+                    "$ref": "#/$defs/strings"
+                },
+                "supports": {
+                    "$ref": "#/$defs/strings"
+                },
+                "status": {
+                    "enum": [
+                        "compatible",
+                        "blocked"
+                    ]
                 },
                 "evidence": {
                     "$ref": "#/$defs/strings"

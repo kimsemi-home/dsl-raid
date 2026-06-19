@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "83f227019e06123f642d6de0bbe95bc741dab906f4d752bff831c1ea6ed70b3d"
+            "hash": "30dc3b72c8c8cd59598d916fd6f21f6eb30b859e60da7e576d9f1caf551bb259"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "9e1ef70a9f1d65ffb72641bed16bb58504623b41b1b880433bde1c57df8bf99b"
+            "hash": "eaa622115d0d2dec77aa56b3dd6108e72c764c9cb73dd60aacb0947859739bee"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "3b9cdad691f48539f73158b39c9bfcaacd8a2bebf3e993f0883cb189abca6660"
+            "hash": "fb5e1869fbf448830075b1b48fa213f06f91647c1cccd7d3b88baa450cca018a"
         },
         {
             "id": "semantic:authority",
@@ -97,7 +97,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "c7e52d2453c219694aa5dca12df4a34aafa3abef168bfaffbfe095e2af3b94ce"
+            "hash": "bab8f66f1b3f1ad9905ddb60b15948d5d7bfc4b26f3837c91144b327458ebca7"
         },
         {
             "id": "semantic:lease",
@@ -188,6 +188,17 @@
             ],
             "meaning": "Control-plane sidecar and shadow verifier contract.",
             "hash": "13ef6b38216c302a0f14388e8c3623ad16957ec0ff5f462a487269634ebec592"
+        },
+        {
+            "id": "semantic:provider-compat",
+            "source": "docs/generated/verification-provider-compat.json",
+            "fields": [
+                "provider_compat_profile",
+                "records",
+                "closure_rules"
+            ],
+            "meaning": "Provider protocol and capability compatibility contract.",
+            "hash": "d0b2f1580a41118673f1db470eb2e921ca744302594d520c6e529e66a707d7d7"
         },
         {
             "id": "semantic:evidence-before-change",

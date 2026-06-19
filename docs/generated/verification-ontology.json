@@ -47,6 +47,7 @@
         "verification-sidecar",
         "orchestration-manifest",
         "control-plane-verifier",
+        "provider-compat",
         "evidence-before-change",
         "versioned-ssot",
         "context-map",

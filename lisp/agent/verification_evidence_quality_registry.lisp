@@ -39,6 +39,7 @@
      "Sidecar evidence is suitable when producer and verifier differ.")
     ("evidence-quality:orchestration" "docs/generated/verification-orchestration.json" "high" "orchestration" "gate:evidence-quality" ("routes" "closure_rules") "Orchestration evidence is suitable when routes link policy and outputs.")
     ("evidence-quality:control-plane" "docs/generated/verification-control-plane.json" "high" "control-plane-verifier" "gate:evidence-quality" ("routes" "closure_rules") "Control-plane verifier evidence is suitable when shadow and sidecar checks are explicit.")
+    ("evidence-quality:provider-compat" "docs/generated/verification-provider-compat.json" "high" "provider-compat" "gate:evidence-quality" ("records" "closure_rules") "Provider compatibility evidence is suitable when required capabilities are explicit.")
     ("evidence-quality:evidence-before-change"
      "docs/generated/verification-evidence-before-change.json" "high"
      "evidence-before-change" "gate:evidence-quality" ("changes" "closure_rules")

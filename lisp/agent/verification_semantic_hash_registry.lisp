@@ -3,9 +3,7 @@
 (defparameter *verification-semantic-hashes*
   '(("semantic:verification-graph" "docs/generated/verification-evidence.json" ("form" "ontology_chain" "verification_nodes" "generated_backends") "Verification graph shape and generated backend contract.")
     ("semantic:codegen-map" "docs/generated/verification-codegen.json" ("axes") "Ontology codegen axes mapped to generated backends.")
-    ("semantic:loss-ledger" "docs/generated/verification-loss-ledger.json"
-     ("ledger")
-     "Declared adapter translation loss without forbidden L4 loss.")
+    ("semantic:loss-ledger" "docs/generated/verification-loss-ledger.json" ("ledger") "Declared adapter translation loss without forbidden L4 loss.")
     ("semantic:conformance" "docs/generated/verification-conformance.json"
      ("rules")
      "Required checks for generated backend freshness.")
@@ -42,6 +40,7 @@
      ("orchestration_profile" "routes" "closure_rules")
      "Policy-bound orchestration routing receipt contract.")
     ("semantic:control-plane" "docs/generated/verification-control-plane.json" ("control_plane_profile" "routes" "closure_rules") "Control-plane sidecar and shadow verifier contract.")
+    ("semantic:provider-compat" "docs/generated/verification-provider-compat.json" ("provider_compat_profile" "records" "closure_rules") "Provider protocol and capability compatibility contract.")
     ("semantic:evidence-before-change"
      "docs/generated/verification-evidence-before-change.json"
      ("evidence_before_change_profile" "changes" "closure_rules")

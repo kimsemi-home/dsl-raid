@@ -25,6 +25,7 @@
     ("verification-sidecar" ("sidecar-manifest"))
     ("orchestration-manifest" ("orchestration-manifest"))
     ("control-plane-verifier" ("control-plane-verifier"))
+    ("provider-compat" ("provider-compat"))
     ("evidence-before-change" ("evidence-before-change"))
     ("versioned-ssot" ("versioned-ssot"))
     ("context-map" ("context-map"))

@@ -1,0 +1,93 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationprovidergen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_provider_compat.lisp",
+    "provider_compat_profile": "capability-matrix",
+    "records": [
+        {
+            "id": "provider-compat:codex-runtime",
+            "provider": "provider:codex",
+            "runtime": "runtime:codex",
+            "protocol": "protocol:exec-jsonl",
+            "requires": [
+                "exec",
+                "reset",
+                "workspace",
+                "patch"
+            ],
+            "supports": [
+                "exec",
+                "reset",
+                "workspace",
+                "patch",
+                "quality-gate"
+            ],
+            "status": "compatible",
+            "evidence": [
+                "docs/generated/verification-access-policy.json",
+                "docs/generated/verification-reliability.json"
+            ],
+            "meaning": "Codex runtime supports required local workspace and reset capabilities."
+        },
+        {
+            "id": "provider-compat:claude-code",
+            "provider": "provider:claude-code",
+            "runtime": "runtime:claude-code",
+            "protocol": "protocol:stream-json",
+            "requires": [
+                "hooks",
+                "workspace",
+                "streaming"
+            ],
+            "supports": [
+                "hooks",
+                "workspace",
+                "streaming",
+                "memory-file"
+            ],
+            "status": "compatible",
+            "evidence": [
+                "docs/generated/verification-sidecar.json",
+                "docs/generated/verification-control-plane.json"
+            ],
+            "meaning": "Claude Code is compatible when hooks and streaming are available."
+        },
+        {
+            "id": "provider-compat:new-agent",
+            "provider": "provider:candidate",
+            "runtime": "runtime:unknown",
+            "protocol": "protocol:unknown",
+            "requires": [
+                "workspace",
+                "security-policy"
+            ],
+            "supports": [
+                "workspace"
+            ],
+            "status": "blocked",
+            "evidence": [
+                "docs/generated/verification-reliability.json",
+                "docs/generated/verification-debt.json"
+            ],
+            "meaning": "Candidate providers stay blocked until capability evidence exists."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "provider-compat:requirements-covered",
+            "meaning": "Required capabilities must be supported.",
+            "check": "scripts/verificationprovidergen.sh check"
+        },
+        {
+            "id": "provider-compat:evidence-required",
+            "meaning": "Compatibility needs generated evidence.",
+            "check": "scripts/verificationprovidergen.sh check"
+        },
+        {
+            "id": "provider-compat:blocked-on-missing",
+            "meaning": "Missing required capability blocks use.",
+            "check": "scripts/verificationprovidergen.sh check"
+        }
+    ]
+}

@@ -31,6 +31,7 @@
     "bash scripts/verificationsidecargen.sh check"
     "bash scripts/verificationorchestrationgen.sh check"
     "bash scripts/verificationcontrolgen.sh check"
+    "bash scripts/verificationprovidergen.sh check"
     "bash scripts/verificationevidencebeforechangegen.sh check"
     "bash scripts/verificationversionedssotgen.sh check"
     "bash scripts/verificationcontextmapgen.sh check"
