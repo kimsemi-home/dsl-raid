@@ -2114,6 +2114,89 @@
                 "generated_by",
                 "subject",
                 "source",
+                "branch_protection_profile",
+                "requirements",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationbranchgen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "branch_protection_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "requirements": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "id",
+                            "kind",
+                            "name",
+                            "workflow",
+                            "evidence",
+                            "status",
+                            "meaning"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "id": {
+                                "$ref": "#/$defs/semantic_ref"
+                            },
+                            "kind": {
+                                "enum": [
+                                    "branch",
+                                    "required-check"
+                                ]
+                            },
+                            "name": {
+                                "type": "string",
+                                "minLength": 1
+                            },
+                            "workflow": {
+                                "$ref": "#/$defs/path"
+                            },
+                            "evidence": {
+                                "$ref": "#/$defs/strings"
+                            },
+                            "status": {
+                                "const": "required"
+                            },
+                            "meaning": {
+                                "type": "string",
+                                "minLength": 1
+                            }
+                        }
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
                 "parity_profile",
                 "projections",
                 "closure_rules"

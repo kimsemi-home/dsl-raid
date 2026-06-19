@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "9109cc49eafd15fde5ae646350c0044c3eaeae2532d91622a5d466c91bf9912e"
+            "hash": "bf1be0ea26eab980b526f26ba7d03f3aac7492eef4423042951cc67733fb3bf4"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "9a6a1cdbfde2a56519579ecc8f046e482058e19436520d60c2965ba3811ff583"
+            "hash": "b3740ee0c60b42008fc5a3cb66001151cdaaa3ec570588c830cff27a7dc9d3dd"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "98b398d170ab955a6b84a50700c27359a9b7656fb6bae794005066d18575d14c"
+            "hash": "e1a0769ebd638307da1794863e5172b2d56dfec772ba28373eb38b832f617354"
         },
         {
             "id": "semantic:authority",
@@ -97,7 +97,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "8d7d0d4856b781526da94d21c354878620ce0ae5003ee0c7dc26b7a832a79b69"
+            "hash": "baa632dbbf44b3cec1e1bb245379313ad62ecc74cc4d4f5ec9cdf2b041713cdb"
         },
         {
             "id": "semantic:lease",
@@ -551,6 +551,17 @@
             ],
             "meaning": "Automatic merge source, workflow, permission, and forbidden-event contract.",
             "hash": "3e21ab53843ac88a7bcb1b336869f0110701b76b11ebc95c5da2f9cb2cef13e7"
+        },
+        {
+            "id": "semantic:branch-protection",
+            "source": "docs/generated/verification-branch-protection.json",
+            "fields": [
+                "branch_protection_profile",
+                "requirements",
+                "closure_rules"
+            ],
+            "meaning": "Main branch required-check and protected merge contract.",
+            "hash": "3292a8dde7339aef8a426814597b49978660998bd4c80c5f9378d95f4f06c0d1"
         },
         {
             "id": "semantic:incompleteness-ledger",

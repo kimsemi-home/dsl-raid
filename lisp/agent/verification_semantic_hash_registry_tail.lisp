@@ -57,6 +57,10 @@
      "docs/generated/verification-merge-automation.json"
      ("automation_profile" "policies" "closure_rules")
      "Automatic merge source, workflow, permission, and forbidden-event contract.")
+    ("semantic:branch-protection"
+     "docs/generated/verification-branch-protection.json"
+     ("branch_protection_profile" "requirements" "closure_rules")
+     "Main branch required-check and protected merge contract.")
     ("semantic:incompleteness-ledger"
      "docs/generated/verification-incompleteness-ledger.json"
      ("incompleteness_profile" "unknowns" "closure_rules")

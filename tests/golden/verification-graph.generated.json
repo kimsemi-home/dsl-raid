@@ -32,7 +32,7 @@
             "id": "test:verification.node.release-check",
             "subject": "verify:daemon/release-check",
             "kind": "verification-node",
-            "commands": 69
+            "commands": 70
         },
         {
             "id": "test:verification.backend.github-actions",
@@ -231,6 +231,12 @@
             "subject": "docs/generated/verification-merge-automation.json",
             "kind": "generated-backend",
             "generator": "scripts/verificationautomergegen.sh"
+        },
+        {
+            "id": "test:verification.backend.branch-protection",
+            "subject": "docs/generated/verification-branch-protection.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationbranchgen.sh"
         },
         {
             "id": "test:verification.backend.adr-governance",

@@ -209,6 +209,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.branch-protection",
+            "subject": "docs/generated/verification-branch-protection.json",
+            "check": "scripts/verificationbranchgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.adr-governance",
             "subject": "docs/generated/verification-adr-governance.json",
             "check": "scripts/verificationadrgen.sh check",

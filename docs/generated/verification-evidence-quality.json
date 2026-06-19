@@ -570,6 +570,18 @@
             "meaning": "Merge automation evidence is suitable when PR source and forbidden events are checked."
         },
         {
+            "id": "evidence-quality:branch-protection",
+            "target": "docs/generated/verification-branch-protection.json",
+            "quality": "high",
+            "purpose": "branch-protection",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "requirements",
+                "closure_rules"
+            ],
+            "meaning": "Branch protection evidence is suitable when required checks map to workflows."
+        },
+        {
             "id": "evidence-quality:incompleteness-ledger",
             "target": "docs/generated/verification-incompleteness-ledger.json",
             "quality": "high",

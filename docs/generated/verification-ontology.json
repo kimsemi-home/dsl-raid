@@ -34,6 +34,7 @@
         "experiment-loop",
         "merge-readiness",
         "merge-automation",
+        "branch-protection",
         "pdca-evidence",
         "evidence-ops",
         "loss-ledger",

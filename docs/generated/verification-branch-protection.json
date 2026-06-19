@@ -1,0 +1,86 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationbranchgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_branch_protection.lisp",
+    "branch_protection_profile": "main-required-checks",
+    "requirements": [
+        {
+            "id": "branch-protect:main",
+            "kind": "branch",
+            "name": "main",
+            "workflow": ".github/workflows/ci.yml",
+            "evidence": [
+                "docs/generated/verification-merge-automation.json"
+            ],
+            "status": "required",
+            "meaning": "Main branch protection is the target merge boundary."
+        },
+        {
+            "id": "branch-protect:ci",
+            "kind": "required-check",
+            "name": "CI",
+            "workflow": ".github/workflows/ci.yml",
+            "evidence": [
+                "docs/generated/verification-conformance.json"
+            ],
+            "status": "required",
+            "meaning": "CI must stay required before protected merges."
+        },
+        {
+            "id": "branch-protect:security",
+            "kind": "required-check",
+            "name": "Security",
+            "workflow": ".github/workflows/security.yml",
+            "evidence": [
+                "docs/generated/verification-security-audit.json"
+            ],
+            "status": "required",
+            "meaning": "Security checks must stay required before protected merges."
+        },
+        {
+            "id": "branch-protect:golden",
+            "kind": "required-check",
+            "name": "Golden",
+            "workflow": ".github/workflows/golden.yml",
+            "evidence": [
+                "tests/golden/verification-graph.generated.json"
+            ],
+            "status": "required",
+            "meaning": "Golden output checks must stay required before protected merges."
+        },
+        {
+            "id": "branch-protect:verification",
+            "kind": "required-check",
+            "name": "Verification Graph",
+            "workflow": ".github/workflows/verification.yml",
+            "evidence": [
+                "docs/generated/verification-backend-parity.json"
+            ],
+            "status": "required",
+            "meaning": "Generated Verification Graph must stay required before protected merges."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "branch-protect:main-only",
+            "meaning": "Protected merge target must be main.",
+            "check": "scripts/verificationbranchgen.sh check"
+        },
+        {
+            "id": "branch-protect:required-checks",
+            "meaning": "Required check workflows must exist.",
+            "check": "scripts/verificationbranchgen.sh check"
+        },
+        {
+            "id": "branch-protect:no-target-event",
+            "meaning": "Required PR checks must avoid pull_request_target.",
+            "check": "scripts/verificationbranchgen.sh check"
+        },
+        {
+            "id": "branch-protect:evidence-linked",
+            "meaning": "Each required check must cite evidence.",
+            "check": "scripts/verificationbranchgen.sh check"
+        }
+    ]
+}

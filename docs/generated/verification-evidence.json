@@ -45,6 +45,7 @@
     {"backend": "experiment-loop", "output": "docs/generated/verification-experiment-loop.json", "generator": "scripts/verificationexperimentgen.sh", "check": "scripts/verificationexperimentgen.sh check"},
     {"backend": "merge-readiness", "output": "docs/generated/verification-merge-readiness.json", "generator": "scripts/verificationmergegen.sh", "check": "scripts/verificationmergegen.sh check"},
     {"backend": "merge-automation", "output": "docs/generated/verification-merge-automation.json", "generator": "scripts/verificationautomergegen.sh", "check": "scripts/verificationautomergegen.sh check"},
+    {"backend": "branch-protection", "output": "docs/generated/verification-branch-protection.json", "generator": "scripts/verificationbranchgen.sh", "check": "scripts/verificationbranchgen.sh check"},
     {"backend": "adr-governance", "output": "docs/generated/verification-adr-governance.json", "generator": "scripts/verificationadrgen.sh", "check": "scripts/verificationadrgen.sh check"},
     {"backend": "backend-parity", "output": "docs/generated/verification-backend-parity.json", "generator": "scripts/verificationparitygen.sh", "check": "scripts/verificationparitygen.sh check"},
     {"backend": "github-actions-suite", "output": "docs/generated/verification-github-actions.json", "generator": "scripts/verificationactionsgen.sh", "check": "scripts/verificationactionsgen.sh check"},
@@ -85,7 +86,7 @@
     {"id": "unit-test", "commands": 1, "evidence": "Rust workspace unit test evidence."},
     {"id": "integration-test", "commands": 3, "evidence": "Viewer test and build evidence."},
     {"id": "conformance", "commands": 1, "evidence": "Unified DSLRaid semantic and generated-output gate."},
-    {"id": "release-check", "commands": 69, "evidence": "Generated workflow, docs index, and artifact freshness."}
+    {"id": "release-check", "commands": 70, "evidence": "Generated workflow, docs index, and artifact freshness."}
   ],
   "pdca": [
     "plan",
