@@ -32,7 +32,7 @@
             "id": "test:verification.node.release-check",
             "subject": "verify:daemon/release-check",
             "kind": "verification-node",
-            "commands": 63
+            "commands": 64
         },
         {
             "id": "test:verification.backend.github-actions",
@@ -339,6 +339,12 @@
             "subject": "docs/generated/verification-debt.json",
             "kind": "generated-backend",
             "generator": "scripts/verificationdebtgen.sh"
+        },
+        {
+            "id": "test:verification.backend.incompleteness-ledger",
+            "subject": "docs/generated/verification-incompleteness-ledger.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationincompletegen.sh"
         },
         {
             "id": "test:verification.backend.rust-code",

@@ -73,6 +73,7 @@
         "evidence-pruning",
         "security-audit",
         "failure-conditions",
-        "debt-register"
+        "debt-register",
+        "incompleteness-ledger"
     ]
 }

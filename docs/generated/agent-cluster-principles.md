@@ -50,6 +50,7 @@ Failures must become evidence, diagnostics, or generated knowledge updates.
 | security-audit | Permission or security boundary change | Policy, semantic hash, audit, approval, rollback | Security changes start from policy and require audit evidence before deploy. |
 | failure-conditions | Operational breakage signal | Blocked authority and response owner | The system defines how it is failing, not only how it succeeds. |
 | debt-register | Unclosed learning gap | Owner, repayment, and revalidation | Debt is not failure, but invisible debt is failure. |
+| incompleteness-ledger | Unknown, gap, drift, or assumption | Classified owner and authority effect | Incomplete knowledge is allowed only when it is visible and owned. |
 | review-capacity | Human review queue | Prioritized review or debt | Human review is finite; overload freezes high-risk automation. |
 | feedback-closure | Failure, gap, or retrospective | Policy, ontology, spec, owner, or revalidation update | A loop that does not update knowledge remains open evidence. |
 

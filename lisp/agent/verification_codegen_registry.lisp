@@ -51,7 +51,8 @@
     ("evidence-pruning" ("evidence-pruning"))
     ("security-audit" ("security-audit"))
     ("failure-conditions" ("failure-conditions"))
-    ("debt-register" ("debt-register"))))
+    ("debt-register" ("debt-register"))
+    ("incompleteness-ledger" ("incompleteness-ledger"))))
 
 (defparameter *verification-codegen-rules*
   '(("codegen:axis-covered" "Every ontology codegen axis maps to a backend.")

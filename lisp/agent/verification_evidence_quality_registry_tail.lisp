@@ -50,7 +50,12 @@
      "docs/generated/verification-evidence-separation.json"
      "high" "evidence-separation" "gate:evidence-quality"
      ("records" "closure_rules")
-     "Separation evidence is suitable when raw evidence, interpretation, claim, and artifact stay distinct.")))
+     "Separation evidence is suitable when raw evidence, interpretation, claim, and artifact stay distinct.")
+    ("evidence-quality:incompleteness-ledger"
+     "docs/generated/verification-incompleteness-ledger.json"
+     "high" "incompleteness-ledger" "gate:evidence-quality"
+     ("unknowns" "closure_rules")
+     "Incomplete knowledge evidence is suitable when unknowns are owned and classified.")))
 
 (defparameter *verification-evidence-quality-assessments*
   (append *verification-evidence-quality-core-assessments*

@@ -313,6 +313,12 @@
             "backends": [
                 "debt-register"
             ]
+        },
+        {
+            "axis": "incompleteness-ledger",
+            "backends": [
+                "incompleteness-ledger"
+            ]
         }
     ],
     "closure_rules": [

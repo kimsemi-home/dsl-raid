@@ -508,6 +508,18 @@
                 "closure_rules"
             ],
             "meaning": "Separation evidence is suitable when raw evidence, interpretation, claim, and artifact stay distinct."
+        },
+        {
+            "id": "evidence-quality:incompleteness-ledger",
+            "target": "docs/generated/verification-incompleteness-ledger.json",
+            "quality": "high",
+            "purpose": "incompleteness-ledger",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "unknowns",
+                "closure_rules"
+            ],
+            "meaning": "Incomplete knowledge evidence is suitable when unknowns are owned and classified."
         }
     ],
     "closure_rules": [

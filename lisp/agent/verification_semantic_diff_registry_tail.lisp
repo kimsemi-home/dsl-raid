@@ -20,7 +20,9 @@
     ("semantic-diff:adversarial-review" "semantic:adversarial-review"
      "Adversarial review semantic receipt.")
     ("semantic-diff:evidence-separation" "semantic:evidence-separation"
-     "Evidence separation semantic receipt.")))
+     "Evidence separation semantic receipt.")
+    ("semantic-diff:incompleteness-ledger" "semantic:incompleteness-ledger"
+     "Incompleteness ledger semantic receipt.")))
 
 (defparameter *verification-semantic-diffs*
   (append *verification-semantic-core-diffs*

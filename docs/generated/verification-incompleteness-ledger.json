@@ -1,0 +1,91 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationincompletegen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_incompleteness_ledger.lisp",
+    "incompleteness_profile": "tracked-unknowns",
+    "unknowns": [
+        {
+            "id": "unknown:ontology-context",
+            "unknown_kind": "unknown",
+            "domain": "ontology",
+            "source": "docs/generated/verification-ontology.json",
+            "status": "open",
+            "owner": "owner:ontology",
+            "next_action": "classify:bounded-context",
+            "authority_effect": "authority-blocked",
+            "evidence": [
+                "docs/generated/verification-ontology.json",
+                "docs/generated/verification-context-map.json"
+            ],
+            "meaning": "Ontology context gaps block meaning changes until classified."
+        },
+        {
+            "id": "unknown:evidence-link",
+            "unknown_kind": "gap",
+            "domain": "evidence",
+            "source": "docs/generated/verification-evidence.json",
+            "status": "open",
+            "owner": "owner:evidence",
+            "next_action": "classify:evidence-graph",
+            "authority_effect": "review-required",
+            "evidence": [
+                "docs/generated/verification-evidence.json",
+                "docs/generated/verification-evidence-quality.json"
+            ],
+            "meaning": "Unlinked evidence stays visible until linked or rejected."
+        },
+        {
+            "id": "unknown:runtime-drift",
+            "unknown_kind": "drift",
+            "domain": "runtime",
+            "source": "docs/generated/verification-runtime-trace.json",
+            "status": "triaged",
+            "owner": "owner:runtime",
+            "next_action": "classify:trace-mapping",
+            "authority_effect": "review-required",
+            "evidence": [
+                "docs/generated/verification-runtime-trace.json",
+                "docs/generated/verification-root-cause.json"
+            ],
+            "meaning": "Runtime drift needs trace mapping before promotion."
+        },
+        {
+            "id": "unknown:release-assumption",
+            "unknown_kind": "assumption",
+            "domain": "release",
+            "source": "docs/generated/verification-release-provenance.json",
+            "status": "open",
+            "owner": "owner:release",
+            "next_action": "classify:release-risk",
+            "authority_effect": "human-review",
+            "evidence": [
+                "docs/generated/verification-release-provenance.json",
+                "docs/generated/verification-adversarial-review.json"
+            ],
+            "meaning": "Release assumptions require human review until proven."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "incomplete:owner-required",
+            "meaning": "Every incomplete item has a non-agent owner.",
+            "check": "scripts/verificationincompletegen.sh check"
+        },
+        {
+            "id": "incomplete:evidence-required",
+            "meaning": "Unknowns cite generated evidence.",
+            "check": "scripts/verificationincompletegen.sh check"
+        },
+        {
+            "id": "incomplete:open-needs-action",
+            "meaning": "Open unknowns name the next classification action.",
+            "check": "scripts/verificationincompletegen.sh check"
+        },
+        {
+            "id": "incomplete:authority-explicit",
+            "meaning": "Every unknown declares authority effect.",
+            "check": "scripts/verificationincompletegen.sh check"
+        }
+    ]
+}

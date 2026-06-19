@@ -29,6 +29,7 @@
     ("security-audit" "docs/generated/verification-security-audit.json" "scripts/verificationsecuritygen.sh")
     ("failure-conditions" "docs/generated/verification-failure-conditions.json" "scripts/verificationfailuregen.sh")
     ("debt-register" "docs/generated/verification-debt.json" "scripts/verificationdebtgen.sh")
+    ("incompleteness-ledger" "docs/generated/verification-incompleteness-ledger.json" "scripts/verificationincompletegen.sh")
     ("rust-code" "generated/runtime_fsm.rs" "scripts/lisp-rustgen.sh")
     ("verification-doc" "docs/generated/verification-graph.md" "scripts/verificationdocgen.sh")
     ("docs-index" "docs/generated/generated-docs.md" "scripts/gendocindex.sh")

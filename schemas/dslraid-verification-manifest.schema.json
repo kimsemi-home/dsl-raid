@@ -1223,6 +1223,51 @@
                 "generated_by",
                 "subject",
                 "source",
+                "incompleteness_profile",
+                "unknowns",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationincompletegen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "incompleteness_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "unknowns": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/incomplete_unknown"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
                 "access_profile",
                 "policies",
                 "closure_rules"
@@ -2649,6 +2694,70 @@
                 },
                 "owner": {
                     "$ref": "#/$defs/semantic_ref"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "incomplete_unknown": {
+            "type": "object",
+            "required": [
+                "id",
+                "unknown_kind",
+                "domain",
+                "source",
+                "status",
+                "owner",
+                "next_action",
+                "authority_effect",
+                "evidence",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "unknown_kind": {
+                    "enum": [
+                        "unknown",
+                        "gap",
+                        "drift",
+                        "assumption"
+                    ]
+                },
+                "domain": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "status": {
+                    "enum": [
+                        "open",
+                        "triaged",
+                        "closed"
+                    ]
+                },
+                "owner": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "next_action": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "authority_effect": {
+                    "enum": [
+                        "authority-blocked",
+                        "review-required",
+                        "human-review"
+                    ]
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
                 },
                 "meaning": {
                     "type": "string",

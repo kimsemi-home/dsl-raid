@@ -178,6 +178,8 @@ release-check:
     - |
       bash scripts/verificationdebtgen.sh check
     - |
+      bash scripts/verificationincompletegen.sh check
+    - |
       bash scripts/lisp-rustgen.sh check
     - |
       bash scripts/verificationdocgen.sh check

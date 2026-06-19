@@ -317,6 +317,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.incompleteness-ledger",
+            "subject": "docs/generated/verification-incompleteness-ledger.json",
+            "check": "scripts/verificationincompletegen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.rust-code",
             "subject": "generated/runtime_fsm.rs",
             "check": "scripts/lisp-rustgen.sh check",
