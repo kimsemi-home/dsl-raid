@@ -176,6 +176,12 @@
             ]
         },
         {
+            "axis": "github-actions-suite",
+            "backends": [
+                "github-actions-suite"
+            ]
+        },
+        {
             "axis": "evidence-before-change",
             "backends": [
                 "evidence-before-change"

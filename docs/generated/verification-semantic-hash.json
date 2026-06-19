@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "846449722f51fbe77026dbb05538f09793b027f032dfe79ab78df2b46720cd03"
+            "hash": "a5bd424a0643d323472ce1fcecac8832db83a7543712e9077283ded34d44f60d"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "d8198f22984b220ac427d074a7c7047ac8be8c069024d0230bd0898149d74c95"
+            "hash": "43fdbc523a13f7ccc2657b932cb839d17a5ef7846b3d68aa8305ea0cca8fc93b"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "ca922e9beb2f5399ab603860c9365fa8ebe0c3153c31dd4698c0f7bd21525eb3"
+            "hash": "58abf35175c0df212e77edeee2fd5087a865b54339ad6f16da9df7e4c31f9927"
         },
         {
             "id": "semantic:authority",
@@ -97,7 +97,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "d78daecc29194a3b9206d2ceae163fb8890c83474703c62248575ee7f96d1b10"
+            "hash": "2ab96e7b7809d4759736d6ba73d9119b3d30552f60f6c49358256a864b0d5360"
         },
         {
             "id": "semantic:lease",
@@ -232,6 +232,17 @@
             ],
             "meaning": "Generated execution backend graph parity contract.",
             "hash": "8fedae5fb4de5288e82ab2ffdd2a842ca416172b3bba040305adc288516dda46"
+        },
+        {
+            "id": "semantic:github-actions-suite",
+            "source": "docs/generated/verification-github-actions.json",
+            "fields": [
+                "workflow_suite_profile",
+                "workflows",
+                "closure_rules"
+            ],
+            "meaning": "GitHub Actions workflow ownership and permission contract.",
+            "hash": "b2f811e210388a1ce9fa44c2298baecca1f27333b118e10c87c1cdc63bd9dfdd"
         },
         {
             "id": "semantic:evidence-before-change",

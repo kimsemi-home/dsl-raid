@@ -32,7 +32,7 @@
             "id": "test:verification.node.release-check",
             "subject": "verify:daemon/release-check",
             "kind": "verification-node",
-            "commands": 51
+            "commands": 52
         },
         {
             "id": "test:verification.backend.github-actions",
@@ -195,6 +195,12 @@
             "subject": "docs/generated/verification-backend-parity.json",
             "kind": "generated-backend",
             "generator": "scripts/verificationparitygen.sh"
+        },
+        {
+            "id": "test:verification.backend.github-actions-suite",
+            "subject": "docs/generated/verification-github-actions.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationactionsgen.sh"
         },
         {
             "id": "test:verification.backend.evidence-before-change",

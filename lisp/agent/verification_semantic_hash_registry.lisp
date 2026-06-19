@@ -5,12 +5,8 @@
     ("semantic:codegen-map" "docs/generated/verification-codegen.json" ("axes") "Ontology codegen axes mapped to generated backends.")
     ("semantic:loss-ledger" "docs/generated/verification-loss-ledger.json" ("ledger") "Declared adapter translation loss without forbidden L4 loss.")
     ("semantic:conformance" "docs/generated/verification-conformance.json" ("rules") "Required checks for generated backend freshness.")
-    ("semantic:authority" "docs/generated/verification-authority.json"
-     ("authority_profile" "decisions" "closure_rules")
-     "Governance authority gate and review decision contract.")
-    ("semantic:access-policy" "docs/generated/verification-access-policy.json"
-     ("access_profile" "policies" "closure_rules")
-     "Reasoning RBAC and domain ABAC access contract.")
+    ("semantic:authority" "docs/generated/verification-authority.json" ("authority_profile" "decisions" "closure_rules") "Governance authority gate and review decision contract.")
+    ("semantic:access-policy" "docs/generated/verification-access-policy.json" ("access_profile" "policies" "closure_rules") "Reasoning RBAC and domain ABAC access contract.")
     ("semantic:reliability" "docs/generated/verification-reliability.json" ("reliability_profile" "records" "closure_rules") "Agent reliability and cold-start contract.")
     ("semantic:agreement" "docs/generated/verification-agreement.json" ("agreement_profile" "agreements" "closure_rules") "Cross-agent agreement and adversarial review contract.")
     ("semantic:evidence-quality" "docs/generated/verification-evidence-quality.json"
@@ -42,6 +38,7 @@
     ("semantic:runtime-trace" "docs/generated/verification-runtime-trace.json" ("runtime_trace_profile" "mappings" "closure_rules") "Runtime trace mapping and coverage overlay contract.")
     ("semantic:adr-governance" "docs/generated/verification-adr-governance.json" ("adr_profile" "records" "closure_rules") "ADR boundary contract for semantic and implementation changes.")
     ("semantic:backend-parity" "docs/generated/verification-backend-parity.json" ("parity_profile" "projections" "closure_rules") "Generated execution backend graph parity contract.")
+    ("semantic:github-actions-suite" "docs/generated/verification-github-actions.json" ("workflow_suite_profile" "workflows" "closure_rules") "GitHub Actions workflow ownership and permission contract.")
     ("semantic:evidence-before-change"
      "docs/generated/verification-evidence-before-change.json"
      ("evidence_before_change_profile" "changes" "closure_rules")

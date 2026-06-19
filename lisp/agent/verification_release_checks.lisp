@@ -35,6 +35,7 @@
     "bash scripts/verificationruntimegen.sh check"
     "bash scripts/verificationadrgen.sh check"
     "bash scripts/verificationparitygen.sh check"
+    "bash scripts/verificationactionsgen.sh check"
     "bash scripts/verificationevidencebeforechangegen.sh check"
     "bash scripts/verificationversionedssotgen.sh check"
     "bash scripts/verificationcontextmapgen.sh check"

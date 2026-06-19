@@ -1,0 +1,113 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationactionsgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_github_actions.lisp",
+    "workflow_suite_profile": "generated-plus-curated-guards",
+    "workflows": [
+        {
+            "id": "github-actions:ci",
+            "workflow": ".github/workflows/ci.yml",
+            "role": "core-guard",
+            "generated": false,
+            "generator": "curated",
+            "permissions": [
+                "contents: read"
+            ],
+            "evidence": [
+                "docs/generated/verification-conformance.json"
+            ],
+            "meaning": "CI guards lint, quality, and ownership checks."
+        },
+        {
+            "id": "github-actions:golden",
+            "workflow": ".github/workflows/golden.yml",
+            "role": "golden-guard",
+            "generated": false,
+            "generator": "curated",
+            "permissions": [
+                "contents: read"
+            ],
+            "evidence": [
+                "tests/golden/verification-graph.generated.json"
+            ],
+            "meaning": "Golden workflow protects deterministic generated outputs."
+        },
+        {
+            "id": "github-actions:security",
+            "workflow": ".github/workflows/security.yml",
+            "role": "security-guard",
+            "generated": false,
+            "generator": "curated",
+            "permissions": [
+                "contents: read",
+                "security-events: write"
+            ],
+            "evidence": [
+                "docs/generated/verification-security-audit.json"
+            ],
+            "meaning": "Security workflow keeps audit and secret scanning separate."
+        },
+        {
+            "id": "github-actions:pages",
+            "workflow": ".github/workflows/pages.yml",
+            "role": "deploy-guard",
+            "generated": false,
+            "generator": "curated",
+            "permissions": [
+                "contents: read",
+                "pages: write",
+                "id-token: write"
+            ],
+            "evidence": [
+                "docs/generated/verification-sidecar.json"
+            ],
+            "meaning": "Pages workflow publishes the public demo with explicit permissions."
+        },
+        {
+            "id": "github-actions:verification",
+            "workflow": ".github/workflows/verification.yml",
+            "role": "generated-graph",
+            "generated": true,
+            "generator": "scripts/workflowgen.sh",
+            "permissions": [
+                "contents: read"
+            ],
+            "evidence": [
+                "docs/generated/verification-backend-parity.json"
+            ],
+            "meaning": "Verification Graph workflow is generated from the Lisp SSOT."
+        },
+        {
+            "id": "github-actions:release",
+            "workflow": ".github/workflows/release.yml",
+            "role": "generated-release",
+            "generated": true,
+            "generator": "scripts/releasegen.sh",
+            "permissions": [
+                "contents: write"
+            ],
+            "evidence": [
+                "docs/generated/verification-conformance.json"
+            ],
+            "meaning": "Release workflow is generated and checked before publishing."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "github-actions:generated-header",
+            "meaning": "Generated workflows must name their generator.",
+            "check": "scripts/verificationactionsgen.sh check"
+        },
+        {
+            "id": "github-actions:least-permission",
+            "meaning": "Every workflow declares explicit permissions.",
+            "check": "scripts/verificationactionsgen.sh check"
+        },
+        {
+            "id": "github-actions:evidence-linked",
+            "meaning": "Every workflow links generated evidence.",
+            "check": "scripts/verificationactionsgen.sh check"
+        }
+    ]
+}

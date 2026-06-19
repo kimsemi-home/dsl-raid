@@ -43,6 +43,8 @@
      "ADR governance semantic receipt.")
     ("semantic-diff:backend-parity" "semantic:backend-parity"
      "Backend parity semantic receipt.")
+    ("semantic-diff:github-actions-suite" "semantic:github-actions-suite"
+     "GitHub Actions suite semantic receipt.")
     ("semantic-diff:evidence-before-change" "semantic:evidence-before-change"
      "Evidence-before-change semantic receipt.")
     ("semantic-diff:versioned-ssot" "semantic:versioned-ssot"

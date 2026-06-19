@@ -29,6 +29,7 @@
     ("runtime-trace" ("runtime-trace"))
     ("adr-governance" ("adr-governance"))
     ("backend-parity" ("backend-parity"))
+    ("github-actions-suite" ("github-actions-suite"))
     ("evidence-before-change" ("evidence-before-change"))
     ("versioned-ssot" ("versioned-ssot"))
     ("context-map" ("context-map"))

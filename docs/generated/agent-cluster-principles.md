@@ -27,6 +27,7 @@ Failures must become evidence, diagnostics, or generated knowledge updates.
 | runtime-trace | Runtime event log and coverage overlay | Design-linked execution evidence | Executed transitions must map back to designed FSM subjects. |
 | adr-governance | Semantic contract change | ADR-required or autonomous boundary | Core meaning changes require ADR; implementation internals may move. |
 | backend-parity | Verification graph projection | Same-node backend evidence | CI, local, and build-system surfaces must project the same graph. |
+| github-actions-suite | GitHub Actions surface | Generated and curated workflow evidence | Generated workflows and guard workflows both declare ownership and permissions. |
 | lease-and-abort | Agent work lease | Finished, rebase, abort, or escalate state | Abort blocks authority; it never deletes evidence. |
 | quarantine | Suspicious output or tool behavior | Isolated evidence bundle | Quarantine blocks artifact commit, confidence increase, and automatic approval. |
 | loss-ledger | Cross-context translation | Recorded semantic loss | Lossy translation must declare what was lost; forbidden loss blocks promotion. |

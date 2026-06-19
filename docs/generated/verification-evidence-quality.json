@@ -222,6 +222,18 @@
             "meaning": "Backend parity evidence is suitable when every execution surface shares graph nodes."
         },
         {
+            "id": "evidence-quality:github-actions-suite",
+            "target": "docs/generated/verification-github-actions.json",
+            "quality": "high",
+            "purpose": "github-actions-suite",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "workflows",
+                "closure_rules"
+            ],
+            "meaning": "GitHub Actions suite evidence is suitable when ownership and permissions are explicit."
+        },
+        {
             "id": "evidence-quality:evidence-before-change",
             "target": "docs/generated/verification-evidence-before-change.json",
             "quality": "high",

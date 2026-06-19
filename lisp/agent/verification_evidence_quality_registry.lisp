@@ -37,6 +37,7 @@
     ("evidence-quality:runtime-trace" "docs/generated/verification-runtime-trace.json" "high" "runtime-trace" "gate:evidence-quality" ("mappings" "closure_rules") "Runtime trace evidence is suitable when design and coverage checks pass.")
     ("evidence-quality:adr-governance" "docs/generated/verification-adr-governance.json" "high" "adr-governance" "gate:evidence-quality" ("records" "closure_rules") "ADR governance evidence is suitable when semantic changes are gated.")
     ("evidence-quality:backend-parity" "docs/generated/verification-backend-parity.json" "high" "backend-parity" "gate:evidence-quality" ("projections" "closure_rules") "Backend parity evidence is suitable when every execution surface shares graph nodes.")
+    ("evidence-quality:github-actions-suite" "docs/generated/verification-github-actions.json" "high" "github-actions-suite" "gate:evidence-quality" ("workflows" "closure_rules") "GitHub Actions suite evidence is suitable when ownership and permissions are explicit.")
     ("evidence-quality:evidence-before-change"
      "docs/generated/verification-evidence-before-change.json" "high"
      "evidence-before-change" "gate:evidence-quality" ("changes" "closure_rules")

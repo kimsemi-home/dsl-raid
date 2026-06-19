@@ -51,6 +51,7 @@
         "runtime-trace",
         "adr-governance",
         "backend-parity",
+        "github-actions-suite",
         "evidence-before-change",
         "versioned-ssot",
         "context-map",

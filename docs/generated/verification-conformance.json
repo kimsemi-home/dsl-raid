@@ -173,6 +173,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.github-actions-suite",
+            "subject": "docs/generated/verification-github-actions.json",
+            "check": "scripts/verificationactionsgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.evidence-before-change",
             "subject": "docs/generated/verification-evidence-before-change.json",
             "check": "scripts/verificationevidencebeforechangegen.sh check",
