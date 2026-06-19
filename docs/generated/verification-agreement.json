@@ -1,0 +1,80 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationagreementgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_agreement.lisp",
+    "agreement_profile": "isolated-review",
+    "agreements": [
+        {
+            "id": "agreement:release-check",
+            "producer": "agent:verification-daemon",
+            "reviewers": [
+                "reviewer:quality",
+                "reviewer:red-team"
+            ],
+            "risk": "high",
+            "decision": "agree",
+            "isolation": "sealed",
+            "ontology": "ontology:verification.0.1.0",
+            "adversarial": true,
+            "evidence": [
+                "docs/generated/verification-sidecar.json",
+                "docs/generated/verification-reliability.json"
+            ],
+            "meaning": "Release checks need isolated quality and adversarial reviewers."
+        },
+        {
+            "id": "agreement:conformance",
+            "producer": "agent:quality-runner",
+            "reviewers": [
+                "reviewer:conformance",
+                "reviewer:quality"
+            ],
+            "risk": "routine",
+            "decision": "agree",
+            "isolation": "sealed",
+            "ontology": "ontology:verification.0.1.0",
+            "adversarial": false,
+            "evidence": [
+                "docs/generated/verification-conformance.json",
+                "docs/generated/verification-evidence-quality.json"
+            ],
+            "meaning": "Conformance agreement needs independent reviewers and generated evidence."
+        },
+        {
+            "id": "agreement:security",
+            "producer": "agent:verification-daemon",
+            "reviewers": [
+                "reviewer:security",
+                "reviewer:red-team"
+            ],
+            "risk": "audit",
+            "decision": "blocked",
+            "isolation": "sealed",
+            "ontology": "ontology:verification.0.1.0",
+            "adversarial": true,
+            "evidence": [
+                "docs/generated/verification-security-audit.json",
+                "docs/generated/verification-authority.json"
+            ],
+            "meaning": "Audit-risk agreement stays blocked until security authority closes."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "agreement:independent-reviewer",
+            "meaning": "Agreement requires reviewers independent from producer.",
+            "check": "scripts/verificationagreementgen.sh check"
+        },
+        {
+            "id": "agreement:adversarial-required",
+            "meaning": "High and audit risk require adversarial review.",
+            "check": "scripts/verificationagreementgen.sh check"
+        },
+        {
+            "id": "agreement:evidence-required",
+            "meaning": "Agreement cites generated evidence.",
+            "check": "scripts/verificationagreementgen.sh check"
+        }
+    ]
+}

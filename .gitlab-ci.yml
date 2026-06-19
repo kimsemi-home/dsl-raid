@@ -102,6 +102,8 @@ release-check:
     - |
       bash scripts/verificationreliabilitygen.sh check
     - |
+      bash scripts/verificationagreementgen.sh check
+    - |
       bash scripts/verificationevidencequalitygen.sh check
     - |
       bash scripts/verificationleasegen.sh check

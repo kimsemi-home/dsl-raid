@@ -37,6 +37,7 @@
         "authority-gate",
         "access-policy",
         "reliability-registry",
+        "cross-agent-agreement",
         "evidence-quality",
         "lease-and-abort",
         "review-capacity",

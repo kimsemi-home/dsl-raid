@@ -92,6 +92,12 @@
             ]
         },
         {
+            "axis": "cross-agent-agreement",
+            "backends": [
+                "agreement-manifest"
+            ]
+        },
+        {
             "axis": "evidence-quality",
             "backends": [
                 "evidence-quality"

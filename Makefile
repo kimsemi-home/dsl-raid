@@ -43,6 +43,7 @@ release-check: conformance
 	bash scripts/verificationauthoritygen.sh check
 	bash scripts/verificationaccessgen.sh check
 	bash scripts/verificationreliabilitygen.sh check
+	bash scripts/verificationagreementgen.sh check
 	bash scripts/verificationevidencequalitygen.sh check
 	bash scripts/verificationleasegen.sh check
 	bash scripts/verificationreviewgen.sh check

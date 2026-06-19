@@ -32,7 +32,7 @@
             "id": "test:verification.node.release-check",
             "subject": "verify:daemon/release-check",
             "kind": "verification-node",
-            "commands": 45
+            "commands": 46
         },
         {
             "id": "test:verification.backend.github-actions",
@@ -111,6 +111,12 @@
             "subject": "docs/generated/verification-reliability.json",
             "kind": "generated-backend",
             "generator": "scripts/verificationreliabilitygen.sh"
+        },
+        {
+            "id": "test:verification.backend.agreement-manifest",
+            "subject": "docs/generated/verification-agreement.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationagreementgen.sh"
         },
         {
             "id": "test:verification.backend.evidence-quality",

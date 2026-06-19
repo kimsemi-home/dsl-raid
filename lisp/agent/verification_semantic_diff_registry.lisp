@@ -15,6 +15,8 @@
      "Access policy semantic receipt.")
     ("semantic-diff:reliability" "semantic:reliability"
      "Reliability registry semantic receipt.")
+    ("semantic-diff:agreement" "semantic:agreement"
+     "Cross-agent agreement semantic receipt.")
     ("semantic-diff:evidence-quality" "semantic:evidence-quality"
      "Evidence quality semantic receipt.")
     ("semantic-diff:lease" "semantic:lease"

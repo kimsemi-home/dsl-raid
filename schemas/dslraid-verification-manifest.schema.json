@@ -1305,6 +1305,51 @@
                     }
                 }
             }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
+                "agreement_profile",
+                "agreements",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationagreementgen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "agreement_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "agreements": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/agreement_record"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
         }
     ],
     "$defs": {
@@ -1714,6 +1759,65 @@
                     "$ref": "#/$defs/strings"
                 },
                 "restrictions": {
+                    "$ref": "#/$defs/strings"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "agreement_record": {
+            "type": "object",
+            "required": [
+                "id",
+                "producer",
+                "reviewers",
+                "risk",
+                "decision",
+                "isolation",
+                "ontology",
+                "adversarial",
+                "evidence",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "producer": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "reviewers": {
+                    "$ref": "#/$defs/strings"
+                },
+                "risk": {
+                    "enum": [
+                        "routine",
+                        "high",
+                        "audit"
+                    ]
+                },
+                "decision": {
+                    "enum": [
+                        "agree",
+                        "blocked"
+                    ]
+                },
+                "isolation": {
+                    "enum": [
+                        "sealed",
+                        "open"
+                    ]
+                },
+                "ontology": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "adversarial": {
+                    "type": "boolean"
+                },
+                "evidence": {
                     "$ref": "#/$defs/strings"
                 },
                 "meaning": {

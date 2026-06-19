@@ -89,6 +89,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.agreement-manifest",
+            "subject": "docs/generated/verification-agreement.json",
+            "check": "scripts/verificationagreementgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.evidence-quality",
             "subject": "docs/generated/verification-evidence-quality.json",
             "check": "scripts/verificationevidencequalitygen.sh check",

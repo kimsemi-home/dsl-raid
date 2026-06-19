@@ -12,6 +12,7 @@
      "Authority decisions are suitable when linked generated evidence is fresh.")
     ("evidence-quality:access-policy" "docs/generated/verification-access-policy.json" "high" "access-policy" "gate:evidence-quality" ("policies" "closure_rules") "Access evidence is suitable when RBAC and ABAC gates are explicit.")
     ("evidence-quality:reliability" "docs/generated/verification-reliability.json" "high" "reliability-registry" "gate:evidence-quality" ("records" "closure_rules") "Reliability evidence is suitable when cold-start limits are explicit.")
+    ("evidence-quality:agreement" "docs/generated/verification-agreement.json" "high" "cross-agent-agreement" "gate:evidence-quality" ("agreements" "closure_rules") "Agreement evidence is suitable when isolation and adversarial review are explicit.")
     ("evidence-quality:lease"
      "docs/generated/verification-lease.json" "high" "lease-and-abort"
      "gate:evidence-quality" ("leases" "abort_rules")

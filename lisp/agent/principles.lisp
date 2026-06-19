@@ -10,6 +10,7 @@
     ("authority-gate" "Change candidate" "Approved, rejected, or escalated decision" "Agents may propose and verify, but governance owns authority.")
     ("access-policy" "Role and context" "RBAC, ABAC, and authority decision" "Capability does not imply permission; context still gates reasoning authority.")
     ("reliability-registry" "Agent run history" "Tier, confidence ceiling, and cold-start gate" "Agents are trusted by measured history, not by fluent claims.")
+    ("cross-agent-agreement" "Producer and reviewers" "Isolated agreement with adversarial review" "Agreement is useful only when reviewers are independent and evidence-backed.")
     ("orchestration-manifest" "Control-plane routing decision" "Manifest receipt" "No orchestration is authoritative without policy, agent, evidence, and output records.")
     ("lease-and-abort" "Agent work lease" "Finished, rebase, abort, or escalate state" "Abort blocks authority; it never deletes evidence.")
     ("quarantine" "Suspicious output or tool behavior" "Isolated evidence bundle" "Quarantine blocks artifact commit, confidence increase, and automatic approval.")

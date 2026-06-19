@@ -10,8 +10,8 @@
             "id": "semantic-diff:verification-graph",
             "hash_id": "semantic:verification-graph",
             "summary": "Verification graph semantic receipt.",
-            "base_hash": "fbc7b1073a0b10e9485ec3fbe920918c5b426956fa271d725687f7144d3c6465",
-            "head_hash": "fbc7b1073a0b10e9485ec3fbe920918c5b426956fa271d725687f7144d3c6465",
+            "base_hash": "d21e0de5b2b942109f8edc91ee158671e9a3b6401c4e3f6134ad4c3c979d4e26",
+            "head_hash": "d21e0de5b2b942109f8edc91ee158671e9a3b6401c4e3f6134ad4c3c979d4e26",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },
@@ -19,8 +19,8 @@
             "id": "semantic-diff:codegen-map",
             "hash_id": "semantic:codegen-map",
             "summary": "Codegen axis semantic receipt.",
-            "base_hash": "fa5dfe4049e9b9f8859b904aa5151d8d69fb5f774e35930124ef63de8abfd794",
-            "head_hash": "fa5dfe4049e9b9f8859b904aa5151d8d69fb5f774e35930124ef63de8abfd794",
+            "base_hash": "5b6f56b1c5a1e4a2b2dab34f585400d7c39d72e4779523e9ee10b5eba59b2807",
+            "head_hash": "5b6f56b1c5a1e4a2b2dab34f585400d7c39d72e4779523e9ee10b5eba59b2807",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },
@@ -37,8 +37,8 @@
             "id": "semantic-diff:conformance",
             "hash_id": "semantic:conformance",
             "summary": "Conformance contract semantic receipt.",
-            "base_hash": "06a39f404b22d0304c82965797b792f7151d55fe26d83f0d4b827f333c14baa0",
-            "head_hash": "06a39f404b22d0304c82965797b792f7151d55fe26d83f0d4b827f333c14baa0",
+            "base_hash": "dc2cb2ea479bbba06377566f1f772884a3d922881d25a98674382f038ffa2a59",
+            "head_hash": "dc2cb2ea479bbba06377566f1f772884a3d922881d25a98674382f038ffa2a59",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },
@@ -70,11 +70,20 @@
             "evidence": "docs/generated/verification-semantic-hash.json"
         },
         {
+            "id": "semantic-diff:agreement",
+            "hash_id": "semantic:agreement",
+            "summary": "Cross-agent agreement semantic receipt.",
+            "base_hash": "e705016b848f07c05e00f1cdc4e1143c49b21dbcc91bc402773c3458d11039b0",
+            "head_hash": "e705016b848f07c05e00f1cdc4e1143c49b21dbcc91bc402773c3458d11039b0",
+            "status": "unchanged",
+            "evidence": "docs/generated/verification-semantic-hash.json"
+        },
+        {
             "id": "semantic-diff:evidence-quality",
             "hash_id": "semantic:evidence-quality",
             "summary": "Evidence quality semantic receipt.",
-            "base_hash": "e1e1691ba554326a17ce446db8ce169129c2ffdf5ce5cc568bfac23d19cb5c9e",
-            "head_hash": "e1e1691ba554326a17ce446db8ce169129c2ffdf5ce5cc568bfac23d19cb5c9e",
+            "base_hash": "cbf28f230285bb4e92a7c6ba4a3d3380fc618f918ecb84224cb0cb448fdc1a72",
+            "head_hash": "cbf28f230285bb4e92a7c6ba4a3d3380fc618f918ecb84224cb0cb448fdc1a72",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },

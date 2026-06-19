@@ -2,9 +2,7 @@
 
 (defparameter *verification-semantic-hashes*
   '(("semantic:verification-graph" "docs/generated/verification-evidence.json" ("form" "ontology_chain" "verification_nodes" "generated_backends") "Verification graph shape and generated backend contract.")
-    ("semantic:codegen-map" "docs/generated/verification-codegen.json"
-     ("axes")
-     "Ontology codegen axes mapped to generated backends.")
+    ("semantic:codegen-map" "docs/generated/verification-codegen.json" ("axes") "Ontology codegen axes mapped to generated backends.")
     ("semantic:loss-ledger" "docs/generated/verification-loss-ledger.json"
      ("ledger")
      "Declared adapter translation loss without forbidden L4 loss.")
@@ -18,6 +16,7 @@
      ("access_profile" "policies" "closure_rules")
      "Reasoning RBAC and domain ABAC access contract.")
     ("semantic:reliability" "docs/generated/verification-reliability.json" ("reliability_profile" "records" "closure_rules") "Agent reliability and cold-start contract.")
+    ("semantic:agreement" "docs/generated/verification-agreement.json" ("agreement_profile" "agreements" "closure_rules") "Cross-agent agreement and adversarial review contract.")
     ("semantic:evidence-quality" "docs/generated/verification-evidence-quality.json"
      ("evidence_quality_profile" "assessments" "closure_rules")
      "Evidence quality review contract for generated verification evidence.")

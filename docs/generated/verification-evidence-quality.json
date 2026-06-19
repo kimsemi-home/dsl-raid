@@ -66,6 +66,18 @@
             "meaning": "Reliability evidence is suitable when cold-start limits are explicit."
         },
         {
+            "id": "evidence-quality:agreement",
+            "target": "docs/generated/verification-agreement.json",
+            "quality": "high",
+            "purpose": "cross-agent-agreement",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "agreements",
+                "closure_rules"
+            ],
+            "meaning": "Agreement evidence is suitable when isolation and adversarial review are explicit."
+        },
+        {
             "id": "evidence-quality:lease",
             "target": "docs/generated/verification-lease.json",
             "quality": "high",
