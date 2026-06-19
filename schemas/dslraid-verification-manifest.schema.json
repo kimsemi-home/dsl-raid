@@ -1268,6 +1268,51 @@
                 "generated_by",
                 "subject",
                 "source",
+                "evidence_ops_profile",
+                "records",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationevidenceopsgen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "evidence_ops_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "records": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/evidence_ops_record"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
                 "reasoning_access_profile",
                 "records",
                 "closure_rules"
@@ -2134,6 +2179,67 @@
                 },
                 "artifact": {
                     "$ref": "#/$defs/path"
+                }
+            }
+        },
+        "evidence_ops_record": {
+            "type": "object",
+            "required": [
+                "id",
+                "operation",
+                "claim",
+                "subject",
+                "evidence",
+                "updates",
+                "authority_effect",
+                "owner",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "operation": {
+                    "enum": [
+                        "ci",
+                        "quality-gate",
+                        "release",
+                        "experiment",
+                        "incident"
+                    ]
+                },
+                "claim": {
+                    "enum": [
+                        "evidence-generator",
+                        "conformance-claim",
+                        "pdca-experiment",
+                        "knowledge-update"
+                    ]
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "updates": {
+                    "$ref": "#/$defs/strings"
+                },
+                "authority_effect": {
+                    "enum": [
+                        "evidence-only",
+                        "review-required",
+                        "release-gated",
+                        "learning-loop"
+                    ]
+                },
+                "owner": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
                 }
             }
         },

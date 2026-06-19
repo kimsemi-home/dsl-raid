@@ -53,6 +53,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.evidence-ops",
+            "subject": "docs/generated/verification-evidence-ops.json",
+            "check": "scripts/verificationevidenceopsgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.loss-ledger",
             "subject": "docs/generated/verification-loss-ledger.json",
             "check": "scripts/verificationlossgen.sh check",

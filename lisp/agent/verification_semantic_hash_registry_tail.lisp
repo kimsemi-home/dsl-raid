@@ -21,6 +21,10 @@
      "docs/generated/verification-revalidation-gate.json"
      ("revalidation_profile" "gates" "closure_rules")
      "Revalidation status, authority effect, and blocked action contract.")
+    ("semantic:evidence-ops"
+     "docs/generated/verification-evidence-ops.json"
+     ("evidence_ops_profile" "records" "closure_rules")
+     "CI, deploy, experiment, and incident evidence operation contract.")
     ("semantic:cold-start-gate"
      "docs/generated/verification-cold-start-gate.json"
      ("cold_start_profile" "gates" "closure_rules")

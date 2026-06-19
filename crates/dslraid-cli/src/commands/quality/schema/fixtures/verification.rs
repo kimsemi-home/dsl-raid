@@ -8,7 +8,7 @@ pub(super) fn schemas() -> impl Iterator<Item = Fixture> {
     core_schemas().into_iter().chain(tail::schemas())
 }
 
-fn core_schemas() -> [Fixture; 26] {
+fn core_schemas() -> [Fixture; 27] {
     [
         (
             "schemas/dslraid-verification-evidence.schema.json",
@@ -16,6 +16,7 @@ fn core_schemas() -> [Fixture; 26] {
         ),
         (MANIFEST, "docs/generated/verification-privacy.json"),
         (MANIFEST, "docs/generated/verification-pdca.json"),
+        (MANIFEST, "docs/generated/verification-evidence-ops.json"),
         (MANIFEST, "docs/generated/verification-loss-ledger.json"),
         (MANIFEST, "docs/generated/verification-semantic-hash.json"),
         (MANIFEST, "docs/generated/verification-semantic-diff.json"),

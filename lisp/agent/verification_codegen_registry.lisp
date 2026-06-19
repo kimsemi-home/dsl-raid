@@ -9,6 +9,7 @@
     ("github-actions" ("github-actions"))
     ("release-pipelines" ("github-release" "release-provenance"))
     ("pdca-evidence" ("pdca-manifest"))
+    ("evidence-ops" ("evidence-ops"))
     ("loss-ledger" ("loss-ledger"))
     ("semantic-hash" ("semantic-hash"))
     ("semantic-diff" ("semantic-diff"))

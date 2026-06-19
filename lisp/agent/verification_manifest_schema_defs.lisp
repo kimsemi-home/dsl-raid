@@ -20,6 +20,7 @@
    "\"pdca_step\":{\"type\":\"object\",\"required\":[\"phase\",\"evidence\",\"artifact\"],"
    "\"additionalProperties\":false,\"properties\":{\"phase\":{\"enum\":[\"plan\",\"do\",\"check\",\"act\"]},"
    "\"evidence\":{\"type\":\"string\",\"minLength\":1},\"artifact\":{\"$ref\":\"#/$defs/path\"}}},"
+   "\"evidence_ops_record\":{\"type\":\"object\",\"required\":[\"id\",\"operation\",\"claim\",\"subject\",\"evidence\",\"updates\",\"authority_effect\",\"owner\",\"meaning\"],\"additionalProperties\":false,\"properties\":{\"id\":{\"$ref\":\"#/$defs/semantic_ref\"},\"operation\":{\"enum\":[\"ci\",\"quality-gate\",\"release\",\"experiment\",\"incident\"]},\"claim\":{\"enum\":[\"evidence-generator\",\"conformance-claim\",\"pdca-experiment\",\"knowledge-update\"]},\"subject\":{\"$ref\":\"#/$defs/semantic_ref\"},\"evidence\":{\"$ref\":\"#/$defs/strings\"},\"updates\":{\"$ref\":\"#/$defs/strings\"},\"authority_effect\":{\"enum\":[\"evidence-only\",\"review-required\",\"release-gated\",\"learning-loop\"]},\"owner\":{\"$ref\":\"#/$defs/semantic_ref\"},\"meaning\":{\"type\":\"string\",\"minLength\":1}}},"
    "\"loss_entry\":{\"type\":\"object\",\"required\":[\"id\",\"source\",\"target\","
    "\"loss_level\",\"meaning\",\"evidence\",\"policy\"],\"additionalProperties\":false,"
    "\"properties\":{\"id\":{\"$ref\":\"#/$defs/semantic_ref\"},"

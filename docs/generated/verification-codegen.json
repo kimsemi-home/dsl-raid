@@ -57,6 +57,12 @@
             ]
         },
         {
+            "axis": "evidence-ops",
+            "backends": [
+                "evidence-ops"
+            ]
+        },
+        {
             "axis": "loss-ledger",
             "backends": [
                 "loss-ledger"

@@ -1,0 +1,111 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationevidenceopsgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_evidence_ops.lisp",
+    "evidence_ops_profile": "ci-deploy-evidence-loop",
+    "records": [
+        {
+            "id": "evidence-ops:ci",
+            "operation": "ci",
+            "claim": "evidence-generator",
+            "subject": "verify:daemon",
+            "evidence": [
+                "docs/generated/verification-evidence.json",
+                "docs/generated/verification-github-actions.json"
+            ],
+            "updates": [
+                "docs/generated/verification-evidence.json"
+            ],
+            "authority_effect": "evidence-only",
+            "owner": "owner:verification",
+            "meaning": "CI emits evidence and never substitutes for governance authority."
+        },
+        {
+            "id": "evidence-ops:quality",
+            "operation": "quality-gate",
+            "claim": "conformance-claim",
+            "subject": "verify:daemon",
+            "evidence": [
+                "docs/generated/verification-conformance.json",
+                "docs/generated/verification-semantic-diff.json"
+            ],
+            "updates": [
+                "docs/generated/verification-conformance.json"
+            ],
+            "authority_effect": "review-required",
+            "owner": "owner:quality",
+            "meaning": "Quality gates turn checks into reviewable conformance evidence."
+        },
+        {
+            "id": "evidence-ops:experiment",
+            "operation": "experiment",
+            "claim": "pdca-experiment",
+            "subject": "verify:daemon",
+            "evidence": [
+                "docs/generated/verification-pdca.json",
+                "docs/generated/verification-reasoning-access.json"
+            ],
+            "updates": [
+                "docs/generated/verification-pdca.json"
+            ],
+            "authority_effect": "review-required",
+            "owner": "owner:pdca",
+            "meaning": "Experiments must create PDCA evidence before becoming policy."
+        },
+        {
+            "id": "evidence-ops:release",
+            "operation": "release",
+            "claim": "conformance-claim",
+            "subject": "verify:daemon",
+            "evidence": [
+                "docs/generated/verification-release-provenance.json",
+                "docs/generated/verification-evidence-quality.json"
+            ],
+            "updates": [
+                "docs/generated/verification-release-provenance.json"
+            ],
+            "authority_effect": "release-gated",
+            "owner": "owner:release",
+            "meaning": "Release deploys are conformance claims with provenance evidence."
+        },
+        {
+            "id": "evidence-ops:incident",
+            "operation": "incident",
+            "claim": "knowledge-update",
+            "subject": "verify:daemon",
+            "evidence": [
+                "docs/generated/verification-incident-learning.json",
+                "docs/generated/verification-feedback.json"
+            ],
+            "updates": [
+                "docs/generated/verification-feedback.json"
+            ],
+            "authority_effect": "learning-loop",
+            "owner": "owner:learning",
+            "meaning": "Operations close only when evidence updates executable knowledge."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "evidence-ops:ci-not-authority",
+            "meaning": "CI emits evidence; governance owns authority.",
+            "check": "scripts/verificationevidenceopsgen.sh check"
+        },
+        {
+            "id": "evidence-ops:deploy-is-claim",
+            "meaning": "Deploy surfaces are conformance claims.",
+            "check": "scripts/verificationevidenceopsgen.sh check"
+        },
+        {
+            "id": "evidence-ops:update-graph",
+            "meaning": "Operations update the evidence graph.",
+            "check": "scripts/verificationevidenceopsgen.sh check"
+        },
+        {
+            "id": "evidence-ops:experiment-reviewed",
+            "meaning": "Experiments require review before promotion.",
+            "check": "scripts/verificationevidenceopsgen.sh check"
+        }
+    ]
+}

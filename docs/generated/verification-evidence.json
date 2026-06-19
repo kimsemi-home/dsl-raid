@@ -19,6 +19,7 @@
     {"backend": "github-release", "output": ".github/workflows/release.yml", "generator": "scripts/releasegen.sh", "check": "scripts/releasegen.sh check"},
     {"backend": "privacy-manifest", "output": "docs/generated/verification-privacy.json", "generator": "scripts/verificationprivacygen.sh", "check": "scripts/verificationprivacygen.sh check"},
     {"backend": "pdca-manifest", "output": "docs/generated/verification-pdca.json", "generator": "scripts/verificationpdcagen.sh", "check": "scripts/verificationpdcagen.sh check"},
+    {"backend": "evidence-ops", "output": "docs/generated/verification-evidence-ops.json", "generator": "scripts/verificationevidenceopsgen.sh", "check": "scripts/verificationevidenceopsgen.sh check"},
     {"backend": "loss-ledger", "output": "docs/generated/verification-loss-ledger.json", "generator": "scripts/verificationlossgen.sh", "check": "scripts/verificationlossgen.sh check"},
     {"backend": "semantic-hash", "output": "docs/generated/verification-semantic-hash.json", "generator": "scripts/verificationsemanticgen.sh", "check": "scripts/verificationsemanticgen.sh check"},
     {"backend": "semantic-diff", "output": "docs/generated/verification-semantic-diff.json", "generator": "scripts/verificationdiffgen.sh", "check": "scripts/verificationdiffgen.sh check"},
@@ -77,7 +78,7 @@
     {"id": "unit-test", "commands": 1, "evidence": "Rust workspace unit test evidence."},
     {"id": "integration-test", "commands": 3, "evidence": "Viewer test and build evidence."},
     {"id": "conformance", "commands": 1, "evidence": "Unified DSLRaid semantic and generated-output gate."},
-    {"id": "release-check", "commands": 61, "evidence": "Generated workflow, docs index, and artifact freshness."}
+    {"id": "release-check", "commands": 62, "evidence": "Generated workflow, docs index, and artifact freshness."}
   ],
   "pdca": [
     "plan",

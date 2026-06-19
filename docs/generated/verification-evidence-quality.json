@@ -450,6 +450,18 @@
             "meaning": "Revalidation evidence is suitable when freshness changes authority."
         },
         {
+            "id": "evidence-quality:evidence-ops",
+            "target": "docs/generated/verification-evidence-ops.json",
+            "quality": "high",
+            "purpose": "evidence-ops",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "records",
+                "closure_rules"
+            ],
+            "meaning": "EvidenceOps evidence is suitable when CI and deploy update evidence graph claims."
+        },
+        {
             "id": "evidence-quality:cold-start-gate",
             "target": "docs/generated/verification-cold-start-gate.json",
             "quality": "high",

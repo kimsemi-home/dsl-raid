@@ -32,7 +32,7 @@
             "id": "test:verification.node.release-check",
             "subject": "verify:daemon/release-check",
             "kind": "verification-node",
-            "commands": 61
+            "commands": 62
         },
         {
             "id": "test:verification.backend.github-actions",
@@ -75,6 +75,12 @@
             "subject": "docs/generated/verification-pdca.json",
             "kind": "generated-backend",
             "generator": "scripts/verificationpdcagen.sh"
+        },
+        {
+            "id": "test:verification.backend.evidence-ops",
+            "subject": "docs/generated/verification-evidence-ops.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationevidenceopsgen.sh"
         },
         {
             "id": "test:verification.backend.loss-ledger",

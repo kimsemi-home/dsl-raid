@@ -11,6 +11,8 @@
      "Backup steward semantic receipt.")
     ("semantic-diff:revalidation-gate" "semantic:revalidation-gate"
      "Revalidation gate semantic receipt.")
+    ("semantic-diff:evidence-ops" "semantic:evidence-ops"
+     "Evidence operations semantic receipt.")
     ("semantic-diff:cold-start-gate" "semantic:cold-start-gate"
      "Cold-start gate semantic receipt.")
     ("semantic-diff:reasoning-access" "semantic:reasoning-access"

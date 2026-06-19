@@ -26,6 +26,11 @@
      "high" "revalidation-gate" "gate:evidence-quality"
      ("gates" "closure_rules")
      "Revalidation evidence is suitable when freshness changes authority.")
+    ("evidence-quality:evidence-ops"
+     "docs/generated/verification-evidence-ops.json"
+     "high" "evidence-ops" "gate:evidence-quality"
+     ("records" "closure_rules")
+     "EvidenceOps evidence is suitable when CI and deploy update evidence graph claims.")
     ("evidence-quality:cold-start-gate"
      "docs/generated/verification-cold-start-gate.json"
      "high" "cold-start-gate" "gate:evidence-quality"

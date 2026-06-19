@@ -5,6 +5,7 @@
     ("executable-knowledge" "Policy, DSL, schema, manifest, IR" "Generated docs and artifacts" "Human prose explains generated knowledge; it is not the SSOT.")
     ("versioned-ssot" "Context, ontology version, contract version" "Scoped authority" "SSOT authority is valid only inside an explicit context and version.")
     ("evidence-graph" "Raw evidence, interpretation, claim, artifact" "Traceable evidence links" "Unlinked evidence cannot justify high confidence or authority.")
+    ("evidence-ops" "CI, deploy, experiment, and incident loop" "Evidence graph update and conformance claim" "Operations are evidence generation, not mere automation.")
     ("external-confidence" "Agent output and evidence graph" "Confidence ceiling" "Agent self-confidence is never final confidence.")
     ("verification-sidecar" "Producer output" "Independent verification evidence" "The producer and final verifier must be separate roles.")
     ("authority-gate" "Change candidate" "Approved, rejected, or escalated decision" "Agents may propose and verify, but governance owns authority.")
