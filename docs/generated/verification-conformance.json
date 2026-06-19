@@ -107,6 +107,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.confidence-manifest",
+            "subject": "docs/generated/verification-confidence.json",
+            "check": "scripts/verificationconfidencegen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.rust-code",
             "subject": "generated/runtime_fsm.rs",
             "check": "scripts/lisp-rustgen.sh check",

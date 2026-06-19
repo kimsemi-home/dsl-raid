@@ -17,7 +17,8 @@
     ("lease-and-abort" ("lease-manifest"))
     ("review-capacity" ("review-capacity"))
     ("feedback-closure" ("feedback-closure"))
-    ("quarantine" ("quarantine-manifest"))))
+    ("quarantine" ("quarantine-manifest"))
+    ("external-confidence" ("confidence-manifest"))))
 
 (defparameter *verification-codegen-rules*
   '(("codegen:axis-covered" "Every ontology codegen axis maps to a backend.")

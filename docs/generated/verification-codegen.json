@@ -108,6 +108,12 @@
             "backends": [
                 "quarantine-manifest"
             ]
+        },
+        {
+            "axis": "external-confidence",
+            "backends": [
+                "confidence-manifest"
+            ]
         }
     ],
     "closure_rules": [

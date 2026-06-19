@@ -28,4 +28,8 @@
     ("evidence-quality:quarantine"
      "docs/generated/verification-quarantine.json" "high" "quarantine"
      "gate:evidence-quality" ("bundles" "closure_rules")
-     "Quarantine evidence is suitable when promotion blocks are explicit.")))
+     "Quarantine evidence is suitable when promotion blocks are explicit.")
+    ("evidence-quality:confidence"
+     "docs/generated/verification-confidence.json" "high" "external-confidence"
+     "gate:evidence-quality" ("ceilings" "closure_rules")
+     "Confidence evidence is suitable when self confidence is ignored.")))

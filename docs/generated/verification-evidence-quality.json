@@ -88,6 +88,18 @@
                 "closure_rules"
             ],
             "meaning": "Quarantine evidence is suitable when promotion blocks are explicit."
+        },
+        {
+            "id": "evidence-quality:confidence",
+            "target": "docs/generated/verification-confidence.json",
+            "quality": "high",
+            "purpose": "external-confidence",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "ceilings",
+                "closure_rules"
+            ],
+            "meaning": "Confidence evidence is suitable when self confidence is ignored."
         }
     ],
     "closure_rules": [

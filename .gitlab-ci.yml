@@ -108,6 +108,8 @@ release-check:
     - |
       bash scripts/verificationquarantinegen.sh check
     - |
+      bash scripts/verificationconfidencegen.sh check
+    - |
       bash scripts/lisp-rustgen.sh check
     - |
       bash scripts/verificationdocgen.sh check

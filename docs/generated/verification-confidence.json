@@ -1,0 +1,62 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationconfidencegen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification.lisp",
+    "confidence_profile": "external-evidence-ceiling",
+    "ceilings": [
+        {
+            "id": "confidence:verification-output",
+            "producer": "agent:verification-daemon",
+            "self_confidence": "ignored",
+            "ceiling": "high",
+            "decided_by": "gate:evidence-quality",
+            "requires": [
+                "evidence-quality",
+                "authority-gate",
+                "quarantine"
+            ],
+            "evidence": [
+                "docs/generated/verification-evidence-quality.json",
+                "docs/generated/verification-authority.json",
+                "docs/generated/verification-quarantine.json"
+            ],
+            "meaning": "Agent output confidence is capped by evidence and governance gates."
+        },
+        {
+            "id": "confidence:release-check",
+            "producer": "control-plane:verification",
+            "self_confidence": "ignored",
+            "ceiling": "high",
+            "decided_by": "gate:release",
+            "requires": [
+                "semantic-diff",
+                "review-capacity",
+                "feedback-closure"
+            ],
+            "evidence": [
+                "docs/generated/verification-semantic-diff.json",
+                "docs/generated/verification-review-capacity.json",
+                "docs/generated/verification-feedback.json"
+            ],
+            "meaning": "Release confidence comes from review and semantic evidence."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "confidence:self-ignored",
+            "meaning": "Agent self confidence is never authoritative.",
+            "check": "scripts/verificationconfidencegen.sh check"
+        },
+        {
+            "id": "confidence:decider-external",
+            "meaning": "A non-agent gate decides confidence ceiling.",
+            "check": "scripts/verificationconfidencegen.sh check"
+        },
+        {
+            "id": "confidence:evidence-linked",
+            "meaning": "Every ceiling links generated evidence.",
+            "check": "scripts/verificationconfidencegen.sh check"
+        }
+    ]
+}

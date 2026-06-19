@@ -39,6 +39,7 @@
         "lease-and-abort",
         "review-capacity",
         "feedback-closure",
-        "quarantine"
+        "quarantine",
+        "external-confidence"
     ]
 }

@@ -28,6 +28,7 @@
     {"backend": "review-capacity", "output": "docs/generated/verification-review-capacity.json", "generator": "scripts/verificationreviewgen.sh", "check": "scripts/verificationreviewgen.sh check"},
     {"backend": "feedback-closure", "output": "docs/generated/verification-feedback.json", "generator": "scripts/verificationfeedbackgen.sh", "check": "scripts/verificationfeedbackgen.sh check"},
     {"backend": "quarantine-manifest", "output": "docs/generated/verification-quarantine.json", "generator": "scripts/verificationquarantinegen.sh", "check": "scripts/verificationquarantinegen.sh check"},
+    {"backend": "confidence-manifest", "output": "docs/generated/verification-confidence.json", "generator": "scripts/verificationconfidencegen.sh", "check": "scripts/verificationconfidencegen.sh check"},
     {"backend": "rust-code", "output": "generated/runtime_fsm.rs", "generator": "scripts/lisp-rustgen.sh", "check": "scripts/lisp-rustgen.sh check"},
     {"backend": "verification-doc", "output": "docs/generated/verification-graph.md", "generator": "scripts/verificationdocgen.sh", "check": "scripts/verificationdocgen.sh check"},
     {"backend": "docs-index", "output": "docs/generated/generated-docs.md", "generator": "scripts/gendocindex.sh", "check": "scripts/gendocindex.sh check"},
@@ -44,7 +45,7 @@
     {"id": "unit-test", "commands": 1, "evidence": "Rust workspace unit test evidence."},
     {"id": "integration-test", "commands": 3, "evidence": "Viewer test and build evidence."},
     {"id": "conformance", "commands": 1, "evidence": "Unified DSLRaid semantic and generated-output gate."},
-    {"id": "release-check", "commands": 28, "evidence": "Generated workflow, docs index, and artifact freshness."}
+    {"id": "release-check", "commands": 29, "evidence": "Generated workflow, docs index, and artifact freshness."}
   ],
   "pdca": [
     "plan",

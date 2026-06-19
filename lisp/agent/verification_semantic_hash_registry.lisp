@@ -30,4 +30,7 @@
      "Feedback closure and revalidation contract for verification learning.")
     ("semantic:quarantine" "docs/generated/verification-quarantine.json"
      ("quarantine_profile" "bundles" "closure_rules")
-     "Quarantine promotion blocking contract for suspicious outputs.")))
+     "Quarantine promotion blocking contract for suspicious outputs.")
+    ("semantic:confidence" "docs/generated/verification-confidence.json"
+     ("confidence_profile" "ceilings" "closure_rules")
+     "External confidence ceiling contract for verification outputs.")))

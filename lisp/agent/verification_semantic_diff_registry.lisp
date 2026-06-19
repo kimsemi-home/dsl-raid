@@ -20,4 +20,6 @@
     ("semantic-diff:feedback-closure" "semantic:feedback-closure"
      "Feedback closure semantic receipt.")
     ("semantic-diff:quarantine" "semantic:quarantine"
-     "Quarantine semantic receipt.")))
+     "Quarantine semantic receipt.")
+    ("semantic-diff:confidence" "semantic:confidence"
+     "External confidence semantic receipt.")))
