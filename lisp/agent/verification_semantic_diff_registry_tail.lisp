@@ -31,6 +31,8 @@
      "Merge automation semantic receipt.")
     ("semantic-diff:branch-protection" "semantic:branch-protection"
      "Branch protection semantic receipt.")
+    ("semantic-diff:actions-receipt" "semantic:actions-receipt"
+     "Remote Actions receipt semantic receipt.")
     ("semantic-diff:incompleteness-ledger" "semantic:incompleteness-ledger"
      "Incompleteness ledger semantic receipt.")))
 

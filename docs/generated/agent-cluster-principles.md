@@ -18,6 +18,7 @@ Failures must become evidence, diagnostics, or generated knowledge updates.
 | merge-readiness | Change candidate and generated gates | Required merge gate evidence | Autonomous merge is allowed only when privacy, quality, golden, and generated workflow gates pass. |
 | merge-automation | Pull request and workflow policy | Readiness-gated automatic merge decision | Automation may merge only through PR checks, read-only gates, and forbidden target-context execution. |
 | branch-protection | Main branch and required checks | Protected merge contract | Required checks are executable evidence, not repository folklore. |
+| actions-receipt | Remote workflow run | Head SHA, conclusion, URL, and Pages receipt | Remote CI success is accepted only as structured evidence. |
 | versioned-ssot | Context, ontology version, contract version | Scoped authority | SSOT authority is valid only inside an explicit context and version. |
 | evidence-graph | Raw evidence, interpretation, claim, artifact | Traceable evidence links | Unlinked evidence cannot justify high confidence or authority. |
 | evidence-ops | CI, deploy, experiment, and incident loop | Evidence graph update and conformance claim | Operations are evidence generation, not mere automation. |

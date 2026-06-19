@@ -2197,6 +2197,102 @@
                 "generated_by",
                 "subject",
                 "source",
+                "actions_receipt_profile",
+                "receipts",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationreceiptgen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "actions_receipt_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "receipts": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "id",
+                            "kind",
+                            "tool",
+                            "command",
+                            "expected",
+                            "fields",
+                            "evidence",
+                            "status",
+                            "meaning"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "id": {
+                                "$ref": "#/$defs/semantic_ref"
+                            },
+                            "kind": {
+                                "enum": [
+                                    "workflow-summary",
+                                    "head-sha",
+                                    "job-detail",
+                                    "pages-health",
+                                    "forbidden-event"
+                                ]
+                            },
+                            "tool": {
+                                "type": "string",
+                                "minLength": 1
+                            },
+                            "command": {
+                                "type": "string",
+                                "minLength": 1
+                            },
+                            "expected": {
+                                "type": "string",
+                                "minLength": 1
+                            },
+                            "fields": {
+                                "$ref": "#/$defs/strings"
+                            },
+                            "evidence": {
+                                "$ref": "#/$defs/strings"
+                            },
+                            "status": {
+                                "const": "required"
+                            },
+                            "meaning": {
+                                "type": "string",
+                                "minLength": 1
+                            }
+                        }
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
                 "parity_profile",
                 "projections",
                 "closure_rules"

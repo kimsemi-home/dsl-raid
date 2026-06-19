@@ -16,6 +16,11 @@
      "high" "branch-protection" "gate:evidence-quality"
      ("requirements" "closure_rules")
      "Branch protection evidence is suitable when required checks map to workflows.")
+    ("evidence-quality:actions-receipt"
+     "docs/generated/verification-actions-receipt.json"
+     "high" "actions-receipt" "gate:evidence-quality"
+     ("receipts" "closure_rules")
+     "Actions receipt evidence is suitable when remote verdict fields are explicit.")
     ("evidence-quality:incompleteness-ledger"
      "docs/generated/verification-incompleteness-ledger.json"
      "high" "incompleteness-ledger" "gate:evidence-quality"

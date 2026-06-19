@@ -215,6 +215,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.actions-receipt",
+            "subject": "docs/generated/verification-actions-receipt.json",
+            "check": "scripts/verificationreceiptgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.adr-governance",
             "subject": "docs/generated/verification-adr-governance.json",
             "check": "scripts/verificationadrgen.sh check",

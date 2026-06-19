@@ -582,6 +582,18 @@
             "meaning": "Branch protection evidence is suitable when required checks map to workflows."
         },
         {
+            "id": "evidence-quality:actions-receipt",
+            "target": "docs/generated/verification-actions-receipt.json",
+            "quality": "high",
+            "purpose": "actions-receipt",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "receipts",
+                "closure_rules"
+            ],
+            "meaning": "Actions receipt evidence is suitable when remote verdict fields are explicit."
+        },
+        {
             "id": "evidence-quality:incompleteness-ledger",
             "target": "docs/generated/verification-incompleteness-ledger.json",
             "quality": "high",

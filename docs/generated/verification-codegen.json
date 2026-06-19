@@ -81,6 +81,12 @@
             ]
         },
         {
+            "axis": "actions-receipt",
+            "backends": [
+                "actions-receipt"
+            ]
+        },
+        {
             "axis": "pdca-evidence",
             "backends": [
                 "pdca-manifest"

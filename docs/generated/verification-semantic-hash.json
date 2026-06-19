@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "bf1be0ea26eab980b526f26ba7d03f3aac7492eef4423042951cc67733fb3bf4"
+            "hash": "25aa4a943731b3fb6fa1f9d61112d870b79b4bb4644fe54e6c960ef0473b8d4b"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "b3740ee0c60b42008fc5a3cb66001151cdaaa3ec570588c830cff27a7dc9d3dd"
+            "hash": "b7d2195990b941d766ab74d3e57c3f5171f0164673729144ef8cc8bc5c46d9b1"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "e1a0769ebd638307da1794863e5172b2d56dfec772ba28373eb38b832f617354"
+            "hash": "5751af6d3d69ccb9ffec099bd2c5bef60e1ac3ff377e949e108316def2103cbf"
         },
         {
             "id": "semantic:authority",
@@ -97,7 +97,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "baa632dbbf44b3cec1e1bb245379313ad62ecc74cc4d4f5ec9cdf2b041713cdb"
+            "hash": "951053b24d956a6dca36f61868bec17bd1f5d50a733f8402e34459919e85f5e5"
         },
         {
             "id": "semantic:lease",
@@ -562,6 +562,17 @@
             ],
             "meaning": "Main branch required-check and protected merge contract.",
             "hash": "3292a8dde7339aef8a426814597b49978660998bd4c80c5f9378d95f4f06c0d1"
+        },
+        {
+            "id": "semantic:actions-receipt",
+            "source": "docs/generated/verification-actions-receipt.json",
+            "fields": [
+                "actions_receipt_profile",
+                "receipts",
+                "closure_rules"
+            ],
+            "meaning": "Remote Actions run receipt and Pages health contract.",
+            "hash": "4c1d8d394f5799f62d9ab7e2815773d16b9c8b7f88a351f3af60ea7ff9c28de4"
         },
         {
             "id": "semantic:incompleteness-ledger",

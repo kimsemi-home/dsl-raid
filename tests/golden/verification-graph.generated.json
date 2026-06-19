@@ -32,7 +32,7 @@
             "id": "test:verification.node.release-check",
             "subject": "verify:daemon/release-check",
             "kind": "verification-node",
-            "commands": 70
+            "commands": 71
         },
         {
             "id": "test:verification.backend.github-actions",
@@ -237,6 +237,12 @@
             "subject": "docs/generated/verification-branch-protection.json",
             "kind": "generated-backend",
             "generator": "scripts/verificationbranchgen.sh"
+        },
+        {
+            "id": "test:verification.backend.actions-receipt",
+            "subject": "docs/generated/verification-actions-receipt.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationreceiptgen.sh"
         },
         {
             "id": "test:verification.backend.adr-governance",

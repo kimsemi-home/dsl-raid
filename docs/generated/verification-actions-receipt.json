@@ -1,0 +1,113 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationreceiptgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_actions_receipt.lisp",
+    "actions_receipt_profile": "remote-run-receipts",
+    "receipts": [
+        {
+            "id": "actions-receipt:workflow-summary",
+            "kind": "workflow-summary",
+            "tool": "gh run list",
+            "command": "gh run list --repo kimsemi-home/dsl-raid --branch main --json name,headSha,status,conclusion,url",
+            "expected": "Required workflow runs are visible for the pushed head SHA.",
+            "fields": [
+                "headSha",
+                "status",
+                "conclusion",
+                "url"
+            ],
+            "evidence": [
+                "docs/generated/verification-branch-protection.json",
+                "docs/generated/verification-github-actions.json"
+            ],
+            "status": "required",
+            "meaning": "Remote CI summaries are accepted only as structured receipts."
+        },
+        {
+            "id": "actions-receipt:head-sha",
+            "kind": "head-sha",
+            "tool": "gh run list",
+            "command": "gh run list --repo kimsemi-home/dsl-raid --branch main --json headSha,status,conclusion,url",
+            "expected": "Each receipt must match the pushed commit head SHA.",
+            "fields": [
+                "headSha",
+                "status",
+                "conclusion",
+                "url"
+            ],
+            "evidence": [
+                "docs/generated/verification-merge-automation.json"
+            ],
+            "status": "required",
+            "meaning": "A successful run is not transferable across commits."
+        },
+        {
+            "id": "actions-receipt:job-detail",
+            "kind": "job-detail",
+            "tool": "gh run view",
+            "command": "gh run view <run-id> --json jobs,status,conclusion,url",
+            "expected": "Failed or incomplete runs must expose job-level detail.",
+            "fields": [
+                "jobs",
+                "status",
+                "conclusion",
+                "url"
+            ],
+            "evidence": [
+                "docs/generated/verification-conformance.json"
+            ],
+            "status": "required",
+            "meaning": "Debug evidence must keep the run URL and job verdicts."
+        },
+        {
+            "id": "actions-receipt:pages-health",
+            "kind": "pages-health",
+            "tool": "curl",
+            "command": "curl -I -L https://kimsemi-home.github.io/dsl-raid/",
+            "expected": "HTTP/2 200",
+            "fields": [
+                "url",
+                "http_status"
+            ],
+            "evidence": [
+                ".github/workflows/pages.yml"
+            ],
+            "status": "required",
+            "meaning": "Pages deploy health is a post-push receipt."
+        },
+        {
+            "id": "actions-receipt:no-target-event",
+            "kind": "forbidden-event",
+            "tool": "grep",
+            "command": "grep -R pull_request_target .github/workflows",
+            "expected": "pull_request_target absent",
+            "fields": [
+                "workflow",
+                "forbidden_event"
+            ],
+            "evidence": [
+                "docs/generated/verification-security-audit.json"
+            ],
+            "status": "required",
+            "meaning": "Receipt collection must not rely on target-context execution."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "actions-receipt:required-fields",
+            "meaning": "Receipts must declare decisive fields.",
+            "check": "scripts/verificationreceiptgen.sh check"
+        },
+        {
+            "id": "actions-receipt:allowed-tools",
+            "meaning": "Receipt collection tools are bounded.",
+            "check": "scripts/verificationreceiptgen.sh check"
+        },
+        {
+            "id": "actions-receipt:evidence-linked",
+            "meaning": "Each receipt must cite file evidence.",
+            "check": "scripts/verificationreceiptgen.sh check"
+        }
+    ]
+}

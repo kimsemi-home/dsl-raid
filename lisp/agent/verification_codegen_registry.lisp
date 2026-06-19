@@ -13,6 +13,7 @@
     ("merge-readiness" ("merge-readiness"))
     ("merge-automation" ("merge-automation"))
     ("branch-protection" ("branch-protection"))
+    ("actions-receipt" ("actions-receipt"))
     ("pdca-evidence" ("pdca-manifest"))
     ("evidence-ops" ("evidence-ops"))
     ("loss-ledger" ("loss-ledger"))

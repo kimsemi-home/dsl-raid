@@ -61,6 +61,10 @@
      "docs/generated/verification-branch-protection.json"
      ("branch_protection_profile" "requirements" "closure_rules")
      "Main branch required-check and protected merge contract.")
+    ("semantic:actions-receipt"
+     "docs/generated/verification-actions-receipt.json"
+     ("actions_receipt_profile" "receipts" "closure_rules")
+     "Remote Actions run receipt and Pages health contract.")
     ("semantic:incompleteness-ledger"
      "docs/generated/verification-incompleteness-ledger.json"
      ("incompleteness_profile" "unknowns" "closure_rules")

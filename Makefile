@@ -92,4 +92,5 @@ release-check: conformance
 	bash scripts/gendocindex.sh check
 	bash scripts/verificationautomergegen.sh check
 	bash scripts/verificationbranchgen.sh check
+	bash scripts/verificationreceiptgen.sh check
 	cargo run -p dslraid-cli -- artifact verify examples/runscope/runscope.raid.json
