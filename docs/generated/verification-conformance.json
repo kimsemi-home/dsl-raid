@@ -53,6 +53,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.rust-code",
+            "subject": "generated/runtime_fsm.rs",
+            "check": "scripts/lisp-rustgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.ontology-manifest",
             "subject": "docs/generated/verification-ontology.json",
             "check": "scripts/verificationontologygen.sh check",

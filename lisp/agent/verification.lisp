@@ -44,6 +44,7 @@
        "bash scripts/verificationschemagen.sh check"
        "bash scripts/verificationtestgen.sh check"
        "bash scripts/verificationevidencegen.sh check"
+       "bash scripts/lisp-rustgen.sh check"
        "bash scripts/gendocindex.sh check"
        "cargo run -p dslraid-cli -- artifact verify examples/runscope/runscope.raid.json")))))
 
@@ -57,6 +58,7 @@
      "scripts/verificationprivacygen.sh")
     ("pdca-manifest" "docs/generated/verification-pdca.json"
      "scripts/verificationpdcagen.sh")
+    ("rust-code" "generated/runtime_fsm.rs" "scripts/lisp-rustgen.sh")
     ("ontology-manifest" "docs/generated/verification-ontology.json"
      "scripts/verificationontologygen.sh")
     ("conformance-report" "docs/generated/verification-conformance.json"
