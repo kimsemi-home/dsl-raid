@@ -254,6 +254,51 @@
                     }
                 }
             }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
+                "authority_profile",
+                "decisions",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationauthoritygen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "authority_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "decisions": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/authority_decision"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
         }
     ],
     "$defs": {
@@ -482,6 +527,54 @@
                 },
                 "evidence": {
                     "$ref": "#/$defs/path"
+                }
+            }
+        },
+        "authority_decision": {
+            "type": "object",
+            "required": [
+                "id",
+                "scope",
+                "decision",
+                "approved_by",
+                "requires",
+                "evidence",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "scope": {
+                    "enum": [
+                        "routine",
+                        "release",
+                        "security",
+                        "audit",
+                        "ontology",
+                        "incident"
+                    ]
+                },
+                "decision": {
+                    "enum": [
+                        "approved",
+                        "escalated",
+                        "rejected"
+                    ]
+                },
+                "approved_by": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "requires": {
+                    "$ref": "#/$defs/strings"
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
                 }
             }
         }

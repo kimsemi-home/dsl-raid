@@ -33,6 +33,7 @@
         "pdca-evidence",
         "loss-ledger",
         "semantic-hash",
-        "semantic-diff"
+        "semantic-diff",
+        "authority-gate"
     ]
 }

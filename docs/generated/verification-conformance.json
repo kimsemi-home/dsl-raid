@@ -71,6 +71,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.authority-manifest",
+            "subject": "docs/generated/verification-authority.json",
+            "check": "scripts/verificationauthoritygen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.rust-code",
             "subject": "generated/runtime_fsm.rs",
             "check": "scripts/lisp-rustgen.sh check",

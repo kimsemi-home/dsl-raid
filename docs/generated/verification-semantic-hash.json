@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "1ef214cdf30ae6f4d9b23776a31ebc292375f0f6825b6936a7754391bb4178b8"
+            "hash": "6f2d54b1a95ced56b143140df40e877e4bb17822969b75452bee873d4e1dfc07"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "62c4c5f43518556037f1afcf27687a0acba84cb087f50e1cb1e8eb236790465c"
+            "hash": "f61074232ef9b2300b065b59413565a64ea9507e40d4f5f1276cecde18a68ddd"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,18 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "eaf9758bd53a19b1879c7dda4effd59d2083f38b1da72023a3eb0330336cb177"
+            "hash": "dd276764fbd4fad29533d0f2be7de429403e0a8d68917fe0b15677101231cff4"
+        },
+        {
+            "id": "semantic:authority",
+            "source": "docs/generated/verification-authority.json",
+            "fields": [
+                "authority_profile",
+                "decisions",
+                "closure_rules"
+            ],
+            "meaning": "Governance authority gate and review decision contract.",
+            "hash": "68ecf4f3781eaef07de93c9566592192d4e337b068d986a972621524f31d95ed"
         }
     ],
     "closure_rules": [

@@ -11,7 +11,8 @@
     ("pdca-evidence" ("pdca-manifest"))
     ("loss-ledger" ("loss-ledger"))
     ("semantic-hash" ("semantic-hash"))
-    ("semantic-diff" ("semantic-diff"))))
+    ("semantic-diff" ("semantic-diff"))
+    ("authority-gate" ("authority-manifest"))))
 
 (defparameter *verification-codegen-rules*
   '(("codegen:axis-covered" "Every ontology codegen axis maps to a backend.")

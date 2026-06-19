@@ -32,7 +32,7 @@
             "id": "test:verification.node.release-check",
             "subject": "verify:daemon/release-check",
             "kind": "verification-node",
-            "commands": 22
+            "commands": 23
         },
         {
             "id": "test:verification.backend.github-actions",
@@ -93,6 +93,12 @@
             "subject": "docs/generated/verification-semantic-diff.json",
             "kind": "generated-backend",
             "generator": "scripts/verificationdiffgen.sh"
+        },
+        {
+            "id": "test:verification.backend.authority-manifest",
+            "subject": "docs/generated/verification-authority.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationauthoritygen.sh"
         },
         {
             "id": "test:verification.backend.rust-code",

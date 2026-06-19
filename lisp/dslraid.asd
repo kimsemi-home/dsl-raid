@@ -17,10 +17,10 @@
      (:file "verification_workflow") (:file "verification_gitlab")
      (:file "verification_makefile") (:file "verification_bazel")
      (:file "verification_release") (:file "verification_ontology") (:file "verification_codegen")
-     (:file "verification_privacy") (:file "verification_pdca") (:file "verification_loss") (:file "verification_semantic_hash") (:file "verification_semantic_diff")
+     (:file "verification_privacy") (:file "verification_pdca") (:file "verification_loss") (:file "verification_semantic_hash") (:file "verification_semantic_diff") (:file "verification_authority")
      (:file "verification_conformance")
      (:file "verification_evidence") (:file "verification_schema")
-     (:file "verification_manifest_schema")
+     (:file "verification_manifest_schema_variants") (:file "verification_manifest_schema_defs") (:file "verification_manifest_schema")
      (:file "verification_tests")))
    (:module "ir"
     :serial t

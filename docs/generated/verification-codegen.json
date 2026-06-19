@@ -72,6 +72,12 @@
             "backends": [
                 "semantic-diff"
             ]
+        },
+        {
+            "axis": "authority-gate",
+            "backends": [
+                "authority-manifest"
+            ]
         }
     ],
     "closure_rules": [

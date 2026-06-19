@@ -16,6 +16,8 @@
      "scripts/verificationsemanticgen.sh")
     ("semantic-diff" "docs/generated/verification-semantic-diff.json"
      "scripts/verificationdiffgen.sh")
+    ("authority-manifest" "docs/generated/verification-authority.json"
+     "scripts/verificationauthoritygen.sh")
     ("rust-code" "generated/runtime_fsm.rs" "scripts/lisp-rustgen.sh")
     ("verification-doc" "docs/generated/verification-graph.md"
      "scripts/verificationdocgen.sh")

@@ -1,0 +1,56 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationauthoritygen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification.lisp",
+    "authority_profile": "governance-sidecar",
+    "decisions": [
+        {
+            "id": "authority:quality-gate",
+            "scope": "routine",
+            "decision": "approved",
+            "approved_by": "gate:quality",
+            "requires": [
+                "verification:quality",
+                "semantic:diff"
+            ],
+            "evidence": [
+                "docs/generated/verification-conformance.json",
+                "docs/generated/verification-semantic-diff.json"
+            ],
+            "meaning": "Agents produce claims; quality gate owns merge authority."
+        },
+        {
+            "id": "authority:release-check",
+            "scope": "release",
+            "decision": "approved",
+            "approved_by": "gate:release",
+            "requires": [
+                "verification:freshness",
+                "evidence:generated"
+            ],
+            "evidence": [
+                "docs/generated/verification-evidence.json",
+                "docs/generated/verification-codegen.json"
+            ],
+            "meaning": "Generated outputs must be fresh before release authority applies."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "authority:no-agent-self-approval",
+            "meaning": "Agents cannot approve their own outputs.",
+            "check": "scripts/verificationauthoritygen.sh check"
+        },
+        {
+            "id": "authority:evidence-linked",
+            "meaning": "Every authority decision links generated evidence.",
+            "check": "scripts/verificationauthoritygen.sh check"
+        },
+        {
+            "id": "authority:public-safe",
+            "meaning": "Authority manifest contains public paths only.",
+            "check": "scripts/verificationauthoritygen.sh check"
+        }
+    ]
+}

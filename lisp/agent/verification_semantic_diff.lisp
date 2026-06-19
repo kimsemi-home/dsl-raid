@@ -8,7 +8,9 @@
     ("semantic-diff:loss-ledger" "semantic:loss-ledger"
      "Translation loss semantic receipt.")
     ("semantic-diff:conformance" "semantic:conformance"
-     "Conformance contract semantic receipt.")))
+     "Conformance contract semantic receipt.")
+    ("semantic-diff:authority" "semantic:authority"
+     "Authority gate semantic receipt.")))
 
 (defparameter *verification-diff-rules*
   '(("diff:hash-backed" "Every semantic diff references a semantic hash.")

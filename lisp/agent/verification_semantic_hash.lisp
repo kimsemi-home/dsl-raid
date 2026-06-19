@@ -12,7 +12,10 @@
      "Declared adapter translation loss without forbidden L4 loss.")
     ("semantic:conformance" "docs/generated/verification-conformance.json"
      ("rules")
-     "Required checks for generated backend freshness.")))
+     "Required checks for generated backend freshness.")
+    ("semantic:authority" "docs/generated/verification-authority.json"
+     ("authority_profile" "decisions" "closure_rules")
+     "Governance authority gate and review decision contract.")))
 
 (defparameter *verification-semantic-rules*
   '(("semantic:hash-recomputes" "Every semantic hash recomputes from source fields.")
