@@ -29,6 +29,7 @@
         "tests",
         "conformance",
         "github-actions",
-        "release-pipelines"
+        "release-pipelines",
+        "pdca-evidence"
     ]
 }

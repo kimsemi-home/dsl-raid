@@ -18,6 +18,7 @@
     {"backend": "bazel", "output": "BUILD.bazel", "generator": "scripts/bazelgen.sh", "check": "scripts/bazelgen.sh check"},
     {"backend": "github-release", "output": ".github/workflows/release.yml", "generator": "scripts/releasegen.sh", "check": "scripts/releasegen.sh check"},
     {"backend": "privacy-manifest", "output": "docs/generated/verification-privacy.json", "generator": "scripts/verificationprivacygen.sh", "check": "scripts/verificationprivacygen.sh check"},
+    {"backend": "pdca-manifest", "output": "docs/generated/verification-pdca.json", "generator": "scripts/verificationpdcagen.sh", "check": "scripts/verificationpdcagen.sh check"},
     {"backend": "ontology-manifest", "output": "docs/generated/verification-ontology.json", "generator": "scripts/verificationontologygen.sh", "check": "scripts/verificationontologygen.sh check"},
     {"backend": "conformance-report", "output": "docs/generated/verification-conformance.json", "generator": "scripts/verificationconformancegen.sh", "check": "scripts/verificationconformancegen.sh check"},
     {"backend": "evidence-schema", "output": "schemas/dslraid-verification-evidence.schema.json", "generator": "scripts/verificationschemagen.sh", "check": "scripts/verificationschemagen.sh check"},
@@ -29,7 +30,7 @@
     {"id": "unit-test", "commands": 1, "evidence": "Rust workspace unit test evidence."},
     {"id": "integration-test", "commands": 3, "evidence": "Viewer test and build evidence."},
     {"id": "conformance", "commands": 1, "evidence": "Unified DSLRaid semantic and generated-output gate."},
-    {"id": "release-check", "commands": 14, "evidence": "Generated workflow, docs index, and artifact freshness."}
+    {"id": "release-check", "commands": 15, "evidence": "Generated workflow, docs index, and artifact freshness."}
   ],
   "pdca": [
     "plan",

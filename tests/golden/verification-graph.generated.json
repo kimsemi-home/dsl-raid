@@ -32,7 +32,7 @@
             "id": "test:verification.node.release-check",
             "subject": "verify:daemon/release-check",
             "kind": "verification-node",
-            "commands": 14
+            "commands": 15
         },
         {
             "id": "test:verification.backend.github-actions",
@@ -69,6 +69,12 @@
             "subject": "docs/generated/verification-privacy.json",
             "kind": "generated-backend",
             "generator": "scripts/verificationprivacygen.sh"
+        },
+        {
+            "id": "test:verification.backend.pdca-manifest",
+            "subject": "docs/generated/verification-pdca.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationpdcagen.sh"
         },
         {
             "id": "test:verification.backend.ontology-manifest",

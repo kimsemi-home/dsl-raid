@@ -1,0 +1,45 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationpdcagen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification.lisp",
+    "loop": [
+        {
+            "phase": "plan",
+            "evidence": "Lisp SSOT names the intended verification gates.",
+            "artifact": "lisp/agent/verification.lisp"
+        },
+        {
+            "phase": "do",
+            "evidence": "Generators derive CI, docs, schemas, tests, and manifests.",
+            "artifact": "docs/generated/verification-evidence.json"
+        },
+        {
+            "phase": "check",
+            "evidence": "Quality and release-check rerun deterministic generated checks.",
+            "artifact": "docs/generated/verification-conformance.json"
+        },
+        {
+            "phase": "act",
+            "evidence": "Stale output fails until SSOT or generated artifacts are updated.",
+            "artifact": "tests/golden/verification-graph.generated.json"
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "pdca:loop-has-four-phases",
+            "meaning": "plan, do, check, and act are present.",
+            "check": "scripts/verificationpdcagen.sh check"
+        },
+        {
+            "id": "pdca:generated-output-is-checked",
+            "meaning": "Every generated backend has a check.",
+            "check": "scripts/verificationpdcagen.sh check"
+        },
+        {
+            "id": "pdca:stale-output-is-actionable",
+            "meaning": "Diff failure names the generator.",
+            "check": "scripts/verificationpdcagen.sh check"
+        }
+    ]
+}

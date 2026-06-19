@@ -30,6 +30,7 @@ release-check: conformance
 	bash scripts/releasegen.sh check
 	bash scripts/privacycheck.sh check
 	bash scripts/verificationprivacygen.sh check
+	bash scripts/verificationpdcagen.sh check
 	bash scripts/verificationontologygen.sh check
 	bash scripts/verificationconformancegen.sh check
 	bash scripts/verificationschemagen.sh check

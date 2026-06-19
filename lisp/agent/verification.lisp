@@ -38,6 +38,7 @@
        "bash scripts/releasegen.sh check"
        "bash scripts/privacycheck.sh check"
        "bash scripts/verificationprivacygen.sh check"
+       "bash scripts/verificationpdcagen.sh check"
        "bash scripts/verificationontologygen.sh check"
        "bash scripts/verificationconformancegen.sh check"
        "bash scripts/verificationschemagen.sh check"
@@ -54,6 +55,8 @@
     ("github-release" ".github/workflows/release.yml" "scripts/releasegen.sh")
     ("privacy-manifest" "docs/generated/verification-privacy.json"
      "scripts/verificationprivacygen.sh")
+    ("pdca-manifest" "docs/generated/verification-pdca.json"
+     "scripts/verificationpdcagen.sh")
     ("ontology-manifest" "docs/generated/verification-ontology.json"
      "scripts/verificationontologygen.sh")
     ("conformance-report" "docs/generated/verification-conformance.json"

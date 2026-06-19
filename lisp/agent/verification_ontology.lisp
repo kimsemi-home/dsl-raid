@@ -8,7 +8,7 @@
 
 (defparameter *verification-codegen-axes*
   '("code" "docs" "schemas" "tests" "conformance"
-    "github-actions" "release-pipelines"))
+    "github-actions" "release-pipelines" "pdca-evidence"))
 
 (defun emit-verification-ontology-json (&optional stream)
   "Emit machine-readable ontology chain for the verification graph."
