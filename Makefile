@@ -41,6 +41,7 @@ release-check: conformance
 	bash scripts/verificationsemanticgen.sh check
 	bash scripts/verificationdiffgen.sh check
 	bash scripts/verificationauthoritygen.sh check
+	bash scripts/verificationaccessgen.sh check
 	bash scripts/verificationevidencequalitygen.sh check
 	bash scripts/verificationleasegen.sh check
 	bash scripts/verificationreviewgen.sh check

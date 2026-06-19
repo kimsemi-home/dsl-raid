@@ -35,6 +35,7 @@
         "semantic-hash",
         "semantic-diff",
         "authority-gate",
+        "access-policy",
         "evidence-quality",
         "lease-and-abort",
         "review-capacity",

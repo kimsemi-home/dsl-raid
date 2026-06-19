@@ -13,6 +13,7 @@
     ("semantic-hash" ("semantic-hash"))
     ("semantic-diff" ("semantic-diff"))
     ("authority-gate" ("authority-manifest"))
+    ("access-policy" ("access-policy"))
     ("evidence-quality" ("evidence-quality"))
     ("lease-and-abort" ("lease-manifest"))
     ("review-capacity" ("review-capacity"))

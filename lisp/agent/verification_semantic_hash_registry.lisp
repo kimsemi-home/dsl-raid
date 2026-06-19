@@ -1,9 +1,7 @@
 (in-package #:dslraid.agent)
 
 (defparameter *verification-semantic-hashes*
-  '(("semantic:verification-graph" "docs/generated/verification-evidence.json"
-     ("form" "ontology_chain" "verification_nodes" "generated_backends")
-     "Verification graph shape and generated backend contract.")
+  '(("semantic:verification-graph" "docs/generated/verification-evidence.json" ("form" "ontology_chain" "verification_nodes" "generated_backends") "Verification graph shape and generated backend contract.")
     ("semantic:codegen-map" "docs/generated/verification-codegen.json"
      ("axes")
      "Ontology codegen axes mapped to generated backends.")
@@ -16,6 +14,9 @@
     ("semantic:authority" "docs/generated/verification-authority.json"
      ("authority_profile" "decisions" "closure_rules")
      "Governance authority gate and review decision contract.")
+    ("semantic:access-policy" "docs/generated/verification-access-policy.json"
+     ("access_profile" "policies" "closure_rules")
+     "Reasoning RBAC and domain ABAC access contract.")
     ("semantic:evidence-quality" "docs/generated/verification-evidence-quality.json"
      ("evidence_quality_profile" "assessments" "closure_rules")
      "Evidence quality review contract for generated verification evidence.")

@@ -77,6 +77,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.access-policy",
+            "subject": "docs/generated/verification-access-policy.json",
+            "check": "scripts/verificationaccessgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.evidence-quality",
             "subject": "docs/generated/verification-evidence-quality.json",
             "check": "scripts/verificationevidencequalitygen.sh check",

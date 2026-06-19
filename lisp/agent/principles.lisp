@@ -8,6 +8,7 @@
     ("external-confidence" "Agent output and evidence graph" "Confidence ceiling" "Agent self-confidence is never final confidence.")
     ("verification-sidecar" "Producer output" "Independent verification evidence" "The producer and final verifier must be separate roles.")
     ("authority-gate" "Change candidate" "Approved, rejected, or escalated decision" "Agents may propose and verify, but governance owns authority.")
+    ("access-policy" "Role and context" "RBAC, ABAC, and authority decision" "Capability does not imply permission; context still gates reasoning authority.")
     ("orchestration-manifest" "Control-plane routing decision" "Manifest receipt" "No orchestration is authoritative without policy, agent, evidence, and output records.")
     ("lease-and-abort" "Agent work lease" "Finished, rebase, abort, or escalate state" "Abort blocks authority; it never deletes evidence.")
     ("quarantine" "Suspicious output or tool behavior" "Isolated evidence bundle" "Quarantine blocks artifact commit, confidence increase, and automatic approval.")

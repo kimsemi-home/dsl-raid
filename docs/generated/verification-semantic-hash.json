@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "74f550dbc00aa7ddc5c6e5647983ddff1f0532ea75e8dffef19c09bef9d02840"
+            "hash": "ca70365f723bf008b5220574485807ebd9a794db4d5daa1c0714ea39a4b5d089"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "c43e772512d9a6be83608e0913b2a4593d72e847136d4905510699f465d1315d"
+            "hash": "ead7bb6650cbb2e065b9dad610eefe05d0239211546053ea1e05564b53ca5011"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "32ff5fe06fd034508117b12d5351d8809208b622a596ccb90592e251548d8730"
+            "hash": "0e513be8287c32ddcb005694a7a353d15f9a22a1460546f5dcbd5ebba63fb3e7"
         },
         {
             "id": "semantic:authority",
@@ -56,6 +56,17 @@
             "hash": "68ecf4f3781eaef07de93c9566592192d4e337b068d986a972621524f31d95ed"
         },
         {
+            "id": "semantic:access-policy",
+            "source": "docs/generated/verification-access-policy.json",
+            "fields": [
+                "access_profile",
+                "policies",
+                "closure_rules"
+            ],
+            "meaning": "Reasoning RBAC and domain ABAC access contract.",
+            "hash": "93febc26797ce1b7fdc41ce22b50729333e49fd5e02106c049d126c09d11901f"
+        },
+        {
             "id": "semantic:evidence-quality",
             "source": "docs/generated/verification-evidence-quality.json",
             "fields": [
@@ -64,7 +75,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "1008a2d4e837b017c64ded32d84cc43eb2e20610d9fed19134ec3bf82c45a7c2"
+            "hash": "01ca9e08ab790d2cfa936f1846271f135f89af10ccc566b41008f86b2bc90cdc"
         },
         {
             "id": "semantic:lease",

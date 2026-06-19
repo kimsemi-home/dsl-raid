@@ -11,6 +11,8 @@
      "Conformance contract semantic receipt.")
     ("semantic-diff:authority" "semantic:authority"
      "Authority gate semantic receipt.")
+    ("semantic-diff:access-policy" "semantic:access-policy"
+     "Access policy semantic receipt.")
     ("semantic-diff:evidence-quality" "semantic:evidence-quality"
      "Evidence quality semantic receipt.")
     ("semantic-diff:lease" "semantic:lease"

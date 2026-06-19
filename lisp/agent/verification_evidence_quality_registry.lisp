@@ -1,10 +1,7 @@
 (in-package #:dslraid.agent)
 
 (defparameter *verification-evidence-quality-assessments*
-  '(("evidence-quality:generated-evidence"
-     "docs/generated/verification-evidence.json" "high" "release-check"
-     "gate:evidence-quality" ("generated_backends" "verification_nodes")
-     "Generated backend inventory is suitable for conformance checks.")
+  '(("evidence-quality:generated-evidence" "docs/generated/verification-evidence.json" "high" "release-check" "gate:evidence-quality" ("generated_backends" "verification_nodes") "Generated backend inventory is suitable for conformance checks.")
     ("evidence-quality:semantic-diff"
      "docs/generated/verification-semantic-diff.json" "high" "review"
      "gate:evidence-quality" ("diffs" "closure_rules")
@@ -13,6 +10,7 @@
      "docs/generated/verification-authority.json" "high" "authority-gate"
      "gate:evidence-quality" ("decisions" "closure_rules")
      "Authority decisions are suitable when linked generated evidence is fresh.")
+    ("evidence-quality:access-policy" "docs/generated/verification-access-policy.json" "high" "access-policy" "gate:evidence-quality" ("policies" "closure_rules") "Access evidence is suitable when RBAC and ABAC gates are explicit.")
     ("evidence-quality:lease"
      "docs/generated/verification-lease.json" "high" "lease-and-abort"
      "gate:evidence-quality" ("leases" "abort_rules")

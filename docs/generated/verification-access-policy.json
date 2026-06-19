@@ -1,0 +1,96 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationaccessgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_access_policy.lisp",
+    "access_profile": "reasoning-rbac-abac",
+    "policies": [
+        {
+            "id": "access:producer-public",
+            "role": "producer",
+            "context": "public-surface",
+            "decision": "allow",
+            "rbac": "rbac:producer",
+            "abac": "abac:public",
+            "evidence": [
+                "docs/generated/verification-privacy.json",
+                "docs/generated/verification-evidence.json"
+            ],
+            "authority": "steward:release",
+            "meaning": "Producers may update public surfaces only after generated privacy evidence."
+        },
+        {
+            "id": "access:producer-private",
+            "role": "producer",
+            "context": "private-data",
+            "decision": "deny",
+            "rbac": "rbac:producer",
+            "abac": "abac:private",
+            "evidence": [
+                "docs/generated/verification-privacy.json",
+                "docs/generated/verification-security-audit.json"
+            ],
+            "authority": "governance:privacy",
+            "meaning": "Private data never enters public generated artifacts."
+        },
+        {
+            "id": "access:verifier-security",
+            "role": "verifier",
+            "context": "security-boundary",
+            "decision": "escalate",
+            "rbac": "rbac:verifier",
+            "abac": "abac:security",
+            "evidence": [
+                "docs/generated/verification-security-audit.json",
+                "docs/generated/verification-authority.json"
+            ],
+            "authority": "governance:security",
+            "meaning": "Security boundary checks escalate to governance authority."
+        },
+        {
+            "id": "access:steward-release",
+            "role": "steward",
+            "context": "release",
+            "decision": "allow",
+            "rbac": "rbac:steward",
+            "abac": "abac:release",
+            "evidence": [
+                "docs/generated/verification-conformance.json",
+                "docs/generated/verification-debt.json"
+            ],
+            "authority": "steward:release",
+            "meaning": "Release authority needs conformance and visible debt."
+        },
+        {
+            "id": "access:governance-ontology",
+            "role": "governance",
+            "context": "ontology",
+            "decision": "allow",
+            "rbac": "rbac:governance",
+            "abac": "abac:ontology",
+            "evidence": [
+                "docs/generated/verification-ontology-transition.json",
+                "docs/generated/verification-historical-interpreter.json"
+            ],
+            "authority": "governance:ontology",
+            "meaning": "Ontology changes require governance and transition evidence."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "access:rbac-required",
+            "meaning": "Every policy has an explicit role gate.",
+            "check": "scripts/verificationaccessgen.sh check"
+        },
+        {
+            "id": "access:abac-required",
+            "meaning": "Every policy has a context gate.",
+            "check": "scripts/verificationaccessgen.sh check"
+        },
+        {
+            "id": "access:private-denied",
+            "meaning": "Private data policy cannot allow public authority.",
+            "check": "scripts/verificationaccessgen.sh check"
+        }
+    ]
+}

@@ -42,6 +42,18 @@
             "meaning": "Authority decisions are suitable when linked generated evidence is fresh."
         },
         {
+            "id": "evidence-quality:access-policy",
+            "target": "docs/generated/verification-access-policy.json",
+            "quality": "high",
+            "purpose": "access-policy",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "policies",
+                "closure_rules"
+            ],
+            "meaning": "Access evidence is suitable when RBAC and ABAC gates are explicit."
+        },
+        {
             "id": "evidence-quality:lease",
             "target": "docs/generated/verification-lease.json",
             "quality": "high",

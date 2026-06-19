@@ -9,8 +9,8 @@
 (defparameter *verification-codegen-axes*
   '("code" "docs" "schemas" "tests" "conformance"
     "github-actions" "release-pipelines" "pdca-evidence" "loss-ledger"
-    "semantic-hash" "semantic-diff" "authority-gate" "evidence-quality"
-    "lease-and-abort" "review-capacity" "feedback-closure" "quarantine"
+    "semantic-hash" "semantic-diff" "authority-gate" "access-policy"
+    "evidence-quality" "lease-and-abort" "review-capacity" "feedback-closure" "quarantine"
     "external-confidence" "verification-sidecar" "orchestration-manifest"
     "evidence-before-change" "versioned-ssot" "context-map"
     "historical-interpreter" "ontology-transition" "ssot-defect"

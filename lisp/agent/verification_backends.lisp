@@ -6,8 +6,7 @@
     ("local-makefile" "Makefile" "scripts/makegen.sh")
     ("bazel" "BUILD.bazel" "scripts/bazelgen.sh")
     ("github-release" ".github/workflows/release.yml" "scripts/releasegen.sh")
-    ("privacy-manifest" "docs/generated/verification-privacy.json"
-     "scripts/verificationprivacygen.sh")
+    ("privacy-manifest" "docs/generated/verification-privacy.json" "scripts/verificationprivacygen.sh")
     ("pdca-manifest" "docs/generated/verification-pdca.json"
      "scripts/verificationpdcagen.sh")
     ("loss-ledger" "docs/generated/verification-loss-ledger.json"
@@ -18,6 +17,7 @@
      "scripts/verificationdiffgen.sh")
     ("authority-manifest" "docs/generated/verification-authority.json"
      "scripts/verificationauthoritygen.sh")
+    ("access-policy" "docs/generated/verification-access-policy.json" "scripts/verificationaccessgen.sh")
     ("evidence-quality" "docs/generated/verification-evidence-quality.json"
      "scripts/verificationevidencequalitygen.sh")
     ("lease-manifest" "docs/generated/verification-lease.json"

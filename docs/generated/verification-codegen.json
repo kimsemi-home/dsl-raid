@@ -80,6 +80,12 @@
             ]
         },
         {
+            "axis": "access-policy",
+            "backends": [
+                "access-policy"
+            ]
+        },
+        {
             "axis": "evidence-quality",
             "backends": [
                 "evidence-quality"
