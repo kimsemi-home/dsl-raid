@@ -84,6 +84,12 @@
             "backends": [
                 "evidence-quality"
             ]
+        },
+        {
+            "axis": "lease-and-abort",
+            "backends": [
+                "lease-manifest"
+            ]
         }
     ],
     "closure_rules": [

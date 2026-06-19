@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "5361450aeac51ecbf7db355eab7dbdf4307278969ee604381e8073dab3d956e8"
+            "hash": "358dfc6d09bc9930789983c9e74166bcd507cf20175f8296aa3a51b9a1470dac"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "d5dc0ee2ff65918fd0410ce25dc99d8ebbc7d68369cd5dd293508033c9fa4a13"
+            "hash": "796e30b9d0ac6516097a1d12c3113a92b59cd135f6376c633169695118137640"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "828e69b21ada50f26d7e29c8d47ff3bd6d1a34884b07a6183b10c701663ab307"
+            "hash": "7c03291f3cf6a5f3ce1d182601afb71c81aeaa77832d143275ebfcbd974cea94"
         },
         {
             "id": "semantic:authority",
@@ -64,7 +64,19 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "88e93c0ec486a817a48aa6c1eec9d23dc2b177cc046bf8f5d46d11e9f02dfb8d"
+            "hash": "28e4e71b14baaebc12cd5140a13df229633b5c23d94a7cf1e54848d12a90e811"
+        },
+        {
+            "id": "semantic:lease",
+            "source": "docs/generated/verification-lease.json",
+            "fields": [
+                "lease_profile",
+                "leases",
+                "abort_rules",
+                "closure_rules"
+            ],
+            "meaning": "Lease and abort authority boundary for verification work.",
+            "hash": "d765d08d382738466a0d242bdc3e7d09f0e41d75f85963d2c6200dccf6b97c7f"
         }
     ],
     "closure_rules": [

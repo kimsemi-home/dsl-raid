@@ -40,6 +40,18 @@
                 "closure_rules"
             ],
             "meaning": "Authority decisions are suitable when linked generated evidence is fresh."
+        },
+        {
+            "id": "evidence-quality:lease",
+            "target": "docs/generated/verification-lease.json",
+            "quality": "high",
+            "purpose": "lease-and-abort",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "leases",
+                "abort_rules"
+            ],
+            "meaning": "Lease evidence is suitable when abort preserves evidence."
         }
     ],
     "closure_rules": [

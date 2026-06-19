@@ -344,6 +344,59 @@
                     }
                 }
             }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
+                "lease_profile",
+                "leases",
+                "abort_rules",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationleasegen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "lease_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "leases": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/verification_lease"
+                    }
+                },
+                "abort_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/abort_rule"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
         }
     ],
     "$defs": {
@@ -658,6 +711,79 @@
                 },
                 "signals": {
                     "$ref": "#/$defs/strings"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "verification_lease": {
+            "type": "object",
+            "required": [
+                "id",
+                "holder",
+                "scope",
+                "status",
+                "authority_effect",
+                "evidence",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "holder": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "scope": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "status": {
+                    "enum": [
+                        "issued",
+                        "active",
+                        "finished",
+                        "aborted",
+                        "escalated"
+                    ]
+                },
+                "authority_effect": {
+                    "enum": [
+                        "authority-after-checks",
+                        "authority-blocked"
+                    ]
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "abort_rule": {
+            "type": "object",
+            "required": [
+                "id",
+                "trigger",
+                "effect",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "trigger": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "effect": {
+                    "const": "authority-blocked"
                 },
                 "meaning": {
                     "type": "string",

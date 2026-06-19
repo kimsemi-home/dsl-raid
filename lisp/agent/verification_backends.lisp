@@ -20,6 +20,8 @@
      "scripts/verificationauthoritygen.sh")
     ("evidence-quality" "docs/generated/verification-evidence-quality.json"
      "scripts/verificationevidencequalitygen.sh")
+    ("lease-manifest" "docs/generated/verification-lease.json"
+     "scripts/verificationleasegen.sh")
     ("rust-code" "generated/runtime_fsm.rs" "scripts/lisp-rustgen.sh")
     ("verification-doc" "docs/generated/verification-graph.md"
      "scripts/verificationdocgen.sh")

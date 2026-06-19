@@ -18,7 +18,10 @@
      "Governance authority gate and review decision contract.")
     ("semantic:evidence-quality" "docs/generated/verification-evidence-quality.json"
      ("evidence_quality_profile" "assessments" "closure_rules")
-     "Evidence quality review contract for generated verification evidence.")))
+     "Evidence quality review contract for generated verification evidence.")
+    ("semantic:lease" "docs/generated/verification-lease.json"
+     ("lease_profile" "leases" "abort_rules" "closure_rules")
+     "Lease and abort authority boundary for verification work.")))
 
 (defparameter *verification-semantic-rules*
   '(("semantic:hash-recomputes" "Every semantic hash recomputes from source fields.")

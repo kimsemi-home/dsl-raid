@@ -12,7 +12,9 @@
     ("semantic-diff:authority" "semantic:authority"
      "Authority gate semantic receipt.")
     ("semantic-diff:evidence-quality" "semantic:evidence-quality"
-     "Evidence quality semantic receipt.")))
+     "Evidence quality semantic receipt.")
+    ("semantic-diff:lease" "semantic:lease"
+     "Lease and abort semantic receipt.")))
 
 (defparameter *verification-diff-rules*
   '(("diff:hash-backed" "Every semantic diff references a semantic hash.")

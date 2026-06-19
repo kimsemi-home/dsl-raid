@@ -35,6 +35,7 @@
         "semantic-hash",
         "semantic-diff",
         "authority-gate",
-        "evidence-quality"
+        "evidence-quality",
+        "lease-and-abort"
     ]
 }

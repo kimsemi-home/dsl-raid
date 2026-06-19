@@ -12,7 +12,11 @@
     ("evidence-quality:authority"
      "docs/generated/verification-authority.json" "high" "authority-gate"
      "gate:evidence-quality" ("decisions" "closure_rules")
-     "Authority decisions are suitable when linked generated evidence is fresh.")))
+     "Authority decisions are suitable when linked generated evidence is fresh.")
+    ("evidence-quality:lease"
+     "docs/generated/verification-lease.json" "high" "lease-and-abort"
+     "gate:evidence-quality" ("leases" "abort_rules")
+     "Lease evidence is suitable when abort preserves evidence.")))
 
 (defparameter *verification-evidence-quality-rules*
   '(("evidence-quality:target-generated" "Every assessed target is generated evidence.")

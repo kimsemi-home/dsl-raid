@@ -1,0 +1,64 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationleasegen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification.lisp",
+    "lease_profile": "verification-work-lease",
+    "leases": [
+        {
+            "id": "lease:verification-daemon",
+            "holder": "control-plane:verification",
+            "scope": "verify:daemon",
+            "status": "finished",
+            "authority_effect": "authority-after-checks",
+            "evidence": [
+                "docs/generated/verification-evidence-quality.json",
+                "docs/generated/verification-authority.json"
+            ],
+            "meaning": "Verification work is leased to automation; authority remains gated."
+        },
+        {
+            "id": "lease:release-check",
+            "holder": "control-plane:verification",
+            "scope": "verify:daemon.release-check",
+            "status": "finished",
+            "authority_effect": "authority-after-checks",
+            "evidence": [
+                "docs/generated/verification-conformance.json",
+                "docs/generated/verification-semantic-diff.json"
+            ],
+            "meaning": "Release checks finish only when generated evidence is fresh."
+        }
+    ],
+    "abort_rules": [
+        {
+            "id": "abort:evidence-retained",
+            "trigger": "failed-check",
+            "effect": "authority-blocked",
+            "meaning": "Abort preserves evidence and blocks authority promotion."
+        },
+        {
+            "id": "abort:rebase-required",
+            "trigger": "stale-output",
+            "effect": "authority-blocked",
+            "meaning": "Stale generated output requires rebase or regeneration."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "lease:evidence-linked",
+            "meaning": "Every lease links generated evidence.",
+            "check": "scripts/verificationleasegen.sh check"
+        },
+        {
+            "id": "lease:abort-blocks-authority",
+            "meaning": "Abort rules block authority promotion.",
+            "check": "scripts/verificationleasegen.sh check"
+        },
+        {
+            "id": "lease:no-evidence-deletion",
+            "meaning": "Abort never deletes evidence.",
+            "check": "scripts/verificationleasegen.sh check"
+        }
+    ]
+}
