@@ -41,6 +41,10 @@
      "docs/generated/verification-evidence-separation.json"
      ("evidence_separation_profile" "records" "closure_rules")
      "Raw evidence, interpretation, claim, and artifact separation contract.")
+    ("semantic:bootstrap-sequence"
+     "docs/generated/verification-bootstrap-sequence.json"
+     ("bootstrap_profile" "stages" "closure_rules")
+     "Lisp SSOT to generated runtime, schema, tests, and pipeline contract.")
     ("semantic:incompleteness-ledger"
      "docs/generated/verification-incompleteness-ledger.json"
      ("incompleteness_profile" "unknowns" "closure_rules")

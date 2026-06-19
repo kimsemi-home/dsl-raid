@@ -7,6 +7,7 @@
     ("provider-compat" "docs/generated/verification-provider-compat.json" "scripts/verificationprovidergen.sh")
     ("runtime-trace" "docs/generated/verification-runtime-trace.json" "scripts/verificationruntimegen.sh")
     ("run-manifest" "docs/generated/verification-run-manifest.json" "scripts/verificationrunmanifestgen.sh")
+    ("bootstrap-sequence" "docs/generated/verification-bootstrap-sequence.json" "scripts/verificationbootstrapgen.sh")
     ("adr-governance" "docs/generated/verification-adr-governance.json" "scripts/verificationadrgen.sh")
     ("backend-parity" "docs/generated/verification-backend-parity.json" "scripts/verificationparitygen.sh")
     ("github-actions-suite" "docs/generated/verification-github-actions.json" "scripts/verificationactionsgen.sh")

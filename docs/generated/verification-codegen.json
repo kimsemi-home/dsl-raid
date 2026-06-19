@@ -51,6 +51,12 @@
             ]
         },
         {
+            "axis": "bootstrap-sequence",
+            "backends": [
+                "bootstrap-sequence"
+            ]
+        },
+        {
             "axis": "pdca-evidence",
             "backends": [
                 "pdca-manifest"

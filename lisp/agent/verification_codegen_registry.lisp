@@ -8,6 +8,7 @@
     ("conformance" ("conformance-report" "evidence-json"))
     ("github-actions" ("github-actions"))
     ("release-pipelines" ("github-release" "release-provenance"))
+    ("bootstrap-sequence" ("bootstrap-sequence"))
     ("pdca-evidence" ("pdca-manifest"))
     ("evidence-ops" ("evidence-ops"))
     ("loss-ledger" ("loss-ledger"))

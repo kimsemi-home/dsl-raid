@@ -21,6 +21,8 @@
      "Adversarial review semantic receipt.")
     ("semantic-diff:evidence-separation" "semantic:evidence-separation"
      "Evidence separation semantic receipt.")
+    ("semantic-diff:bootstrap-sequence" "semantic:bootstrap-sequence"
+     "Bootstrap sequence semantic receipt.")
     ("semantic-diff:incompleteness-ledger" "semantic:incompleteness-ledger"
      "Incompleteness ledger semantic receipt.")))
 

@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "430053a0414fe11bcd2f06f647a0347ac1692758936e5242852341cacdbb937d"
+            "hash": "362a25674e6c8f7c2c939f8342748660e77f701c9a56c98176b35f88812f9ce1"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "99dcdeadf75e8d93d65dd341acb2a96981701b2e098d6932530f0bee0d6f89b5"
+            "hash": "6fc3d8791346e55e211a7a967e462bc46f376e34f32d597ba2957b1f7cb81ed6"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "069ba06bb7f72ad0728328d975a2ad721a7e649d2c8cbc2a9d0aa8565508d558"
+            "hash": "cae3f30677d49b3cb3ee11f81bd5b2cf3dc71ed6993dfaf82d930964c93c739a"
         },
         {
             "id": "semantic:authority",
@@ -97,7 +97,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "ecc8bf4bd73657f64466c264d37623b0f229bd094c58911e9165fba4f7fd4336"
+            "hash": "c9ebe9e72487808ad937435b740bc278a85cb329c10bf05980a768a4cdab7c35"
         },
         {
             "id": "semantic:lease",
@@ -507,6 +507,17 @@
             ],
             "meaning": "Raw evidence, interpretation, claim, and artifact separation contract.",
             "hash": "0d30192c228a0ca9c3dfb4701ec97bd42846b77e053eedeca87552e51f4bdb78"
+        },
+        {
+            "id": "semantic:bootstrap-sequence",
+            "source": "docs/generated/verification-bootstrap-sequence.json",
+            "fields": [
+                "bootstrap_profile",
+                "stages",
+                "closure_rules"
+            ],
+            "meaning": "Lisp SSOT to generated runtime, schema, tests, and pipeline contract.",
+            "hash": "8de6910932b3cf9567bf8233b8d20cc82c2a6f5bed14ef6b3fb7bd5d2e98b565"
         },
         {
             "id": "semantic:incompleteness-ledger",

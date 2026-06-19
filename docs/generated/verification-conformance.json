@@ -185,6 +185,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.bootstrap-sequence",
+            "subject": "docs/generated/verification-bootstrap-sequence.json",
+            "check": "scripts/verificationbootstrapgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.adr-governance",
             "subject": "docs/generated/verification-adr-governance.json",
             "check": "scripts/verificationadrgen.sh check",

@@ -522,6 +522,18 @@
             "meaning": "Separation evidence is suitable when raw evidence, interpretation, claim, and artifact stay distinct."
         },
         {
+            "id": "evidence-quality:bootstrap-sequence",
+            "target": "docs/generated/verification-bootstrap-sequence.json",
+            "quality": "high",
+            "purpose": "bootstrap-sequence",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "stages",
+                "closure_rules"
+            ],
+            "meaning": "Bootstrap evidence is suitable when each generated file is checkable."
+        },
+        {
             "id": "evidence-quality:incompleteness-ledger",
             "target": "docs/generated/verification-incompleteness-ledger.json",
             "quality": "high",

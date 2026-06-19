@@ -1,0 +1,110 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationbootstrapgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_bootstrap_sequence.lisp",
+    "bootstrap_profile": "lisp-ssot-filegen",
+    "stages": [
+        {
+            "order": 1,
+            "id": "bootstrap:lisp-to-ir",
+            "layer": "common-lisp",
+            "input": "lisp/runtime/runscope.lisp",
+            "output": "examples/runscope/runscope.lisp.raid.json",
+            "check": "scripts/lisp-irgen.sh check",
+            "status": "checked",
+            "evidence": [
+                "docs/generated/verification-conformance.json"
+            ],
+            "meaning": "Common Lisp forms emit canonical Core IR as a file-backed artifact."
+        },
+        {
+            "order": 2,
+            "id": "bootstrap:ir-to-rust",
+            "layer": "generated-runtime",
+            "input": "examples/runscope/runscope.lisp.raid.json",
+            "output": "generated/runtime_fsm.rs",
+            "check": "scripts/lisp-rustgen.sh check",
+            "status": "checked",
+            "evidence": [
+                "docs/generated/verification-codegen.json"
+            ],
+            "meaning": "Rust runtime code is generated from canonical IR, not edited as SSOT."
+        },
+        {
+            "order": 3,
+            "id": "bootstrap:graph-evidence",
+            "layer": "verification-graph",
+            "input": "lisp/agent/verification.lisp",
+            "output": "docs/generated/verification-evidence.json",
+            "check": "scripts/verificationevidencegen.sh check",
+            "status": "checked",
+            "evidence": [
+                "docs/generated/verification-ontology.json"
+            ],
+            "meaning": "The verification graph emits the backend inventory used as evidence."
+        },
+        {
+            "order": 4,
+            "id": "bootstrap:graph-schema",
+            "layer": "schema",
+            "input": "lisp/agent/verification_manifest_schema.lisp",
+            "output": "schemas/dslraid-verification-manifest.schema.json",
+            "check": "scripts/verificationmanifestschemagen.sh check",
+            "status": "checked",
+            "evidence": [
+                "docs/generated/verification-evidence.json"
+            ],
+            "meaning": "Manifest schemas are generated from the verification language layer."
+        },
+        {
+            "order": 5,
+            "id": "bootstrap:graph-tests",
+            "layer": "tests",
+            "input": "lisp/agent/verification_tests.lisp",
+            "output": "tests/golden/verification-graph.generated.json",
+            "check": "scripts/verificationtestgen.sh check",
+            "status": "checked",
+            "evidence": [
+                "docs/generated/verification-conformance.json"
+            ],
+            "meaning": "Golden test manifests are generated from the same verification graph."
+        },
+        {
+            "order": 6,
+            "id": "bootstrap:graph-pipeline",
+            "layer": "github-actions",
+            "input": "lisp/agent/verification_release_checks.lisp",
+            "output": ".github/workflows/verification.yml",
+            "check": "scripts/workflowgen.sh check",
+            "status": "checked",
+            "evidence": [
+                "docs/generated/verification-github-actions.json",
+                "docs/generated/verification-backend-parity.json"
+            ],
+            "meaning": "GitHub Actions is a generated projection of the verification graph."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "bootstrap:file-backed",
+            "meaning": "Every bootstrap stage reads and writes files.",
+            "check": "scripts/verificationbootstrapgen.sh check"
+        },
+        {
+            "id": "bootstrap:checkable",
+            "meaning": "Every bootstrap stage has a check command.",
+            "check": "scripts/verificationbootstrapgen.sh check"
+        },
+        {
+            "id": "bootstrap:evidence-linked",
+            "meaning": "Every bootstrap stage links generated evidence.",
+            "check": "scripts/verificationbootstrapgen.sh check"
+        },
+        {
+            "id": "bootstrap:ssot-first",
+            "meaning": "Language and IR precede runtime and pipeline outputs.",
+            "check": "scripts/verificationbootstrapgen.sh check"
+        }
+    ]
+}
