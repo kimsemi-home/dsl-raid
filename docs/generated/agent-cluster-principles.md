@@ -24,6 +24,7 @@ Failures must become evidence, diagnostics, or generated knowledge updates.
 | orchestration-manifest | Control-plane routing decision | Manifest receipt | No orchestration is authoritative without policy, agent, evidence, and output records. |
 | control-plane-verifier | Orchestration decision and shadow route | Independent sidecar verdict | The control plane is routed and checked; it never verifies itself. |
 | provider-compat | Provider protocol and capabilities | Compatible or blocked route | Runtime providers are selected by proven capabilities, not by name. |
+| runtime-trace | Runtime event log and coverage overlay | Design-linked execution evidence | Executed transitions must map back to designed FSM subjects. |
 | lease-and-abort | Agent work lease | Finished, rebase, abort, or escalate state | Abort blocks authority; it never deletes evidence. |
 | quarantine | Suspicious output or tool behavior | Isolated evidence bundle | Quarantine blocks artifact commit, confidence increase, and automatic approval. |
 | loss-ledger | Cross-context translation | Recorded semantic loss | Lossy translation must declare what was lost; forbidden loss blocks promotion. |

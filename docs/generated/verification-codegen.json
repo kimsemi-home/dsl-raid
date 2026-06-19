@@ -158,6 +158,12 @@
             ]
         },
         {
+            "axis": "runtime-trace",
+            "backends": [
+                "runtime-trace"
+            ]
+        },
+        {
             "axis": "evidence-before-change",
             "backends": [
                 "evidence-before-change"

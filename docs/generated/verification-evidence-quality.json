@@ -186,6 +186,18 @@
             "meaning": "Provider compatibility evidence is suitable when required capabilities are explicit."
         },
         {
+            "id": "evidence-quality:runtime-trace",
+            "target": "docs/generated/verification-runtime-trace.json",
+            "quality": "high",
+            "purpose": "runtime-trace",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "mappings",
+                "closure_rules"
+            ],
+            "meaning": "Runtime trace evidence is suitable when design and coverage checks pass."
+        },
+        {
             "id": "evidence-quality:evidence-before-change",
             "target": "docs/generated/verification-evidence-before-change.json",
             "quality": "high",

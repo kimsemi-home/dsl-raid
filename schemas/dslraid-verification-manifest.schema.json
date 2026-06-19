@@ -1440,6 +1440,51 @@
                     }
                 }
             }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
+                "runtime_trace_profile",
+                "mappings",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationruntimegen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "runtime_trace_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "mappings": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/runtime_trace_mapping"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
         }
     ],
     "$defs": {
@@ -3082,6 +3127,55 @@
                     "enum": [
                         "compatible",
                         "blocked"
+                    ]
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "runtime_trace_mapping": {
+            "type": "object",
+            "required": [
+                "id",
+                "design_ir",
+                "trace",
+                "coverage",
+                "runtime_subject",
+                "design_subject",
+                "coverage_status",
+                "evidence",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "design_ir": {
+                    "$ref": "#/$defs/path"
+                },
+                "trace": {
+                    "$ref": "#/$defs/path"
+                },
+                "coverage": {
+                    "$ref": "#/$defs/path"
+                },
+                "runtime_subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "design_subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "coverage_status": {
+                    "enum": [
+                        "covered",
+                        "uncovered",
+                        "failed"
                     ]
                 },
                 "evidence": {

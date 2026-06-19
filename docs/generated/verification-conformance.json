@@ -155,6 +155,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.runtime-trace",
+            "subject": "docs/generated/verification-runtime-trace.json",
+            "check": "scripts/verificationruntimegen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.evidence-before-change",
             "subject": "docs/generated/verification-evidence-before-change.json",
             "check": "scripts/verificationevidencebeforechangegen.sh check",

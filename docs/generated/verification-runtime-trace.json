@@ -1,0 +1,68 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationruntimegen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_runtime_trace.lisp",
+    "runtime_trace_profile": "design-coverage-overlay",
+    "mappings": [
+        {
+            "id": "runtime-trace:start-requested",
+            "design_ir": "examples/runscope/runscope.raid.json",
+            "trace": "examples/runscope/run-001.trace.json",
+            "coverage": "examples/runscope/run-001.coverage.json",
+            "runtime_subject": "event:runtime.start_requested",
+            "design_subject": "event:runtime.start_requested",
+            "coverage_status": "covered",
+            "evidence": [
+                "docs/generated/verification-evidence.json",
+                "docs/generated/verification-conformance.json"
+            ],
+            "meaning": "Runtime start event maps to the designed RuntimeFSM event."
+        },
+        {
+            "id": "runtime-trace:idle-to-starting",
+            "design_ir": "examples/runscope/runscope.raid.json",
+            "trace": "examples/runscope/run-001.trace.json",
+            "coverage": "examples/runscope/run-001.coverage.json",
+            "runtime_subject": "transition:runtime.idle_to_starting",
+            "design_subject": "transition:runtime.idle_to_starting",
+            "coverage_status": "covered",
+            "evidence": [
+                "docs/generated/verification-control-plane.json",
+                "docs/generated/verification-provider-compat.json"
+            ],
+            "meaning": "Executed transition matches the designed idle to starting edge."
+        },
+        {
+            "id": "runtime-trace:running-to-completed",
+            "design_ir": "examples/runscope/runscope.raid.json",
+            "trace": "examples/runscope/run-001.trace.json",
+            "coverage": "examples/runscope/run-001.coverage.json",
+            "runtime_subject": "transition:runtime.running_to_completed",
+            "design_subject": "transition:runtime.running_to_completed",
+            "coverage_status": "covered",
+            "evidence": [
+                "docs/generated/verification-evidence-quality.json",
+                "docs/generated/verification-semantic-diff.json"
+            ],
+            "meaning": "Runtime completion edge is covered by the imported trace."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "runtime-trace:design-known",
+            "meaning": "Trace subjects must map to design subjects.",
+            "check": "scripts/verificationruntimegen.sh check"
+        },
+        {
+            "id": "runtime-trace:coverage-linked",
+            "meaning": "Trace evidence must build a coverage overlay.",
+            "check": "scripts/verificationruntimegen.sh check"
+        },
+        {
+            "id": "runtime-trace:no-contradiction",
+            "meaning": "Transition endpoints cannot contradict design IR.",
+            "check": "scripts/verificationruntimegen.sh check"
+        }
+    ]
+}

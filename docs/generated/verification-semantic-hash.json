@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "30dc3b72c8c8cd59598d916fd6f21f6eb30b859e60da7e576d9f1caf551bb259"
+            "hash": "86058073596b60313b19d70314fdb03a3b7d30a190333e23f537d0291ab797da"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "eaa622115d0d2dec77aa56b3dd6108e72c764c9cb73dd60aacb0947859739bee"
+            "hash": "9a80655f48344cd2675015f05e12d157a4c57361aebbf5d8a2003687452a140a"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "fb5e1869fbf448830075b1b48fa213f06f91647c1cccd7d3b88baa450cca018a"
+            "hash": "99343963a7066978caf0a24fa5159e33e6e66b0ec3abe251ca75c084730a2a34"
         },
         {
             "id": "semantic:authority",
@@ -97,7 +97,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "bab8f66f1b3f1ad9905ddb60b15948d5d7bfc4b26f3837c91144b327458ebca7"
+            "hash": "f3d6365ba017c35de6d8fdc1d18166f90f1f40578b70b496d9cfd580c13f74df"
         },
         {
             "id": "semantic:lease",
@@ -199,6 +199,17 @@
             ],
             "meaning": "Provider protocol and capability compatibility contract.",
             "hash": "d0b2f1580a41118673f1db470eb2e921ca744302594d520c6e529e66a707d7d7"
+        },
+        {
+            "id": "semantic:runtime-trace",
+            "source": "docs/generated/verification-runtime-trace.json",
+            "fields": [
+                "runtime_trace_profile",
+                "mappings",
+                "closure_rules"
+            ],
+            "meaning": "Runtime trace mapping and coverage overlay contract.",
+            "hash": "c542201cbc67ccbf80ba2ddbbeb30c8f55a59100d05e640733813cd522bc06e0"
         },
         {
             "id": "semantic:evidence-before-change",

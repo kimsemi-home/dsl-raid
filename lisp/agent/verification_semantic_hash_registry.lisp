@@ -41,6 +41,7 @@
      "Policy-bound orchestration routing receipt contract.")
     ("semantic:control-plane" "docs/generated/verification-control-plane.json" ("control_plane_profile" "routes" "closure_rules") "Control-plane sidecar and shadow verifier contract.")
     ("semantic:provider-compat" "docs/generated/verification-provider-compat.json" ("provider_compat_profile" "records" "closure_rules") "Provider protocol and capability compatibility contract.")
+    ("semantic:runtime-trace" "docs/generated/verification-runtime-trace.json" ("runtime_trace_profile" "mappings" "closure_rules") "Runtime trace mapping and coverage overlay contract.")
     ("semantic:evidence-before-change"
      "docs/generated/verification-evidence-before-change.json"
      ("evidence_before_change_profile" "changes" "closure_rules")

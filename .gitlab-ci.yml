@@ -124,6 +124,8 @@ release-check:
     - |
       bash scripts/verificationprovidergen.sh check
     - |
+      bash scripts/verificationruntimegen.sh check
+    - |
       bash scripts/verificationevidencebeforechangegen.sh check
     - |
       bash scripts/verificationversionedssotgen.sh check

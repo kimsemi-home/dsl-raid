@@ -5,6 +5,7 @@
     ("orchestration-manifest" "docs/generated/verification-orchestration.json" "scripts/verificationorchestrationgen.sh")
     ("control-plane-verifier" "docs/generated/verification-control-plane.json" "scripts/verificationcontrolgen.sh")
     ("provider-compat" "docs/generated/verification-provider-compat.json" "scripts/verificationprovidergen.sh")
+    ("runtime-trace" "docs/generated/verification-runtime-trace.json" "scripts/verificationruntimegen.sh")
     ("evidence-before-change" "docs/generated/verification-evidence-before-change.json" "scripts/verificationevidencebeforechangegen.sh")
     ("versioned-ssot" "docs/generated/verification-versioned-ssot.json" "scripts/verificationversionedssotgen.sh")
     ("context-map" "docs/generated/verification-context-map.json" "scripts/verificationcontextmapgen.sh")

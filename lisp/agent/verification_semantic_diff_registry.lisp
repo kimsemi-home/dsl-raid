@@ -37,6 +37,8 @@
      "Control-plane verifier semantic receipt.")
     ("semantic-diff:provider-compat" "semantic:provider-compat"
      "Provider compatibility semantic receipt.")
+    ("semantic-diff:runtime-trace" "semantic:runtime-trace"
+     "Runtime trace mapping semantic receipt.")
     ("semantic-diff:evidence-before-change" "semantic:evidence-before-change"
      "Evidence-before-change semantic receipt.")
     ("semantic-diff:versioned-ssot" "semantic:versioned-ssot"

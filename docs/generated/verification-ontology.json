@@ -48,6 +48,7 @@
         "orchestration-manifest",
         "control-plane-verifier",
         "provider-compat",
+        "runtime-trace",
         "evidence-before-change",
         "versioned-ssot",
         "context-map",
