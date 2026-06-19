@@ -67,8 +67,6 @@
      "docs/generated/verification-ssot-defect.json" "high"
      "ssot-defect" "gate:evidence-quality" ("defects" "closure_rules")
      "SSOT defect evidence is suitable when freeze and migration are explicit.")
-    ("evidence-quality:root-cause"
-     "docs/generated/verification-root-cause.json" "medium"
-     "root-cause" "gate:evidence-quality" ("cases" "closure_rules")
-     "Root cause evidence is suitable while candidates remain validation-bound.")
-    ("evidence-quality:semantic-debugger" "docs/generated/verification-semantic-debugger.json" "medium" "semantic-debugger" "gate:evidence-quality" ("sessions" "closure_rules") "Debugger evidence is suitable when missing evidence stays explicit.")))
+    ("evidence-quality:root-cause" "docs/generated/verification-root-cause.json" "medium" "root-cause" "gate:evidence-quality" ("cases" "closure_rules") "Root cause evidence is suitable while candidates remain validation-bound.")
+    ("evidence-quality:semantic-debugger" "docs/generated/verification-semantic-debugger.json" "medium" "semantic-debugger" "gate:evidence-quality" ("sessions" "closure_rules") "Debugger evidence is suitable when missing evidence stays explicit.")
+    ("evidence-quality:evidence-pruning" "docs/generated/verification-pruning.json" "high" "evidence-pruning" "gate:evidence-quality" ("decisions" "closure_rules") "Pruning evidence is suitable when tombstones and authority are explicit.")))

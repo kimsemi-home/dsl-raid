@@ -50,6 +50,7 @@
         "ontology-transition",
         "ssot-defect",
         "root-cause",
-        "semantic-debugger"
+        "semantic-debugger",
+        "evidence-pruning"
     ]
 }

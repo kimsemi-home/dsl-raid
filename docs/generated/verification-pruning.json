@@ -1,0 +1,59 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationpruninggen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification.lisp",
+    "evidence_pruning_profile": "governed-retention",
+    "decisions": [
+        {
+            "id": "pruning:semantic-hash-retention",
+            "target": "docs/generated/verification-semantic-hash.json",
+            "action": "retain",
+            "status": "protected",
+            "immutable_reasons": [
+                "approved-semantic-hash",
+                "audit-evidence"
+            ],
+            "tombstone": "tombstone:not-allowed",
+            "authority": "gate:authority",
+            "evidence": [
+                "docs/generated/verification-semantic-hash.json",
+                "docs/generated/verification-authority.json"
+            ],
+            "meaning": "Approved semantic evidence is retained, never pruned."
+        },
+        {
+            "id": "pruning:debugger-refresh",
+            "target": "docs/generated/verification-semantic-debugger.json",
+            "action": "replace-with-tombstone",
+            "status": "candidate",
+            "immutable_reasons": [
+                "generated-evidence"
+            ],
+            "tombstone": "tombstone:semantic-debugger-refresh",
+            "authority": "gate:authority",
+            "evidence": [
+                "docs/generated/verification-semantic-debugger.json",
+                "docs/generated/verification-evidence.json"
+            ],
+            "meaning": "Generated evidence may refresh only with tombstone and authority."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "pruning:protected-retained",
+            "meaning": "Protected audit evidence is retained.",
+            "check": "scripts/verificationpruninggen.sh check"
+        },
+        {
+            "id": "pruning:tombstone-required",
+            "meaning": "Replacement or deletion keeps a tombstone.",
+            "check": "scripts/verificationpruninggen.sh check"
+        },
+        {
+            "id": "pruning:authority-required",
+            "meaning": "Evidence pruning is governance-approved.",
+            "check": "scripts/verificationpruninggen.sh check"
+        }
+    ]
+}

@@ -220,6 +220,18 @@
                 "closure_rules"
             ],
             "meaning": "Debugger evidence is suitable when missing evidence stays explicit."
+        },
+        {
+            "id": "evidence-quality:evidence-pruning",
+            "target": "docs/generated/verification-pruning.json",
+            "quality": "high",
+            "purpose": "evidence-pruning",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "decisions",
+                "closure_rules"
+            ],
+            "meaning": "Pruning evidence is suitable when tombstones and authority are explicit."
         }
     ],
     "closure_rules": [

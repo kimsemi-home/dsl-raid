@@ -26,6 +26,7 @@ Failures must become evidence, diagnostics, or generated knowledge updates.
 | ssot-defect | Official source defect candidate | Freeze, migration, verification | When the SSOT is wrong, affected outputs freeze before patching. |
 | root-cause | Observation and cause candidates | Validated or eliminated cause set | Root cause is confirmed by validation evidence, not asserted. |
 | semantic-debugger | Evidence graph and semantic versions | Questions, missing evidence, and verification needs | Semantic debugging proposes investigations; it does not declare the answer. |
+| evidence-pruning | Evidence retention or replacement request | Tombstone and authority decision | Evidence pruning changes memory, so protected evidence is retained and replacements leave tombstones. |
 | review-capacity | Human review queue | Prioritized review or debt | Human review is finite; overload freezes high-risk automation. |
 | feedback-closure | Failure, gap, or retrospective | Policy, ontology, spec, owner, or revalidation update | A loop that does not update knowledge remains open evidence. |
 

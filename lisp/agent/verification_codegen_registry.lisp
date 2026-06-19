@@ -28,7 +28,8 @@
     ("ontology-transition" ("ontology-transition"))
     ("ssot-defect" ("ssot-defect"))
     ("root-cause" ("root-cause"))
-    ("semantic-debugger" ("semantic-debugger"))))
+    ("semantic-debugger" ("semantic-debugger"))
+    ("evidence-pruning" ("evidence-pruning"))))
 
 (defparameter *verification-codegen-rules*
   '(("codegen:axis-covered" "Every ontology codegen axis maps to a backend.")

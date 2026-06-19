@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "795e6670e041f4e347d09fb05c3e1d7974abc6b53b16022fa1f5f756fa334030"
+            "hash": "9875b03bacdd4af1926c7f269fc2686f4b3371658f397a8a1c24f889780e2dd1"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "46aefb5bbc9ec77151a9f14d9e0a547b8862884d3f9c6d5f4ce8789b06030cee"
+            "hash": "ec4d6eb657265e75478616e9c5f2e74b869175bb84b8bfb253811c88bda200e9"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "e71509e165704a08662b0221832a4ca72bb4bc5e11cbbd315c3731eb871d6a97"
+            "hash": "a48ec719d65331169ff0a5426d6978ef1b78803729da325cada7da9848fac1ed"
         },
         {
             "id": "semantic:authority",
@@ -64,7 +64,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "137e9234f9953a421e604b0d4f5dd4f6cd74d7a295d53ad8cc48dfde2cf922c9"
+            "hash": "d5f48f43ae2de88eed9ced5016fc9bb9f4e4561cb262d53cb57e66898206594e"
         },
         {
             "id": "semantic:lease",
@@ -232,6 +232,17 @@
             ],
             "meaning": "Semantic debugger question and evidence contract.",
             "hash": "9799511882a6f9c802d60e53c226e838d01db50e4947d4473446ac2ac0529ea4"
+        },
+        {
+            "id": "semantic:evidence-pruning",
+            "source": "docs/generated/verification-pruning.json",
+            "fields": [
+                "evidence_pruning_profile",
+                "decisions",
+                "closure_rules"
+            ],
+            "meaning": "Evidence pruning retention and tombstone contract.",
+            "hash": "36c136fdf4cb7c30fd6076ab9d7a15eacb08fa289d7e5a5781bd18d2dbbc4ebb"
         }
     ],
     "closure_rules": [

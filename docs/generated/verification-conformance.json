@@ -173,6 +173,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.evidence-pruning",
+            "subject": "docs/generated/verification-pruning.json",
+            "check": "scripts/verificationpruninggen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.rust-code",
             "subject": "generated/runtime_fsm.rs",
             "check": "scripts/lisp-rustgen.sh check",

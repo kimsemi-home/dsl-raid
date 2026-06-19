@@ -66,4 +66,7 @@
      "Root cause candidate validation contract.")
     ("semantic:semantic-debugger" "docs/generated/verification-semantic-debugger.json"
      ("semantic_debugger_profile" "sessions" "closure_rules")
-     "Semantic debugger question and evidence contract.")))
+     "Semantic debugger question and evidence contract.")
+    ("semantic:evidence-pruning" "docs/generated/verification-pruning.json"
+     ("evidence_pruning_profile" "decisions" "closure_rules")
+     "Evidence pruning retention and tombstone contract.")))

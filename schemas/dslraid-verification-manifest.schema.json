@@ -1035,6 +1035,51 @@
                     }
                 }
             }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
+                "evidence_pruning_profile",
+                "decisions",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationpruninggen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "evidence_pruning_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "decisions": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/pruning_decision"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
         }
     ],
     "$defs": {
@@ -2128,6 +2173,60 @@
                         "review",
                         "authority-gate"
                     ]
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "pruning_decision": {
+            "type": "object",
+            "required": [
+                "id",
+                "target",
+                "action",
+                "status",
+                "immutable_reasons",
+                "tombstone",
+                "authority",
+                "evidence",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "target": {
+                    "$ref": "#/$defs/path"
+                },
+                "action": {
+                    "enum": [
+                        "retain",
+                        "replace-with-tombstone",
+                        "delete-with-tombstone"
+                    ]
+                },
+                "status": {
+                    "enum": [
+                        "candidate",
+                        "protected",
+                        "approved",
+                        "rejected"
+                    ]
+                },
+                "immutable_reasons": {
+                    "$ref": "#/$defs/strings"
+                },
+                "tombstone": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "authority": {
+                    "$ref": "#/$defs/semantic_ref"
                 },
                 "evidence": {
                     "$ref": "#/$defs/strings"

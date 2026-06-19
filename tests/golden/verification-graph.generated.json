@@ -32,7 +32,7 @@
             "id": "test:verification.node.release-check",
             "subject": "verify:daemon/release-check",
             "kind": "verification-node",
-            "commands": 39
+            "commands": 40
         },
         {
             "id": "test:verification.backend.github-actions",
@@ -195,6 +195,12 @@
             "subject": "docs/generated/verification-semantic-debugger.json",
             "kind": "generated-backend",
             "generator": "scripts/verificationdebuggergen.sh"
+        },
+        {
+            "id": "test:verification.backend.evidence-pruning",
+            "subject": "docs/generated/verification-pruning.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationpruninggen.sh"
         },
         {
             "id": "test:verification.backend.rust-code",

@@ -47,6 +47,7 @@ bash scripts/verificationtransitiongen.sh check
 bash scripts/verificationssotdefectgen.sh check
 bash scripts/verificationrootcausegen.sh check
 bash scripts/verificationdebuggergen.sh check
+bash scripts/verificationpruninggen.sh check
 bash scripts/lisp-irgen.sh check
 bash scripts/lisp-rustgen.sh check
 bash scripts/gendocindex.sh check

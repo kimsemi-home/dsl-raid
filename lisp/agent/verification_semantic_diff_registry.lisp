@@ -42,4 +42,6 @@
     ("semantic-diff:root-cause" "semantic:root-cause"
      "Root cause semantic receipt.")
     ("semantic-diff:semantic-debugger" "semantic:semantic-debugger"
-     "Semantic debugger semantic receipt.")))
+     "Semantic debugger semantic receipt.")
+    ("semantic-diff:evidence-pruning" "semantic:evidence-pruning"
+     "Evidence pruning semantic receipt.")))

@@ -14,7 +14,7 @@
     "external-confidence" "verification-sidecar" "orchestration-manifest"
     "evidence-before-change" "versioned-ssot" "context-map"
     "historical-interpreter" "ontology-transition" "ssot-defect"
-    "root-cause" "semantic-debugger"))
+    "root-cause" "semantic-debugger" "evidence-pruning"))
 
 (defun emit-verification-ontology-json (&optional stream)
   "Emit machine-readable ontology chain for the verification graph."
