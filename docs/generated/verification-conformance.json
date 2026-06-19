@@ -65,6 +65,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.semantic-diff",
+            "subject": "docs/generated/verification-semantic-diff.json",
+            "check": "scripts/verificationdiffgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.rust-code",
             "subject": "generated/runtime_fsm.rs",
             "check": "scripts/lisp-rustgen.sh check",

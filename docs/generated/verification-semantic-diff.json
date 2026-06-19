@@ -1,0 +1,63 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationdiffgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification.lisp",
+    "base": "docs/generated/verification-semantic-hash.json",
+    "head": "docs/generated/verification-semantic-hash.json",
+    "diffs": [
+        {
+            "id": "semantic-diff:verification-graph",
+            "hash_id": "semantic:verification-graph",
+            "summary": "Verification graph semantic receipt.",
+            "base_hash": "1ef214cdf30ae6f4d9b23776a31ebc292375f0f6825b6936a7754391bb4178b8",
+            "head_hash": "1ef214cdf30ae6f4d9b23776a31ebc292375f0f6825b6936a7754391bb4178b8",
+            "status": "unchanged",
+            "evidence": "docs/generated/verification-semantic-hash.json"
+        },
+        {
+            "id": "semantic-diff:codegen-map",
+            "hash_id": "semantic:codegen-map",
+            "summary": "Codegen axis semantic receipt.",
+            "base_hash": "62c4c5f43518556037f1afcf27687a0acba84cb087f50e1cb1e8eb236790465c",
+            "head_hash": "62c4c5f43518556037f1afcf27687a0acba84cb087f50e1cb1e8eb236790465c",
+            "status": "unchanged",
+            "evidence": "docs/generated/verification-semantic-hash.json"
+        },
+        {
+            "id": "semantic-diff:loss-ledger",
+            "hash_id": "semantic:loss-ledger",
+            "summary": "Translation loss semantic receipt.",
+            "base_hash": "f9db22577ae6810e01e7807c11dd4f1947955825dfbc1fc0a74ba2a80a3b2714",
+            "head_hash": "f9db22577ae6810e01e7807c11dd4f1947955825dfbc1fc0a74ba2a80a3b2714",
+            "status": "unchanged",
+            "evidence": "docs/generated/verification-semantic-hash.json"
+        },
+        {
+            "id": "semantic-diff:conformance",
+            "hash_id": "semantic:conformance",
+            "summary": "Conformance contract semantic receipt.",
+            "base_hash": "eaf9758bd53a19b1879c7dda4effd59d2083f38b1da72023a3eb0330336cb177",
+            "head_hash": "eaf9758bd53a19b1879c7dda4effd59d2083f38b1da72023a3eb0330336cb177",
+            "status": "unchanged",
+            "evidence": "docs/generated/verification-semantic-hash.json"
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "diff:hash-backed",
+            "meaning": "Every semantic diff references a semantic hash.",
+            "check": "scripts/verificationdiffgen.sh check"
+        },
+        {
+            "id": "diff:status-derived",
+            "meaning": "Diff status is derived from base and head hashes.",
+            "check": "scripts/verificationdiffgen.sh check"
+        },
+        {
+            "id": "diff:evidence-linked",
+            "meaning": "Every semantic diff links generated evidence.",
+            "check": "scripts/verificationdiffgen.sh check"
+        }
+    ]
+}

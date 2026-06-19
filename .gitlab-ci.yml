@@ -94,6 +94,8 @@ release-check:
     - |
       bash scripts/verificationsemanticgen.sh check
     - |
+      bash scripts/verificationdiffgen.sh check
+    - |
       bash scripts/lisp-rustgen.sh check
     - |
       bash scripts/verificationdocgen.sh check

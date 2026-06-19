@@ -40,7 +40,9 @@
    "\"generated_by\":{\"const\":\"scripts/verificationsemanticgen.sh\"},\"subject\":{\"$ref\":\"#/$defs/semantic_ref\"},"
    "\"source\":{\"$ref\":\"#/$defs/path\"},\"algorithm\":{\"const\":\"sha256\"},"
    "\"hashes\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"$ref\":\"#/$defs/semantic_hash\"}},"
-   "\"closure_rules\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"$ref\":\"#/$defs/rule\"}}}}],"
+   "\"closure_rules\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"$ref\":\"#/$defs/rule\"}}}},"
+   "{\"type\":\"object\",\"required\":[\"manifest_version\",\"generated_by\",\"subject\",\"source\",\"base\",\"head\",\"diffs\",\"closure_rules\"],\"additionalProperties\":false,"
+   "\"properties\":{\"manifest_version\":{\"$ref\":\"#/$defs/semver\"},\"generated_by\":{\"const\":\"scripts/verificationdiffgen.sh\"},\"subject\":{\"$ref\":\"#/$defs/semantic_ref\"},\"source\":{\"$ref\":\"#/$defs/path\"},\"base\":{\"$ref\":\"#/$defs/path\"},\"head\":{\"$ref\":\"#/$defs/path\"},\"diffs\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"$ref\":\"#/$defs/semantic_diff\"}},\"closure_rules\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"$ref\":\"#/$defs/rule\"}}}}],"
    "\"$defs\":{\"path\":{\"type\":\"string\",\"minLength\":1},"
    "\"semantic_ref\":{\"type\":\"string\",\"pattern\":\"^[a-z][a-z0-9_\\\\-]*:[a-z][a-z0-9_.\\\\-]*$\"},"
    "\"semver\":{\"type\":\"string\",\"pattern\":\"^[0-9]+\\\\.[0-9]+\\\\.[0-9]+$\"},"
@@ -65,11 +67,8 @@
    "\"loss_level\":{\"enum\":[\"L1\",\"L2\",\"L3\"]},"
    "\"meaning\":{\"type\":\"string\",\"minLength\":1},\"evidence\":{\"$ref\":\"#/$defs/path\"},"
    "\"policy\":{\"type\":\"string\",\"minLength\":1}}},"
-   "\"semantic_hash\":{\"type\":\"object\",\"required\":[\"id\",\"source\",\"fields\",\"meaning\",\"hash\"],\"additionalProperties\":false,\"properties\":{\"id\":{\"$ref\":\"#/$defs/semantic_ref\"},\"source\":{\"$ref\":\"#/$defs/path\"},\"fields\":{\"$ref\":\"#/$defs/strings\"},\"meaning\":{\"type\":\"string\",\"minLength\":1},\"hash\":{\"type\":\"string\",\"pattern\":\"^[a-f0-9]{64}$\"}}}}}"))
+   "\"semantic_hash\":{\"type\":\"object\",\"required\":[\"id\",\"source\",\"fields\",\"meaning\",\"hash\"],\"additionalProperties\":false,\"properties\":{\"id\":{\"$ref\":\"#/$defs/semantic_ref\"},\"source\":{\"$ref\":\"#/$defs/path\"},\"fields\":{\"$ref\":\"#/$defs/strings\"},\"meaning\":{\"type\":\"string\",\"minLength\":1},\"hash\":{\"type\":\"string\",\"pattern\":\"^[a-f0-9]{64}$\"}}},"
+   "\"semantic_diff\":{\"type\":\"object\",\"required\":[\"id\",\"hash_id\",\"summary\",\"base_hash\",\"head_hash\",\"status\",\"evidence\"],\"additionalProperties\":false,\"properties\":{\"id\":{\"$ref\":\"#/$defs/semantic_ref\"},\"hash_id\":{\"$ref\":\"#/$defs/semantic_ref\"},\"summary\":{\"type\":\"string\",\"minLength\":1},\"base_hash\":{\"type\":\"string\",\"pattern\":\"^[a-f0-9]{64}$\"},\"head_hash\":{\"type\":\"string\",\"pattern\":\"^[a-f0-9]{64}$\"},\"status\":{\"enum\":[\"unchanged\",\"changed\",\"blocked\"]},\"evidence\":{\"$ref\":\"#/$defs/path\"}}}}}"))
 
 (defun emit-verification-manifest-schema-json (&optional stream)
-  "Emit JSON Schema for generated verification manifests."
-  (let ((json *verification-manifest-schema-json*))
-    (if stream
-        (write-string json stream)
-        json)))
+  (if stream (write-string *verification-manifest-schema-json* stream) *verification-manifest-schema-json*))

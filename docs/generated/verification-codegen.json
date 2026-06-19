@@ -66,6 +66,12 @@
             "backends": [
                 "semantic-hash"
             ]
+        },
+        {
+            "axis": "semantic-diff",
+            "backends": [
+                "semantic-diff"
+            ]
         }
     ],
     "closure_rules": [
