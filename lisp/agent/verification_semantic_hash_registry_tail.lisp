@@ -33,6 +33,10 @@
      "docs/generated/verification-reasoning-access.json"
      ("reasoning_access_profile" "records" "closure_rules")
      "Reasoning tier, domain ABAC, and authority effect contract.")
+    ("semantic:adversarial-review"
+     "docs/generated/verification-adversarial-review.json"
+     ("adversarial_profile" "probes" "closure_rules")
+     "Adversarial failure-mode probe and review evidence contract.")
     ("semantic:evidence-separation"
      "docs/generated/verification-evidence-separation.json"
      ("evidence_separation_profile" "records" "closure_rules")

@@ -111,6 +111,12 @@
             ]
         },
         {
+            "axis": "adversarial-review",
+            "backends": [
+                "adversarial-review"
+            ]
+        },
+        {
             "axis": "evidence-quality",
             "backends": [
                 "evidence-quality"

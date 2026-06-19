@@ -10,7 +10,7 @@
   '("code" "docs" "schemas" "tests" "conformance"
     "github-actions" "release-pipelines" "pdca-evidence" "evidence-ops" "loss-ledger"
     "semantic-hash" "semantic-diff" "authority-gate" "access-policy"
-    "reasoning-access" "reliability-registry" "cross-agent-agreement"
+    "reasoning-access" "reliability-registry" "cross-agent-agreement" "adversarial-review"
     "evidence-quality" "lease-and-abort" "review-capacity" "feedback-closure" "quarantine"
     "external-confidence" "verification-sidecar" "orchestration-manifest"
     "control-plane-verifier" "provider-compat" "runtime-trace" "adr-governance" "backend-parity" "github-actions-suite" "evidence-before-change" "incident-learning" "genesis-charter" "meta-model" "backup-steward" "revalidation-gate" "cold-start-gate" "evidence-separation" "versioned-ssot" "context-map"

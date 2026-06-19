@@ -149,6 +149,7 @@ jobs:
           grep -q 'scripts/verificationreasoninggen.sh' "$owner"
           grep -q 'scripts/verificationreliabilitygen.sh' "$owner"
           grep -q 'scripts/verificationagreementgen.sh' "$owner"
+          grep -q 'scripts/verificationadversarialgen.sh' "$owner"
           grep -q 'scripts/verificationevidencequalitygen.sh' "$owner"
           grep -q 'scripts/verificationleasegen.sh' "$owner"
           grep -q 'scripts/verificationreviewgen.sh' "$owner"

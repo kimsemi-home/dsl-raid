@@ -17,6 +17,8 @@
      "Cold-start gate semantic receipt.")
     ("semantic-diff:reasoning-access" "semantic:reasoning-access"
      "Reasoning access semantic receipt.")
+    ("semantic-diff:adversarial-review" "semantic:adversarial-review"
+     "Adversarial review semantic receipt.")
     ("semantic-diff:evidence-separation" "semantic:evidence-separation"
      "Evidence separation semantic receipt.")))
 

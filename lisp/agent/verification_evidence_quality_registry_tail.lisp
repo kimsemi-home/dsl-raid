@@ -41,6 +41,11 @@
      "high" "reasoning-access" "gate:evidence-quality"
      ("records" "closure_rules")
      "Reasoning access evidence is suitable when tier never implies approval.")
+    ("evidence-quality:adversarial-review"
+     "docs/generated/verification-adversarial-review.json"
+     "high" "adversarial-review" "gate:evidence-quality"
+     ("probes" "closure_rules")
+     "Adversarial evidence is suitable when named probes cite generated evidence.")
     ("evidence-quality:evidence-separation"
      "docs/generated/verification-evidence-separation.json"
      "high" "evidence-separation" "gate:evidence-quality"

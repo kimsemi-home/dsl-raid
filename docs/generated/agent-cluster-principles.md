@@ -24,6 +24,7 @@ Failures must become evidence, diagnostics, or generated knowledge updates.
 | reliability-registry | Agent run history | Tier, confidence ceiling, and cold-start gate | Agents are trusted by measured history, not by fluent claims. |
 | cold-start-gate | Unproven agent authority request | Proposal, shadow, or bounded operation | New agents must earn authority through evidence, not capability alone. |
 | cross-agent-agreement | Producer and reviewers | Isolated agreement with adversarial review | Agreement is useful only when reviewers are independent and evidence-backed. |
+| adversarial-review | High-risk claim or route | Named failure probes and review evidence | Adversarial review searches for ways the system can fail. |
 | orchestration-manifest | Control-plane routing decision | Manifest receipt | No orchestration is authoritative without policy, agent, evidence, and output records. |
 | control-plane-verifier | Orchestration decision and shadow route | Independent sidecar verdict | The control plane is routed and checked; it never verifies itself. |
 | provider-compat | Provider protocol and capabilities | Compatible or blocked route | Runtime providers are selected by proven capabilities, not by name. |

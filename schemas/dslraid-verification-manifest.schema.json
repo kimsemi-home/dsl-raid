@@ -1358,6 +1358,51 @@
                 "generated_by",
                 "subject",
                 "source",
+                "adversarial_profile",
+                "probes",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationadversarialgen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "adversarial_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "probes": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/adversarial_probe"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
                 "reliability_profile",
                 "records",
                 "closure_rules"
@@ -2536,6 +2581,71 @@
                 },
                 "evidence": {
                     "$ref": "#/$defs/strings"
+                },
+                "owner": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "adversarial_probe": {
+            "type": "object",
+            "required": [
+                "id",
+                "scope",
+                "reviewer",
+                "probe",
+                "severity",
+                "detects",
+                "evidence",
+                "authority_effect",
+                "owner",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "scope": {
+                    "enum": [
+                        "release",
+                        "conformance",
+                        "authority",
+                        "experiment"
+                    ]
+                },
+                "reviewer": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "probe": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "severity": {
+                    "enum": [
+                        "D0",
+                        "D1",
+                        "D2",
+                        "D3",
+                        "D4"
+                    ]
+                },
+                "detects": {
+                    "$ref": "#/$defs/strings"
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "authority_effect": {
+                    "enum": [
+                        "review-required",
+                        "human-review",
+                        "authority-blocked"
+                    ]
                 },
                 "owner": {
                     "$ref": "#/$defs/semantic_ref"

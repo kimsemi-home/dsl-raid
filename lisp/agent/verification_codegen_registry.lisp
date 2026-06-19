@@ -18,6 +18,7 @@
     ("reasoning-access" ("reasoning-access"))
     ("reliability-registry" ("reliability-registry"))
     ("cross-agent-agreement" ("agreement-manifest"))
+    ("adversarial-review" ("adversarial-review"))
     ("evidence-quality" ("evidence-quality"))
     ("lease-and-abort" ("lease-manifest"))
     ("review-capacity" ("review-capacity"))

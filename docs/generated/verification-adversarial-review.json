@@ -1,0 +1,121 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationadversarialgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_adversarial_review.lisp",
+    "adversarial_profile": "failure-mode-review",
+    "probes": [
+        {
+            "id": "adversarial:ontology-mismatch",
+            "scope": "release",
+            "reviewer": "reviewer:red-team",
+            "probe": "ontology-mismatch",
+            "severity": "D2",
+            "detects": [
+                "missing-context",
+                "wrong-version"
+            ],
+            "evidence": [
+                "docs/generated/verification-ontology.json",
+                "docs/generated/verification-context-map.json"
+            ],
+            "authority_effect": "review-required",
+            "owner": "owner:ontology",
+            "meaning": "Find concepts mapped to the wrong ontology or context."
+        },
+        {
+            "id": "adversarial:evidence-gap",
+            "scope": "conformance",
+            "reviewer": "reviewer:red-team",
+            "probe": "evidence-gap",
+            "severity": "D2",
+            "detects": [
+                "unlinked-evidence",
+                "claim-without-source"
+            ],
+            "evidence": [
+                "docs/generated/verification-evidence.json",
+                "docs/generated/verification-evidence-quality.json"
+            ],
+            "authority_effect": "review-required",
+            "owner": "owner:evidence",
+            "meaning": "Find claims whose evidence chain is incomplete."
+        },
+        {
+            "id": "adversarial:authority-overreach",
+            "scope": "authority",
+            "reviewer": "reviewer:security",
+            "probe": "authority-overreach",
+            "severity": "D3",
+            "detects": [
+                "self-approval",
+                "agent-authority"
+            ],
+            "evidence": [
+                "docs/generated/verification-authority.json",
+                "docs/generated/verification-reasoning-access.json"
+            ],
+            "authority_effect": "human-review",
+            "owner": "owner:governance",
+            "meaning": "Find agents trying to turn reasoning into approval."
+        },
+        {
+            "id": "adversarial:rollback-gap",
+            "scope": "release",
+            "reviewer": "reviewer:release",
+            "probe": "rollback-gap",
+            "severity": "D3",
+            "detects": [
+                "missing-rollback",
+                "stale-artifact"
+            ],
+            "evidence": [
+                "docs/generated/verification-release-provenance.json",
+                "docs/generated/verification-security-audit.json"
+            ],
+            "authority_effect": "human-review",
+            "owner": "owner:release",
+            "meaning": "Find promotion paths that cannot be safely rolled back."
+        },
+        {
+            "id": "adversarial:hidden-assumption",
+            "scope": "experiment",
+            "reviewer": "reviewer:red-team",
+            "probe": "hidden-assumption",
+            "severity": "D1",
+            "detects": [
+                "unstated-assumption",
+                "unreviewed-experiment"
+            ],
+            "evidence": [
+                "docs/generated/verification-pdca.json",
+                "docs/generated/verification-evidence-ops.json"
+            ],
+            "authority_effect": "review-required",
+            "owner": "owner:pdca",
+            "meaning": "Find assumptions that experiments have not made executable."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "adversarial:independent",
+            "meaning": "Adversarial reviewer is not the producer.",
+            "check": "scripts/verificationadversarialgen.sh check"
+        },
+        {
+            "id": "adversarial:failure-mode-named",
+            "meaning": "Every probe names what can fail.",
+            "check": "scripts/verificationadversarialgen.sh check"
+        },
+        {
+            "id": "adversarial:evidence-required",
+            "meaning": "Every probe cites generated evidence.",
+            "check": "scripts/verificationadversarialgen.sh check"
+        },
+        {
+            "id": "adversarial:severe-needs-human",
+            "meaning": "D3 and D4 probes require human review.",
+            "check": "scripts/verificationadversarialgen.sh check"
+        }
+    ]
+}

@@ -17,6 +17,7 @@
     ("reasoning-access" "docs/generated/verification-reasoning-access.json" "scripts/verificationreasoninggen.sh")
     ("reliability-registry" "docs/generated/verification-reliability.json" "scripts/verificationreliabilitygen.sh")
     ("agreement-manifest" "docs/generated/verification-agreement.json" "scripts/verificationagreementgen.sh")
+    ("adversarial-review" "docs/generated/verification-adversarial-review.json" "scripts/verificationadversarialgen.sh")
     ("evidence-quality" "docs/generated/verification-evidence-quality.json" "scripts/verificationevidencequalitygen.sh")
     ("lease-manifest" "docs/generated/verification-lease.json" "scripts/verificationleasegen.sh")
     ("review-capacity" "docs/generated/verification-review-capacity.json" "scripts/verificationreviewgen.sh")

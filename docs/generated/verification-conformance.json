@@ -107,6 +107,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.adversarial-review",
+            "subject": "docs/generated/verification-adversarial-review.json",
+            "check": "scripts/verificationadversarialgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.evidence-quality",
             "subject": "docs/generated/verification-evidence-quality.json",
             "check": "scripts/verificationevidencequalitygen.sh check",
