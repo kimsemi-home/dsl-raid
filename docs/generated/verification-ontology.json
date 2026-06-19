@@ -52,6 +52,7 @@
         "control-plane-verifier",
         "provider-compat",
         "runtime-trace",
+        "run-manifest",
         "adr-governance",
         "backend-parity",
         "github-actions-suite",

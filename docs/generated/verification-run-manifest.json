@@ -1,0 +1,59 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationrunmanifestgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_run_manifest.lisp",
+    "run_manifest_profile": "file-backed-agent-runs",
+    "records": [
+        {
+            "id": "run-manifest:runscope-quality",
+            "run": "agent-run:runscope-quality-001",
+            "manifest": "examples/runscope/runscope.agent-run.json",
+            "schema": "schemas/dslraid-agent-run.schema.json",
+            "generated_doc": "docs/generated/agent-run-manifest.md",
+            "status": "verified",
+            "authority": "gate:quality",
+            "evidence": [
+                "docs/generated/verification-evidence.json",
+                "docs/generated/verification-conformance.json"
+            ],
+            "meaning": "Run manifest binds SSOT, orchestration, authority, lease, evidence, and artifacts."
+        },
+        {
+            "id": "run-manifest:quality-evidence",
+            "run": "agent-run:runscope-quality-001",
+            "manifest": "examples/runscope/runscope.agent-run.json",
+            "schema": "schemas/dslraid-agent-run.schema.json",
+            "generated_doc": "docs/generated/agent-run-manifest.md",
+            "status": "verified",
+            "authority": "sidecar:dslraid-quality",
+            "evidence": [
+                "docs/generated/verification-evidence-quality.json",
+                "docs/generated/verification-sidecar.json"
+            ],
+            "meaning": "Run evidence remains meaningful only through sidecar and quality snapshots."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "run-manifest:schema-valid",
+            "meaning": "Run manifests must validate against the agent-run schema.",
+            "check": "scripts/verificationrunmanifestgen.sh check"
+        },
+        {
+            "id": "run-manifest:doc-generated",
+            "meaning": "Human run docs are generated from the manifest.",
+            "check": "scripts/verificationrunmanifestgen.sh check"
+        },
+        {
+            "id": "run-manifest:authority-bound",
+            "meaning": "Each run declares authority and evidence.",
+            "check": "scripts/verificationrunmanifestgen.sh check"
+        },
+        {
+            "id": "run-manifest:file-backed",
+            "meaning": "Run records point to files, not runtime-only state.",
+            "check": "scripts/verificationrunmanifestgen.sh check"
+        }
+    ]
+}

@@ -29,6 +29,7 @@ Failures must become evidence, diagnostics, or generated knowledge updates.
 | control-plane-verifier | Orchestration decision and shadow route | Independent sidecar verdict | The control plane is routed and checked; it never verifies itself. |
 | provider-compat | Provider protocol and capabilities | Compatible or blocked route | Runtime providers are selected by proven capabilities, not by name. |
 | runtime-trace | Runtime event log and coverage overlay | Design-linked execution evidence | Executed transitions must map back to designed FSM subjects. |
+| run-manifest | Agent run unit | Schema-valid run contract and generated doc | Runs are file-backed evidence units, not transient logs. |
 | adr-governance | Semantic contract change | ADR-required or autonomous boundary | Core meaning changes require ADR; implementation internals may move. |
 | backend-parity | Verification graph projection | Same-node backend evidence | CI, local, and build-system surfaces must project the same graph. |
 | github-actions-suite | GitHub Actions surface | Generated and curated workflow evidence | Generated workflows and guard workflows both declare ownership and permissions. |

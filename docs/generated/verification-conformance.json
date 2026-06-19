@@ -179,6 +179,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.run-manifest",
+            "subject": "docs/generated/verification-run-manifest.json",
+            "check": "scripts/verificationrunmanifestgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.adr-governance",
             "subject": "docs/generated/verification-adr-governance.json",
             "check": "scripts/verificationadrgen.sh check",

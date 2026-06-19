@@ -183,6 +183,12 @@
             ]
         },
         {
+            "axis": "run-manifest",
+            "backends": [
+                "run-manifest"
+            ]
+        },
+        {
             "axis": "adr-governance",
             "backends": [
                 "adr-governance"

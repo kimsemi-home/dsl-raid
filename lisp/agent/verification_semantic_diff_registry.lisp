@@ -39,6 +39,8 @@
      "Provider compatibility semantic receipt.")
     ("semantic-diff:runtime-trace" "semantic:runtime-trace"
      "Runtime trace mapping semantic receipt.")
+    ("semantic-diff:run-manifest" "semantic:run-manifest"
+     "Agent run manifest semantic receipt.")
     ("semantic-diff:adr-governance" "semantic:adr-governance"
      "ADR governance semantic receipt.")
     ("semantic-diff:backend-parity" "semantic:backend-parity"

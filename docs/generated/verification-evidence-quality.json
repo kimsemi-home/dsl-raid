@@ -198,6 +198,18 @@
             "meaning": "Runtime trace evidence is suitable when design and coverage checks pass."
         },
         {
+            "id": "evidence-quality:run-manifest",
+            "target": "docs/generated/verification-run-manifest.json",
+            "quality": "high",
+            "purpose": "run-manifest",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "records",
+                "closure_rules"
+            ],
+            "meaning": "Run manifest evidence is suitable when schema and generated docs agree."
+        },
+        {
             "id": "evidence-quality:adr-governance",
             "target": "docs/generated/verification-adr-governance.json",
             "quality": "high",

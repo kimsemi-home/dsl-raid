@@ -215,7 +215,7 @@
       "links": [{ "relation": "corroborates", "target": "evidence:quality" }],
       "provenance": {
         "kind": "human-annotation",
-        "observed_by": "human:alice",
+        "observed_by": "human:steward",
         "observed_at": "2026-06-17T00:00:00Z",
         "ontology_version": "0.1.0"
       }

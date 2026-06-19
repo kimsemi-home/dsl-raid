@@ -58,6 +58,7 @@ release-check: conformance
 	bash scripts/verificationcontrolgen.sh check
 	bash scripts/verificationprovidergen.sh check
 	bash scripts/verificationruntimegen.sh check
+	bash scripts/verificationrunmanifestgen.sh check
 	bash scripts/verificationadrgen.sh check
 	bash scripts/verificationparitygen.sh check
 	bash scripts/verificationactionsgen.sh check
