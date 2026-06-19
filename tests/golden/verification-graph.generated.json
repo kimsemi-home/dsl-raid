@@ -32,7 +32,7 @@
             "id": "test:verification.node.release-check",
             "subject": "verify:daemon/release-check",
             "kind": "verification-node",
-            "commands": 11
+            "commands": 12
         },
         {
             "id": "test:verification.backend.github-actions",
@@ -63,6 +63,12 @@
             "subject": ".github/workflows/release.yml",
             "kind": "generated-backend",
             "generator": "scripts/releasegen.sh"
+        },
+        {
+            "id": "test:verification.backend.ontology-manifest",
+            "subject": "docs/generated/verification-ontology.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationontologygen.sh"
         },
         {
             "id": "test:verification.backend.conformance-report",

@@ -36,6 +36,7 @@
        "bash scripts/makegen.sh check"
        "bash scripts/bazelgen.sh check"
        "bash scripts/releasegen.sh check"
+       "bash scripts/verificationontologygen.sh check"
        "bash scripts/verificationconformancegen.sh check"
        "bash scripts/verificationschemagen.sh check"
        "bash scripts/verificationtestgen.sh check"
@@ -49,6 +50,8 @@
     ("local-makefile" "Makefile" "scripts/makegen.sh")
     ("bazel" "BUILD.bazel" "scripts/bazelgen.sh")
     ("github-release" ".github/workflows/release.yml" "scripts/releasegen.sh")
+    ("ontology-manifest" "docs/generated/verification-ontology.json"
+     "scripts/verificationontologygen.sh")
     ("conformance-report" "docs/generated/verification-conformance.json"
      "scripts/verificationconformancegen.sh")
     ("evidence-schema" "schemas/dslraid-verification-evidence.schema.json"
@@ -57,18 +60,3 @@
      "scripts/verificationtestgen.sh")
     ("evidence-json" "docs/generated/verification-evidence.json"
      "scripts/verificationevidencegen.sh")))
-
-(defun verification-graph ()
-  (copy-tree *verification-graph*))
-
-(defun verification-nodes ()
-  (getf (verification-graph) :nodes))
-
-(defun verification-field (node key)
-  (getf node key))
-
-(defun verification-backends ()
-  (copy-tree *verification-backends*))
-
-(defun verification-id (node)
-  (verification-field node :id))

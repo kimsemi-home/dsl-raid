@@ -12,10 +12,11 @@
     :serial t
     :components
     ((:file "package") (:file "principles") (:file "markdown")
-     (:file "verification") (:file "verification_markdown")
+     (:file "verification") (:file "verification_accessors")
+     (:file "verification_markdown")
      (:file "verification_workflow") (:file "verification_gitlab")
      (:file "verification_makefile") (:file "verification_bazel")
-     (:file "verification_release")
+     (:file "verification_release") (:file "verification_ontology")
      (:file "verification_conformance")
      (:file "verification_evidence") (:file "verification_schema")
      (:file "verification_tests")))
@@ -28,8 +29,7 @@
    (:module "lang"
     :serial t
     :components
-    ((:file "ast")
-     (:file "pipeline")
+    ((:file "ast") (:file "pipeline")
      (:file "boundaries")
      (:file "code-authoring")
      (:file "code-transition")
@@ -58,8 +58,7 @@
     :serial t
     :components
     ((:file "json-values")
-     (:file "json-source")
-     (:file "json-effect")
+     (:file "json-source") (:file "json-effect")
      (:file "json-state") (:file "json-event")
      (:file "json-transition")
      (:file "json-fsm")

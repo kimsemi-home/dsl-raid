@@ -1,0 +1,34 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationontologygen.sh",
+    "subject": "verify:daemon",
+    "ssot": "lisp/agent/verification.lisp",
+    "form": "(verify daemon (lint) (unit-test) (integration-test) (conformance) (release-check))",
+    "chain": [
+        {
+            "id": "ontology",
+            "meaning": "Names the meaning model for generated verification surfaces."
+        },
+        {
+            "id": "executable-ssot",
+            "meaning": "Keeps the verification graph in Lisp as source."
+        },
+        {
+            "id": "verification-graph",
+            "meaning": "Defines ordered gates and evidence commands."
+        },
+        {
+            "id": "codegen",
+            "meaning": "Derives deterministic artifacts and checks."
+        }
+    ],
+    "codegen_axes": [
+        "code",
+        "docs",
+        "schemas",
+        "tests",
+        "conformance",
+        "github-actions",
+        "release-pipelines"
+    ]
+}

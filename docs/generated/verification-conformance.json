@@ -41,6 +41,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.ontology-manifest",
+            "subject": "docs/generated/verification-ontology.json",
+            "check": "scripts/verificationontologygen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.conformance-report",
             "subject": "docs/generated/verification-conformance.json",
             "check": "scripts/verificationconformancegen.sh check",
