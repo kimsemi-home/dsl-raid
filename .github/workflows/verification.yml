@@ -31,7 +31,7 @@ jobs:
       - name: Run lint command 1
         run: go install github.com/rhysd/actionlint/cmd/actionlint@v1.7.12
       - name: Run lint command 2
-        run: "$(go env GOPATH)/bin/actionlint"
+        run: actionlint_bin="$(go env GOPATH)/bin/actionlint"; "$actionlint_bin"
       - name: Run lint command 3
         run: bash scripts/check-source-lines.sh
       - name: Run lint command 4
