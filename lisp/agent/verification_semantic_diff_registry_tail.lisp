@@ -6,7 +6,9 @@
     ("semantic-diff:genesis-charter" "semantic:genesis-charter"
      "Genesis charter semantic receipt.")
     ("semantic-diff:meta-model" "semantic:meta-model"
-     "Meta-model semantic receipt.")))
+     "Meta-model semantic receipt.")
+    ("semantic-diff:backup-steward" "semantic:backup-steward"
+     "Backup steward semantic receipt.")))
 
 (defparameter *verification-semantic-diffs*
   (append *verification-semantic-core-diffs*

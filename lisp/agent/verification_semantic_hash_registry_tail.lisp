@@ -12,7 +12,11 @@
     ("semantic:meta-model"
      "docs/generated/verification-meta-model.json"
      ("meta_model_profile" "terms" "closure_rules")
-     "Meta-model term, owner, and authority gate contract.")))
+     "Meta-model term, owner, and authority gate contract.")
+    ("semantic:backup-steward"
+     "docs/generated/verification-backup-steward.json"
+     ("steward_profile" "assignments" "closure_rules")
+     "Backup steward temporary authority and review-back contract.")))
 
 (defparameter *verification-semantic-hashes*
   (append *verification-semantic-core-hashes*

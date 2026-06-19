@@ -34,6 +34,7 @@
     ("incident-learning" ("incident-learning"))
     ("genesis-charter" ("genesis-charter"))
     ("meta-model" ("meta-model"))
+    ("backup-steward" ("backup-steward"))
     ("versioned-ssot" ("versioned-ssot"))
     ("context-map" ("context-map"))
     ("historical-interpreter" ("historical-interpreter"))

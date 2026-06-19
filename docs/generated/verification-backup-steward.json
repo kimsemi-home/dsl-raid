@@ -1,0 +1,91 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationstewardgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_backup_steward.lisp",
+    "steward_profile": "temporary-owner-continuity",
+    "assignments": [
+        {
+            "id": "backup-steward:review-capacity",
+            "missing_owner": "owner:review",
+            "steward": "steward:backup-review",
+            "status": "active",
+            "trigger": "review-capacity-overload",
+            "criteria": [
+                "domain-close",
+                "prior-decision-history",
+                "evidence-literate",
+                "capacity-available"
+            ],
+            "allowed": [
+                "revalidation",
+                "evidence-review",
+                "low-risk-renewal"
+            ],
+            "forbidden": [
+                "major-ontology-change",
+                "security-boundary-change",
+                "authority-model-change",
+                "genesis-charter-rewrite",
+                "permanent-owner-transfer"
+            ],
+            "evidence": [
+                "docs/generated/verification-review-capacity.json",
+                "docs/generated/verification-debt.json"
+            ],
+            "review_back": "review-back:owner-return",
+            "meaning": "Backup steward keeps review debt moving without permanent authority."
+        },
+        {
+            "id": "backup-steward:evidence-quality",
+            "missing_owner": "owner:evidence",
+            "steward": "steward:evidence-backup",
+            "status": "candidate",
+            "trigger": "evidence-freshness-revalidation",
+            "criteria": [
+                "domain-close",
+                "evidence-literate",
+                "ontology-context-known",
+                "capacity-available"
+            ],
+            "allowed": [
+                "revalidation",
+                "evidence-review",
+                "risk-acceptance-proposal"
+            ],
+            "forbidden": [
+                "security-boundary-change",
+                "authority-model-change",
+                "permanent-owner-transfer"
+            ],
+            "evidence": [
+                "docs/generated/verification-evidence-quality.json",
+                "docs/generated/verification-pruning.json"
+            ],
+            "review_back": "review-back:evidence-owner",
+            "meaning": "Candidate steward may revalidate evidence but not expand authority."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "backup-steward:temporary-authority",
+            "meaning": "Backup steward authority is temporary.",
+            "check": "scripts/verificationstewardgen.sh check"
+        },
+        {
+            "id": "backup-steward:forbidden-actions",
+            "meaning": "High-risk changes stay forbidden.",
+            "check": "scripts/verificationstewardgen.sh check"
+        },
+        {
+            "id": "backup-steward:evidence-linked",
+            "meaning": "Steward decisions cite generated evidence.",
+            "check": "scripts/verificationstewardgen.sh check"
+        },
+        {
+            "id": "backup-steward:review-back",
+            "meaning": "Original owner review-back is required.",
+            "check": "scripts/verificationstewardgen.sh check"
+        }
+    ]
+}

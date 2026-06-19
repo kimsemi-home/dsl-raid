@@ -15,7 +15,12 @@
      "docs/generated/verification-meta-model.json"
      "high" "meta-model" "gate:evidence-quality"
      ("terms" "closure_rules")
-     "Meta-model evidence is suitable when terms are owned and gated.")))
+     "Meta-model evidence is suitable when terms are owned and gated.")
+    ("evidence-quality:backup-steward"
+     "docs/generated/verification-backup-steward.json"
+     "high" "backup-steward" "gate:evidence-quality"
+     ("assignments" "closure_rules")
+     "Backup steward evidence is suitable when authority is temporary.")))
 
 (defparameter *verification-evidence-quality-assessments*
   (append *verification-evidence-quality-core-assessments*

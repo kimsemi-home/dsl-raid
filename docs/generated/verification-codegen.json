@@ -207,6 +207,12 @@
             ]
         },
         {
+            "axis": "backup-steward",
+            "backends": [
+                "backup-steward"
+            ]
+        },
+        {
             "axis": "versioned-ssot",
             "backends": [
                 "versioned-ssot"

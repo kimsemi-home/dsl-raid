@@ -424,6 +424,18 @@
                 "closure_rules"
             ],
             "meaning": "Meta-model evidence is suitable when terms are owned and gated."
+        },
+        {
+            "id": "evidence-quality:backup-steward",
+            "target": "docs/generated/verification-backup-steward.json",
+            "quality": "high",
+            "purpose": "backup-steward",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "assignments",
+                "closure_rules"
+            ],
+            "meaning": "Backup steward evidence is suitable when authority is temporary."
         }
     ],
     "closure_rules": [

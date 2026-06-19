@@ -1759,6 +1759,51 @@
                 "generated_by",
                 "subject",
                 "source",
+                "steward_profile",
+                "assignments",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationstewardgen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "steward_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "assignments": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/backup_steward_assignment"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
                 "adr_profile",
                 "records",
                 "closure_rules"
@@ -3780,6 +3825,65 @@
                 },
                 "authority_gate": {
                     "$ref": "#/$defs/semantic_ref"
+                }
+            }
+        },
+        "backup_steward_assignment": {
+            "type": "object",
+            "required": [
+                "id",
+                "missing_owner",
+                "steward",
+                "status",
+                "trigger",
+                "criteria",
+                "allowed",
+                "forbidden",
+                "evidence",
+                "review_back",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "missing_owner": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "steward": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "status": {
+                    "enum": [
+                        "candidate",
+                        "active",
+                        "returned",
+                        "escalated"
+                    ]
+                },
+                "trigger": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "criteria": {
+                    "$ref": "#/$defs/strings"
+                },
+                "allowed": {
+                    "$ref": "#/$defs/strings"
+                },
+                "forbidden": {
+                    "$ref": "#/$defs/strings"
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "review_back": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
                 }
             }
         },

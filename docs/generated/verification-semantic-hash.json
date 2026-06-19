@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "bcba114bbd5f932daa3a0375eca2e6476726b6d9a237c77e42856c9bece1b93b"
+            "hash": "51dbc2a6002bf912bf0d0d2f505f0e6504fbaf67b9017492358cd9e32a8a2c14"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "ac6d9c90bc975d1283c86c9332b97d560a3182a9ad1997bdab224f33d913b33f"
+            "hash": "835fd24e6312954f472d92fdfa13cb807af9ed3ce8038349b8c0bfc501943088"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "432979ae197827f5364b2fb18b513ce85b7974cb315381ddd4e2e9d9989058e6"
+            "hash": "9603672087de394a96c86c30638622a7d5108b6a9f480084a355bdaae964edc7"
         },
         {
             "id": "semantic:authority",
@@ -97,7 +97,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "dba295d87f35176ae8c8c470785b0c72d564cb938c06e043b820fb9ec28c4dae"
+            "hash": "f456cca3f0154cf6536aa4093cb84fabc26ea5d23dfed4dc46ae115856893fdb"
         },
         {
             "id": "semantic:lease",
@@ -419,6 +419,17 @@
             ],
             "meaning": "Meta-model term, owner, and authority gate contract.",
             "hash": "f59840788d069da3de981b7cad7706bf74404a2c6cfabb240cf3d6a2d96c3690"
+        },
+        {
+            "id": "semantic:backup-steward",
+            "source": "docs/generated/verification-backup-steward.json",
+            "fields": [
+                "steward_profile",
+                "assignments",
+                "closure_rules"
+            ],
+            "meaning": "Backup steward temporary authority and review-back contract.",
+            "hash": "7f4ac674106b6c93300ac8e1f0251c1956aa4359b0ac5b4efd00091ea188f855"
         }
     ],
     "closure_rules": [
