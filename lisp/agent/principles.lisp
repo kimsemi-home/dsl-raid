@@ -9,6 +9,7 @@
     ("merge-automation" "Pull request and workflow policy" "Readiness-gated automatic merge decision" "Automation may merge only through PR checks, read-only gates, and forbidden target-context execution.")
     ("branch-protection" "Main branch and required checks" "Protected merge contract" "Required checks are executable evidence, not repository folklore.")
     ("actions-receipt" "Remote workflow run" "Head SHA, conclusion, URL, and Pages receipt" "Remote CI success is accepted only as structured evidence.")
+    ("source-shape" "Source files and public entrypoints" "75-line budget and minimal quality surface" "Complexity is managed by exposed surface, not by hiding file count.")
     ("versioned-ssot" "Context, ontology version, contract version" "Scoped authority" "SSOT authority is valid only inside an explicit context and version.")
     ("evidence-graph" "Raw evidence, interpretation, claim, artifact" "Traceable evidence links" "Unlinked evidence cannot justify high confidence or authority.")
     ("evidence-ops" "CI, deploy, experiment, and incident loop" "Evidence graph update and conformance claim" "Operations are evidence generation, not mere automation.")

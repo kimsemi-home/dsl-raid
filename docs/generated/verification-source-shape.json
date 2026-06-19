@@ -1,0 +1,76 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationsourcegen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_source_shape.lisp",
+    "source_shape_profile": "bounded-files-minimal-surface",
+    "budgets": [
+        {
+            "id": "source-shape:line-budget",
+            "kind": "line-budget",
+            "scope": "source-files",
+            "limit": "75",
+            "command": "bash scripts/check-source-lines.sh",
+            "evidence": [
+                "scripts/check-source-lines.sh",
+                ".github/workflows/ci.yml"
+            ],
+            "status": "required",
+            "meaning": "Source files stay within the 75-line cognitive window."
+        },
+        {
+            "id": "source-shape:quality-entrypoint",
+            "kind": "surface-boundary",
+            "scope": "local-quality",
+            "limit": "single-command",
+            "command": "cargo run -p dslraid-cli -- quality",
+            "evidence": [
+                "crates/dslraid-cli/src/commands/quality/lisp/scripts.rs"
+            ],
+            "status": "required",
+            "meaning": "Developers enter quality checks through a narrow public command."
+        },
+        {
+            "id": "source-shape:lisp-ssot",
+            "kind": "ssot-boundary",
+            "scope": "verification-dsl",
+            "limit": "lisp-form",
+            "command": "bash scripts/verificationdocgen.sh check",
+            "evidence": [
+                "lisp/dslraid.asd",
+                "docs/generated/verification-graph.md"
+            ],
+            "status": "required",
+            "meaning": "Verification meaning lives in Lisp SSOT modules, not generated output."
+        },
+        {
+            "id": "source-shape:generated-ownership",
+            "kind": "generated-ownership",
+            "scope": "derived-surfaces",
+            "limit": "checked",
+            "command": "bash scripts/verificationconformancegen.sh check",
+            "evidence": [
+                "docs/generated/verification-evidence.json"
+            ],
+            "status": "required",
+            "meaning": "Generated files keep an owner, generator, and check command."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "source-shape:budget-required",
+            "meaning": "Line budget must be executable.",
+            "check": "scripts/verificationsourcegen.sh check"
+        },
+        {
+            "id": "source-shape:evidence-linked",
+            "meaning": "Every shape budget cites evidence.",
+            "check": "scripts/verificationsourcegen.sh check"
+        },
+        {
+            "id": "source-shape:surface-minimized",
+            "meaning": "Quality entrypoints hide internal file count.",
+            "check": "scripts/verificationsourcegen.sh check"
+        }
+    ]
+}

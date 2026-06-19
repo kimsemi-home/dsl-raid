@@ -1,6 +1,7 @@
 use super::Fixture;
 
 mod merge;
+mod shape;
 mod tail;
 
 pub(super) const MANIFEST: &str = "schemas/dslraid-verification-manifest.schema.json";
@@ -9,6 +10,7 @@ pub(super) fn schemas() -> impl Iterator<Item = Fixture> {
     core_schemas()
         .into_iter()
         .chain(merge::schemas())
+        .chain(shape::schemas())
         .chain(tail::schemas())
 }
 

@@ -36,6 +36,7 @@
         "merge-automation",
         "branch-protection",
         "actions-receipt",
+        "source-shape",
         "pdca-evidence",
         "evidence-ops",
         "loss-ledger",

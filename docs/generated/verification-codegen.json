@@ -87,6 +87,12 @@
             ]
         },
         {
+            "axis": "source-shape",
+            "backends": [
+                "source-shape"
+            ]
+        },
+        {
             "axis": "pdca-evidence",
             "backends": [
                 "pdca-manifest"

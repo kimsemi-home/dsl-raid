@@ -33,6 +33,8 @@
      "Branch protection semantic receipt.")
     ("semantic-diff:actions-receipt" "semantic:actions-receipt"
      "Remote Actions receipt semantic receipt.")
+    ("semantic-diff:source-shape" "semantic:source-shape"
+     "Source shape semantic receipt.")
     ("semantic-diff:incompleteness-ledger" "semantic:incompleteness-ledger"
      "Incompleteness ledger semantic receipt.")))
 

@@ -221,6 +221,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.source-shape",
+            "subject": "docs/generated/verification-source-shape.json",
+            "check": "scripts/verificationsourcegen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.adr-governance",
             "subject": "docs/generated/verification-adr-governance.json",
             "check": "scripts/verificationadrgen.sh check",

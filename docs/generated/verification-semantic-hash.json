@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "25aa4a943731b3fb6fa1f9d61112d870b79b4bb4644fe54e6c960ef0473b8d4b"
+            "hash": "bc7ceb666b46a6d8eb1993b60e2c17b54cad4a4e39e6d77ce536552498f38758"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "b7d2195990b941d766ab74d3e57c3f5171f0164673729144ef8cc8bc5c46d9b1"
+            "hash": "8d3323beda0ce8df8f0acab40eff7e346227f971a0d2281820fb3c4bedfff556"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "5751af6d3d69ccb9ffec099bd2c5bef60e1ac3ff377e949e108316def2103cbf"
+            "hash": "5be56f8012dc219f982f39a1c7b5f76512d1cd6ea3a55c85f91e4ce8732ab59a"
         },
         {
             "id": "semantic:authority",
@@ -97,7 +97,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "951053b24d956a6dca36f61868bec17bd1f5d50a733f8402e34459919e85f5e5"
+            "hash": "461c473b76faa9be2b047934672d35ddfd0765a77a585b1ce5ea502ffd9eb86c"
         },
         {
             "id": "semantic:lease",
@@ -584,6 +584,17 @@
             ],
             "meaning": "Tracked unknown owner, next action, and authority effect contract.",
             "hash": "84867cddbf8520d83a6335026fe830337bd1ee10d4e02fd90da873b8ea608752"
+        },
+        {
+            "id": "semantic:source-shape",
+            "source": "docs/generated/verification-source-shape.json",
+            "fields": [
+                "source_shape_profile",
+                "budgets",
+                "closure_rules"
+            ],
+            "meaning": "Source line budget and public surface minimization contract.",
+            "hash": "c4ae6ccb4b55aeae8b342501034be04628f770aa00be52b39215275bea02b7c4"
         }
     ],
     "closure_rules": [

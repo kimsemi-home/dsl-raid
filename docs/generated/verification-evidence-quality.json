@@ -594,6 +594,18 @@
             "meaning": "Actions receipt evidence is suitable when remote verdict fields are explicit."
         },
         {
+            "id": "evidence-quality:source-shape",
+            "target": "docs/generated/verification-source-shape.json",
+            "quality": "high",
+            "purpose": "source-shape",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "budgets",
+                "closure_rules"
+            ],
+            "meaning": "Source shape evidence is suitable when budget and public entrypoint are explicit."
+        },
+        {
             "id": "evidence-quality:incompleteness-ledger",
             "target": "docs/generated/verification-incompleteness-ledger.json",
             "quality": "high",
