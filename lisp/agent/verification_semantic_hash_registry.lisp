@@ -17,6 +17,7 @@
     ("semantic:access-policy" "docs/generated/verification-access-policy.json"
      ("access_profile" "policies" "closure_rules")
      "Reasoning RBAC and domain ABAC access contract.")
+    ("semantic:reliability" "docs/generated/verification-reliability.json" ("reliability_profile" "records" "closure_rules") "Agent reliability and cold-start contract.")
     ("semantic:evidence-quality" "docs/generated/verification-evidence-quality.json"
      ("evidence_quality_profile" "assessments" "closure_rules")
      "Evidence quality review contract for generated verification evidence.")

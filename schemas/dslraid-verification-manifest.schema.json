@@ -1260,6 +1260,51 @@
                     }
                 }
             }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
+                "reliability_profile",
+                "records",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationreliabilitygen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "reliability_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "records": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/reliability_record"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
         }
     ],
     "$defs": {
@@ -1592,6 +1637,84 @@
                 },
                 "authority": {
                     "$ref": "#/$defs/semantic_ref"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "reliability_record": {
+            "type": "object",
+            "required": [
+                "id",
+                "agent",
+                "tier",
+                "status",
+                "confidence_ceiling",
+                "failure_rate",
+                "verification_rate",
+                "authority_effect",
+                "evidence",
+                "restrictions",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "agent": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "tier": {
+                    "enum": [
+                        "T0",
+                        "T1",
+                        "T2",
+                        "T3",
+                        "T4"
+                    ]
+                },
+                "status": {
+                    "enum": [
+                        "candidate",
+                        "shadow",
+                        "assisted",
+                        "bounded",
+                        "trusted"
+                    ]
+                },
+                "confidence_ceiling": {
+                    "enum": [
+                        "low",
+                        "medium",
+                        "high"
+                    ]
+                },
+                "failure_rate": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 100
+                },
+                "verification_rate": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 100
+                },
+                "authority_effect": {
+                    "enum": [
+                        "authority-blocked",
+                        "human-review",
+                        "bounded-auto",
+                        "trusted-context"
+                    ]
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "restrictions": {
+                    "$ref": "#/$defs/strings"
                 },
                 "meaning": {
                     "type": "string",

@@ -7,8 +7,7 @@
     ("bazel" "BUILD.bazel" "scripts/bazelgen.sh")
     ("github-release" ".github/workflows/release.yml" "scripts/releasegen.sh")
     ("privacy-manifest" "docs/generated/verification-privacy.json" "scripts/verificationprivacygen.sh")
-    ("pdca-manifest" "docs/generated/verification-pdca.json"
-     "scripts/verificationpdcagen.sh")
+    ("pdca-manifest" "docs/generated/verification-pdca.json" "scripts/verificationpdcagen.sh")
     ("loss-ledger" "docs/generated/verification-loss-ledger.json"
      "scripts/verificationlossgen.sh")
     ("semantic-hash" "docs/generated/verification-semantic-hash.json"
@@ -18,6 +17,7 @@
     ("authority-manifest" "docs/generated/verification-authority.json"
      "scripts/verificationauthoritygen.sh")
     ("access-policy" "docs/generated/verification-access-policy.json" "scripts/verificationaccessgen.sh")
+    ("reliability-registry" "docs/generated/verification-reliability.json" "scripts/verificationreliabilitygen.sh")
     ("evidence-quality" "docs/generated/verification-evidence-quality.json"
      "scripts/verificationevidencequalitygen.sh")
     ("lease-manifest" "docs/generated/verification-lease.json"

@@ -24,6 +24,7 @@
     {"backend": "semantic-diff", "output": "docs/generated/verification-semantic-diff.json", "generator": "scripts/verificationdiffgen.sh", "check": "scripts/verificationdiffgen.sh check"},
     {"backend": "authority-manifest", "output": "docs/generated/verification-authority.json", "generator": "scripts/verificationauthoritygen.sh", "check": "scripts/verificationauthoritygen.sh check"},
     {"backend": "access-policy", "output": "docs/generated/verification-access-policy.json", "generator": "scripts/verificationaccessgen.sh", "check": "scripts/verificationaccessgen.sh check"},
+    {"backend": "reliability-registry", "output": "docs/generated/verification-reliability.json", "generator": "scripts/verificationreliabilitygen.sh", "check": "scripts/verificationreliabilitygen.sh check"},
     {"backend": "evidence-quality", "output": "docs/generated/verification-evidence-quality.json", "generator": "scripts/verificationevidencequalitygen.sh", "check": "scripts/verificationevidencequalitygen.sh check"},
     {"backend": "lease-manifest", "output": "docs/generated/verification-lease.json", "generator": "scripts/verificationleasegen.sh", "check": "scripts/verificationleasegen.sh check"},
     {"backend": "review-capacity", "output": "docs/generated/verification-review-capacity.json", "generator": "scripts/verificationreviewgen.sh", "check": "scripts/verificationreviewgen.sh check"},
@@ -60,7 +61,7 @@
     {"id": "unit-test", "commands": 1, "evidence": "Rust workspace unit test evidence."},
     {"id": "integration-test", "commands": 3, "evidence": "Viewer test and build evidence."},
     {"id": "conformance", "commands": 1, "evidence": "Unified DSLRaid semantic and generated-output gate."},
-    {"id": "release-check", "commands": 44, "evidence": "Generated workflow, docs index, and artifact freshness."}
+    {"id": "release-check", "commands": 45, "evidence": "Generated workflow, docs index, and artifact freshness."}
   ],
   "pdca": [
     "plan",

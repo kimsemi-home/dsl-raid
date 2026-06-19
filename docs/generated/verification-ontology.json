@@ -36,6 +36,7 @@
         "semantic-diff",
         "authority-gate",
         "access-policy",
+        "reliability-registry",
         "evidence-quality",
         "lease-and-abort",
         "review-capacity",

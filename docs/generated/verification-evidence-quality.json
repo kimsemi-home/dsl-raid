@@ -54,6 +54,18 @@
             "meaning": "Access evidence is suitable when RBAC and ABAC gates are explicit."
         },
         {
+            "id": "evidence-quality:reliability",
+            "target": "docs/generated/verification-reliability.json",
+            "quality": "high",
+            "purpose": "reliability-registry",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "records",
+                "closure_rules"
+            ],
+            "meaning": "Reliability evidence is suitable when cold-start limits are explicit."
+        },
+        {
             "id": "evidence-quality:lease",
             "target": "docs/generated/verification-lease.json",
             "quality": "high",

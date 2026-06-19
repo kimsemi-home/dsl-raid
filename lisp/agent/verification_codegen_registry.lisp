@@ -14,6 +14,7 @@
     ("semantic-diff" ("semantic-diff"))
     ("authority-gate" ("authority-manifest"))
     ("access-policy" ("access-policy"))
+    ("reliability-registry" ("reliability-registry"))
     ("evidence-quality" ("evidence-quality"))
     ("lease-and-abort" ("lease-manifest"))
     ("review-capacity" ("review-capacity"))

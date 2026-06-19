@@ -145,6 +145,7 @@ jobs:
           grep -q 'scripts/verificationdiffgen.sh' "$owner"
           grep -q 'scripts/verificationauthoritygen.sh' "$owner"
           grep -q 'scripts/verificationaccessgen.sh' "$owner"
+          grep -q 'scripts/verificationreliabilitygen.sh' "$owner"
           grep -q 'scripts/verificationevidencequalitygen.sh' "$owner"
           grep -q 'scripts/verificationleasegen.sh' "$owner"
           grep -q 'scripts/verificationreviewgen.sh' "$owner"

@@ -1,0 +1,102 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationreliabilitygen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_reliability.lisp",
+    "reliability_profile": "agent-scorecard",
+    "records": [
+        {
+            "id": "reliability:verification-daemon",
+            "agent": "agent:verification-daemon",
+            "tier": "T3",
+            "status": "bounded",
+            "confidence_ceiling": "medium",
+            "failure_rate": 2,
+            "verification_rate": 98,
+            "authority_effect": "bounded-auto",
+            "evidence": [
+                "docs/generated/verification-conformance.json",
+                "docs/generated/verification-evidence.json"
+            ],
+            "restrictions": [
+                "no-private-data",
+                "security-escalates"
+            ],
+            "meaning": "Verification daemon may automate bounded release checks."
+        },
+        {
+            "id": "reliability:quality-runner",
+            "agent": "agent:quality-runner",
+            "tier": "T3",
+            "status": "bounded",
+            "confidence_ceiling": "medium",
+            "failure_rate": 1,
+            "verification_rate": 99,
+            "authority_effect": "bounded-auto",
+            "evidence": [
+                "docs/generated/verification-evidence-quality.json",
+                "docs/generated/verification-semantic-diff.json"
+            ],
+            "restrictions": [
+                "requires-generated-evidence",
+                "no-authority-approval"
+            ],
+            "meaning": "Quality runner may assess evidence but cannot approve authority."
+        },
+        {
+            "id": "reliability:new-agent",
+            "agent": "agent:candidate",
+            "tier": "T0",
+            "status": "candidate",
+            "confidence_ceiling": "low",
+            "failure_rate": 0,
+            "verification_rate": 0,
+            "authority_effect": "authority-blocked",
+            "evidence": [
+                "docs/generated/verification-access-policy.json",
+                "docs/generated/verification-debt.json"
+            ],
+            "restrictions": [
+                "read-only",
+                "proposal-only"
+            ],
+            "meaning": "Cold-start agents begin with proposal-only authority."
+        },
+        {
+            "id": "reliability:shadow-agent",
+            "agent": "agent:shadow",
+            "tier": "T1",
+            "status": "shadow",
+            "confidence_ceiling": "low",
+            "failure_rate": 0,
+            "verification_rate": 0,
+            "authority_effect": "human-review",
+            "evidence": [
+                "docs/generated/verification-orchestration.json",
+                "docs/generated/verification-sidecar.json"
+            ],
+            "restrictions": [
+                "shadow-only",
+                "compare-results"
+            ],
+            "meaning": "Shadow agents compare results without changing operations."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "reliability:evidence-required",
+            "meaning": "Reliability records cite generated evidence.",
+            "check": "scripts/verificationreliabilitygen.sh check"
+        },
+        {
+            "id": "reliability:cold-start-blocked",
+            "meaning": "Cold-start agents cannot auto-approve.",
+            "check": "scripts/verificationreliabilitygen.sh check"
+        },
+        {
+            "id": "reliability:confidence-bounded",
+            "meaning": "Confidence ceiling follows measured reliability.",
+            "check": "scripts/verificationreliabilitygen.sh check"
+        }
+    ]
+}
