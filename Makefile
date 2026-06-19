@@ -61,6 +61,7 @@ release-check: conformance
 	bash scripts/verificationreleaseprovenancegen.sh check
 	bash scripts/verificationincidentgen.sh check
 	bash scripts/verificationgenesisgen.sh check
+	bash scripts/verificationmetamodelgen.sh check
 	bash scripts/verificationevidencebeforechangegen.sh check
 	bash scripts/verificationversionedssotgen.sh check
 	bash scripts/verificationcontextmapgen.sh check

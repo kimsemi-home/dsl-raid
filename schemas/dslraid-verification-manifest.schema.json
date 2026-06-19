@@ -1714,6 +1714,51 @@
                 "generated_by",
                 "subject",
                 "source",
+                "meta_model_profile",
+                "terms",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationmetamodelgen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "meta_model_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "terms": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/meta_model_term"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
                 "adr_profile",
                 "records",
                 "closure_rules"
@@ -3701,6 +3746,40 @@
                 "meaning": {
                     "type": "string",
                     "minLength": 1
+                }
+            }
+        },
+        "meta_model_term": {
+            "type": "object",
+            "required": [
+                "id",
+                "term",
+                "meaning",
+                "context",
+                "owner",
+                "authority_gate"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "term": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "context": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "owner": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "authority_gate": {
+                    "$ref": "#/$defs/semantic_ref"
                 }
             }
         },

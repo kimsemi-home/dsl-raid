@@ -10,7 +10,12 @@
      "docs/generated/verification-genesis-charter.json"
      "high" "genesis-charter" "gate:evidence-quality"
      ("charter" "closure_rules")
-     "Genesis charter evidence is suitable when owner and revalidation are explicit.")))
+     "Genesis charter evidence is suitable when owner and revalidation are explicit.")
+    ("evidence-quality:meta-model"
+     "docs/generated/verification-meta-model.json"
+     "high" "meta-model" "gate:evidence-quality"
+     ("terms" "closure_rules")
+     "Meta-model evidence is suitable when terms are owned and gated.")))
 
 (defparameter *verification-evidence-quality-assessments*
   (append *verification-evidence-quality-core-assessments*

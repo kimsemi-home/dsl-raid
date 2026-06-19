@@ -1,0 +1,119 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationmetamodelgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_meta_model.lisp",
+    "meta_model_profile": "governance-vocabulary",
+    "terms": [
+        {
+            "id": "metamodel:actor",
+            "term": "Actor",
+            "meaning": "Subject that proposes, verifies, reviews, or governs work.",
+            "context": "context:governance",
+            "owner": "owner:ontology",
+            "authority_gate": "gate:authority"
+        },
+        {
+            "id": "metamodel:artifact",
+            "term": "Artifact",
+            "meaning": "Generated or authored output with provenance.",
+            "context": "context:codegen",
+            "owner": "owner:verification",
+            "authority_gate": "gate:quality"
+        },
+        {
+            "id": "metamodel:evidence",
+            "term": "Evidence",
+            "meaning": "Observed record linked to version and meaning.",
+            "context": "context:evidence",
+            "owner": "owner:evidence",
+            "authority_gate": "gate:evidence-quality"
+        },
+        {
+            "id": "metamodel:claim",
+            "term": "Claim",
+            "meaning": "Interpretation that requires supporting evidence.",
+            "context": "context:evidence",
+            "owner": "owner:verification",
+            "authority_gate": "gate:confidence"
+        },
+        {
+            "id": "metamodel:decision",
+            "term": "Decision",
+            "meaning": "Governed choice with approver and evidence.",
+            "context": "context:governance",
+            "owner": "owner:governance",
+            "authority_gate": "gate:authority"
+        },
+        {
+            "id": "metamodel:change",
+            "term": "Change",
+            "meaning": "Candidate update to SSOT or generated surfaces.",
+            "context": "context:versioned-ssot",
+            "owner": "owner:verification",
+            "authority_gate": "gate:evidence-before-change"
+        },
+        {
+            "id": "metamodel:review",
+            "term": "Review",
+            "meaning": "Independent examination before authority.",
+            "context": "context:review",
+            "owner": "owner:review",
+            "authority_gate": "gate:review-capacity"
+        },
+        {
+            "id": "metamodel:risk",
+            "term": "Risk",
+            "meaning": "Bounded harm scenario that changes authority.",
+            "context": "context:security",
+            "owner": "owner:security",
+            "authority_gate": "gate:security"
+        },
+        {
+            "id": "metamodel:version",
+            "term": "Version",
+            "meaning": "Scoped semantic coordinate for SSOT and evidence.",
+            "context": "context:ontology",
+            "owner": "owner:ontology",
+            "authority_gate": "gate:versioned-ssot"
+        },
+        {
+            "id": "metamodel:migration",
+            "term": "Migration",
+            "meaning": "Controlled transition between semantic versions.",
+            "context": "context:ontology-transition",
+            "owner": "owner:ontology",
+            "authority_gate": "gate:ontology-transition"
+        },
+        {
+            "id": "metamodel:audit",
+            "term": "Audit",
+            "meaning": "Independent check of authority and evidence boundary.",
+            "context": "context:audit",
+            "owner": "owner:governance",
+            "authority_gate": "gate:security-audit"
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "meta-model:terms-owned",
+            "meaning": "Every term has an owner.",
+            "check": "scripts/verificationmetamodelgen.sh check"
+        },
+        {
+            "id": "meta-model:gate-linked",
+            "meaning": "Every term names an authority gate.",
+            "check": "scripts/verificationmetamodelgen.sh check"
+        },
+        {
+            "id": "meta-model:evidence-linked",
+            "meaning": "Meta-model cites generated evidence.",
+            "check": "scripts/verificationmetamodelgen.sh check"
+        },
+        {
+            "id": "meta-model:amendment-governed",
+            "meaning": "Meta-model changes require governance.",
+            "check": "scripts/verificationmetamodelgen.sh check"
+        }
+    ]
+}

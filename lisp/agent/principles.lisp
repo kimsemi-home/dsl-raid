@@ -21,6 +21,7 @@
     ("release-provenance" "Release pipeline promotion" "Tag-bound gate evidence" "Release publishing requires generated workflow, tests, permissions, and provenance.")
     ("incident-learning" "Observed failure or drift" "Owner, knowledge update, revalidation, and prevention" "Incidents close only when the system learns in executable form.")
     ("genesis-charter" "Initial bounded responsibility record" "Purpose, assumptions, owner, risk boundary, and revalidation" "The first map is executable and review-owned, not prose authority.")
+    ("meta-model" "Governance vocabulary" "Actor, artifact, evidence, claim, decision, risk, version, audit" "Rules about rules need explicit terms before automation can govern them.")
     ("lease-and-abort" "Agent work lease" "Finished, rebase, abort, or escalate state" "Abort blocks authority; it never deletes evidence.")
     ("quarantine" "Suspicious output or tool behavior" "Isolated evidence bundle" "Quarantine blocks artifact commit, confidence increase, and automatic approval.")
     ("loss-ledger" "Cross-context translation" "Recorded semantic loss" "Lossy translation must declare what was lost; forbidden loss blocks promotion.")

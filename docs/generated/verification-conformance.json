@@ -197,6 +197,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.meta-model",
+            "subject": "docs/generated/verification-meta-model.json",
+            "check": "scripts/verificationmetamodelgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.evidence-before-change",
             "subject": "docs/generated/verification-evidence-before-change.json",
             "check": "scripts/verificationevidencebeforechangegen.sh check",

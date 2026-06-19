@@ -201,6 +201,12 @@
             ]
         },
         {
+            "axis": "meta-model",
+            "backends": [
+                "meta-model"
+            ]
+        },
+        {
             "axis": "versioned-ssot",
             "backends": [
                 "versioned-ssot"

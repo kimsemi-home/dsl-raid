@@ -164,6 +164,7 @@ jobs:
           grep -q 'scripts/verificationreleaseprovenancegen.sh' "$owner"
           grep -q 'scripts/verificationincidentgen.sh' "$owner"
           grep -q 'scripts/verificationgenesisgen.sh' "$owner"
+          grep -q 'scripts/verificationmetamodelgen.sh' "$owner"
           grep -q 'scripts/verificationevidencebeforechangegen.sh' "$owner"
           grep -q 'scripts/verificationversionedssotgen.sh' "$owner"
           grep -q 'scripts/verificationcontextmapgen.sh' "$owner"

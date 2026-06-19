@@ -170,36 +170,38 @@ jobs:
       - name: Run release-check command 38
         run: bash scripts/verificationgenesisgen.sh check
       - name: Run release-check command 39
-        run: bash scripts/verificationevidencebeforechangegen.sh check
+        run: bash scripts/verificationmetamodelgen.sh check
       - name: Run release-check command 40
-        run: bash scripts/verificationversionedssotgen.sh check
+        run: bash scripts/verificationevidencebeforechangegen.sh check
       - name: Run release-check command 41
-        run: bash scripts/verificationcontextmapgen.sh check
+        run: bash scripts/verificationversionedssotgen.sh check
       - name: Run release-check command 42
-        run: bash scripts/verificationhistoricalgen.sh check
+        run: bash scripts/verificationcontextmapgen.sh check
       - name: Run release-check command 43
-        run: bash scripts/verificationtransitiongen.sh check
+        run: bash scripts/verificationhistoricalgen.sh check
       - name: Run release-check command 44
-        run: bash scripts/verificationssotdefectgen.sh check
+        run: bash scripts/verificationtransitiongen.sh check
       - name: Run release-check command 45
-        run: bash scripts/verificationrootcausegen.sh check
+        run: bash scripts/verificationssotdefectgen.sh check
       - name: Run release-check command 46
-        run: bash scripts/verificationdebuggergen.sh check
+        run: bash scripts/verificationrootcausegen.sh check
       - name: Run release-check command 47
-        run: bash scripts/verificationpruninggen.sh check
+        run: bash scripts/verificationdebuggergen.sh check
       - name: Run release-check command 48
-        run: bash scripts/verificationsecuritygen.sh check
+        run: bash scripts/verificationpruninggen.sh check
       - name: Run release-check command 49
-        run: bash scripts/verificationfailuregen.sh check
+        run: bash scripts/verificationsecuritygen.sh check
       - name: Run release-check command 50
-        run: bash scripts/verificationdebtgen.sh check
+        run: bash scripts/verificationfailuregen.sh check
       - name: Run release-check command 51
-        run: bash scripts/lisp-rustgen.sh check
+        run: bash scripts/verificationdebtgen.sh check
       - name: Run release-check command 52
-        run: bash scripts/verificationdocgen.sh check
+        run: bash scripts/lisp-rustgen.sh check
       - name: Run release-check command 53
-        run: bash scripts/verificationcodegengen.sh check
+        run: bash scripts/verificationdocgen.sh check
       - name: Run release-check command 54
-        run: bash scripts/gendocindex.sh check
+        run: bash scripts/verificationcodegengen.sh check
       - name: Run release-check command 55
+        run: bash scripts/gendocindex.sh check
+      - name: Run release-check command 56
         run: cargo run -p dslraid-cli -- artifact verify examples/runscope/runscope.raid.json

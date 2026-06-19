@@ -412,6 +412,18 @@
                 "closure_rules"
             ],
             "meaning": "Genesis charter evidence is suitable when owner and revalidation are explicit."
+        },
+        {
+            "id": "evidence-quality:meta-model",
+            "target": "docs/generated/verification-meta-model.json",
+            "quality": "high",
+            "purpose": "meta-model",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "terms",
+                "closure_rules"
+            ],
+            "meaning": "Meta-model evidence is suitable when terms are owned and gated."
         }
     ],
     "closure_rules": [

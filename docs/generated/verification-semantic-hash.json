@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "ceb12f7a9f16260471dd7c14a339b6a5392e296e9406590a22e5165fe7304bb5"
+            "hash": "bcba114bbd5f932daa3a0375eca2e6476726b6d9a237c77e42856c9bece1b93b"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "791c39a0493719e16937ac4a41775e637cb849644e0b5db2d3990718c2406776"
+            "hash": "ac6d9c90bc975d1283c86c9332b97d560a3182a9ad1997bdab224f33d913b33f"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "c767bc82a310f20aa528bbdd19358309eab19ef4d3e844568a105f0411f7633e"
+            "hash": "432979ae197827f5364b2fb18b513ce85b7974cb315381ddd4e2e9d9989058e6"
         },
         {
             "id": "semantic:authority",
@@ -97,7 +97,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "295ec6cd37ad675e61cdc9121c803773160d75e2f55bcd4d1c062be519993179"
+            "hash": "dba295d87f35176ae8c8c470785b0c72d564cb938c06e043b820fb9ec28c4dae"
         },
         {
             "id": "semantic:lease",
@@ -408,6 +408,17 @@
             ],
             "meaning": "Genesis charter purpose, assumption, owner, and risk contract.",
             "hash": "37e04d669b2d4998dbe5479dbd2027964c0310dfa2ede09fad099ece4970285c"
+        },
+        {
+            "id": "semantic:meta-model",
+            "source": "docs/generated/verification-meta-model.json",
+            "fields": [
+                "meta_model_profile",
+                "terms",
+                "closure_rules"
+            ],
+            "meaning": "Meta-model term, owner, and authority gate contract.",
+            "hash": "f59840788d069da3de981b7cad7706bf74404a2c6cfabb240cf3d6a2d96c3690"
         }
     ],
     "closure_rules": [
