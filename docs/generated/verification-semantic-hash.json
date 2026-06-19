@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "9e3a8579c80a8c0ad968f40b525e2e09bee50c551c402c6fc0def715a4a37867"
+            "hash": "279516fae108f586395150fede485c6a6cde45e91174e612ac4efcc69a99ef08"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "0c90c4519d7f39628c1591a45cd715f592652fba667630764f0a52b0797d10a7"
+            "hash": "1848779dcb54a81a873c22d844ec0b228a7b4f7f300944c64cfd524b091bf899"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "aede8636b462867c5508b5efc159fce55aa17a7860d250243ef4315a0bcee367"
+            "hash": "655a1ec9062684206bfc10767596f567b3d11742ed8843cb947f1d60f0828d09"
         },
         {
             "id": "semantic:authority",
@@ -97,7 +97,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "a00a2f2f6077422d3238f92e8ffeedc939239b477a79c2243cf29e2367fef6cc"
+            "hash": "93b761835511171f62361c0d399c0dca76a6fa570e07f86535bb215818f0c535"
         },
         {
             "id": "semantic:lease",
@@ -386,6 +386,17 @@
             ],
             "meaning": "Operational debt repayment contract.",
             "hash": "8bb8c876ffc13d6cad1b27212123eef9df8f22fe8f426d20f34ab5bdf7e90f0f"
+        },
+        {
+            "id": "semantic:incident-learning",
+            "source": "docs/generated/verification-incident-learning.json",
+            "fields": [
+                "incident_learning_profile",
+                "cycles",
+                "closure_rules"
+            ],
+            "meaning": "Incident learning observe, owner, update, and prevention contract.",
+            "hash": "292058cb070d2ecc13521d5a29f844a5d2f6aee4d29e488bef9659c106b89652"
         }
     ],
     "closure_rules": [

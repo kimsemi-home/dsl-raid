@@ -53,6 +53,7 @@
         "backend-parity",
         "github-actions-suite",
         "evidence-before-change",
+        "incident-learning",
         "versioned-ssot",
         "context-map",
         "historical-interpreter",

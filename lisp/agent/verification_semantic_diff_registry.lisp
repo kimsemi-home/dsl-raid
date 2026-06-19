@@ -1,6 +1,6 @@
 (in-package #:dslraid.agent)
 
-(defparameter *verification-semantic-diffs*
+(defparameter *verification-semantic-core-diffs*
   '(("semantic-diff:verification-graph" "semantic:verification-graph"
      "Verification graph semantic receipt.")
     ("semantic-diff:codegen-map" "semantic:codegen-map"

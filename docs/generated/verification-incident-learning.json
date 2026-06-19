@@ -1,0 +1,71 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationincidentgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_incident_learning.lisp",
+    "incident_learning_profile": "observe-learn-prevent",
+    "cycles": [
+        {
+            "id": "incident:generated-drift-drill",
+            "observation": "observation:generated-drift",
+            "evidence": [
+                "docs/generated/verification-semantic-diff.json",
+                "docs/generated/verification-conformance.json"
+            ],
+            "root_cause": "root-cause:ssot-defect-drill",
+            "owner": "owner:verification",
+            "knowledge_update": "update:generated-freshness-rule",
+            "revalidation": "revalidate:next-quality-gate",
+            "prevention": [
+                "prevention:add-generated-check",
+                "prevention:record-semantic-hash"
+            ],
+            "debt": [
+                "debt:verification-surface"
+            ],
+            "status": "closed",
+            "meaning": "Generated drift closes only after evidence, owner, update, and recheck."
+        },
+        {
+            "id": "incident:release-gate-gap",
+            "observation": "observation:release-gate-gap",
+            "evidence": [
+                "docs/generated/verification-release-provenance.json",
+                "docs/generated/verification-github-actions.json"
+            ],
+            "root_cause": "root-cause:release-provenance-gap",
+            "owner": "owner:release",
+            "knowledge_update": "update:release-provenance-gate",
+            "revalidation": "revalidate:tag-pipeline",
+            "prevention": [
+                "prevention:tag-bound-gate",
+                "prevention:publish-permission-check"
+            ],
+            "debt": [],
+            "status": "closed",
+            "meaning": "Release incidents update promotion knowledge before authority returns."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "incident-learning:evidence-linked",
+            "meaning": "Every incident cites generated evidence.",
+            "check": "scripts/verificationincidentgen.sh check"
+        },
+        {
+            "id": "incident-learning:owner-required",
+            "meaning": "Every incident has a non-agent owner.",
+            "check": "scripts/verificationincidentgen.sh check"
+        },
+        {
+            "id": "incident-learning:update-required",
+            "meaning": "Closure names a knowledge update.",
+            "check": "scripts/verificationincidentgen.sh check"
+        },
+        {
+            "id": "incident-learning:revalidation-required",
+            "meaning": "Closure names revalidation.",
+            "check": "scripts/verificationincidentgen.sh check"
+        }
+    ]
+}

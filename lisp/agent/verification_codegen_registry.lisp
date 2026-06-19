@@ -31,6 +31,7 @@
     ("backend-parity" ("backend-parity"))
     ("github-actions-suite" ("github-actions-suite"))
     ("evidence-before-change" ("evidence-before-change"))
+    ("incident-learning" ("incident-learning"))
     ("versioned-ssot" ("versioned-ssot"))
     ("context-map" ("context-map"))
     ("historical-interpreter" ("historical-interpreter"))

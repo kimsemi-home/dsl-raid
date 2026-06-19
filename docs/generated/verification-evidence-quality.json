@@ -388,6 +388,18 @@
                 "closure_rules"
             ],
             "meaning": "Debt evidence is suitable when owner and repayment are explicit."
+        },
+        {
+            "id": "evidence-quality:incident-learning",
+            "target": "docs/generated/verification-incident-learning.json",
+            "quality": "high",
+            "purpose": "incident-learning",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "cycles",
+                "closure_rules"
+            ],
+            "meaning": "Incident learning evidence is suitable when owner, update, and recheck are explicit."
         }
     ],
     "closure_rules": [

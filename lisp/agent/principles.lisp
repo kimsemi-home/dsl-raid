@@ -19,6 +19,7 @@
     ("backend-parity" "Verification graph projection" "Same-node backend evidence" "CI, local, and build-system surfaces must project the same graph.")
     ("github-actions-suite" "GitHub Actions surface" "Generated and curated workflow evidence" "Generated workflows and guard workflows both declare ownership and permissions.")
     ("release-provenance" "Release pipeline promotion" "Tag-bound gate evidence" "Release publishing requires generated workflow, tests, permissions, and provenance.")
+    ("incident-learning" "Observed failure or drift" "Owner, knowledge update, revalidation, and prevention" "Incidents close only when the system learns in executable form.")
     ("lease-and-abort" "Agent work lease" "Finished, rebase, abort, or escalate state" "Abort blocks authority; it never deletes evidence.")
     ("quarantine" "Suspicious output or tool behavior" "Isolated evidence bundle" "Quarantine blocks artifact commit, confidence increase, and automatic approval.")
     ("loss-ledger" "Cross-context translation" "Recorded semantic loss" "Lossy translation must declare what was lost; forbidden loss blocks promotion.")

@@ -189,6 +189,12 @@
             ]
         },
         {
+            "axis": "incident-learning",
+            "backends": [
+                "incident-learning"
+            ]
+        },
+        {
             "axis": "versioned-ssot",
             "backends": [
                 "versioned-ssot"
