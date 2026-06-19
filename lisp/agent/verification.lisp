@@ -35,6 +35,7 @@
        "bash scripts/gitlabgen.sh check"
        "bash scripts/makegen.sh check"
        "bash scripts/bazelgen.sh check"
+       "bash scripts/verificationschemagen.sh check"
        "bash scripts/verificationevidencegen.sh check"
        "bash scripts/gendocindex.sh check"
        "cargo run -p dslraid-cli -- artifact verify examples/runscope/runscope.raid.json")))))
@@ -44,6 +45,8 @@
     ("gitlab-ci" ".gitlab-ci.yml" "scripts/gitlabgen.sh")
     ("local-makefile" "Makefile" "scripts/makegen.sh")
     ("bazel" "BUILD.bazel" "scripts/bazelgen.sh")
+    ("evidence-schema" "schemas/dslraid-verification-evidence.schema.json"
+     "scripts/verificationschemagen.sh")
     ("evidence-json" "docs/generated/verification-evidence.json"
      "scripts/verificationevidencegen.sh")))
 

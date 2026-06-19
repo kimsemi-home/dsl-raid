@@ -10,6 +10,7 @@
 
 (defun write-verification-evidence (out)
   (format out "{~%")
+  (format out "  \"$schema\": \"schemas/dslraid-verification-evidence.schema.json\",~%")
   (format out "  \"schema_version\": \"0.1.0\",~%")
   (format out "  \"generated_by\": \"scripts/verificationevidencegen.sh\",~%")
   (format out "  \"subject\": \"~A\",~%" (getf (verification-graph) :id))

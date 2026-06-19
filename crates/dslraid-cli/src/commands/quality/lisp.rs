@@ -12,6 +12,7 @@ pub(super) fn check() -> Result<()> {
     run_script("scripts/gitlabgen.sh")?;
     run_script("scripts/makegen.sh")?;
     run_script("scripts/bazelgen.sh")?;
+    run_script("scripts/verificationschemagen.sh")?;
     run_script("scripts/verificationevidencegen.sh")?;
     run_lisp_irgen()?;
     run_script("scripts/lisp-rustgen.sh")?;

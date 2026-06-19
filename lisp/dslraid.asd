@@ -15,7 +15,7 @@
      (:file "verification") (:file "verification_markdown")
      (:file "verification_workflow") (:file "verification_gitlab")
      (:file "verification_makefile") (:file "verification_bazel")
-     (:file "verification_evidence")))
+     (:file "verification_evidence") (:file "verification_schema")))
    (:module "ir"
     :serial t
     :components

@@ -1,4 +1,5 @@
 {
+  "$schema": "schemas/dslraid-verification-evidence.schema.json",
   "schema_version": "0.1.0",
   "generated_by": "scripts/verificationevidencegen.sh",
   "subject": "verify:daemon",
@@ -15,6 +16,7 @@
     {"backend": "gitlab-ci", "output": ".gitlab-ci.yml", "generator": "scripts/gitlabgen.sh", "check": "scripts/gitlabgen.sh check"},
     {"backend": "local-makefile", "output": "Makefile", "generator": "scripts/makegen.sh", "check": "scripts/makegen.sh check"},
     {"backend": "bazel", "output": "BUILD.bazel", "generator": "scripts/bazelgen.sh", "check": "scripts/bazelgen.sh check"},
+    {"backend": "evidence-schema", "output": "schemas/dslraid-verification-evidence.schema.json", "generator": "scripts/verificationschemagen.sh", "check": "scripts/verificationschemagen.sh check"},
     {"backend": "evidence-json", "output": "docs/generated/verification-evidence.json", "generator": "scripts/verificationevidencegen.sh", "check": "scripts/verificationevidencegen.sh check"}
   ],
   "verification_nodes": [
@@ -22,7 +24,7 @@
     {"id": "unit-test", "commands": 1, "evidence": "Rust workspace unit test evidence."},
     {"id": "integration-test", "commands": 3, "evidence": "Viewer test and build evidence."},
     {"id": "conformance", "commands": 1, "evidence": "Unified DSLRaid semantic and generated-output gate."},
-    {"id": "release-check", "commands": 7, "evidence": "Generated workflow, docs index, and artifact freshness."}
+    {"id": "release-check", "commands": 8, "evidence": "Generated workflow, docs index, and artifact freshness."}
   ],
   "pdca": [
     "plan",
