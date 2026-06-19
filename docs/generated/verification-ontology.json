@@ -30,6 +30,7 @@
         "conformance",
         "github-actions",
         "release-pipelines",
-        "pdca-evidence"
+        "pdca-evidence",
+        "loss-ledger"
     ]
 }

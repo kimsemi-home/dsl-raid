@@ -10,6 +10,8 @@
      "scripts/verificationprivacygen.sh")
     ("pdca-manifest" "docs/generated/verification-pdca.json"
      "scripts/verificationpdcagen.sh")
+    ("loss-ledger" "docs/generated/verification-loss-ledger.json"
+     "scripts/verificationlossgen.sh")
     ("rust-code" "generated/runtime_fsm.rs" "scripts/lisp-rustgen.sh")
     ("verification-doc" "docs/generated/verification-graph.md"
      "scripts/verificationdocgen.sh")

@@ -9,7 +9,7 @@ pub(super) fn check() -> Result<()> {
     Ok(())
 }
 
-fn fixture_schemas() -> [(&'static str, &'static str); 13] {
+fn fixture_schemas() -> [(&'static str, &'static str); 14] {
     [
         (CORE_SCHEMA_PATH, "examples/runscope/runscope.raid.json"),
         (
@@ -55,6 +55,10 @@ fn fixture_schemas() -> [(&'static str, &'static str); 13] {
         (
             "schemas/dslraid-verification-manifest.schema.json",
             "docs/generated/verification-pdca.json",
+        ),
+        (
+            "schemas/dslraid-verification-manifest.schema.json",
+            "docs/generated/verification-loss-ledger.json",
         ),
         (
             "schemas/dslraid-verification-manifest.schema.json",

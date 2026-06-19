@@ -26,6 +26,13 @@
    "\"generated_by\":{\"const\":\"scripts/verificationcodegengen.sh\"},"
    "\"subject\":{\"$ref\":\"#/$defs/semantic_ref\"},\"source\":{\"$ref\":\"#/$defs/path\"},"
    "\"axes\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"$ref\":\"#/$defs/axis\"}},"
+   "\"closure_rules\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"$ref\":\"#/$defs/rule\"}}}},"
+   "{\"type\":\"object\",\"required\":[\"manifest_version\",\"generated_by\","
+   "\"subject\",\"source\",\"ledger\",\"closure_rules\"],\"additionalProperties\":false,"
+   "\"properties\":{\"manifest_version\":{\"$ref\":\"#/$defs/semver\"},"
+   "\"generated_by\":{\"const\":\"scripts/verificationlossgen.sh\"},"
+   "\"subject\":{\"$ref\":\"#/$defs/semantic_ref\"},\"source\":{\"$ref\":\"#/$defs/path\"},"
+   "\"ledger\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"$ref\":\"#/$defs/loss_entry\"}},"
    "\"closure_rules\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"$ref\":\"#/$defs/rule\"}}}}],"
    "\"$defs\":{\"path\":{\"type\":\"string\",\"minLength\":1},"
    "\"semantic_ref\":{\"type\":\"string\",\"pattern\":\"^[a-z][a-z0-9_\\\\-]*:[a-z][a-z0-9_.\\\\-]*$\"},"
@@ -43,7 +50,14 @@
    "\"backends\":{\"$ref\":\"#/$defs/strings\"}}},"
    "\"pdca_step\":{\"type\":\"object\",\"required\":[\"phase\",\"evidence\",\"artifact\"],"
    "\"additionalProperties\":false,\"properties\":{\"phase\":{\"enum\":[\"plan\",\"do\",\"check\",\"act\"]},"
-   "\"evidence\":{\"type\":\"string\",\"minLength\":1},\"artifact\":{\"$ref\":\"#/$defs/path\"}}}}}"))
+   "\"evidence\":{\"type\":\"string\",\"minLength\":1},\"artifact\":{\"$ref\":\"#/$defs/path\"}}},"
+   "\"loss_entry\":{\"type\":\"object\",\"required\":[\"id\",\"source\",\"target\","
+   "\"loss_level\",\"meaning\",\"evidence\",\"policy\"],\"additionalProperties\":false,"
+   "\"properties\":{\"id\":{\"$ref\":\"#/$defs/semantic_ref\"},"
+   "\"source\":{\"$ref\":\"#/$defs/semantic_ref\"},\"target\":{\"$ref\":\"#/$defs/path\"},"
+   "\"loss_level\":{\"enum\":[\"L1\",\"L2\",\"L3\"]},"
+   "\"meaning\":{\"type\":\"string\",\"minLength\":1},\"evidence\":{\"$ref\":\"#/$defs/path\"},"
+   "\"policy\":{\"type\":\"string\",\"minLength\":1}}}}}"))
 
 (defun emit-verification-manifest-schema-json (&optional stream)
   "Emit JSON Schema for generated verification manifests."

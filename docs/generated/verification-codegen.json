@@ -54,6 +54,12 @@
             "backends": [
                 "pdca-manifest"
             ]
+        },
+        {
+            "axis": "loss-ledger",
+            "backends": [
+                "loss-ledger"
+            ]
         }
     ],
     "closure_rules": [

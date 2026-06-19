@@ -1,0 +1,61 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationlossgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification.lisp",
+    "ledger": [
+        {
+            "id": "loss:github-actions",
+            "source": "verify:daemon",
+            "target": ".github/workflows/verification.yml",
+            "loss_level": "L2",
+            "meaning": "Runner YAML keeps command order, not full ontology semantics.",
+            "evidence": "docs/generated/verification-evidence.json",
+            "policy": "Record adapter loss before release."
+        },
+        {
+            "id": "loss:gitlab-ci",
+            "source": "verify:daemon",
+            "target": ".gitlab-ci.yml",
+            "loss_level": "L2",
+            "meaning": "GitLab syntax preserves gates but changes runner semantics.",
+            "evidence": "docs/generated/verification-evidence.json",
+            "policy": "Record adapter loss before release."
+        },
+        {
+            "id": "loss:local-makefile",
+            "source": "verify:daemon",
+            "target": "Makefile",
+            "loss_level": "L1",
+            "meaning": "Make exposes local targets without hosted runner metadata.",
+            "evidence": "docs/generated/verification-conformance.json",
+            "policy": "Record adapter loss before release."
+        },
+        {
+            "id": "loss:bazel",
+            "source": "verify:daemon",
+            "target": "BUILD.bazel",
+            "loss_level": "L1",
+            "meaning": "Bazel genrules keep command chains without workflow UI labels.",
+            "evidence": "docs/generated/verification-conformance.json",
+            "policy": "Record adapter loss before release."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "loss:no-l4-loss",
+            "meaning": "Forbidden L4 loss is not allowed in generated adapters.",
+            "check": "scripts/verificationlossgen.sh check"
+        },
+        {
+            "id": "loss:evidence-linked",
+            "meaning": "Every loss entry links to generated evidence.",
+            "check": "scripts/verificationlossgen.sh check"
+        },
+        {
+            "id": "loss:public-safe",
+            "meaning": "Loss ledger contains public paths only.",
+            "check": "scripts/verificationlossgen.sh check"
+        }
+    ]
+}

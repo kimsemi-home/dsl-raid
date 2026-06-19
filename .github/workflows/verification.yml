@@ -110,24 +110,26 @@ jobs:
       - name: Run release-check command 8
         run: bash scripts/verificationpdcagen.sh check
       - name: Run release-check command 9
-        run: bash scripts/verificationontologygen.sh check
+        run: bash scripts/verificationlossgen.sh check
       - name: Run release-check command 10
-        run: bash scripts/verificationconformancegen.sh check
+        run: bash scripts/verificationontologygen.sh check
       - name: Run release-check command 11
-        run: bash scripts/verificationschemagen.sh check
+        run: bash scripts/verificationconformancegen.sh check
       - name: Run release-check command 12
-        run: bash scripts/verificationmanifestschemagen.sh check
+        run: bash scripts/verificationschemagen.sh check
       - name: Run release-check command 13
-        run: bash scripts/verificationtestgen.sh check
+        run: bash scripts/verificationmanifestschemagen.sh check
       - name: Run release-check command 14
-        run: bash scripts/verificationevidencegen.sh check
+        run: bash scripts/verificationtestgen.sh check
       - name: Run release-check command 15
-        run: bash scripts/lisp-rustgen.sh check
+        run: bash scripts/verificationevidencegen.sh check
       - name: Run release-check command 16
-        run: bash scripts/verificationdocgen.sh check
+        run: bash scripts/lisp-rustgen.sh check
       - name: Run release-check command 17
-        run: bash scripts/verificationcodegengen.sh check
+        run: bash scripts/verificationdocgen.sh check
       - name: Run release-check command 18
-        run: bash scripts/gendocindex.sh check
+        run: bash scripts/verificationcodegengen.sh check
       - name: Run release-check command 19
+        run: bash scripts/gendocindex.sh check
+      - name: Run release-check command 20
         run: cargo run -p dslraid-cli -- artifact verify examples/runscope/runscope.raid.json

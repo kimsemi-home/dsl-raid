@@ -140,6 +140,7 @@ jobs:
           grep -q 'scripts/privacycheck.sh' "$owner"
           grep -q 'scripts/verificationprivacygen.sh' "$owner"
           grep -q 'scripts/verificationpdcagen.sh' "$owner"
+          grep -q 'scripts/verificationlossgen.sh' "$owner"
           grep -q 'scripts/verificationcodegengen.sh' "$owner"
           grep -q 'scripts/verificationontologygen.sh' "$owner"
           grep -q 'scripts/verificationconformancegen.sh' "$owner"

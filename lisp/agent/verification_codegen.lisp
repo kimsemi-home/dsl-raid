@@ -8,7 +8,8 @@
     ("conformance" ("conformance-report" "evidence-json"))
     ("github-actions" ("github-actions"))
     ("release-pipelines" ("github-release"))
-    ("pdca-evidence" ("pdca-manifest"))))
+    ("pdca-evidence" ("pdca-manifest"))
+    ("loss-ledger" ("loss-ledger"))))
 
 (defparameter *verification-codegen-rules*
   '(("codegen:axis-covered" "Every ontology codegen axis maps to a backend.")
