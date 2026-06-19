@@ -63,4 +63,7 @@
      "SSOT defect freeze, migration, and verification contract.")
     ("semantic:root-cause" "docs/generated/verification-root-cause.json"
      ("root_cause_profile" "cases" "closure_rules")
-     "Root cause candidate validation contract.")))
+     "Root cause candidate validation contract.")
+    ("semantic:semantic-debugger" "docs/generated/verification-semantic-debugger.json"
+     ("semantic_debugger_profile" "sessions" "closure_rules")
+     "Semantic debugger question and evidence contract.")))

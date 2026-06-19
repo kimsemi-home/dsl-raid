@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "b07e2f40156dc2cb96ebe65299e85e520c485bf1a8ad48742ba4300eb09ccb83"
+            "hash": "795e6670e041f4e347d09fb05c3e1d7974abc6b53b16022fa1f5f756fa334030"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "333833667be2fd8d4c9b7e524493dbcce9edba0d9eb635dc282c357f36125f59"
+            "hash": "46aefb5bbc9ec77151a9f14d9e0a547b8862884d3f9c6d5f4ce8789b06030cee"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "b2f6c79842ae7f785dc43a65ce6746579d2e127688c8ac373635bdd4f1a820fc"
+            "hash": "e71509e165704a08662b0221832a4ca72bb4bc5e11cbbd315c3731eb871d6a97"
         },
         {
             "id": "semantic:authority",
@@ -64,7 +64,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "e9e4a852a4973718b2efcc8b7cb35b161539777f8fde8c2a17e0bee83f9a3ccc"
+            "hash": "137e9234f9953a421e604b0d4f5dd4f6cd74d7a295d53ad8cc48dfde2cf922c9"
         },
         {
             "id": "semantic:lease",
@@ -221,6 +221,17 @@
             ],
             "meaning": "Root cause candidate validation contract.",
             "hash": "cc3651b0ca7e61d09a8ac0b7b8b9eddf00febd4b7c96f1ac6c1566e4133a0f35"
+        },
+        {
+            "id": "semantic:semantic-debugger",
+            "source": "docs/generated/verification-semantic-debugger.json",
+            "fields": [
+                "semantic_debugger_profile",
+                "sessions",
+                "closure_rules"
+            ],
+            "meaning": "Semantic debugger question and evidence contract.",
+            "hash": "9799511882a6f9c802d60e53c226e838d01db50e4947d4473446ac2ac0529ea4"
         }
     ],
     "closure_rules": [

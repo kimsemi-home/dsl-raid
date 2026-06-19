@@ -40,4 +40,6 @@
     ("semantic-diff:ssot-defect" "semantic:ssot-defect"
      "SSOT defect semantic receipt.")
     ("semantic-diff:root-cause" "semantic:root-cause"
-     "Root cause semantic receipt.")))
+     "Root cause semantic receipt.")
+    ("semantic-diff:semantic-debugger" "semantic:semantic-debugger"
+     "Semantic debugger semantic receipt.")))

@@ -990,6 +990,51 @@
                     }
                 }
             }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
+                "semantic_debugger_profile",
+                "sessions",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationdebuggergen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "semantic_debugger_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "sessions": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/semantic_debug_session"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
         }
     ],
     "$defs": {
@@ -2003,6 +2048,86 @@
                 },
                 "authority": {
                     "$ref": "#/$defs/semantic_ref"
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "semantic_debug_session": {
+            "type": "object",
+            "required": [
+                "id",
+                "observation",
+                "inputs",
+                "affected_ontology",
+                "possible_causes",
+                "missing_evidence",
+                "version_conflicts",
+                "translation_loss",
+                "evidence_quality_risk",
+                "required_verification",
+                "confidence_ceiling",
+                "escalation",
+                "evidence",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "observation": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "inputs": {
+                    "$ref": "#/$defs/strings"
+                },
+                "affected_ontology": {
+                    "$ref": "#/$defs/strings"
+                },
+                "possible_causes": {
+                    "$ref": "#/$defs/strings"
+                },
+                "missing_evidence": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/semantic_ref"
+                    }
+                },
+                "version_conflicts": {
+                    "$ref": "#/$defs/strings"
+                },
+                "translation_loss": {
+                    "$ref": "#/$defs/strings"
+                },
+                "evidence_quality_risk": {
+                    "enum": [
+                        "low",
+                        "medium",
+                        "high"
+                    ]
+                },
+                "required_verification": {
+                    "$ref": "#/$defs/strings"
+                },
+                "confidence_ceiling": {
+                    "enum": [
+                        "low",
+                        "medium",
+                        "high"
+                    ]
+                },
+                "escalation": {
+                    "enum": [
+                        "none",
+                        "review",
+                        "authority-gate"
+                    ]
                 },
                 "evidence": {
                     "$ref": "#/$defs/strings"

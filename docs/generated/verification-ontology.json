@@ -49,6 +49,7 @@
         "historical-interpreter",
         "ontology-transition",
         "ssot-defect",
-        "root-cause"
+        "root-cause",
+        "semantic-debugger"
     ]
 }

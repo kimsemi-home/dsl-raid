@@ -168,6 +168,12 @@
             "backends": [
                 "root-cause"
             ]
+        },
+        {
+            "axis": "semantic-debugger",
+            "backends": [
+                "semantic-debugger"
+            ]
         }
     ],
     "closure_rules": [

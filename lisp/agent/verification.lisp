@@ -64,6 +64,7 @@
        "bash scripts/verificationtransitiongen.sh check"
        "bash scripts/verificationssotdefectgen.sh check"
        "bash scripts/verificationrootcausegen.sh check"
+       "bash scripts/verificationdebuggergen.sh check"
        "bash scripts/lisp-rustgen.sh check"
        "bash scripts/verificationdocgen.sh check"
        "bash scripts/verificationcodegengen.sh check"

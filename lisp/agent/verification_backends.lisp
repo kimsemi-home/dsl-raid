@@ -48,6 +48,8 @@
      "scripts/verificationssotdefectgen.sh")
     ("root-cause" "docs/generated/verification-root-cause.json"
      "scripts/verificationrootcausegen.sh")
+    ("semantic-debugger" "docs/generated/verification-semantic-debugger.json"
+     "scripts/verificationdebuggergen.sh")
     ("rust-code" "generated/runtime_fsm.rs" "scripts/lisp-rustgen.sh")
     ("verification-doc" "docs/generated/verification-graph.md"
      "scripts/verificationdocgen.sh")

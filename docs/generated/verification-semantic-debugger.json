@@ -1,0 +1,66 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationdebuggergen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification.lisp",
+    "semantic_debugger_profile": "question-oriented",
+    "sessions": [
+        {
+            "id": "semantic-debug:ssot-defect-drill",
+            "observation": "observation:ssot-defect-drill",
+            "inputs": [
+                "docs/generated/verification-evidence.json",
+                "docs/generated/verification-root-cause.json",
+                "docs/generated/verification-semantic-hash.json",
+                "docs/generated/verification-orchestration.json",
+                "docs/generated/verification-evidence-quality.json"
+            ],
+            "affected_ontology": [
+                "ontology:verification-graph"
+            ],
+            "possible_causes": [
+                "cause:contract-drift",
+                "cause:generation-drift"
+            ],
+            "missing_evidence": [
+                "evidence:runtime-reproduction",
+                "evidence:contract-probe"
+            ],
+            "version_conflicts": [
+                "version-conflict:none-observed"
+            ],
+            "translation_loss": [
+                "loss:manifest-schema"
+            ],
+            "evidence_quality_risk": "medium",
+            "required_verification": [
+                "docs/generated/verification-conformance.json",
+                "docs/generated/verification-semantic-diff.json"
+            ],
+            "confidence_ceiling": "medium",
+            "escalation": "authority-gate",
+            "evidence": [
+                "docs/generated/verification-root-cause.json",
+                "docs/generated/verification-loss-ledger.json"
+            ],
+            "meaning": "Semantic debugger narrows questions before any patch authority."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "semantic-debugger:inputs-linked",
+            "meaning": "Debugger inputs must be generated evidence.",
+            "check": "scripts/verificationdebuggergen.sh check"
+        },
+        {
+            "id": "semantic-debugger:missing-evidence-declared",
+            "meaning": "Unanswered questions stay explicit.",
+            "check": "scripts/verificationdebuggergen.sh check"
+        },
+        {
+            "id": "semantic-debugger:no-final-cause",
+            "meaning": "Debugger sessions do not confirm root cause.",
+            "check": "scripts/verificationdebuggergen.sh check"
+        }
+    ]
+}

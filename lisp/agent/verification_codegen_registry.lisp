@@ -27,7 +27,8 @@
     ("historical-interpreter" ("historical-interpreter"))
     ("ontology-transition" ("ontology-transition"))
     ("ssot-defect" ("ssot-defect"))
-    ("root-cause" ("root-cause"))))
+    ("root-cause" ("root-cause"))
+    ("semantic-debugger" ("semantic-debugger"))))
 
 (defparameter *verification-codegen-rules*
   '(("codegen:axis-covered" "Every ontology codegen axis maps to a backend.")

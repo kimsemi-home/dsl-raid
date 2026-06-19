@@ -208,6 +208,18 @@
                 "closure_rules"
             ],
             "meaning": "Root cause evidence is suitable while candidates remain validation-bound."
+        },
+        {
+            "id": "evidence-quality:semantic-debugger",
+            "target": "docs/generated/verification-semantic-debugger.json",
+            "quality": "medium",
+            "purpose": "semantic-debugger",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "sessions",
+                "closure_rules"
+            ],
+            "meaning": "Debugger evidence is suitable when missing evidence stays explicit."
         }
     ],
     "closure_rules": [
