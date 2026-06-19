@@ -32,7 +32,7 @@
             "id": "test:verification.node.release-check",
             "subject": "verify:daemon/release-check",
             "kind": "verification-node",
-            "commands": 17
+            "commands": 19
         },
         {
             "id": "test:verification.backend.github-actions",
@@ -81,6 +81,24 @@
             "subject": "generated/runtime_fsm.rs",
             "kind": "generated-backend",
             "generator": "scripts/lisp-rustgen.sh"
+        },
+        {
+            "id": "test:verification.backend.verification-doc",
+            "subject": "docs/generated/verification-graph.md",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationdocgen.sh"
+        },
+        {
+            "id": "test:verification.backend.docs-index",
+            "subject": "docs/generated/generated-docs.md",
+            "kind": "generated-backend",
+            "generator": "scripts/gendocindex.sh"
+        },
+        {
+            "id": "test:verification.backend.codegen-map",
+            "subject": "docs/generated/verification-codegen.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationcodegengen.sh"
         },
         {
             "id": "test:verification.backend.ontology-manifest",

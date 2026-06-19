@@ -46,29 +46,7 @@
        "bash scripts/verificationtestgen.sh check"
        "bash scripts/verificationevidencegen.sh check"
        "bash scripts/lisp-rustgen.sh check"
+       "bash scripts/verificationdocgen.sh check"
+       "bash scripts/verificationcodegengen.sh check"
        "bash scripts/gendocindex.sh check"
        "cargo run -p dslraid-cli -- artifact verify examples/runscope/runscope.raid.json")))))
-
-(defparameter *verification-backends*
-  '(("github-actions" ".github/workflows/verification.yml" "scripts/workflowgen.sh")
-    ("gitlab-ci" ".gitlab-ci.yml" "scripts/gitlabgen.sh")
-    ("local-makefile" "Makefile" "scripts/makegen.sh")
-    ("bazel" "BUILD.bazel" "scripts/bazelgen.sh")
-    ("github-release" ".github/workflows/release.yml" "scripts/releasegen.sh")
-    ("privacy-manifest" "docs/generated/verification-privacy.json"
-     "scripts/verificationprivacygen.sh")
-    ("pdca-manifest" "docs/generated/verification-pdca.json"
-     "scripts/verificationpdcagen.sh")
-    ("rust-code" "generated/runtime_fsm.rs" "scripts/lisp-rustgen.sh")
-    ("ontology-manifest" "docs/generated/verification-ontology.json"
-     "scripts/verificationontologygen.sh")
-    ("conformance-report" "docs/generated/verification-conformance.json"
-     "scripts/verificationconformancegen.sh")
-    ("evidence-schema" "schemas/dslraid-verification-evidence.schema.json"
-     "scripts/verificationschemagen.sh")
-    ("manifest-schema" "schemas/dslraid-verification-manifest.schema.json"
-     "scripts/verificationmanifestschemagen.sh")
-    ("test-manifest" "tests/golden/verification-graph.generated.json"
-     "scripts/verificationtestgen.sh")
-    ("evidence-json" "docs/generated/verification-evidence.json"
-     "scripts/verificationevidencegen.sh")))

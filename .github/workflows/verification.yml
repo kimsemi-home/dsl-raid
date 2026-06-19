@@ -124,6 +124,10 @@ jobs:
       - name: Run release-check command 15
         run: bash scripts/lisp-rustgen.sh check
       - name: Run release-check command 16
-        run: bash scripts/gendocindex.sh check
+        run: bash scripts/verificationdocgen.sh check
       - name: Run release-check command 17
+        run: bash scripts/verificationcodegengen.sh check
+      - name: Run release-check command 18
+        run: bash scripts/gendocindex.sh check
+      - name: Run release-check command 19
         run: cargo run -p dslraid-cli -- artifact verify examples/runscope/runscope.raid.json

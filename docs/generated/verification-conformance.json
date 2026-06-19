@@ -59,6 +59,24 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.verification-doc",
+            "subject": "docs/generated/verification-graph.md",
+            "check": "scripts/verificationdocgen.sh check",
+            "status": "required"
+        },
+        {
+            "id": "conformance:backend.docs-index",
+            "subject": "docs/generated/generated-docs.md",
+            "check": "scripts/gendocindex.sh check",
+            "status": "required"
+        },
+        {
+            "id": "conformance:backend.codegen-map",
+            "subject": "docs/generated/verification-codegen.json",
+            "check": "scripts/verificationcodegengen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.ontology-manifest",
             "subject": "docs/generated/verification-ontology.json",
             "check": "scripts/verificationontologygen.sh check",

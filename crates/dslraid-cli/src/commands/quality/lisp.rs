@@ -16,6 +16,7 @@ pub(super) fn check() -> Result<()> {
     run_script("scripts/privacycheck.sh")?;
     run_script("scripts/verificationprivacygen.sh")?;
     run_script("scripts/verificationpdcagen.sh")?;
+    run_script("scripts/verificationcodegengen.sh")?;
     run_script("scripts/verificationontologygen.sh")?;
     run_script("scripts/verificationconformancegen.sh")?;
     run_script("scripts/verificationschemagen.sh")?;

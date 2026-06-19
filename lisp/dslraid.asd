@@ -12,11 +12,11 @@
     :serial t
     :components
     ((:file "package") (:file "principles") (:file "markdown")
-     (:file "verification") (:file "verification_accessors")
+     (:file "verification") (:file "verification_backends") (:file "verification_accessors")
      (:file "verification_markdown")
      (:file "verification_workflow") (:file "verification_gitlab")
      (:file "verification_makefile") (:file "verification_bazel")
-     (:file "verification_release") (:file "verification_ontology")
+     (:file "verification_release") (:file "verification_ontology") (:file "verification_codegen")
      (:file "verification_privacy") (:file "verification_pdca")
      (:file "verification_conformance")
      (:file "verification_evidence") (:file "verification_schema")

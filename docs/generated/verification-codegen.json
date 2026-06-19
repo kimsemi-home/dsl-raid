@@ -1,0 +1,71 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationcodegengen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification.lisp",
+    "axes": [
+        {
+            "axis": "code",
+            "backends": [
+                "rust-code"
+            ]
+        },
+        {
+            "axis": "docs",
+            "backends": [
+                "verification-doc",
+                "docs-index"
+            ]
+        },
+        {
+            "axis": "schemas",
+            "backends": [
+                "evidence-schema",
+                "manifest-schema"
+            ]
+        },
+        {
+            "axis": "tests",
+            "backends": [
+                "test-manifest"
+            ]
+        },
+        {
+            "axis": "conformance",
+            "backends": [
+                "conformance-report",
+                "evidence-json"
+            ]
+        },
+        {
+            "axis": "github-actions",
+            "backends": [
+                "github-actions"
+            ]
+        },
+        {
+            "axis": "release-pipelines",
+            "backends": [
+                "github-release"
+            ]
+        },
+        {
+            "axis": "pdca-evidence",
+            "backends": [
+                "pdca-manifest"
+            ]
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "codegen:axis-covered",
+            "meaning": "Every ontology codegen axis maps to a backend.",
+            "check": "scripts/verificationcodegengen.sh check"
+        },
+        {
+            "id": "codegen:backend-checkable",
+            "meaning": "Every mapped backend has a check command.",
+            "check": "scripts/verificationcodegengen.sh check"
+        }
+    ]
+}

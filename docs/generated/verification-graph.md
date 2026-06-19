@@ -17,7 +17,7 @@ The generated workflow is `.github/workflows/verification.yml`.
 | unit-test | lint | Rust workspace unit test evidence. | 1 |
 | integration-test | unit-test | Viewer test and build evidence. | 3 |
 | conformance | integration-test | Unified DSLRaid semantic and generated-output gate. | 1 |
-| release-check | conformance | Generated workflow, docs index, and artifact freshness. | 17 |
+| release-check | conformance | Generated workflow, docs index, and artifact freshness. | 19 |
 
 ## Generated Backends
 
@@ -31,6 +31,9 @@ The generated workflow is `.github/workflows/verification.yml`.
 | privacy-manifest | `docs/generated/verification-privacy.json` | `scripts/verificationprivacygen.sh` |
 | pdca-manifest | `docs/generated/verification-pdca.json` | `scripts/verificationpdcagen.sh` |
 | rust-code | `generated/runtime_fsm.rs` | `scripts/lisp-rustgen.sh` |
+| verification-doc | `docs/generated/verification-graph.md` | `scripts/verificationdocgen.sh` |
+| docs-index | `docs/generated/generated-docs.md` | `scripts/gendocindex.sh` |
+| codegen-map | `docs/generated/verification-codegen.json` | `scripts/verificationcodegengen.sh` |
 | ontology-manifest | `docs/generated/verification-ontology.json` | `scripts/verificationontologygen.sh` |
 | conformance-report | `docs/generated/verification-conformance.json` | `scripts/verificationconformancegen.sh` |
 | evidence-schema | `schemas/dslraid-verification-evidence.schema.json` | `scripts/verificationschemagen.sh` |

@@ -12,6 +12,7 @@ bash scripts/backendgen.sh check
 bash scripts/agentprinciplegen.sh check
 bash scripts/agentmanifestgen.sh check
 bash scripts/verificationdocgen.sh check
+bash scripts/verificationcodegengen.sh check
 bash scripts/workflowgen.sh check
 bash scripts/gitlabgen.sh check
 bash scripts/makegen.sh check
