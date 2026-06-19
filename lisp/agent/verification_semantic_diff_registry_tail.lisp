@@ -10,7 +10,9 @@
     ("semantic-diff:backup-steward" "semantic:backup-steward"
      "Backup steward semantic receipt.")
     ("semantic-diff:revalidation-gate" "semantic:revalidation-gate"
-     "Revalidation gate semantic receipt.")))
+     "Revalidation gate semantic receipt.")
+    ("semantic-diff:evidence-separation" "semantic:evidence-separation"
+     "Evidence separation semantic receipt.")))
 
 (defparameter *verification-semantic-diffs*
   (append *verification-semantic-core-diffs*

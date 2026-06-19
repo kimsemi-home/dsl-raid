@@ -1,4 +1,4 @@
-use super::fixtures::isolated_runscope_fixture;
+use super::fixtures::{cleanup_isolated_fixture, isolated_runscope_fixture};
 use super::temp::temp_path;
 use serde_json::Value;
 use std::fs;
@@ -18,7 +18,7 @@ fn generate_writes_validation_report() {
 
     let report: Value = serde_json::from_slice(&fs::read(&out).unwrap()).unwrap();
     fs::remove_file(&out).ok();
-    fs::remove_file(&input).ok();
+    cleanup_isolated_fixture(&input);
     assert_eq!(report["run"]["mode"].as_str(), Some("validate"));
     assert_eq!(report["summary"]["status"].as_str(), Some("passed"));
 }

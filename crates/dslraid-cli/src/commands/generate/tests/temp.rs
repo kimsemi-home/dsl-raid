@@ -8,6 +8,14 @@ pub(super) fn temp_path(name: &str) -> PathBuf {
     ))
 }
 
+pub(super) fn temp_dir(name: &str) -> PathBuf {
+    std::env::temp_dir().join(format!(
+        "dslraid-generate-{name}-{}-{}",
+        std::process::id(),
+        timestamp()
+    ))
+}
+
 fn timestamp() -> u128 {
     std::time::SystemTime::now()
         .duration_since(std::time::UNIX_EPOCH)

@@ -215,6 +215,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.evidence-separation",
+            "subject": "docs/generated/verification-evidence-separation.json",
+            "check": "scripts/verificationseparationgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.evidence-before-change",
             "subject": "docs/generated/verification-evidence-before-change.json",
             "check": "scripts/verificationevidencebeforechangegen.sh check",

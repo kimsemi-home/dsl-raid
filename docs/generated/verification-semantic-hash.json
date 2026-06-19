@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "51c565fbf8b3b447c727ea890371e1a8c1722ab3f0bf09eeebb67f3d388e51a2"
+            "hash": "64c0fde7770d05c4f0c1d83ae883d63a2c04a434c1542b7e833625f02e392ad5"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "a2151c2647c35698454d60eb4e4ca4f982e272864d1736f1df5818566280df16"
+            "hash": "6fcc15c2cb2b02c71879166b7973331c7e58676cee6cd572b55dc82983d65e97"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "7835ddc3daf4c6908bfce0b853a66c81c93617cac1b11ea3685f92312d5e7c99"
+            "hash": "eff76c65be00f18ad1d41b8d01d73e8b9736f1589e41e1b8557576086f9991eb"
         },
         {
             "id": "semantic:authority",
@@ -97,7 +97,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "162917c81108606d82319ed0b3b96af6b48accc93e3d286ba803de38f209f7f6"
+            "hash": "7cad352a4901a77c0eae76bdbca8672c1ecadf27640e391840ee71513807e22e"
         },
         {
             "id": "semantic:lease",
@@ -441,6 +441,17 @@
             ],
             "meaning": "Revalidation status, authority effect, and blocked action contract.",
             "hash": "97b879a82c30d5896ccbc7a0a284fb615e3c32fcd8fb6c20380b2db4693ba9fe"
+        },
+        {
+            "id": "semantic:evidence-separation",
+            "source": "docs/generated/verification-evidence-separation.json",
+            "fields": [
+                "evidence_separation_profile",
+                "records",
+                "closure_rules"
+            ],
+            "meaning": "Raw evidence, interpretation, claim, and artifact separation contract.",
+            "hash": "0d30192c228a0ca9c3dfb4701ec97bd42846b77e053eedeca87552e51f4bdb78"
         }
     ],
     "closure_rules": [

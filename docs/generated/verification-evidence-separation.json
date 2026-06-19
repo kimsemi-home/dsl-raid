@@ -1,0 +1,70 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationseparationgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_evidence_separation.lisp",
+    "evidence_separation_profile": "raw-interpretation-claim-artifact",
+    "records": [
+        {
+            "id": "separation:runtime-trace",
+            "raw_evidence": "examples/runscope/run-001.trace.json",
+            "interpretation": "interpretation:runtime-trace",
+            "claim": "claim:trace-maps-design",
+            "artifact": "docs/generated/trace-catalog.md",
+            "policy": "raw-to-claim-via-interpretation",
+            "evidence": [
+                "docs/generated/verification-runtime-trace.json",
+                "docs/generated/verification-evidence.json"
+            ],
+            "meaning": "Runtime trace evidence becomes a claim only through design mapping."
+        },
+        {
+            "id": "separation:quality-run",
+            "raw_evidence": "examples/runscope/runscope.agent-run.json",
+            "interpretation": "interpretation:quality-sidecar",
+            "claim": "claim:quality-gate-passed",
+            "artifact": "docs/generated/agent-run-manifest.md",
+            "policy": "raw-to-claim-via-interpretation",
+            "evidence": [
+                "docs/generated/verification-sidecar.json",
+                "docs/generated/verification-confidence.json"
+            ],
+            "meaning": "Agent run claims stay distinct from sidecar verification evidence."
+        },
+        {
+            "id": "separation:artifact-lock",
+            "raw_evidence": "examples/runscope/runscope.lock.json",
+            "interpretation": "interpretation:artifact-freshness",
+            "claim": "claim:generated-artifacts-fresh",
+            "artifact": "docs/generated/verification-release-provenance.json",
+            "policy": "raw-to-claim-via-interpretation",
+            "evidence": [
+                "docs/generated/verification-release-provenance.json",
+                "docs/generated/verification-codegen.json"
+            ],
+            "meaning": "Artifact freshness is a claim derived from lock evidence."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "separation:raw-not-claim",
+            "meaning": "Raw evidence is not itself a claim.",
+            "check": "scripts/verificationseparationgen.sh check"
+        },
+        {
+            "id": "separation:claim-not-artifact",
+            "meaning": "Claims and artifacts remain separate.",
+            "check": "scripts/verificationseparationgen.sh check"
+        },
+        {
+            "id": "separation:interpretation-required",
+            "meaning": "Every claim has an interpretation.",
+            "check": "scripts/verificationseparationgen.sh check"
+        },
+        {
+            "id": "separation:evidence-linked",
+            "meaning": "Separation records cite generated evidence.",
+            "check": "scripts/verificationseparationgen.sh check"
+        }
+    ]
+}

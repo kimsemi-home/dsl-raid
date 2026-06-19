@@ -25,7 +25,12 @@
      "docs/generated/verification-revalidation-gate.json"
      "high" "revalidation-gate" "gate:evidence-quality"
      ("gates" "closure_rules")
-     "Revalidation evidence is suitable when freshness changes authority.")))
+     "Revalidation evidence is suitable when freshness changes authority.")
+    ("evidence-quality:evidence-separation"
+     "docs/generated/verification-evidence-separation.json"
+     "high" "evidence-separation" "gate:evidence-quality"
+     ("records" "closure_rules")
+     "Separation evidence is suitable when raw evidence, interpretation, claim, and artifact stay distinct.")))
 
 (defparameter *verification-evidence-quality-assessments*
   (append *verification-evidence-quality-core-assessments*

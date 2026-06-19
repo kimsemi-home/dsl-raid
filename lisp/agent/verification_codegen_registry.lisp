@@ -36,6 +36,7 @@
     ("meta-model" ("meta-model"))
     ("backup-steward" ("backup-steward"))
     ("revalidation-gate" ("revalidation-gate"))
+    ("evidence-separation" ("evidence-separation"))
     ("versioned-ssot" ("versioned-ssot"))
     ("context-map" ("context-map"))
     ("historical-interpreter" ("historical-interpreter"))

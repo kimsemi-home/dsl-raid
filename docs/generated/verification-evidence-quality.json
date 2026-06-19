@@ -448,6 +448,18 @@
                 "closure_rules"
             ],
             "meaning": "Revalidation evidence is suitable when freshness changes authority."
+        },
+        {
+            "id": "evidence-quality:evidence-separation",
+            "target": "docs/generated/verification-evidence-separation.json",
+            "quality": "high",
+            "purpose": "evidence-separation",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "records",
+                "closure_rules"
+            ],
+            "meaning": "Separation evidence is suitable when raw evidence, interpretation, claim, and artifact stay distinct."
         }
     ],
     "closure_rules": [

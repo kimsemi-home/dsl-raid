@@ -20,7 +20,11 @@
     ("semantic:revalidation-gate"
      "docs/generated/verification-revalidation-gate.json"
      ("revalidation_profile" "gates" "closure_rules")
-     "Revalidation status, authority effect, and blocked action contract.")))
+     "Revalidation status, authority effect, and blocked action contract.")
+    ("semantic:evidence-separation"
+     "docs/generated/verification-evidence-separation.json"
+     ("evidence_separation_profile" "records" "closure_rules")
+     "Raw evidence, interpretation, claim, and artifact separation contract.")))
 
 (defparameter *verification-semantic-hashes*
   (append *verification-semantic-core-hashes*
