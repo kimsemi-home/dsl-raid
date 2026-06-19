@@ -14,6 +14,7 @@
     ("semantic-diff" ("semantic-diff"))
     ("authority-gate" ("authority-manifest"))
     ("access-policy" ("access-policy"))
+    ("reasoning-access" ("reasoning-access"))
     ("reliability-registry" ("reliability-registry"))
     ("cross-agent-agreement" ("agreement-manifest"))
     ("evidence-quality" ("evidence-quality"))

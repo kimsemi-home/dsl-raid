@@ -83,6 +83,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.reasoning-access",
+            "subject": "docs/generated/verification-reasoning-access.json",
+            "check": "scripts/verificationreasoninggen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.reliability-registry",
             "subject": "docs/generated/verification-reliability.json",
             "check": "scripts/verificationreliabilitygen.sh check",

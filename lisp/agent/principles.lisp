@@ -9,6 +9,7 @@
     ("verification-sidecar" "Producer output" "Independent verification evidence" "The producer and final verifier must be separate roles.")
     ("authority-gate" "Change candidate" "Approved, rejected, or escalated decision" "Agents may propose and verify, but governance owns authority.")
     ("access-policy" "Role and context" "RBAC, ABAC, and authority decision" "Capability does not imply permission; context still gates reasoning authority.")
+    ("reasoning-access" "Reasoning tier and domain context" "Allowed, blocked, or review-bound authority" "Higher reasoning means stronger verification, not automatic approval.")
     ("reliability-registry" "Agent run history" "Tier, confidence ceiling, and cold-start gate" "Agents are trusted by measured history, not by fluent claims.")
     ("cold-start-gate" "Unproven agent authority request" "Proposal, shadow, or bounded operation" "New agents must earn authority through evidence, not capability alone.")
     ("cross-agent-agreement" "Producer and reviewers" "Isolated agreement with adversarial review" "Agreement is useful only when reviewers are independent and evidence-backed.")

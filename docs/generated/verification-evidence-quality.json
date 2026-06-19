@@ -462,6 +462,18 @@
             "meaning": "Cold-start evidence is suitable when early authority is blocked."
         },
         {
+            "id": "evidence-quality:reasoning-access",
+            "target": "docs/generated/verification-reasoning-access.json",
+            "quality": "high",
+            "purpose": "reasoning-access",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "records",
+                "closure_rules"
+            ],
+            "meaning": "Reasoning access evidence is suitable when tier never implies approval."
+        },
+        {
             "id": "evidence-quality:evidence-separation",
             "target": "docs/generated/verification-evidence-separation.json",
             "quality": "high",

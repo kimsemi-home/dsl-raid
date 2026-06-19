@@ -25,6 +25,10 @@
      "docs/generated/verification-cold-start-gate.json"
      ("cold_start_profile" "gates" "closure_rules")
      "Cold-start stage, authority effect, and promotion evidence contract.")
+    ("semantic:reasoning-access"
+     "docs/generated/verification-reasoning-access.json"
+     ("reasoning_access_profile" "records" "closure_rules")
+     "Reasoning tier, domain ABAC, and authority effect contract.")
     ("semantic:evidence-separation"
      "docs/generated/verification-evidence-separation.json"
      ("evidence_separation_profile" "records" "closure_rules")

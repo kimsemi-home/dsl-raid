@@ -36,6 +36,7 @@
         "semantic-diff",
         "authority-gate",
         "access-policy",
+        "reasoning-access",
         "reliability-registry",
         "cross-agent-agreement",
         "evidence-quality",

@@ -1,0 +1,125 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationreasoninggen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_reasoning_access.lisp",
+    "reasoning_access_profile": "reasoning-rbac-domain-abac",
+    "records": [
+        {
+            "id": "reasoning:r0-codegen",
+            "agent": "agent:verification-daemon",
+            "reasoning_tier": "R0",
+            "context": "verification",
+            "abac": "abac:deterministic-transform",
+            "authority_effect": "transform-only",
+            "confidence_ceiling": "low",
+            "allowed": [
+                "generate-artifact",
+                "check-stale"
+            ],
+            "blocked": [
+                "approve-authority",
+                "semantic-judgment",
+                "production-change"
+            ],
+            "evidence": [
+                "docs/generated/verification-codegen.json",
+                "docs/generated/verification-conformance.json"
+            ],
+            "owner": "owner:verification",
+            "meaning": "R0 agents perform deterministic transforms and cannot decide meaning."
+        },
+        {
+            "id": "reasoning:r2-analysis",
+            "agent": "agent:quality-runner",
+            "reasoning_tier": "R2",
+            "context": "public-surface",
+            "abac": "abac:low-risk-evidence",
+            "authority_effect": "analysis-only",
+            "confidence_ceiling": "medium",
+            "allowed": [
+                "inspect-ir",
+                "draft-diagnostic"
+            ],
+            "blocked": [
+                "merge",
+                "release",
+                "security-boundary-change"
+            ],
+            "evidence": [
+                "docs/generated/verification-evidence-quality.json",
+                "docs/generated/verification-semantic-diff.json"
+            ],
+            "owner": "owner:quality",
+            "meaning": "R2 agents may analyze bounded evidence but cannot promote artifacts."
+        },
+        {
+            "id": "reasoning:r3-root-cause",
+            "agent": "agent:semantic-debugger",
+            "reasoning_tier": "R3",
+            "context": "incident",
+            "abac": "abac:validated-evidence",
+            "authority_effect": "human-review",
+            "confidence_ceiling": "medium",
+            "allowed": [
+                "propose-root-cause",
+                "map-ontology-conflict"
+            ],
+            "blocked": [
+                "confirm-root-cause",
+                "approve-authority"
+            ],
+            "evidence": [
+                "docs/generated/verification-root-cause.json",
+                "docs/generated/verification-semantic-debugger.json"
+            ],
+            "owner": "owner:review",
+            "meaning": "R3 agents propose causes and conflicts, then require human review."
+        },
+        {
+            "id": "reasoning:r4-governance",
+            "agent": "agent:governance-reviewer",
+            "reasoning_tier": "R4",
+            "context": "ontology",
+            "abac": "abac:governance-change",
+            "authority_effect": "governance-review",
+            "confidence_ceiling": "high",
+            "allowed": [
+                "review-policy",
+                "review-ontology-change"
+            ],
+            "blocked": [
+                "self-approve",
+                "bypass-authority-gate"
+            ],
+            "evidence": [
+                "docs/generated/verification-authority.json",
+                "docs/generated/verification-adr-governance.json"
+            ],
+            "owner": "governance:ontology",
+            "meaning": "R4 reasoning can review governance but still cannot self-approve."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "reasoning:tier-is-not-authority",
+            "meaning": "Higher reasoning tier never grants approval.",
+            "check": "scripts/verificationreasoninggen.sh check"
+        },
+        {
+            "id": "reasoning:context-gates-tier",
+            "meaning": "Sensitive contexts require governance review.",
+            "check": "scripts/verificationreasoninggen.sh check"
+        },
+        {
+            "id": "reasoning:evidence-required",
+            "meaning": "Reasoning authority cites generated evidence.",
+            "check": "scripts/verificationreasoninggen.sh check"
+        },
+        {
+            "id": "reasoning:r0-transform-only",
+            "meaning": "R0 agents only run deterministic transforms.",
+            "check": "scripts/verificationreasoninggen.sh check"
+        }
+    ]
+}

@@ -13,6 +13,8 @@
      "Revalidation gate semantic receipt.")
     ("semantic-diff:cold-start-gate" "semantic:cold-start-gate"
      "Cold-start gate semantic receipt.")
+    ("semantic-diff:reasoning-access" "semantic:reasoning-access"
+     "Reasoning access semantic receipt.")
     ("semantic-diff:evidence-separation" "semantic:evidence-separation"
      "Evidence separation semantic receipt.")))
 

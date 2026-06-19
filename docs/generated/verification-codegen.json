@@ -87,6 +87,12 @@
             ]
         },
         {
+            "axis": "reasoning-access",
+            "backends": [
+                "reasoning-access"
+            ]
+        },
+        {
             "axis": "reliability-registry",
             "backends": [
                 "reliability-registry"

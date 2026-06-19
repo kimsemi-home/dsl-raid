@@ -24,6 +24,7 @@
     {"backend": "semantic-diff", "output": "docs/generated/verification-semantic-diff.json", "generator": "scripts/verificationdiffgen.sh", "check": "scripts/verificationdiffgen.sh check"},
     {"backend": "authority-manifest", "output": "docs/generated/verification-authority.json", "generator": "scripts/verificationauthoritygen.sh", "check": "scripts/verificationauthoritygen.sh check"},
     {"backend": "access-policy", "output": "docs/generated/verification-access-policy.json", "generator": "scripts/verificationaccessgen.sh", "check": "scripts/verificationaccessgen.sh check"},
+    {"backend": "reasoning-access", "output": "docs/generated/verification-reasoning-access.json", "generator": "scripts/verificationreasoninggen.sh", "check": "scripts/verificationreasoninggen.sh check"},
     {"backend": "reliability-registry", "output": "docs/generated/verification-reliability.json", "generator": "scripts/verificationreliabilitygen.sh", "check": "scripts/verificationreliabilitygen.sh check"},
     {"backend": "agreement-manifest", "output": "docs/generated/verification-agreement.json", "generator": "scripts/verificationagreementgen.sh", "check": "scripts/verificationagreementgen.sh check"},
     {"backend": "evidence-quality", "output": "docs/generated/verification-evidence-quality.json", "generator": "scripts/verificationevidencequalitygen.sh", "check": "scripts/verificationevidencequalitygen.sh check"},
@@ -76,7 +77,7 @@
     {"id": "unit-test", "commands": 1, "evidence": "Rust workspace unit test evidence."},
     {"id": "integration-test", "commands": 3, "evidence": "Viewer test and build evidence."},
     {"id": "conformance", "commands": 1, "evidence": "Unified DSLRaid semantic and generated-output gate."},
-    {"id": "release-check", "commands": 60, "evidence": "Generated workflow, docs index, and artifact freshness."}
+    {"id": "release-check", "commands": 61, "evidence": "Generated workflow, docs index, and artifact freshness."}
   ],
   "pdca": [
     "plan",

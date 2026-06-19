@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "72d076bcaf3268be3673a655bea3ed2fb1231d9911bd8ba2c4290aeb17443ca5"
+            "hash": "88c47b128766f308e6d63589f4c3b16cf832431b40c1d67498a23063b05301b5"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "3ebdfd702510ef1c95ed29803287b28a3a9c5b3b44f1200d801d182651045d74"
+            "hash": "87af5901d44a167e3aacd4e2d08920fe0c860212eac224137a00c9162865549e"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "b323dfdcc50aaad2dde8e897d18ba10a4de9209b088470a4de36c4f1eabef478"
+            "hash": "99c4a27a59fe7d8e0010231c2bd7ec0cce4ab87453a1f2eb2fc9431a19b2b55c"
         },
         {
             "id": "semantic:authority",
@@ -97,7 +97,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "aef100076612f2912ebe33989cb7867a1a23954799a86ca9040cfe4b026d03be"
+            "hash": "78e2408bfca06628e743e758b0ec9f2ce6fe3d8a2e054d1fc997a239a32eb33c"
         },
         {
             "id": "semantic:lease",
@@ -452,6 +452,17 @@
             ],
             "meaning": "Cold-start stage, authority effect, and promotion evidence contract.",
             "hash": "acad9d454b0add8ad40c2e619e9c559c9b25cfdcf597146d8429478d2709803d"
+        },
+        {
+            "id": "semantic:reasoning-access",
+            "source": "docs/generated/verification-reasoning-access.json",
+            "fields": [
+                "reasoning_access_profile",
+                "records",
+                "closure_rules"
+            ],
+            "meaning": "Reasoning tier, domain ABAC, and authority effect contract.",
+            "hash": "27df89e1bbc273069b74b67387aea2d81404027e512cc6c8e5c9fdd65219c143"
         },
         {
             "id": "semantic:evidence-separation",

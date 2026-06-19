@@ -31,6 +31,11 @@
      "high" "cold-start-gate" "gate:evidence-quality"
      ("gates" "closure_rules")
      "Cold-start evidence is suitable when early authority is blocked.")
+    ("evidence-quality:reasoning-access"
+     "docs/generated/verification-reasoning-access.json"
+     "high" "reasoning-access" "gate:evidence-quality"
+     ("records" "closure_rules")
+     "Reasoning access evidence is suitable when tier never implies approval.")
     ("evidence-quality:evidence-separation"
      "docs/generated/verification-evidence-separation.json"
      "high" "evidence-separation" "gate:evidence-quality"

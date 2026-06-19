@@ -13,6 +13,7 @@
     ("semantic-diff" "docs/generated/verification-semantic-diff.json" "scripts/verificationdiffgen.sh")
     ("authority-manifest" "docs/generated/verification-authority.json" "scripts/verificationauthoritygen.sh")
     ("access-policy" "docs/generated/verification-access-policy.json" "scripts/verificationaccessgen.sh")
+    ("reasoning-access" "docs/generated/verification-reasoning-access.json" "scripts/verificationreasoninggen.sh")
     ("reliability-registry" "docs/generated/verification-reliability.json" "scripts/verificationreliabilitygen.sh")
     ("agreement-manifest" "docs/generated/verification-agreement.json" "scripts/verificationagreementgen.sh")
     ("evidence-quality" "docs/generated/verification-evidence-quality.json" "scripts/verificationevidencequalitygen.sh")
