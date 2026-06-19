@@ -156,6 +156,12 @@
             "backends": [
                 "ontology-transition"
             ]
+        },
+        {
+            "axis": "ssot-defect",
+            "backends": [
+                "ssot-defect"
+            ]
         }
     ],
     "closure_rules": [

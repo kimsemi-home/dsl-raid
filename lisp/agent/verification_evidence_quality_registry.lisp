@@ -62,4 +62,8 @@
      "docs/generated/verification-ontology-transition.json" "high"
      "ontology-transition" "gate:evidence-quality"
      ("transitions" "closure_rules")
-     "Ontology transition evidence is suitable when lanes and cutover are gated.")))
+     "Ontology transition evidence is suitable when lanes and cutover are gated.")
+    ("evidence-quality:ssot-defect"
+     "docs/generated/verification-ssot-defect.json" "high"
+     "ssot-defect" "gate:evidence-quality" ("defects" "closure_rules")
+     "SSOT defect evidence is suitable when freeze and migration are explicit.")))

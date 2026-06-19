@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "fef57a24957d15276497265754982ae23309f6644f6b6b1be71a1e2ee15add97"
+            "hash": "3227b18ec225dab9523d1f507ab3c76b526013f51106d27bcb332bedf6f8884a"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "a5d188703b989e4c2d060b37c88bab1b222b48f1003032dd3f5d0d70c541ad77"
+            "hash": "45d36e9616268664323d0ebff2ca0944f9160962d9d134a6e500ad8551b8dd4e"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "28e92a5ba7f548b2bbff363e6653ff62023acf9c423fc177749ace259a9164f0"
+            "hash": "e42f59ee0a49c221a88b6deba70ab2f5c49602954825a28dfd269c420885664d"
         },
         {
             "id": "semantic:authority",
@@ -64,7 +64,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "57ca281992b55546f1d0ff230a59eab21b2f1b7959a629bd187b542eae0198a1"
+            "hash": "5a513bd1987bde903f961d0a02fb791b2eae80d21e4ce856f6f1c3253d8cdde5"
         },
         {
             "id": "semantic:lease",
@@ -199,6 +199,17 @@
             ],
             "meaning": "Ontology transition lane and cutover contract.",
             "hash": "fa7402c9cd4a4cf96114893c9f7ff7fba1976d446e8c47dc8d9c67c02849652e"
+        },
+        {
+            "id": "semantic:ssot-defect",
+            "source": "docs/generated/verification-ssot-defect.json",
+            "fields": [
+                "ssot_defect_profile",
+                "defects",
+                "closure_rules"
+            ],
+            "meaning": "SSOT defect freeze, migration, and verification contract.",
+            "hash": "a7746bdea6dfc57ab734aaff0949cdc87157646dde197630be383bc59be1e0fb"
         }
     ],
     "closure_rules": [

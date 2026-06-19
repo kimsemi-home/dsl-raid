@@ -47,6 +47,7 @@
         "versioned-ssot",
         "context-map",
         "historical-interpreter",
-        "ontology-transition"
+        "ontology-transition",
+        "ssot-defect"
     ]
 }

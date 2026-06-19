@@ -57,4 +57,7 @@
     ("semantic:ontology-transition"
      "docs/generated/verification-ontology-transition.json"
      ("ontology_transition_profile" "transitions" "closure_rules")
-     "Ontology transition lane and cutover contract.")))
+     "Ontology transition lane and cutover contract.")
+    ("semantic:ssot-defect" "docs/generated/verification-ssot-defect.json"
+     ("ssot_defect_profile" "defects" "closure_rules")
+     "SSOT defect freeze, migration, and verification contract.")))

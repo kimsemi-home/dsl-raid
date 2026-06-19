@@ -32,7 +32,7 @@
             "id": "test:verification.node.release-check",
             "subject": "verify:daemon/release-check",
             "kind": "verification-node",
-            "commands": 36
+            "commands": 37
         },
         {
             "id": "test:verification.backend.github-actions",
@@ -177,6 +177,12 @@
             "subject": "docs/generated/verification-ontology-transition.json",
             "kind": "generated-backend",
             "generator": "scripts/verificationtransitiongen.sh"
+        },
+        {
+            "id": "test:verification.backend.ssot-defect",
+            "subject": "docs/generated/verification-ssot-defect.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationssotdefectgen.sh"
         },
         {
             "id": "test:verification.backend.rust-code",

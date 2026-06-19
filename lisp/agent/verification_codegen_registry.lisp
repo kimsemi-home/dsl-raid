@@ -25,7 +25,8 @@
     ("versioned-ssot" ("versioned-ssot"))
     ("context-map" ("context-map"))
     ("historical-interpreter" ("historical-interpreter"))
-    ("ontology-transition" ("ontology-transition"))))
+    ("ontology-transition" ("ontology-transition"))
+    ("ssot-defect" ("ssot-defect"))))
 
 (defparameter *verification-codegen-rules*
   '(("codegen:axis-covered" "Every ontology codegen axis maps to a backend.")

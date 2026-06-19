@@ -900,6 +900,51 @@
                     }
                 }
             }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
+                "ssot_defect_profile",
+                "defects",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationssotdefectgen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "ssot_defect_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "defects": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/ssot_defect_record"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
         }
     ],
     "$defs": {
@@ -1789,6 +1834,68 @@
                     "$ref": "#/$defs/strings"
                 },
                 "cutover_gate": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "ssot_defect_record": {
+            "type": "object",
+            "required": [
+                "id",
+                "ssot",
+                "defect_kind",
+                "status",
+                "affected_scope",
+                "freeze",
+                "migration_plan",
+                "verification_plan",
+                "authority",
+                "evidence",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "ssot": {
+                    "$ref": "#/$defs/path"
+                },
+                "defect_kind": {
+                    "enum": [
+                        "contract-drift",
+                        "semantic-drift",
+                        "generation-drift"
+                    ]
+                },
+                "status": {
+                    "enum": [
+                        "drill",
+                        "candidate",
+                        "confirmed",
+                        "closed"
+                    ]
+                },
+                "affected_scope": {
+                    "$ref": "#/$defs/strings"
+                },
+                "freeze": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "migration_plan": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "verification_plan": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "authority": {
                     "$ref": "#/$defs/semantic_ref"
                 },
                 "evidence": {

@@ -155,6 +155,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.ssot-defect",
+            "subject": "docs/generated/verification-ssot-defect.json",
+            "check": "scripts/verificationssotdefectgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.rust-code",
             "subject": "generated/runtime_fsm.rs",
             "check": "scripts/lisp-rustgen.sh check",

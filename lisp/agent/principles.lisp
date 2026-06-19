@@ -13,6 +13,7 @@
     ("quarantine" "Suspicious output or tool behavior" "Isolated evidence bundle" "Quarantine blocks artifact commit, confidence increase, and automatic approval.")
     ("loss-ledger" "Cross-context translation" "Recorded semantic loss" "Lossy translation must declare what was lost; forbidden loss blocks promotion.")
     ("semantic-diff" "Generated artifact or SSOT change" "Meaning-level delta" "File diff is not enough; semantic hash and semantic diff drive review.")
+    ("ssot-defect" "Official source defect candidate" "Freeze, migration, verification" "When the SSOT is wrong, affected outputs freeze before patching.")
     ("review-capacity" "Human review queue" "Prioritized review or debt" "Human review is finite; overload freezes high-risk automation.")
     ("feedback-closure" "Failure, gap, or retrospective" "Policy, ontology, spec, owner, or revalidation update" "A loop that does not update knowledge remains open evidence.")))
 

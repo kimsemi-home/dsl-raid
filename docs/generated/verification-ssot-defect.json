@@ -1,0 +1,46 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationssotdefectgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification.lisp",
+    "ssot_defect_profile": "freeze-migrate-verify",
+    "defects": [
+        {
+            "id": "ssot-defect:verification-graph-contract",
+            "ssot": "lisp/agent/verification.lisp",
+            "defect_kind": "contract-drift",
+            "status": "drill",
+            "affected_scope": [
+                "verify:daemon",
+                "versioned-ssot:verification-graph"
+            ],
+            "freeze": "freeze:affected-verification-scope",
+            "migration_plan": "migration:verification-graph-patch",
+            "verification_plan": "verification:full-gate",
+            "authority": "gate:authority",
+            "evidence": [
+                "docs/generated/verification-versioned-ssot.json",
+                "docs/generated/verification-semantic-diff.json",
+                "docs/generated/verification-evidence-before-change.json"
+            ],
+            "meaning": "SSOT defect drill freezes derived backends before patch."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "ssot-defect:freeze-first",
+            "meaning": "Affected generated surfaces freeze first.",
+            "check": "scripts/verificationssotdefectgen.sh check"
+        },
+        {
+            "id": "ssot-defect:migration-required",
+            "meaning": "SSOT patch names migration plan.",
+            "check": "scripts/verificationssotdefectgen.sh check"
+        },
+        {
+            "id": "ssot-defect:authority-gated",
+            "meaning": "Defect closure is governance-gated.",
+            "check": "scripts/verificationssotdefectgen.sh check"
+        }
+    ]
+}

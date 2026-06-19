@@ -36,4 +36,6 @@
     ("semantic-diff:historical-interpreter" "semantic:historical-interpreter"
      "Historical interpreter semantic receipt.")
     ("semantic-diff:ontology-transition" "semantic:ontology-transition"
-     "Ontology transition semantic receipt.")))
+     "Ontology transition semantic receipt.")
+    ("semantic-diff:ssot-defect" "semantic:ssot-defect"
+     "SSOT defect semantic receipt.")))
