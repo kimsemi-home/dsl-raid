@@ -137,6 +137,8 @@ jobs:
           grep -q 'scripts/makegen.sh' "$owner"
           grep -q 'scripts/bazelgen.sh' "$owner"
           grep -q 'scripts/releasegen.sh' "$owner"
+          grep -q 'scripts/privacycheck.sh' "$owner"
+          grep -q 'scripts/verificationprivacygen.sh' "$owner"
           grep -q 'scripts/verificationontologygen.sh' "$owner"
           grep -q 'scripts/verificationconformancegen.sh' "$owner"
           grep -q 'scripts/verificationschemagen.sh' "$owner"

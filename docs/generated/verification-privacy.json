@@ -1,0 +1,39 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationprivacygen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification.lisp",
+    "visibility": "public",
+    "public_surface_roots": [
+        "docs",
+        "examples",
+        "schemas",
+        "tests/golden",
+        ".github/workflows",
+        "scripts",
+        "lisp",
+        "crates",
+        "apps/viewer/src",
+        "apps/viewer/tests"
+    ],
+    "rules": [
+        {
+            "id": "privacy:no-user-home-paths",
+            "meaning": "Public surfaces must not expose local user home paths.",
+            "check": "scripts/privacycheck.sh check",
+            "status": "required"
+        },
+        {
+            "id": "privacy:no-token-like-strings",
+            "meaning": "Public surfaces must not expose token-like secrets.",
+            "check": "scripts/privacycheck.sh check",
+            "status": "required"
+        },
+        {
+            "id": "privacy:generated-artifacts-public",
+            "meaning": "Generated verification artifacts must pass the public-safe gate.",
+            "check": "scripts/verificationprivacygen.sh check",
+            "status": "required"
+        }
+    ]
+}

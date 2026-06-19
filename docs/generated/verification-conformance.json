@@ -41,6 +41,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.privacy-manifest",
+            "subject": "docs/generated/verification-privacy.json",
+            "check": "scripts/verificationprivacygen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.ontology-manifest",
             "subject": "docs/generated/verification-ontology.json",
             "check": "scripts/verificationontologygen.sh check",

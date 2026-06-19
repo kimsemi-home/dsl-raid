@@ -72,6 +72,10 @@ release-check:
     - |
       bash scripts/releasegen.sh check
     - |
+      bash scripts/privacycheck.sh check
+    - |
+      bash scripts/verificationprivacygen.sh check
+    - |
       bash scripts/verificationontologygen.sh check
     - |
       bash scripts/verificationconformancegen.sh check

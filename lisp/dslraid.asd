@@ -17,6 +17,7 @@
      (:file "verification_workflow") (:file "verification_gitlab")
      (:file "verification_makefile") (:file "verification_bazel")
      (:file "verification_release") (:file "verification_ontology")
+     (:file "verification_privacy")
      (:file "verification_conformance")
      (:file "verification_evidence") (:file "verification_schema")
      (:file "verification_tests")))

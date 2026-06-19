@@ -104,16 +104,20 @@ jobs:
       - name: Run release-check command 5
         run: bash scripts/releasegen.sh check
       - name: Run release-check command 6
-        run: bash scripts/verificationontologygen.sh check
+        run: bash scripts/privacycheck.sh check
       - name: Run release-check command 7
-        run: bash scripts/verificationconformancegen.sh check
+        run: bash scripts/verificationprivacygen.sh check
       - name: Run release-check command 8
-        run: bash scripts/verificationschemagen.sh check
+        run: bash scripts/verificationontologygen.sh check
       - name: Run release-check command 9
-        run: bash scripts/verificationtestgen.sh check
+        run: bash scripts/verificationconformancegen.sh check
       - name: Run release-check command 10
-        run: bash scripts/verificationevidencegen.sh check
+        run: bash scripts/verificationschemagen.sh check
       - name: Run release-check command 11
-        run: bash scripts/gendocindex.sh check
+        run: bash scripts/verificationtestgen.sh check
       - name: Run release-check command 12
+        run: bash scripts/verificationevidencegen.sh check
+      - name: Run release-check command 13
+        run: bash scripts/gendocindex.sh check
+      - name: Run release-check command 14
         run: cargo run -p dslraid-cli -- artifact verify examples/runscope/runscope.raid.json
