@@ -215,6 +215,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.cold-start-gate",
+            "subject": "docs/generated/verification-cold-start-gate.json",
+            "check": "scripts/verificationcoldstartgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.evidence-separation",
             "subject": "docs/generated/verification-evidence-separation.json",
             "check": "scripts/verificationseparationgen.sh check",

@@ -58,6 +58,7 @@
         "meta-model",
         "backup-steward",
         "revalidation-gate",
+        "cold-start-gate",
         "evidence-separation",
         "versioned-ssot",
         "context-map",

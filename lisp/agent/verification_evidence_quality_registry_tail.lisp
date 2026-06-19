@@ -26,6 +26,11 @@
      "high" "revalidation-gate" "gate:evidence-quality"
      ("gates" "closure_rules")
      "Revalidation evidence is suitable when freshness changes authority.")
+    ("evidence-quality:cold-start-gate"
+     "docs/generated/verification-cold-start-gate.json"
+     "high" "cold-start-gate" "gate:evidence-quality"
+     ("gates" "closure_rules")
+     "Cold-start evidence is suitable when early authority is blocked.")
     ("evidence-quality:evidence-separation"
      "docs/generated/verification-evidence-separation.json"
      "high" "evidence-separation" "gate:evidence-quality"

@@ -32,7 +32,7 @@
             "id": "test:verification.node.release-check",
             "subject": "verify:daemon/release-check",
             "kind": "verification-node",
-            "commands": 59
+            "commands": 60
         },
         {
             "id": "test:verification.backend.github-actions",
@@ -237,6 +237,12 @@
             "subject": "docs/generated/verification-revalidation-gate.json",
             "kind": "generated-backend",
             "generator": "scripts/verificationrevalidationgen.sh"
+        },
+        {
+            "id": "test:verification.backend.cold-start-gate",
+            "subject": "docs/generated/verification-cold-start-gate.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationcoldstartgen.sh"
         },
         {
             "id": "test:verification.backend.evidence-separation",

@@ -450,6 +450,18 @@
             "meaning": "Revalidation evidence is suitable when freshness changes authority."
         },
         {
+            "id": "evidence-quality:cold-start-gate",
+            "target": "docs/generated/verification-cold-start-gate.json",
+            "quality": "high",
+            "purpose": "cold-start-gate",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "gates",
+                "closure_rules"
+            ],
+            "meaning": "Cold-start evidence is suitable when early authority is blocked."
+        },
+        {
             "id": "evidence-quality:evidence-separation",
             "target": "docs/generated/verification-evidence-separation.json",
             "quality": "high",

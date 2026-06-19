@@ -219,6 +219,12 @@
             ]
         },
         {
+            "axis": "cold-start-gate",
+            "backends": [
+                "cold-start-gate"
+            ]
+        },
+        {
             "axis": "evidence-separation",
             "backends": [
                 "evidence-separation"

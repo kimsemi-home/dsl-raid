@@ -1,0 +1,109 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationcoldstartgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_cold_start_gate.lisp",
+    "cold_start_profile": "authority-onboarding",
+    "gates": [
+        {
+            "id": "cold-start:candidate",
+            "agent": "agent:candidate",
+            "stage": "candidate",
+            "authority_effect": "proposal-only",
+            "allowed": [
+                "read-public-ir",
+                "draft-claim"
+            ],
+            "blocked": [
+                "commit-artifact",
+                "approve-authority",
+                "production-change",
+                "major-ontology-change"
+            ],
+            "promotion_requires": [
+                "sidecar-verification",
+                "reliability-history",
+                "human-review"
+            ],
+            "promotion_owner": "owner:review",
+            "evidence": [
+                "docs/generated/verification-reliability.json",
+                "docs/generated/verification-sidecar.json"
+            ],
+            "meaning": "Candidate agents can propose but cannot change production authority."
+        },
+        {
+            "id": "cold-start:shadow",
+            "agent": "agent:shadow",
+            "stage": "shadow",
+            "authority_effect": "shadow-only",
+            "allowed": [
+                "shadow-run",
+                "compare-output"
+            ],
+            "blocked": [
+                "write-artifact",
+                "merge",
+                "release"
+            ],
+            "promotion_requires": [
+                "agreement-review",
+                "orchestration-receipt",
+                "adversarial-review"
+            ],
+            "promotion_owner": "owner:orchestration",
+            "evidence": [
+                "docs/generated/verification-orchestration.json",
+                "docs/generated/verification-agreement.json"
+            ],
+            "meaning": "Shadow agents compare decisions without changing operational state."
+        },
+        {
+            "id": "cold-start:bounded",
+            "agent": "agent:quality-runner",
+            "stage": "bounded",
+            "authority_effect": "bounded-operation",
+            "allowed": [
+                "quality-gate",
+                "generated-check"
+            ],
+            "blocked": [
+                "security-boundary-change",
+                "major-ontology-change"
+            ],
+            "promotion_requires": [
+                "revalidation-gate",
+                "security-audit",
+                "backup-steward-review"
+            ],
+            "promotion_owner": "owner:security",
+            "evidence": [
+                "docs/generated/verification-revalidation-gate.json",
+                "docs/generated/verification-security-audit.json"
+            ],
+            "meaning": "Bounded agents keep narrow automation but cannot expand sensitive authority."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "cold-start:no-production-first",
+            "meaning": "Cold-start agents cannot make production changes.",
+            "check": "scripts/verificationcoldstartgen.sh check"
+        },
+        {
+            "id": "cold-start:no-self-promotion",
+            "meaning": "Promotion owner is not the candidate agent.",
+            "check": "scripts/verificationcoldstartgen.sh check"
+        },
+        {
+            "id": "cold-start:evidence-required",
+            "meaning": "Promotion requires generated evidence.",
+            "check": "scripts/verificationcoldstartgen.sh check"
+        },
+        {
+            "id": "cold-start:blocked-actions-explicit",
+            "meaning": "Restricted authority lists blocked actions.",
+            "check": "scripts/verificationcoldstartgen.sh check"
+        }
+    ]
+}
