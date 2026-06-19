@@ -10,7 +10,9 @@
     ("semantic-diff:conformance" "semantic:conformance"
      "Conformance contract semantic receipt.")
     ("semantic-diff:authority" "semantic:authority"
-     "Authority gate semantic receipt.")))
+     "Authority gate semantic receipt.")
+    ("semantic-diff:evidence-quality" "semantic:evidence-quality"
+     "Evidence quality semantic receipt.")))
 
 (defparameter *verification-diff-rules*
   '(("diff:hash-backed" "Every semantic diff references a semantic hash.")

@@ -15,7 +15,10 @@
      "Required checks for generated backend freshness.")
     ("semantic:authority" "docs/generated/verification-authority.json"
      ("authority_profile" "decisions" "closure_rules")
-     "Governance authority gate and review decision contract.")))
+     "Governance authority gate and review decision contract.")
+    ("semantic:evidence-quality" "docs/generated/verification-evidence-quality.json"
+     ("evidence_quality_profile" "assessments" "closure_rules")
+     "Evidence quality review contract for generated verification evidence.")))
 
 (defparameter *verification-semantic-rules*
   '(("semantic:hash-recomputes" "Every semantic hash recomputes from source fields.")

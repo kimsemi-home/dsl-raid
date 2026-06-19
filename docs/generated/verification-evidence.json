@@ -23,6 +23,7 @@
     {"backend": "semantic-hash", "output": "docs/generated/verification-semantic-hash.json", "generator": "scripts/verificationsemanticgen.sh", "check": "scripts/verificationsemanticgen.sh check"},
     {"backend": "semantic-diff", "output": "docs/generated/verification-semantic-diff.json", "generator": "scripts/verificationdiffgen.sh", "check": "scripts/verificationdiffgen.sh check"},
     {"backend": "authority-manifest", "output": "docs/generated/verification-authority.json", "generator": "scripts/verificationauthoritygen.sh", "check": "scripts/verificationauthoritygen.sh check"},
+    {"backend": "evidence-quality", "output": "docs/generated/verification-evidence-quality.json", "generator": "scripts/verificationevidencequalitygen.sh", "check": "scripts/verificationevidencequalitygen.sh check"},
     {"backend": "rust-code", "output": "generated/runtime_fsm.rs", "generator": "scripts/lisp-rustgen.sh", "check": "scripts/lisp-rustgen.sh check"},
     {"backend": "verification-doc", "output": "docs/generated/verification-graph.md", "generator": "scripts/verificationdocgen.sh", "check": "scripts/verificationdocgen.sh check"},
     {"backend": "docs-index", "output": "docs/generated/generated-docs.md", "generator": "scripts/gendocindex.sh", "check": "scripts/gendocindex.sh check"},
@@ -39,7 +40,7 @@
     {"id": "unit-test", "commands": 1, "evidence": "Rust workspace unit test evidence."},
     {"id": "integration-test", "commands": 3, "evidence": "Viewer test and build evidence."},
     {"id": "conformance", "commands": 1, "evidence": "Unified DSLRaid semantic and generated-output gate."},
-    {"id": "release-check", "commands": 23, "evidence": "Generated workflow, docs index, and artifact freshness."}
+    {"id": "release-check", "commands": 24, "evidence": "Generated workflow, docs index, and artifact freshness."}
   ],
   "pdca": [
     "plan",

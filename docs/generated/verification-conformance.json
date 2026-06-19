@@ -77,6 +77,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.evidence-quality",
+            "subject": "docs/generated/verification-evidence-quality.json",
+            "check": "scripts/verificationevidencequalitygen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.rust-code",
             "subject": "generated/runtime_fsm.rs",
             "check": "scripts/lisp-rustgen.sh check",

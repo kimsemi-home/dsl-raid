@@ -34,6 +34,7 @@
         "loss-ledger",
         "semantic-hash",
         "semantic-diff",
-        "authority-gate"
+        "authority-gate",
+        "evidence-quality"
     ]
 }

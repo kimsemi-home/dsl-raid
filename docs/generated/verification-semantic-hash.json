@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "6f2d54b1a95ced56b143140df40e877e4bb17822969b75452bee873d4e1dfc07"
+            "hash": "5361450aeac51ecbf7db355eab7dbdf4307278969ee604381e8073dab3d956e8"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "f61074232ef9b2300b065b59413565a64ea9507e40d4f5f1276cecde18a68ddd"
+            "hash": "d5dc0ee2ff65918fd0410ce25dc99d8ebbc7d68369cd5dd293508033c9fa4a13"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "dd276764fbd4fad29533d0f2be7de429403e0a8d68917fe0b15677101231cff4"
+            "hash": "828e69b21ada50f26d7e29c8d47ff3bd6d1a34884b07a6183b10c701663ab307"
         },
         {
             "id": "semantic:authority",
@@ -54,6 +54,17 @@
             ],
             "meaning": "Governance authority gate and review decision contract.",
             "hash": "68ecf4f3781eaef07de93c9566592192d4e337b068d986a972621524f31d95ed"
+        },
+        {
+            "id": "semantic:evidence-quality",
+            "source": "docs/generated/verification-evidence-quality.json",
+            "fields": [
+                "evidence_quality_profile",
+                "assessments",
+                "closure_rules"
+            ],
+            "meaning": "Evidence quality review contract for generated verification evidence.",
+            "hash": "88e93c0ec486a817a48aa6c1eec9d23dc2b177cc046bf8f5d46d11e9f02dfb8d"
         }
     ],
     "closure_rules": [

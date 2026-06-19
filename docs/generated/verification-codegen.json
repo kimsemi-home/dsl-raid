@@ -78,6 +78,12 @@
             "backends": [
                 "authority-manifest"
             ]
+        },
+        {
+            "axis": "evidence-quality",
+            "backends": [
+                "evidence-quality"
+            ]
         }
     ],
     "closure_rules": [

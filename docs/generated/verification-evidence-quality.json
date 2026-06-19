@@ -1,0 +1,62 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationevidencequalitygen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification.lisp",
+    "evidence_quality_profile": "generated-evidence-review",
+    "assessments": [
+        {
+            "id": "evidence-quality:generated-evidence",
+            "target": "docs/generated/verification-evidence.json",
+            "quality": "high",
+            "purpose": "release-check",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "generated_backends",
+                "verification_nodes"
+            ],
+            "meaning": "Generated backend inventory is suitable for conformance checks."
+        },
+        {
+            "id": "evidence-quality:semantic-diff",
+            "target": "docs/generated/verification-semantic-diff.json",
+            "quality": "high",
+            "purpose": "review",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "diffs",
+                "closure_rules"
+            ],
+            "meaning": "Semantic diff receipts are suitable for meaning-level review."
+        },
+        {
+            "id": "evidence-quality:authority",
+            "target": "docs/generated/verification-authority.json",
+            "quality": "high",
+            "purpose": "authority-gate",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "decisions",
+                "closure_rules"
+            ],
+            "meaning": "Authority decisions are suitable when linked generated evidence is fresh."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "evidence-quality:target-generated",
+            "meaning": "Every assessed target is generated evidence.",
+            "check": "scripts/verificationevidencequalitygen.sh check"
+        },
+        {
+            "id": "evidence-quality:assessor-governed",
+            "meaning": "Assessment is owned by a gate, not an agent.",
+            "check": "scripts/verificationevidencequalitygen.sh check"
+        },
+        {
+            "id": "evidence-quality:signals-present",
+            "meaning": "Every assessment names reviewable signals.",
+            "check": "scripts/verificationevidencequalitygen.sh check"
+        }
+    ]
+}
