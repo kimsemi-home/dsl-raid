@@ -28,7 +28,7 @@ pub(super) fn unowned_learning_update() -> Value {
 
 fn mutated(field: &str, replacement: Value) -> Value {
     let mut value = base_manifest(adversarial(), "finished", high());
-    super::govern(&mut value);
+    super::governance::apply(&mut value);
     value["debts"][0]["updates"][0][field] = replacement;
     value
 }

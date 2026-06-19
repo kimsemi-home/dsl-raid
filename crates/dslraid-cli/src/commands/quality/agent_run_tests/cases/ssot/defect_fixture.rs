@@ -1,12 +1,11 @@
+mod governance;
 mod learning;
 mod payload;
 mod retrospective;
 
 use super::super::fixtures::adversarial;
-use super::super::fixtures::attach_producer_reliability;
 use super::super::fixtures::{base_manifest, high};
-use payload::{attach_steward_evidence, capacity, claim, quarantine, semantic_diff};
-use retrospective::review_debt;
+use payload::claim;
 use serde_json::{json, Value};
 
 pub(super) fn routine() -> Value {
@@ -17,13 +16,13 @@ pub(super) fn routine() -> Value {
 
 pub(super) fn governed() -> Value {
     let mut value = base_manifest(adversarial(), "finished", high());
-    govern(&mut value);
+    governance::apply(&mut value);
     value
 }
 
 pub(super) fn unlinked_retrospective() -> Value {
     let mut value = base_manifest(adversarial(), "finished", high());
-    govern(&mut value);
+    governance::apply(&mut value);
     value["debts"][0]["evidence"] = json!(["evidence:trace"]);
     value
 }
@@ -50,20 +49,4 @@ pub(super) fn unverified_learning_update() -> Value {
 
 pub(super) fn unowned_learning_update() -> Value {
     learning::unowned_learning_update()
-}
-
-fn govern(value: &mut Value) {
-    value["producer"]["trust_tier"] = json!("T3");
-    attach_producer_reliability(value);
-    value["authority_gate"]["profile"] = json!("governance");
-    value["authority_gate"]["scope"] = json!("authority");
-    value["authority_gate"]["human_review_required"] = json!(true);
-    value["authority_gate"]["approved_by"] = json!("steward:ops");
-    attach_steward_evidence(value);
-    value["orchestration"]["authority_profile"] = json!("governance");
-    value["review_capacity"] = capacity();
-    value["semantic_diffs"] = json!([semantic_diff()]);
-    value["containments"] = json!([quarantine()]);
-    value["claims"] = json!([claim(Some("verification:quality"))]);
-    value["debts"] = json!([review_debt()]);
 }
