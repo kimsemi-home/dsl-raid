@@ -720,6 +720,51 @@
                     }
                 }
             }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
+                "versioned_ssot_profile",
+                "scopes",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationversionedssotgen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "versioned_ssot_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "scopes": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/versioned_ssot_scope"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
         }
     ],
     "$defs": {
@@ -1445,6 +1490,47 @@
                     "items": {
                         "$ref": "#/$defs/semantic_ref"
                     }
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "versioned_ssot_scope": {
+            "type": "object",
+            "required": [
+                "id",
+                "context",
+                "ontology_version",
+                "contract_version",
+                "ssot",
+                "authority",
+                "evidence",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "context": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "ontology_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "contract_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "ssot": {
+                    "$ref": "#/$defs/path"
+                },
+                "authority": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
                 },
                 "meaning": {
                     "type": "string",

@@ -132,6 +132,12 @@
             "backends": [
                 "evidence-before-change"
             ]
+        },
+        {
+            "axis": "versioned-ssot",
+            "backends": [
+                "versioned-ssot"
+            ]
         }
     ],
     "closure_rules": [

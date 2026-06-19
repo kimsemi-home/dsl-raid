@@ -131,6 +131,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.versioned-ssot",
+            "subject": "docs/generated/verification-versioned-ssot.json",
+            "check": "scripts/verificationversionedssotgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.rust-code",
             "subject": "generated/runtime_fsm.rs",
             "check": "scripts/lisp-rustgen.sh check",

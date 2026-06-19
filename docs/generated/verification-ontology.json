@@ -43,6 +43,7 @@
         "external-confidence",
         "verification-sidecar",
         "orchestration-manifest",
-        "evidence-before-change"
+        "evidence-before-change",
+        "versioned-ssot"
     ]
 }

@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "afdecfddaa1d030214edb2c8b1db605288579c70c60804b7febc69c777983a40"
+            "hash": "bd0cf2030c25c63052c41210e4b3090aaefa2e0cd6384cfd66c61010016e5594"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "7f96f54ec2df38acfe9329e8c101924627709a1503f2eb2d714d884767baa4f0"
+            "hash": "57e060d936464b8e623a7a19efd121050f199ffaca70bee689228bd4acc084ad"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "687a3cf0d91a54f080ad39a296282831022153c6b8b371527b832beded2c802d"
+            "hash": "b5769165163aa93e66bcfc16510e03e2d0de7042d79ffd18b4a9d53fc207fe72"
         },
         {
             "id": "semantic:authority",
@@ -64,7 +64,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "3dc0bd894cd4201ea5e6601a0bee05221f49509f588ff382e1edb204ff4907bc"
+            "hash": "c3cc1c9cb93afbbf9047542b87bbcc90c8d9395e0d5d26388c13eedd1a5b0140"
         },
         {
             "id": "semantic:lease",
@@ -155,6 +155,17 @@
             ],
             "meaning": "Evidence-before-change and evidence debt contract.",
             "hash": "c26f7b80de150d7dbde13cd3f3aa1c0716b5db4e3a8402601be2fccea7eeb0dd"
+        },
+        {
+            "id": "semantic:versioned-ssot",
+            "source": "docs/generated/verification-versioned-ssot.json",
+            "fields": [
+                "versioned_ssot_profile",
+                "scopes",
+                "closure_rules"
+            ],
+            "meaning": "Context and version scoped SSOT authority contract.",
+            "hash": "89e54336d43581e69b5c0f296f23ea32ef2c64901e8b775bba866c0ae9067abb"
         }
     ],
     "closure_rules": [

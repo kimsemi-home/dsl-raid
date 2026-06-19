@@ -1,0 +1,52 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationversionedssotgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification.lisp",
+    "versioned_ssot_profile": "context-version-scoped-authority",
+    "scopes": [
+        {
+            "id": "versioned-ssot:verification-graph",
+            "context": "context:verification",
+            "ontology_version": "0.1.0",
+            "contract_version": "0.1.0",
+            "ssot": "lisp/agent/verification.lisp",
+            "authority": "gate:authority",
+            "evidence": [
+                "docs/generated/verification-ontology.json",
+                "docs/generated/verification-codegen.json"
+            ],
+            "meaning": "Verification graph authority is scoped by ontology and contract version."
+        },
+        {
+            "id": "versioned-ssot:manifest-schema",
+            "context": "context:manifest-contract",
+            "ontology_version": "0.1.0",
+            "contract_version": "0.1.0",
+            "ssot": "schemas/dslraid-verification-manifest.schema.json",
+            "authority": "gate:schema",
+            "evidence": [
+                "docs/generated/verification-conformance.json",
+                "docs/generated/verification-evidence-quality.json"
+            ],
+            "meaning": "Manifest schema authority is scoped by schema contract version."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "versioned-ssot:context",
+            "meaning": "Every SSOT authority has explicit context.",
+            "check": "scripts/verificationversionedssotgen.sh check"
+        },
+        {
+            "id": "versioned-ssot:versions",
+            "meaning": "Ontology and contract versions are explicit.",
+            "check": "scripts/verificationversionedssotgen.sh check"
+        },
+        {
+            "id": "versioned-ssot:evidence",
+            "meaning": "Version scope links generated evidence.",
+            "check": "scripts/verificationversionedssotgen.sh check"
+        }
+    ]
+}

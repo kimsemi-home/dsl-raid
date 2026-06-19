@@ -36,6 +36,8 @@
      "scripts/verificationorchestrationgen.sh")
     ("evidence-before-change" "docs/generated/verification-evidence-before-change.json"
      "scripts/verificationevidencebeforechangegen.sh")
+    ("versioned-ssot" "docs/generated/verification-versioned-ssot.json"
+     "scripts/verificationversionedssotgen.sh")
     ("rust-code" "generated/runtime_fsm.rs" "scripts/lisp-rustgen.sh")
     ("verification-doc" "docs/generated/verification-graph.md"
      "scripts/verificationdocgen.sh")

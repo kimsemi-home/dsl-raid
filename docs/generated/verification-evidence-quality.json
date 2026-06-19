@@ -136,6 +136,18 @@
                 "closure_rules"
             ],
             "meaning": "Change evidence is suitable when routine changes link evidence."
+        },
+        {
+            "id": "evidence-quality:versioned-ssot",
+            "target": "docs/generated/verification-versioned-ssot.json",
+            "quality": "high",
+            "purpose": "versioned-ssot",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "scopes",
+                "closure_rules"
+            ],
+            "meaning": "Versioned SSOT evidence is suitable when context and versions are explicit."
         }
     ],
     "closure_rules": [

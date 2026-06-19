@@ -43,4 +43,7 @@
     ("semantic:evidence-before-change"
      "docs/generated/verification-evidence-before-change.json"
      ("evidence_before_change_profile" "changes" "closure_rules")
-     "Evidence-before-change and evidence debt contract.")))
+     "Evidence-before-change and evidence debt contract.")
+    ("semantic:versioned-ssot" "docs/generated/verification-versioned-ssot.json"
+     ("versioned_ssot_profile" "scopes" "closure_rules")
+     "Context and version scoped SSOT authority contract.")))

@@ -28,4 +28,6 @@
     ("semantic-diff:orchestration" "semantic:orchestration"
      "Orchestration routing semantic receipt.")
     ("semantic-diff:evidence-before-change" "semantic:evidence-before-change"
-     "Evidence-before-change semantic receipt.")))
+     "Evidence-before-change semantic receipt.")
+    ("semantic-diff:versioned-ssot" "semantic:versioned-ssot"
+     "Versioned SSOT semantic receipt.")))

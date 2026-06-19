@@ -116,6 +116,8 @@ release-check:
     - |
       bash scripts/verificationevidencebeforechangegen.sh check
     - |
+      bash scripts/verificationversionedssotgen.sh check
+    - |
       bash scripts/lisp-rustgen.sh check
     - |
       bash scripts/verificationdocgen.sh check

@@ -32,7 +32,7 @@
             "id": "test:verification.node.release-check",
             "subject": "verify:daemon/release-check",
             "kind": "verification-node",
-            "commands": 32
+            "commands": 33
         },
         {
             "id": "test:verification.backend.github-actions",
@@ -153,6 +153,12 @@
             "subject": "docs/generated/verification-evidence-before-change.json",
             "kind": "generated-backend",
             "generator": "scripts/verificationevidencebeforechangegen.sh"
+        },
+        {
+            "id": "test:verification.backend.versioned-ssot",
+            "subject": "docs/generated/verification-versioned-ssot.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationversionedssotgen.sh"
         },
         {
             "id": "test:verification.backend.rust-code",

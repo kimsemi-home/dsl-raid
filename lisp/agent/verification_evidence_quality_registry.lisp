@@ -44,4 +44,8 @@
     ("evidence-quality:evidence-before-change"
      "docs/generated/verification-evidence-before-change.json" "high"
      "evidence-before-change" "gate:evidence-quality" ("changes" "closure_rules")
-     "Change evidence is suitable when routine changes link evidence.")))
+     "Change evidence is suitable when routine changes link evidence.")
+    ("evidence-quality:versioned-ssot"
+     "docs/generated/verification-versioned-ssot.json" "high"
+     "versioned-ssot" "gate:evidence-quality" ("scopes" "closure_rules")
+     "Versioned SSOT evidence is suitable when context and versions are explicit.")))
