@@ -14,6 +14,7 @@
     ("branch-protection" "docs/generated/verification-branch-protection.json" "scripts/verificationbranchgen.sh")
     ("actions-receipt" "docs/generated/verification-actions-receipt.json" "scripts/verificationreceiptgen.sh")
     ("source-shape" "docs/generated/verification-source-shape.json" "scripts/verificationsourcegen.sh")
+    ("objective-coverage" "docs/generated/verification-objective-coverage.json" "scripts/verificationobjectivegen.sh")
     ("adr-governance" "docs/generated/verification-adr-governance.json" "scripts/verificationadrgen.sh")
     ("backend-parity" "docs/generated/verification-backend-parity.json" "scripts/verificationparitygen.sh")
     ("github-actions-suite" "docs/generated/verification-github-actions.json" "scripts/verificationactionsgen.sh")

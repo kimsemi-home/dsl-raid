@@ -93,6 +93,12 @@
             ]
         },
         {
+            "axis": "objective-coverage",
+            "backends": [
+                "objective-coverage"
+            ]
+        },
+        {
             "axis": "pdca-evidence",
             "backends": [
                 "pdca-manifest"

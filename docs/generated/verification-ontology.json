@@ -37,6 +37,7 @@
         "branch-protection",
         "actions-receipt",
         "source-shape",
+        "objective-coverage",
         "pdca-evidence",
         "evidence-ops",
         "loss-ledger",

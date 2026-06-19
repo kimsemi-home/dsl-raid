@@ -1,0 +1,111 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationobjectivegen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_objective_coverage.lisp",
+    "objective_coverage_profile": "active-goal-trace",
+    "requirements": [
+        {
+            "id": "objective:privacy",
+            "kind": "privacy-exclusion",
+            "requirement": "public artifacts exclude personal data",
+            "gate": "gate:privacy",
+            "evidence": [
+                "docs/generated/verification-privacy.json",
+                "scripts/privacycheck.sh"
+            ],
+            "status": "tracked",
+            "meaning": "Privacy exclusion is tracked by generated privacy evidence."
+        },
+        {
+            "id": "objective:auto-merge",
+            "kind": "autonomous-merge",
+            "requirement": "merge and push through guarded automation",
+            "gate": "gate:merge-readiness",
+            "evidence": [
+                "docs/generated/verification-merge-readiness.json",
+                "docs/generated/verification-merge-automation.json"
+            ],
+            "status": "tracked",
+            "meaning": "Autonomous merge work is gated by readiness and automation policy."
+        },
+        {
+            "id": "objective:line-budget",
+            "kind": "source-shape",
+            "requirement": "source files stay within 75 lines",
+            "gate": "gate:source-shape",
+            "evidence": [
+                "docs/generated/verification-source-shape.json"
+            ],
+            "status": "tracked",
+            "meaning": "Line budget and public surface are tracked as source shape evidence."
+        },
+        {
+            "id": "objective:generated-workflows",
+            "kind": "backend-projection",
+            "requirement": "Verification Graph generates CI backends",
+            "gate": "gate:backend-parity",
+            "evidence": [
+                "docs/generated/verification-backend-parity.json",
+                ".github/workflows/verification.yml",
+                ".gitlab-ci.yml",
+                "Makefile",
+                "BUILD.bazel"
+            ],
+            "status": "tracked",
+            "meaning": "GitHub Actions, GitLab CI, Makefile, and Bazel project the same graph."
+        },
+        {
+            "id": "objective:codegen-chain",
+            "kind": "codegen-chain",
+            "requirement": "Ontology to executable SSOT to generated artifacts",
+            "gate": "gate:codegen",
+            "evidence": [
+                "docs/generated/verification-ontology.json",
+                "docs/generated/verification-codegen.json"
+            ],
+            "status": "tracked",
+            "meaning": "Code, docs, schemas, tests, conformance, actions, and releases are mapped."
+        },
+        {
+            "id": "objective:pdca",
+            "kind": "pdca-learning",
+            "requirement": "collect evidence, experiment, review, and improve",
+            "gate": "gate:pdca",
+            "evidence": [
+                "docs/generated/verification-pdca.json",
+                "docs/generated/verification-experiment-loop.json"
+            ],
+            "status": "tracked",
+            "meaning": "PDCA and experiments are explicit evidence before policy."
+        },
+        {
+            "id": "objective:remote-actions",
+            "kind": "actions-receipt",
+            "requirement": "remote GitHub Actions receipt",
+            "gate": "gate:actions-receipt",
+            "evidence": [
+                "docs/generated/verification-actions-receipt.json"
+            ],
+            "status": "tracked",
+            "meaning": "Remote run result is tracked by head SHA, conclusion, and URL."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "objective-coverage:evidence-linked",
+            "meaning": "Every objective row cites evidence.",
+            "check": "scripts/verificationobjectivegen.sh check"
+        },
+        {
+            "id": "objective-coverage:no-completion-claim",
+            "meaning": "Coverage tracks evidence without declaring final completion.",
+            "check": "scripts/verificationobjectivegen.sh check"
+        },
+        {
+            "id": "objective-coverage:gates-present",
+            "meaning": "Named gates must map to generated manifests.",
+            "check": "scripts/verificationobjectivegen.sh check"
+        }
+    ]
+}

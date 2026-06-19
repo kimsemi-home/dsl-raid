@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "bc7ceb666b46a6d8eb1993b60e2c17b54cad4a4e39e6d77ce536552498f38758"
+            "hash": "6f3b88cf3b82bb00a1928f7d633b702199eb056fb443977b764680a5374723c0"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "8d3323beda0ce8df8f0acab40eff7e346227f971a0d2281820fb3c4bedfff556"
+            "hash": "95ac758d029845e2306e32763b71d5e3fc5d6d16fd42cbf58b09da5f6a2ade20"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "5be56f8012dc219f982f39a1c7b5f76512d1cd6ea3a55c85f91e4ce8732ab59a"
+            "hash": "5acf63700e27136103a5a4afab26e55e6891c79a795248a42f71ae7cbde7989d"
         },
         {
             "id": "semantic:authority",
@@ -97,7 +97,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "461c473b76faa9be2b047934672d35ddfd0765a77a585b1ce5ea502ffd9eb86c"
+            "hash": "2cbf2b32744da89aa9de9d20caffaf270aa6127eba31e40801b663c67921ef83"
         },
         {
             "id": "semantic:lease",
@@ -595,6 +595,17 @@
             ],
             "meaning": "Source line budget and public surface minimization contract.",
             "hash": "c4ae6ccb4b55aeae8b342501034be04628f770aa00be52b39215275bea02b7c4"
+        },
+        {
+            "id": "semantic:objective-coverage",
+            "source": "docs/generated/verification-objective-coverage.json",
+            "fields": [
+                "objective_coverage_profile",
+                "requirements",
+                "closure_rules"
+            ],
+            "meaning": "Active objective requirement-to-evidence coverage contract.",
+            "hash": "115c3a165df4c405ca4c02d56f4524a5160e8a1fda3eb122a15438f8b666077c"
         }
     ],
     "closure_rules": [

@@ -26,6 +26,11 @@
      "high" "source-shape" "gate:evidence-quality"
      ("budgets" "closure_rules")
      "Source shape evidence is suitable when budget and public entrypoint are explicit.")
+    ("evidence-quality:objective-coverage"
+     "docs/generated/verification-objective-coverage.json"
+     "high" "objective-coverage" "gate:evidence-quality"
+     ("requirements" "closure_rules")
+     "Objective coverage evidence is suitable when each requirement cites evidence.")
     ("evidence-quality:incompleteness-ledger"
      "docs/generated/verification-incompleteness-ledger.json"
      "high" "incompleteness-ledger" "gate:evidence-quality"

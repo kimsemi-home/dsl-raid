@@ -169,6 +169,7 @@ jobs:
           grep -q 'scripts/verificationbranchgen.sh' "$owner"
           grep -q 'scripts/verificationreceiptgen.sh' "$owner"
           grep -q 'scripts/verificationsourcegen.sh' "$owner"
+          grep -q 'scripts/verificationobjectivegen.sh' "$owner"
           grep -q 'scripts/verificationadrgen.sh' "$owner"
           grep -q 'scripts/verificationparitygen.sh' "$owner"
           grep -q 'scripts/verificationactionsgen.sh' "$owner"

@@ -20,6 +20,7 @@ Failures must become evidence, diagnostics, or generated knowledge updates.
 | branch-protection | Main branch and required checks | Protected merge contract | Required checks are executable evidence, not repository folklore. |
 | actions-receipt | Remote workflow run | Head SHA, conclusion, URL, and Pages receipt | Remote CI success is accepted only as structured evidence. |
 | source-shape | Source files and public entrypoints | 75-line budget and minimal quality surface | Complexity is managed by exposed surface, not by hiding file count. |
+| objective-coverage | Active goal requirements | Tracked requirement-to-evidence map | Goal progress stays inspectable without pretending the whole product is finished. |
 | versioned-ssot | Context, ontology version, contract version | Scoped authority | SSOT authority is valid only inside an explicit context and version. |
 | evidence-graph | Raw evidence, interpretation, claim, artifact | Traceable evidence links | Unlinked evidence cannot justify high confidence or authority. |
 | evidence-ops | CI, deploy, experiment, and incident loop | Evidence graph update and conformance claim | Operations are evidence generation, not mere automation. |

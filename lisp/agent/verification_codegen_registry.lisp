@@ -15,6 +15,7 @@
     ("branch-protection" ("branch-protection"))
     ("actions-receipt" ("actions-receipt"))
     ("source-shape" ("source-shape"))
+    ("objective-coverage" ("objective-coverage"))
     ("pdca-evidence" ("pdca-manifest"))
     ("evidence-ops" ("evidence-ops"))
     ("loss-ledger" ("loss-ledger"))

@@ -227,6 +227,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.objective-coverage",
+            "subject": "docs/generated/verification-objective-coverage.json",
+            "check": "scripts/verificationobjectivegen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.adr-governance",
             "subject": "docs/generated/verification-adr-governance.json",
             "check": "scripts/verificationadrgen.sh check",

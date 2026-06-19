@@ -236,4 +236,6 @@ jobs:
       - name: Run release-check command 71
         run: bash scripts/verificationsourcegen.sh check
       - name: Run release-check command 72
+        run: bash scripts/verificationobjectivegen.sh check
+      - name: Run release-check command 73
         run: cargo run -p dslraid-cli -- artifact verify examples/runscope/runscope.raid.json

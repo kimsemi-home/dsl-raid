@@ -1,6 +1,7 @@
 use super::Fixture;
 
 mod merge;
+mod objective;
 mod shape;
 mod tail;
 
@@ -10,6 +11,7 @@ pub(super) fn schemas() -> impl Iterator<Item = Fixture> {
     core_schemas()
         .into_iter()
         .chain(merge::schemas())
+        .chain(objective::schemas())
         .chain(shape::schemas())
         .chain(tail::schemas())
 }
