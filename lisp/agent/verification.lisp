@@ -35,6 +35,7 @@
        "bash scripts/gitlabgen.sh check"
        "bash scripts/makegen.sh check"
        "bash scripts/bazelgen.sh check"
+       "bash scripts/releasegen.sh check"
        "bash scripts/verificationschemagen.sh check"
        "bash scripts/verificationtestgen.sh check"
        "bash scripts/verificationevidencegen.sh check"
@@ -46,6 +47,7 @@
     ("gitlab-ci" ".gitlab-ci.yml" "scripts/gitlabgen.sh")
     ("local-makefile" "Makefile" "scripts/makegen.sh")
     ("bazel" "BUILD.bazel" "scripts/bazelgen.sh")
+    ("github-release" ".github/workflows/release.yml" "scripts/releasegen.sh")
     ("evidence-schema" "schemas/dslraid-verification-evidence.schema.json"
      "scripts/verificationschemagen.sh")
     ("test-manifest" "tests/golden/verification-graph.generated.json"

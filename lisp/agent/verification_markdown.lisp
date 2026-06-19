@@ -42,7 +42,7 @@
 (defun write-pdca-loop (out)
   (format out "~%## Evidence Loop~%~%")
   (format out "- Plan: edit the Common Lisp verification graph.~%")
-  (format out "- Do: generate CI, local, and Bazel surfaces.~%")
+  (format out "- Do: generate CI, release, local, and Bazel surfaces.~%")
   (format out "- Check: run generator checks and quality gates.~%")
   (format out "- Act: update the SSOT when a generated backend fails.~%"))
 
@@ -50,7 +50,7 @@
   (format out "~%## Contract~%~%")
   (format out "- Common Lisp is the executable verification SSOT.~%")
   (format out "- GitHub Actions YAML is generated evidence plumbing.~%")
-  (format out "- Every generated workflow change must pass workflowgen check.~%")
+  (format out "- Every generated workflow change must pass its generator check.~%")
   (format out "- Machine-readable evidence must pass verificationevidencegen check.~%")
   (format out "- Release checks must prove docs, workflows, and artifacts are fresh.~%"))
 

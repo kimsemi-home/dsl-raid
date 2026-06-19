@@ -17,7 +17,7 @@ The generated workflow is `.github/workflows/verification.yml`.
 | unit-test | lint | Rust workspace unit test evidence. | 1 |
 | integration-test | unit-test | Viewer test and build evidence. | 3 |
 | conformance | integration-test | Unified DSLRaid semantic and generated-output gate. | 1 |
-| release-check | conformance | Generated workflow, docs index, and artifact freshness. | 9 |
+| release-check | conformance | Generated workflow, docs index, and artifact freshness. | 10 |
 
 ## Generated Backends
 
@@ -27,6 +27,7 @@ The generated workflow is `.github/workflows/verification.yml`.
 | gitlab-ci | `.gitlab-ci.yml` | `scripts/gitlabgen.sh` |
 | local-makefile | `Makefile` | `scripts/makegen.sh` |
 | bazel | `BUILD.bazel` | `scripts/bazelgen.sh` |
+| github-release | `.github/workflows/release.yml` | `scripts/releasegen.sh` |
 | evidence-schema | `schemas/dslraid-verification-evidence.schema.json` | `scripts/verificationschemagen.sh` |
 | test-manifest | `tests/golden/verification-graph.generated.json` | `scripts/verificationtestgen.sh` |
 | evidence-json | `docs/generated/verification-evidence.json` | `scripts/verificationevidencegen.sh` |
@@ -34,7 +35,7 @@ The generated workflow is `.github/workflows/verification.yml`.
 ## Evidence Loop
 
 - Plan: edit the Common Lisp verification graph.
-- Do: generate CI, local, and Bazel surfaces.
+- Do: generate CI, release, local, and Bazel surfaces.
 - Check: run generator checks and quality gates.
 - Act: update the SSOT when a generated backend fails.
 
@@ -42,6 +43,6 @@ The generated workflow is `.github/workflows/verification.yml`.
 
 - Common Lisp is the executable verification SSOT.
 - GitHub Actions YAML is generated evidence plumbing.
-- Every generated workflow change must pass workflowgen check.
+- Every generated workflow change must pass its generator check.
 - Machine-readable evidence must pass verificationevidencegen check.
 - Release checks must prove docs, workflows, and artifacts are fresh.
