@@ -76,6 +76,18 @@
                 "closure_rules"
             ],
             "meaning": "Feedback evidence is suitable when closures name update and revalidation."
+        },
+        {
+            "id": "evidence-quality:quarantine",
+            "target": "docs/generated/verification-quarantine.json",
+            "quality": "high",
+            "purpose": "quarantine",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "bundles",
+                "closure_rules"
+            ],
+            "meaning": "Quarantine evidence is suitable when promotion blocks are explicit."
         }
     ],
     "closure_rules": [

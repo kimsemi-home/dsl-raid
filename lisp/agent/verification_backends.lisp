@@ -26,6 +26,8 @@
      "scripts/verificationreviewgen.sh")
     ("feedback-closure" "docs/generated/verification-feedback.json"
      "scripts/verificationfeedbackgen.sh")
+    ("quarantine-manifest" "docs/generated/verification-quarantine.json"
+     "scripts/verificationquarantinegen.sh")
     ("rust-code" "generated/runtime_fsm.rs" "scripts/lisp-rustgen.sh")
     ("verification-doc" "docs/generated/verification-graph.md"
      "scripts/verificationdocgen.sh")

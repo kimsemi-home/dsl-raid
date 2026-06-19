@@ -1,0 +1,63 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationquarantinegen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification.lisp",
+    "quarantine_profile": "promotion-blocking-isolation",
+    "bundles": [
+        {
+            "id": "quarantine:suspicious-generated-output",
+            "subject_kind": "generated-artifact",
+            "status": "isolated",
+            "owner": "gate:quarantine",
+            "blocks": [
+                "artifact-commit",
+                "confidence-increase",
+                "automatic-approval"
+            ],
+            "evidence": [
+                "docs/generated/verification-authority.json",
+                "docs/generated/verification-semantic-diff.json"
+            ],
+            "meaning": "Suspicious generated output is isolated before promotion."
+        },
+        {
+            "id": "quarantine:tool-behavior",
+            "subject_kind": "tool-execution",
+            "status": "isolated",
+            "owner": "gate:quarantine",
+            "blocks": [
+                "artifact-commit",
+                "confidence-increase",
+                "automatic-approval"
+            ],
+            "evidence": [
+                "docs/generated/verification-review-capacity.json",
+                "docs/generated/verification-feedback.json"
+            ],
+            "meaning": "Suspicious tool behavior requires review before authority applies."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "quarantine:evidence-linked",
+            "meaning": "Every quarantine bundle links generated evidence.",
+            "check": "scripts/verificationquarantinegen.sh check"
+        },
+        {
+            "id": "quarantine:blocks-commit",
+            "meaning": "Quarantine blocks artifact commit.",
+            "check": "scripts/verificationquarantinegen.sh check"
+        },
+        {
+            "id": "quarantine:blocks-confidence",
+            "meaning": "Quarantine blocks confidence increase.",
+            "check": "scripts/verificationquarantinegen.sh check"
+        },
+        {
+            "id": "quarantine:blocks-approval",
+            "meaning": "Quarantine blocks automatic approval.",
+            "check": "scripts/verificationquarantinegen.sh check"
+        }
+    ]
+}

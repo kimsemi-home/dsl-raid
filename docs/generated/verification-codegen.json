@@ -102,6 +102,12 @@
             "backends": [
                 "feedback-closure"
             ]
+        },
+        {
+            "axis": "quarantine",
+            "backends": [
+                "quarantine-manifest"
+            ]
         }
     ],
     "closure_rules": [

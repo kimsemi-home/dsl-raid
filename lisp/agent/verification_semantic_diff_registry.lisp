@@ -18,4 +18,6 @@
     ("semantic-diff:review-capacity" "semantic:review-capacity"
      "Review capacity semantic receipt.")
     ("semantic-diff:feedback-closure" "semantic:feedback-closure"
-     "Feedback closure semantic receipt.")))
+     "Feedback closure semantic receipt.")
+    ("semantic-diff:quarantine" "semantic:quarantine"
+     "Quarantine semantic receipt.")))

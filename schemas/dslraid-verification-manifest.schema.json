@@ -495,6 +495,51 @@
                     }
                 }
             }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
+                "quarantine_profile",
+                "bundles",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationquarantinegen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "quarantine_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "bundles": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/quarantine_bundle"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
         }
     ],
     "$defs": {
@@ -1002,6 +1047,48 @@
                 "revalidation": {
                     "type": "string",
                     "minLength": 1
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "quarantine_bundle": {
+            "type": "object",
+            "required": [
+                "id",
+                "subject_kind",
+                "status",
+                "owner",
+                "blocks",
+                "evidence",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "subject_kind": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "status": {
+                    "enum": [
+                        "isolated",
+                        "released",
+                        "closed"
+                    ]
+                },
+                "owner": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "blocks": {
+                    "$ref": "#/$defs/strings"
                 },
                 "evidence": {
                     "$ref": "#/$defs/strings"

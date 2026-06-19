@@ -38,6 +38,7 @@
         "evidence-quality",
         "lease-and-abort",
         "review-capacity",
-        "feedback-closure"
+        "feedback-closure",
+        "quarantine"
     ]
 }

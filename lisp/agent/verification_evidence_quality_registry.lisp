@@ -24,4 +24,8 @@
     ("evidence-quality:feedback"
      "docs/generated/verification-feedback.json" "high" "feedback-closure"
      "gate:evidence-quality" ("closures" "closure_rules")
-     "Feedback evidence is suitable when closures name update and revalidation.")))
+     "Feedback evidence is suitable when closures name update and revalidation.")
+    ("evidence-quality:quarantine"
+     "docs/generated/verification-quarantine.json" "high" "quarantine"
+     "gate:evidence-quality" ("bundles" "closure_rules")
+     "Quarantine evidence is suitable when promotion blocks are explicit.")))

@@ -27,4 +27,7 @@
      "Review capacity and overload freeze boundary for verification work.")
     ("semantic:feedback-closure" "docs/generated/verification-feedback.json"
      ("feedback_profile" "closures" "closure_rules")
-     "Feedback closure and revalidation contract for verification learning.")))
+     "Feedback closure and revalidation contract for verification learning.")
+    ("semantic:quarantine" "docs/generated/verification-quarantine.json"
+     ("quarantine_profile" "bundles" "closure_rules")
+     "Quarantine promotion blocking contract for suspicious outputs.")))
