@@ -1804,6 +1804,51 @@
                 "generated_by",
                 "subject",
                 "source",
+                "revalidation_profile",
+                "gates",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationrevalidationgen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "revalidation_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "gates": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/revalidation_gate"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
                 "adr_profile",
                 "records",
                 "closure_rules"
@@ -3880,6 +3925,71 @@
                 },
                 "review_back": {
                     "$ref": "#/$defs/semantic_ref"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "revalidation_gate": {
+            "type": "object",
+            "required": [
+                "id",
+                "gated_subject",
+                "status",
+                "due_at",
+                "authority_effect",
+                "blocks",
+                "allowed",
+                "owner",
+                "evidence",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "gated_subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "status": {
+                    "enum": [
+                        "valid",
+                        "due-soon",
+                        "due",
+                        "grace",
+                        "expired",
+                        "frozen",
+                        "revalidated",
+                        "superseded",
+                        "retired"
+                    ]
+                },
+                "due_at": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "authority_effect": {
+                    "enum": [
+                        "normal-authority",
+                        "review-required",
+                        "authority-limited",
+                        "authority-frozen"
+                    ]
+                },
+                "blocks": {
+                    "$ref": "#/$defs/strings"
+                },
+                "allowed": {
+                    "$ref": "#/$defs/strings"
+                },
+                "owner": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
                 },
                 "meaning": {
                     "type": "string",

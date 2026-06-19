@@ -41,6 +41,7 @@
     "bash scripts/verificationgenesisgen.sh check"
     "bash scripts/verificationmetamodelgen.sh check"
     "bash scripts/verificationstewardgen.sh check"
+    "bash scripts/verificationrevalidationgen.sh check"
     "bash scripts/verificationevidencebeforechangegen.sh check"
     "bash scripts/verificationversionedssotgen.sh check"
     "bash scripts/verificationcontextmapgen.sh check"

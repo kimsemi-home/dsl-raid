@@ -14,6 +14,7 @@
     ("genesis-charter" "docs/generated/verification-genesis-charter.json" "scripts/verificationgenesisgen.sh")
     ("meta-model" "docs/generated/verification-meta-model.json" "scripts/verificationmetamodelgen.sh")
     ("backup-steward" "docs/generated/verification-backup-steward.json" "scripts/verificationstewardgen.sh")
+    ("revalidation-gate" "docs/generated/verification-revalidation-gate.json" "scripts/verificationrevalidationgen.sh")
     ("evidence-before-change" "docs/generated/verification-evidence-before-change.json" "scripts/verificationevidencebeforechangegen.sh")
     ("versioned-ssot" "docs/generated/verification-versioned-ssot.json" "scripts/verificationversionedssotgen.sh")
     ("context-map" "docs/generated/verification-context-map.json" "scripts/verificationcontextmapgen.sh")

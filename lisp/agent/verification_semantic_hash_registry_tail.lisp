@@ -16,7 +16,11 @@
     ("semantic:backup-steward"
      "docs/generated/verification-backup-steward.json"
      ("steward_profile" "assignments" "closure_rules")
-     "Backup steward temporary authority and review-back contract.")))
+     "Backup steward temporary authority and review-back contract.")
+    ("semantic:revalidation-gate"
+     "docs/generated/verification-revalidation-gate.json"
+     ("revalidation_profile" "gates" "closure_rules")
+     "Revalidation status, authority effect, and blocked action contract.")))
 
 (defparameter *verification-semantic-hashes*
   (append *verification-semantic-core-hashes*

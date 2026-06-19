@@ -142,6 +142,8 @@ release-check:
     - |
       bash scripts/verificationstewardgen.sh check
     - |
+      bash scripts/verificationrevalidationgen.sh check
+    - |
       bash scripts/verificationevidencebeforechangegen.sh check
     - |
       bash scripts/verificationversionedssotgen.sh check

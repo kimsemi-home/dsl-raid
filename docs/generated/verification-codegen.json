@@ -213,6 +213,12 @@
             ]
         },
         {
+            "axis": "revalidation-gate",
+            "backends": [
+                "revalidation-gate"
+            ]
+        },
+        {
             "axis": "versioned-ssot",
             "backends": [
                 "versioned-ssot"

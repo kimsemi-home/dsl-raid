@@ -20,7 +20,12 @@
      "docs/generated/verification-backup-steward.json"
      "high" "backup-steward" "gate:evidence-quality"
      ("assignments" "closure_rules")
-     "Backup steward evidence is suitable when authority is temporary.")))
+     "Backup steward evidence is suitable when authority is temporary.")
+    ("evidence-quality:revalidation-gate"
+     "docs/generated/verification-revalidation-gate.json"
+     "high" "revalidation-gate" "gate:evidence-quality"
+     ("gates" "closure_rules")
+     "Revalidation evidence is suitable when freshness changes authority.")))
 
 (defparameter *verification-evidence-quality-assessments*
   (append *verification-evidence-quality-core-assessments*

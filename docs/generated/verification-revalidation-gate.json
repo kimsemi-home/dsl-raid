@@ -1,0 +1,96 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationrevalidationgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_revalidation_gate.lisp",
+    "revalidation_profile": "authority-gate",
+    "gates": [
+        {
+            "id": "revalidation:verification-ssot",
+            "gated_subject": "versioned-ssot:verification-graph",
+            "status": "valid",
+            "due_at": "2026-07-17T00:00:00Z",
+            "authority_effect": "normal-authority",
+            "blocks": [
+                "none"
+            ],
+            "allowed": [
+                "release-check",
+                "quality-gate",
+                "generated-artifact-refresh"
+            ],
+            "owner": "owner:verification",
+            "evidence": [
+                "docs/generated/verification-versioned-ssot.json",
+                "docs/generated/verification-conformance.json"
+            ],
+            "meaning": "Valid SSOT can keep routine generated authority."
+        },
+        {
+            "id": "revalidation:evidence-quality",
+            "gated_subject": "evidence-quality:generated-evidence",
+            "status": "due-soon",
+            "due_at": "2026-07-24T00:00:00Z",
+            "authority_effect": "review-required",
+            "blocks": [
+                "high-risk-automation"
+            ],
+            "allowed": [
+                "evidence-refresh",
+                "review",
+                "revalidation-work"
+            ],
+            "owner": "owner:evidence",
+            "evidence": [
+                "docs/generated/verification-evidence-quality.json",
+                "docs/generated/verification-pruning.json"
+            ],
+            "meaning": "Due-soon evidence needs review before expanded automation."
+        },
+        {
+            "id": "revalidation:security-boundary",
+            "gated_subject": "security-audit:permission-change",
+            "status": "grace",
+            "due_at": "2026-07-10T00:00:00Z",
+            "authority_effect": "authority-limited",
+            "blocks": [
+                "major-ontology-change",
+                "security-boundary-change",
+                "automatic-approval-expansion"
+            ],
+            "allowed": [
+                "read",
+                "incident-response",
+                "risk-reducing-change"
+            ],
+            "owner": "owner:security",
+            "evidence": [
+                "docs/generated/verification-security-audit.json",
+                "docs/generated/verification-authority.json"
+            ],
+            "meaning": "Grace state permits risk reduction but blocks authority expansion."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "revalidation:date-is-gate",
+            "meaning": "Revalidation date changes authority.",
+            "check": "scripts/verificationrevalidationgen.sh check"
+        },
+        {
+            "id": "revalidation:expired-limits-authority",
+            "meaning": "Expired or frozen states block expansion.",
+            "check": "scripts/verificationrevalidationgen.sh check"
+        },
+        {
+            "id": "revalidation:evidence-linked",
+            "meaning": "Revalidation decisions cite generated evidence.",
+            "check": "scripts/verificationrevalidationgen.sh check"
+        },
+        {
+            "id": "revalidation:owner-required",
+            "meaning": "Revalidation has a non-agent owner.",
+            "check": "scripts/verificationrevalidationgen.sh check"
+        }
+    ]
+}

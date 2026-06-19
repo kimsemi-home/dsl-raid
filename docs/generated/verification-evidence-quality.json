@@ -436,6 +436,18 @@
                 "closure_rules"
             ],
             "meaning": "Backup steward evidence is suitable when authority is temporary."
+        },
+        {
+            "id": "evidence-quality:revalidation-gate",
+            "target": "docs/generated/verification-revalidation-gate.json",
+            "quality": "high",
+            "purpose": "revalidation-gate",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "gates",
+                "closure_rules"
+            ],
+            "meaning": "Revalidation evidence is suitable when freshness changes authority."
         }
     ],
     "closure_rules": [

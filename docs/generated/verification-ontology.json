@@ -57,6 +57,7 @@
         "genesis-charter",
         "meta-model",
         "backup-steward",
+        "revalidation-gate",
         "versioned-ssot",
         "context-map",
         "historical-interpreter",

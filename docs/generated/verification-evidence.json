@@ -45,6 +45,7 @@
     {"backend": "genesis-charter", "output": "docs/generated/verification-genesis-charter.json", "generator": "scripts/verificationgenesisgen.sh", "check": "scripts/verificationgenesisgen.sh check"},
     {"backend": "meta-model", "output": "docs/generated/verification-meta-model.json", "generator": "scripts/verificationmetamodelgen.sh", "check": "scripts/verificationmetamodelgen.sh check"},
     {"backend": "backup-steward", "output": "docs/generated/verification-backup-steward.json", "generator": "scripts/verificationstewardgen.sh", "check": "scripts/verificationstewardgen.sh check"},
+    {"backend": "revalidation-gate", "output": "docs/generated/verification-revalidation-gate.json", "generator": "scripts/verificationrevalidationgen.sh", "check": "scripts/verificationrevalidationgen.sh check"},
     {"backend": "evidence-before-change", "output": "docs/generated/verification-evidence-before-change.json", "generator": "scripts/verificationevidencebeforechangegen.sh", "check": "scripts/verificationevidencebeforechangegen.sh check"},
     {"backend": "versioned-ssot", "output": "docs/generated/verification-versioned-ssot.json", "generator": "scripts/verificationversionedssotgen.sh", "check": "scripts/verificationversionedssotgen.sh check"},
     {"backend": "context-map", "output": "docs/generated/verification-context-map.json", "generator": "scripts/verificationcontextmapgen.sh", "check": "scripts/verificationcontextmapgen.sh check"},
@@ -73,7 +74,7 @@
     {"id": "unit-test", "commands": 1, "evidence": "Rust workspace unit test evidence."},
     {"id": "integration-test", "commands": 3, "evidence": "Viewer test and build evidence."},
     {"id": "conformance", "commands": 1, "evidence": "Unified DSLRaid semantic and generated-output gate."},
-    {"id": "release-check", "commands": 57, "evidence": "Generated workflow, docs index, and artifact freshness."}
+    {"id": "release-check", "commands": 58, "evidence": "Generated workflow, docs index, and artifact freshness."}
   ],
   "pdca": [
     "plan",
