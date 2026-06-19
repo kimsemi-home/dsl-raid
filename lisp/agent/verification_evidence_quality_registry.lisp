@@ -57,4 +57,9 @@
      "docs/generated/verification-historical-interpreter.json" "high"
      "historical-interpreter" "gate:evidence-quality"
      ("interpretations" "closure_rules")
-     "Historical interpreter evidence is suitable when old evidence is bridged.")))
+     "Historical interpreter evidence is suitable when old evidence is bridged.")
+    ("evidence-quality:ontology-transition"
+     "docs/generated/verification-ontology-transition.json" "high"
+     "ontology-transition" "gate:evidence-quality"
+     ("transitions" "closure_rules")
+     "Ontology transition evidence is suitable when lanes and cutover are gated.")))

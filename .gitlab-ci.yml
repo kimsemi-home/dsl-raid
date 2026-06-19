@@ -122,6 +122,8 @@ release-check:
     - |
       bash scripts/verificationhistoricalgen.sh check
     - |
+      bash scripts/verificationtransitiongen.sh check
+    - |
       bash scripts/lisp-rustgen.sh check
     - |
       bash scripts/verificationdocgen.sh check

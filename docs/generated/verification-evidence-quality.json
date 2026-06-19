@@ -172,6 +172,18 @@
                 "closure_rules"
             ],
             "meaning": "Historical interpreter evidence is suitable when old evidence is bridged."
+        },
+        {
+            "id": "evidence-quality:ontology-transition",
+            "target": "docs/generated/verification-ontology-transition.json",
+            "quality": "high",
+            "purpose": "ontology-transition",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "transitions",
+                "closure_rules"
+            ],
+            "meaning": "Ontology transition evidence is suitable when lanes and cutover are gated."
         }
     ],
     "closure_rules": [

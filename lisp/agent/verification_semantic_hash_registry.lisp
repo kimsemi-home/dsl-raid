@@ -53,4 +53,8 @@
     ("semantic:historical-interpreter"
      "docs/generated/verification-historical-interpreter.json"
      ("historical_interpreter_profile" "interpretations" "closure_rules")
-     "Historical evidence interpretation bridge contract.")))
+     "Historical evidence interpretation bridge contract.")
+    ("semantic:ontology-transition"
+     "docs/generated/verification-ontology-transition.json"
+     ("ontology_transition_profile" "transitions" "closure_rules")
+     "Ontology transition lane and cutover contract.")))

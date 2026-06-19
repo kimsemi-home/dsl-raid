@@ -17,7 +17,7 @@ The generated workflow is `.github/workflows/verification.yml`.
 | unit-test | lint | Rust workspace unit test evidence. | 1 |
 | integration-test | unit-test | Viewer test and build evidence. | 3 |
 | conformance | integration-test | Unified DSLRaid semantic and generated-output gate. | 1 |
-| release-check | conformance | Generated workflow, docs index, and artifact freshness. | 35 |
+| release-check | conformance | Generated workflow, docs index, and artifact freshness. | 36 |
 
 ## Generated Backends
 
@@ -46,6 +46,7 @@ The generated workflow is `.github/workflows/verification.yml`.
 | versioned-ssot | `docs/generated/verification-versioned-ssot.json` | `scripts/verificationversionedssotgen.sh` |
 | context-map | `docs/generated/verification-context-map.json` | `scripts/verificationcontextmapgen.sh` |
 | historical-interpreter | `docs/generated/verification-historical-interpreter.json` | `scripts/verificationhistoricalgen.sh` |
+| ontology-transition | `docs/generated/verification-ontology-transition.json` | `scripts/verificationtransitiongen.sh` |
 | rust-code | `generated/runtime_fsm.rs` | `scripts/lisp-rustgen.sh` |
 | verification-doc | `docs/generated/verification-graph.md` | `scripts/verificationdocgen.sh` |
 | docs-index | `docs/generated/generated-docs.md` | `scripts/gendocindex.sh` |

@@ -24,7 +24,8 @@
     ("evidence-before-change" ("evidence-before-change"))
     ("versioned-ssot" ("versioned-ssot"))
     ("context-map" ("context-map"))
-    ("historical-interpreter" ("historical-interpreter"))))
+    ("historical-interpreter" ("historical-interpreter"))
+    ("ontology-transition" ("ontology-transition"))))
 
 (defparameter *verification-codegen-rules*
   '(("codegen:axis-covered" "Every ontology codegen axis maps to a backend.")

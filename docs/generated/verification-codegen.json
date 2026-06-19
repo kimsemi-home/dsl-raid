@@ -150,6 +150,12 @@
             "backends": [
                 "historical-interpreter"
             ]
+        },
+        {
+            "axis": "ontology-transition",
+            "backends": [
+                "ontology-transition"
+            ]
         }
     ],
     "closure_rules": [

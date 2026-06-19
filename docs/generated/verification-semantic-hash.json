@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "1571f566b216b8381358b03872f2c97c8584d9beaa993f06302ffa5364a685e8"
+            "hash": "fef57a24957d15276497265754982ae23309f6644f6b6b1be71a1e2ee15add97"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "6ef3d02eb023772529653b2d4a2d5aaaab96179a9303a3c2b21b74ec575417ed"
+            "hash": "a5d188703b989e4c2d060b37c88bab1b222b48f1003032dd3f5d0d70c541ad77"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "aac486270b0efe29171efe2f4012fd0d404696c0e0abfbba57c22680929fc482"
+            "hash": "28e92a5ba7f548b2bbff363e6653ff62023acf9c423fc177749ace259a9164f0"
         },
         {
             "id": "semantic:authority",
@@ -64,7 +64,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "8031904fa1a79549a6dee0238678355880589629f9849565f10e6e515c5cb3c4"
+            "hash": "57ca281992b55546f1d0ff230a59eab21b2f1b7959a629bd187b542eae0198a1"
         },
         {
             "id": "semantic:lease",
@@ -188,6 +188,17 @@
             ],
             "meaning": "Historical evidence interpretation bridge contract.",
             "hash": "752a135aa046caae27c4c5a491e4c9da8324e7edfad6abb3a3578e7c92bbdddf"
+        },
+        {
+            "id": "semantic:ontology-transition",
+            "source": "docs/generated/verification-ontology-transition.json",
+            "fields": [
+                "ontology_transition_profile",
+                "transitions",
+                "closure_rules"
+            ],
+            "meaning": "Ontology transition lane and cutover contract.",
+            "hash": "fa7402c9cd4a4cf96114893c9f7ff7fba1976d446e8c47dc8d9c67c02849652e"
         }
     ],
     "closure_rules": [

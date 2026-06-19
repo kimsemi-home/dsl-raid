@@ -1,0 +1,45 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationtransitiongen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification.lisp",
+    "ontology_transition_profile": "dual-lane-cutover",
+    "transitions": [
+        {
+            "id": "ontology-transition:verification-0.1.0",
+            "from_version": "ontology:verification.0.1.0",
+            "to_version": "ontology:verification.0.2.0",
+            "compatibility_window": "compatibility-window:dual-run",
+            "lanes": [
+                "lane:legacy",
+                "lane:migration",
+                "lane:new",
+                "lane:audit"
+            ],
+            "cutover_gate": "gate:authority",
+            "evidence": [
+                "docs/generated/verification-versioned-ssot.json",
+                "docs/generated/verification-context-map.json",
+                "docs/generated/verification-historical-interpreter.json"
+            ],
+            "meaning": "Ontology transition keeps old and new meanings lane-scoped."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "ontology-transition:dual-lanes",
+            "meaning": "Legacy, migration, new, audit lanes exist.",
+            "check": "scripts/verificationtransitiongen.sh check"
+        },
+        {
+            "id": "ontology-transition:bridge-first",
+            "meaning": "Transition links context and history bridges.",
+            "check": "scripts/verificationtransitiongen.sh check"
+        },
+        {
+            "id": "ontology-transition:cutover-gated",
+            "meaning": "Cutover is gated by governance authority.",
+            "check": "scripts/verificationtransitiongen.sh check"
+        }
+    ]
+}

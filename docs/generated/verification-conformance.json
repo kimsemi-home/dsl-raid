@@ -149,6 +149,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.ontology-transition",
+            "subject": "docs/generated/verification-ontology-transition.json",
+            "check": "scripts/verificationtransitiongen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.rust-code",
             "subject": "generated/runtime_fsm.rs",
             "check": "scripts/lisp-rustgen.sh check",

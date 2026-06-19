@@ -34,4 +34,6 @@
     ("semantic-diff:context-map" "semantic:context-map"
      "Context map semantic receipt.")
     ("semantic-diff:historical-interpreter" "semantic:historical-interpreter"
-     "Historical interpreter semantic receipt.")))
+     "Historical interpreter semantic receipt.")
+    ("semantic-diff:ontology-transition" "semantic:ontology-transition"
+     "Ontology transition semantic receipt.")))

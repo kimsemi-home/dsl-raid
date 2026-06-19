@@ -42,6 +42,8 @@
      "scripts/verificationcontextmapgen.sh")
     ("historical-interpreter" "docs/generated/verification-historical-interpreter.json"
      "scripts/verificationhistoricalgen.sh")
+    ("ontology-transition" "docs/generated/verification-ontology-transition.json"
+     "scripts/verificationtransitiongen.sh")
     ("rust-code" "generated/runtime_fsm.rs" "scripts/lisp-rustgen.sh")
     ("verification-doc" "docs/generated/verification-graph.md"
      "scripts/verificationdocgen.sh")
