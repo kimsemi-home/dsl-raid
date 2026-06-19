@@ -1,0 +1,61 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationevidencebeforechangegen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification.lisp",
+    "evidence_before_change_profile": "linked-evidence-or-debt",
+    "changes": [
+        {
+            "id": "change:generated-verification-graph",
+            "change_kind": "routine",
+            "proposed_by": "agent:verification-daemon",
+            "authority": "gate:quality",
+            "evidence": [
+                "docs/generated/verification-evidence.json",
+                "docs/generated/verification-sidecar.json"
+            ],
+            "debt": [],
+            "meaning": "Generated verification graph changes require linked evidence."
+        },
+        {
+            "id": "change:release-routing",
+            "change_kind": "routine",
+            "proposed_by": "agent:verification-daemon",
+            "authority": "gate:release",
+            "evidence": [
+                "docs/generated/verification-orchestration.json",
+                "docs/generated/verification-authority.json"
+            ],
+            "debt": [],
+            "meaning": "Release routing changes require authority and orchestration evidence."
+        },
+        {
+            "id": "change:emergency-patch",
+            "change_kind": "emergency",
+            "proposed_by": "agent:incident-runner",
+            "authority": "gate:incident",
+            "evidence": [],
+            "debt": [
+                "debt:evidence-follow-up"
+            ],
+            "meaning": "Emergency changes may proceed only by creating evidence debt."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "evidence-before-change:linked",
+            "meaning": "Routine changes require evidence.",
+            "check": "scripts/verificationevidencebeforechangegen.sh check"
+        },
+        {
+            "id": "evidence-before-change:debt",
+            "meaning": "Emergency changes without evidence create debt.",
+            "check": "scripts/verificationevidencebeforechangegen.sh check"
+        },
+        {
+            "id": "evidence-before-change:authority",
+            "meaning": "Agents cannot authorize their own changes.",
+            "check": "scripts/verificationevidencebeforechangegen.sh check"
+        }
+    ]
+}

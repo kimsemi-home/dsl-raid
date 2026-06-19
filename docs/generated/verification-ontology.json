@@ -42,6 +42,7 @@
         "quarantine",
         "external-confidence",
         "verification-sidecar",
-        "orchestration-manifest"
+        "orchestration-manifest",
+        "evidence-before-change"
     ]
 }

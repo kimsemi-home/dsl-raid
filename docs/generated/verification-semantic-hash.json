@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "f1b5716be8f88a7051ce791157b045f85156c3e66e467242d27cc746da398c99"
+            "hash": "afdecfddaa1d030214edb2c8b1db605288579c70c60804b7febc69c777983a40"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "bcb34b512dc77ee92b2b5081d75fdb3d035bb300bb0712cf87f3721fac79baf1"
+            "hash": "7f96f54ec2df38acfe9329e8c101924627709a1503f2eb2d714d884767baa4f0"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "bb738ef6b606ad277c16095a38423db1afa318c0f4691c6dd1694e26a81312e6"
+            "hash": "687a3cf0d91a54f080ad39a296282831022153c6b8b371527b832beded2c802d"
         },
         {
             "id": "semantic:authority",
@@ -64,7 +64,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "7a86473a12441d05516323a58ebaee73dfb6d0d410dbe2c48017d27581c151e7"
+            "hash": "3dc0bd894cd4201ea5e6601a0bee05221f49509f588ff382e1edb204ff4907bc"
         },
         {
             "id": "semantic:lease",
@@ -144,6 +144,17 @@
             ],
             "meaning": "Policy-bound orchestration routing receipt contract.",
             "hash": "aabc6bf91c66f48d3811cf1cc5dc18c3ece5fa7b4f478845677786cb7daaaff6"
+        },
+        {
+            "id": "semantic:evidence-before-change",
+            "source": "docs/generated/verification-evidence-before-change.json",
+            "fields": [
+                "evidence_before_change_profile",
+                "changes",
+                "closure_rules"
+            ],
+            "meaning": "Evidence-before-change and evidence debt contract.",
+            "hash": "c26f7b80de150d7dbde13cd3f3aa1c0716b5db4e3a8402601be2fccea7eeb0dd"
         }
     ],
     "closure_rules": [

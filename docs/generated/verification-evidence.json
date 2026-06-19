@@ -31,6 +31,7 @@
     {"backend": "confidence-manifest", "output": "docs/generated/verification-confidence.json", "generator": "scripts/verificationconfidencegen.sh", "check": "scripts/verificationconfidencegen.sh check"},
     {"backend": "sidecar-manifest", "output": "docs/generated/verification-sidecar.json", "generator": "scripts/verificationsidecargen.sh", "check": "scripts/verificationsidecargen.sh check"},
     {"backend": "orchestration-manifest", "output": "docs/generated/verification-orchestration.json", "generator": "scripts/verificationorchestrationgen.sh", "check": "scripts/verificationorchestrationgen.sh check"},
+    {"backend": "evidence-before-change", "output": "docs/generated/verification-evidence-before-change.json", "generator": "scripts/verificationevidencebeforechangegen.sh", "check": "scripts/verificationevidencebeforechangegen.sh check"},
     {"backend": "rust-code", "output": "generated/runtime_fsm.rs", "generator": "scripts/lisp-rustgen.sh", "check": "scripts/lisp-rustgen.sh check"},
     {"backend": "verification-doc", "output": "docs/generated/verification-graph.md", "generator": "scripts/verificationdocgen.sh", "check": "scripts/verificationdocgen.sh check"},
     {"backend": "docs-index", "output": "docs/generated/generated-docs.md", "generator": "scripts/gendocindex.sh", "check": "scripts/gendocindex.sh check"},
@@ -47,7 +48,7 @@
     {"id": "unit-test", "commands": 1, "evidence": "Rust workspace unit test evidence."},
     {"id": "integration-test", "commands": 3, "evidence": "Viewer test and build evidence."},
     {"id": "conformance", "commands": 1, "evidence": "Unified DSLRaid semantic and generated-output gate."},
-    {"id": "release-check", "commands": 31, "evidence": "Generated workflow, docs index, and artifact freshness."}
+    {"id": "release-check", "commands": 32, "evidence": "Generated workflow, docs index, and artifact freshness."}
   ],
   "pdca": [
     "plan",

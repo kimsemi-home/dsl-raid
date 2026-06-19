@@ -40,4 +40,8 @@
     ("evidence-quality:orchestration"
      "docs/generated/verification-orchestration.json" "high" "orchestration"
      "gate:evidence-quality" ("routes" "closure_rules")
-     "Orchestration evidence is suitable when routes link policy and outputs.")))
+     "Orchestration evidence is suitable when routes link policy and outputs.")
+    ("evidence-quality:evidence-before-change"
+     "docs/generated/verification-evidence-before-change.json" "high"
+     "evidence-before-change" "gate:evidence-quality" ("changes" "closure_rules")
+     "Change evidence is suitable when routine changes link evidence.")))

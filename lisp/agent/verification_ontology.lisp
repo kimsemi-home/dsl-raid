@@ -11,7 +11,8 @@
     "github-actions" "release-pipelines" "pdca-evidence" "loss-ledger"
     "semantic-hash" "semantic-diff" "authority-gate" "evidence-quality"
     "lease-and-abort" "review-capacity" "feedback-closure" "quarantine"
-    "external-confidence" "verification-sidecar" "orchestration-manifest"))
+    "external-confidence" "verification-sidecar" "orchestration-manifest"
+    "evidence-before-change"))
 
 (defun emit-verification-ontology-json (&optional stream)
   "Emit machine-readable ontology chain for the verification graph."

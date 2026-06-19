@@ -26,4 +26,6 @@
     ("semantic-diff:sidecar" "semantic:sidecar"
      "Verification sidecar semantic receipt.")
     ("semantic-diff:orchestration" "semantic:orchestration"
-     "Orchestration routing semantic receipt.")))
+     "Orchestration routing semantic receipt.")
+    ("semantic-diff:evidence-before-change" "semantic:evidence-before-change"
+     "Evidence-before-change semantic receipt.")))

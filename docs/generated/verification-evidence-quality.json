@@ -124,6 +124,18 @@
                 "closure_rules"
             ],
             "meaning": "Orchestration evidence is suitable when routes link policy and outputs."
+        },
+        {
+            "id": "evidence-quality:evidence-before-change",
+            "target": "docs/generated/verification-evidence-before-change.json",
+            "quality": "high",
+            "purpose": "evidence-before-change",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "changes",
+                "closure_rules"
+            ],
+            "meaning": "Change evidence is suitable when routine changes link evidence."
         }
     ],
     "closure_rules": [

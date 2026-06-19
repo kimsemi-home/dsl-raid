@@ -126,6 +126,12 @@
             "backends": [
                 "orchestration-manifest"
             ]
+        },
+        {
+            "axis": "evidence-before-change",
+            "backends": [
+                "evidence-before-change"
+            ]
         }
     ],
     "closure_rules": [
