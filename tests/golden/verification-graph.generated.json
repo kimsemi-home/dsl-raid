@@ -32,7 +32,7 @@
             "id": "test:verification.node.release-check",
             "subject": "verify:daemon/release-check",
             "kind": "verification-node",
-            "commands": 16
+            "commands": 17
         },
         {
             "id": "test:verification.backend.github-actions",
@@ -99,6 +99,12 @@
             "subject": "schemas/dslraid-verification-evidence.schema.json",
             "kind": "generated-backend",
             "generator": "scripts/verificationschemagen.sh"
+        },
+        {
+            "id": "test:verification.backend.manifest-schema",
+            "subject": "schemas/dslraid-verification-manifest.schema.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationmanifestschemagen.sh"
         },
         {
             "id": "test:verification.backend.test-manifest",

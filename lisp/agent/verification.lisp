@@ -42,6 +42,7 @@
        "bash scripts/verificationontologygen.sh check"
        "bash scripts/verificationconformancegen.sh check"
        "bash scripts/verificationschemagen.sh check"
+       "bash scripts/verificationmanifestschemagen.sh check"
        "bash scripts/verificationtestgen.sh check"
        "bash scripts/verificationevidencegen.sh check"
        "bash scripts/lisp-rustgen.sh check"
@@ -65,6 +66,8 @@
      "scripts/verificationconformancegen.sh")
     ("evidence-schema" "schemas/dslraid-verification-evidence.schema.json"
      "scripts/verificationschemagen.sh")
+    ("manifest-schema" "schemas/dslraid-verification-manifest.schema.json"
+     "scripts/verificationmanifestschemagen.sh")
     ("test-manifest" "tests/golden/verification-graph.generated.json"
      "scripts/verificationtestgen.sh")
     ("evidence-json" "docs/generated/verification-evidence.json"

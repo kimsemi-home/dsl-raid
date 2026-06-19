@@ -23,6 +23,7 @@
     {"backend": "ontology-manifest", "output": "docs/generated/verification-ontology.json", "generator": "scripts/verificationontologygen.sh", "check": "scripts/verificationontologygen.sh check"},
     {"backend": "conformance-report", "output": "docs/generated/verification-conformance.json", "generator": "scripts/verificationconformancegen.sh", "check": "scripts/verificationconformancegen.sh check"},
     {"backend": "evidence-schema", "output": "schemas/dslraid-verification-evidence.schema.json", "generator": "scripts/verificationschemagen.sh", "check": "scripts/verificationschemagen.sh check"},
+    {"backend": "manifest-schema", "output": "schemas/dslraid-verification-manifest.schema.json", "generator": "scripts/verificationmanifestschemagen.sh", "check": "scripts/verificationmanifestschemagen.sh check"},
     {"backend": "test-manifest", "output": "tests/golden/verification-graph.generated.json", "generator": "scripts/verificationtestgen.sh", "check": "scripts/verificationtestgen.sh check"},
     {"backend": "evidence-json", "output": "docs/generated/verification-evidence.json", "generator": "scripts/verificationevidencegen.sh", "check": "scripts/verificationevidencegen.sh check"}
   ],
@@ -31,7 +32,7 @@
     {"id": "unit-test", "commands": 1, "evidence": "Rust workspace unit test evidence."},
     {"id": "integration-test", "commands": 3, "evidence": "Viewer test and build evidence."},
     {"id": "conformance", "commands": 1, "evidence": "Unified DSLRaid semantic and generated-output gate."},
-    {"id": "release-check", "commands": 16, "evidence": "Generated workflow, docs index, and artifact freshness."}
+    {"id": "release-check", "commands": 17, "evidence": "Generated workflow, docs index, and artifact freshness."}
   ],
   "pdca": [
     "plan",

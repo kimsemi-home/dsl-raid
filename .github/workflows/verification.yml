@@ -116,12 +116,14 @@ jobs:
       - name: Run release-check command 11
         run: bash scripts/verificationschemagen.sh check
       - name: Run release-check command 12
-        run: bash scripts/verificationtestgen.sh check
+        run: bash scripts/verificationmanifestschemagen.sh check
       - name: Run release-check command 13
-        run: bash scripts/verificationevidencegen.sh check
+        run: bash scripts/verificationtestgen.sh check
       - name: Run release-check command 14
-        run: bash scripts/lisp-rustgen.sh check
+        run: bash scripts/verificationevidencegen.sh check
       - name: Run release-check command 15
-        run: bash scripts/gendocindex.sh check
+        run: bash scripts/lisp-rustgen.sh check
       - name: Run release-check command 16
+        run: bash scripts/gendocindex.sh check
+      - name: Run release-check command 17
         run: cargo run -p dslraid-cli -- artifact verify examples/runscope/runscope.raid.json

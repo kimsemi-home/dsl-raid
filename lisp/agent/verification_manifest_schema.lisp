@@ -1,0 +1,43 @@
+(in-package #:dslraid.agent)
+
+(defparameter *verification-manifest-schema-json*
+  (concatenate
+   'string
+   "{\"$schema\":\"https://json-schema.org/draft/2020-12/schema\","
+   "\"$id\":\"https://dslraid.dev/schemas/dslraid-verification-manifest.schema.json\","
+   "\"title\":\"DSLRaid Verification Manifest\",\"oneOf\":["
+   "{\"type\":\"object\",\"required\":[\"manifest_version\",\"generated_by\","
+   "\"subject\",\"source\",\"visibility\",\"public_surface_roots\",\"rules\"],"
+   "\"additionalProperties\":false,\"properties\":{\"manifest_version\":{\"$ref\":\"#/$defs/semver\"},"
+   "\"generated_by\":{\"const\":\"scripts/verificationprivacygen.sh\"},"
+   "\"subject\":{\"$ref\":\"#/$defs/semantic_ref\"},\"source\":{\"$ref\":\"#/$defs/path\"},"
+   "\"visibility\":{\"const\":\"public\"},\"public_surface_roots\":{\"$ref\":\"#/$defs/strings\"},"
+   "\"rules\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"$ref\":\"#/$defs/status_rule\"}}}},"
+   "{\"type\":\"object\",\"required\":[\"manifest_version\",\"generated_by\","
+   "\"subject\",\"source\",\"loop\",\"closure_rules\"],\"additionalProperties\":false,"
+   "\"properties\":{\"manifest_version\":{\"$ref\":\"#/$defs/semver\"},"
+   "\"generated_by\":{\"const\":\"scripts/verificationpdcagen.sh\"},"
+   "\"subject\":{\"$ref\":\"#/$defs/semantic_ref\"},\"source\":{\"$ref\":\"#/$defs/path\"},"
+   "\"loop\":{\"type\":\"array\",\"minItems\":4,\"items\":{\"$ref\":\"#/$defs/pdca_step\"}},"
+   "\"closure_rules\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"$ref\":\"#/$defs/rule\"}}}}],"
+   "\"$defs\":{\"path\":{\"type\":\"string\",\"minLength\":1},"
+   "\"semantic_ref\":{\"type\":\"string\",\"pattern\":\"^[a-z][a-z0-9_\\\\-]*:[a-z][a-z0-9_.\\\\-]*$\"},"
+   "\"semver\":{\"type\":\"string\",\"pattern\":\"^[0-9]+\\\\.[0-9]+\\\\.[0-9]+$\"},"
+   "\"strings\":{\"type\":\"array\",\"minItems\":1,\"items\":{\"type\":\"string\",\"minLength\":1}},"
+   "\"rule\":{\"type\":\"object\",\"required\":[\"id\",\"meaning\",\"check\"],"
+   "\"additionalProperties\":false,\"properties\":{\"id\":{\"type\":\"string\",\"minLength\":1},"
+   "\"meaning\":{\"type\":\"string\",\"minLength\":1},\"check\":{\"type\":\"string\",\"pattern\":\"^scripts/.+ check$\"}}},"
+   "\"status_rule\":{\"type\":\"object\",\"required\":[\"id\",\"meaning\",\"check\",\"status\"],"
+   "\"additionalProperties\":false,\"properties\":{\"id\":{\"type\":\"string\",\"minLength\":1},"
+   "\"meaning\":{\"type\":\"string\",\"minLength\":1},\"check\":{\"type\":\"string\",\"pattern\":\"^scripts/.+ check$\"},"
+   "\"status\":{\"const\":\"required\"}}},"
+   "\"pdca_step\":{\"type\":\"object\",\"required\":[\"phase\",\"evidence\",\"artifact\"],"
+   "\"additionalProperties\":false,\"properties\":{\"phase\":{\"enum\":[\"plan\",\"do\",\"check\",\"act\"]},"
+   "\"evidence\":{\"type\":\"string\",\"minLength\":1},\"artifact\":{\"$ref\":\"#/$defs/path\"}}}}}"))
+
+(defun emit-verification-manifest-schema-json (&optional stream)
+  "Emit JSON Schema for generated verification manifests."
+  (let ((json *verification-manifest-schema-json*))
+    (if stream
+        (write-string json stream)
+        json)))

@@ -17,7 +17,7 @@ The generated workflow is `.github/workflows/verification.yml`.
 | unit-test | lint | Rust workspace unit test evidence. | 1 |
 | integration-test | unit-test | Viewer test and build evidence. | 3 |
 | conformance | integration-test | Unified DSLRaid semantic and generated-output gate. | 1 |
-| release-check | conformance | Generated workflow, docs index, and artifact freshness. | 16 |
+| release-check | conformance | Generated workflow, docs index, and artifact freshness. | 17 |
 
 ## Generated Backends
 
@@ -34,6 +34,7 @@ The generated workflow is `.github/workflows/verification.yml`.
 | ontology-manifest | `docs/generated/verification-ontology.json` | `scripts/verificationontologygen.sh` |
 | conformance-report | `docs/generated/verification-conformance.json` | `scripts/verificationconformancegen.sh` |
 | evidence-schema | `schemas/dslraid-verification-evidence.schema.json` | `scripts/verificationschemagen.sh` |
+| manifest-schema | `schemas/dslraid-verification-manifest.schema.json` | `scripts/verificationmanifestschemagen.sh` |
 | test-manifest | `tests/golden/verification-graph.generated.json` | `scripts/verificationtestgen.sh` |
 | evidence-json | `docs/generated/verification-evidence.json` | `scripts/verificationevidencegen.sh` |
 

@@ -143,6 +143,7 @@ jobs:
           grep -q 'scripts/verificationontologygen.sh' "$owner"
           grep -q 'scripts/verificationconformancegen.sh' "$owner"
           grep -q 'scripts/verificationschemagen.sh' "$owner"
+          grep -q 'scripts/verificationmanifestschemagen.sh' "$owner"
           grep -q 'scripts/verificationtestgen.sh' "$owner"
           grep -q 'scripts/verificationevidencegen.sh' "$owner"
           grep -q 'scripts/lisp-irgen.sh' "$owner"

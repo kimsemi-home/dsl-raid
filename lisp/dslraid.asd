@@ -20,6 +20,7 @@
      (:file "verification_privacy") (:file "verification_pdca")
      (:file "verification_conformance")
      (:file "verification_evidence") (:file "verification_schema")
+     (:file "verification_manifest_schema")
      (:file "verification_tests")))
    (:module "ir"
     :serial t

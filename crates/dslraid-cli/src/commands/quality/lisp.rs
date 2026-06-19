@@ -19,6 +19,7 @@ pub(super) fn check() -> Result<()> {
     run_script("scripts/verificationontologygen.sh")?;
     run_script("scripts/verificationconformancegen.sh")?;
     run_script("scripts/verificationschemagen.sh")?;
+    run_script("scripts/verificationmanifestschemagen.sh")?;
     run_script("scripts/verificationtestgen.sh")?;
     run_script("scripts/verificationevidencegen.sh")?;
     run_lisp_irgen()?;

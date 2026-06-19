@@ -77,6 +77,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.manifest-schema",
+            "subject": "schemas/dslraid-verification-manifest.schema.json",
+            "check": "scripts/verificationmanifestschemagen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.test-manifest",
             "subject": "tests/golden/verification-graph.generated.json",
             "check": "scripts/verificationtestgen.sh check",
