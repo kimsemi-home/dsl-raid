@@ -41,6 +41,7 @@
     ("semantic:provider-compat" "docs/generated/verification-provider-compat.json" ("provider_compat_profile" "records" "closure_rules") "Provider protocol and capability compatibility contract.")
     ("semantic:runtime-trace" "docs/generated/verification-runtime-trace.json" ("runtime_trace_profile" "mappings" "closure_rules") "Runtime trace mapping and coverage overlay contract.")
     ("semantic:adr-governance" "docs/generated/verification-adr-governance.json" ("adr_profile" "records" "closure_rules") "ADR boundary contract for semantic and implementation changes.")
+    ("semantic:backend-parity" "docs/generated/verification-backend-parity.json" ("parity_profile" "projections" "closure_rules") "Generated execution backend graph parity contract.")
     ("semantic:evidence-before-change"
      "docs/generated/verification-evidence-before-change.json"
      ("evidence_before_change_profile" "changes" "closure_rules")

@@ -210,6 +210,18 @@
             "meaning": "ADR governance evidence is suitable when semantic changes are gated."
         },
         {
+            "id": "evidence-quality:backend-parity",
+            "target": "docs/generated/verification-backend-parity.json",
+            "quality": "high",
+            "purpose": "backend-parity",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "projections",
+                "closure_rules"
+            ],
+            "meaning": "Backend parity evidence is suitable when every execution surface shares graph nodes."
+        },
+        {
             "id": "evidence-quality:evidence-before-change",
             "target": "docs/generated/verification-evidence-before-change.json",
             "quality": "high",

@@ -28,6 +28,7 @@
     ("provider-compat" ("provider-compat"))
     ("runtime-trace" ("runtime-trace"))
     ("adr-governance" ("adr-governance"))
+    ("backend-parity" ("backend-parity"))
     ("evidence-before-change" ("evidence-before-change"))
     ("versioned-ssot" ("versioned-ssot"))
     ("context-map" ("context-map"))

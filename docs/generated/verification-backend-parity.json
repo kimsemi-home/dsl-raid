@@ -1,0 +1,90 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationparitygen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification.lisp",
+    "parity_profile": "same-graph-projection",
+    "projections": [
+        {
+            "id": "backend-parity:github-actions",
+            "backend": "github-actions",
+            "output": ".github/workflows/verification.yml",
+            "generator": "scripts/workflowgen.sh",
+            "projection": "workflow-job-chain",
+            "graph_nodes": [
+                "lint",
+                "unit-test",
+                "integration-test",
+                "conformance",
+                "release-check"
+            ],
+            "check": "scripts/workflowgen.sh check",
+            "meaning": "GitHub Actions projects every graph node."
+        },
+        {
+            "id": "backend-parity:gitlab-ci",
+            "backend": "gitlab-ci",
+            "output": ".gitlab-ci.yml",
+            "generator": "scripts/gitlabgen.sh",
+            "projection": "stage-chain",
+            "graph_nodes": [
+                "lint",
+                "unit-test",
+                "integration-test",
+                "conformance",
+                "release-check"
+            ],
+            "check": "scripts/gitlabgen.sh check",
+            "meaning": "GitLab CI projects every graph node with runner-specific syntax."
+        },
+        {
+            "id": "backend-parity:local-makefile",
+            "backend": "local-makefile",
+            "output": "Makefile",
+            "generator": "scripts/makegen.sh",
+            "projection": "make-target-chain",
+            "graph_nodes": [
+                "lint",
+                "unit-test",
+                "integration-test",
+                "conformance",
+                "release-check"
+            ],
+            "check": "scripts/makegen.sh check",
+            "meaning": "Makefile projects every graph node for local verification."
+        },
+        {
+            "id": "backend-parity:bazel",
+            "backend": "bazel",
+            "output": "BUILD.bazel",
+            "generator": "scripts/bazelgen.sh",
+            "projection": "genrule-chain",
+            "graph_nodes": [
+                "lint",
+                "unit-test",
+                "integration-test",
+                "conformance",
+                "release-check"
+            ],
+            "check": "scripts/bazelgen.sh check",
+            "meaning": "Bazel projects every graph node through genrules."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "backend-parity:same-node-set",
+            "meaning": "Every execution backend must project the same verification node set.",
+            "check": "scripts/verificationparitygen.sh check"
+        },
+        {
+            "id": "backend-parity:backend-evidence-exists",
+            "meaning": "Every projected backend must exist in generated evidence.",
+            "check": "scripts/verificationparitygen.sh check"
+        },
+        {
+            "id": "backend-parity:check-command-exists",
+            "meaning": "Every projected backend must expose a generated check command.",
+            "check": "scripts/verificationparitygen.sh check"
+        }
+    ]
+}

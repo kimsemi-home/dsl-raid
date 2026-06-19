@@ -170,6 +170,12 @@
             ]
         },
         {
+            "axis": "backend-parity",
+            "backends": [
+                "backend-parity"
+            ]
+        },
+        {
             "axis": "evidence-before-change",
             "backends": [
                 "evidence-before-change"

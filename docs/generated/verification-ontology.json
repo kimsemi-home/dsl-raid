@@ -50,6 +50,7 @@
         "provider-compat",
         "runtime-trace",
         "adr-governance",
+        "backend-parity",
         "evidence-before-change",
         "versioned-ssot",
         "context-map",

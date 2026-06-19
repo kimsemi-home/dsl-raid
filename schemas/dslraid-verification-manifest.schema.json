@@ -1493,6 +1493,51 @@
                 "generated_by",
                 "subject",
                 "source",
+                "parity_profile",
+                "projections",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationparitygen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "parity_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "projections": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/backend_parity_projection"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
                 "adr_profile",
                 "records",
                 "closure_rules"
@@ -3225,6 +3270,50 @@
                 },
                 "evidence": {
                     "$ref": "#/$defs/strings"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "backend_parity_projection": {
+            "type": "object",
+            "required": [
+                "id",
+                "backend",
+                "output",
+                "generator",
+                "projection",
+                "graph_nodes",
+                "check",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "backend": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "output": {
+                    "$ref": "#/$defs/path"
+                },
+                "generator": {
+                    "$ref": "#/$defs/path"
+                },
+                "projection": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "graph_nodes": {
+                    "$ref": "#/$defs/strings"
+                },
+                "check": {
+                    "type": "string",
+                    "pattern": "^scripts/.+ check$"
                 },
                 "meaning": {
                     "type": "string",

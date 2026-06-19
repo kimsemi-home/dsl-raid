@@ -41,6 +41,8 @@
      "Runtime trace mapping semantic receipt.")
     ("semantic-diff:adr-governance" "semantic:adr-governance"
      "ADR governance semantic receipt.")
+    ("semantic-diff:backend-parity" "semantic:backend-parity"
+     "Backend parity semantic receipt.")
     ("semantic-diff:evidence-before-change" "semantic:evidence-before-change"
      "Evidence-before-change semantic receipt.")
     ("semantic-diff:versioned-ssot" "semantic:versioned-ssot"
