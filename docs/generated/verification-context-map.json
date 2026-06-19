@@ -1,0 +1,54 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationcontextmapgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification.lisp",
+    "context_map_profile": "versioned-translation-bridge",
+    "translations": [
+        {
+            "id": "context-map:lisp-to-github-actions",
+            "source_context": "context:verification",
+            "target_context": "context:github-actions",
+            "source_version": "0.1.0",
+            "target_version": "0.1.0",
+            "adapter": "adapter:workflowgen",
+            "loss_policy": "loss:github-actions",
+            "evidence": [
+                "docs/generated/verification-loss-ledger.json",
+                ".github/workflows/verification.yml"
+            ],
+            "meaning": "Lisp verification graph is translated into GitHub Actions gates."
+        },
+        {
+            "id": "context-map:lisp-to-manifest-schema",
+            "source_context": "context:verification",
+            "target_context": "context:manifest-contract",
+            "source_version": "0.1.0",
+            "target_version": "0.1.0",
+            "adapter": "adapter:manifest-schema",
+            "loss_policy": "loss:manifest-schema",
+            "evidence": [
+                "docs/generated/verification-versioned-ssot.json",
+                "schemas/dslraid-verification-manifest.schema.json"
+            ],
+            "meaning": "Verification graph is translated into a manifest schema contract."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "context-map:explicit-contexts",
+            "meaning": "Cross-context movement names both contexts.",
+            "check": "scripts/verificationcontextmapgen.sh check"
+        },
+        {
+            "id": "context-map:versioned-bridge",
+            "meaning": "Translation bridge versions are explicit.",
+            "check": "scripts/verificationcontextmapgen.sh check"
+        },
+        {
+            "id": "context-map:loss-linked",
+            "meaning": "Lossy adapters link a loss ledger entry.",
+            "check": "scripts/verificationcontextmapgen.sh check"
+        }
+    ]
+}

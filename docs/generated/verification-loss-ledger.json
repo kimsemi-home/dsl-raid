@@ -32,6 +32,15 @@
             "policy": "Record adapter loss before release."
         },
         {
+            "id": "loss:manifest-schema",
+            "source": "verify:daemon",
+            "target": "schemas/dslraid-verification-manifest.schema.json",
+            "loss_level": "L1",
+            "meaning": "Schema contract preserves manifest structure, not Lisp form syntax.",
+            "evidence": "docs/generated/verification-conformance.json",
+            "policy": "Record adapter loss before release."
+        },
+        {
             "id": "loss:bazel",
             "source": "verify:daemon",
             "target": "BUILD.bazel",

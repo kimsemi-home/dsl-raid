@@ -48,4 +48,8 @@
     ("evidence-quality:versioned-ssot"
      "docs/generated/verification-versioned-ssot.json" "high"
      "versioned-ssot" "gate:evidence-quality" ("scopes" "closure_rules")
-     "Versioned SSOT evidence is suitable when context and versions are explicit.")))
+     "Versioned SSOT evidence is suitable when context and versions are explicit.")
+    ("evidence-quality:context-map"
+     "docs/generated/verification-context-map.json" "high"
+     "context-map" "gate:evidence-quality" ("translations" "closure_rules")
+     "Context map evidence is suitable when translation loss is linked.")))

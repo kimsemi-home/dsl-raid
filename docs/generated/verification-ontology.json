@@ -44,6 +44,7 @@
         "verification-sidecar",
         "orchestration-manifest",
         "evidence-before-change",
-        "versioned-ssot"
+        "versioned-ssot",
+        "context-map"
     ]
 }

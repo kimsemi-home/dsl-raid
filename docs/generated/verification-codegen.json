@@ -138,6 +138,12 @@
             "backends": [
                 "versioned-ssot"
             ]
+        },
+        {
+            "axis": "context-map",
+            "backends": [
+                "context-map"
+            ]
         }
     ],
     "closure_rules": [

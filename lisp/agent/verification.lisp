@@ -59,6 +59,7 @@
        "bash scripts/verificationorchestrationgen.sh check"
        "bash scripts/verificationevidencebeforechangegen.sh check"
        "bash scripts/verificationversionedssotgen.sh check"
+       "bash scripts/verificationcontextmapgen.sh check"
        "bash scripts/lisp-rustgen.sh check"
        "bash scripts/verificationdocgen.sh check"
        "bash scripts/verificationcodegengen.sh check"

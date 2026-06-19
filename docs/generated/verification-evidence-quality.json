@@ -148,6 +148,18 @@
                 "closure_rules"
             ],
             "meaning": "Versioned SSOT evidence is suitable when context and versions are explicit."
+        },
+        {
+            "id": "evidence-quality:context-map",
+            "target": "docs/generated/verification-context-map.json",
+            "quality": "high",
+            "purpose": "context-map",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "translations",
+                "closure_rules"
+            ],
+            "meaning": "Context map evidence is suitable when translation loss is linked."
         }
     ],
     "closure_rules": [

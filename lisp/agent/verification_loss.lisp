@@ -10,6 +10,10 @@
     ("loss:local-makefile" "verify:daemon" "Makefile"
      "L1" "Make exposes local targets without hosted runner metadata."
      "docs/generated/verification-conformance.json")
+    ("loss:manifest-schema" "verify:daemon"
+     "schemas/dslraid-verification-manifest.schema.json"
+     "L1" "Schema contract preserves manifest structure, not Lisp form syntax."
+     "docs/generated/verification-conformance.json")
     ("loss:bazel" "verify:daemon" "BUILD.bazel"
      "L1" "Bazel genrules keep command chains without workflow UI labels."
      "docs/generated/verification-conformance.json")))

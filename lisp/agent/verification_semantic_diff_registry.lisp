@@ -30,4 +30,6 @@
     ("semantic-diff:evidence-before-change" "semantic:evidence-before-change"
      "Evidence-before-change semantic receipt.")
     ("semantic-diff:versioned-ssot" "semantic:versioned-ssot"
-     "Versioned SSOT semantic receipt.")))
+     "Versioned SSOT semantic receipt.")
+    ("semantic-diff:context-map" "semantic:context-map"
+     "Context map semantic receipt.")))

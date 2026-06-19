@@ -10,8 +10,8 @@
             "id": "semantic-diff:verification-graph",
             "hash_id": "semantic:verification-graph",
             "summary": "Verification graph semantic receipt.",
-            "base_hash": "bd0cf2030c25c63052c41210e4b3090aaefa2e0cd6384cfd66c61010016e5594",
-            "head_hash": "bd0cf2030c25c63052c41210e4b3090aaefa2e0cd6384cfd66c61010016e5594",
+            "base_hash": "3f6c8e5faacceeb40372f50d1986e945128af09246d0cb777eee49c748605f4c",
+            "head_hash": "3f6c8e5faacceeb40372f50d1986e945128af09246d0cb777eee49c748605f4c",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },
@@ -19,8 +19,8 @@
             "id": "semantic-diff:codegen-map",
             "hash_id": "semantic:codegen-map",
             "summary": "Codegen axis semantic receipt.",
-            "base_hash": "57e060d936464b8e623a7a19efd121050f199ffaca70bee689228bd4acc084ad",
-            "head_hash": "57e060d936464b8e623a7a19efd121050f199ffaca70bee689228bd4acc084ad",
+            "base_hash": "17a3c14469b75f213169a6afe5b164c2c77b915987279a906c0b045b128b1d5a",
+            "head_hash": "17a3c14469b75f213169a6afe5b164c2c77b915987279a906c0b045b128b1d5a",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },
@@ -28,8 +28,8 @@
             "id": "semantic-diff:loss-ledger",
             "hash_id": "semantic:loss-ledger",
             "summary": "Translation loss semantic receipt.",
-            "base_hash": "f9db22577ae6810e01e7807c11dd4f1947955825dfbc1fc0a74ba2a80a3b2714",
-            "head_hash": "f9db22577ae6810e01e7807c11dd4f1947955825dfbc1fc0a74ba2a80a3b2714",
+            "base_hash": "f27f610eb40c2a07fe725da886d47b15f67b61582a30792331d44b2226d0c99f",
+            "head_hash": "f27f610eb40c2a07fe725da886d47b15f67b61582a30792331d44b2226d0c99f",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },
@@ -37,8 +37,8 @@
             "id": "semantic-diff:conformance",
             "hash_id": "semantic:conformance",
             "summary": "Conformance contract semantic receipt.",
-            "base_hash": "b5769165163aa93e66bcfc16510e03e2d0de7042d79ffd18b4a9d53fc207fe72",
-            "head_hash": "b5769165163aa93e66bcfc16510e03e2d0de7042d79ffd18b4a9d53fc207fe72",
+            "base_hash": "2276bb2060e300557b7db66ce55e0043bffb5a3a33917e380841c545a87e1417",
+            "head_hash": "2276bb2060e300557b7db66ce55e0043bffb5a3a33917e380841c545a87e1417",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },
@@ -55,8 +55,8 @@
             "id": "semantic-diff:evidence-quality",
             "hash_id": "semantic:evidence-quality",
             "summary": "Evidence quality semantic receipt.",
-            "base_hash": "c3cc1c9cb93afbbf9047542b87bbcc90c8d9395e0d5d26388c13eedd1a5b0140",
-            "head_hash": "c3cc1c9cb93afbbf9047542b87bbcc90c8d9395e0d5d26388c13eedd1a5b0140",
+            "base_hash": "94c3cc2a5deb4eab6089f0515de5bca89d6887c39e4ff67f42d55ef55e3addfc",
+            "head_hash": "94c3cc2a5deb4eab6089f0515de5bca89d6887c39e4ff67f42d55ef55e3addfc",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },
@@ -138,6 +138,15 @@
             "summary": "Versioned SSOT semantic receipt.",
             "base_hash": "89e54336d43581e69b5c0f296f23ea32ef2c64901e8b775bba866c0ae9067abb",
             "head_hash": "89e54336d43581e69b5c0f296f23ea32ef2c64901e8b775bba866c0ae9067abb",
+            "status": "unchanged",
+            "evidence": "docs/generated/verification-semantic-hash.json"
+        },
+        {
+            "id": "semantic-diff:context-map",
+            "hash_id": "semantic:context-map",
+            "summary": "Context map semantic receipt.",
+            "base_hash": "5ccdfef7caced14fa6f91df95c9af5b66229c5bc83be3e5e8dccb2ef65ed7919",
+            "head_hash": "5ccdfef7caced14fa6f91df95c9af5b66229c5bc83be3e5e8dccb2ef65ed7919",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         }

@@ -22,7 +22,8 @@
     ("verification-sidecar" ("sidecar-manifest"))
     ("orchestration-manifest" ("orchestration-manifest"))
     ("evidence-before-change" ("evidence-before-change"))
-    ("versioned-ssot" ("versioned-ssot"))))
+    ("versioned-ssot" ("versioned-ssot"))
+    ("context-map" ("context-map"))))
 
 (defparameter *verification-codegen-rules*
   '(("codegen:axis-covered" "Every ontology codegen axis maps to a backend.")

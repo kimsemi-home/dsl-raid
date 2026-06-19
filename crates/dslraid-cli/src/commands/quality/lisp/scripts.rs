@@ -32,4 +32,5 @@ pub(super) const CHECKS: &[&str] = &[
     "scripts/verificationorchestrationgen.sh",
     "scripts/verificationevidencebeforechangegen.sh",
     "scripts/verificationversionedssotgen.sh",
+    "scripts/verificationcontextmapgen.sh",
 ];
