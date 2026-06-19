@@ -36,6 +36,7 @@
         "semantic-diff",
         "authority-gate",
         "evidence-quality",
-        "lease-and-abort"
+        "lease-and-abort",
+        "review-capacity"
     ]
 }

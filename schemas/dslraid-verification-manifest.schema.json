@@ -397,6 +397,59 @@
                     }
                 }
             }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
+                "review_capacity_profile",
+                "queues",
+                "overload_rules",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationreviewgen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "review_capacity_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "queues": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/review_queue"
+                    }
+                },
+                "overload_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/review_overload"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
         }
     ],
     "$defs": {
@@ -784,6 +837,82 @@
                 },
                 "effect": {
                     "const": "authority-blocked"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "review_queue": {
+            "type": "object",
+            "required": [
+                "id",
+                "scope",
+                "capacity",
+                "assigned",
+                "status",
+                "freezes",
+                "evidence",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "scope": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "capacity": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "assigned": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "status": {
+                    "enum": [
+                        "available",
+                        "near-limit",
+                        "overloaded"
+                    ]
+                },
+                "freezes": {
+                    "$ref": "#/$defs/strings"
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "review_overload": {
+            "type": "object",
+            "required": [
+                "id",
+                "when",
+                "effect",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "when": {
+                    "const": "overloaded"
+                },
+                "effect": {
+                    "enum": [
+                        "freeze-governed-automation",
+                        "create-review-debt"
+                    ]
                 },
                 "meaning": {
                     "type": "string",

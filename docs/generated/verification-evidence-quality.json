@@ -52,6 +52,18 @@
                 "abort_rules"
             ],
             "meaning": "Lease evidence is suitable when abort preserves evidence."
+        },
+        {
+            "id": "evidence-quality:review-capacity",
+            "target": "docs/generated/verification-review-capacity.json",
+            "quality": "high",
+            "purpose": "review-capacity",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "queues",
+                "overload_rules"
+            ],
+            "meaning": "Review capacity evidence is suitable when overload freezes automation."
         }
     ],
     "closure_rules": [

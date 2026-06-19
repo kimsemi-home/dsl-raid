@@ -1,0 +1,72 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationreviewgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification.lisp",
+    "review_capacity_profile": "governance-review-queue",
+    "queues": [
+        {
+            "id": "review-capacity:verification",
+            "scope": "routine",
+            "capacity": 4,
+            "assigned": 2,
+            "status": "available",
+            "freezes": [
+                "authority-gate",
+                "lease-and-abort"
+            ],
+            "evidence": [
+                "docs/generated/verification-authority.json",
+                "docs/generated/verification-lease.json"
+            ],
+            "meaning": "Routine verification review has spare capacity."
+        },
+        {
+            "id": "review-capacity:release",
+            "scope": "release",
+            "capacity": 2,
+            "assigned": 1,
+            "status": "available",
+            "freezes": [
+                "release-pipelines",
+                "semantic-diff"
+            ],
+            "evidence": [
+                "docs/generated/verification-semantic-diff.json",
+                "docs/generated/verification-evidence-quality.json"
+            ],
+            "meaning": "Release review capacity is available for generated changes."
+        }
+    ],
+    "overload_rules": [
+        {
+            "id": "review-overload:freeze-high-risk",
+            "when": "overloaded",
+            "effect": "freeze-governed-automation",
+            "meaning": "Governed automation freezes on overload."
+        },
+        {
+            "id": "review-overload:create-debt",
+            "when": "overloaded",
+            "effect": "create-review-debt",
+            "meaning": "Overload creates explicit review debt."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "review-capacity:evidence-linked",
+            "meaning": "Every review queue links generated evidence.",
+            "check": "scripts/verificationreviewgen.sh check"
+        },
+        {
+            "id": "review-capacity:capacity-valid",
+            "meaning": "Assigned review work cannot exceed capacity.",
+            "check": "scripts/verificationreviewgen.sh check"
+        },
+        {
+            "id": "review-capacity:overload-freezes",
+            "meaning": "Overload freezes governed automation.",
+            "check": "scripts/verificationreviewgen.sh check"
+        }
+    ]
+}

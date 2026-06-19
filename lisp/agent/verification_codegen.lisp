@@ -14,7 +14,8 @@
     ("semantic-diff" ("semantic-diff"))
     ("authority-gate" ("authority-manifest"))
     ("evidence-quality" ("evidence-quality"))
-    ("lease-and-abort" ("lease-manifest"))))
+    ("lease-and-abort" ("lease-manifest"))
+    ("review-capacity" ("review-capacity"))))
 
 (defparameter *verification-codegen-rules*
   '(("codegen:axis-covered" "Every ontology codegen axis maps to a backend.")

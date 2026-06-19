@@ -32,7 +32,7 @@
             "id": "test:verification.node.release-check",
             "subject": "verify:daemon/release-check",
             "kind": "verification-node",
-            "commands": 25
+            "commands": 26
         },
         {
             "id": "test:verification.backend.github-actions",
@@ -111,6 +111,12 @@
             "subject": "docs/generated/verification-lease.json",
             "kind": "generated-backend",
             "generator": "scripts/verificationleasegen.sh"
+        },
+        {
+            "id": "test:verification.backend.review-capacity",
+            "subject": "docs/generated/verification-review-capacity.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationreviewgen.sh"
         },
         {
             "id": "test:verification.backend.rust-code",

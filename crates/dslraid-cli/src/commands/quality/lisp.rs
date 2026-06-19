@@ -3,32 +3,12 @@ use dslraid_core::{load_core_ir, CORE_SCHEMA_PATH};
 use std::path::Path;
 use std::process::Command;
 
+mod scripts;
+
 pub(super) fn check() -> Result<()> {
-    run_script("scripts/lisp-test.sh")?;
-    run_script("scripts/lisp-docgen.sh")?;
-    run_script("scripts/langdiaggen.sh")?;
-    run_script("scripts/backendgen.sh")?;
-    run_script("scripts/workflowgen.sh")?;
-    run_script("scripts/gitlabgen.sh")?;
-    run_script("scripts/makegen.sh")?;
-    run_script("scripts/bazelgen.sh")?;
-    run_script("scripts/releasegen.sh")?;
-    run_script("scripts/privacycheck.sh")?;
-    run_script("scripts/verificationprivacygen.sh")?;
-    run_script("scripts/verificationpdcagen.sh")?;
-    run_script("scripts/verificationlossgen.sh")?;
-    run_script("scripts/verificationcodegengen.sh")?;
-    run_script("scripts/verificationontologygen.sh")?;
-    run_script("scripts/verificationconformancegen.sh")?;
-    run_script("scripts/verificationschemagen.sh")?;
-    run_script("scripts/verificationmanifestschemagen.sh")?;
-    run_script("scripts/verificationtestgen.sh")?;
-    run_script("scripts/verificationevidencegen.sh")?;
-    run_script("scripts/verificationsemanticgen.sh")?;
-    run_script("scripts/verificationdiffgen.sh")?;
-    run_script("scripts/verificationauthoritygen.sh")?;
-    run_script("scripts/verificationevidencequalitygen.sh")?;
-    run_script("scripts/verificationleasegen.sh")?;
+    for script in scripts::CHECKS {
+        run_script(script)?;
+    }
     run_lisp_irgen()?;
     run_script("scripts/lisp-rustgen.sh")?;
     validate_lisp_ir(Path::new("examples/runscope/runscope.lisp.raid.json"))

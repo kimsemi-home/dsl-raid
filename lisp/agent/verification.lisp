@@ -51,6 +51,7 @@
        "bash scripts/verificationauthoritygen.sh check"
        "bash scripts/verificationevidencequalitygen.sh check"
        "bash scripts/verificationleasegen.sh check"
+       "bash scripts/verificationreviewgen.sh check"
        "bash scripts/lisp-rustgen.sh check"
        "bash scripts/verificationdocgen.sh check"
        "bash scripts/verificationcodegengen.sh check"

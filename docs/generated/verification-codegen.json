@@ -90,6 +90,12 @@
             "backends": [
                 "lease-manifest"
             ]
+        },
+        {
+            "axis": "review-capacity",
+            "backends": [
+                "review-capacity"
+            ]
         }
     ],
     "closure_rules": [

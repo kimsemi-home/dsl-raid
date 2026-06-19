@@ -16,7 +16,11 @@
     ("evidence-quality:lease"
      "docs/generated/verification-lease.json" "high" "lease-and-abort"
      "gate:evidence-quality" ("leases" "abort_rules")
-     "Lease evidence is suitable when abort preserves evidence.")))
+     "Lease evidence is suitable when abort preserves evidence.")
+    ("evidence-quality:review-capacity"
+     "docs/generated/verification-review-capacity.json" "high" "review-capacity"
+     "gate:evidence-quality" ("queues" "overload_rules")
+     "Review capacity evidence is suitable when overload freezes automation.")))
 
 (defparameter *verification-evidence-quality-rules*
   '(("evidence-quality:target-generated" "Every assessed target is generated evidence.")
