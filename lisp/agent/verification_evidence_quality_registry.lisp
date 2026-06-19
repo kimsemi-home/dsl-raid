@@ -66,4 +66,8 @@
     ("evidence-quality:ssot-defect"
      "docs/generated/verification-ssot-defect.json" "high"
      "ssot-defect" "gate:evidence-quality" ("defects" "closure_rules")
-     "SSOT defect evidence is suitable when freeze and migration are explicit.")))
+     "SSOT defect evidence is suitable when freeze and migration are explicit.")
+    ("evidence-quality:root-cause"
+     "docs/generated/verification-root-cause.json" "medium"
+     "root-cause" "gate:evidence-quality" ("cases" "closure_rules")
+     "Root cause evidence is suitable while candidates remain validation-bound.")))

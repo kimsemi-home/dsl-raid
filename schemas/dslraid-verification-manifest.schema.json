@@ -945,6 +945,51 @@
                     }
                 }
             }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
+                "root_cause_profile",
+                "cases",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationrootcausegen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "root_cause_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "cases": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/root_cause_case"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
         }
     ],
     "$defs": {
@@ -1894,6 +1939,67 @@
                 },
                 "verification_plan": {
                     "$ref": "#/$defs/semantic_ref"
+                },
+                "authority": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "root_cause_case": {
+            "type": "object",
+            "required": [
+                "id",
+                "observation",
+                "status",
+                "candidates",
+                "eliminated_causes",
+                "validation_evidence",
+                "confidence_ceiling",
+                "authority",
+                "evidence",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "observation": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "status": {
+                    "enum": [
+                        "candidate-set",
+                        "confirmed",
+                        "rejected",
+                        "closed"
+                    ]
+                },
+                "candidates": {
+                    "$ref": "#/$defs/strings"
+                },
+                "eliminated_causes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/semantic_ref"
+                    }
+                },
+                "validation_evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "confidence_ceiling": {
+                    "enum": [
+                        "low",
+                        "medium",
+                        "high"
+                    ]
                 },
                 "authority": {
                     "$ref": "#/$defs/semantic_ref"

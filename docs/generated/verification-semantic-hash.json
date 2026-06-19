@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "3227b18ec225dab9523d1f507ab3c76b526013f51106d27bcb332bedf6f8884a"
+            "hash": "b07e2f40156dc2cb96ebe65299e85e520c485bf1a8ad48742ba4300eb09ccb83"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "45d36e9616268664323d0ebff2ca0944f9160962d9d134a6e500ad8551b8dd4e"
+            "hash": "333833667be2fd8d4c9b7e524493dbcce9edba0d9eb635dc282c357f36125f59"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "e42f59ee0a49c221a88b6deba70ab2f5c49602954825a28dfd269c420885664d"
+            "hash": "b2f6c79842ae7f785dc43a65ce6746579d2e127688c8ac373635bdd4f1a820fc"
         },
         {
             "id": "semantic:authority",
@@ -64,7 +64,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "5a513bd1987bde903f961d0a02fb791b2eae80d21e4ce856f6f1c3253d8cdde5"
+            "hash": "e9e4a852a4973718b2efcc8b7cb35b161539777f8fde8c2a17e0bee83f9a3ccc"
         },
         {
             "id": "semantic:lease",
@@ -210,6 +210,17 @@
             ],
             "meaning": "SSOT defect freeze, migration, and verification contract.",
             "hash": "a7746bdea6dfc57ab734aaff0949cdc87157646dde197630be383bc59be1e0fb"
+        },
+        {
+            "id": "semantic:root-cause",
+            "source": "docs/generated/verification-root-cause.json",
+            "fields": [
+                "root_cause_profile",
+                "cases",
+                "closure_rules"
+            ],
+            "meaning": "Root cause candidate validation contract.",
+            "hash": "cc3651b0ca7e61d09a8ac0b7b8b9eddf00febd4b7c96f1ac6c1566e4133a0f35"
         }
     ],
     "closure_rules": [

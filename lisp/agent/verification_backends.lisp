@@ -46,6 +46,8 @@
      "scripts/verificationtransitiongen.sh")
     ("ssot-defect" "docs/generated/verification-ssot-defect.json"
      "scripts/verificationssotdefectgen.sh")
+    ("root-cause" "docs/generated/verification-root-cause.json"
+     "scripts/verificationrootcausegen.sh")
     ("rust-code" "generated/runtime_fsm.rs" "scripts/lisp-rustgen.sh")
     ("verification-doc" "docs/generated/verification-graph.md"
      "scripts/verificationdocgen.sh")

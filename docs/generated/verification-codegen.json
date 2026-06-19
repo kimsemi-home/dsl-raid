@@ -162,6 +162,12 @@
             "backends": [
                 "ssot-defect"
             ]
+        },
+        {
+            "axis": "root-cause",
+            "backends": [
+                "root-cause"
+            ]
         }
     ],
     "closure_rules": [

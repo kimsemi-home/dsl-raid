@@ -60,4 +60,7 @@
      "Ontology transition lane and cutover contract.")
     ("semantic:ssot-defect" "docs/generated/verification-ssot-defect.json"
      ("ssot_defect_profile" "defects" "closure_rules")
-     "SSOT defect freeze, migration, and verification contract.")))
+     "SSOT defect freeze, migration, and verification contract.")
+    ("semantic:root-cause" "docs/generated/verification-root-cause.json"
+     ("root_cause_profile" "cases" "closure_rules")
+     "Root cause candidate validation contract.")))

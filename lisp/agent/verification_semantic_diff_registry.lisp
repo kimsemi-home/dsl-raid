@@ -38,4 +38,6 @@
     ("semantic-diff:ontology-transition" "semantic:ontology-transition"
      "Ontology transition semantic receipt.")
     ("semantic-diff:ssot-defect" "semantic:ssot-defect"
-     "SSOT defect semantic receipt.")))
+     "SSOT defect semantic receipt.")
+    ("semantic-diff:root-cause" "semantic:root-cause"
+     "Root cause semantic receipt.")))

@@ -48,6 +48,7 @@
         "context-map",
         "historical-interpreter",
         "ontology-transition",
-        "ssot-defect"
+        "ssot-defect",
+        "root-cause"
     ]
 }

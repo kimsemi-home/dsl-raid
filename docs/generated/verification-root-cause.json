@@ -1,0 +1,50 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationrootcausegen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification.lisp",
+    "root_cause_profile": "candidate-validation",
+    "cases": [
+        {
+            "id": "root-cause:ssot-defect-drill",
+            "observation": "observation:ssot-defect-drill",
+            "status": "candidate-set",
+            "candidates": [
+                "cause:contract-drift",
+                "cause:generation-drift",
+                "cause:evidence-drift"
+            ],
+            "eliminated_causes": [
+                "cause:evidence-drift"
+            ],
+            "validation_evidence": [
+                "docs/generated/verification-semantic-diff.json",
+                "docs/generated/verification-conformance.json"
+            ],
+            "confidence_ceiling": "medium",
+            "authority": "gate:authority",
+            "evidence": [
+                "docs/generated/verification-ssot-defect.json",
+                "docs/generated/verification-evidence-quality.json"
+            ],
+            "meaning": "Root cause remains a bounded hypothesis until validation evidence closes it."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "root-cause:candidates-first",
+            "meaning": "Root cause starts as candidates, not assertion.",
+            "check": "scripts/verificationrootcausegen.sh check"
+        },
+        {
+            "id": "root-cause:validation-required",
+            "meaning": "Validation evidence narrows candidates.",
+            "check": "scripts/verificationrootcausegen.sh check"
+        },
+        {
+            "id": "root-cause:confidence-capped",
+            "meaning": "Unconfirmed root cause cannot be high confidence.",
+            "check": "scripts/verificationrootcausegen.sh check"
+        }
+    ]
+}

@@ -196,6 +196,18 @@
                 "closure_rules"
             ],
             "meaning": "SSOT defect evidence is suitable when freeze and migration are explicit."
+        },
+        {
+            "id": "evidence-quality:root-cause",
+            "target": "docs/generated/verification-root-cause.json",
+            "quality": "medium",
+            "purpose": "root-cause",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "cases",
+                "closure_rules"
+            ],
+            "meaning": "Root cause evidence is suitable while candidates remain validation-bound."
         }
     ],
     "closure_rules": [
