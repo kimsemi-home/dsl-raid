@@ -1,0 +1,22 @@
+(in-package #:dslraid.agent)
+
+(defparameter *release-check-core-groups*
+  '(("core" "generated backend and semantic contract checks"
+     ("bash scripts/workflowgen.sh check"
+      "bash scripts/gitlabgen.sh check"
+      "bash scripts/makegen.sh check"
+      "bash scripts/bazelgen.sh check"
+      "bash scripts/releasegen.sh check"
+      "bash scripts/privacycheck.sh check"
+      "bash scripts/verificationprivacygen.sh check"
+      "bash scripts/verificationpdcagen.sh check"
+      "bash scripts/verificationevidenceopsgen.sh check"
+      "bash scripts/verificationlossgen.sh check"
+      "bash scripts/verificationontologygen.sh check"
+      "bash scripts/verificationconformancegen.sh check"
+      "bash scripts/verificationschemagen.sh check"
+      "bash scripts/verificationmanifestschemagen.sh check"
+      "bash scripts/verificationtestgen.sh check"
+      "bash scripts/verificationevidencegen.sh check"
+      "bash scripts/verificationsemanticgen.sh check"
+      "bash scripts/verificationdiffgen.sh check"))))

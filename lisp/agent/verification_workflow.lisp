@@ -65,5 +65,6 @@
   (format out "        run: bash scripts/install-sbcl.sh~%"))
 
 (defun write-verification-command (out id index command)
-  (format out "      - name: Run ~A command ~D~%" id index)
+  (format out "      - name: ~A~%"
+          (verification-command-name id index command))
   (format out "        run: ~A~%" command))

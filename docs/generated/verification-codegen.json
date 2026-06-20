@@ -47,7 +47,8 @@
             "axis": "release-pipelines",
             "backends": [
                 "github-release",
-                "release-provenance"
+                "release-provenance",
+                "release-check-providers"
             ]
         },
         {

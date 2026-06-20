@@ -257,6 +257,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.release-check-providers",
+            "subject": "scripts/releasecheck",
+            "check": "scripts/releasecheckgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.incident-learning",
             "subject": "docs/generated/verification-incident-learning.json",
             "check": "scripts/verificationincidentgen.sh check",

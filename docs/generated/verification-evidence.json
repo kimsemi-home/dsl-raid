@@ -53,6 +53,7 @@
     {"backend": "backend-parity", "output": "docs/generated/verification-backend-parity.json", "generator": "scripts/verificationparitygen.sh", "check": "scripts/verificationparitygen.sh check"},
     {"backend": "github-actions-suite", "output": "docs/generated/verification-github-actions.json", "generator": "scripts/verificationactionsgen.sh", "check": "scripts/verificationactionsgen.sh check"},
     {"backend": "release-provenance", "output": "docs/generated/verification-release-provenance.json", "generator": "scripts/verificationreleaseprovenancegen.sh", "check": "scripts/verificationreleaseprovenancegen.sh check"},
+    {"backend": "release-check-providers", "output": "scripts/releasecheck", "generator": "scripts/releasecheckgen.sh", "check": "scripts/releasecheckgen.sh check"},
     {"backend": "incident-learning", "output": "docs/generated/verification-incident-learning.json", "generator": "scripts/verificationincidentgen.sh", "check": "scripts/verificationincidentgen.sh check"},
     {"backend": "genesis-charter", "output": "docs/generated/verification-genesis-charter.json", "generator": "scripts/verificationgenesisgen.sh", "check": "scripts/verificationgenesisgen.sh check"},
     {"backend": "meta-model", "output": "docs/generated/verification-meta-model.json", "generator": "scripts/verificationmetamodelgen.sh", "check": "scripts/verificationmetamodelgen.sh check"},
@@ -89,7 +90,7 @@
     {"id": "unit-test", "commands": 1, "evidence": "Rust workspace unit test evidence."},
     {"id": "integration-test", "commands": 3, "evidence": "Viewer test and build evidence."},
     {"id": "conformance", "commands": 1, "evidence": "Unified DSLRaid semantic and generated-output gate."},
-    {"id": "release-check", "commands": 73, "evidence": "Generated workflow, docs index, and artifact freshness."}
+    {"id": "release-check", "commands": 6, "evidence": "Generated workflow, docs index, and artifact freshness."}
   ],
   "pdca": [
     "plan",

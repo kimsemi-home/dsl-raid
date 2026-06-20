@@ -19,6 +19,7 @@
     ("backend-parity" "docs/generated/verification-backend-parity.json" "scripts/verificationparitygen.sh")
     ("github-actions-suite" "docs/generated/verification-github-actions.json" "scripts/verificationactionsgen.sh")
     ("release-provenance" "docs/generated/verification-release-provenance.json" "scripts/verificationreleaseprovenancegen.sh")
+    ("release-check-providers" "scripts/releasecheck" "scripts/releasecheckgen.sh")
     ("incident-learning" "docs/generated/verification-incident-learning.json" "scripts/verificationincidentgen.sh")
     ("genesis-charter" "docs/generated/verification-genesis-charter.json" "scripts/verificationgenesisgen.sh")
     ("meta-model" "docs/generated/verification-meta-model.json" "scripts/verificationmetamodelgen.sh")

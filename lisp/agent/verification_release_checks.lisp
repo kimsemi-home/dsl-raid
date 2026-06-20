@@ -1,75 +1,52 @@
 (in-package #:dslraid.agent)
 
-(defvar *verification-release-check-extra-commands* nil)
-(defparameter *verification-release-check-commands*
-  '("bash scripts/workflowgen.sh check"
-    "bash scripts/gitlabgen.sh check"
-    "bash scripts/makegen.sh check"
-    "bash scripts/bazelgen.sh check"
-    "bash scripts/releasegen.sh check"
-    "bash scripts/privacycheck.sh check"
-    "bash scripts/verificationprivacygen.sh check"
-    "bash scripts/verificationpdcagen.sh check"
-    "bash scripts/verificationevidenceopsgen.sh check"
-    "bash scripts/verificationlossgen.sh check"
-    "bash scripts/verificationontologygen.sh check"
-    "bash scripts/verificationconformancegen.sh check"
-    "bash scripts/verificationschemagen.sh check"
-    "bash scripts/verificationmanifestschemagen.sh check"
-    "bash scripts/verificationtestgen.sh check"
-    "bash scripts/verificationevidencegen.sh check"
-    "bash scripts/verificationsemanticgen.sh check"
-    "bash scripts/verificationdiffgen.sh check"
-    "bash scripts/verificationauthoritygen.sh check"
-    "bash scripts/verificationaccessgen.sh check"
-    "bash scripts/verificationreasoninggen.sh check"
-    "bash scripts/verificationreliabilitygen.sh check"
-    "bash scripts/verificationagreementgen.sh check"
-    "bash scripts/verificationadversarialgen.sh check"
-    "bash scripts/verificationevidencequalitygen.sh check"
-    "bash scripts/verificationleasegen.sh check"
-    "bash scripts/verificationreviewgen.sh check"
-    "bash scripts/verificationfeedbackgen.sh check"
-    "bash scripts/verificationquarantinegen.sh check"
-    "bash scripts/verificationconfidencegen.sh check"
-    "bash scripts/verificationsidecargen.sh check"
-    "bash scripts/verificationorchestrationgen.sh check"
-    "bash scripts/verificationcontrolgen.sh check"
-    "bash scripts/verificationprovidergen.sh check"
-    "bash scripts/verificationruntimegen.sh check"
-    "bash scripts/verificationrunmanifestgen.sh check"
-    "bash scripts/verificationbootstrapgen.sh check"
-    "bash scripts/verificationexperimentgen.sh check"
-    "bash scripts/verificationmergegen.sh check"
-    "bash scripts/verificationadrgen.sh check"
-    "bash scripts/verificationparitygen.sh check"
-    "bash scripts/verificationactionsgen.sh check"
-    "bash scripts/verificationreleaseprovenancegen.sh check"
-    "bash scripts/verificationincidentgen.sh check"
-    "bash scripts/verificationgenesisgen.sh check"
-    "bash scripts/verificationmetamodelgen.sh check"
-    "bash scripts/verificationstewardgen.sh check"
-    "bash scripts/verificationrevalidationgen.sh check"
-    "bash scripts/verificationcoldstartgen.sh check"
-    "bash scripts/verificationseparationgen.sh check"
-    "bash scripts/verificationevidencebeforechangegen.sh check"
-    "bash scripts/verificationversionedssotgen.sh check"
-    "bash scripts/verificationcontextmapgen.sh check"
-    "bash scripts/verificationhistoricalgen.sh check"
-    "bash scripts/verificationtransitiongen.sh check"
-    "bash scripts/verificationssotdefectgen.sh check"
-    "bash scripts/verificationrootcausegen.sh check"
-    "bash scripts/verificationdebuggergen.sh check"
-    "bash scripts/verificationpruninggen.sh check"
-    "bash scripts/verificationsecuritygen.sh check"
-    "bash scripts/verificationfailuregen.sh check"
-    "bash scripts/verificationdebtgen.sh check"
-    "bash scripts/verificationincompletegen.sh check"
-    "bash scripts/lisp-rustgen.sh check"
-    "bash scripts/verificationdocgen.sh check"
-    "bash scripts/verificationcodegengen.sh check"
-    "bash scripts/gendocindex.sh check"))
+(defvar *release-check-core-groups* nil)
+(defvar *release-check-governance-groups* nil)
+(defvar *release-check-runtime-groups* nil)
+(defvar *release-check-ssot-groups* nil)
+(defvar *release-check-artifact-groups* nil)
+
+(defun verification-release-check-command-groups ()
+  (append *release-check-core-groups*
+          *release-check-governance-groups*
+          *release-check-runtime-groups*
+          *release-check-ssot-groups*
+          *release-check-artifact-groups*))
 
 (defun verification-release-check-commands ()
-  "Return release-check commands for generated verification surfaces."
-  (append *verification-release-check-commands* *verification-release-check-extra-commands*))
+  "Return grouped release-check commands for generated verification surfaces."
+  (cons "bash scripts/releasecheckgen.sh check"
+        (mapcar #'release-check-wrapper-command
+                (verification-release-check-command-groups))))
+
+(defun release-check-wrapper-command (group)
+  (format nil "bash ~A" (release-check-script-path (first group))))
+
+(defun release-check-script-path (id)
+  (format nil "scripts/releasecheck/~A.sh" id))
+
+(defun verification-release-check-group-ids ()
+  (mapcar #'first (verification-release-check-command-groups)))
+
+(defun release-check-group-by-id (id)
+  (find id (verification-release-check-command-groups)
+        :test #'string= :key #'first))
+
+(defun release-check-group-commands (group)
+  (third group))
+
+(defun emit-verification-release-check-script (id &optional stream)
+  (let ((group (release-check-group-by-id id)))
+    (unless group (error "Unknown release-check group: ~A" id))
+    (let ((text (with-output-to-string (out)
+                  (write-release-check-script out group))))
+      (if stream (write-string text stream) text))))
+
+(defun write-release-check-script (out group)
+  (destructuring-bind (id purpose commands) group
+    (format out "#!/usr/bin/env bash~%")
+    (format out "# generated by scripts/releasecheckgen.sh; do not edit by hand~%")
+    (format out "# release-check provider: ~A - ~A~%" id purpose)
+    (format out "set -euo pipefail~%~%")
+    (dolist (command commands)
+      (format out "~A~%" command))))
