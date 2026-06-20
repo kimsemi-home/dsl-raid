@@ -246,6 +246,13 @@
             "evidence": "docs/generated/verification-evidence.json"
         },
         {
+            "backend": "domain-fsm-dsl",
+            "output": "docs/generated/verification-domain-fsm.json",
+            "generator": "scripts/verificationdomainfsmgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
             "backend": "query-surface",
             "output": "docs/generated/verification-query-surface.json",
             "generator": "scripts/verificationquerygen.sh",

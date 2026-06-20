@@ -249,6 +249,12 @@
             ]
         },
         {
+            "axis": "domain-fsm-dsl",
+            "backends": [
+                "domain-fsm-dsl"
+            ]
+        },
+        {
             "axis": "run-manifest",
             "backends": [
                 "run-manifest"

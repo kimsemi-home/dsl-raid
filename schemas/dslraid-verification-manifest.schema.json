@@ -1042,6 +1042,51 @@
                 "generated_by",
                 "subject",
                 "source",
+                "domain_fsm_profile",
+                "surfaces",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationdomainfsmgen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "domain_fsm_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "surfaces": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/domain_fsm_surface"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
                 "historical_interpreter_profile",
                 "interpretations",
                 "closure_rules"
@@ -5938,6 +5983,59 @@
                         "uncovered",
                         "failed"
                     ]
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "domain_fsm_surface": {
+            "type": "object",
+            "required": [
+                "id",
+                "kind",
+                "source",
+                "generated",
+                "command",
+                "assertion",
+                "lossy",
+                "evidence",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "kind": {
+                    "enum": [
+                        "lisp-dsl",
+                        "canonical-ir",
+                        "runtime-code",
+                        "human-diagram"
+                    ]
+                },
+                "source": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "generated": {
+                    "$ref": "#/$defs/strings"
+                },
+                "command": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "assertion": {
+                    "type": "string",
+                    "pattern": "^stdout:.+"
+                },
+                "lossy": {
+                    "type": "boolean"
                 },
                 "evidence": {
                     "$ref": "#/$defs/strings"

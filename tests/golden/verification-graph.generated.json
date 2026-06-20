@@ -239,6 +239,12 @@
             "generator": "scripts/verificationruntimecontractgen.sh"
         },
         {
+            "id": "test:verification.backend.domain-fsm-dsl",
+            "subject": "docs/generated/verification-domain-fsm.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationdomainfsmgen.sh"
+        },
+        {
             "id": "test:verification.backend.query-surface",
             "subject": "docs/generated/verification-query-surface.json",
             "kind": "generated-backend",

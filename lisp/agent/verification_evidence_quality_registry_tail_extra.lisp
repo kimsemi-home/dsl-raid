@@ -26,6 +26,11 @@
      "high" "source-shape" "gate:evidence-quality"
      ("budgets" "closure_rules")
      "Source shape evidence is suitable when budget and public entrypoint are explicit.")
+    ("evidence-quality:domain-fsm-dsl"
+     "docs/generated/verification-domain-fsm.json"
+     "high" "domain-fsm-dsl" "gate:evidence-quality"
+     ("surfaces" "closure_rules")
+     "Domain FSM evidence is suitable when runtime code and Mermaid are generated.")
     ("evidence-quality:objective-coverage"
      "docs/generated/verification-objective-coverage.json"
      "high" "objective-coverage" "gate:evidence-quality"

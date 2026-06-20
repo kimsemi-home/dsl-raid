@@ -62,6 +62,7 @@
         "provider-compat",
         "runtime-trace",
         "runtime-contract",
+        "domain-fsm-dsl",
         "run-manifest",
         "adr-governance",
         "backend-parity",

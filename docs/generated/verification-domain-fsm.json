@@ -1,0 +1,87 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationdomainfsmgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_domain_fsm.lisp",
+    "domain_fsm_profile": "lisp-fsm-to-generated-runtime-and-diagram",
+    "surfaces": [
+        {
+            "id": "domain-fsm:lisp-dsl",
+            "kind": "lisp-dsl",
+            "source": "lisp/runtime/runscope.lisp",
+            "generated": [
+                "examples/runscope/runscope.lisp.raid.json"
+            ],
+            "command": "scripts/lisp-irgen.sh check",
+            "assertion": "stdout:lisp generated ir ok",
+            "lossy": false,
+            "evidence": [
+                "docs/generated/lisp-pipeline.md"
+            ],
+            "meaning": "Common Lisp Domain FSM forms are the authoring source."
+        },
+        {
+            "id": "domain-fsm:canonical-ir",
+            "kind": "canonical-ir",
+            "source": "examples/runscope/runscope.lisp.raid.json",
+            "generated": [
+                "generated/runtime_fsm.go",
+                "generated/runtime_fsm.rs"
+            ],
+            "command": "cargo run --quiet -p dslraid-cli -- artifact verify examples/runscope/runscope.raid.json --lock examples/runscope/runscope.lock.json",
+            "assertion": "stdout:artifact verification passed",
+            "lossy": false,
+            "evidence": [
+                "examples/runscope/runscope.lock.json"
+            ],
+            "meaning": "Canonical IR drives runtime artifacts through the lock contract."
+        },
+        {
+            "id": "domain-fsm:go-runtime",
+            "kind": "runtime-code",
+            "source": "examples/runscope/runscope.lisp.raid.json",
+            "generated": [
+                "generated/runtime_fsm.go"
+            ],
+            "command": "cargo run --quiet -p dslraid-cli -- codegen examples/runscope/runscope.lisp.raid.json --target go",
+            "assertion": "stdout:package generated",
+            "lossy": false,
+            "evidence": [
+                "crates/dslraid-codegen/src/code/go.rs"
+            ],
+            "meaning": "Go runtime code is generated from Canonical IR."
+        },
+        {
+            "id": "domain-fsm:mermaid-doc",
+            "kind": "human-diagram",
+            "source": "examples/runscope/runscope.lisp.raid.json",
+            "generated": [
+                "stdout:stateDiagram-v2"
+            ],
+            "command": "cargo run --quiet -p dslraid-cli -- export mermaid examples/runscope/runscope.lisp.raid.json",
+            "assertion": "stdout:stateDiagram-v2",
+            "lossy": true,
+            "evidence": [
+                "docs/generated/backend-targets.md"
+            ],
+            "meaning": "Mermaid is generated human documentation, never the SSOT."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "domain-fsm:ssot",
+            "meaning": "Domain FSM Lisp forms expand to Canonical IR.",
+            "check": "scripts/verificationdomainfsmgen.sh check"
+        },
+        {
+            "id": "domain-fsm:runtime-generated",
+            "meaning": "Runtime code is generated from Canonical IR.",
+            "check": "scripts/verificationdomainfsmgen.sh check"
+        },
+        {
+            "id": "domain-fsm:diagram-lossy",
+            "meaning": "Mermaid diagrams are generated and lossy.",
+            "check": "scripts/verificationdomainfsmgen.sh check"
+        }
+    ]
+}
