@@ -478,8 +478,8 @@
             "id": "semantic-diff:source-shape",
             "hash_id": "semantic:source-shape",
             "summary": "Source shape semantic receipt.",
-            "base_hash": "c4ae6ccb4b55aeae8b342501034be04628f770aa00be52b39215275bea02b7c4",
-            "head_hash": "c4ae6ccb4b55aeae8b342501034be04628f770aa00be52b39215275bea02b7c4",
+            "base_hash": "5973691e5988c9486eddfdd7802c09d0e229e69fdd09c87b2f52a2facabdc58c",
+            "head_hash": "5973691e5988c9486eddfdd7802c09d0e229e69fdd09c87b2f52a2facabdc58c",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },

@@ -7,7 +7,8 @@
      "Source files stay within the 75-line cognitive window.")
     ("source-shape:quality-entrypoint" "surface-boundary" "local-quality" "single-command"
      "cargo run -p dslraid-cli -- quality"
-     ("crates/dslraid-cli/src/commands/quality/lisp/scripts.rs")
+     ("crates/dslraid-cli/src/commands/quality/lisp/scripts.rs"
+      "crates/dslraid-cli/src/commands/quality/lisp/scripts/runtime.rs")
      "Developers enter quality checks through a narrow public command.")
     ("source-shape:lisp-ssot" "ssot-boundary" "verification-dsl" "lisp-form"
      "bash scripts/verificationdocgen.sh check"

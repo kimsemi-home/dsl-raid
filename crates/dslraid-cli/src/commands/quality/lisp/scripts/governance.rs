@@ -1,0 +1,18 @@
+pub(super) const CHECKS: &[&str] = &[
+    "scripts/verificationauthoritygen.sh",
+    "scripts/verificationaccessgen.sh",
+    "scripts/verificationreasoninggen.sh",
+    "scripts/verificationreliabilitygen.sh",
+    "scripts/verificationagreementgen.sh",
+    "scripts/verificationadversarialgen.sh",
+    "scripts/verificationevidencequalitygen.sh",
+    "scripts/verificationleasegen.sh",
+    "scripts/verificationreviewgen.sh",
+    "scripts/verificationfeedbackgen.sh",
+    "scripts/verificationquarantinegen.sh",
+    "scripts/verificationconfidencegen.sh",
+    "scripts/verificationsidecargen.sh",
+    "scripts/verificationorchestrationgen.sh",
+    "scripts/verificationcontrolgen.sh",
+    "scripts/verificationprovidergen.sh",
+];

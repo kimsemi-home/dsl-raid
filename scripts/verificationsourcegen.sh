@@ -39,7 +39,11 @@ if required - kinds:
     errors.append(f"missing source shape kinds {sorted(required - kinds)}")
 if "scripts/check-source-lines.sh" not in open(".github/workflows/ci.yml").read():
     errors.append("CI must enforce source line budget")
-if "scripts/verificationsourcegen.sh" not in open("crates/dslraid-cli/src/commands/quality/lisp/scripts.rs").read():
+quality_files = ["crates/dslraid-cli/src/commands/quality/lisp/scripts.rs"]
+for root, _, files in os.walk("crates/dslraid-cli/src/commands/quality/lisp/scripts"):
+    quality_files += [os.path.join(root, name) for name in files if name.endswith(".rs")]
+quality_text = "\n".join(open(path).read() for path in quality_files)
+if "scripts/verificationsourcegen.sh" not in quality_text:
     errors.append("quality command must run source shape verification")
 if not data.get("closure_rules"):
     errors.append("source shape manifest has no rules")

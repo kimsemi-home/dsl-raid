@@ -6,7 +6,7 @@ use std::process::Command;
 mod scripts;
 
 pub(super) fn check() -> Result<()> {
-    for script in scripts::CHECKS {
+    for script in scripts::checks() {
         run_script(script)?;
     }
     run_lisp_irgen()?;

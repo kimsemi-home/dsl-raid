@@ -25,7 +25,8 @@
             "limit": "single-command",
             "command": "cargo run -p dslraid-cli -- quality",
             "evidence": [
-                "crates/dslraid-cli/src/commands/quality/lisp/scripts.rs"
+                "crates/dslraid-cli/src/commands/quality/lisp/scripts.rs",
+                "crates/dslraid-cli/src/commands/quality/lisp/scripts/runtime.rs"
             ],
             "status": "required",
             "meaning": "Developers enter quality checks through a narrow public command."
