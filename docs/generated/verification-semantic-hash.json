@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "543512d42957d631ef06d6d3c98d86a06981776a5d53619c60200dfeed89c640"
+            "hash": "8121ff52a75c93796cc2d5856d9371cac96f0a0a78709eb743622e7f93c7a52b"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "94b8761df9256616ec6eb8b8a000ad6b185ab05131c94bbcd75d9648ebea9cde"
+            "hash": "ca6543dc9ed446e63d3b9ae3ad6ac0d5bf649fb2d62e1816c9c55319dc301f8a"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "23a3bac074ef3d0e5e1a93bebeae1c7f95afea1115f12f54fe6940451f75f772"
+            "hash": "cbf14edcc33bdf0bd9636fbba65bc32146169a33cd0164eb0853fe78b1a1385a"
         },
         {
             "id": "semantic:authority",
@@ -309,6 +309,17 @@
             ],
             "meaning": "Version migration and compatibility command surface contract.",
             "hash": "70ea591ddd6220e6015eaeb64bcca4f601ae11d541dc86bdd2e916b0af96f9be"
+        },
+        {
+            "id": "semantic:language-expansion",
+            "source": "docs/generated/verification-language-expansion.json",
+            "fields": [
+                "language_expansion_profile",
+                "surfaces",
+                "closure_rules"
+            ],
+            "meaning": "Lisp language expansion and generated backend contract.",
+            "hash": "c6e8ee73a1bb7fe5d3701efb6adb1ee460764e198b9c2a49775cc892374fbc98"
         },
         {
             "id": "semantic:context-map",

@@ -1,7 +1,8 @@
 (in-package #:dslraid.agent)
 
 (defparameter *verification-codegen-map*
-  '(("code" ("rust-code"))
+  '(("language-expansion" ("language-expansion"))
+    ("code" ("rust-code"))
     ("docs" ("verification-doc" "docs-index"))
     ("schemas" ("evidence-schema" "manifest-schema"))
     ("tests" ("test-manifest"))

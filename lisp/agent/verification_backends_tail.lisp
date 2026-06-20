@@ -31,6 +31,7 @@
     ("evidence-before-change" "docs/generated/verification-evidence-before-change.json" "scripts/verificationevidencebeforechangegen.sh")
     ("versioned-ssot" "docs/generated/verification-versioned-ssot.json" "scripts/verificationversionedssotgen.sh")
     ("migration-surface" "docs/generated/verification-migration-surface.json" "scripts/verificationmigrationgen.sh")
+    ("language-expansion" "docs/generated/verification-language-expansion.json" "scripts/verificationlanguagegen.sh")
     ("context-map" "docs/generated/verification-context-map.json" "scripts/verificationcontextmapgen.sh")
     ("historical-interpreter" "docs/generated/verification-historical-interpreter.json" "scripts/verificationhistoricalgen.sh")
     ("ontology-transition" "docs/generated/verification-ontology-transition.json" "scripts/verificationtransitiongen.sh")

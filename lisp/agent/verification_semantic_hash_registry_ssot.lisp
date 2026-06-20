@@ -11,6 +11,9 @@
     ("semantic:migration-surface" "docs/generated/verification-migration-surface.json"
      ("migration_surface_profile" "surfaces" "closure_rules")
      "Version migration and compatibility command surface contract.")
+    ("semantic:language-expansion" "docs/generated/verification-language-expansion.json"
+     ("language_expansion_profile" "surfaces" "closure_rules")
+     "Lisp language expansion and generated backend contract.")
     ("semantic:context-map" "docs/generated/verification-context-map.json"
      ("context_map_profile" "translations" "closure_rules")
      "Versioned context translation bridge contract.")

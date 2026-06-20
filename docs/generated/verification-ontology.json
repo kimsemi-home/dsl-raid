@@ -23,6 +23,7 @@
         }
     ],
     "codegen_axes": [
+        "language-expansion",
         "code",
         "docs",
         "schemas",

@@ -5,6 +5,12 @@
     "source": "lisp/agent/verification.lisp",
     "axes": [
         {
+            "axis": "language-expansion",
+            "backends": [
+                "language-expansion"
+            ]
+        },
+        {
             "axis": "code",
             "backends": [
                 "rust-code"

@@ -1,5 +1,6 @@
 pub(super) const CHECKS: &[&str] = &[
     "scripts/lisp-test.sh",
+    "scripts/verificationlanguagegen.sh",
     "scripts/lisp-docgen.sh",
     "scripts/langdiaggen.sh",
     "scripts/backendgen.sh",

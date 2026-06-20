@@ -1,0 +1,75 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationlanguagegen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_language_expansion.lisp",
+    "language_expansion_profile": "lisp-form-to-canonical-ir",
+    "surfaces": [
+        {
+            "id": "language-expansion:pipeline-doc",
+            "kind": "pipeline-doc",
+            "command": "scripts/lisp-docgen.sh check",
+            "fixture": "lisp/lang/pipeline.lisp",
+            "assertion": "stdout:lisp generated doc ok",
+            "evidence": [
+                "docs/generated/lisp-pipeline.md"
+            ],
+            "status": "checked",
+            "meaning": "Language pipeline docs prove Lisp Form to Canonical IR order."
+        },
+        {
+            "id": "language-expansion:canonical-ir",
+            "kind": "canonical-ir",
+            "command": "scripts/lisp-irgen.sh check",
+            "fixture": "lisp/runtime/runscope.lisp",
+            "assertion": "stdout:lisp generated ir ok",
+            "evidence": [
+                "examples/runscope/runscope.lisp.raid.json"
+            ],
+            "status": "checked",
+            "meaning": "Canonical IR is generated from Lisp authoring forms."
+        },
+        {
+            "id": "language-expansion:rust-backend",
+            "kind": "backend-codegen",
+            "command": "scripts/lisp-rustgen.sh check",
+            "fixture": "examples/runscope/runscope.lisp.raid.json",
+            "assertion": "stdout:lisp rust backend ok",
+            "evidence": [
+                "generated/runtime_fsm.rs"
+            ],
+            "status": "checked",
+            "meaning": "Rust source is a deterministic generated backend, not the SSOT."
+        },
+        {
+            "id": "language-expansion:language-conformance",
+            "kind": "language-conformance",
+            "command": "scripts/lisp-test.sh check",
+            "fixture": "lisp/tests/golden.lisp",
+            "assertion": "stdout:lisp language tests ok",
+            "evidence": [
+                "lisp/tests/language.lisp",
+                "lisp/tests/pipeline.lisp"
+            ],
+            "status": "checked",
+            "meaning": "Language validation runs before Canonical IR consumers rely on it."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "language-expansion:ssot",
+            "meaning": "Common Lisp forms remain native truth.",
+            "check": "scripts/verificationlanguagegen.sh check"
+        },
+        {
+            "id": "language-expansion:canonical-ir",
+            "meaning": "Backends consume Canonical IR.",
+            "check": "scripts/verificationlanguagegen.sh check"
+        },
+        {
+            "id": "language-expansion:rust-output",
+            "meaning": "Rust can be generated runtime code.",
+            "check": "scripts/verificationlanguagegen.sh check"
+        }
+    ]
+}

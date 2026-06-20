@@ -7,7 +7,7 @@
     ("codegen" "Derives deterministic artifacts and checks.")))
 
 (defparameter *verification-codegen-axes*
-  '("code" "docs" "schemas" "tests" "conformance"
+  '("language-expansion" "code" "docs" "schemas" "tests" "conformance"
     "github-actions" "release-pipelines" "bootstrap-sequence" "experiment-loop" "merge-readiness" "merge-automation" "branch-protection" "actions-receipt" "source-shape" "objective-coverage" "pdca-evidence" "evidence-ops" "loss-ledger"
     "semantic-hash" "semantic-diff" "authority-gate" "access-policy"
     "reasoning-access" "reliability-registry" "cross-agent-agreement" "adversarial-review"

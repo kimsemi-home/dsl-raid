@@ -329,6 +329,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.language-expansion",
+            "subject": "docs/generated/verification-language-expansion.json",
+            "check": "scripts/verificationlanguagegen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.context-map",
             "subject": "docs/generated/verification-context-map.json",
             "check": "scripts/verificationcontextmapgen.sh check",

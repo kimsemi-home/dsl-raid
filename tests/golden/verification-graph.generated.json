@@ -353,6 +353,12 @@
             "generator": "scripts/verificationmigrationgen.sh"
         },
         {
+            "id": "test:verification.backend.language-expansion",
+            "subject": "docs/generated/verification-language-expansion.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationlanguagegen.sh"
+        },
+        {
             "id": "test:verification.backend.context-map",
             "subject": "docs/generated/verification-context-map.json",
             "kind": "generated-backend",
