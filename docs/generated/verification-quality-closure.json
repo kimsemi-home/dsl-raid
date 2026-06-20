@@ -344,6 +344,13 @@
             "evidence": "docs/generated/verification-evidence.json"
         },
         {
+            "backend": "precommit-closure",
+            "output": "docs/generated/verification-precommit-closure.json",
+            "generator": "scripts/verificationprecommitgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
             "backend": "genesis-charter",
             "output": "docs/generated/verification-genesis-charter.json",
             "generator": "scripts/verificationgenesisgen.sh",

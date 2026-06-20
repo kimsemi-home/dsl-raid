@@ -10,8 +10,8 @@
             "id": "semantic-diff:verification-graph",
             "hash_id": "semantic:verification-graph",
             "summary": "Verification graph semantic receipt.",
-            "base_hash": "3265226b28286f331a4522d2a0a3bbab55e40cb5d6969645195b68228d3e48a5",
-            "head_hash": "3265226b28286f331a4522d2a0a3bbab55e40cb5d6969645195b68228d3e48a5",
+            "base_hash": "4b5a2c807daaa52c4494fdd9d48692c2bab1c94a534bff1a2e3aed135f54f18b",
+            "head_hash": "4b5a2c807daaa52c4494fdd9d48692c2bab1c94a534bff1a2e3aed135f54f18b",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },
@@ -19,8 +19,8 @@
             "id": "semantic-diff:codegen-map",
             "hash_id": "semantic:codegen-map",
             "summary": "Codegen axis semantic receipt.",
-            "base_hash": "348b23c82818b257ecca06fa1f55662b8f41c7ab0dbe74fe73945c7d2f31a8c8",
-            "head_hash": "348b23c82818b257ecca06fa1f55662b8f41c7ab0dbe74fe73945c7d2f31a8c8",
+            "base_hash": "03ca6f016c1bf391ecb6d25e34edc0fdfcde10dcee0e82d873d9b724d92e5bd5",
+            "head_hash": "03ca6f016c1bf391ecb6d25e34edc0fdfcde10dcee0e82d873d9b724d92e5bd5",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },
@@ -37,8 +37,8 @@
             "id": "semantic-diff:conformance",
             "hash_id": "semantic:conformance",
             "summary": "Conformance contract semantic receipt.",
-            "base_hash": "80e050811ad1add7f22a22003ed7d818fd9f845822505e7b645e7b1f7ad93467",
-            "head_hash": "80e050811ad1add7f22a22003ed7d818fd9f845822505e7b645e7b1f7ad93467",
+            "base_hash": "03617cce85905eb3bc8688770f59a7f52b62df8ed7637c0dcd735d4258e13bcc",
+            "head_hash": "03617cce85905eb3bc8688770f59a7f52b62df8ed7637c0dcd735d4258e13bcc",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },
@@ -532,8 +532,8 @@
             "id": "semantic-diff:objective-coverage",
             "hash_id": "semantic:objective-coverage",
             "summary": "Objective coverage semantic receipt.",
-            "base_hash": "009f92c3474169f8cfa8b7dd7b00da4f673d3c3574a5f747fe6e04c36cc4bf3f",
-            "head_hash": "009f92c3474169f8cfa8b7dd7b00da4f673d3c3574a5f747fe6e04c36cc4bf3f",
+            "base_hash": "19b62cb287e73c2d6950a5a1beee9ab717c9675685e60cad95b67ba1a5bb9218",
+            "head_hash": "19b62cb287e73c2d6950a5a1beee9ab717c9675685e60cad95b67ba1a5bb9218",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },
@@ -559,8 +559,17 @@
             "id": "semantic-diff:quality-closure",
             "hash_id": "semantic:quality-closure",
             "summary": "Quality closure semantic receipt.",
-            "base_hash": "cbb33025a2afe27adc232d2d2d935cebe63ccc696ce494986168a6e45feaa25a",
-            "head_hash": "cbb33025a2afe27adc232d2d2d935cebe63ccc696ce494986168a6e45feaa25a",
+            "base_hash": "af1fd932371ed7ea1048231fd2aa70339cb6a346aaa319de51cb3957400aa148",
+            "head_hash": "af1fd932371ed7ea1048231fd2aa70339cb6a346aaa319de51cb3957400aa148",
+            "status": "unchanged",
+            "evidence": "docs/generated/verification-semantic-hash.json"
+        },
+        {
+            "id": "semantic-diff:precommit-closure",
+            "hash_id": "semantic:precommit-closure",
+            "summary": "Precommit closure semantic receipt.",
+            "base_hash": "1b24b67af599cd702536f3339f73459d025a9cb77cd9688156aaa983f6d7b8dc",
+            "head_hash": "1b24b67af599cd702536f3339f73459d025a9cb77cd9688156aaa983f6d7b8dc",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         }

@@ -10,6 +10,9 @@
     ("objective:line-budget" "source-shape" "source files stay within 75 lines"
      "gate:source-shape" ("docs/generated/verification-source-shape.json")
      "Line budget and public surface are tracked as source shape evidence.")
+    ("objective:precommit" "local-precommit" "pre-commit enforces local quality gates"
+     "gate:precommit" ("docs/generated/verification-precommit-closure.json")
+     "Local commits are blocked by lint, tests, build, quality, and diff checks.")
     ("objective:generated-workflows" "backend-projection" "Verification Graph generates CI backends"
      "gate:backend-parity" ("docs/generated/verification-backend-parity.json" ".github/workflows/verification.yml" ".gitlab-ci.yml" "Makefile" "BUILD.bazel")
      "GitHub Actions, GitLab CI, Makefile, and Bazel project the same graph.")

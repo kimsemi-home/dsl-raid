@@ -298,6 +298,12 @@
             ]
         },
         {
+            "axis": "precommit-closure",
+            "backends": [
+                "precommit-closure"
+            ]
+        },
+        {
             "axis": "genesis-charter",
             "backends": [
                 "genesis-charter"

@@ -60,6 +60,7 @@
     {"backend": "incident-learning", "output": "docs/generated/verification-incident-learning.json", "generator": "scripts/verificationincidentgen.sh", "check": "scripts/verificationincidentgen.sh check"},
     {"backend": "learning-loop", "output": "docs/generated/verification-learning-loop.json", "generator": "scripts/verificationlearninggen.sh", "check": "scripts/verificationlearninggen.sh check"},
     {"backend": "quality-closure", "output": "docs/generated/verification-quality-closure.json", "generator": "scripts/verificationqualitygen.sh", "check": "scripts/verificationqualitygen.sh check"},
+    {"backend": "precommit-closure", "output": "docs/generated/verification-precommit-closure.json", "generator": "scripts/verificationprecommitgen.sh", "check": "scripts/verificationprecommitgen.sh check"},
     {"backend": "genesis-charter", "output": "docs/generated/verification-genesis-charter.json", "generator": "scripts/verificationgenesisgen.sh", "check": "scripts/verificationgenesisgen.sh check"},
     {"backend": "meta-model", "output": "docs/generated/verification-meta-model.json", "generator": "scripts/verificationmetamodelgen.sh", "check": "scripts/verificationmetamodelgen.sh check"},
     {"backend": "backup-steward", "output": "docs/generated/verification-backup-steward.json", "generator": "scripts/verificationstewardgen.sh", "check": "scripts/verificationstewardgen.sh check"},

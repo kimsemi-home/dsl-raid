@@ -299,6 +299,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.precommit-closure",
+            "subject": "docs/generated/verification-precommit-closure.json",
+            "check": "scripts/verificationprecommitgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.genesis-charter",
             "subject": "docs/generated/verification-genesis-charter.json",
             "check": "scripts/verificationgenesisgen.sh check",

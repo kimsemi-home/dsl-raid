@@ -2793,7 +2793,8 @@
                                     "pdca-learning",
                                     "actions-receipt",
                                     "query-lazy-surface",
-                                    "learning-loop"
+                                    "learning-loop",
+                                    "local-precommit"
                                 ]
                             },
                             "requirement": {
@@ -3294,6 +3295,83 @@
                             },
                             "evidence": {
                                 "$ref": "#/$defs/path"
+                            }
+                        }
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
+                "precommit_profile",
+                "hook",
+                "install_script",
+                "commands",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationprecommitgen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "precommit_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "hook": {
+                    "$ref": "#/$defs/path"
+                },
+                "install_script": {
+                    "$ref": "#/$defs/path"
+                },
+                "commands": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "id",
+                            "kind",
+                            "command",
+                            "meaning"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "id": {
+                                "$ref": "#/$defs/semantic_ref"
+                            },
+                            "kind": {
+                                "type": "string",
+                                "minLength": 1
+                            },
+                            "command": {
+                                "type": "string",
+                                "minLength": 1
+                            },
+                            "meaning": {
+                                "type": "string",
+                                "minLength": 1
                             }
                         }
                     }

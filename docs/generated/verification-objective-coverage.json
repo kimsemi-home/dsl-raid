@@ -41,6 +41,17 @@
             "meaning": "Line budget and public surface are tracked as source shape evidence."
         },
         {
+            "id": "objective:precommit",
+            "kind": "local-precommit",
+            "requirement": "pre-commit enforces local quality gates",
+            "gate": "gate:precommit",
+            "evidence": [
+                "docs/generated/verification-precommit-closure.json"
+            ],
+            "status": "tracked",
+            "meaning": "Local commits are blocked by lint, tests, build, quality, and diff checks."
+        },
+        {
             "id": "objective:generated-workflows",
             "kind": "backend-projection",
             "requirement": "Verification Graph generates CI backends",

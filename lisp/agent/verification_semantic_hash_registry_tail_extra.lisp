@@ -14,4 +14,7 @@
      "Agent Cluster reality-to-revalidation learning loop contract.")
     ("semantic:quality-closure" "docs/generated/verification-quality-closure.json"
      ("quality_closure_profile" "enforced_generators" "closure_rules")
-     "Generated backend to quality gate closure contract.")))
+     "Generated backend to quality gate closure contract.")
+    ("semantic:precommit-closure" "docs/generated/verification-precommit-closure.json"
+     ("precommit_profile" "hook" "commands" "closure_rules")
+     "Local pre-commit hook quality gate closure contract.")))

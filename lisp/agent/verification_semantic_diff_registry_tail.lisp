@@ -42,4 +42,6 @@
     ("semantic-diff:learning-loop" "semantic:learning-loop"
      "Learning loop semantic receipt.")
     ("semantic-diff:quality-closure" "semantic:quality-closure"
-     "Quality closure semantic receipt.")))
+     "Quality closure semantic receipt.")
+    ("semantic-diff:precommit-closure" "semantic:precommit-closure"
+     "Precommit closure semantic receipt.")))

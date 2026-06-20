@@ -49,6 +49,7 @@
     ("incident-learning" ("incident-learning"))
     ("learning-loop" ("learning-loop"))
     ("quality-closure" ("quality-closure"))
+    ("precommit-closure" ("precommit-closure"))
     ("genesis-charter" ("genesis-charter"))
     ("meta-model" ("meta-model"))
     ("backup-steward" ("backup-steward"))

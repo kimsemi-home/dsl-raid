@@ -1,0 +1,87 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationprecommitgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_precommit_closure.lisp",
+    "precommit_profile": "local-quality-gate",
+    "hook": ".githooks/pre-commit",
+    "install_script": "scripts/install-hooks.sh",
+    "commands": [
+        {
+            "id": "precommit:go-lint",
+            "kind": "go-lint",
+            "command": "bash scripts/go-lint.sh",
+            "meaning": "Generated Go code is linted before commit."
+        },
+        {
+            "id": "precommit:rust-format",
+            "kind": "rust-format",
+            "command": "cargo fmt --all -- --check",
+            "meaning": "Rust formatting is enforced locally."
+        },
+        {
+            "id": "precommit:rust-clippy",
+            "kind": "rust-clippy",
+            "command": "cargo clippy --workspace --all-targets -- -D warnings",
+            "meaning": "Rust lint warnings block local commits."
+        },
+        {
+            "id": "precommit:rust-test",
+            "kind": "rust-test",
+            "command": "cargo test --workspace",
+            "meaning": "Rust tests run before local commits."
+        },
+        {
+            "id": "precommit:viewer-lint",
+            "kind": "viewer-lint",
+            "command": "npm --prefix apps/viewer run lint",
+            "meaning": "Viewer type and lint checks run before commit."
+        },
+        {
+            "id": "precommit:viewer-test",
+            "kind": "viewer-test",
+            "command": "npm --prefix apps/viewer test",
+            "meaning": "Viewer tests run before commit."
+        },
+        {
+            "id": "precommit:viewer-build",
+            "kind": "viewer-build",
+            "command": "npm --prefix apps/viewer run build",
+            "meaning": "Viewer production build runs before commit."
+        },
+        {
+            "id": "precommit:quality",
+            "kind": "quality",
+            "command": "cargo run -p dslraid-cli -- quality",
+            "meaning": "Unified DSLRaid quality gate runs before commit."
+        },
+        {
+            "id": "precommit:diff-check",
+            "kind": "diff-check",
+            "command": "git diff --check",
+            "meaning": "Whitespace and patch hygiene are checked before commit."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "precommit:hook-installed",
+            "meaning": "Install script must set core.hooksPath.",
+            "check": "scripts/verificationprecommitgen.sh check"
+        },
+        {
+            "id": "precommit:commands-covered",
+            "meaning": "Required local commands must be in the hook.",
+            "check": "scripts/verificationprecommitgen.sh check"
+        },
+        {
+            "id": "precommit:quality-required",
+            "meaning": "The unified quality gate must be local.",
+            "check": "scripts/verificationprecommitgen.sh check"
+        },
+        {
+            "id": "precommit:private-safe",
+            "meaning": "Hook evidence must not expose local private paths.",
+            "check": "scripts/verificationprecommitgen.sh check"
+        }
+    ]
+}

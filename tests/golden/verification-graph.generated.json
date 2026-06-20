@@ -323,6 +323,12 @@
             "generator": "scripts/verificationqualitygen.sh"
         },
         {
+            "id": "test:verification.backend.precommit-closure",
+            "subject": "docs/generated/verification-precommit-closure.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationprecommitgen.sh"
+        },
+        {
             "id": "test:verification.backend.genesis-charter",
             "subject": "docs/generated/verification-genesis-charter.json",
             "kind": "generated-backend",
