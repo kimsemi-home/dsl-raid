@@ -68,6 +68,18 @@
             "meaning": "GitHub Actions, GitLab CI, Makefile, and Bazel project the same graph."
         },
         {
+            "id": "objective:actions-hardening",
+            "kind": "actions-hardening",
+            "requirement": "generated GitHub Actions stay least-privilege and concurrent",
+            "gate": "gate:github-actions",
+            "evidence": [
+                "docs/generated/verification-github-actions.json",
+                ".github/workflows/release.yml"
+            ],
+            "status": "tracked",
+            "meaning": "Generated workflows declare permissions, concurrency, and forbidden-event guards."
+        },
+        {
             "id": "objective:codegen-chain",
             "kind": "codegen-chain",
             "requirement": "Ontology to executable SSOT to generated artifacts",

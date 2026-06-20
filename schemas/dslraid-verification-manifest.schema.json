@@ -3592,6 +3592,7 @@
                                     "autonomous-merge",
                                     "source-shape",
                                     "backend-projection",
+                                    "actions-hardening",
                                     "codegen-chain",
                                     "pdca-learning",
                                     "actions-receipt",

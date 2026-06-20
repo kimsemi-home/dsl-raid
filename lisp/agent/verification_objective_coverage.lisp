@@ -16,6 +16,9 @@
     ("objective:generated-workflows" "backend-projection" "Verification Graph generates CI backends"
      "gate:backend-parity" ("docs/generated/verification-backend-parity.json" ".github/workflows/verification.yml" ".gitlab-ci.yml" "Makefile" "BUILD.bazel")
      "GitHub Actions, GitLab CI, Makefile, and Bazel project the same graph.")
+    ("objective:actions-hardening" "actions-hardening" "generated GitHub Actions stay least-privilege and concurrent"
+     "gate:github-actions" ("docs/generated/verification-github-actions.json" ".github/workflows/release.yml")
+     "Generated workflows declare permissions, concurrency, and forbidden-event guards.")
     ("objective:codegen-chain" "codegen-chain" "Ontology to executable SSOT to generated artifacts"
      "gate:codegen" ("docs/generated/verification-ontology.json" "docs/generated/verification-codegen.json")
      "Code, docs, schemas, tests, conformance, actions, and releases are mapped.")
