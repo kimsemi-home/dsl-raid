@@ -17,42 +17,7 @@ generate() {
 }
 
 validate_objective_coverage() {
-  python3 - "$repo/$out" <<'PY'
-import json, os, sys
-data = json.load(open(sys.argv[1]))
-errors, seen = [], set()
-required = {"privacy-exclusion", "autonomous-merge", "source-shape", "backend-projection", "actions-hardening", "release-pipeline", "codegen-chain", "pdca-learning", "evidence-governance", "actions-receipt", "query-lazy-surface", "learning-loop", "local-precommit"}
-kinds = {row.get("kind") for row in data.get("requirements", [])}
-for row in data.get("requirements", []):
-    if row["id"] in seen:
-        errors.append(f"duplicate objective row {row['id']}")
-    seen.add(row["id"])
-    if row.get("status") != "tracked":
-        errors.append(f"{row['id']} must be tracked, not a completion claim")
-    if not row.get("gate", "").startswith("gate:"):
-        errors.append(f"{row['id']} missing gate reference")
-    for item in row.get("evidence", []):
-        if not os.path.exists(item):
-            errors.append(f"{row['id']} missing evidence {item}")
-if required - kinds:
-    errors.append(f"missing objective kinds {sorted(required - kinds)}")
-evidence = json.load(open("docs/generated/verification-evidence.json"))
-backends = {row["backend"] for row in evidence.get("generated_backends", [])}
-for backend in ("github-actions", "gitlab-ci", "local-makefile", "bazel", "source-shape", "query-surface", "evidence-graph", "public-projection"):
-    if backend not in backends:
-        errors.append(f"missing generated backend evidence {backend}")
-codegen = json.load(open("docs/generated/verification-codegen.json"))
-axes = {row["axis"] for row in codegen.get("axes", [])}
-for axis in ("code", "docs", "schemas", "tests", "conformance", "github-actions", "release-pipelines"):
-    if axis not in axes:
-        errors.append(f"missing codegen axis {axis}")
-if not data.get("closure_rules"):
-    errors.append("objective coverage manifest has no rules")
-if errors:
-    print("\n".join(errors), file=sys.stderr)
-    sys.exit(1)
-print("verification objective coverage check ok")
-PY
+  python3 "$script_dir/lib/objective_coverage_check.py" "$repo/$out"
 }
 
 case "$mode" in
