@@ -630,6 +630,18 @@
             "meaning": "Workflow lineage evidence is suitable when graph nodes map to execution surfaces."
         },
         {
+            "id": "evidence-quality:experiment-decision",
+            "target": "docs/generated/verification-experiment-decision.json",
+            "quality": "high",
+            "purpose": "experiment-decision",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "decisions",
+                "closure_rules"
+            ],
+            "meaning": "Experiment decision evidence is suitable when checked experiments close to acts."
+        },
+        {
             "id": "evidence-quality:merge-readiness",
             "target": "docs/generated/verification-merge-readiness.json",
             "quality": "high",

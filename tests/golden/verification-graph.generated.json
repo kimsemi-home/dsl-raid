@@ -293,6 +293,12 @@
             "generator": "scripts/verificationexperimentgen.sh"
         },
         {
+            "id": "test:verification.backend.experiment-decision",
+            "subject": "docs/generated/verification-experiment-decision.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationexperimentdecisiongen.sh"
+        },
+        {
             "id": "test:verification.backend.merge-readiness",
             "subject": "docs/generated/verification-merge-readiness.json",
             "kind": "generated-backend",

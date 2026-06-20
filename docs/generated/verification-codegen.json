@@ -70,7 +70,8 @@
         {
             "axis": "experiment-loop",
             "backends": [
-                "experiment-loop"
+                "experiment-loop",
+                "experiment-decision"
             ]
         },
         {

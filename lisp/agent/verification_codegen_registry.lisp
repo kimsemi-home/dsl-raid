@@ -10,7 +10,7 @@
     ("github-actions" ("github-actions" "github-ci" "github-golden" "github-security" "github-pages"))
     ("release-pipelines" ("github-release" "release-provenance" "release-check-providers"))
     ("bootstrap-sequence" ("bootstrap-sequence"))
-    ("experiment-loop" ("experiment-loop"))
+    ("experiment-loop" ("experiment-loop" "experiment-decision"))
     ("merge-readiness" ("merge-readiness"))
     ("merge-automation" ("merge-automation"))
     ("branch-protection" ("branch-protection"))

@@ -309,6 +309,13 @@
             "evidence": "docs/generated/verification-evidence.json"
         },
         {
+            "backend": "experiment-decision",
+            "output": "docs/generated/verification-experiment-decision.json",
+            "generator": "scripts/verificationexperimentdecisiongen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
             "backend": "merge-readiness",
             "output": "docs/generated/verification-merge-readiness.json",
             "generator": "scripts/verificationmergegen.sh",

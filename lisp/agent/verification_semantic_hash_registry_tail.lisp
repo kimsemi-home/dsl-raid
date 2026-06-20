@@ -49,6 +49,10 @@
      "docs/generated/verification-experiment-loop.json"
      ("experiment_profile" "experiments" "closure_rules")
      "PDCA experiment plan, evidence, check, and act contract.")
+    ("semantic:experiment-decision"
+     "docs/generated/verification-experiment-decision.json"
+     ("experiment_decision_profile" "decisions" "closure_rules")
+     "Experiment decision promotion, act, and gate closure contract.")
     ("semantic:merge-readiness"
      "docs/generated/verification-merge-readiness.json"
      ("merge_profile" "gates" "closure_rules")

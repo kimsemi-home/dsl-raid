@@ -1,0 +1,54 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationexperimentdecisiongen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_experiment_decision.lisp",
+    "experiment_decision_profile": "hypothesis-to-act-closure",
+    "decisions": [
+        {
+            "id": "experiment-decision:bootstrap-sequence",
+            "experiment": "experiment:bootstrap-sequence",
+            "decision": "promote",
+            "gate": "gate:release-check",
+            "act": "docs/generated/verification-conformance.json",
+            "evidence": [
+                "docs/generated/verification-experiment-loop.json",
+                "docs/generated/verification-bootstrap-sequence.json",
+                "docs/generated/verification-semantic-diff.json"
+            ],
+            "status": "closed",
+            "meaning": "Bootstrap sequence moved from experiment to release-gated evidence."
+        },
+        {
+            "id": "experiment-decision:run-manifest",
+            "experiment": "experiment:run-manifest",
+            "decision": "promote",
+            "gate": "gate:evidence-quality",
+            "act": "docs/generated/verification-evidence-quality.json",
+            "evidence": [
+                "docs/generated/verification-experiment-loop.json",
+                "docs/generated/verification-run-manifest.json",
+                "docs/generated/verification-evidence-quality.json"
+            ],
+            "status": "closed",
+            "meaning": "Run manifests moved from experiment to quality-gated evidence."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "experiment-decision:known-experiment",
+            "meaning": "Every decision points back to an experiment-loop record.",
+            "check": "scripts/verificationexperimentdecisiongen.sh check"
+        },
+        {
+            "id": "experiment-decision:act-matches",
+            "meaning": "The decision act artifact must match the experiment act target.",
+            "check": "scripts/verificationexperimentdecisiongen.sh check"
+        },
+        {
+            "id": "experiment-decision:promote-after-check",
+            "meaning": "Promotion is allowed only after checked experiment evidence.",
+            "check": "scripts/verificationexperimentdecisiongen.sh check"
+        }
+    ]
+}

@@ -7,6 +7,7 @@ bash scripts/verificationruntimegen.sh check
 bash scripts/verificationrunmanifestgen.sh check
 bash scripts/verificationbootstrapgen.sh check
 bash scripts/verificationexperimentgen.sh check
+bash scripts/verificationexperimentdecisiongen.sh check
 bash scripts/verificationmergegen.sh check
 bash scripts/verificationautomergegen.sh check
 bash scripts/verificationbranchgen.sh check

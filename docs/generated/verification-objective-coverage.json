@@ -85,7 +85,8 @@
             "gate": "gate:pdca",
             "evidence": [
                 "docs/generated/verification-pdca.json",
-                "docs/generated/verification-experiment-loop.json"
+                "docs/generated/verification-experiment-loop.json",
+                "docs/generated/verification-experiment-decision.json"
             ],
             "status": "tracked",
             "meaning": "PDCA and experiments are explicit evidence before policy."

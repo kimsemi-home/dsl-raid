@@ -66,6 +66,7 @@ The generated workflow is `.github/workflows/verification.yml`.
 | run-manifest | `docs/generated/verification-run-manifest.json` | `scripts/verificationrunmanifestgen.sh` |
 | bootstrap-sequence | `docs/generated/verification-bootstrap-sequence.json` | `scripts/verificationbootstrapgen.sh` |
 | experiment-loop | `docs/generated/verification-experiment-loop.json` | `scripts/verificationexperimentgen.sh` |
+| experiment-decision | `docs/generated/verification-experiment-decision.json` | `scripts/verificationexperimentdecisiongen.sh` |
 | merge-readiness | `docs/generated/verification-merge-readiness.json` | `scripts/verificationmergegen.sh` |
 | merge-automation | `docs/generated/verification-merge-automation.json` | `scripts/verificationautomergegen.sh` |
 | branch-protection | `docs/generated/verification-branch-protection.json` | `scripts/verificationbranchgen.sh` |

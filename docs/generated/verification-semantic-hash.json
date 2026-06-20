@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "9034b77156743f9af6a37a0dc70a857bf4814bc6ba8c1637cef0a7b2c2d3f623"
+            "hash": "9df02aed68d4150cf00474f1eec93f06a987f220ed7ff4b3f5ce3f398aad2405"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "70a9ebea509a89e06851f0bb0ff533eea53c8afd9ebe5726eac16a8df7601d61"
+            "hash": "e10e46d363b0e7b9cf4a457f787a4ae1157d764ac082ae2a112ed2382b81853a"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "61baa55aacd6246d8e88c23afe252b3f73848112dc42cff1884479bfe26893da"
+            "hash": "0483907a10da17c2db2de37a1980e9f75b06a691e58a72c0e399f85501a872e3"
         },
         {
             "id": "semantic:authority",
@@ -97,7 +97,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "4314b7308d3cd4b3a36f7b59b974610061864f9b31c92e0d3580a119d675f1d8"
+            "hash": "6e296825cb2df4ec9a72feb63903815be5d735313dac7f921418d5b4c3e57cb5"
         },
         {
             "id": "semantic:lease",
@@ -730,6 +730,17 @@
             "hash": "d79a9ee47e69ad69476db6c7d6a865396ec3ec000bdc6731bb3eb3251ad5c180"
         },
         {
+            "id": "semantic:experiment-decision",
+            "source": "docs/generated/verification-experiment-decision.json",
+            "fields": [
+                "experiment_decision_profile",
+                "decisions",
+                "closure_rules"
+            ],
+            "meaning": "Experiment decision promotion, act, and gate closure contract.",
+            "hash": "bfa9b7b7ba6c8d4326509710efe7949137d521b0d97a02d2b2c995cae5b5e81b"
+        },
+        {
             "id": "semantic:merge-readiness",
             "source": "docs/generated/verification-merge-readiness.json",
             "fields": [
@@ -804,7 +815,7 @@
                 "closure_rules"
             ],
             "meaning": "Active objective requirement-to-evidence coverage contract.",
-            "hash": "19b62cb287e73c2d6950a5a1beee9ab717c9675685e60cad95b67ba1a5bb9218"
+            "hash": "70a10112cd0ddfca0f29c43488fb1ae5bb5d0df687e26473951ec6f444b856b3"
         },
         {
             "id": "semantic:learning-loop",
@@ -827,7 +838,7 @@
                 "closure_rules"
             ],
             "meaning": "Generated backend to quality gate closure contract.",
-            "hash": "50a9518e291fc906a171f6670f49ba6f5bc9e910561c7fd832188b04f5b166ec"
+            "hash": "8de9658575f5514ccb6194636353a893ec2b65647c8676fbfe6a440d8303f1e5"
         },
         {
             "id": "semantic:precommit-closure",

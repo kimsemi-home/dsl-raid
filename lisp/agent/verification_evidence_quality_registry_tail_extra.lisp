@@ -71,5 +71,5 @@
   (append *verification-evidence-quality-core-assessments*
           *verification-evidence-quality-tail-assessments*
           *verification-evidence-quality-compiler-assessments*
-          *verification-evidence-quality-abort-assessments*
+          *verification-evidence-quality-abort-assessments* *verification-evidence-quality-pdca-assessments*
           *verification-evidence-quality-tail-extra-assessments*))

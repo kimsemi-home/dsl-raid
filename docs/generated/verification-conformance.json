@@ -269,6 +269,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.experiment-decision",
+            "subject": "docs/generated/verification-experiment-decision.json",
+            "check": "scripts/verificationexperimentdecisiongen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.merge-readiness",
             "subject": "docs/generated/verification-merge-readiness.json",
             "check": "scripts/verificationmergegen.sh check",

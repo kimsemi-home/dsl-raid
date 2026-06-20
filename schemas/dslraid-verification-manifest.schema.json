@@ -2721,6 +2721,51 @@
                 "generated_by",
                 "subject",
                 "source",
+                "experiment_decision_profile",
+                "decisions",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationexperimentdecisiongen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "experiment_decision_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "decisions": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/experiment_decision_record"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
                 "merge_profile",
                 "gates",
                 "closure_rules"
@@ -6754,6 +6799,54 @@
                 },
                 "status": {
                     "const": "generated"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "experiment_decision_record": {
+            "type": "object",
+            "required": [
+                "id",
+                "experiment",
+                "decision",
+                "gate",
+                "act",
+                "evidence",
+                "status",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "experiment": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "decision": {
+                    "enum": [
+                        "promote",
+                        "hold",
+                        "reject"
+                    ]
+                },
+                "gate": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "act": {
+                    "$ref": "#/$defs/path"
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "status": {
+                    "enum": [
+                        "open",
+                        "closed"
+                    ]
                 },
                 "meaning": {
                     "type": "string",
