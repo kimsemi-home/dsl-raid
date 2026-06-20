@@ -1,0 +1,80 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationruntimecontractgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_runtime_contract.lisp",
+    "runtime_contract_profile": "canonical-ir-to-runtime-artifact",
+    "surfaces": [
+        {
+            "id": "runtime-contract:canonical-ir",
+            "kind": "canonical-ir",
+            "command": "cargo run --quiet -p dslraid-cli -- validate examples/runscope/runscope.lisp.raid.json --schema schemas/dslraid-core.schema.json --format text --deny warning",
+            "fixture": "examples/runscope/runscope.lisp.raid.json",
+            "assertion": "stdout:validation passed",
+            "evidence": [
+                "schemas/dslraid-core.schema.json"
+            ],
+            "status": "checked",
+            "meaning": "Lisp-expanded Canonical IR must satisfy the Rust validator."
+        },
+        {
+            "id": "runtime-contract:artifact-freshness",
+            "kind": "artifact-freshness",
+            "command": "cargo run --quiet -p dslraid-cli -- artifact verify examples/runscope/runscope.raid.json --lock examples/runscope/runscope.lock.json",
+            "fixture": "examples/runscope/runscope.lock.json",
+            "assertion": "stdout:artifact verification passed",
+            "evidence": [
+                "generated/runtime_fsm.rs",
+                "generated/runtime_fsm.go"
+            ],
+            "status": "checked",
+            "meaning": "Generated runtime artifacts must match the lock hash contract."
+        },
+        {
+            "id": "runtime-contract:source-map",
+            "kind": "source-map",
+            "command": "cargo run --quiet -p dslraid-cli -- schema validate schemas/dslraid-sourcemap.schema.json examples/runscope/runscope.sourcemap.json",
+            "fixture": "examples/runscope/runscope.sourcemap.json",
+            "assertion": "stdout:schema ok",
+            "evidence": [
+                "schemas/dslraid-sourcemap.schema.json"
+            ],
+            "status": "checked",
+            "meaning": "Runtime artifacts must remain traceable to design subjects."
+        },
+        {
+            "id": "runtime-contract:rust-compile",
+            "kind": "rust-compile",
+            "command": "cargo run --quiet -p dslraid-cli -- codegen examples/runscope/runscope.lisp.raid.json --target rust | rustc --edition=2021 --crate-type=lib - -o /tmp/dslraid-runtime-contract.rlib && rm -f /tmp/dslraid-runtime-contract.rlib && echo rust codegen compile ok",
+            "fixture": "examples/runscope/runscope.lisp.raid.json",
+            "assertion": "stdout:rust codegen compile ok",
+            "evidence": [
+                "crates/dslraid-codegen/src/code/rust.rs"
+            ],
+            "status": "checked",
+            "meaning": "Generated Rust runtime code must compile from Canonical IR."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "runtime-contract:ir",
+            "meaning": "Expanded IR must validate before runtime use.",
+            "check": "scripts/verificationruntimecontractgen.sh check"
+        },
+        {
+            "id": "runtime-contract:artifact",
+            "meaning": "Runtime artifacts must be fresh.",
+            "check": "scripts/verificationruntimecontractgen.sh check"
+        },
+        {
+            "id": "runtime-contract:sourcemap",
+            "meaning": "Generated runtime code must be traceable.",
+            "check": "scripts/verificationruntimecontractgen.sh check"
+        },
+        {
+            "id": "runtime-contract:compile",
+            "meaning": "Rust runtime output must compile.",
+            "check": "scripts/verificationruntimecontractgen.sh check"
+        }
+    ]
+}

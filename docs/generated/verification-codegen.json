@@ -238,6 +238,12 @@
             ]
         },
         {
+            "axis": "runtime-contract",
+            "backends": [
+                "runtime-contract"
+            ]
+        },
+        {
             "axis": "run-manifest",
             "backends": [
                 "run-manifest"

@@ -179,6 +179,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.runtime-contract",
+            "subject": "docs/generated/verification-runtime-contract.json",
+            "check": "scripts/verificationruntimecontractgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.query-surface",
             "subject": "docs/generated/verification-query-surface.json",
             "check": "scripts/verificationquerygen.sh check",

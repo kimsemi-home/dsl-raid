@@ -61,6 +61,7 @@
         "control-plane-verifier",
         "provider-compat",
         "runtime-trace",
+        "runtime-contract",
         "run-manifest",
         "adr-governance",
         "backend-parity",

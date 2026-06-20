@@ -10,8 +10,8 @@
             "id": "semantic-diff:verification-graph",
             "hash_id": "semantic:verification-graph",
             "summary": "Verification graph semantic receipt.",
-            "base_hash": "8121ff52a75c93796cc2d5856d9371cac96f0a0a78709eb743622e7f93c7a52b",
-            "head_hash": "8121ff52a75c93796cc2d5856d9371cac96f0a0a78709eb743622e7f93c7a52b",
+            "base_hash": "afaf7629a60686d0ec6a94f8a144542c1e90ac5f8313ad407f2bc76e0c45e9ee",
+            "head_hash": "afaf7629a60686d0ec6a94f8a144542c1e90ac5f8313ad407f2bc76e0c45e9ee",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },
@@ -19,8 +19,8 @@
             "id": "semantic-diff:codegen-map",
             "hash_id": "semantic:codegen-map",
             "summary": "Codegen axis semantic receipt.",
-            "base_hash": "ca6543dc9ed446e63d3b9ae3ad6ac0d5bf649fb2d62e1816c9c55319dc301f8a",
-            "head_hash": "ca6543dc9ed446e63d3b9ae3ad6ac0d5bf649fb2d62e1816c9c55319dc301f8a",
+            "base_hash": "08546a1f7975ad6a121a9da345a7ca9c267502b24a4c97ef033fe1f0f2f365a2",
+            "head_hash": "08546a1f7975ad6a121a9da345a7ca9c267502b24a4c97ef033fe1f0f2f365a2",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },
@@ -37,8 +37,8 @@
             "id": "semantic-diff:conformance",
             "hash_id": "semantic:conformance",
             "summary": "Conformance contract semantic receipt.",
-            "base_hash": "cbf14edcc33bdf0bd9636fbba65bc32146169a33cd0164eb0853fe78b1a1385a",
-            "head_hash": "cbf14edcc33bdf0bd9636fbba65bc32146169a33cd0164eb0853fe78b1a1385a",
+            "base_hash": "ca8bd79b891a5dc4c902c35b3f8167993f350021a98a58df1463cb126dba560b",
+            "head_hash": "ca8bd79b891a5dc4c902c35b3f8167993f350021a98a58df1463cb126dba560b",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },
@@ -264,6 +264,15 @@
             "summary": "Language expansion semantic receipt.",
             "base_hash": "c6e8ee73a1bb7fe5d3701efb6adb1ee460764e198b9c2a49775cc892374fbc98",
             "head_hash": "c6e8ee73a1bb7fe5d3701efb6adb1ee460764e198b9c2a49775cc892374fbc98",
+            "status": "unchanged",
+            "evidence": "docs/generated/verification-semantic-hash.json"
+        },
+        {
+            "id": "semantic-diff:runtime-contract",
+            "hash_id": "semantic:runtime-contract",
+            "summary": "Runtime contract semantic receipt.",
+            "base_hash": "14287d908462ef3e844973d3dd5e960e237a72fe49fed4721f0763bf82d7f1cf",
+            "head_hash": "14287d908462ef3e844973d3dd5e960e237a72fe49fed4721f0763bf82d7f1cf",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },

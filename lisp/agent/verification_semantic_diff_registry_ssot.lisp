@@ -9,6 +9,8 @@
      "Migration and compatibility command surface semantic receipt.")
     ("semantic-diff:language-expansion" "semantic:language-expansion"
      "Language expansion semantic receipt.")
+    ("semantic-diff:runtime-contract" "semantic:runtime-contract"
+     "Runtime contract semantic receipt.")
     ("semantic-diff:context-map" "semantic:context-map"
      "Context map semantic receipt.")
     ("semantic-diff:historical-interpreter" "semantic:historical-interpreter"

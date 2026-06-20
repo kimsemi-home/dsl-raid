@@ -13,7 +13,7 @@
     "reasoning-access" "reliability-registry" "cross-agent-agreement" "adversarial-review"
     "evidence-quality" "lease-and-abort" "review-capacity" "feedback-closure" "quarantine"
     "external-confidence" "verification-sidecar" "orchestration-manifest"
-    "control-plane-verifier" "provider-compat" "runtime-trace" "run-manifest" "adr-governance" "backend-parity" "github-actions-suite" "evidence-before-change" "incident-learning" "genesis-charter" "meta-model" "backup-steward" "revalidation-gate" "cold-start-gate" "evidence-separation" "versioned-ssot" "context-map"
+    "control-plane-verifier" "provider-compat" "runtime-trace" "runtime-contract" "run-manifest" "adr-governance" "backend-parity" "github-actions-suite" "evidence-before-change" "incident-learning" "genesis-charter" "meta-model" "backup-steward" "revalidation-gate" "cold-start-gate" "evidence-separation" "versioned-ssot" "context-map"
     "historical-interpreter" "ontology-transition" "ssot-defect"
     "root-cause" "semantic-debugger" "evidence-pruning" "security-audit"
     "failure-conditions" "debt-register" "incompleteness-ledger"))

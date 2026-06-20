@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "8121ff52a75c93796cc2d5856d9371cac96f0a0a78709eb743622e7f93c7a52b"
+            "hash": "afaf7629a60686d0ec6a94f8a144542c1e90ac5f8313ad407f2bc76e0c45e9ee"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "ca6543dc9ed446e63d3b9ae3ad6ac0d5bf649fb2d62e1816c9c55319dc301f8a"
+            "hash": "08546a1f7975ad6a121a9da345a7ca9c267502b24a4c97ef033fe1f0f2f365a2"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "cbf14edcc33bdf0bd9636fbba65bc32146169a33cd0164eb0853fe78b1a1385a"
+            "hash": "ca8bd79b891a5dc4c902c35b3f8167993f350021a98a58df1463cb126dba560b"
         },
         {
             "id": "semantic:authority",
@@ -320,6 +320,17 @@
             ],
             "meaning": "Lisp language expansion and generated backend contract.",
             "hash": "c6e8ee73a1bb7fe5d3701efb6adb1ee460764e198b9c2a49775cc892374fbc98"
+        },
+        {
+            "id": "semantic:runtime-contract",
+            "source": "docs/generated/verification-runtime-contract.json",
+            "fields": [
+                "runtime_contract_profile",
+                "surfaces",
+                "closure_rules"
+            ],
+            "meaning": "Canonical IR to runtime artifact compatibility contract.",
+            "hash": "14287d908462ef3e844973d3dd5e960e237a72fe49fed4721f0763bf82d7f1cf"
         },
         {
             "id": "semantic:context-map",

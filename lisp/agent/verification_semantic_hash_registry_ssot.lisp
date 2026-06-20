@@ -14,6 +14,9 @@
     ("semantic:language-expansion" "docs/generated/verification-language-expansion.json"
      ("language_expansion_profile" "surfaces" "closure_rules")
      "Lisp language expansion and generated backend contract.")
+    ("semantic:runtime-contract" "docs/generated/verification-runtime-contract.json"
+     ("runtime_contract_profile" "surfaces" "closure_rules")
+     "Canonical IR to runtime artifact compatibility contract.")
     ("semantic:context-map" "docs/generated/verification-context-map.json"
      ("context_map_profile" "translations" "closure_rules")
      "Versioned context translation bridge contract.")

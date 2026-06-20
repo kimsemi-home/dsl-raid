@@ -39,6 +39,7 @@
     ("control-plane-verifier" ("control-plane-verifier"))
     ("provider-compat" ("provider-compat"))
     ("runtime-trace" ("runtime-trace"))
+    ("runtime-contract" ("runtime-contract"))
     ("run-manifest" ("run-manifest"))
     ("adr-governance" ("adr-governance"))
     ("backend-parity" ("backend-parity"))
