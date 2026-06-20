@@ -401,6 +401,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.translation-verifier",
+            "subject": "docs/generated/verification-translation-verifier.json",
+            "check": "scripts/verificationtranslationgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.historical-interpreter",
             "subject": "docs/generated/verification-historical-interpreter.json",
             "check": "scripts/verificationhistoricalgen.sh check",

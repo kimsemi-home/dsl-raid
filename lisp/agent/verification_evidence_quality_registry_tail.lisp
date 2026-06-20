@@ -60,4 +60,9 @@
      "docs/generated/verification-experiment-loop.json"
      "high" "experiment-loop" "gate:evidence-quality"
      ("experiments" "closure_rules")
-     "Experiment evidence is suitable when PDCA records cite checks and act evidence.")))
+     "Experiment evidence is suitable when PDCA records cite checks and act evidence.")
+    ("evidence-quality:translation-verifier"
+     "docs/generated/verification-translation-verifier.json"
+     "high" "translation-verifier" "gate:evidence-quality"
+     ("checks" "closure_rules")
+     "Translation verifier evidence is suitable when losses resolve to the ledger.")))

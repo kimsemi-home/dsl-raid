@@ -39,6 +39,7 @@
     ("migration-surface" "docs/generated/verification-migration-surface.json" "scripts/verificationmigrationgen.sh")
     ("language-expansion" "docs/generated/verification-language-expansion.json" "scripts/verificationlanguagegen.sh")
     ("context-map" "docs/generated/verification-context-map.json" "scripts/verificationcontextmapgen.sh")
+    ("translation-verifier" "docs/generated/verification-translation-verifier.json" "scripts/verificationtranslationgen.sh")
     ("historical-interpreter" "docs/generated/verification-historical-interpreter.json" "scripts/verificationhistoricalgen.sh")
     ("ontology-transition" "docs/generated/verification-ontology-transition.json" "scripts/verificationtransitiongen.sh")
     ("ssot-defect" "docs/generated/verification-ssot-defect.json" "scripts/verificationssotdefectgen.sh")

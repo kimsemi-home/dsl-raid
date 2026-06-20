@@ -1177,6 +1177,51 @@
                 "generated_by",
                 "subject",
                 "source",
+                "translation_verifier_profile",
+                "checks",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationtranslationgen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "translation_verifier_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "checks": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/translation_verifier_check"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
                 "semantic_debugger_profile",
                 "sessions",
                 "closure_rules"
@@ -5015,6 +5060,55 @@
                 },
                 "loss_policy": {
                     "$ref": "#/$defs/semantic_ref"
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "translation_verifier_check": {
+            "type": "object",
+            "required": [
+                "id",
+                "translation",
+                "source_context",
+                "target_context",
+                "loss_policy",
+                "loss_level",
+                "verdict",
+                "evidence",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "translation": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source_context": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "target_context": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "loss_policy": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "loss_level": {
+                    "enum": [
+                        "L1",
+                        "L2",
+                        "L3"
+                    ]
+                },
+                "verdict": {
+                    "const": "verified"
                 },
                 "evidence": {
                     "$ref": "#/$defs/strings"

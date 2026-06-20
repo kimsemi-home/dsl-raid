@@ -357,6 +357,12 @@
             ]
         },
         {
+            "axis": "translation-verifier",
+            "backends": [
+                "translation-verifier"
+            ]
+        },
+        {
             "axis": "historical-interpreter",
             "backends": [
                 "historical-interpreter"

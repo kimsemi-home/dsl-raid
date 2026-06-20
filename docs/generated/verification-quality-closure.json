@@ -463,6 +463,13 @@
             "evidence": "docs/generated/verification-evidence.json"
         },
         {
+            "backend": "translation-verifier",
+            "output": "docs/generated/verification-translation-verifier.json",
+            "generator": "scripts/verificationtranslationgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
             "backend": "historical-interpreter",
             "output": "docs/generated/verification-historical-interpreter.json",
             "generator": "scripts/verificationhistoricalgen.sh",

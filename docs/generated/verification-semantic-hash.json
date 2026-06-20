@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "9e81a105d31bca3dae8ae71c400c6202721328d4c468c806ac44a29472326ceb"
+            "hash": "38cb5ccfcce46e23074af96418fdf5475d32fdd8f2414b285f3b691442db0394"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "2bb9335cd2db4a65e3c83fc7f41ed2085ec070efec676fcd8b6fe7724975dded"
+            "hash": "37cf68d5091753a0ddac5e5a92ed387dfdca4c208e989d0bfb425e652c8bcf1a"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "84b4368889f481eb038d91265c072c84e2cbf34716fa57fa662851ca1119ff04"
+            "hash": "9a75c44ad5a5793928b8b9fe3ff7ff6f1855949c11124af6b9d400f50b835197"
         },
         {
             "id": "semantic:authority",
@@ -97,7 +97,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "27c323f4423314d00f5537bd0d4488b9d86aae41f6a72b03fc0764454e5ab371"
+            "hash": "c72bf2ead3ef8bc0257b6ac8e42d94f9a4df7422cff59919b5b2163fd7a61d4f"
         },
         {
             "id": "semantic:lease",
@@ -364,6 +364,17 @@
             ],
             "meaning": "Versioned context translation bridge contract.",
             "hash": "5ccdfef7caced14fa6f91df95c9af5b66229c5bc83be3e5e8dccb2ef65ed7919"
+        },
+        {
+            "id": "semantic:translation-verifier",
+            "source": "docs/generated/verification-translation-verifier.json",
+            "fields": [
+                "translation_verifier_profile",
+                "checks",
+                "closure_rules"
+            ],
+            "meaning": "Translation verifier sidecar and loss-ledger contract.",
+            "hash": "97d2437eb2a94bb5cacf3f19f795c010e7faf14dd35f408b955cc17da5973715"
         },
         {
             "id": "semantic:historical-interpreter",
@@ -694,7 +705,7 @@
                 "closure_rules"
             ],
             "meaning": "Generated backend to quality gate closure contract.",
-            "hash": "49cc618c0c2035ac6ece6672a1dffd880075e6441e118589c6efc72f77d48533"
+            "hash": "02864418eb061861f88efce5d40de79402d86121789bc8f5e8bd29ae2512896e"
         },
         {
             "id": "semantic:precommit-closure",

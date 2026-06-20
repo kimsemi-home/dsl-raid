@@ -1,0 +1,54 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationtranslationgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_translation_verifier.lisp",
+    "translation_verifier_profile": "loss-ledger-sidecar",
+    "checks": [
+        {
+            "id": "translation-verifier:github-actions",
+            "translation": "context-map:lisp-to-github-actions",
+            "source_context": "context:verification",
+            "target_context": "context:github-actions",
+            "loss_policy": "loss:github-actions",
+            "loss_level": "L2",
+            "verdict": "verified",
+            "evidence": [
+                "docs/generated/verification-context-map.json",
+                "docs/generated/verification-loss-ledger.json"
+            ],
+            "meaning": "GitHub Actions translation is verified with a recorded non-forbidden loss."
+        },
+        {
+            "id": "translation-verifier:manifest-schema",
+            "translation": "context-map:lisp-to-manifest-schema",
+            "source_context": "context:verification",
+            "target_context": "context:manifest-contract",
+            "loss_policy": "loss:manifest-schema",
+            "loss_level": "L1",
+            "verdict": "verified",
+            "evidence": [
+                "docs/generated/verification-context-map.json",
+                "docs/generated/verification-loss-ledger.json"
+            ],
+            "meaning": "Manifest schema translation is verified with recorded structural loss."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "translation-verifier:coverage",
+            "meaning": "Every context-map translation has a verifier check.",
+            "check": "scripts/verificationtranslationgen.sh check"
+        },
+        {
+            "id": "translation-verifier:loss-known",
+            "meaning": "Every loss policy resolves to the loss ledger.",
+            "check": "scripts/verificationtranslationgen.sh check"
+        },
+        {
+            "id": "translation-verifier:no-forbidden-loss",
+            "meaning": "Verified translations cannot carry L4 loss.",
+            "check": "scripts/verificationtranslationgen.sh check"
+        }
+    ]
+}

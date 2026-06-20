@@ -20,6 +20,9 @@
     ("semantic:context-map" "docs/generated/verification-context-map.json"
      ("context_map_profile" "translations" "closure_rules")
      "Versioned context translation bridge contract.")
+    ("semantic:translation-verifier" "docs/generated/verification-translation-verifier.json"
+     ("translation_verifier_profile" "checks" "closure_rules")
+     "Translation verifier sidecar and loss-ledger contract.")
     ("semantic:historical-interpreter"
      "docs/generated/verification-historical-interpreter.json"
      ("historical_interpreter_profile" "interpretations" "closure_rules")

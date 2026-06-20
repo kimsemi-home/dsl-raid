@@ -58,6 +58,7 @@
     ("evidence-separation" ("evidence-separation"))
     ("versioned-ssot" ("versioned-ssot"))
     ("context-map" ("context-map"))
+    ("translation-verifier" ("translation-verifier"))
     ("historical-interpreter" ("historical-interpreter"))
     ("ontology-transition" ("ontology-transition"))
     ("ssot-defect" ("ssot-defect"))

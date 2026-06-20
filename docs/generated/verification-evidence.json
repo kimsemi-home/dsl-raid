@@ -77,6 +77,7 @@
     {"backend": "migration-surface", "output": "docs/generated/verification-migration-surface.json", "generator": "scripts/verificationmigrationgen.sh", "check": "scripts/verificationmigrationgen.sh check"},
     {"backend": "language-expansion", "output": "docs/generated/verification-language-expansion.json", "generator": "scripts/verificationlanguagegen.sh", "check": "scripts/verificationlanguagegen.sh check"},
     {"backend": "context-map", "output": "docs/generated/verification-context-map.json", "generator": "scripts/verificationcontextmapgen.sh", "check": "scripts/verificationcontextmapgen.sh check"},
+    {"backend": "translation-verifier", "output": "docs/generated/verification-translation-verifier.json", "generator": "scripts/verificationtranslationgen.sh", "check": "scripts/verificationtranslationgen.sh check"},
     {"backend": "historical-interpreter", "output": "docs/generated/verification-historical-interpreter.json", "generator": "scripts/verificationhistoricalgen.sh", "check": "scripts/verificationhistoricalgen.sh check"},
     {"backend": "ontology-transition", "output": "docs/generated/verification-ontology-transition.json", "generator": "scripts/verificationtransitiongen.sh", "check": "scripts/verificationtransitiongen.sh check"},
     {"backend": "ssot-defect", "output": "docs/generated/verification-ssot-defect.json", "generator": "scripts/verificationssotdefectgen.sh", "check": "scripts/verificationssotdefectgen.sh check"},

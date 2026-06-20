@@ -546,6 +546,18 @@
             "meaning": "Experiment evidence is suitable when PDCA records cite checks and act evidence."
         },
         {
+            "id": "evidence-quality:translation-verifier",
+            "target": "docs/generated/verification-translation-verifier.json",
+            "quality": "high",
+            "purpose": "translation-verifier",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "checks",
+                "closure_rules"
+            ],
+            "meaning": "Translation verifier evidence is suitable when losses resolve to the ledger."
+        },
+        {
             "id": "evidence-quality:merge-readiness",
             "target": "docs/generated/verification-merge-readiness.json",
             "quality": "high",

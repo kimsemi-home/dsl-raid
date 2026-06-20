@@ -80,6 +80,7 @@
         "evidence-separation",
         "versioned-ssot",
         "context-map",
+        "translation-verifier",
         "historical-interpreter",
         "ontology-transition",
         "ssot-defect",
