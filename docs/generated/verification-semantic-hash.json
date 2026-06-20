@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "e4a4826345f6669a9b905436e96f3ea3ba755f33cda6db8a97a3f35f8fc11b4e"
+            "hash": "543512d42957d631ef06d6d3c98d86a06981776a5d53619c60200dfeed89c640"
         },
         {
             "id": "semantic:codegen-map",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "cd29fb6c422db55ea91dd9be51fb6049e94ca484ddb7730036f1c2115fc2cc6e"
+            "hash": "23a3bac074ef3d0e5e1a93bebeae1c7f95afea1115f12f54fe6940451f75f772"
         },
         {
             "id": "semantic:authority",
@@ -298,6 +298,17 @@
             ],
             "meaning": "Context and version scoped SSOT authority contract.",
             "hash": "89e54336d43581e69b5c0f296f23ea32ef2c64901e8b775bba866c0ae9067abb"
+        },
+        {
+            "id": "semantic:migration-surface",
+            "source": "docs/generated/verification-migration-surface.json",
+            "fields": [
+                "migration_surface_profile",
+                "surfaces",
+                "closure_rules"
+            ],
+            "meaning": "Version migration and compatibility command surface contract.",
+            "hash": "70ea591ddd6220e6015eaeb64bcca4f601ae11d541dc86bdd2e916b0af96f9be"
         },
         {
             "id": "semantic:context-map",

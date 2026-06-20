@@ -347,6 +347,12 @@
             "generator": "scripts/verificationversionedssotgen.sh"
         },
         {
+            "id": "test:verification.backend.migration-surface",
+            "subject": "docs/generated/verification-migration-surface.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationmigrationgen.sh"
+        },
+        {
             "id": "test:verification.backend.context-map",
             "subject": "docs/generated/verification-context-map.json",
             "kind": "generated-backend",

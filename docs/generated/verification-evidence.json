@@ -64,6 +64,7 @@
     {"backend": "evidence-separation", "output": "docs/generated/verification-evidence-separation.json", "generator": "scripts/verificationseparationgen.sh", "check": "scripts/verificationseparationgen.sh check"},
     {"backend": "evidence-before-change", "output": "docs/generated/verification-evidence-before-change.json", "generator": "scripts/verificationevidencebeforechangegen.sh", "check": "scripts/verificationevidencebeforechangegen.sh check"},
     {"backend": "versioned-ssot", "output": "docs/generated/verification-versioned-ssot.json", "generator": "scripts/verificationversionedssotgen.sh", "check": "scripts/verificationversionedssotgen.sh check"},
+    {"backend": "migration-surface", "output": "docs/generated/verification-migration-surface.json", "generator": "scripts/verificationmigrationgen.sh", "check": "scripts/verificationmigrationgen.sh check"},
     {"backend": "context-map", "output": "docs/generated/verification-context-map.json", "generator": "scripts/verificationcontextmapgen.sh", "check": "scripts/verificationcontextmapgen.sh check"},
     {"backend": "historical-interpreter", "output": "docs/generated/verification-historical-interpreter.json", "generator": "scripts/verificationhistoricalgen.sh", "check": "scripts/verificationhistoricalgen.sh check"},
     {"backend": "ontology-transition", "output": "docs/generated/verification-ontology-transition.json", "generator": "scripts/verificationtransitiongen.sh", "check": "scripts/verificationtransitiongen.sh check"},

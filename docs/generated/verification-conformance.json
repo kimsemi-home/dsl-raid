@@ -323,6 +323,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.migration-surface",
+            "subject": "docs/generated/verification-migration-surface.json",
+            "check": "scripts/verificationmigrationgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.context-map",
             "subject": "docs/generated/verification-context-map.json",
             "check": "scripts/verificationcontextmapgen.sh check",

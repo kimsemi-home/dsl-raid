@@ -10,8 +10,8 @@
             "id": "semantic-diff:verification-graph",
             "hash_id": "semantic:verification-graph",
             "summary": "Verification graph semantic receipt.",
-            "base_hash": "e4a4826345f6669a9b905436e96f3ea3ba755f33cda6db8a97a3f35f8fc11b4e",
-            "head_hash": "e4a4826345f6669a9b905436e96f3ea3ba755f33cda6db8a97a3f35f8fc11b4e",
+            "base_hash": "543512d42957d631ef06d6d3c98d86a06981776a5d53619c60200dfeed89c640",
+            "head_hash": "543512d42957d631ef06d6d3c98d86a06981776a5d53619c60200dfeed89c640",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },
@@ -37,8 +37,8 @@
             "id": "semantic-diff:conformance",
             "hash_id": "semantic:conformance",
             "summary": "Conformance contract semantic receipt.",
-            "base_hash": "cd29fb6c422db55ea91dd9be51fb6049e94ca484ddb7730036f1c2115fc2cc6e",
-            "head_hash": "cd29fb6c422db55ea91dd9be51fb6049e94ca484ddb7730036f1c2115fc2cc6e",
+            "base_hash": "23a3bac074ef3d0e5e1a93bebeae1c7f95afea1115f12f54fe6940451f75f772",
+            "head_hash": "23a3bac074ef3d0e5e1a93bebeae1c7f95afea1115f12f54fe6940451f75f772",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },
@@ -246,6 +246,15 @@
             "summary": "Versioned SSOT semantic receipt.",
             "base_hash": "89e54336d43581e69b5c0f296f23ea32ef2c64901e8b775bba866c0ae9067abb",
             "head_hash": "89e54336d43581e69b5c0f296f23ea32ef2c64901e8b775bba866c0ae9067abb",
+            "status": "unchanged",
+            "evidence": "docs/generated/verification-semantic-hash.json"
+        },
+        {
+            "id": "semantic-diff:migration-surface",
+            "hash_id": "semantic:migration-surface",
+            "summary": "Migration and compatibility command surface semantic receipt.",
+            "base_hash": "70ea591ddd6220e6015eaeb64bcca4f601ae11d541dc86bdd2e916b0af96f9be",
+            "head_hash": "70ea591ddd6220e6015eaeb64bcca4f601ae11d541dc86bdd2e916b0af96f9be",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },

@@ -1,0 +1,62 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationmigrationgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_migration_surface.lisp",
+    "migration_surface_profile": "versioned-command-surface",
+    "surfaces": [
+        {
+            "id": "migration-surface:compat-check",
+            "kind": "compat-check",
+            "command": "cargo run -p dslraid-cli -- compat check examples/runscope/runscope.raid.json",
+            "fixture": "examples/runscope/runscope.raid.json",
+            "assertion": "stdout:compat ok: ir_version=0.1.0 project=runscope",
+            "evidence": [
+                "crates/dslraid-cli/src/commands/workspace/compat.rs"
+            ],
+            "status": "checked",
+            "meaning": "Compatibility check exposes the accepted IR contract version."
+        },
+        {
+            "id": "migration-surface:no-op-migrate",
+            "kind": "migration",
+            "command": "cargo run -p dslraid-cli -- migrate examples/runscope/runscope.raid.json --from 0.1.0 --to 0.1.0",
+            "fixture": "examples/runscope/runscope.raid.json",
+            "assertion": "json-ir-version:0.1.0",
+            "evidence": [
+                "crates/dslraid-cli/src/commands/workspace/migrate.rs"
+            ],
+            "status": "checked",
+            "meaning": "No-op migration is deterministic and preserves the declared IR version."
+        },
+        {
+            "id": "migration-surface:wrong-from",
+            "kind": "migration-guard",
+            "command": "cargo run -p dslraid-cli -- migrate examples/runscope/runscope.raid.json --from 9.9.9 --to 9.9.9",
+            "fixture": "examples/runscope/runscope.raid.json",
+            "assertion": "fails:input IR version",
+            "evidence": [
+                "crates/dslraid-cli/src/commands/workspace/migrate.rs"
+            ],
+            "status": "checked",
+            "meaning": "Migration refuses inputs whose declared version does not match --from."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "migration-surface:compat-command",
+            "meaning": "Compatibility is checked by a CLI command.",
+            "check": "scripts/verificationmigrationgen.sh check"
+        },
+        {
+            "id": "migration-surface:no-op",
+            "meaning": "Same-version migration must stay stable.",
+            "check": "scripts/verificationmigrationgen.sh check"
+        },
+        {
+            "id": "migration-surface:guard",
+            "meaning": "Version mismatch must fail before output.",
+            "check": "scripts/verificationmigrationgen.sh check"
+        }
+    ]
+}
