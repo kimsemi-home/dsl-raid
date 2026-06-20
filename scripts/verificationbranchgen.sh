@@ -17,41 +17,8 @@ generate() {
 }
 
 validate_branch_protection() {
-  python3 - "$repo/$out" <<'PY'
-import json, os, pathlib, sys
-data = json.load(open(sys.argv[1]))
-errors, seen = [], set()
-required = {"CI", "Security", "Golden", "Verification Graph"}
-checks = {r["name"] for r in data.get("requirements", []) if r["kind"] == "required-check"}
-for row in data.get("requirements", []):
-    if row["id"] in seen:
-        errors.append(f"duplicate branch protection requirement {row['id']}")
-    seen.add(row["id"])
-    if row.get("status") != "required":
-        errors.append(f"{row['id']} must be required")
-    workflow = pathlib.Path(row["workflow"])
-    if not workflow.exists():
-        errors.append(f"{row['id']} missing workflow {workflow}")
-        continue
-    text = workflow.read_text()
-    if row["kind"] == "required-check" and f"name: {row['name']}" not in text:
-        errors.append(f"{row['id']} missing workflow name {row['name']}")
-    if "pull_request_target" in text:
-        errors.append(f"{row['id']} uses forbidden pull_request_target")
-    for item in row.get("evidence", []):
-        if not os.path.exists(item):
-            errors.append(f"{row['id']} missing evidence {item}")
-if required - checks:
-    errors.append(f"missing required checks {sorted(required - checks)}")
-if not any(r["kind"] == "branch" and r["name"] == "main" for r in data.get("requirements", [])):
-    errors.append("branch protection target must be main")
-if not data.get("closure_rules"):
-    errors.append("branch protection manifest has no rules")
-if errors:
-    print("\n".join(errors), file=sys.stderr)
-    sys.exit(1)
-print("verification branch protection check ok")
-PY
+  PYTHONDONTWRITEBYTECODE=1 python3 \
+    "$repo/scripts/lib/branch_protection_check.py" "$repo/$out" "$repo"
 }
 
 case "$mode" in
