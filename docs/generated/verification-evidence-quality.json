@@ -570,6 +570,18 @@
             "meaning": "Translation verifier evidence is suitable when losses resolve to the ledger."
         },
         {
+            "id": "evidence-quality:governed-compiler",
+            "target": "docs/generated/verification-governed-compiler.json",
+            "quality": "high",
+            "purpose": "governed-compiler-farm",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "stages",
+                "closure_rules"
+            ],
+            "meaning": "Governed compiler evidence is suitable when candidate output is gated."
+        },
+        {
             "id": "evidence-quality:merge-readiness",
             "target": "docs/generated/verification-merge-readiness.json",
             "quality": "high",

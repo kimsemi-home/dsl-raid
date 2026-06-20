@@ -335,6 +335,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.governed-compiler-farm",
+            "subject": "docs/generated/verification-governed-compiler.json",
+            "check": "scripts/verificationcompilergen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.executable-knowledge",
             "subject": "docs/generated/verification-executable-knowledge.json",
             "check": "scripts/verificationexecutablegen.sh check",

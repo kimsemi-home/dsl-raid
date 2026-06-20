@@ -46,7 +46,7 @@
     ("execution-projection" ("execution-projection"))
     ("github-actions-suite" ("github-actions-suite"))
     ("evidence-before-change" ("evidence-before-change"))
-    ("incident-learning" ("incident-learning")) ("executable-knowledge" ("executable-knowledge"))
+    ("incident-learning" ("incident-learning")) ("governed-compiler-farm" ("governed-compiler-farm")) ("executable-knowledge" ("executable-knowledge"))
     ("learning-loop" ("learning-loop")) ("knowledge-conversion" ("knowledge-conversion"))
     ("quality-closure" ("quality-closure"))
     ("precommit-closure" ("precommit-closure"))

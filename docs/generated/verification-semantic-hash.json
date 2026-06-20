@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "9815b91477c02ffcba666655fecd8c3379ecb66e9a3c880ae9712ede8a1124b3"
+            "hash": "b661ab656aed5e1260de17aebd4cb680f55ca327113f64bb878eae91c04209d6"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "97175c266720d22943176c2736e0ea2a74865daffa14dc5a98bac633ac853b7b"
+            "hash": "9e9ed0709d41190c7d5a0274b4f2ea0046ff1234f38a9145a99c98941d9a5f07"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "b1513cb11d99de9802b8cba4f18121615481acbe094167c74b5f4327c431a7ca"
+            "hash": "d60fc6a9532a469d7c00edd4b6976f7f50f892cea11607ade3e9d9e51eb5c7ba"
         },
         {
             "id": "semantic:authority",
@@ -97,7 +97,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "348c74e1b6a5617e6675f18858b9b12311e86d6e6acc422255344330d7399ae2"
+            "hash": "22c62a4cddbffa62ae90740366642e85f34d6250344e1aec369b85d83351718b"
         },
         {
             "id": "semantic:lease",
@@ -331,6 +331,17 @@
             ],
             "meaning": "Release promotion provenance and evidence contract.",
             "hash": "1c305e3031f3a08c8b7717cf8b0fc2c55ad861e7c67dad06639652c0bea69be6"
+        },
+        {
+            "id": "semantic:governed-compiler",
+            "source": "docs/generated/verification-governed-compiler.json",
+            "fields": [
+                "compiler_farm_profile",
+                "stages",
+                "closure_rules"
+            ],
+            "meaning": "Spec to candidate to authority compiler farm contract.",
+            "hash": "1ecd66bf5b05f471547cd2820e07dcbae241e7c33ac5cd0f80c472e9319974c2"
         },
         {
             "id": "semantic:executable-knowledge",
@@ -771,7 +782,7 @@
                 "closure_rules"
             ],
             "meaning": "Generated backend to quality gate closure contract.",
-            "hash": "773f5bcae95aee3b71b4d1ef23399ee100984a33ae786262098987db57b8324c"
+            "hash": "948a1d1f21ffba6078c0037243b19e2264c7b02fe114f07c40252bbf649fdff3"
         },
         {
             "id": "semantic:precommit-closure",

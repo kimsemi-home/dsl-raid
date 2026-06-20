@@ -1,0 +1,110 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationcompilergen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_governed_compiler.lisp",
+    "compiler_farm_profile": "spec-candidate-evidence-authority",
+    "stages": [
+        {
+            "order": 1,
+            "id": "governed-compiler:spec",
+            "stage": "spec",
+            "input": "examples/runscope/runscope.assertions.json",
+            "output": "docs/generated/assertion-catalog.md",
+            "command": "bash scripts/assertiongen.sh check",
+            "assertion": "stdout:assertion generated doc ok",
+            "trust": "source",
+            "evidence": [
+                "examples/runscope/runscope.assertions.json"
+            ],
+            "meaning": "Spec is the input to interpretation, not an agent opinion."
+        },
+        {
+            "order": 2,
+            "id": "governed-compiler:candidate",
+            "stage": "candidate",
+            "input": "lisp/agent/verification_executable_knowledge.lisp",
+            "output": "docs/generated/verification-executable-knowledge.json",
+            "command": "bash scripts/verificationexecutablegen.sh check",
+            "assertion": "stdout:verification executable knowledge check ok",
+            "trust": "candidate",
+            "evidence": [
+                "docs/generated/verification-executable-knowledge.json"
+            ],
+            "meaning": "Agent-generated interpretation remains a candidate until checked."
+        },
+        {
+            "order": 3,
+            "id": "governed-compiler:validation",
+            "stage": "validation",
+            "input": "docs/generated/verification-executable-knowledge.json",
+            "output": "docs/generated/verification-conformance.json",
+            "command": "bash scripts/verificationconformancegen.sh check",
+            "assertion": "stdout:verification conformance generated output ok",
+            "trust": "checked",
+            "evidence": [
+                "schemas/dslraid-verification-manifest.schema.json"
+            ],
+            "meaning": "Validation turns candidate interpretation into checked evidence."
+        },
+        {
+            "order": 4,
+            "id": "governed-compiler:evidence",
+            "stage": "evidence",
+            "input": "docs/generated/verification-conformance.json",
+            "output": "docs/generated/verification-evidence.json",
+            "command": "bash scripts/verificationevidencegen.sh check",
+            "assertion": "stdout:verification evidence generated output ok",
+            "trust": "evidence",
+            "evidence": [
+                "docs/generated/verification-semantic-hash.json"
+            ],
+            "meaning": "Evidence is generated separately from the candidate output."
+        },
+        {
+            "order": 5,
+            "id": "governed-compiler:external-confidence",
+            "stage": "external-confidence",
+            "input": "docs/generated/verification-evidence.json",
+            "output": "docs/generated/verification-confidence.json",
+            "command": "bash scripts/verificationconfidencegen.sh check",
+            "assertion": "stdout:verification confidence check ok",
+            "trust": "assessed",
+            "evidence": [
+                "docs/generated/verification-evidence-quality.json"
+            ],
+            "meaning": "External confidence is assessed from evidence, not self-reported."
+        },
+        {
+            "order": 6,
+            "id": "governed-compiler:authority",
+            "stage": "authority",
+            "input": "docs/generated/verification-confidence.json",
+            "output": "docs/generated/verification-authority.json",
+            "command": "bash scripts/verificationauthoritygen.sh check",
+            "assertion": "stdout:verification authority check ok",
+            "trust": "gated",
+            "evidence": [
+                "docs/generated/verification-access-policy.json"
+            ],
+            "meaning": "Authority gate decides what may merge or release."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "governed-compiler:candidate-not-result",
+            "meaning": "Agent output is a candidate.",
+            "check": "scripts/verificationcompilergen.sh check"
+        },
+        {
+            "id": "governed-compiler:deterministic-checks",
+            "meaning": "Each stage has command evidence.",
+            "check": "scripts/verificationcompilergen.sh check"
+        },
+        {
+            "id": "governed-compiler:authority-last",
+            "meaning": "Authority follows evidence and confidence.",
+            "check": "scripts/verificationcompilergen.sh check"
+        }
+    ]
+}

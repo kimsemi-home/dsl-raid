@@ -28,6 +28,7 @@
     ("release-provenance" "docs/generated/verification-release-provenance.json" "scripts/verificationreleaseprovenancegen.sh")
     ("release-check-providers" "scripts/releasecheck" "scripts/releasecheckgen.sh")
     ("incident-learning" "docs/generated/verification-incident-learning.json" "scripts/verificationincidentgen.sh")
+    ("governed-compiler-farm" "docs/generated/verification-governed-compiler.json" "scripts/verificationcompilergen.sh")
     ("executable-knowledge" "docs/generated/verification-executable-knowledge.json" "scripts/verificationexecutablegen.sh")
     ("learning-loop" "docs/generated/verification-learning-loop.json" "scripts/verificationlearninggen.sh")
     ("knowledge-conversion" "docs/generated/verification-knowledge-conversion.json" "scripts/verificationknowledgegen.sh")

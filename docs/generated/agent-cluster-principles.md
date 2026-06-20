@@ -48,6 +48,7 @@ Failures must become evidence, diagnostics, or generated knowledge updates.
 | github-actions-suite | GitHub Actions surface | Generated and curated workflow evidence | Generated workflows and guard workflows both declare ownership and permissions. |
 | release-provenance | Release pipeline promotion | Tag-bound gate evidence | Release publishing requires generated workflow, tests, permissions, and provenance. |
 | incident-learning | Observed failure or drift | Owner, knowledge update, revalidation, and prevention | Incidents close only when the system learns in executable form. |
+| governed-compiler-farm | Spec and agent interpretation candidate | Verified evidence, external confidence, and authority gate | Agents work like compilers, but their outputs remain candidates until checked. |
 | knowledge-conversion | Error, unknown, or failure signal | Versioned and revalidated knowledge update | The system succeeds when errors become evidence-backed knowledge. |
 | genesis-charter | Initial bounded responsibility record | Purpose, assumptions, owner, risk boundary, and revalidation | The first map is executable and review-owned, not prose authority. |
 | meta-model | Governance vocabulary | Actor, artifact, evidence, claim, decision, risk, version, audit | Rules about rules need explicit terms before automation can govern them. |

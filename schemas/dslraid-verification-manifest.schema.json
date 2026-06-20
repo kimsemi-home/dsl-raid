@@ -3368,6 +3368,51 @@
                 "generated_by",
                 "subject",
                 "source",
+                "compiler_farm_profile",
+                "stages",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationcompilergen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "compiler_farm_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "stages": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/governed_compiler_stage"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
                 "learning_loop_profile",
                 "stages",
                 "cycles",
@@ -6571,6 +6616,72 @@
                         "closed",
                         "revalidating"
                     ]
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "governed_compiler_stage": {
+            "type": "object",
+            "required": [
+                "order",
+                "id",
+                "stage",
+                "input",
+                "output",
+                "command",
+                "assertion",
+                "trust",
+                "evidence",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "order": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "stage": {
+                    "enum": [
+                        "spec",
+                        "candidate",
+                        "validation",
+                        "evidence",
+                        "external-confidence",
+                        "authority"
+                    ]
+                },
+                "input": {
+                    "$ref": "#/$defs/path"
+                },
+                "output": {
+                    "$ref": "#/$defs/path"
+                },
+                "command": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "assertion": {
+                    "type": "string",
+                    "pattern": "^stdout:.+"
+                },
+                "trust": {
+                    "enum": [
+                        "source",
+                        "candidate",
+                        "checked",
+                        "evidence",
+                        "assessed",
+                        "gated"
+                    ]
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
                 },
                 "meaning": {
                     "type": "string",

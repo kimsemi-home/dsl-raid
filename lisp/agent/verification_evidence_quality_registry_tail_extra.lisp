@@ -70,4 +70,5 @@
 (defparameter *verification-evidence-quality-assessments*
   (append *verification-evidence-quality-core-assessments*
           *verification-evidence-quality-tail-assessments*
+          *verification-evidence-quality-compiler-assessments*
           *verification-evidence-quality-tail-extra-assessments*))

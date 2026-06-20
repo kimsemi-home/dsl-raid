@@ -66,6 +66,7 @@
     {"backend": "release-provenance", "output": "docs/generated/verification-release-provenance.json", "generator": "scripts/verificationreleaseprovenancegen.sh", "check": "scripts/verificationreleaseprovenancegen.sh check"},
     {"backend": "release-check-providers", "output": "scripts/releasecheck", "generator": "scripts/releasecheckgen.sh", "check": "scripts/releasecheckgen.sh check"},
     {"backend": "incident-learning", "output": "docs/generated/verification-incident-learning.json", "generator": "scripts/verificationincidentgen.sh", "check": "scripts/verificationincidentgen.sh check"},
+    {"backend": "governed-compiler-farm", "output": "docs/generated/verification-governed-compiler.json", "generator": "scripts/verificationcompilergen.sh", "check": "scripts/verificationcompilergen.sh check"},
     {"backend": "executable-knowledge", "output": "docs/generated/verification-executable-knowledge.json", "generator": "scripts/verificationexecutablegen.sh", "check": "scripts/verificationexecutablegen.sh check"},
     {"backend": "learning-loop", "output": "docs/generated/verification-learning-loop.json", "generator": "scripts/verificationlearninggen.sh", "check": "scripts/verificationlearninggen.sh check"},
     {"backend": "knowledge-conversion", "output": "docs/generated/verification-knowledge-conversion.json", "generator": "scripts/verificationknowledgegen.sh", "check": "scripts/verificationknowledgegen.sh check"},

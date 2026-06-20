@@ -386,6 +386,13 @@
             "evidence": "docs/generated/verification-evidence.json"
         },
         {
+            "backend": "governed-compiler-farm",
+            "output": "docs/generated/verification-governed-compiler.json",
+            "generator": "scripts/verificationcompilergen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
             "backend": "executable-knowledge",
             "output": "docs/generated/verification-executable-knowledge.json",
             "generator": "scripts/verificationexecutablegen.sh",

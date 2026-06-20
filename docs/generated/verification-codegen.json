@@ -309,6 +309,12 @@
             ]
         },
         {
+            "axis": "governed-compiler-farm",
+            "backends": [
+                "governed-compiler-farm"
+            ]
+        },
+        {
             "axis": "executable-knowledge",
             "backends": [
                 "executable-knowledge"

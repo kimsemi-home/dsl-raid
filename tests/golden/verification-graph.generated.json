@@ -359,6 +359,12 @@
             "generator": "scripts/verificationincidentgen.sh"
         },
         {
+            "id": "test:verification.backend.governed-compiler-farm",
+            "subject": "docs/generated/verification-governed-compiler.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationcompilergen.sh"
+        },
+        {
             "id": "test:verification.backend.executable-knowledge",
             "subject": "docs/generated/verification-executable-knowledge.json",
             "kind": "generated-backend",
