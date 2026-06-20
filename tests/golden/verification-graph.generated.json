@@ -107,6 +107,12 @@
             "generator": "scripts/verificationevidenceopsgen.sh"
         },
         {
+            "id": "test:verification.backend.evidence-graph",
+            "subject": "docs/generated/verification-evidence-graph.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationevidencegraphgen.sh"
+        },
+        {
             "id": "test:verification.backend.loss-ledger",
             "subject": "docs/generated/verification-loss-ledger.json",
             "kind": "generated-backend",

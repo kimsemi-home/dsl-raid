@@ -8,6 +8,7 @@
       "bash scripts/verificationreliabilitygen.sh check"
       "bash scripts/verificationagreementgen.sh check"
       "bash scripts/verificationadversarialgen.sh check"
+      "bash scripts/verificationevidencegraphgen.sh check"
       "bash scripts/verificationevidencequalitygen.sh check"
       "bash scripts/verificationleasegen.sh check"
       "bash scripts/verificationabortgen.sh check"

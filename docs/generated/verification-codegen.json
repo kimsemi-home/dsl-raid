@@ -120,7 +120,8 @@
         {
             "axis": "evidence-ops",
             "backends": [
-                "evidence-ops"
+                "evidence-ops",
+                "evidence-graph"
             ]
         },
         {

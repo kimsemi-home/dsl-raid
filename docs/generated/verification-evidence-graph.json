@@ -1,0 +1,137 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationevidencegraphgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_evidence_graph.lisp",
+    "evidence_graph_profile": "linked-evidence-to-authority",
+    "nodes": [
+        {
+            "id": "evidence-graph:runtime",
+            "kind": "observation",
+            "artifact": "docs/generated/verification-runtime-trace.json",
+            "evidence": [
+                "examples/runscope/run-001.trace.json"
+            ],
+            "meaning": "Runtime traces are observed before interpretation."
+        },
+        {
+            "id": "evidence-graph:evidence",
+            "kind": "evidence",
+            "artifact": "docs/generated/verification-evidence.json",
+            "evidence": [
+                "docs/generated/verification-evidence-ops.json"
+            ],
+            "meaning": "Generated backend receipts are durable evidence."
+        },
+        {
+            "id": "evidence-graph:interpretation",
+            "kind": "interpretation",
+            "artifact": "docs/generated/verification-root-cause.json",
+            "evidence": [
+                "docs/generated/verification-evidence-separation.json"
+            ],
+            "meaning": "Interpretation is separated from raw evidence."
+        },
+        {
+            "id": "evidence-graph:claim",
+            "kind": "claim",
+            "artifact": "docs/generated/verification-conformance.json",
+            "evidence": [
+                "docs/generated/verification-semantic-diff.json"
+            ],
+            "meaning": "Conformance is a claim backed by semantic diff."
+        },
+        {
+            "id": "evidence-graph:authority",
+            "kind": "authority",
+            "artifact": "docs/generated/verification-authority.json",
+            "evidence": [
+                "docs/generated/verification-evidence-quality.json"
+            ],
+            "meaning": "Authority consumes assessed evidence, not agent confidence."
+        },
+        {
+            "id": "evidence-graph:feedback",
+            "kind": "feedback",
+            "artifact": "docs/generated/verification-learning-loop.json",
+            "evidence": [
+                "docs/generated/verification-feedback.json"
+            ],
+            "meaning": "Closed feedback updates executable knowledge."
+        }
+    ],
+    "edges": [
+        {
+            "id": "evidence-edge:runtime-evidence",
+            "from": "evidence-graph:runtime",
+            "to": "evidence-graph:evidence",
+            "relation": "observes",
+            "evidence": [
+                "docs/generated/verification-runtime-trace.json"
+            ],
+            "status": "linked",
+            "meaning": "Runtime observations become stored evidence."
+        },
+        {
+            "id": "evidence-edge:evidence-interpretation",
+            "from": "evidence-graph:evidence",
+            "to": "evidence-graph:interpretation",
+            "relation": "interprets",
+            "evidence": [
+                "docs/generated/verification-evidence-separation.json"
+            ],
+            "status": "linked",
+            "meaning": "Evidence cannot jump directly into claims."
+        },
+        {
+            "id": "evidence-edge:interpretation-claim",
+            "from": "evidence-graph:interpretation",
+            "to": "evidence-graph:claim",
+            "relation": "supports",
+            "evidence": [
+                "docs/generated/verification-root-cause.json"
+            ],
+            "status": "linked",
+            "meaning": "Claims cite interpreted evidence."
+        },
+        {
+            "id": "evidence-edge:claim-authority",
+            "from": "evidence-graph:claim",
+            "to": "evidence-graph:authority",
+            "relation": "gates",
+            "evidence": [
+                "docs/generated/verification-authority.json"
+            ],
+            "status": "linked",
+            "meaning": "Authority gates consume conformance claims."
+        },
+        {
+            "id": "evidence-edge:authority-feedback",
+            "from": "evidence-graph:authority",
+            "to": "evidence-graph:feedback",
+            "relation": "updates",
+            "evidence": [
+                "docs/generated/verification-learning-loop.json"
+            ],
+            "status": "linked",
+            "meaning": "Approved authority produces learning feedback."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "evidence-graph:no-orphans",
+            "meaning": "Every edge endpoint must be a graph node.",
+            "check": "scripts/verificationevidencegraphgen.sh check"
+        },
+        {
+            "id": "evidence-graph:evidence-exists",
+            "meaning": "Every cited evidence artifact must exist.",
+            "check": "scripts/verificationevidencegraphgen.sh check"
+        },
+        {
+            "id": "evidence-graph:feedback-closes",
+            "meaning": "Authority must route back to feedback.",
+            "check": "scripts/verificationevidencegraphgen.sh check"
+        }
+    ]
+}

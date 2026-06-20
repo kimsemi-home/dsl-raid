@@ -92,6 +92,13 @@
             "evidence": "docs/generated/verification-evidence.json"
         },
         {
+            "backend": "evidence-graph",
+            "output": "docs/generated/verification-evidence-graph.json",
+            "generator": "scripts/verificationevidencegraphgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
             "backend": "loss-ledger",
             "output": "docs/generated/verification-loss-ledger.json",
             "generator": "scripts/verificationlossgen.sh",

@@ -20,13 +20,13 @@
      "gate:codegen" ("docs/generated/verification-ontology.json" "docs/generated/verification-codegen.json")
      "Code, docs, schemas, tests, conformance, actions, and releases are mapped.")
     ("objective:pdca" "pdca-learning" "collect evidence, experiment, review, and improve"
-     "gate:pdca" ("docs/generated/verification-pdca.json" "docs/generated/verification-experiment-loop.json" "docs/generated/verification-experiment-decision.json")
+     "gate:pdca" ("docs/generated/verification-pdca.json" "docs/generated/verification-evidence-graph.json" "docs/generated/verification-experiment-loop.json" "docs/generated/verification-experiment-decision.json")
      "PDCA and experiments are explicit evidence before policy.")
     ("objective:learning-loop" "learning-loop" "mistakes become evidence-backed knowledge updates"
      "gate:learning-loop" ("docs/generated/verification-learning-loop.json")
      "Agent Cluster learning is tracked from reality to revalidation.")
     ("objective:remote-actions" "actions-receipt" "remote GitHub Actions receipt"
-     "gate:actions-receipt" ("docs/generated/verification-actions-receipt.json")
+     "gate:actions-receipt" ("docs/generated/verification-actions-receipt.json" "docs/generated/verification-merge-receipt.json")
      "Remote run result is tracked by head SHA, conclusion, and URL.")
     ("objective:query-lazy" "query-lazy-surface" "query and lazy composition are executable surfaces"
      "gate:query-surface" ("docs/generated/verification-query-surface.json")

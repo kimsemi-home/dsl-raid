@@ -1267,6 +1267,132 @@
                 "generated_by",
                 "subject",
                 "source",
+                "evidence_graph_profile",
+                "nodes",
+                "edges",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationevidencegraphgen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "evidence_graph_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "nodes": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "id",
+                            "kind",
+                            "artifact",
+                            "evidence",
+                            "meaning"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "id": {
+                                "$ref": "#/$defs/semantic_ref"
+                            },
+                            "kind": {
+                                "enum": [
+                                    "observation",
+                                    "evidence",
+                                    "interpretation",
+                                    "claim",
+                                    "authority",
+                                    "feedback"
+                                ]
+                            },
+                            "artifact": {
+                                "$ref": "#/$defs/path"
+                            },
+                            "evidence": {
+                                "$ref": "#/$defs/strings"
+                            },
+                            "meaning": {
+                                "type": "string",
+                                "minLength": 1
+                            }
+                        }
+                    }
+                },
+                "edges": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "id",
+                            "from",
+                            "to",
+                            "relation",
+                            "evidence",
+                            "status",
+                            "meaning"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "id": {
+                                "$ref": "#/$defs/semantic_ref"
+                            },
+                            "from": {
+                                "$ref": "#/$defs/semantic_ref"
+                            },
+                            "to": {
+                                "$ref": "#/$defs/semantic_ref"
+                            },
+                            "relation": {
+                                "enum": [
+                                    "observes",
+                                    "interprets",
+                                    "supports",
+                                    "gates",
+                                    "updates"
+                                ]
+                            },
+                            "evidence": {
+                                "$ref": "#/$defs/strings"
+                            },
+                            "status": {
+                                "const": "linked"
+                            },
+                            "meaning": {
+                                "type": "string",
+                                "minLength": 1
+                            }
+                        }
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
                 "quarantine_release_profile",
                 "required_conditions",
                 "release_gates",

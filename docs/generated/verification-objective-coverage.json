@@ -85,6 +85,7 @@
             "gate": "gate:pdca",
             "evidence": [
                 "docs/generated/verification-pdca.json",
+                "docs/generated/verification-evidence-graph.json",
                 "docs/generated/verification-experiment-loop.json",
                 "docs/generated/verification-experiment-decision.json"
             ],
@@ -108,7 +109,8 @@
             "requirement": "remote GitHub Actions receipt",
             "gate": "gate:actions-receipt",
             "evidence": [
-                "docs/generated/verification-actions-receipt.json"
+                "docs/generated/verification-actions-receipt.json",
+                "docs/generated/verification-merge-receipt.json"
             ],
             "status": "tracked",
             "meaning": "Remote run result is tracked by head SHA, conclusion, and URL."

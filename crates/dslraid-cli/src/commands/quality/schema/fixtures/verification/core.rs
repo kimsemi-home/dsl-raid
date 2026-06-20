@@ -1,6 +1,6 @@
 use super::{Fixture, MANIFEST};
 
-pub(super) fn schemas() -> [Fixture; 15] {
+pub(super) fn schemas() -> [Fixture; 16] {
     [
         (
             "schemas/dslraid-verification-evidence.schema.json",
@@ -9,6 +9,7 @@ pub(super) fn schemas() -> [Fixture; 15] {
         (MANIFEST, "docs/generated/verification-privacy.json"),
         (MANIFEST, "docs/generated/verification-pdca.json"),
         (MANIFEST, "docs/generated/verification-evidence-ops.json"),
+        (MANIFEST, "docs/generated/verification-evidence-graph.json"),
         (MANIFEST, "docs/generated/verification-loss-ledger.json"),
         (MANIFEST, "docs/generated/verification-semantic-hash.json"),
         (MANIFEST, "docs/generated/verification-semantic-diff.json"),

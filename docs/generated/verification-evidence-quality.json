@@ -666,6 +666,19 @@
             "meaning": "Merge receipt evidence is suitable when post-push verdicts are explicit."
         },
         {
+            "id": "evidence-quality:evidence-graph",
+            "target": "docs/generated/verification-evidence-graph.json",
+            "quality": "high",
+            "purpose": "evidence-graph",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "nodes",
+                "edges",
+                "closure_rules"
+            ],
+            "meaning": "Evidence graph is suitable when evidence, claims, authority, and feedback link."
+        },
+        {
             "id": "evidence-quality:merge-readiness",
             "target": "docs/generated/verification-merge-readiness.json",
             "quality": "high",

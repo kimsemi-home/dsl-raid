@@ -35,6 +35,7 @@ The generated workflow is `.github/workflows/verification.yml`.
 | privacy-manifest | `docs/generated/verification-privacy.json` | `scripts/verificationprivacygen.sh` |
 | pdca-manifest | `docs/generated/verification-pdca.json` | `scripts/verificationpdcagen.sh` |
 | evidence-ops | `docs/generated/verification-evidence-ops.json` | `scripts/verificationevidenceopsgen.sh` |
+| evidence-graph | `docs/generated/verification-evidence-graph.json` | `scripts/verificationevidencegraphgen.sh` |
 | loss-ledger | `docs/generated/verification-loss-ledger.json` | `scripts/verificationlossgen.sh` |
 | semantic-hash | `docs/generated/verification-semantic-hash.json` | `scripts/verificationsemanticgen.sh` |
 | semantic-diff | `docs/generated/verification-semantic-diff.json` | `scripts/verificationdiffgen.sh` |

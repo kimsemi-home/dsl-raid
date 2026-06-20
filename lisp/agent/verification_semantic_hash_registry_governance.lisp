@@ -8,6 +8,9 @@
     ("semantic:evidence-quality" "docs/generated/verification-evidence-quality.json"
      ("evidence_quality_profile" "assessments" "closure_rules")
      "Evidence quality review contract for generated verification evidence.")
+    ("semantic:evidence-graph" "docs/generated/verification-evidence-graph.json"
+     ("evidence_graph_profile" "nodes" "edges" "closure_rules")
+     "Linked evidence graph from observation to feedback contract.")
     ("semantic:lease" "docs/generated/verification-lease.json"
      ("lease_profile" "leases" "abort_rules" "closure_rules")
      "Lease and abort authority boundary for verification work.")

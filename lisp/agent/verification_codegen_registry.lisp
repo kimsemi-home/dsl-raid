@@ -18,7 +18,7 @@
     ("source-shape" ("source-shape"))
     ("objective-coverage" ("objective-coverage"))
     ("pdca-evidence" ("pdca-manifest"))
-    ("evidence-ops" ("evidence-ops"))
+    ("evidence-ops" ("evidence-ops" "evidence-graph"))
     ("loss-ledger" ("loss-ledger"))
     ("semantic-hash" ("semantic-hash"))
     ("semantic-diff" ("semantic-diff"))

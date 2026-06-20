@@ -24,6 +24,7 @@
     {"backend": "privacy-manifest", "output": "docs/generated/verification-privacy.json", "generator": "scripts/verificationprivacygen.sh", "check": "scripts/verificationprivacygen.sh check"},
     {"backend": "pdca-manifest", "output": "docs/generated/verification-pdca.json", "generator": "scripts/verificationpdcagen.sh", "check": "scripts/verificationpdcagen.sh check"},
     {"backend": "evidence-ops", "output": "docs/generated/verification-evidence-ops.json", "generator": "scripts/verificationevidenceopsgen.sh", "check": "scripts/verificationevidenceopsgen.sh check"},
+    {"backend": "evidence-graph", "output": "docs/generated/verification-evidence-graph.json", "generator": "scripts/verificationevidencegraphgen.sh", "check": "scripts/verificationevidencegraphgen.sh check"},
     {"backend": "loss-ledger", "output": "docs/generated/verification-loss-ledger.json", "generator": "scripts/verificationlossgen.sh", "check": "scripts/verificationlossgen.sh check"},
     {"backend": "semantic-hash", "output": "docs/generated/verification-semantic-hash.json", "generator": "scripts/verificationsemanticgen.sh", "check": "scripts/verificationsemanticgen.sh check"},
     {"backend": "semantic-diff", "output": "docs/generated/verification-semantic-diff.json", "generator": "scripts/verificationdiffgen.sh", "check": "scripts/verificationdiffgen.sh check"},
