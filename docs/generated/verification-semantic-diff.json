@@ -694,8 +694,8 @@
             "id": "semantic-diff:objective-coverage",
             "hash_id": "semantic:objective-coverage",
             "summary": "Objective coverage semantic receipt.",
-            "base_hash": "9643ceaf0474c07d6db50fe0c3b693da268701c828d4cf434f9b2d23a6495647",
-            "head_hash": "9643ceaf0474c07d6db50fe0c3b693da268701c828d4cf434f9b2d23a6495647",
+            "base_hash": "086c8129f9ed2052a71349f77f804d8d0b3f441b4e9bcc977a1589c86752cca9",
+            "head_hash": "086c8129f9ed2052a71349f77f804d8d0b3f441b4e9bcc977a1589c86752cca9",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },

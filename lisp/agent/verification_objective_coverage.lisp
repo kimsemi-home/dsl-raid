@@ -25,6 +25,9 @@
     ("objective:pdca" "pdca-learning" "collect evidence, experiment, review, and improve"
      "gate:pdca" ("docs/generated/verification-pdca.json" "docs/generated/verification-evidence-graph.json" "docs/generated/verification-experiment-loop.json" "docs/generated/verification-experiment-decision.json")
      "PDCA and experiments are explicit evidence before policy.")
+    ("objective:evidence-governance" "evidence-governance" "evidence retention, audit, and revalidation are governed"
+     "gate:evidence-governance" ("docs/generated/verification-pruning.json" "docs/generated/verification-security-audit.json" "docs/generated/verification-revalidation-gate.json")
+     "Evidence deletion, permission boundaries, and revalidation dates change authority.")
     ("objective:learning-loop" "learning-loop" "mistakes become evidence-backed knowledge updates"
      "gate:learning-loop" ("docs/generated/verification-learning-loop.json")
      "Agent Cluster learning is tracked from reality to revalidation.")

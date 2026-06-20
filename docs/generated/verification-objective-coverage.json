@@ -106,6 +106,19 @@
             "meaning": "PDCA and experiments are explicit evidence before policy."
         },
         {
+            "id": "objective:evidence-governance",
+            "kind": "evidence-governance",
+            "requirement": "evidence retention, audit, and revalidation are governed",
+            "gate": "gate:evidence-governance",
+            "evidence": [
+                "docs/generated/verification-pruning.json",
+                "docs/generated/verification-security-audit.json",
+                "docs/generated/verification-revalidation-gate.json"
+            ],
+            "status": "tracked",
+            "meaning": "Evidence deletion, permission boundaries, and revalidation dates change authority."
+        },
+        {
             "id": "objective:learning-loop",
             "kind": "learning-loop",
             "requirement": "mistakes become evidence-backed knowledge updates",

@@ -21,7 +21,7 @@ validate_objective_coverage() {
 import json, os, sys
 data = json.load(open(sys.argv[1]))
 errors, seen = [], set()
-required = {"privacy-exclusion", "autonomous-merge", "source-shape", "backend-projection", "actions-hardening", "codegen-chain", "pdca-learning", "actions-receipt", "query-lazy-surface", "learning-loop", "local-precommit"}
+required = {"privacy-exclusion", "autonomous-merge", "source-shape", "backend-projection", "actions-hardening", "codegen-chain", "pdca-learning", "evidence-governance", "actions-receipt", "query-lazy-surface", "learning-loop", "local-precommit"}
 kinds = {row.get("kind") for row in data.get("requirements", [])}
 for row in data.get("requirements", []):
     if row["id"] in seen:
