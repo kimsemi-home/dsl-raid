@@ -22,6 +22,7 @@
     {"backend": "bazel", "output": "BUILD.bazel", "generator": "scripts/bazelgen.sh", "check": "scripts/bazelgen.sh check"},
     {"backend": "github-release", "output": ".github/workflows/release.yml", "generator": "scripts/releasegen.sh", "check": "scripts/releasegen.sh check"},
     {"backend": "privacy-manifest", "output": "docs/generated/verification-privacy.json", "generator": "scripts/verificationprivacygen.sh", "check": "scripts/verificationprivacygen.sh check"},
+    {"backend": "public-projection", "output": "docs/generated/verification-public-projection.json", "generator": "scripts/verificationpublicprojectiongen.sh", "check": "scripts/verificationpublicprojectiongen.sh check"},
     {"backend": "pdca-manifest", "output": "docs/generated/verification-pdca.json", "generator": "scripts/verificationpdcagen.sh", "check": "scripts/verificationpdcagen.sh check"},
     {"backend": "evidence-ops", "output": "docs/generated/verification-evidence-ops.json", "generator": "scripts/verificationevidenceopsgen.sh", "check": "scripts/verificationevidenceopsgen.sh check"},
     {"backend": "evidence-graph", "output": "docs/generated/verification-evidence-graph.json", "generator": "scripts/verificationevidencegraphgen.sh", "check": "scripts/verificationevidencegraphgen.sh check"},

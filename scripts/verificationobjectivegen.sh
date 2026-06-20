@@ -38,7 +38,7 @@ if required - kinds:
     errors.append(f"missing objective kinds {sorted(required - kinds)}")
 evidence = json.load(open("docs/generated/verification-evidence.json"))
 backends = {row["backend"] for row in evidence.get("generated_backends", [])}
-for backend in ("github-actions", "gitlab-ci", "local-makefile", "bazel", "source-shape", "query-surface", "evidence-graph"):
+for backend in ("github-actions", "gitlab-ci", "local-makefile", "bazel", "source-shape", "query-surface", "evidence-graph", "public-projection"):
     if backend not in backends:
         errors.append(f"missing generated backend evidence {backend}")
 codegen = json.load(open("docs/generated/verification-codegen.json"))

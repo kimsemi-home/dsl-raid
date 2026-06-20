@@ -679,6 +679,18 @@
             "meaning": "Evidence graph is suitable when evidence, claims, authority, and feedback link."
         },
         {
+            "id": "evidence-quality:public-projection",
+            "target": "docs/generated/verification-public-projection.json",
+            "quality": "high",
+            "purpose": "public-projection",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "decisions",
+                "closure_rules"
+            ],
+            "meaning": "Public projection evidence is suitable when private sources are excluded."
+        },
+        {
             "id": "evidence-quality:merge-readiness",
             "target": "docs/generated/verification-merge-readiness.json",
             "quality": "high",

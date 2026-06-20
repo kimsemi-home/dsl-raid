@@ -151,7 +151,8 @@
         {
             "axis": "access-policy",
             "backends": [
-                "access-policy"
+                "access-policy",
+                "public-projection"
             ]
         },
         {

@@ -23,7 +23,7 @@
     ("semantic-hash" ("semantic-hash"))
     ("semantic-diff" ("semantic-diff"))
     ("authority-gate" ("authority-manifest"))
-    ("access-policy" ("access-policy"))
+    ("access-policy" ("access-policy" "public-projection"))
     ("reasoning-access" ("reasoning-access"))
     ("reliability-registry" ("reliability-registry"))
     ("cross-agent-agreement" ("agreement-manifest"))

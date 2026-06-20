@@ -71,6 +71,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.public-projection",
+            "subject": "docs/generated/verification-public-projection.json",
+            "check": "scripts/verificationpublicprojectiongen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.pdca-manifest",
             "subject": "docs/generated/verification-pdca.json",
             "check": "scripts/verificationpdcagen.sh check",

@@ -11,6 +11,7 @@
     ("bazel" "BUILD.bazel" "scripts/bazelgen.sh")
     ("github-release" ".github/workflows/release.yml" "scripts/releasegen.sh")
     ("privacy-manifest" "docs/generated/verification-privacy.json" "scripts/verificationprivacygen.sh")
+    ("public-projection" "docs/generated/verification-public-projection.json" "scripts/verificationpublicprojectiongen.sh")
     ("pdca-manifest" "docs/generated/verification-pdca.json" "scripts/verificationpdcagen.sh")
     ("evidence-ops" "docs/generated/verification-evidence-ops.json" "scripts/verificationevidenceopsgen.sh")
     ("evidence-graph" "docs/generated/verification-evidence-graph.json" "scripts/verificationevidencegraphgen.sh")

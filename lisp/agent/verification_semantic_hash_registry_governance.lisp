@@ -11,6 +11,9 @@
     ("semantic:evidence-graph" "docs/generated/verification-evidence-graph.json"
      ("evidence_graph_profile" "nodes" "edges" "closure_rules")
      "Linked evidence graph from observation to feedback contract.")
+    ("semantic:public-projection" "docs/generated/verification-public-projection.json"
+     ("public_projection_profile" "decisions" "closure_rules")
+     "Private-to-public projection and redaction boundary contract.")
     ("semantic:lease" "docs/generated/verification-lease.json"
      ("lease_profile" "leases" "abort_rules" "closure_rules")
      "Lease and abort authority boundary for verification work.")

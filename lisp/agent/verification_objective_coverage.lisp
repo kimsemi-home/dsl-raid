@@ -2,8 +2,8 @@
 
 (defparameter *verification-objective-coverage*
   '(("objective:privacy" "privacy-exclusion" "public artifacts exclude personal data"
-     "gate:privacy" ("docs/generated/verification-privacy.json" "scripts/privacycheck.sh")
-     "Privacy exclusion is tracked by generated privacy evidence.")
+     "gate:privacy" ("docs/generated/verification-privacy.json" "docs/generated/verification-public-projection.json" "scripts/privacycheck.sh")
+     "Privacy exclusion is tracked by generated privacy and projection evidence.")
     ("objective:auto-merge" "autonomous-merge" "merge and push through guarded automation"
      "gate:merge-readiness" ("docs/generated/verification-merge-readiness.json" "docs/generated/verification-merge-automation.json")
      "Autonomous merge work is gated by readiness and automation policy.")

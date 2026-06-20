@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "ea0967a36f849c05231b9b50ff3264cf30cf4386202301c31b76b57e8c8c20bc"
+            "hash": "d8eea3c58f457c575b089f953cc7535d807e23a6406ba474a61f7e764a2092de"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "8f4e48221ff5b730a9bccc7aa00c6bf1c795827a517c5f48e192548a2e93fbf8"
+            "hash": "ef37c9ab8ebcdcb647245af72aa51a1a964c0bab405b0b6e96748382f2c3d809"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "2955dfe50ee32fa0fd4e576792841edf33065836e38467893b5b7d9da30d71d4"
+            "hash": "8b91ca8349081cbaf156430b8481b3ee2bcbc66f08d10f1968cedc92ab2f09b0"
         },
         {
             "id": "semantic:authority",
@@ -97,7 +97,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "440553c8230998a852c0bdfdfdb3a48d33e50c487e74357c5d2e38192fa20eb7"
+            "hash": "8da236d75a1be35f649e0dfd8e91df7f6e11e00eebe689b13f2b74f1f4906a47"
         },
         {
             "id": "semantic:evidence-graph",
@@ -110,6 +110,17 @@
             ],
             "meaning": "Linked evidence graph from observation to feedback contract.",
             "hash": "56c6fd37f901ba4c474e9135d3d96a414d75a8ed348f3bf1073fe94e873ad03c"
+        },
+        {
+            "id": "semantic:public-projection",
+            "source": "docs/generated/verification-public-projection.json",
+            "fields": [
+                "public_projection_profile",
+                "decisions",
+                "closure_rules"
+            ],
+            "meaning": "Private-to-public projection and redaction boundary contract.",
+            "hash": "846920b52154f9cd10c31bcd0a20ab1d663366927e45405321ae9d662f0c23a5"
         },
         {
             "id": "semantic:lease",
@@ -838,7 +849,7 @@
                 "closure_rules"
             ],
             "meaning": "Active objective requirement-to-evidence coverage contract.",
-            "hash": "48b657864242558256ee1dac0f69e566cae9ceac1b63e9fb456d41248e502254"
+            "hash": "ca4c7eef5db6d7caceec75c4bec5e418e8dfd9b7b6323f08881435de162d51bc"
         },
         {
             "id": "semantic:learning-loop",
@@ -861,7 +872,7 @@
                 "closure_rules"
             ],
             "meaning": "Generated backend to quality gate closure contract.",
-            "hash": "e686197a1f5a1c955ba6f7c75d9b75b3a780799f4645ab02a344ce3077f354ba"
+            "hash": "051f97bd9eca03800035c2d7a70cfe50b4e8c61b26e1d1437aa2a497fc2ce5f2"
         },
         {
             "id": "semantic:precommit-closure",

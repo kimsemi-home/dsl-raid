@@ -13,6 +13,8 @@
      "Evidence quality semantic receipt.")
     ("semantic-diff:evidence-graph" "semantic:evidence-graph"
      "Evidence graph semantic receipt.")
+    ("semantic-diff:public-projection" "semantic:public-projection"
+     "Public projection semantic receipt.")
     ("semantic-diff:lease" "semantic:lease"
      "Lease and abort semantic receipt.")
     ("semantic-diff:abort-evidence" "semantic:abort-evidence"

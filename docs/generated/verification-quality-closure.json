@@ -78,6 +78,13 @@
             "evidence": "docs/generated/verification-evidence.json"
         },
         {
+            "backend": "public-projection",
+            "output": "docs/generated/verification-public-projection.json",
+            "generator": "scripts/verificationpublicprojectiongen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
             "backend": "pdca-manifest",
             "output": "docs/generated/verification-pdca.json",
             "generator": "scripts/verificationpdcagen.sh",

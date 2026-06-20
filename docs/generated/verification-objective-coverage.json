@@ -12,10 +12,11 @@
             "gate": "gate:privacy",
             "evidence": [
                 "docs/generated/verification-privacy.json",
+                "docs/generated/verification-public-projection.json",
                 "scripts/privacycheck.sh"
             ],
             "status": "tracked",
-            "meaning": "Privacy exclusion is tracked by generated privacy evidence."
+            "meaning": "Privacy exclusion is tracked by generated privacy and projection evidence."
         },
         {
             "id": "objective:auto-merge",

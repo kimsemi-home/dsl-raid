@@ -9,6 +9,7 @@
       "bash scripts/releasegen.sh check"
       "bash scripts/privacycheck.sh check"
       "bash scripts/verificationprivacygen.sh check"
+      "bash scripts/verificationpublicprojectiongen.sh check"
       "bash scripts/verificationpdcagen.sh check"
       "bash scripts/verificationevidenceopsgen.sh check"
       "bash scripts/verificationlossgen.sh check"

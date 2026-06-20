@@ -1,0 +1,74 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationpublicprojectiongen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_public_projection.lisp",
+    "public_projection_profile": "private-to-public-boundary",
+    "decisions": [
+        {
+            "id": "public-projection:roots",
+            "kind": "include",
+            "source": "public-roots",
+            "target": "public-surface",
+            "effect": "included",
+            "evidence": [
+                "docs/generated/verification-privacy.json",
+                "scripts/privacycheck.sh"
+            ],
+            "meaning": "Only declared public roots may be published."
+        },
+        {
+            "id": "public-projection:private-data",
+            "kind": "exclude",
+            "source": "private-data",
+            "target": "public-artifacts",
+            "effect": "excluded",
+            "evidence": [
+                "docs/generated/verification-access-policy.json",
+                "docs/generated/verification-security-audit.json"
+            ],
+            "meaning": "Private data is denied before public artifact generation."
+        },
+        {
+            "id": "public-projection:secret-artifacts",
+            "kind": "redact",
+            "source": "secret-bearing-artifact",
+            "target": "public-projection",
+            "effect": "blocked",
+            "evidence": [
+                "docs/generated/assertion-catalog.md",
+                "schemas/dslraid-core.schema.json"
+            ],
+            "meaning": "Secret artifacts cannot survive a public projection."
+        },
+        {
+            "id": "public-projection:local-paths",
+            "kind": "redact",
+            "source": "local-user-path",
+            "target": "public-surface",
+            "effect": "blocked",
+            "evidence": [
+                "scripts/privacycheck.sh",
+                "docs/generated/verification-privacy.json"
+            ],
+            "meaning": "Local user paths are blocked from public generated evidence."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "public-projection:evidence-linked",
+            "meaning": "Every projection decision cites executable evidence.",
+            "check": "scripts/verificationpublicprojectiongen.sh check"
+        },
+        {
+            "id": "public-projection:no-private-allow",
+            "meaning": "Private and secret sources cannot be allowed.",
+            "check": "scripts/verificationpublicprojectiongen.sh check"
+        },
+        {
+            "id": "public-projection:privacy-check",
+            "meaning": "The public surface must pass privacycheck.",
+            "check": "scripts/verificationpublicprojectiongen.sh check"
+        }
+    ]
+}

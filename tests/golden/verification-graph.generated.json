@@ -95,6 +95,12 @@
             "generator": "scripts/verificationprivacygen.sh"
         },
         {
+            "id": "test:verification.backend.public-projection",
+            "subject": "docs/generated/verification-public-projection.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationpublicprojectiongen.sh"
+        },
+        {
             "id": "test:verification.backend.pdca-manifest",
             "subject": "docs/generated/verification-pdca.json",
             "kind": "generated-backend",
