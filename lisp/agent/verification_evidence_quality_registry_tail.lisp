@@ -61,6 +61,11 @@
      "high" "experiment-loop" "gate:evidence-quality"
      ("experiments" "closure_rules")
      "Experiment evidence is suitable when PDCA records cite checks and act evidence.")
+    ("evidence-quality:bounded-context"
+     "docs/generated/verification-bounded-context.json"
+     "high" "bounded-context" "gate:evidence-quality"
+     ("contexts" "closure_rules")
+     "Bounded context evidence is suitable when referenced contexts are cataloged.")
     ("evidence-quality:translation-verifier"
      "docs/generated/verification-translation-verifier.json"
      "high" "translation-verifier" "gate:evidence-quality"

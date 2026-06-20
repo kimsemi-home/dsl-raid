@@ -383,6 +383,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.bounded-context",
+            "subject": "docs/generated/verification-bounded-context.json",
+            "check": "scripts/verificationboundedcontextgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.migration-surface",
             "subject": "docs/generated/verification-migration-surface.json",
             "check": "scripts/verificationmigrationgen.sh check",

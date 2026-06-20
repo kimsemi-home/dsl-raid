@@ -12,6 +12,7 @@
     ("source-shape" "Source files and public entrypoints" "75-line budget and minimal quality surface" "Complexity is managed by exposed surface, not by hiding file count.")
     ("objective-coverage" "Active goal requirements" "Tracked requirement-to-evidence map" "Goal progress stays inspectable without pretending the whole product is finished.")
     ("versioned-ssot" "Context, ontology version, contract version" "Scoped authority" "SSOT authority is valid only inside an explicit context and version.")
+    ("bounded-context" "Context vocabulary and versions" "Cataloged context address" "Terms move across contexts only after their bounded context exists.")
     ("evidence-graph" "Raw evidence, interpretation, claim, artifact" "Traceable evidence links" "Unlinked evidence cannot justify high confidence or authority.")
     ("evidence-ops" "CI, deploy, experiment, and incident loop" "Evidence graph update and conformance claim" "Operations are evidence generation, not mere automation.")
     ("external-confidence" "Agent output and evidence graph" "Confidence ceiling" "Agent self-confidence is never final confidence.")

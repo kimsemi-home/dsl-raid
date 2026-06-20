@@ -773,6 +773,51 @@
                 "generated_by",
                 "subject",
                 "source",
+                "bounded_context_profile",
+                "contexts",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationboundedcontextgen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "bounded_context_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "contexts": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/bounded_context_record"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
                 "migration_surface_profile",
                 "surfaces",
                 "closure_rules"
@@ -4977,6 +5022,52 @@
                     "items": {
                         "$ref": "#/$defs/semantic_ref"
                     }
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "bounded_context_record": {
+            "type": "object",
+            "required": [
+                "id",
+                "name",
+                "ontology",
+                "ontology_version",
+                "contract_version",
+                "authority",
+                "terms",
+                "evidence",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "name": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "ontology": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "ontology_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "contract_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "authority": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "terms": {
+                    "$ref": "#/$defs/strings"
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
                 },
                 "meaning": {
                     "type": "string",

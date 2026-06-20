@@ -351,6 +351,12 @@
             ]
         },
         {
+            "axis": "bounded-context",
+            "backends": [
+                "bounded-context"
+            ]
+        },
+        {
             "axis": "context-map",
             "backends": [
                 "context-map"

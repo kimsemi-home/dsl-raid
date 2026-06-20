@@ -442,6 +442,13 @@
             "evidence": "docs/generated/verification-evidence.json"
         },
         {
+            "backend": "bounded-context",
+            "output": "docs/generated/verification-bounded-context.json",
+            "generator": "scripts/verificationboundedcontextgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
             "backend": "migration-surface",
             "output": "docs/generated/verification-migration-surface.json",
             "generator": "scripts/verificationmigrationgen.sh",

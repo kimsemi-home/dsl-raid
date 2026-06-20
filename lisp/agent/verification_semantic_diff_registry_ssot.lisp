@@ -5,6 +5,8 @@
      "Evidence-before-change semantic receipt.")
     ("semantic-diff:versioned-ssot" "semantic:versioned-ssot"
      "Versioned SSOT semantic receipt.")
+    ("semantic-diff:bounded-context" "semantic:bounded-context"
+     "Bounded context semantic receipt.")
     ("semantic-diff:migration-surface" "semantic:migration-surface"
      "Migration and compatibility command surface semantic receipt.")
     ("semantic-diff:language-expansion" "semantic:language-expansion"

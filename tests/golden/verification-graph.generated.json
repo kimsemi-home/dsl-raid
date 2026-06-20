@@ -407,6 +407,12 @@
             "generator": "scripts/verificationversionedssotgen.sh"
         },
         {
+            "id": "test:verification.backend.bounded-context",
+            "subject": "docs/generated/verification-bounded-context.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationboundedcontextgen.sh"
+        },
+        {
             "id": "test:verification.backend.migration-surface",
             "subject": "docs/generated/verification-migration-surface.json",
             "kind": "generated-backend",

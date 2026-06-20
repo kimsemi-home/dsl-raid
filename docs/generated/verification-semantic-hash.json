@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "38cb5ccfcce46e23074af96418fdf5475d32fdd8f2414b285f3b691442db0394"
+            "hash": "c2b2879bd3270cf1f23b511845a5b16328e6f5cc38f77d2fec379e126e066d4e"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "37cf68d5091753a0ddac5e5a92ed387dfdca4c208e989d0bfb425e652c8bcf1a"
+            "hash": "1dbf79ae7b1981022d5773bf5f7e06332c6c9ccd6ee12bcbc5998de43b54863e"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "9a75c44ad5a5793928b8b9fe3ff7ff6f1855949c11124af6b9d400f50b835197"
+            "hash": "27be7abed7a3ef7a9819f28bafe60824380b78939ecb129625a98ddfd95ead10"
         },
         {
             "id": "semantic:authority",
@@ -97,7 +97,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "c72bf2ead3ef8bc0257b6ac8e42d94f9a4df7422cff59919b5b2163fd7a61d4f"
+            "hash": "9cfb7e7c11b4adfb939965259a25fb954377fe8395e13215830c05b8ab17371e"
         },
         {
             "id": "semantic:lease",
@@ -320,6 +320,17 @@
             ],
             "meaning": "Context and version scoped SSOT authority contract.",
             "hash": "89e54336d43581e69b5c0f296f23ea32ef2c64901e8b775bba866c0ae9067abb"
+        },
+        {
+            "id": "semantic:bounded-context",
+            "source": "docs/generated/verification-bounded-context.json",
+            "fields": [
+                "bounded_context_profile",
+                "contexts",
+                "closure_rules"
+            ],
+            "meaning": "Bounded context catalog and term address contract.",
+            "hash": "5704c6300f5cb9e481aee176a4140721db07757de015106a5462ccad813f937b"
         },
         {
             "id": "semantic:migration-surface",
@@ -705,7 +716,7 @@
                 "closure_rules"
             ],
             "meaning": "Generated backend to quality gate closure contract.",
-            "hash": "02864418eb061861f88efce5d40de79402d86121789bc8f5e8bd29ae2512896e"
+            "hash": "1a779ce946148bf2685cef637a6e2e0f2b85766c5213d784b23cd075444178ef"
         },
         {
             "id": "semantic:precommit-closure",

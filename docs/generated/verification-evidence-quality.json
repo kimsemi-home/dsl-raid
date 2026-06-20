@@ -546,6 +546,18 @@
             "meaning": "Experiment evidence is suitable when PDCA records cite checks and act evidence."
         },
         {
+            "id": "evidence-quality:bounded-context",
+            "target": "docs/generated/verification-bounded-context.json",
+            "quality": "high",
+            "purpose": "bounded-context",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "contexts",
+                "closure_rules"
+            ],
+            "meaning": "Bounded context evidence is suitable when referenced contexts are cataloged."
+        },
+        {
             "id": "evidence-quality:translation-verifier",
             "target": "docs/generated/verification-translation-verifier.json",
             "quality": "high",

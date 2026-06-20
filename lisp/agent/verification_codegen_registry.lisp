@@ -56,7 +56,7 @@
     ("revalidation-gate" ("revalidation-gate"))
     ("cold-start-gate" ("cold-start-gate"))
     ("evidence-separation" ("evidence-separation"))
-    ("versioned-ssot" ("versioned-ssot"))
+    ("versioned-ssot" ("versioned-ssot")) ("bounded-context" ("bounded-context"))
     ("context-map" ("context-map"))
     ("translation-verifier" ("translation-verifier"))
     ("historical-interpreter" ("historical-interpreter"))

@@ -85,6 +85,7 @@ The generated workflow is `.github/workflows/verification.yml`.
 | evidence-separation | `docs/generated/verification-evidence-separation.json` | `scripts/verificationseparationgen.sh` |
 | evidence-before-change | `docs/generated/verification-evidence-before-change.json` | `scripts/verificationevidencebeforechangegen.sh` |
 | versioned-ssot | `docs/generated/verification-versioned-ssot.json` | `scripts/verificationversionedssotgen.sh` |
+| bounded-context | `docs/generated/verification-bounded-context.json` | `scripts/verificationboundedcontextgen.sh` |
 | migration-surface | `docs/generated/verification-migration-surface.json` | `scripts/verificationmigrationgen.sh` |
 | language-expansion | `docs/generated/verification-language-expansion.json` | `scripts/verificationlanguagegen.sh` |
 | context-map | `docs/generated/verification-context-map.json` | `scripts/verificationcontextmapgen.sh` |

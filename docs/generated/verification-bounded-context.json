@@ -1,0 +1,74 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationboundedcontextgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_bounded_context.lisp",
+    "bounded_context_profile": "context-address-catalog",
+    "contexts": [
+        {
+            "id": "context:verification",
+            "name": "VerificationContext",
+            "ontology": "ontology:verification",
+            "ontology_version": "0.1.0",
+            "contract_version": "0.1.0",
+            "authority": "gate:authority",
+            "terms": [
+                "VerificationGraph@VerificationContext",
+                "Evidence@VerificationContext"
+            ],
+            "evidence": [
+                "docs/generated/verification-versioned-ssot.json"
+            ],
+            "meaning": "Verification graph terms are scoped to verification governance."
+        },
+        {
+            "id": "context:manifest-contract",
+            "name": "ManifestContractContext",
+            "ontology": "ontology:verification",
+            "ontology_version": "0.1.0",
+            "contract_version": "0.1.0",
+            "authority": "gate:schema",
+            "terms": [
+                "Manifest@ManifestContractContext",
+                "Schema@ManifestContractContext"
+            ],
+            "evidence": [
+                "schemas/dslraid-verification-manifest.schema.json"
+            ],
+            "meaning": "Manifest terms are scoped to schema contract generation."
+        },
+        {
+            "id": "context:github-actions",
+            "name": "GithubActionsContext",
+            "ontology": "ontology:verification",
+            "ontology_version": "0.1.0",
+            "contract_version": "0.1.0",
+            "authority": "gate:workflow",
+            "terms": [
+                "Workflow@GithubActionsContext",
+                "Job@GithubActionsContext"
+            ],
+            "evidence": [
+                "docs/generated/verification-github-actions.json"
+            ],
+            "meaning": "GitHub Actions terms are scoped to workflow execution."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "bounded-context:cataloged",
+            "meaning": "Every referenced context is cataloged.",
+            "check": "scripts/verificationboundedcontextgen.sh check"
+        },
+        {
+            "id": "bounded-context:versioned",
+            "meaning": "Each context declares ontology and contract version.",
+            "check": "scripts/verificationboundedcontextgen.sh check"
+        },
+        {
+            "id": "bounded-context:no-bare-term",
+            "meaning": "Context terms include an explicit context suffix.",
+            "check": "scripts/verificationboundedcontextgen.sh check"
+        }
+    ]
+}

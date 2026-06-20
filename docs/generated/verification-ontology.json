@@ -79,6 +79,7 @@
         "cold-start-gate",
         "evidence-separation",
         "versioned-ssot",
+        "bounded-context",
         "context-map",
         "translation-verifier",
         "historical-interpreter",
