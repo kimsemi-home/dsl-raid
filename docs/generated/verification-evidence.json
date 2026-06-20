@@ -39,6 +39,7 @@
     {"backend": "review-capacity", "output": "docs/generated/verification-review-capacity.json", "generator": "scripts/verificationreviewgen.sh", "check": "scripts/verificationreviewgen.sh check"},
     {"backend": "feedback-closure", "output": "docs/generated/verification-feedback.json", "generator": "scripts/verificationfeedbackgen.sh", "check": "scripts/verificationfeedbackgen.sh check"},
     {"backend": "quarantine-manifest", "output": "docs/generated/verification-quarantine.json", "generator": "scripts/verificationquarantinegen.sh", "check": "scripts/verificationquarantinegen.sh check"},
+    {"backend": "quarantine-release", "output": "docs/generated/verification-quarantine-release.json", "generator": "scripts/verificationquarantinereleasegen.sh", "check": "scripts/verificationquarantinereleasegen.sh check"},
     {"backend": "confidence-manifest", "output": "docs/generated/verification-confidence.json", "generator": "scripts/verificationconfidencegen.sh", "check": "scripts/verificationconfidencegen.sh check"},
     {"backend": "sidecar-manifest", "output": "docs/generated/verification-sidecar.json", "generator": "scripts/verificationsidecargen.sh", "check": "scripts/verificationsidecargen.sh check"},
     {"backend": "orchestration-manifest", "output": "docs/generated/verification-orchestration.json", "generator": "scripts/verificationorchestrationgen.sh", "check": "scripts/verificationorchestrationgen.sh check"},

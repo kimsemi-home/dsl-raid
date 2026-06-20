@@ -5,4 +5,9 @@
      "docs/generated/verification-abort-evidence.json"
      "high" "abort-evidence" "gate:evidence-quality"
      ("bundles" "closure_rules")
-     "Abort evidence is suitable when stopped work keeps evidence and rechecks claims.")))
+     "Abort evidence is suitable when stopped work keeps evidence and rechecks claims.")
+    ("evidence-quality:quarantine-release"
+     "docs/generated/verification-quarantine-release.json"
+     "high" "quarantine-release" "gate:evidence-quality"
+     ("release_gates" "closure_rules")
+     "Quarantine release evidence is suitable when release conditions are explicit.")))

@@ -50,6 +50,7 @@ The generated workflow is `.github/workflows/verification.yml`.
 | review-capacity | `docs/generated/verification-review-capacity.json` | `scripts/verificationreviewgen.sh` |
 | feedback-closure | `docs/generated/verification-feedback.json` | `scripts/verificationfeedbackgen.sh` |
 | quarantine-manifest | `docs/generated/verification-quarantine.json` | `scripts/verificationquarantinegen.sh` |
+| quarantine-release | `docs/generated/verification-quarantine-release.json` | `scripts/verificationquarantinereleasegen.sh` |
 | confidence-manifest | `docs/generated/verification-confidence.json` | `scripts/verificationconfidencegen.sh` |
 | sidecar-manifest | `docs/generated/verification-sidecar.json` | `scripts/verificationsidecargen.sh` |
 | orchestration-manifest | `docs/generated/verification-orchestration.json` | `scripts/verificationorchestrationgen.sh` |

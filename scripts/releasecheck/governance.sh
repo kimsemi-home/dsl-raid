@@ -11,9 +11,11 @@ bash scripts/verificationagreementgen.sh check
 bash scripts/verificationadversarialgen.sh check
 bash scripts/verificationevidencequalitygen.sh check
 bash scripts/verificationleasegen.sh check
+bash scripts/verificationabortgen.sh check
 bash scripts/verificationreviewgen.sh check
 bash scripts/verificationfeedbackgen.sh check
 bash scripts/verificationquarantinegen.sh check
+bash scripts/verificationquarantinereleasegen.sh check
 bash scripts/verificationconfidencegen.sh check
 bash scripts/verificationsidecargen.sh check
 bash scripts/verificationorchestrationgen.sh check

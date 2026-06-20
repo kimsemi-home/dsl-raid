@@ -173,6 +173,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.quarantine-release",
+            "subject": "docs/generated/verification-quarantine-release.json",
+            "check": "scripts/verificationquarantinereleasegen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.confidence-manifest",
             "subject": "docs/generated/verification-confidence.json",
             "check": "scripts/verificationconfidencegen.sh check",

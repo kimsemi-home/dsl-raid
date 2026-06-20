@@ -56,7 +56,7 @@ Failures must become evidence, diagnostics, or generated knowledge updates.
 | revalidation-gate | Knowledge freshness boundary | Status, owner, blocked actions, and allowed work | Revalidation date is an authority gate, not a reminder. |
 | evidence-separation | Raw evidence, interpretation, claim, artifact | Separated evidence chain | Observed facts, meaning, claims, and artifacts must not collapse into one object. |
 | lease-and-abort | Agent work lease | Lease state and abort evidence bundle | Abort blocks authority; it never deletes evidence. |
-| quarantine | Suspicious output or tool behavior | Isolated evidence bundle | Quarantine blocks artifact commit, confidence increase, and automatic approval. |
+| quarantine | Suspicious output or tool behavior | Isolation bundle and release gate | Quarantine blocks promotion until release conditions are met. |
 | loss-ledger | Cross-context translation | Recorded semantic loss | Lossy translation must declare what was lost; forbidden loss blocks promotion. |
 | translation-verifier | Context translation | Independent loss-ledger verification | Translations promote only after loss policy and generated evidence are checked. |
 | semantic-diff | Generated artifact or SSOT change | Meaning-level delta | File diff is not enough; semantic hash and semantic diff drive review. |

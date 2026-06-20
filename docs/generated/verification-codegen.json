@@ -203,7 +203,8 @@
         {
             "axis": "quarantine",
             "backends": [
-                "quarantine-manifest"
+                "quarantine-manifest",
+                "quarantine-release"
             ]
         },
         {

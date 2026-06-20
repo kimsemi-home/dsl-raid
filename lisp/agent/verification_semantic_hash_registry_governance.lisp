@@ -23,6 +23,9 @@
     ("semantic:quarantine" "docs/generated/verification-quarantine.json"
      ("quarantine_profile" "bundles" "closure_rules")
      "Quarantine promotion blocking contract for suspicious outputs.")
+    ("semantic:quarantine-release" "docs/generated/verification-quarantine-release.json"
+     ("quarantine_release_profile" "required_conditions" "release_gates" "closure_rules")
+     "Quarantine release condition and debt contract.")
     ("semantic:confidence" "docs/generated/verification-confidence.json"
      ("confidence_profile" "ceilings" "closure_rules")
      "External confidence ceiling contract for verification outputs.")

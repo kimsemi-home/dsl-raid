@@ -197,6 +197,12 @@
             "generator": "scripts/verificationquarantinegen.sh"
         },
         {
+            "id": "test:verification.backend.quarantine-release",
+            "subject": "docs/generated/verification-quarantine-release.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationquarantinereleasegen.sh"
+        },
+        {
             "id": "test:verification.backend.confidence-manifest",
             "subject": "docs/generated/verification-confidence.json",
             "kind": "generated-backend",

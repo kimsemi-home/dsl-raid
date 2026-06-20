@@ -1,0 +1,118 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationquarantinereleasegen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_quarantine_release.lisp",
+    "quarantine_release_profile": "conditioned-release",
+    "required_conditions": [
+        "independent-replay",
+        "tool-integrity",
+        "evidence-untampered",
+        "prompt-injection-contained",
+        "permission-boundary-maintained",
+        "reviewer-isolation-restored",
+        "evidence-quality-reassessed",
+        "confidence-assessor-approved"
+    ],
+    "release_gates": [
+        {
+            "id": "quarantine-release:confirmed-clean",
+            "containment": "containment:quarantine",
+            "released_by": "steward:ops",
+            "verdict": "confirmed-clean",
+            "conditions": [
+                "independent-replay",
+                "tool-integrity",
+                "evidence-untampered",
+                "prompt-injection-contained",
+                "permission-boundary-maintained",
+                "reviewer-isolation-restored",
+                "evidence-quality-reassessed",
+                "confidence-assessor-approved"
+            ],
+            "reusable": [
+                "raw-evidence",
+                "claim",
+                "artifact"
+            ],
+            "invalidated": [],
+            "discarded": [],
+            "evidence": [
+                "docs/generated/verification-quarantine.json",
+                "docs/generated/verification-evidence-quality.json",
+                "docs/generated/verification-confidence.json"
+            ],
+            "debt": [],
+            "meaning": "Clean quarantine releases only after every condition is met."
+        },
+        {
+            "id": "quarantine-release:partial-reuse",
+            "containment": "containment:prompt-injection",
+            "released_by": "steward:security",
+            "verdict": "partial-release",
+            "conditions": [
+                "independent-replay",
+                "tool-integrity",
+                "evidence-untampered",
+                "permission-boundary-maintained"
+            ],
+            "reusable": [
+                "raw-evidence"
+            ],
+            "invalidated": [
+                "claim"
+            ],
+            "discarded": [
+                "artifact"
+            ],
+            "evidence": [
+                "docs/generated/verification-quarantine.json",
+                "docs/generated/verification-security-audit.json"
+            ],
+            "debt": [],
+            "meaning": "Partial release may reuse raw evidence while invalidating claims."
+        },
+        {
+            "id": "quarantine-release:aged-debt",
+            "containment": "containment:stale-review",
+            "released_by": "steward:ops",
+            "verdict": "debt-open",
+            "conditions": [
+                "evidence-quality-reassessed"
+            ],
+            "reusable": [],
+            "invalidated": [],
+            "discarded": [],
+            "evidence": [
+                "docs/generated/verification-quarantine.json",
+                "docs/generated/verification-debt.json"
+            ],
+            "debt": [
+                "debt:quarantine-aging"
+            ],
+            "meaning": "Stale quarantine becomes visible debt."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "quarantine-release:steward",
+            "meaning": "Only a steward releases quarantine.",
+            "check": "scripts/verificationquarantinereleasegen.sh check"
+        },
+        {
+            "id": "quarantine-release:conditions",
+            "meaning": "Confirmed clean requires all conditions.",
+            "check": "scripts/verificationquarantinereleasegen.sh check"
+        },
+        {
+            "id": "quarantine-release:partial",
+            "meaning": "Partial release declares reuse and invalidation.",
+            "check": "scripts/verificationquarantinereleasegen.sh check"
+        },
+        {
+            "id": "quarantine-release:debt",
+            "meaning": "Aged quarantine creates tracked debt.",
+            "check": "scripts/verificationquarantinereleasegen.sh check"
+        }
+    ]
+}

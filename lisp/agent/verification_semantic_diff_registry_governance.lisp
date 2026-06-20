@@ -21,6 +21,8 @@
      "Feedback closure semantic receipt.")
     ("semantic-diff:quarantine" "semantic:quarantine"
      "Quarantine semantic receipt.")
+    ("semantic-diff:quarantine-release" "semantic:quarantine-release"
+     "Quarantine release semantic receipt.")
     ("semantic-diff:confidence" "semantic:confidence"
      "External confidence semantic receipt.")
     ("semantic-diff:sidecar" "semantic:sidecar"

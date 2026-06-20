@@ -197,6 +197,13 @@
             "evidence": "docs/generated/verification-evidence.json"
         },
         {
+            "backend": "quarantine-release",
+            "output": "docs/generated/verification-quarantine-release.json",
+            "generator": "scripts/verificationquarantinereleasegen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
             "backend": "confidence-manifest",
             "output": "docs/generated/verification-confidence.json",
             "generator": "scripts/verificationconfidencegen.sh",

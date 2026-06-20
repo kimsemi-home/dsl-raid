@@ -32,7 +32,7 @@
     ("lease-and-abort" ("lease-manifest" "abort-evidence"))
     ("review-capacity" ("review-capacity"))
     ("feedback-closure" ("feedback-closure"))
-    ("quarantine" ("quarantine-manifest"))
+    ("quarantine" ("quarantine-manifest" "quarantine-release"))
     ("external-confidence" ("confidence-manifest"))
     ("verification-sidecar" ("sidecar-manifest"))
     ("orchestration-manifest" ("orchestration-manifest"))
