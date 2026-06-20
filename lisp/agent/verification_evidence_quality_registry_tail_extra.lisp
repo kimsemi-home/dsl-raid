@@ -31,6 +31,11 @@
      "high" "domain-fsm-dsl" "gate:evidence-quality"
      ("surfaces" "closure_rules")
      "Domain FSM evidence is suitable when runtime code and Mermaid are generated.")
+    ("evidence-quality:semantic-os"
+     "docs/generated/verification-semantic-os.json"
+     "high" "semantic-os" "gate:evidence-quality"
+     ("layers" "closure_rules")
+     "Semantic OS evidence is suitable when each OS role has executable evidence.")
     ("evidence-quality:objective-coverage"
      "docs/generated/verification-objective-coverage.json"
      "high" "objective-coverage" "gate:evidence-quality"

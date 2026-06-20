@@ -63,6 +63,7 @@
         "runtime-trace",
         "runtime-contract",
         "domain-fsm-dsl",
+        "semantic-os",
         "run-manifest",
         "adr-governance",
         "backend-parity",

@@ -1,0 +1,138 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationsemanticosgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_semantic_os.lisp",
+    "semantic_os_profile": "meaning-operating-system",
+    "layers": [
+        {
+            "id": "semantic-os:firmware",
+            "role": "firmware",
+            "os_layer": "Common Lisp DSL",
+            "source": "lisp/agent/verification_language_expansion.lisp",
+            "artifact": "docs/generated/verification-language-expansion.json",
+            "command": "scripts/verificationlanguagegen.sh check",
+            "assertion": "stdout:verification language expansion check ok",
+            "evidence": [
+                "docs/generated/lisp-pipeline.md"
+            ],
+            "authority": "gate:language-expansion",
+            "meaning": "Common Lisp forms are the firmware for executable meaning."
+        },
+        {
+            "id": "semantic-os:kernel",
+            "role": "kernel",
+            "os_layer": "Ontology",
+            "source": "lisp/agent/verification_ontology.lisp",
+            "artifact": "docs/generated/verification-ontology.json",
+            "command": "scripts/verificationontologygen.sh check",
+            "assertion": "stdout:verification ontology generated output ok",
+            "evidence": [
+                "docs/generated/verification-ontology.json"
+            ],
+            "authority": "gate:ontology",
+            "meaning": "Ontology supplies the kernel meaning space."
+        },
+        {
+            "id": "semantic-os:filesystem",
+            "role": "filesystem",
+            "os_layer": "Versioned SSOT",
+            "source": "lisp/agent/verification_versioned_ssot.lisp",
+            "artifact": "docs/generated/verification-versioned-ssot.json",
+            "command": "scripts/verificationversionedssotgen.sh check",
+            "assertion": "stdout:verification versioned ssot check ok",
+            "evidence": [
+                "docs/generated/verification-versioned-ssot.json"
+            ],
+            "authority": "gate:ssot",
+            "meaning": "Versioned SSOT"
+        },
+        {
+            "id": "semantic-os:userland",
+            "role": "userland",
+            "os_layer": "Go generated runtime",
+            "source": "examples/runscope/runscope.lisp.raid.json",
+            "artifact": "generated/runtime_fsm.go",
+            "command": "cargo run --quiet -p dslraid-cli -- codegen examples/runscope/runscope.lisp.raid.json --target go",
+            "assertion": "stdout:package generated",
+            "evidence": [
+                "generated/runtime_fsm.go"
+            ],
+            "authority": "gate:runtime",
+            "meaning": "Go generated runtime"
+        },
+        {
+            "id": "semantic-os:driver",
+            "role": "driver",
+            "os_layer": "Rust/WASM sidecar",
+            "source": "lisp/agent/verification_sidecar.lisp",
+            "artifact": "docs/generated/verification-sidecar.json",
+            "command": "scripts/verificationsidecargen.sh check",
+            "assertion": "stdout:verification sidecar check ok",
+            "evidence": [
+                "docs/generated/verification-sidecar.json"
+            ],
+            "authority": "gate:sidecar",
+            "meaning": "Rust/WASM sidecar"
+        },
+        {
+            "id": "semantic-os:log",
+            "role": "log",
+            "os_layer": "Evidence Graph",
+            "source": "lisp/agent/verification_evidence.lisp",
+            "artifact": "docs/generated/verification-evidence.json",
+            "command": "scripts/verificationevidencegen.sh check",
+            "assertion": "stdout:verification evidence generated output ok",
+            "evidence": [
+                "docs/generated/verification-evidence.json"
+            ],
+            "authority": "gate:evidence",
+            "meaning": "Evidence Graph"
+        },
+        {
+            "id": "semantic-os:scheduler",
+            "role": "scheduler",
+            "os_layer": "Control Plane",
+            "source": "lisp/agent/verification_orchestration.lisp",
+            "artifact": "docs/generated/verification-orchestration.json",
+            "command": "scripts/verificationorchestrationgen.sh check",
+            "assertion": "stdout:verification orchestration check ok",
+            "evidence": [
+                "docs/generated/verification-control-plane.json"
+            ],
+            "authority": "gate:control-plane",
+            "meaning": "Control Plane"
+        },
+        {
+            "id": "semantic-os:court",
+            "role": "court",
+            "os_layer": "Governance",
+            "source": "lisp/agent/verification_authority.lisp",
+            "artifact": "docs/generated/verification-authority.json",
+            "command": "bash scripts/verificationauthoritygen.sh check",
+            "assertion": "stdout:verification authority check ok",
+            "evidence": [
+                "docs/generated/verification-authority.json"
+            ],
+            "authority": "gate:authority",
+            "meaning": "Governance"
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "semantic-os:file-backed",
+            "meaning": "Every operating layer is backed by a file artifact.",
+            "check": "scripts/verificationsemanticosgen.sh check"
+        },
+        {
+            "id": "semantic-os:authority-gated",
+            "meaning": "Self improvement still passes evidence and authority gates.",
+            "check": "scripts/verificationsemanticosgen.sh check"
+        },
+        {
+            "id": "semantic-os:generated-runtime",
+            "meaning": "Userland runtime is generated from Canonical IR.",
+            "check": "scripts/verificationsemanticosgen.sh check"
+        }
+    ]
+}

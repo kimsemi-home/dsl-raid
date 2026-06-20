@@ -253,6 +253,13 @@
             "evidence": "docs/generated/verification-evidence.json"
         },
         {
+            "backend": "semantic-os",
+            "output": "docs/generated/verification-semantic-os.json",
+            "generator": "scripts/verificationsemanticosgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
             "backend": "query-surface",
             "output": "docs/generated/verification-query-surface.json",
             "generator": "scripts/verificationquerygen.sh",

@@ -13,6 +13,8 @@
      "Runtime trace mapping semantic receipt.")
     ("semantic-diff:domain-fsm-dsl" "semantic:domain-fsm-dsl"
      "Domain FSM DSL semantic receipt.")
+    ("semantic-diff:semantic-os" "semantic:semantic-os"
+     "Semantic operating system layer semantic receipt.")
     ("semantic-diff:query-surface" "semantic:query-surface"
      "Query and lazy composition surface semantic receipt.")
     ("semantic-diff:run-manifest" "semantic:run-manifest"

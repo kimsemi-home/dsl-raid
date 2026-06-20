@@ -2122,6 +2122,51 @@
                 "generated_by",
                 "subject",
                 "source",
+                "semantic_os_profile",
+                "layers",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationsemanticosgen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "semantic_os_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "layers": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/semantic_os_layer"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
                 "query_surface_profile",
                 "surfaces",
                 "closure_rules"
@@ -6039,6 +6084,67 @@
                 },
                 "evidence": {
                     "$ref": "#/$defs/strings"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "semantic_os_layer": {
+            "type": "object",
+            "required": [
+                "id",
+                "role",
+                "os_layer",
+                "source",
+                "artifact",
+                "command",
+                "assertion",
+                "evidence",
+                "authority",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "role": {
+                    "enum": [
+                        "firmware",
+                        "kernel",
+                        "filesystem",
+                        "userland",
+                        "driver",
+                        "log",
+                        "scheduler",
+                        "court"
+                    ]
+                },
+                "os_layer": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "artifact": {
+                    "$ref": "#/$defs/path"
+                },
+                "command": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "assertion": {
+                    "type": "string",
+                    "pattern": "^stdout:.+"
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "authority": {
+                    "$ref": "#/$defs/semantic_ref"
                 },
                 "meaning": {
                     "type": "string",

@@ -58,6 +58,7 @@ The generated workflow is `.github/workflows/verification.yml`.
 | runtime-trace | `docs/generated/verification-runtime-trace.json` | `scripts/verificationruntimegen.sh` |
 | runtime-contract | `docs/generated/verification-runtime-contract.json` | `scripts/verificationruntimecontractgen.sh` |
 | domain-fsm-dsl | `docs/generated/verification-domain-fsm.json` | `scripts/verificationdomainfsmgen.sh` |
+| semantic-os | `docs/generated/verification-semantic-os.json` | `scripts/verificationsemanticosgen.sh` |
 | query-surface | `docs/generated/verification-query-surface.json` | `scripts/verificationquerygen.sh` |
 | run-manifest | `docs/generated/verification-run-manifest.json` | `scripts/verificationrunmanifestgen.sh` |
 | bootstrap-sequence | `docs/generated/verification-bootstrap-sequence.json` | `scripts/verificationbootstrapgen.sh` |

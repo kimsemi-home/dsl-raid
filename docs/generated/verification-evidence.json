@@ -47,6 +47,7 @@
     {"backend": "runtime-trace", "output": "docs/generated/verification-runtime-trace.json", "generator": "scripts/verificationruntimegen.sh", "check": "scripts/verificationruntimegen.sh check"},
     {"backend": "runtime-contract", "output": "docs/generated/verification-runtime-contract.json", "generator": "scripts/verificationruntimecontractgen.sh", "check": "scripts/verificationruntimecontractgen.sh check"},
     {"backend": "domain-fsm-dsl", "output": "docs/generated/verification-domain-fsm.json", "generator": "scripts/verificationdomainfsmgen.sh", "check": "scripts/verificationdomainfsmgen.sh check"},
+    {"backend": "semantic-os", "output": "docs/generated/verification-semantic-os.json", "generator": "scripts/verificationsemanticosgen.sh", "check": "scripts/verificationsemanticosgen.sh check"},
     {"backend": "query-surface", "output": "docs/generated/verification-query-surface.json", "generator": "scripts/verificationquerygen.sh", "check": "scripts/verificationquerygen.sh check"},
     {"backend": "run-manifest", "output": "docs/generated/verification-run-manifest.json", "generator": "scripts/verificationrunmanifestgen.sh", "check": "scripts/verificationrunmanifestgen.sh check"},
     {"backend": "bootstrap-sequence", "output": "docs/generated/verification-bootstrap-sequence.json", "generator": "scripts/verificationbootstrapgen.sh", "check": "scripts/verificationbootstrapgen.sh check"},

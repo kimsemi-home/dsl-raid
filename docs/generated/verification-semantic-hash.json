@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "d4fa40938860d22103486b85bd0e3b6113975e925b2b5ef0a2f6aee25cba77b2"
+            "hash": "d0693c1c86cc0fbaaa8b8f9de01b17d2cde082616232ae43d4b5498b6d653746"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "90478625399d5428dcbfc722900e26a0802c569ec914dd788aeb0811361be613"
+            "hash": "3e506b59608ff422929f430f220a3d9c9faafd0267f818ada242e12010866103"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "62bedcce9f52a5fc49d03bbdcea7e20a6e21d95454fdf86f9944375aca875cde"
+            "hash": "151ed502665ae024727a072cd5c9de7d82094ee906226625fc108d8bc816ec72"
         },
         {
             "id": "semantic:authority",
@@ -97,7 +97,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "99ddff3db386c35a6983b9ad4c897935acd2a19c40661c5539e2dbc6bf4b7761"
+            "hash": "f2d316b6887109766280c2d55496938a9b17700effcab8b7332ed3a84a7874f0"
         },
         {
             "id": "semantic:lease",
@@ -243,6 +243,17 @@
             ],
             "meaning": "Domain FSM DSL to generated runtime and diagram contract.",
             "hash": "4a0ed957f724529a3ac7466bfde03b1205be8f0efe68506940e7f4213cdce4cb"
+        },
+        {
+            "id": "semantic:semantic-os",
+            "source": "docs/generated/verification-semantic-os.json",
+            "fields": [
+                "semantic_os_profile",
+                "layers",
+                "closure_rules"
+            ],
+            "meaning": "Semantic operating system layer contract.",
+            "hash": "3b9e0d69127b0f195b46bfc0b6b50daec5da1cfb9a8e57c9d7f647dcca1c4ac3"
         },
         {
             "id": "semantic:query-surface",
@@ -727,7 +738,7 @@
                 "closure_rules"
             ],
             "meaning": "Generated backend to quality gate closure contract.",
-            "hash": "2a9baa12e005f4c56d601d37002973e442514df9e7c56b1f007ea7b781dfefec"
+            "hash": "8e5cd774ee5d49b8a38067efa554e5e3eca2f31431fd5fed245dbafb5ddaed26"
         },
         {
             "id": "semantic:precommit-closure",

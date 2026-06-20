@@ -255,6 +255,12 @@
             ]
         },
         {
+            "axis": "semantic-os",
+            "backends": [
+                "semantic-os"
+            ]
+        },
+        {
             "axis": "run-manifest",
             "backends": [
                 "run-manifest"

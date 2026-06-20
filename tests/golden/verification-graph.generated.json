@@ -245,6 +245,12 @@
             "generator": "scripts/verificationdomainfsmgen.sh"
         },
         {
+            "id": "test:verification.backend.semantic-os",
+            "subject": "docs/generated/verification-semantic-os.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationsemanticosgen.sh"
+        },
+        {
             "id": "test:verification.backend.query-surface",
             "subject": "docs/generated/verification-query-surface.json",
             "kind": "generated-backend",

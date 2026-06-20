@@ -221,6 +221,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.semantic-os",
+            "subject": "docs/generated/verification-semantic-os.json",
+            "check": "scripts/verificationsemanticosgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.query-surface",
             "subject": "docs/generated/verification-query-surface.json",
             "check": "scripts/verificationquerygen.sh check",
