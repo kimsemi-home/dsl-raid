@@ -70,6 +70,7 @@ The generated workflow is `.github/workflows/verification.yml`.
 | release-check-providers | `scripts/releasecheck` | `scripts/releasecheckgen.sh` |
 | incident-learning | `docs/generated/verification-incident-learning.json` | `scripts/verificationincidentgen.sh` |
 | learning-loop | `docs/generated/verification-learning-loop.json` | `scripts/verificationlearninggen.sh` |
+| quality-closure | `docs/generated/verification-quality-closure.json` | `scripts/verificationqualitygen.sh` |
 | genesis-charter | `docs/generated/verification-genesis-charter.json` | `scripts/verificationgenesisgen.sh` |
 | meta-model | `docs/generated/verification-meta-model.json` | `scripts/verificationmetamodelgen.sh` |
 | backup-steward | `docs/generated/verification-backup-steward.json` | `scripts/verificationstewardgen.sh` |

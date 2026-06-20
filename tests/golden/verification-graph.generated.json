@@ -317,6 +317,12 @@
             "generator": "scripts/verificationlearninggen.sh"
         },
         {
+            "id": "test:verification.backend.quality-closure",
+            "subject": "docs/generated/verification-quality-closure.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationqualitygen.sh"
+        },
+        {
             "id": "test:verification.backend.genesis-charter",
             "subject": "docs/generated/verification-genesis-charter.json",
             "kind": "generated-backend",

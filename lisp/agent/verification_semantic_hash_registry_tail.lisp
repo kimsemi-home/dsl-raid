@@ -68,7 +68,4 @@
     ("semantic:incompleteness-ledger"
      "docs/generated/verification-incompleteness-ledger.json"
      ("incompleteness_profile" "unknowns" "closure_rules")
-     "Tracked unknown owner, next action, and authority effect contract.")
-    ("semantic:learning-loop" "docs/generated/verification-learning-loop.json"
-     ("learning_loop_profile" "stages" "cycles" "closure_rules")
-     "Agent Cluster reality-to-revalidation learning loop contract.")))
+     "Tracked unknown owner, next action, and authority effect contract.")))

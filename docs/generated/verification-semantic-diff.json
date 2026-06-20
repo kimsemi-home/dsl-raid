@@ -10,8 +10,8 @@
             "id": "semantic-diff:verification-graph",
             "hash_id": "semantic:verification-graph",
             "summary": "Verification graph semantic receipt.",
-            "base_hash": "bc1e7311e172a225ca48b25072966062287f6ab6f196a3bcd0856a989b0f612a",
-            "head_hash": "bc1e7311e172a225ca48b25072966062287f6ab6f196a3bcd0856a989b0f612a",
+            "base_hash": "3265226b28286f331a4522d2a0a3bbab55e40cb5d6969645195b68228d3e48a5",
+            "head_hash": "3265226b28286f331a4522d2a0a3bbab55e40cb5d6969645195b68228d3e48a5",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },
@@ -19,8 +19,8 @@
             "id": "semantic-diff:codegen-map",
             "hash_id": "semantic:codegen-map",
             "summary": "Codegen axis semantic receipt.",
-            "base_hash": "9925c0739eb08b8b77cc8485614c2858e7ff93450bf714abf5e92e9e8f425d73",
-            "head_hash": "9925c0739eb08b8b77cc8485614c2858e7ff93450bf714abf5e92e9e8f425d73",
+            "base_hash": "348b23c82818b257ecca06fa1f55662b8f41c7ab0dbe74fe73945c7d2f31a8c8",
+            "head_hash": "348b23c82818b257ecca06fa1f55662b8f41c7ab0dbe74fe73945c7d2f31a8c8",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },
@@ -37,8 +37,8 @@
             "id": "semantic-diff:conformance",
             "hash_id": "semantic:conformance",
             "summary": "Conformance contract semantic receipt.",
-            "base_hash": "593d6a85ca763fcf04e6eb00b98456c527034648072e13c55b0dee48ed556bfc",
-            "head_hash": "593d6a85ca763fcf04e6eb00b98456c527034648072e13c55b0dee48ed556bfc",
+            "base_hash": "80e050811ad1add7f22a22003ed7d818fd9f845822505e7b645e7b1f7ad93467",
+            "head_hash": "80e050811ad1add7f22a22003ed7d818fd9f845822505e7b645e7b1f7ad93467",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },
@@ -552,6 +552,15 @@
             "summary": "Learning loop semantic receipt.",
             "base_hash": "9228a1803a5280b5d20962d60fa9ca55d1239cf64704b427ac4375250986d711",
             "head_hash": "9228a1803a5280b5d20962d60fa9ca55d1239cf64704b427ac4375250986d711",
+            "status": "unchanged",
+            "evidence": "docs/generated/verification-semantic-hash.json"
+        },
+        {
+            "id": "semantic-diff:quality-closure",
+            "hash_id": "semantic:quality-closure",
+            "summary": "Quality closure semantic receipt.",
+            "base_hash": "cbb33025a2afe27adc232d2d2d935cebe63ccc696ce494986168a6e45feaa25a",
+            "head_hash": "cbb33025a2afe27adc232d2d2d935cebe63ccc696ce494986168a6e45feaa25a",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         }

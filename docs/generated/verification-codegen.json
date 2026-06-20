@@ -292,6 +292,12 @@
             ]
         },
         {
+            "axis": "quality-closure",
+            "backends": [
+                "quality-closure"
+            ]
+        },
+        {
             "axis": "genesis-charter",
             "backends": [
                 "genesis-charter"

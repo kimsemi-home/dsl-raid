@@ -40,4 +40,6 @@
     ("semantic-diff:incompleteness-ledger" "semantic:incompleteness-ledger"
      "Incompleteness ledger semantic receipt.")
     ("semantic-diff:learning-loop" "semantic:learning-loop"
-     "Learning loop semantic receipt.")))
+     "Learning loop semantic receipt.")
+    ("semantic-diff:quality-closure" "semantic:quality-closure"
+     "Quality closure semantic receipt.")))

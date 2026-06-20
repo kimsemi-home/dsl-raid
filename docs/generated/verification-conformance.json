@@ -293,6 +293,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.quality-closure",
+            "subject": "docs/generated/verification-quality-closure.json",
+            "check": "scripts/verificationqualitygen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.genesis-charter",
             "subject": "docs/generated/verification-genesis-charter.json",
             "check": "scripts/verificationgenesisgen.sh check",

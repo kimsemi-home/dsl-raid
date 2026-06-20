@@ -1,0 +1,581 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationqualitygen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_quality_closure.lisp",
+    "quality_closure_profile": "generated-backend-gate",
+    "quality_gate": "cargo run -p dslraid-cli -- quality",
+    "registry_source": "lisp/agent/verification_backends.lisp",
+    "enforced_generators": [
+        {
+            "backend": "github-actions",
+            "output": ".github/workflows/verification.yml",
+            "generator": "scripts/workflowgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "gitlab-ci",
+            "output": ".gitlab-ci.yml",
+            "generator": "scripts/gitlabgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "local-makefile",
+            "output": "Makefile",
+            "generator": "scripts/makegen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "bazel",
+            "output": "BUILD.bazel",
+            "generator": "scripts/bazelgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "github-release",
+            "output": ".github/workflows/release.yml",
+            "generator": "scripts/releasegen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "privacy-manifest",
+            "output": "docs/generated/verification-privacy.json",
+            "generator": "scripts/verificationprivacygen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "pdca-manifest",
+            "output": "docs/generated/verification-pdca.json",
+            "generator": "scripts/verificationpdcagen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "evidence-ops",
+            "output": "docs/generated/verification-evidence-ops.json",
+            "generator": "scripts/verificationevidenceopsgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "loss-ledger",
+            "output": "docs/generated/verification-loss-ledger.json",
+            "generator": "scripts/verificationlossgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "semantic-hash",
+            "output": "docs/generated/verification-semantic-hash.json",
+            "generator": "scripts/verificationsemanticgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "semantic-diff",
+            "output": "docs/generated/verification-semantic-diff.json",
+            "generator": "scripts/verificationdiffgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "authority-manifest",
+            "output": "docs/generated/verification-authority.json",
+            "generator": "scripts/verificationauthoritygen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "access-policy",
+            "output": "docs/generated/verification-access-policy.json",
+            "generator": "scripts/verificationaccessgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "reasoning-access",
+            "output": "docs/generated/verification-reasoning-access.json",
+            "generator": "scripts/verificationreasoninggen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "reliability-registry",
+            "output": "docs/generated/verification-reliability.json",
+            "generator": "scripts/verificationreliabilitygen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "agreement-manifest",
+            "output": "docs/generated/verification-agreement.json",
+            "generator": "scripts/verificationagreementgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "adversarial-review",
+            "output": "docs/generated/verification-adversarial-review.json",
+            "generator": "scripts/verificationadversarialgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "evidence-quality",
+            "output": "docs/generated/verification-evidence-quality.json",
+            "generator": "scripts/verificationevidencequalitygen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "lease-manifest",
+            "output": "docs/generated/verification-lease.json",
+            "generator": "scripts/verificationleasegen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "review-capacity",
+            "output": "docs/generated/verification-review-capacity.json",
+            "generator": "scripts/verificationreviewgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "feedback-closure",
+            "output": "docs/generated/verification-feedback.json",
+            "generator": "scripts/verificationfeedbackgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "quarantine-manifest",
+            "output": "docs/generated/verification-quarantine.json",
+            "generator": "scripts/verificationquarantinegen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "confidence-manifest",
+            "output": "docs/generated/verification-confidence.json",
+            "generator": "scripts/verificationconfidencegen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "sidecar-manifest",
+            "output": "docs/generated/verification-sidecar.json",
+            "generator": "scripts/verificationsidecargen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "orchestration-manifest",
+            "output": "docs/generated/verification-orchestration.json",
+            "generator": "scripts/verificationorchestrationgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "control-plane-verifier",
+            "output": "docs/generated/verification-control-plane.json",
+            "generator": "scripts/verificationcontrolgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "provider-compat",
+            "output": "docs/generated/verification-provider-compat.json",
+            "generator": "scripts/verificationprovidergen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "runtime-trace",
+            "output": "docs/generated/verification-runtime-trace.json",
+            "generator": "scripts/verificationruntimegen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "runtime-contract",
+            "output": "docs/generated/verification-runtime-contract.json",
+            "generator": "scripts/verificationruntimecontractgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "query-surface",
+            "output": "docs/generated/verification-query-surface.json",
+            "generator": "scripts/verificationquerygen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "run-manifest",
+            "output": "docs/generated/verification-run-manifest.json",
+            "generator": "scripts/verificationrunmanifestgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "bootstrap-sequence",
+            "output": "docs/generated/verification-bootstrap-sequence.json",
+            "generator": "scripts/verificationbootstrapgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "experiment-loop",
+            "output": "docs/generated/verification-experiment-loop.json",
+            "generator": "scripts/verificationexperimentgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "merge-readiness",
+            "output": "docs/generated/verification-merge-readiness.json",
+            "generator": "scripts/verificationmergegen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "merge-automation",
+            "output": "docs/generated/verification-merge-automation.json",
+            "generator": "scripts/verificationautomergegen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "branch-protection",
+            "output": "docs/generated/verification-branch-protection.json",
+            "generator": "scripts/verificationbranchgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "actions-receipt",
+            "output": "docs/generated/verification-actions-receipt.json",
+            "generator": "scripts/verificationreceiptgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "source-shape",
+            "output": "docs/generated/verification-source-shape.json",
+            "generator": "scripts/verificationsourcegen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "objective-coverage",
+            "output": "docs/generated/verification-objective-coverage.json",
+            "generator": "scripts/verificationobjectivegen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "adr-governance",
+            "output": "docs/generated/verification-adr-governance.json",
+            "generator": "scripts/verificationadrgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "backend-parity",
+            "output": "docs/generated/verification-backend-parity.json",
+            "generator": "scripts/verificationparitygen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "execution-projection",
+            "output": "docs/generated/verification-execution-projection.json",
+            "generator": "scripts/verificationprojectiongen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "github-actions-suite",
+            "output": "docs/generated/verification-github-actions.json",
+            "generator": "scripts/verificationactionsgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "release-provenance",
+            "output": "docs/generated/verification-release-provenance.json",
+            "generator": "scripts/verificationreleaseprovenancegen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "release-check-providers",
+            "output": "scripts/releasecheck",
+            "generator": "scripts/releasecheckgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "incident-learning",
+            "output": "docs/generated/verification-incident-learning.json",
+            "generator": "scripts/verificationincidentgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "learning-loop",
+            "output": "docs/generated/verification-learning-loop.json",
+            "generator": "scripts/verificationlearninggen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "quality-closure",
+            "output": "docs/generated/verification-quality-closure.json",
+            "generator": "scripts/verificationqualitygen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "genesis-charter",
+            "output": "docs/generated/verification-genesis-charter.json",
+            "generator": "scripts/verificationgenesisgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "meta-model",
+            "output": "docs/generated/verification-meta-model.json",
+            "generator": "scripts/verificationmetamodelgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "backup-steward",
+            "output": "docs/generated/verification-backup-steward.json",
+            "generator": "scripts/verificationstewardgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "revalidation-gate",
+            "output": "docs/generated/verification-revalidation-gate.json",
+            "generator": "scripts/verificationrevalidationgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "cold-start-gate",
+            "output": "docs/generated/verification-cold-start-gate.json",
+            "generator": "scripts/verificationcoldstartgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "evidence-separation",
+            "output": "docs/generated/verification-evidence-separation.json",
+            "generator": "scripts/verificationseparationgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "evidence-before-change",
+            "output": "docs/generated/verification-evidence-before-change.json",
+            "generator": "scripts/verificationevidencebeforechangegen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "versioned-ssot",
+            "output": "docs/generated/verification-versioned-ssot.json",
+            "generator": "scripts/verificationversionedssotgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "migration-surface",
+            "output": "docs/generated/verification-migration-surface.json",
+            "generator": "scripts/verificationmigrationgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "language-expansion",
+            "output": "docs/generated/verification-language-expansion.json",
+            "generator": "scripts/verificationlanguagegen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "context-map",
+            "output": "docs/generated/verification-context-map.json",
+            "generator": "scripts/verificationcontextmapgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "historical-interpreter",
+            "output": "docs/generated/verification-historical-interpreter.json",
+            "generator": "scripts/verificationhistoricalgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "ontology-transition",
+            "output": "docs/generated/verification-ontology-transition.json",
+            "generator": "scripts/verificationtransitiongen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "ssot-defect",
+            "output": "docs/generated/verification-ssot-defect.json",
+            "generator": "scripts/verificationssotdefectgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "root-cause",
+            "output": "docs/generated/verification-root-cause.json",
+            "generator": "scripts/verificationrootcausegen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "semantic-debugger",
+            "output": "docs/generated/verification-semantic-debugger.json",
+            "generator": "scripts/verificationdebuggergen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "evidence-pruning",
+            "output": "docs/generated/verification-pruning.json",
+            "generator": "scripts/verificationpruninggen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "security-audit",
+            "output": "docs/generated/verification-security-audit.json",
+            "generator": "scripts/verificationsecuritygen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "failure-conditions",
+            "output": "docs/generated/verification-failure-conditions.json",
+            "generator": "scripts/verificationfailuregen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "debt-register",
+            "output": "docs/generated/verification-debt.json",
+            "generator": "scripts/verificationdebtgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "incompleteness-ledger",
+            "output": "docs/generated/verification-incompleteness-ledger.json",
+            "generator": "scripts/verificationincompletegen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "rust-code",
+            "output": "generated/runtime_fsm.rs",
+            "generator": "scripts/lisp-rustgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "verification-doc",
+            "output": "docs/generated/verification-graph.md",
+            "generator": "scripts/verificationdocgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "docs-index",
+            "output": "docs/generated/generated-docs.md",
+            "generator": "scripts/gendocindex.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "codegen-map",
+            "output": "docs/generated/verification-codegen.json",
+            "generator": "scripts/verificationcodegengen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "ontology-manifest",
+            "output": "docs/generated/verification-ontology.json",
+            "generator": "scripts/verificationontologygen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "conformance-report",
+            "output": "docs/generated/verification-conformance.json",
+            "generator": "scripts/verificationconformancegen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "evidence-schema",
+            "output": "schemas/dslraid-verification-evidence.schema.json",
+            "generator": "scripts/verificationschemagen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "manifest-schema",
+            "output": "schemas/dslraid-verification-manifest.schema.json",
+            "generator": "scripts/verificationmanifestschemagen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "test-manifest",
+            "output": "tests/golden/verification-graph.generated.json",
+            "generator": "scripts/verificationtestgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "evidence-json",
+            "output": "docs/generated/verification-evidence.json",
+            "generator": "scripts/verificationevidencegen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "quality-closure:backend-covered",
+            "meaning": "Every generated backend generator is referenced by the quality gate.",
+            "check": "scripts/verificationqualitygen.sh check"
+        },
+        {
+            "id": "quality-closure:evidence-matches",
+            "meaning": "Quality closure rows mirror generated backend evidence.",
+            "check": "scripts/verificationqualitygen.sh check"
+        },
+        {
+            "id": "quality-closure:private-safe",
+            "meaning": "Quality closure evidence does not expose local private paths.",
+            "check": "scripts/verificationqualitygen.sh check"
+        }
+    ]
+}

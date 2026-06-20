@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "bc1e7311e172a225ca48b25072966062287f6ab6f196a3bcd0856a989b0f612a"
+            "hash": "3265226b28286f331a4522d2a0a3bbab55e40cb5d6969645195b68228d3e48a5"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "9925c0739eb08b8b77cc8485614c2858e7ff93450bf714abf5e92e9e8f425d73"
+            "hash": "348b23c82818b257ecca06fa1f55662b8f41c7ab0dbe74fe73945c7d2f31a8c8"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "593d6a85ca763fcf04e6eb00b98456c527034648072e13c55b0dee48ed556bfc"
+            "hash": "80e050811ad1add7f22a22003ed7d818fd9f845822505e7b645e7b1f7ad93467"
         },
         {
             "id": "semantic:authority",
@@ -641,18 +641,6 @@
             "hash": "84867cddbf8520d83a6335026fe830337bd1ee10d4e02fd90da873b8ea608752"
         },
         {
-            "id": "semantic:learning-loop",
-            "source": "docs/generated/verification-learning-loop.json",
-            "fields": [
-                "learning_loop_profile",
-                "stages",
-                "cycles",
-                "closure_rules"
-            ],
-            "meaning": "Agent Cluster reality-to-revalidation learning loop contract.",
-            "hash": "9228a1803a5280b5d20962d60fa9ca55d1239cf64704b427ac4375250986d711"
-        },
-        {
             "id": "semantic:source-shape",
             "source": "docs/generated/verification-source-shape.json",
             "fields": [
@@ -673,6 +661,29 @@
             ],
             "meaning": "Active objective requirement-to-evidence coverage contract.",
             "hash": "009f92c3474169f8cfa8b7dd7b00da4f673d3c3574a5f747fe6e04c36cc4bf3f"
+        },
+        {
+            "id": "semantic:learning-loop",
+            "source": "docs/generated/verification-learning-loop.json",
+            "fields": [
+                "learning_loop_profile",
+                "stages",
+                "cycles",
+                "closure_rules"
+            ],
+            "meaning": "Agent Cluster reality-to-revalidation learning loop contract.",
+            "hash": "9228a1803a5280b5d20962d60fa9ca55d1239cf64704b427ac4375250986d711"
+        },
+        {
+            "id": "semantic:quality-closure",
+            "source": "docs/generated/verification-quality-closure.json",
+            "fields": [
+                "quality_closure_profile",
+                "enforced_generators",
+                "closure_rules"
+            ],
+            "meaning": "Generated backend to quality gate closure contract.",
+            "hash": "cbb33025a2afe27adc232d2d2d935cebe63ccc696ce494986168a6e45feaa25a"
         }
     ],
     "closure_rules": [
