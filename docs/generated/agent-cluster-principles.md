@@ -23,7 +23,9 @@ Failures must become evidence, diagnostics, or generated knowledge updates.
 | objective-coverage | Active goal requirements | Tracked requirement-to-evidence map | Goal progress stays inspectable without pretending the whole product is finished. |
 | versioned-ssot | Context, ontology version, contract version | Scoped authority | SSOT authority is valid only inside an explicit context and version. |
 | bounded-context | Context vocabulary and versions | Cataloged context address | Terms move across contexts only after their bounded context exists. |
+| context-map | Source and target bounded contexts | Translation manifest and preserved meaning | Cross-context movement requires explicit mapping and loss tracking. |
 | evidence-graph | Raw evidence, interpretation, claim, artifact | Traceable evidence links | Unlinked evidence cannot justify high confidence or authority. |
+| evidence-quality | Evidence purpose and freshness | Quality snapshot | Evidence authority changes with purpose, schema, ontology, and contradicting facts. |
 | evidence-ops | CI, deploy, experiment, and incident loop | Evidence graph update and conformance claim | Operations are evidence generation, not mere automation. |
 | external-confidence | Agent output and evidence graph | Confidence ceiling | Agent self-confidence is never final confidence. |
 | verification-sidecar | Producer output | Independent verification evidence | The producer and final verifier must be separate roles. |

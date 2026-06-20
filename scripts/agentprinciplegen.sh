@@ -16,9 +16,18 @@ generate() {
     '(write-string (dslraid.agent::emit-agent-cluster-principles-markdown))'
 }
 
+validate_agent_principles() {
+  PYTHONDONTWRITEBYTECODE=1 \
+    python3 "$repo/scripts/lib/agent_principle_check.py" "$repo/$out"
+}
+
 dslraid_generated_case \
   "$mode" \
   "$out" \
   "generated agent principles doc is stale: run scripts/agentprinciplegen.sh generate" \
   "agent principles generated doc ok" \
   "usage: scripts/agentprinciplegen.sh [generate|check] [out]"
+
+if [ "$mode" = "check" ]; then
+  validate_agent_principles
+fi
