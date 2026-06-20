@@ -9,8 +9,3 @@
      "docs/generated/verification-objective-coverage.json"
      ("objective_coverage_profile" "requirements" "closure_rules")
      "Active objective requirement-to-evidence coverage contract.")))
-
-(defparameter *verification-semantic-hashes*
-  (append *verification-semantic-core-hashes*
-          *verification-semantic-tail-hashes*
-          *verification-semantic-tail-extra-hashes*))

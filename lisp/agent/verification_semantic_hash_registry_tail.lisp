@@ -69,7 +69,3 @@
      "docs/generated/verification-incompleteness-ledger.json"
      ("incompleteness_profile" "unknowns" "closure_rules")
      "Tracked unknown owner, next action, and authority effect contract.")))
-
-(defparameter *verification-semantic-hashes*
-  (append *verification-semantic-core-hashes*
-          *verification-semantic-tail-hashes*))

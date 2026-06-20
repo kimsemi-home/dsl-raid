@@ -39,7 +39,3 @@
      "Objective coverage semantic receipt.")
     ("semantic-diff:incompleteness-ledger" "semantic:incompleteness-ledger"
      "Incompleteness ledger semantic receipt.")))
-
-(defparameter *verification-semantic-diffs*
-  (append *verification-semantic-core-diffs*
-          *verification-semantic-tail-diffs*))
