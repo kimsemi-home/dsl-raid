@@ -55,7 +55,7 @@
     ("semantic-debugger" "Evidence graph and semantic versions" "Questions, missing evidence, and verification needs" "Semantic debugging proposes investigations; it does not declare the answer.")
     ("evidence-pruning" "Evidence retention or replacement request" "Tombstone and authority decision" "Evidence pruning changes memory, so protected evidence is retained and replacements leave tombstones.")
     ("security-audit" "Permission or security boundary change" "Policy, semantic hash, audit, approval, rollback" "Security changes start from policy and require audit evidence before deploy.")
-    ("failure-conditions" "Operational breakage signal" "Blocked authority and response owner" "The system defines how it is failing, not only how it succeeds.")
+    ("failure-conditions" "Operational breakage signal" "Blocked authority, recovery, and learning loop" "The system defines how it is failing, not only how it succeeds.")
     ("debt-register" "Unclosed learning gap" "Owner, repayment, and revalidation" "Debt is not failure, but invisible debt is failure.")
     ("incompleteness-ledger" "Unknown, gap, drift, or assumption" "Classified owner and authority effect" "Incomplete knowledge is allowed only when it is visible and owned.")
     ("review-capacity" "Human review queue" "Prioritized review or debt" "Human review is finite; overload freezes high-risk automation.")

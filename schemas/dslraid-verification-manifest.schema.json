@@ -1586,6 +1586,51 @@
                 "generated_by",
                 "subject",
                 "source",
+                "failure_recovery_profile",
+                "recoveries",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationfailurerecoverygen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "failure_recovery_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "recoveries": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/failure_recovery_record"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
                 "debt_profile",
                 "records",
                 "closure_rules"
@@ -6709,6 +6754,63 @@
                         "open",
                         "closed",
                         "revalidating"
+                    ]
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "failure_recovery_record": {
+            "type": "object",
+            "required": [
+                "id",
+                "failure",
+                "response",
+                "root_cause",
+                "incident",
+                "learning_update",
+                "revalidation",
+                "release_gate",
+                "evidence",
+                "status",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "failure": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "response": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "root_cause": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "incident": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "learning_update": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "revalidation": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "release_gate": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "status": {
+                    "enum": [
+                        "release-blocked-until-revalidated",
+                        "learning-open",
+                        "closed"
                     ]
                 },
                 "meaning": {

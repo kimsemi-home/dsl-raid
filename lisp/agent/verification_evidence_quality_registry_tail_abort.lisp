@@ -10,4 +10,9 @@
      "docs/generated/verification-quarantine-release.json"
      "high" "quarantine-release" "gate:evidence-quality"
      ("release_gates" "closure_rules")
-     "Quarantine release evidence is suitable when release conditions are explicit.")))
+     "Quarantine release evidence is suitable when release conditions are explicit.")
+    ("evidence-quality:failure-recovery"
+     "docs/generated/verification-failure-recovery.json"
+     "high" "failure-recovery" "gate:evidence-quality"
+     ("recoveries" "closure_rules")
+     "Failure recovery evidence is suitable when failure paths close through learning.")))

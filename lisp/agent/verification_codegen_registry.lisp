@@ -66,7 +66,7 @@
     ("semantic-debugger" ("semantic-debugger"))
     ("evidence-pruning" ("evidence-pruning"))
     ("security-audit" ("security-audit"))
-    ("failure-conditions" ("failure-conditions"))
+    ("failure-conditions" ("failure-conditions" "failure-recovery"))
     ("debt-register" ("debt-register"))
     ("incompleteness-ledger" ("incompleteness-ledger"))))
 

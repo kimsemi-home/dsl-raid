@@ -95,6 +95,7 @@
     {"backend": "evidence-pruning", "output": "docs/generated/verification-pruning.json", "generator": "scripts/verificationpruninggen.sh", "check": "scripts/verificationpruninggen.sh check"},
     {"backend": "security-audit", "output": "docs/generated/verification-security-audit.json", "generator": "scripts/verificationsecuritygen.sh", "check": "scripts/verificationsecuritygen.sh check"},
     {"backend": "failure-conditions", "output": "docs/generated/verification-failure-conditions.json", "generator": "scripts/verificationfailuregen.sh", "check": "scripts/verificationfailuregen.sh check"},
+    {"backend": "failure-recovery", "output": "docs/generated/verification-failure-recovery.json", "generator": "scripts/verificationfailurerecoverygen.sh", "check": "scripts/verificationfailurerecoverygen.sh check"},
     {"backend": "debt-register", "output": "docs/generated/verification-debt.json", "generator": "scripts/verificationdebtgen.sh", "check": "scripts/verificationdebtgen.sh check"},
     {"backend": "incompleteness-ledger", "output": "docs/generated/verification-incompleteness-ledger.json", "generator": "scripts/verificationincompletegen.sh", "check": "scripts/verificationincompletegen.sh check"},
     {"backend": "rust-code", "output": "generated/runtime_fsm.rs", "generator": "scripts/lisp-rustgen.sh", "check": "scripts/lisp-rustgen.sh check"},

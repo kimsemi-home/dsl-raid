@@ -451,7 +451,8 @@
         {
             "axis": "failure-conditions",
             "backends": [
-                "failure-conditions"
+                "failure-conditions",
+                "failure-recovery"
             ]
         },
         {

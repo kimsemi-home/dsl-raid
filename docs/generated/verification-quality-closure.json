@@ -589,6 +589,13 @@
             "evidence": "docs/generated/verification-evidence.json"
         },
         {
+            "backend": "failure-recovery",
+            "output": "docs/generated/verification-failure-recovery.json",
+            "generator": "scripts/verificationfailurerecoverygen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
             "backend": "debt-register",
             "output": "docs/generated/verification-debt.json",
             "generator": "scripts/verificationdebtgen.sh",

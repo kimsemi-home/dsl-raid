@@ -55,6 +55,7 @@
     ("evidence-pruning" "docs/generated/verification-pruning.json" "scripts/verificationpruninggen.sh")
     ("security-audit" "docs/generated/verification-security-audit.json" "scripts/verificationsecuritygen.sh")
     ("failure-conditions" "docs/generated/verification-failure-conditions.json" "scripts/verificationfailuregen.sh")
+    ("failure-recovery" "docs/generated/verification-failure-recovery.json" "scripts/verificationfailurerecoverygen.sh")
     ("debt-register" "docs/generated/verification-debt.json" "scripts/verificationdebtgen.sh")
     ("incompleteness-ledger" "docs/generated/verification-incompleteness-ledger.json" "scripts/verificationincompletegen.sh")
     ("rust-code" "generated/runtime_fsm.rs" "scripts/lisp-rustgen.sh")

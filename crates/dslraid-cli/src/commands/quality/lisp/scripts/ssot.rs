@@ -19,6 +19,7 @@ pub(super) const CHECKS: &[&str] = &[
     "scripts/verificationpruninggen.sh",
     "scripts/verificationsecuritygen.sh",
     "scripts/verificationfailuregen.sh",
+    "scripts/verificationfailurerecoverygen.sh",
     "scripts/verificationdebtgen.sh",
     "scripts/verificationincompletegen.sh",
 ];

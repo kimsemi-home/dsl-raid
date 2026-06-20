@@ -509,6 +509,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.failure-recovery",
+            "subject": "docs/generated/verification-failure-recovery.json",
+            "check": "scripts/verificationfailurerecoverygen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.debt-register",
             "subject": "docs/generated/verification-debt.json",
             "check": "scripts/verificationdebtgen.sh check",

@@ -1,0 +1,85 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationfailurerecoverygen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_failure_recovery.lisp",
+    "failure_recovery_profile": "failure-to-learning",
+    "recoveries": [
+        {
+            "id": "failure-recovery:control-plane-manifest",
+            "failure": "failure:control-plane-manifest",
+            "response": "response:create-manifest",
+            "root_cause": "root-cause:release-provenance-gap",
+            "incident": "incident:release-gate-gap",
+            "learning_update": "update:release-provenance-gate",
+            "revalidation": "revalidate:tag-pipeline",
+            "release_gate": "gate:release",
+            "evidence": [
+                "docs/generated/verification-failure-conditions.json",
+                "docs/generated/verification-incident-learning.json",
+                "docs/generated/verification-learning-loop.json",
+                "docs/generated/verification-release-provenance.json"
+            ],
+            "status": "release-blocked-until-revalidated",
+            "meaning": "Control-plane failure closes only after release knowledge is updated."
+        },
+        {
+            "id": "failure-recovery:evidence-quality-stale",
+            "failure": "failure:evidence-quality-stale",
+            "response": "response:reassess-quality",
+            "root_cause": "root-cause:ssot-defect-drill",
+            "incident": "incident:generated-drift-drill",
+            "learning_update": "update:generated-freshness-rule",
+            "revalidation": "revalidate:quality-gate",
+            "release_gate": "gate:evidence-quality",
+            "evidence": [
+                "docs/generated/verification-failure-conditions.json",
+                "docs/generated/verification-evidence-quality.json",
+                "docs/generated/verification-semantic-diff.json",
+                "docs/generated/verification-learning-loop.json"
+            ],
+            "status": "release-blocked-until-revalidated",
+            "meaning": "Stale evidence returns to authority only through quality revalidation."
+        },
+        {
+            "id": "failure-recovery:feedback-open",
+            "failure": "failure:feedback-open",
+            "response": "response:assign-owner",
+            "root_cause": "root-cause:ssot-defect-drill",
+            "incident": "incident:claim-confidence-gap",
+            "learning_update": "update:confidence-ceiling-rule",
+            "revalidation": "revalidate:actions-receipt",
+            "release_gate": "gate:feedback",
+            "evidence": [
+                "docs/generated/verification-failure-conditions.json",
+                "docs/generated/verification-feedback.json",
+                "docs/generated/verification-confidence.json",
+                "docs/generated/verification-actions-receipt.json"
+            ],
+            "status": "learning-open",
+            "meaning": "Open feedback remains visible until ownership and learning are explicit."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "failure-recovery:known-failure",
+            "meaning": "Each recovery references a known failure.",
+            "check": "scripts/verificationfailurerecoverygen.sh check"
+        },
+        {
+            "id": "failure-recovery:response-matches",
+            "meaning": "Recovery response matches the failure.",
+            "check": "scripts/verificationfailurerecoverygen.sh check"
+        },
+        {
+            "id": "failure-recovery:learning-linked",
+            "meaning": "Recovery names incident, update, and recheck.",
+            "check": "scripts/verificationfailurerecoverygen.sh check"
+        },
+        {
+            "id": "failure-recovery:evidence-linked",
+            "meaning": "Recovery cites generated evidence.",
+            "check": "scripts/verificationfailurerecoverygen.sh check"
+        }
+    ]
+}

@@ -19,5 +19,6 @@
       "bash scripts/verificationpruninggen.sh check"
       "bash scripts/verificationsecuritygen.sh check"
       "bash scripts/verificationfailuregen.sh check"
+      "bash scripts/verificationfailurerecoverygen.sh check"
       "bash scripts/verificationdebtgen.sh check"
       "bash scripts/verificationincompletegen.sh check"))))

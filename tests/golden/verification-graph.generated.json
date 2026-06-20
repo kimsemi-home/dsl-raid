@@ -533,6 +533,12 @@
             "generator": "scripts/verificationfailuregen.sh"
         },
         {
+            "id": "test:verification.backend.failure-recovery",
+            "subject": "docs/generated/verification-failure-recovery.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationfailurerecoverygen.sh"
+        },
+        {
             "id": "test:verification.backend.debt-register",
             "subject": "docs/generated/verification-debt.json",
             "kind": "generated-backend",

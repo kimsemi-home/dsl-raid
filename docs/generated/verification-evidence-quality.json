@@ -606,6 +606,18 @@
             "meaning": "Quarantine release evidence is suitable when release conditions are explicit."
         },
         {
+            "id": "evidence-quality:failure-recovery",
+            "target": "docs/generated/verification-failure-recovery.json",
+            "quality": "high",
+            "purpose": "failure-recovery",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "recoveries",
+                "closure_rules"
+            ],
+            "meaning": "Failure recovery evidence is suitable when failure paths close through learning."
+        },
+        {
             "id": "evidence-quality:merge-readiness",
             "target": "docs/generated/verification-merge-readiness.json",
             "quality": "high",
