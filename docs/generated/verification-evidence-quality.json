@@ -642,6 +642,18 @@
             "meaning": "Experiment decision evidence is suitable when checked experiments close to acts."
         },
         {
+            "id": "evidence-quality:confidence-decision",
+            "target": "docs/generated/verification-confidence-decision.json",
+            "quality": "high",
+            "purpose": "confidence-decision",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "decisions",
+                "closure_rules"
+            ],
+            "meaning": "Confidence decision evidence is suitable when gates close confidence changes."
+        },
+        {
             "id": "evidence-quality:merge-readiness",
             "target": "docs/generated/verification-merge-readiness.json",
             "quality": "high",

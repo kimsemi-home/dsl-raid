@@ -185,6 +185,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.confidence-decision",
+            "subject": "docs/generated/verification-confidence-decision.json",
+            "check": "scripts/verificationconfidencedecisiongen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.sidecar-manifest",
             "subject": "docs/generated/verification-sidecar.json",
             "check": "scripts/verificationsidecargen.sh check",

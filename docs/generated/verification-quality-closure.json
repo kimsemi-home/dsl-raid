@@ -211,6 +211,13 @@
             "evidence": "docs/generated/verification-evidence.json"
         },
         {
+            "backend": "confidence-decision",
+            "output": "docs/generated/verification-confidence-decision.json",
+            "generator": "scripts/verificationconfidencedecisiongen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
             "backend": "sidecar-manifest",
             "output": "docs/generated/verification-sidecar.json",
             "generator": "scripts/verificationsidecargen.sh",

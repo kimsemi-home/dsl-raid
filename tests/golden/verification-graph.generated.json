@@ -209,6 +209,12 @@
             "generator": "scripts/verificationconfidencegen.sh"
         },
         {
+            "id": "test:verification.backend.confidence-decision",
+            "subject": "docs/generated/verification-confidence-decision.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationconfidencedecisiongen.sh"
+        },
+        {
             "id": "test:verification.backend.sidecar-manifest",
             "subject": "docs/generated/verification-sidecar.json",
             "kind": "generated-backend",

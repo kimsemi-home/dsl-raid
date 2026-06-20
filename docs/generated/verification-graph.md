@@ -52,6 +52,7 @@ The generated workflow is `.github/workflows/verification.yml`.
 | quarantine-manifest | `docs/generated/verification-quarantine.json` | `scripts/verificationquarantinegen.sh` |
 | quarantine-release | `docs/generated/verification-quarantine-release.json` | `scripts/verificationquarantinereleasegen.sh` |
 | confidence-manifest | `docs/generated/verification-confidence.json` | `scripts/verificationconfidencegen.sh` |
+| confidence-decision | `docs/generated/verification-confidence-decision.json` | `scripts/verificationconfidencedecisiongen.sh` |
 | sidecar-manifest | `docs/generated/verification-sidecar.json` | `scripts/verificationsidecargen.sh` |
 | orchestration-manifest | `docs/generated/verification-orchestration.json` | `scripts/verificationorchestrationgen.sh` |
 | control-plane-verifier | `docs/generated/verification-control-plane.json` | `scripts/verificationcontrolgen.sh` |

@@ -32,12 +32,14 @@
             "requires": [
                 "semantic-diff",
                 "review-capacity",
-                "feedback-closure"
+                "feedback-closure",
+                "experiment-decision"
             ],
             "evidence": [
                 "docs/generated/verification-semantic-diff.json",
                 "docs/generated/verification-review-capacity.json",
-                "docs/generated/verification-feedback.json"
+                "docs/generated/verification-feedback.json",
+                "docs/generated/verification-experiment-decision.json"
             ],
             "meaning": "Release confidence comes from review and semantic evidence."
         }

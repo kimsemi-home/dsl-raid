@@ -1,0 +1,63 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationconfidencedecisiongen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_confidence_decision.lisp",
+    "confidence_decision_profile": "evidence-to-confidence-change",
+    "decisions": [
+        {
+            "id": "confidence-decision:verification-output",
+            "ceiling": "confidence:verification-output",
+            "decision": "raise",
+            "gate": "gate:evidence-quality",
+            "evidence": [
+                "docs/generated/verification-evidence-quality.json",
+                "docs/generated/verification-authority.json",
+                "docs/generated/verification-confidence.json"
+            ],
+            "requires": [
+                "evidence-quality",
+                "authority-gate"
+            ],
+            "authority_effect": "bounded-auto",
+            "status": "closed",
+            "meaning": "Output confidence may rise only after governed evidence and authority checks."
+        },
+        {
+            "id": "confidence-decision:release-check",
+            "ceiling": "confidence:release-check",
+            "decision": "raise",
+            "gate": "gate:release",
+            "evidence": [
+                "docs/generated/verification-semantic-diff.json",
+                "docs/generated/verification-review-capacity.json",
+                "docs/generated/verification-experiment-decision.json"
+            ],
+            "requires": [
+                "semantic-diff",
+                "review-capacity",
+                "experiment-decision"
+            ],
+            "authority_effect": "release-eligible",
+            "status": "closed",
+            "meaning": "Release confidence rises when semantic review and experiment decisions close."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "confidence-decision:known-ceiling",
+            "meaning": "Each confidence decision references a confidence ceiling.",
+            "check": "scripts/verificationconfidencedecisiongen.sh check"
+        },
+        {
+            "id": "confidence-decision:external-gate",
+            "meaning": "Confidence decisions are made by gates, not by agent self-confidence.",
+            "check": "scripts/verificationconfidencedecisiongen.sh check"
+        },
+        {
+            "id": "confidence-decision:evidence-linked",
+            "meaning": "Each confidence decision cites generated evidence.",
+            "check": "scripts/verificationconfidencedecisiongen.sh check"
+        }
+    ]
+}

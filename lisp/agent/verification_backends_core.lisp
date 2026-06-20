@@ -29,4 +29,5 @@
     ("feedback-closure" "docs/generated/verification-feedback.json" "scripts/verificationfeedbackgen.sh")
     ("quarantine-manifest" "docs/generated/verification-quarantine.json" "scripts/verificationquarantinegen.sh")
     ("quarantine-release" "docs/generated/verification-quarantine-release.json" "scripts/verificationquarantinereleasegen.sh")
-    ("confidence-manifest" "docs/generated/verification-confidence.json" "scripts/verificationconfidencegen.sh")))
+    ("confidence-manifest" "docs/generated/verification-confidence.json" "scripts/verificationconfidencegen.sh")
+    ("confidence-decision" "docs/generated/verification-confidence-decision.json" "scripts/verificationconfidencedecisiongen.sh")))

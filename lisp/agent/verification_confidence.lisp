@@ -10,10 +10,11 @@
      "Agent output confidence is capped by evidence and governance gates.")
     ("confidence:release-check" "control-plane:verification" "ignored"
      "high" "gate:release"
-     ("semantic-diff" "review-capacity" "feedback-closure")
+     ("semantic-diff" "review-capacity" "feedback-closure" "experiment-decision")
      ("docs/generated/verification-semantic-diff.json"
       "docs/generated/verification-review-capacity.json"
-      "docs/generated/verification-feedback.json")
+      "docs/generated/verification-feedback.json"
+      "docs/generated/verification-experiment-decision.json")
      "Release confidence comes from review and semantic evidence.")))
 
 (defparameter *verification-confidence-rules*

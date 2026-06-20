@@ -33,7 +33,7 @@
     ("review-capacity" ("review-capacity"))
     ("feedback-closure" ("feedback-closure"))
     ("quarantine" ("quarantine-manifest" "quarantine-release"))
-    ("external-confidence" ("confidence-manifest"))
+    ("external-confidence" ("confidence-manifest" "confidence-decision"))
     ("verification-sidecar" ("sidecar-manifest"))
     ("orchestration-manifest" ("orchestration-manifest"))
     ("control-plane-verifier" ("control-plane-verifier" "shadow-orchestrator"))

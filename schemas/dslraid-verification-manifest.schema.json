@@ -593,6 +593,51 @@
                 "generated_by",
                 "subject",
                 "source",
+                "confidence_decision_profile",
+                "decisions",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationconfidencedecisiongen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "confidence_decision_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "decisions": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/confidence_decision"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
                 "sidecar_profile",
                 "receipts",
                 "closure_rules"
@@ -5393,6 +5438,63 @@
                 },
                 "evidence": {
                     "$ref": "#/$defs/strings"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "confidence_decision": {
+            "type": "object",
+            "required": [
+                "id",
+                "ceiling",
+                "decision",
+                "gate",
+                "evidence",
+                "requires",
+                "authority_effect",
+                "status",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "ceiling": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "decision": {
+                    "enum": [
+                        "raise",
+                        "hold",
+                        "cap"
+                    ]
+                },
+                "gate": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "requires": {
+                    "$ref": "#/$defs/strings"
+                },
+                "authority_effect": {
+                    "enum": [
+                        "bounded-auto",
+                        "release-eligible",
+                        "review-required",
+                        "blocked"
+                    ]
+                },
+                "status": {
+                    "enum": [
+                        "open",
+                        "closed"
+                    ]
                 },
                 "meaning": {
                     "type": "string",

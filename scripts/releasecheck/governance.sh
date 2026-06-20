@@ -17,6 +17,7 @@ bash scripts/verificationfeedbackgen.sh check
 bash scripts/verificationquarantinegen.sh check
 bash scripts/verificationquarantinereleasegen.sh check
 bash scripts/verificationconfidencegen.sh check
+bash scripts/verificationconfidencedecisiongen.sh check
 bash scripts/verificationsidecargen.sh check
 bash scripts/verificationorchestrationgen.sh check
 bash scripts/verificationcontrolgen.sh check

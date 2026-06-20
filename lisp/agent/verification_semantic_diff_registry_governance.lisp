@@ -25,6 +25,8 @@
      "Quarantine release semantic receipt.")
     ("semantic-diff:confidence" "semantic:confidence"
      "External confidence semantic receipt.")
+    ("semantic-diff:confidence-decision" "semantic:confidence-decision"
+     "Confidence decision semantic receipt.")
     ("semantic-diff:sidecar" "semantic:sidecar"
      "Verification sidecar semantic receipt.")
     ("semantic-diff:execution-projection" "semantic:execution-projection"

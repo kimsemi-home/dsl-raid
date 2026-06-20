@@ -29,6 +29,9 @@
     ("semantic:confidence" "docs/generated/verification-confidence.json"
      ("confidence_profile" "ceilings" "closure_rules")
      "External confidence ceiling contract for verification outputs.")
+    ("semantic:confidence-decision" "docs/generated/verification-confidence-decision.json"
+     ("confidence_decision_profile" "decisions" "closure_rules")
+     "Evidence-backed confidence change decision contract.")
     ("semantic:sidecar" "docs/generated/verification-sidecar.json"
      ("sidecar_profile" "receipts" "closure_rules")
      "Independent verification sidecar receipt contract.")
