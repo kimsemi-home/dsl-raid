@@ -17,45 +17,8 @@ generate() {
 }
 
 validate_learning() {
-  python3 - "$repo/$out" "$repo/docs/generated/verification-evidence.json" <<'PY'
-import json, pathlib, sys
-data, evidence = [json.load(open(path)) for path in sys.argv[1:]]
-outputs = {row["output"] for row in evidence["generated_backends"]}
-text = pathlib.Path(sys.argv[1]).read_text()
-errors, stages = [], {row["id"]: row for row in data.get("stages", [])}
-orders = sorted(row.get("order") for row in stages.values())
-if orders != list(range(1, len(orders) + 1)):
-    errors.append("learning stages must be contiguous")
-home_prefix = "/" + "Users" + "/"
-if home_prefix in text:
-    errors.append("learning loop leaked a private local path")
-for row in stages.values():
-    for item in row.get("evidence", []):
-        if item not in outputs:
-            errors.append(f"{row['id']} unknown evidence {item}")
-statuses = {"open", "closed", "revalidating"}
-for row in data.get("cycles", []):
-    if row["status"] not in statuses:
-        errors.append(f"{row['id']} bad status")
-    if row["owner"].startswith("agent:"):
-        errors.append(f"{row['id']} owner cannot be an agent")
-    if not row["knowledge_update"].startswith("update:"):
-        errors.append(f"{row['id']} missing knowledge update")
-    if not row["revalidation"].startswith("revalidate:"):
-        errors.append(f"{row['id']} missing revalidation")
-    for stage in row.get("stages", []):
-        if stage not in stages:
-            errors.append(f"{row['id']} unknown stage {stage}")
-    for item in row.get("evidence", []):
-        if item not in outputs:
-            errors.append(f"{row['id']} unknown evidence {item}")
-if not data.get("cycles"): errors.append("learning loop has no cycles")
-if not data.get("closure_rules"): errors.append("learning loop has no rules")
-if errors:
-    print("\n".join(errors), file=sys.stderr)
-    sys.exit(1)
-print("verification learning loop check ok")
-PY
+  PYTHONDONTWRITEBYTECODE=1 python3 "$repo/scripts/lib/learning_loop_check.py" \
+    "$repo/$out" "$repo/docs/generated/verification-evidence.json" "$repo"
 }
 
 case "$mode" in
