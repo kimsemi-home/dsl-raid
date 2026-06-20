@@ -59,6 +59,12 @@
             "generator": "scripts/securityworkflowgen.sh"
         },
         {
+            "id": "test:verification.backend.github-pages",
+            "subject": ".github/workflows/pages.yml",
+            "kind": "generated-backend",
+            "generator": "scripts/pagesworkflowgen.sh"
+        },
+        {
             "id": "test:verification.backend.gitlab-ci",
             "subject": ".gitlab-ci.yml",
             "kind": "generated-backend",

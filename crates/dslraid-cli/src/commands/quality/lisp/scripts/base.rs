@@ -8,6 +8,7 @@ pub(super) const CHECKS: &[&str] = &[
     "scripts/cigen.sh",
     "scripts/goldengen.sh",
     "scripts/securityworkflowgen.sh",
+    "scripts/pagesworkflowgen.sh",
     "scripts/gitlabgen.sh",
     "scripts/makegen.sh",
     "scripts/bazelgen.sh",

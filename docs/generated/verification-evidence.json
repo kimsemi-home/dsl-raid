@@ -16,6 +16,7 @@
     {"backend": "github-ci", "output": ".github/workflows/ci.yml", "generator": "scripts/cigen.sh", "check": "scripts/cigen.sh check"},
     {"backend": "github-golden", "output": ".github/workflows/golden.yml", "generator": "scripts/goldengen.sh", "check": "scripts/goldengen.sh check"},
     {"backend": "github-security", "output": ".github/workflows/security.yml", "generator": "scripts/securityworkflowgen.sh", "check": "scripts/securityworkflowgen.sh check"},
+    {"backend": "github-pages", "output": ".github/workflows/pages.yml", "generator": "scripts/pagesworkflowgen.sh", "check": "scripts/pagesworkflowgen.sh check"},
     {"backend": "gitlab-ci", "output": ".gitlab-ci.yml", "generator": "scripts/gitlabgen.sh", "check": "scripts/gitlabgen.sh check"},
     {"backend": "local-makefile", "output": "Makefile", "generator": "scripts/makegen.sh", "check": "scripts/makegen.sh check"},
     {"backend": "bazel", "output": "BUILD.bazel", "generator": "scripts/bazelgen.sh", "check": "scripts/bazelgen.sh check"},

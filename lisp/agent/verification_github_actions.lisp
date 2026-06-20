@@ -11,10 +11,10 @@
      "scripts/securityworkflowgen.sh" ("contents: read" "security-events: write")
      ("docs/generated/verification-security-audit.json")
      "Security workflow is generated from the Lisp SSOT.")
-    ("github-actions:pages" ".github/workflows/pages.yml" "deploy-guard" nil
-     "curated" ("contents: read" "pages: write" "id-token: write")
+    ("github-actions:pages" ".github/workflows/pages.yml" "generated-pages" t
+     "scripts/pagesworkflowgen.sh" ("contents: read" "pages: write" "id-token: write")
      ("docs/generated/verification-sidecar.json")
-     "Pages workflow publishes the public demo with explicit permissions.")
+     "Pages workflow is generated from the Lisp SSOT.")
     ("github-actions:verification" ".github/workflows/verification.yml" "generated-graph" t
      "scripts/workflowgen.sh" ("contents: read") ("docs/generated/verification-backend-parity.json")
      "Verification Graph workflow is generated from the Lisp SSOT.")

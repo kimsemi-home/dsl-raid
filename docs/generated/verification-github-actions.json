@@ -51,9 +51,9 @@
         {
             "id": "github-actions:pages",
             "workflow": ".github/workflows/pages.yml",
-            "role": "deploy-guard",
-            "generated": false,
-            "generator": "curated",
+            "role": "generated-pages",
+            "generated": true,
+            "generator": "scripts/pagesworkflowgen.sh",
             "permissions": [
                 "contents: read",
                 "pages: write",
@@ -62,7 +62,7 @@
             "evidence": [
                 "docs/generated/verification-sidecar.json"
             ],
-            "meaning": "Pages workflow publishes the public demo with explicit permissions."
+            "meaning": "Pages workflow is generated from the Lisp SSOT."
         },
         {
             "id": "github-actions:verification",

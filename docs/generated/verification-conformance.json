@@ -35,6 +35,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.github-pages",
+            "subject": ".github/workflows/pages.yml",
+            "check": "scripts/pagesworkflowgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.gitlab-ci",
             "subject": ".gitlab-ci.yml",
             "check": "scripts/gitlabgen.sh check",

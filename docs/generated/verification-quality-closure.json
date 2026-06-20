@@ -36,6 +36,13 @@
             "evidence": "docs/generated/verification-evidence.json"
         },
         {
+            "backend": "github-pages",
+            "output": ".github/workflows/pages.yml",
+            "generator": "scripts/pagesworkflowgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
             "backend": "gitlab-ci",
             "output": ".gitlab-ci.yml",
             "generator": "scripts/gitlabgen.sh",
