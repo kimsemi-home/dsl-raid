@@ -17,39 +17,10 @@ generate() {
 }
 
 validate_lineage() {
-  python3 - "$repo/$out" "$repo/docs/generated/verification-evidence.json" <<'PY'
-import json, os, sys
-data, evidence = [json.load(open(path)) for path in sys.argv[1:]]
-nodes = {row["id"] for row in evidence["verification_nodes"]}
-outputs = {row["output"]: row for row in evidence["generated_backends"]}
-errors, seen = [], set()
-for row in data.get("lineages", []):
-    rid, artifact = row["id"], row["artifact"]
-    if rid in seen: errors.append(f"duplicate lineage {rid}")
-    seen.add(rid)
-    if not set(row["graph_nodes"]).issubset(nodes):
-        errors.append(f"{rid} references unknown graph node")
-    if not os.path.exists(artifact):
-        errors.append(f"{rid} missing artifact {artifact}")
-    if not os.path.exists(row["generator"]):
-        errors.append(f"{rid} missing generator {row['generator']}")
-    if not row["check"].endswith(" check"):
-        errors.append(f"{rid} check must be a check command")
-    if artifact in outputs and outputs[artifact]["generator"] != row["generator"]:
-        errors.append(f"{rid} generator mismatch")
-    for item in row.get("evidence", []):
-        if not os.path.exists(item):
-            errors.append(f"{rid} missing evidence {item}")
-if {row["surface"] for row in data.get("lineages", [])} != {
-    "github-actions", "gitlab-ci", "local-makefile", "bazel", "release-check-provider"
-}:
-    errors.append("workflow lineage surface set mismatch")
-if not data.get("closure_rules"): errors.append("workflow lineage has no rules")
-if errors:
-    print("\n".join(errors), file=sys.stderr)
-    sys.exit(1)
-print("verification workflow lineage check ok")
-PY
+  PYTHONDONTWRITEBYTECODE=1 python3 \
+    "$repo/scripts/lib/workflow_lineage_check.py" \
+    "$repo/$out" \
+    "$repo/docs/generated/verification-evidence.json"
 }
 
 case "$mode" in
