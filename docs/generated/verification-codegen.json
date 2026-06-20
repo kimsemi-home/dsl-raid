@@ -295,7 +295,8 @@
         {
             "axis": "github-actions-suite",
             "backends": [
-                "github-actions-suite"
+                "github-actions-suite",
+                "workflow-lineage"
             ]
         },
         {

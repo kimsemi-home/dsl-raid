@@ -3417,6 +3417,51 @@
                 "generated_by",
                 "subject",
                 "source",
+                "workflow_lineage_profile",
+                "lineages",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationlineagegen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "workflow_lineage_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "lineages": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/workflow_lineage_record"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
                 "release_profile",
                 "gates",
                 "closure_rules"
@@ -6657,6 +6702,58 @@
                 },
                 "evidence": {
                     "$ref": "#/$defs/strings"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "workflow_lineage_record": {
+            "type": "object",
+            "required": [
+                "id",
+                "surface",
+                "graph_nodes",
+                "artifact",
+                "generator",
+                "check",
+                "evidence",
+                "status",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "surface": {
+                    "enum": [
+                        "github-actions",
+                        "gitlab-ci",
+                        "local-makefile",
+                        "bazel",
+                        "release-check-provider"
+                    ]
+                },
+                "graph_nodes": {
+                    "$ref": "#/$defs/strings"
+                },
+                "artifact": {
+                    "$ref": "#/$defs/path"
+                },
+                "generator": {
+                    "$ref": "#/$defs/path"
+                },
+                "check": {
+                    "type": "string",
+                    "pattern": "^scripts/.+ check$"
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "status": {
+                    "const": "generated"
                 },
                 "meaning": {
                     "type": "string",

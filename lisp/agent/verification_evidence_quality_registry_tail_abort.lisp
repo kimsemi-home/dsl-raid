@@ -15,4 +15,9 @@
      "docs/generated/verification-failure-recovery.json"
      "high" "failure-recovery" "gate:evidence-quality"
      ("recoveries" "closure_rules")
-     "Failure recovery evidence is suitable when failure paths close through learning.")))
+     "Failure recovery evidence is suitable when failure paths close through learning.")
+    ("evidence-quality:workflow-lineage"
+     "docs/generated/verification-workflow-lineage.json"
+     "high" "workflow-lineage" "gate:evidence-quality"
+     ("lineages" "closure_rules")
+     "Workflow lineage evidence is suitable when graph nodes map to execution surfaces.")))

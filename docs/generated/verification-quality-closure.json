@@ -379,6 +379,13 @@
             "evidence": "docs/generated/verification-evidence.json"
         },
         {
+            "backend": "workflow-lineage",
+            "output": "docs/generated/verification-workflow-lineage.json",
+            "generator": "scripts/verificationlineagegen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
             "backend": "release-provenance",
             "output": "docs/generated/verification-release-provenance.json",
             "generator": "scripts/verificationreleaseprovenancegen.sh",

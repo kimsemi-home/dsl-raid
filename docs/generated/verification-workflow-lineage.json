@@ -1,0 +1,119 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationlineagegen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_workflow_lineage.lisp",
+    "workflow_lineage_profile": "graph-to-execution-surfaces",
+    "lineages": [
+        {
+            "id": "workflow-lineage:github-actions",
+            "surface": "github-actions",
+            "graph_nodes": [
+                "lint",
+                "unit-test",
+                "integration-test",
+                "conformance",
+                "release-check"
+            ],
+            "artifact": ".github/workflows/verification.yml",
+            "generator": "scripts/workflowgen.sh",
+            "check": "scripts/workflowgen.sh check",
+            "evidence": [
+                "docs/generated/verification-github-actions.json",
+                "docs/generated/verification-backend-parity.json"
+            ],
+            "status": "generated",
+            "meaning": "GitHub Actions runs the generated Verification Graph."
+        },
+        {
+            "id": "workflow-lineage:gitlab-ci",
+            "surface": "gitlab-ci",
+            "graph_nodes": [
+                "lint",
+                "unit-test",
+                "integration-test",
+                "conformance",
+                "release-check"
+            ],
+            "artifact": ".gitlab-ci.yml",
+            "generator": "scripts/gitlabgen.sh",
+            "check": "scripts/gitlabgen.sh check",
+            "evidence": [
+                "docs/generated/verification-backend-parity.json"
+            ],
+            "status": "generated",
+            "meaning": "GitLab CI is a projection of the same graph."
+        },
+        {
+            "id": "workflow-lineage:makefile",
+            "surface": "local-makefile",
+            "graph_nodes": [
+                "lint",
+                "unit-test",
+                "integration-test",
+                "conformance",
+                "release-check"
+            ],
+            "artifact": "Makefile",
+            "generator": "scripts/makegen.sh",
+            "check": "scripts/makegen.sh check",
+            "evidence": [
+                "docs/generated/verification-execution-projection.json"
+            ],
+            "status": "generated",
+            "meaning": "Local Makefile keeps the graph runnable without CI."
+        },
+        {
+            "id": "workflow-lineage:bazel",
+            "surface": "bazel",
+            "graph_nodes": [
+                "lint",
+                "unit-test",
+                "integration-test",
+                "conformance",
+                "release-check"
+            ],
+            "artifact": "BUILD.bazel",
+            "generator": "scripts/bazelgen.sh",
+            "check": "scripts/bazelgen.sh check",
+            "evidence": [
+                "docs/generated/verification-execution-projection.json"
+            ],
+            "status": "generated",
+            "meaning": "Bazel receives the same ordered verification graph."
+        },
+        {
+            "id": "workflow-lineage:release-check",
+            "surface": "release-check-provider",
+            "graph_nodes": [
+                "release-check"
+            ],
+            "artifact": "scripts/releasecheck",
+            "generator": "scripts/releasecheckgen.sh",
+            "check": "scripts/releasecheckgen.sh check",
+            "evidence": [
+                "docs/generated/verification-quality-closure.json",
+                "docs/generated/verification-failure-recovery.json"
+            ],
+            "status": "generated",
+            "meaning": "Release-check providers expand the release-check node."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "workflow-lineage:nodes-exist",
+            "meaning": "Lineage nodes exist in the Verification Graph.",
+            "check": "scripts/verificationlineagegen.sh check"
+        },
+        {
+            "id": "workflow-lineage:artifact-generated",
+            "meaning": "Lineage artifact has a generator.",
+            "check": "scripts/verificationlineagegen.sh check"
+        },
+        {
+            "id": "workflow-lineage:evidence-linked",
+            "meaning": "Lineage cites generated evidence.",
+            "check": "scripts/verificationlineagegen.sh check"
+        }
+    ]
+}

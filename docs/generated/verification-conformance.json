@@ -329,6 +329,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.workflow-lineage",
+            "subject": "docs/generated/verification-workflow-lineage.json",
+            "check": "scripts/verificationlineagegen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.release-provenance",
             "subject": "docs/generated/verification-release-provenance.json",
             "check": "scripts/verificationreleaseprovenancegen.sh check",

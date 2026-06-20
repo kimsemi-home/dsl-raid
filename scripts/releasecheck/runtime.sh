@@ -16,5 +16,6 @@ bash scripts/verificationobjectivegen.sh check
 bash scripts/verificationadrgen.sh check
 bash scripts/verificationparitygen.sh check
 bash scripts/verificationactionsgen.sh check
+bash scripts/verificationlineagegen.sh check
 bash scripts/verificationreleaseprovenancegen.sh check
 bash scripts/verificationincidentgen.sh check

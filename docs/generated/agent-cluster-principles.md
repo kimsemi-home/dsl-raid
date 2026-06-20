@@ -45,7 +45,7 @@ Failures must become evidence, diagnostics, or generated knowledge updates.
 | run-manifest | Agent run unit | Schema-valid run contract and generated doc | Runs are file-backed evidence units, not transient logs. |
 | adr-governance | Semantic contract change | ADR-required or autonomous boundary | Core meaning changes require ADR; implementation internals may move. |
 | backend-parity | Verification graph projection | Same-node backend evidence | CI, local, and build-system surfaces must project the same graph. |
-| github-actions-suite | GitHub Actions surface | Generated and curated workflow evidence | Generated workflows and guard workflows both declare ownership and permissions. |
+| github-actions-suite | GitHub Actions surface | Generated workflow evidence and lineage | Generated workflows declare ownership, permissions, and graph lineage. |
 | release-provenance | Release pipeline promotion | Tag-bound gate evidence | Release publishing requires generated workflow, tests, permissions, and provenance. |
 | incident-learning | Observed failure or drift | Owner, knowledge update, revalidation, and prevention | Incidents close only when the system learns in executable form. |
 | governed-compiler-farm | Spec and agent interpretation candidate | Verified evidence, external confidence, and authority gate | Agents work like compilers, but their outputs remain candidates until checked. |

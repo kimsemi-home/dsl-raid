@@ -618,6 +618,18 @@
             "meaning": "Failure recovery evidence is suitable when failure paths close through learning."
         },
         {
+            "id": "evidence-quality:workflow-lineage",
+            "target": "docs/generated/verification-workflow-lineage.json",
+            "quality": "high",
+            "purpose": "workflow-lineage",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "lineages",
+                "closure_rules"
+            ],
+            "meaning": "Workflow lineage evidence is suitable when graph nodes map to execution surfaces."
+        },
+        {
             "id": "evidence-quality:merge-readiness",
             "target": "docs/generated/verification-merge-readiness.json",
             "quality": "high",

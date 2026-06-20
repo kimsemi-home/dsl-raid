@@ -1,6 +1,6 @@
 use super::{Fixture, MANIFEST};
 
-pub(super) fn schemas() -> [Fixture; 8] {
+pub(super) fn schemas() -> [Fixture; 9] {
     [
         (
             MANIFEST,
@@ -21,6 +21,10 @@ pub(super) fn schemas() -> [Fixture; 8] {
         (
             MANIFEST,
             "docs/generated/verification-evidence-separation.json",
+        ),
+        (
+            MANIFEST,
+            "docs/generated/verification-workflow-lineage.json",
         ),
     ]
 }

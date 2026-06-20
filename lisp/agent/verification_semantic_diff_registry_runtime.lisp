@@ -27,6 +27,8 @@
      "Backend parity semantic receipt.")
     ("semantic-diff:github-actions-suite" "semantic:github-actions-suite"
      "GitHub Actions suite semantic receipt.")
+    ("semantic-diff:workflow-lineage" "semantic:workflow-lineage"
+     "Workflow lineage semantic receipt.")
     ("semantic-diff:release-provenance" "semantic:release-provenance"
      "Release provenance semantic receipt.")
     ("semantic-diff:governed-compiler" "semantic:governed-compiler"

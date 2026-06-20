@@ -25,6 +25,7 @@
     ("backend-parity" "docs/generated/verification-backend-parity.json" "scripts/verificationparitygen.sh")
     ("execution-projection" "docs/generated/verification-execution-projection.json" "scripts/verificationprojectiongen.sh")
     ("github-actions-suite" "docs/generated/verification-github-actions.json" "scripts/verificationactionsgen.sh")
+    ("workflow-lineage" "docs/generated/verification-workflow-lineage.json" "scripts/verificationlineagegen.sh")
     ("release-provenance" "docs/generated/verification-release-provenance.json" "scripts/verificationreleaseprovenancegen.sh")
     ("release-check-providers" "scripts/releasecheck" "scripts/releasecheckgen.sh")
     ("incident-learning" "docs/generated/verification-incident-learning.json" "scripts/verificationincidentgen.sh")

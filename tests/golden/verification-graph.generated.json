@@ -353,6 +353,12 @@
             "generator": "scripts/verificationactionsgen.sh"
         },
         {
+            "id": "test:verification.backend.workflow-lineage",
+            "subject": "docs/generated/verification-workflow-lineage.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationlineagegen.sh"
+        },
+        {
             "id": "test:verification.backend.release-provenance",
             "subject": "docs/generated/verification-release-provenance.json",
             "kind": "generated-backend",

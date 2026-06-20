@@ -16,6 +16,7 @@
     ("semantic:adr-governance" "docs/generated/verification-adr-governance.json" ("adr_profile" "records" "closure_rules") "ADR boundary contract for semantic and implementation changes.")
     ("semantic:backend-parity" "docs/generated/verification-backend-parity.json" ("parity_profile" "projections" "closure_rules") "Generated execution backend graph parity contract.")
     ("semantic:github-actions-suite" "docs/generated/verification-github-actions.json" ("workflow_suite_profile" "workflows" "closure_rules") "GitHub Actions workflow ownership and permission contract.")
+    ("semantic:workflow-lineage" "docs/generated/verification-workflow-lineage.json" ("workflow_lineage_profile" "lineages" "closure_rules") "Verification Graph to execution surface lineage contract.")
     ("semantic:release-provenance" "docs/generated/verification-release-provenance.json" ("release_profile" "gates" "closure_rules") "Release promotion provenance and evidence contract.")
     ("semantic:governed-compiler" "docs/generated/verification-governed-compiler.json" ("compiler_farm_profile" "stages" "closure_rules") "Spec to candidate to authority compiler farm contract.")
     ("semantic:executable-knowledge" "docs/generated/verification-executable-knowledge.json" ("executable_knowledge_profile" "records" "closure_rules") "Machine-readable SSOT and command-backed knowledge contract.")
