@@ -36,6 +36,11 @@
      "high" "semantic-os" "gate:evidence-quality"
      ("layers" "closure_rules")
      "Semantic OS evidence is suitable when each OS role has executable evidence.")
+    ("evidence-quality:operating-loop"
+     "docs/generated/verification-operating-loop.json"
+     "high" "operating-loop" "gate:evidence-quality"
+     ("stages" "closure_rules")
+     "Operating loop evidence is suitable when every stage is command-backed.")
     ("evidence-quality:objective-coverage"
      "docs/generated/verification-objective-coverage.json"
      "high" "objective-coverage" "gate:evidence-quality"

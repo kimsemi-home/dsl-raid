@@ -261,6 +261,12 @@
             ]
         },
         {
+            "axis": "operating-loop",
+            "backends": [
+                "operating-loop"
+            ]
+        },
+        {
             "axis": "run-manifest",
             "backends": [
                 "run-manifest"

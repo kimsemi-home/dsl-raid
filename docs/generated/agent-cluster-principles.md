@@ -41,6 +41,7 @@ Failures must become evidence, diagnostics, or generated knowledge updates.
 | runtime-trace | Runtime event log and coverage overlay | Design-linked execution evidence | Executed transitions must map back to designed FSM subjects. |
 | domain-fsm-dsl | Domain FSM Lisp forms | Generated runtime code and lossy Mermaid diagram | Executable FSM DSL is the SSOT; Mermaid is generated documentation. |
 | semantic-os | Semantic operating system layers | File-backed OS role evidence | Self-improvement passes through evidence, verification, version, and authority gates. |
+| operating-loop | Observation through knowledge update | Ordered command-backed evidence loop | Normal operation closes only after evidence graph and knowledge update. |
 | run-manifest | Agent run unit | Schema-valid run contract and generated doc | Runs are file-backed evidence units, not transient logs. |
 | adr-governance | Semantic contract change | ADR-required or autonomous boundary | Core meaning changes require ADR; implementation internals may move. |
 | backend-parity | Verification graph projection | Same-node backend evidence | CI, local, and build-system surfaces must project the same graph. |

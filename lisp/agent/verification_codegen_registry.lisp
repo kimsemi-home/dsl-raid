@@ -39,7 +39,7 @@
     ("control-plane-verifier" ("control-plane-verifier" "shadow-orchestrator"))
     ("provider-compat" ("provider-compat"))
     ("runtime-trace" ("runtime-trace"))
-    ("runtime-contract" ("runtime-contract")) ("domain-fsm-dsl" ("domain-fsm-dsl")) ("semantic-os" ("semantic-os"))
+    ("runtime-contract" ("runtime-contract")) ("domain-fsm-dsl" ("domain-fsm-dsl")) ("semantic-os" ("semantic-os")) ("operating-loop" ("operating-loop"))
     ("run-manifest" ("run-manifest"))
     ("adr-governance" ("adr-governance"))
     ("backend-parity" ("backend-parity"))

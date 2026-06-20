@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "d0693c1c86cc0fbaaa8b8f9de01b17d2cde082616232ae43d4b5498b6d653746"
+            "hash": "2564d7f044b09d8edf5ad36bbbd07bbc91c19f5cd88b408520f1d0a371e69a4c"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "3e506b59608ff422929f430f220a3d9c9faafd0267f818ada242e12010866103"
+            "hash": "bd8fea873d6754419fec9276aacfe82f74b70a11164068a5657d641148210c01"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "151ed502665ae024727a072cd5c9de7d82094ee906226625fc108d8bc816ec72"
+            "hash": "5cf76e06e11f6a277e5a688ae10ea58cb245fc835af11330a8bcecdcd519859c"
         },
         {
             "id": "semantic:authority",
@@ -97,7 +97,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "f2d316b6887109766280c2d55496938a9b17700effcab8b7332ed3a84a7874f0"
+            "hash": "a69680aae7a2d7a39968c02dfdcab96d75fdb050d5d9788fb115935bd8e4f7dd"
         },
         {
             "id": "semantic:lease",
@@ -254,6 +254,17 @@
             ],
             "meaning": "Semantic operating system layer contract.",
             "hash": "3b9e0d69127b0f195b46bfc0b6b50daec5da1cfb9a8e57c9d7f647dcca1c4ac3"
+        },
+        {
+            "id": "semantic:operating-loop",
+            "source": "docs/generated/verification-operating-loop.json",
+            "fields": [
+                "operating_loop_profile",
+                "stages",
+                "closure_rules"
+            ],
+            "meaning": "Observation to knowledge update operating loop contract.",
+            "hash": "a40e8d03380b7c0998d9bdd1aa2e2a18e6f7e6507e9ba7f9fad2a4d8cd5fbc3c"
         },
         {
             "id": "semantic:query-surface",
@@ -738,7 +749,7 @@
                 "closure_rules"
             ],
             "meaning": "Generated backend to quality gate closure contract.",
-            "hash": "8e5cd774ee5d49b8a38067efa554e5e3eca2f31431fd5fed245dbafb5ddaed26"
+            "hash": "de70353c57237deeadff219b4ebe855733c81844b665a4a7420d325c76e35780"
         },
         {
             "id": "semantic:precommit-closure",

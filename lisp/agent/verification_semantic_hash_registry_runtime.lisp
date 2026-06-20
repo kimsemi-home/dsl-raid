@@ -10,6 +10,7 @@
     ("semantic:runtime-trace" "docs/generated/verification-runtime-trace.json" ("runtime_trace_profile" "mappings" "closure_rules") "Runtime trace mapping and coverage overlay contract.")
     ("semantic:domain-fsm-dsl" "docs/generated/verification-domain-fsm.json" ("domain_fsm_profile" "surfaces" "closure_rules") "Domain FSM DSL to generated runtime and diagram contract.")
     ("semantic:semantic-os" "docs/generated/verification-semantic-os.json" ("semantic_os_profile" "layers" "closure_rules") "Semantic operating system layer contract.")
+    ("semantic:operating-loop" "docs/generated/verification-operating-loop.json" ("operating_loop_profile" "stages" "closure_rules") "Observation to knowledge update operating loop contract.")
     ("semantic:query-surface" "docs/generated/verification-query-surface.json" ("query_surface_profile" "surfaces" "closure_rules") "Query language and lazy composition observable surface contract.")
     ("semantic:run-manifest" "docs/generated/verification-run-manifest.json" ("run_manifest_profile" "records" "closure_rules") "Agent run manifest file-backed contract.")
     ("semantic:adr-governance" "docs/generated/verification-adr-governance.json" ("adr_profile" "records" "closure_rules") "ADR boundary contract for semantic and implementation changes.")

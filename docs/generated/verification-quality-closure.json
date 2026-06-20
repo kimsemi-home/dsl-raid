@@ -260,6 +260,13 @@
             "evidence": "docs/generated/verification-evidence.json"
         },
         {
+            "backend": "operating-loop",
+            "output": "docs/generated/verification-operating-loop.json",
+            "generator": "scripts/verificationoperatingloopgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
             "backend": "query-surface",
             "output": "docs/generated/verification-query-surface.json",
             "generator": "scripts/verificationquerygen.sh",

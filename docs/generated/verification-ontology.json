@@ -64,6 +64,7 @@
         "runtime-contract",
         "domain-fsm-dsl",
         "semantic-os",
+        "operating-loop",
         "run-manifest",
         "adr-governance",
         "backend-parity",

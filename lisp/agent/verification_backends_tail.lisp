@@ -10,6 +10,7 @@
     ("runtime-contract" "docs/generated/verification-runtime-contract.json" "scripts/verificationruntimecontractgen.sh")
     ("domain-fsm-dsl" "docs/generated/verification-domain-fsm.json" "scripts/verificationdomainfsmgen.sh")
     ("semantic-os" "docs/generated/verification-semantic-os.json" "scripts/verificationsemanticosgen.sh")
+    ("operating-loop" "docs/generated/verification-operating-loop.json" "scripts/verificationoperatingloopgen.sh")
     ("query-surface" "docs/generated/verification-query-surface.json" "scripts/verificationquerygen.sh")
     ("run-manifest" "docs/generated/verification-run-manifest.json" "scripts/verificationrunmanifestgen.sh")
     ("bootstrap-sequence" "docs/generated/verification-bootstrap-sequence.json" "scripts/verificationbootstrapgen.sh")

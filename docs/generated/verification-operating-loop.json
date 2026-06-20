@@ -1,0 +1,264 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationoperatingloopgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_operating_loop.lisp",
+    "operating_loop_profile": "observation-to-knowledge-update",
+    "stages": [
+        {
+            "order": 1,
+            "id": "operating-loop:observation",
+            "phase": "observation",
+            "input": "examples/runscope/run-001.trace.json",
+            "output": "docs/generated/verification-runtime-trace.json",
+            "command": "bash scripts/verificationruntimegen.sh check",
+            "assertion": "stdout:verification runtime trace check ok",
+            "gate": "gate:runtime-trace",
+            "evidence": [
+                "docs/generated/verification-runtime-trace.json"
+            ],
+            "meaning": "Observation starts from runtime trace evidence."
+        },
+        {
+            "order": 2,
+            "id": "operating-loop:evidence-collection",
+            "phase": "evidence-collection",
+            "input": "lisp/agent/verification_evidence.lisp",
+            "output": "docs/generated/verification-evidence.json",
+            "command": "bash scripts/verificationevidencegen.sh check",
+            "assertion": "stdout:verification evidence generated output ok",
+            "gate": "gate:evidence-graph",
+            "evidence": [
+                "docs/generated/verification-evidence.json"
+            ],
+            "meaning": "Collected evidence is file-backed."
+        },
+        {
+            "order": 3,
+            "id": "operating-loop:evidence-quality-check",
+            "phase": "evidence-quality-check",
+            "input": "lisp/agent/verification_evidence_quality.lisp",
+            "output": "docs/generated/verification-evidence-quality.json",
+            "command": "bash scripts/verificationevidencequalitygen.sh check",
+            "assertion": "stdout:verification evidence quality check ok",
+            "gate": "gate:evidence-quality",
+            "evidence": [
+                "docs/generated/verification-evidence-quality.json"
+            ],
+            "meaning": "Evidence quality is checked before interpretation."
+        },
+        {
+            "order": 4,
+            "id": "operating-loop:ontology-mapping",
+            "phase": "ontology-mapping",
+            "input": "lisp/agent/verification_context_map.lisp",
+            "output": "docs/generated/verification-context-map.json",
+            "command": "bash scripts/verificationcontextmapgen.sh check",
+            "assertion": "stdout:verification context map check ok",
+            "gate": "gate:context-map",
+            "evidence": [
+                "docs/generated/verification-context-map.json"
+            ],
+            "meaning": "Evidence gains meaning through context mapping."
+        },
+        {
+            "order": 5,
+            "id": "operating-loop:version-attribution",
+            "phase": "version-attribution",
+            "input": "lisp/agent/verification_versioned_ssot.lisp",
+            "output": "docs/generated/verification-versioned-ssot.json",
+            "command": "bash scripts/verificationversionedssotgen.sh check",
+            "assertion": "stdout:verification versioned ssot check ok",
+            "gate": "gate:versioned-ssot",
+            "evidence": [
+                "docs/generated/verification-versioned-ssot.json"
+            ],
+            "meaning": "Version attribution binds claims to SSOT versions."
+        },
+        {
+            "order": 6,
+            "id": "operating-loop:root-cause-discovery",
+            "phase": "root-cause-discovery",
+            "input": "lisp/agent/verification_root_cause.lisp",
+            "output": "docs/generated/verification-root-cause.json",
+            "command": "bash scripts/verificationrootcausegen.sh check",
+            "assertion": "stdout:verification root cause check ok",
+            "gate": "gate:root-cause",
+            "evidence": [
+                "docs/generated/verification-root-cause.json"
+            ],
+            "meaning": "Root cause is discovered through validated cases."
+        },
+        {
+            "order": 7,
+            "id": "operating-loop:hypothesis",
+            "phase": "hypothesis",
+            "input": "lisp/agent/verification_experiment_loop.lisp",
+            "output": "docs/generated/verification-experiment-loop.json",
+            "command": "bash scripts/verificationexperimentgen.sh check",
+            "assertion": "stdout:verification experiment loop check ok",
+            "gate": "gate:experiment-loop",
+            "evidence": [
+                "docs/generated/verification-experiment-loop.json"
+            ],
+            "meaning": "Hypotheses enter the PDCA experiment loop."
+        },
+        {
+            "order": 8,
+            "id": "operating-loop:target-verification",
+            "phase": "target-verification",
+            "input": "lisp/agent/verification_conformance.lisp",
+            "output": "docs/generated/verification-conformance.json",
+            "command": "bash scripts/verificationconformancegen.sh check",
+            "assertion": "stdout:verification conformance generated output ok",
+            "gate": "gate:conformance",
+            "evidence": [
+                "docs/generated/verification-conformance.json"
+            ],
+            "meaning": "Target verification produces conformance evidence."
+        },
+        {
+            "order": 9,
+            "id": "operating-loop:change-candidate",
+            "phase": "change-candidate",
+            "input": "lisp/agent/verification_evidence_before_change.lisp",
+            "output": "docs/generated/verification-evidence-before-change.json",
+            "command": "bash scripts/verificationevidencebeforechangegen.sh check",
+            "assertion": "stdout:verification evidence-before-change check ok",
+            "gate": "gate:evidence-before-change",
+            "evidence": [
+                "docs/generated/verification-evidence-before-change.json"
+            ],
+            "meaning": "Change candidates require evidence before change."
+        },
+        {
+            "order": 10,
+            "id": "operating-loop:external-confidence",
+            "phase": "external-confidence-assessment",
+            "input": "lisp/agent/verification_confidence.lisp",
+            "output": "docs/generated/verification-confidence.json",
+            "command": "bash scripts/verificationconfidencegen.sh check",
+            "assertion": "stdout:verification confidence check ok",
+            "gate": "gate:external-confidence",
+            "evidence": [
+                "docs/generated/verification-confidence.json"
+            ],
+            "meaning": "Confidence is externally assessed."
+        },
+        {
+            "order": 11,
+            "id": "operating-loop:authority-gate",
+            "phase": "authority-gate",
+            "input": "lisp/agent/verification_authority.lisp",
+            "output": "docs/generated/verification-authority.json",
+            "command": "bash scripts/verificationauthoritygen.sh check",
+            "assertion": "stdout:verification authority check ok",
+            "gate": "gate:authority",
+            "evidence": [
+                "docs/generated/verification-authority.json"
+            ],
+            "meaning": "Authority gates decide whether change may proceed."
+        },
+        {
+            "order": 12,
+            "id": "operating-loop:change",
+            "phase": "change",
+            "input": "lisp/agent/verification_merge_readiness.lisp",
+            "output": "docs/generated/verification-merge-readiness.json",
+            "command": "bash scripts/verificationmergegen.sh check",
+            "assertion": "stdout:verification merge readiness check ok",
+            "gate": "gate:merge-readiness",
+            "evidence": [
+                "docs/generated/verification-merge-readiness.json"
+            ],
+            "meaning": "Change is represented as merge-ready evidence."
+        },
+        {
+            "order": 13,
+            "id": "operating-loop:verification-evidence",
+            "phase": "verification-evidence",
+            "input": "lisp/agent/verification_semantic_hash.lisp",
+            "output": "docs/generated/verification-semantic-hash.json",
+            "command": "bash scripts/verificationsemanticgen.sh check",
+            "assertion": "stdout:verification semantic hash check ok",
+            "gate": "gate:semantic-hash",
+            "evidence": [
+                "docs/generated/verification-semantic-hash.json"
+            ],
+            "meaning": "Verification evidence records semantic hashes."
+        },
+        {
+            "order": 14,
+            "id": "operating-loop:conformance-evidence",
+            "phase": "conformance-evidence",
+            "input": "lisp/agent/verification_conformance.lisp",
+            "output": "docs/generated/verification-conformance.json",
+            "command": "bash scripts/verificationconformancegen.sh check",
+            "assertion": "stdout:verification conformance generated output ok",
+            "gate": "gate:conformance",
+            "evidence": [
+                "docs/generated/verification-conformance.json"
+            ],
+            "meaning": "Conformance evidence validates the changed target."
+        },
+        {
+            "order": 15,
+            "id": "operating-loop:evidence-graph-update",
+            "phase": "evidence-graph-update",
+            "input": "lisp/agent/verification_evidence.lisp",
+            "output": "docs/generated/verification-evidence.json",
+            "command": "bash scripts/verificationevidencegen.sh check",
+            "assertion": "stdout:verification evidence generated output ok",
+            "gate": "gate:evidence-graph",
+            "evidence": [
+                "docs/generated/verification-evidence.json"
+            ],
+            "meaning": "Evidence graph updates become durable memory."
+        },
+        {
+            "order": 16,
+            "id": "operating-loop:retrospective",
+            "phase": "retrospective",
+            "input": "lisp/agent/verification_incident_learning.lisp",
+            "output": "docs/generated/verification-incident-learning.json",
+            "command": "bash scripts/verificationincidentgen.sh check",
+            "assertion": "stdout:verification incident learning check ok",
+            "gate": "gate:incident-learning",
+            "evidence": [
+                "docs/generated/verification-incident-learning.json"
+            ],
+            "meaning": "Retrospectives turn incidents into learning cycles."
+        },
+        {
+            "order": 17,
+            "id": "operating-loop:knowledge-update",
+            "phase": "knowledge-update",
+            "input": "lisp/agent/verification_learning_loop.lisp",
+            "output": "docs/generated/verification-learning-loop.json",
+            "command": "bash scripts/verificationlearninggen.sh check",
+            "assertion": "stdout:verification learning loop check ok",
+            "gate": "gate:learning-loop",
+            "evidence": [
+                "docs/generated/verification-learning-loop.json"
+            ],
+            "meaning": "Knowledge update closes the operating loop."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "operating-loop:ordered",
+            "meaning": "Operating stages are strictly ordered.",
+            "check": "scripts/verificationoperatingloopgen.sh check"
+        },
+        {
+            "id": "operating-loop:evidence-backed",
+            "meaning": "Every stage has command-backed evidence.",
+            "check": "scripts/verificationoperatingloopgen.sh check"
+        },
+        {
+            "id": "operating-loop:knowledge-closed",
+            "meaning": "The loop closes only after knowledge update.",
+            "check": "scripts/verificationoperatingloopgen.sh check"
+        }
+    ]
+}

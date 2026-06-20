@@ -227,6 +227,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.operating-loop",
+            "subject": "docs/generated/verification-operating-loop.json",
+            "check": "scripts/verificationoperatingloopgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.query-surface",
             "subject": "docs/generated/verification-query-surface.json",
             "check": "scripts/verificationquerygen.sh check",

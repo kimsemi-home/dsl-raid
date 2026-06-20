@@ -15,6 +15,8 @@
      "Domain FSM DSL semantic receipt.")
     ("semantic-diff:semantic-os" "semantic:semantic-os"
      "Semantic operating system layer semantic receipt.")
+    ("semantic-diff:operating-loop" "semantic:operating-loop"
+     "Normal operating loop semantic receipt.")
     ("semantic-diff:query-surface" "semantic:query-surface"
      "Query and lazy composition surface semantic receipt.")
     ("semantic-diff:run-manifest" "semantic:run-manifest"
