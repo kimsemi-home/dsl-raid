@@ -17,12 +17,20 @@
     ("source-shape:generated-ownership" "generated-ownership" "derived-surfaces" "checked"
      "bash scripts/verificationconformancegen.sh check"
      ("docs/generated/verification-evidence.json")
-     "Generated files keep an owner, generator, and check command.")))
+     "Generated files keep an owner, generator, and check command.")
+    ("source-shape:semantic-receipt-providers" "provider-registry" "semantic-receipts" "facade-only"
+     "bash scripts/verificationsourcegen.sh check"
+     ("lisp/agent/verification_semantic_hash_registry.lisp"
+      "lisp/agent/verification_semantic_diff_registry.lisp"
+      "lisp/agent/verification_semantic_hash_registry_foundation.lisp"
+      "lisp/agent/verification_semantic_diff_registry_foundation.lisp")
+     "Semantic receipt registries expose a small facade over provider files.")))
 
 (defparameter *verification-source-shape-rules*
   '(("source-shape:budget-required" "Line budget must be executable.")
     ("source-shape:evidence-linked" "Every shape budget cites evidence.")
-    ("source-shape:surface-minimized" "Quality entrypoints hide internal file count.")))
+    ("source-shape:surface-minimized" "Quality entrypoints hide internal file count.")
+    ("source-shape:provider-facade" "Provider registries keep public Lisp surfaces narrow.")))
 
 (defun emit-verification-source-shape-json (&optional stream)
   (let ((json (with-output-to-string (out) (write-verification-source-shape out))))

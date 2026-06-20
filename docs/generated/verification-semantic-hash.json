@@ -594,7 +594,7 @@
                 "closure_rules"
             ],
             "meaning": "Source line budget and public surface minimization contract.",
-            "hash": "5973691e5988c9486eddfdd7802c09d0e229e69fdd09c87b2f52a2facabdc58c"
+            "hash": "1a36cbb19379bbe43d1d1000a350c4a55c54c726fb2a08b2d28c3c9e4a70ebd1"
         },
         {
             "id": "semantic:objective-coverage",

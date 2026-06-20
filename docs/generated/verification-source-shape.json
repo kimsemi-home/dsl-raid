@@ -55,6 +55,21 @@
             ],
             "status": "required",
             "meaning": "Generated files keep an owner, generator, and check command."
+        },
+        {
+            "id": "source-shape:semantic-receipt-providers",
+            "kind": "provider-registry",
+            "scope": "semantic-receipts",
+            "limit": "facade-only",
+            "command": "bash scripts/verificationsourcegen.sh check",
+            "evidence": [
+                "lisp/agent/verification_semantic_hash_registry.lisp",
+                "lisp/agent/verification_semantic_diff_registry.lisp",
+                "lisp/agent/verification_semantic_hash_registry_foundation.lisp",
+                "lisp/agent/verification_semantic_diff_registry_foundation.lisp"
+            ],
+            "status": "required",
+            "meaning": "Semantic receipt registries expose a small facade over provider files."
         }
     ],
     "closure_rules": [
@@ -71,6 +86,11 @@
         {
             "id": "source-shape:surface-minimized",
             "meaning": "Quality entrypoints hide internal file count.",
+            "check": "scripts/verificationsourcegen.sh check"
+        },
+        {
+            "id": "source-shape:provider-facade",
+            "meaning": "Provider registries keep public Lisp surfaces narrow.",
             "check": "scripts/verificationsourcegen.sh check"
         }
     ]
