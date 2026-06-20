@@ -15,6 +15,20 @@
             "evidence": "docs/generated/verification-evidence.json"
         },
         {
+            "backend": "github-ci",
+            "output": ".github/workflows/ci.yml",
+            "generator": "scripts/cigen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
+            "backend": "github-golden",
+            "output": ".github/workflows/golden.yml",
+            "generator": "scripts/goldengen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
             "backend": "gitlab-ci",
             "output": ".gitlab-ci.yml",
             "generator": "scripts/gitlabgen.sh",

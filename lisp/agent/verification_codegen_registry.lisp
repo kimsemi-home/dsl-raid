@@ -7,7 +7,7 @@
     ("schemas" ("evidence-schema" "manifest-schema"))
     ("tests" ("test-manifest"))
     ("conformance" ("conformance-report" "evidence-json"))
-    ("github-actions" ("github-actions"))
+    ("github-actions" ("github-actions" "github-ci" "github-golden"))
     ("release-pipelines" ("github-release" "release-provenance" "release-check-providers"))
     ("bootstrap-sequence" ("bootstrap-sequence"))
     ("experiment-loop" ("experiment-loop"))

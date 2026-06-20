@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "4b5a2c807daaa52c4494fdd9d48692c2bab1c94a534bff1a2e3aed135f54f18b"
+            "hash": "699ffc2d6f7df544ebc6f22ccf1f491478e1af64da9c8e7019b5d1f6a81422a5"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "03ca6f016c1bf391ecb6d25e34edc0fdfcde10dcee0e82d873d9b724d92e5bd5"
+            "hash": "7eb9b0add3175b11f23e0476fc516cf5cd2c223410e3f8fce4549a1da0f045e5"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "03617cce85905eb3bc8688770f59a7f52b62df8ed7637c0dcd735d4258e13bcc"
+            "hash": "c7f7272ac5afd7628750a559df8666aba447d304ff39c2bad381f1d4b620ba4d"
         },
         {
             "id": "semantic:authority",
@@ -275,7 +275,7 @@
                 "closure_rules"
             ],
             "meaning": "GitHub Actions workflow ownership and permission contract.",
-            "hash": "56d6aa1b842fde0f59deba6b4f6f9b93582788c10d4852c54237084883570389"
+            "hash": "ba1188da6111b5e83a1eeeb978c2cf50b52283c5b77653629434c81de304ec58"
         },
         {
             "id": "semantic:release-provenance",
@@ -683,7 +683,7 @@
                 "closure_rules"
             ],
             "meaning": "Generated backend to quality gate closure contract.",
-            "hash": "af1fd932371ed7ea1048231fd2aa70339cb6a346aaa319de51cb3957400aa148"
+            "hash": "d12481ed15d9ba8969464aca889b168112b6410bf6072bb0b24c973fb37926f4"
         },
         {
             "id": "semantic:precommit-closure",

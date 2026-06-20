@@ -1,0 +1,16 @@
+(in-package #:dslraid.agent)
+
+(defun emit-verification-ci-yaml (&optional stream)
+  (let ((yaml (with-output-to-string (out) (write-verification-ci out))))
+    (if stream (write-string yaml stream) yaml)))
+
+(defun write-verification-ci (out)
+  (write-ci-header out)
+  (write-ci-workflow-lint-job out)
+  (write-ci-schemas-job out)
+  (write-ci-rust-job out)
+  (write-ci-go-job out)
+  (write-ci-source-shape-job out)
+  (write-ci-lisp-job out)
+  (write-ci-dslraid-job out)
+  (write-ci-viewer-job out))

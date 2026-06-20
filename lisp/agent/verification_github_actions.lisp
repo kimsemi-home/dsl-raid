@@ -1,9 +1,9 @@
 (in-package #:dslraid.agent)
 
 (defparameter *verification-github-actions*
-  '(("github-actions:ci" ".github/workflows/ci.yml" "core-guard" nil
-     "curated" ("contents: read") ("docs/generated/verification-conformance.json")
-     "CI guards lint, quality, and ownership checks.")
+  '(("github-actions:ci" ".github/workflows/ci.yml" "generated-ci" t
+     "scripts/cigen.sh" ("contents: read") ("docs/generated/verification-conformance.json")
+     "CI workflow is generated from the Lisp SSOT.")
     ("github-actions:golden" ".github/workflows/golden.yml" "generated-golden" t
      "scripts/goldengen.sh" ("contents: read") ("tests/golden/verification-graph.generated.json")
      "Golden workflow is generated from the Lisp SSOT.")

@@ -46,7 +46,9 @@
         {
             "axis": "github-actions",
             "backends": [
-                "github-actions"
+                "github-actions",
+                "github-ci",
+                "github-golden"
             ]
         },
         {

@@ -8,16 +8,16 @@
         {
             "id": "github-actions:ci",
             "workflow": ".github/workflows/ci.yml",
-            "role": "core-guard",
-            "generated": false,
-            "generator": "curated",
+            "role": "generated-ci",
+            "generated": true,
+            "generator": "scripts/cigen.sh",
             "permissions": [
                 "contents: read"
             ],
             "evidence": [
                 "docs/generated/verification-conformance.json"
             ],
-            "meaning": "CI guards lint, quality, and ownership checks."
+            "meaning": "CI workflow is generated from the Lisp SSOT."
         },
         {
             "id": "github-actions:golden",

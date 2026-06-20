@@ -41,6 +41,18 @@
             "generator": "scripts/workflowgen.sh"
         },
         {
+            "id": "test:verification.backend.github-ci",
+            "subject": ".github/workflows/ci.yml",
+            "kind": "generated-backend",
+            "generator": "scripts/cigen.sh"
+        },
+        {
+            "id": "test:verification.backend.github-golden",
+            "subject": ".github/workflows/golden.yml",
+            "kind": "generated-backend",
+            "generator": "scripts/goldengen.sh"
+        },
+        {
             "id": "test:verification.backend.gitlab-ci",
             "subject": ".gitlab-ci.yml",
             "kind": "generated-backend",

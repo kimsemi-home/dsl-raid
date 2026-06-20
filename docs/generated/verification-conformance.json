@@ -17,6 +17,18 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.github-ci",
+            "subject": ".github/workflows/ci.yml",
+            "check": "scripts/cigen.sh check",
+            "status": "required"
+        },
+        {
+            "id": "conformance:backend.github-golden",
+            "subject": ".github/workflows/golden.yml",
+            "check": "scripts/goldengen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.gitlab-ci",
             "subject": ".gitlab-ci.yml",
             "check": "scripts/gitlabgen.sh check",
