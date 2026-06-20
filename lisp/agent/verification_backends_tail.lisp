@@ -4,6 +4,7 @@
   '(("sidecar-manifest" "docs/generated/verification-sidecar.json" "scripts/verificationsidecargen.sh")
     ("orchestration-manifest" "docs/generated/verification-orchestration.json" "scripts/verificationorchestrationgen.sh")
     ("control-plane-verifier" "docs/generated/verification-control-plane.json" "scripts/verificationcontrolgen.sh")
+    ("shadow-orchestrator" "docs/generated/verification-shadow-orchestrator.json" "scripts/verificationshadowgen.sh")
     ("provider-compat" "docs/generated/verification-provider-compat.json" "scripts/verificationprovidergen.sh")
     ("runtime-trace" "docs/generated/verification-runtime-trace.json" "scripts/verificationruntimegen.sh")
     ("runtime-contract" "docs/generated/verification-runtime-contract.json" "scripts/verificationruntimecontractgen.sh")

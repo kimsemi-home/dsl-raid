@@ -35,7 +35,12 @@
      "docs/generated/verification-incompleteness-ledger.json"
      "high" "incompleteness-ledger" "gate:evidence-quality"
      ("unknowns" "closure_rules")
-     "Incomplete knowledge evidence is suitable when unknowns are owned and classified.")))
+     "Incomplete knowledge evidence is suitable when unknowns are owned and classified.")
+    ("evidence-quality:shadow-orchestrator"
+     "docs/generated/verification-shadow-orchestrator.json"
+     "high" "shadow-orchestrator" "gate:evidence-quality"
+     ("routes" "closure_rules")
+     "Shadow evidence is suitable when primary and shadow routes are separated.")))
 
 (defparameter *verification-evidence-quality-assessments*
   (append *verification-evidence-quality-core-assessments*

@@ -191,6 +191,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.shadow-orchestrator",
+            "subject": "docs/generated/verification-shadow-orchestrator.json",
+            "check": "scripts/verificationshadowgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.provider-compat",
             "subject": "docs/generated/verification-provider-compat.json",
             "check": "scripts/verificationprovidergen.sh check",

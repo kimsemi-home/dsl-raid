@@ -218,6 +218,13 @@
             "evidence": "docs/generated/verification-evidence.json"
         },
         {
+            "backend": "shadow-orchestrator",
+            "output": "docs/generated/verification-shadow-orchestrator.json",
+            "generator": "scripts/verificationshadowgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
             "backend": "provider-compat",
             "output": "docs/generated/verification-provider-compat.json",
             "generator": "scripts/verificationprovidergen.sh",

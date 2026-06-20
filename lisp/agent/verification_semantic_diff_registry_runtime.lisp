@@ -5,6 +5,8 @@
      "Orchestration routing semantic receipt.")
     ("semantic-diff:control-plane" "semantic:control-plane"
      "Control-plane verifier semantic receipt.")
+    ("semantic-diff:shadow-orchestrator" "semantic:shadow-orchestrator"
+     "Shadow orchestrator semantic receipt.")
     ("semantic-diff:provider-compat" "semantic:provider-compat"
      "Provider compatibility semantic receipt.")
     ("semantic-diff:runtime-trace" "semantic:runtime-trace"

@@ -1762,6 +1762,51 @@
                 "generated_by",
                 "subject",
                 "source",
+                "shadow_orchestrator_profile",
+                "routes",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationshadowgen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "shadow_orchestrator_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "routes": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/shadow_orchestrator_record"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
                 "provider_compat_profile",
                 "records",
                 "closure_rules"
@@ -5560,6 +5605,57 @@
                 },
                 "authority": {
                     "$ref": "#/$defs/semantic_ref"
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "shadow_orchestrator_record": {
+            "type": "object",
+            "required": [
+                "id",
+                "route",
+                "primary",
+                "shadow",
+                "divergence",
+                "action",
+                "evidence",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "route": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "primary": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "shadow": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "divergence": {
+                    "enum": [
+                        "D0",
+                        "D1",
+                        "D2",
+                        "D3",
+                        "D4"
+                    ]
+                },
+                "action": {
+                    "enum": [
+                        "observe",
+                        "human-review",
+                        "authority-blocked"
+                    ]
                 },
                 "evidence": {
                     "$ref": "#/$defs/strings"

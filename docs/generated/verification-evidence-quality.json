@@ -628,6 +628,18 @@
                 "closure_rules"
             ],
             "meaning": "Incomplete knowledge evidence is suitable when unknowns are owned and classified."
+        },
+        {
+            "id": "evidence-quality:shadow-orchestrator",
+            "target": "docs/generated/verification-shadow-orchestrator.json",
+            "quality": "high",
+            "purpose": "shadow-orchestrator",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "routes",
+                "closure_rules"
+            ],
+            "meaning": "Shadow evidence is suitable when primary and shadow routes are separated."
         }
     ],
     "closure_rules": [

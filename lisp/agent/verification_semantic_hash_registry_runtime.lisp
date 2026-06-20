@@ -5,6 +5,7 @@
      ("orchestration_profile" "routes" "closure_rules")
      "Policy-bound orchestration routing receipt contract.")
     ("semantic:control-plane" "docs/generated/verification-control-plane.json" ("control_plane_profile" "routes" "closure_rules") "Control-plane sidecar and shadow verifier contract.")
+    ("semantic:shadow-orchestrator" "docs/generated/verification-shadow-orchestrator.json" ("shadow_orchestrator_profile" "routes" "closure_rules") "Shadow orchestrator divergence and authority gate contract.")
     ("semantic:provider-compat" "docs/generated/verification-provider-compat.json" ("provider_compat_profile" "records" "closure_rules") "Provider protocol and capability compatibility contract.")
     ("semantic:runtime-trace" "docs/generated/verification-runtime-trace.json" ("runtime_trace_profile" "mappings" "closure_rules") "Runtime trace mapping and coverage overlay contract.")
     ("semantic:query-surface" "docs/generated/verification-query-surface.json" ("query_surface_profile" "surfaces" "closure_rules") "Query language and lazy composition observable surface contract.")

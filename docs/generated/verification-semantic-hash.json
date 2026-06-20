@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "804593ae3ad0999bb27d164c561cd3eb8805ed5f99cb96f19026525518cf03af"
+            "hash": "9e81a105d31bca3dae8ae71c400c6202721328d4c468c806ac44a29472326ceb"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "318aa458655514ad7199190bf05c46392ba772326aa1cacde2d510c2f9a51253"
+            "hash": "2bb9335cd2db4a65e3c83fc7f41ed2085ec070efec676fcd8b6fe7724975dded"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "76ea498326a1fa3f09b1282058ba2dacbcae8e314ecf784087b00225e85498c0"
+            "hash": "84b4368889f481eb038d91265c072c84e2cbf34716fa57fa662851ca1119ff04"
         },
         {
             "id": "semantic:authority",
@@ -97,7 +97,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "2cbf2b32744da89aa9de9d20caffaf270aa6127eba31e40801b663c67921ef83"
+            "hash": "27c323f4423314d00f5537bd0d4488b9d86aae41f6a72b03fc0764454e5ab371"
         },
         {
             "id": "semantic:lease",
@@ -199,6 +199,17 @@
             ],
             "meaning": "Control-plane sidecar and shadow verifier contract.",
             "hash": "13ef6b38216c302a0f14388e8c3623ad16957ec0ff5f462a487269634ebec592"
+        },
+        {
+            "id": "semantic:shadow-orchestrator",
+            "source": "docs/generated/verification-shadow-orchestrator.json",
+            "fields": [
+                "shadow_orchestrator_profile",
+                "routes",
+                "closure_rules"
+            ],
+            "meaning": "Shadow orchestrator divergence and authority gate contract.",
+            "hash": "1a71a5134a53fe82b97299d04517774a049114b9e89995c49479a9c0bd24712d"
         },
         {
             "id": "semantic:provider-compat",
@@ -683,7 +694,7 @@
                 "closure_rules"
             ],
             "meaning": "Generated backend to quality gate closure contract.",
-            "hash": "05e12dedecb27fcb1d82fec323be67cf6fbbbb33fa00c954f48dc43c4bd132cd"
+            "hash": "49cc618c0c2035ac6ece6672a1dffd880075e6441e118589c6efc72f77d48533"
         },
         {
             "id": "semantic:precommit-closure",

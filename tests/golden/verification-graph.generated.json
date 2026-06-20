@@ -215,6 +215,12 @@
             "generator": "scripts/verificationcontrolgen.sh"
         },
         {
+            "id": "test:verification.backend.shadow-orchestrator",
+            "subject": "docs/generated/verification-shadow-orchestrator.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationshadowgen.sh"
+        },
+        {
             "id": "test:verification.backend.provider-compat",
             "subject": "docs/generated/verification-provider-compat.json",
             "kind": "generated-backend",

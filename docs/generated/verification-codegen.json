@@ -226,7 +226,8 @@
         {
             "axis": "control-plane-verifier",
             "backends": [
-                "control-plane-verifier"
+                "control-plane-verifier",
+                "shadow-orchestrator"
             ]
         },
         {

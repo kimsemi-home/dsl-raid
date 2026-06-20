@@ -36,7 +36,7 @@
     ("external-confidence" ("confidence-manifest"))
     ("verification-sidecar" ("sidecar-manifest"))
     ("orchestration-manifest" ("orchestration-manifest"))
-    ("control-plane-verifier" ("control-plane-verifier"))
+    ("control-plane-verifier" ("control-plane-verifier" "shadow-orchestrator"))
     ("provider-compat" ("provider-compat"))
     ("runtime-trace" ("runtime-trace"))
     ("runtime-contract" ("runtime-contract"))

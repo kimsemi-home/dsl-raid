@@ -1,6 +1,6 @@
 use super::{Fixture, MANIFEST};
 
-pub(super) fn schemas() -> [Fixture; 20] {
+pub(super) fn schemas() -> [Fixture; 21] {
     [
         (MANIFEST, "docs/generated/verification-review-capacity.json"),
         (MANIFEST, "docs/generated/verification-feedback.json"),
@@ -9,6 +9,10 @@ pub(super) fn schemas() -> [Fixture; 20] {
         (MANIFEST, "docs/generated/verification-sidecar.json"),
         (MANIFEST, "docs/generated/verification-orchestration.json"),
         (MANIFEST, "docs/generated/verification-control-plane.json"),
+        (
+            MANIFEST,
+            "docs/generated/verification-shadow-orchestrator.json",
+        ),
         (MANIFEST, "docs/generated/verification-provider-compat.json"),
         (MANIFEST, "docs/generated/verification-runtime-trace.json"),
         (

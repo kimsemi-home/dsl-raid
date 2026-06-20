@@ -1,0 +1,65 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationshadowgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_shadow_orchestrator.lisp",
+    "shadow_orchestrator_profile": "independent-observer",
+    "routes": [
+        {
+            "id": "shadow:release-check",
+            "route": "route:release-check",
+            "primary": "control-plane:primary",
+            "shadow": "shadow:release-orchestrator",
+            "divergence": "D2",
+            "action": "observe",
+            "evidence": [
+                "docs/generated/verification-control-plane.json",
+                "docs/generated/verification-orchestration.json"
+            ],
+            "meaning": "Release shadow routing observes divergence without changing authority."
+        },
+        {
+            "id": "shadow:authority-gate",
+            "route": "route:authority-gate",
+            "primary": "control-plane:primary",
+            "shadow": "shadow:authority-orchestrator",
+            "divergence": "D3",
+            "action": "human-review",
+            "evidence": [
+                "docs/generated/verification-control-plane.json",
+                "docs/generated/verification-review-capacity.json"
+            ],
+            "meaning": "Authority shadow divergence requires human review before promotion."
+        },
+        {
+            "id": "shadow:policy-boundary",
+            "route": "route:policy-boundary",
+            "primary": "control-plane:primary",
+            "shadow": "shadow:policy-orchestrator",
+            "divergence": "D4",
+            "action": "authority-blocked",
+            "evidence": [
+                "docs/generated/verification-control-plane.json",
+                "docs/generated/verification-security-audit.json"
+            ],
+            "meaning": "Policy shadow divergence blocks authority until evidence is reconciled."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "shadow-orchestrator:separated",
+            "meaning": "Shadow route differs from primary route.",
+            "check": "scripts/verificationshadowgen.sh check"
+        },
+        {
+            "id": "shadow-orchestrator:divergence-gated",
+            "meaning": "D3 and D4 divergence gates authority.",
+            "check": "scripts/verificationshadowgen.sh check"
+        },
+        {
+            "id": "shadow-orchestrator:evidence-linked",
+            "meaning": "Every shadow route cites generated evidence.",
+            "check": "scripts/verificationshadowgen.sh check"
+        }
+    ]
+}
