@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "f3cbae2db6780ca217c70f9d13e651e475c9301785bc503491c3079153700470"
+            "hash": "e4a4826345f6669a9b905436e96f3ea3ba755f33cda6db8a97a3f35f8fc11b4e"
         },
         {
             "id": "semantic:codegen-map",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "805091905fb2d1059d3cd0cbfc585798ad5a40f7fa734ddca754570dc56243fa"
+            "hash": "cd29fb6c422db55ea91dd9be51fb6049e94ca484ddb7730036f1c2115fc2cc6e"
         },
         {
             "id": "semantic:authority",
@@ -210,6 +210,17 @@
             ],
             "meaning": "Runtime trace mapping and coverage overlay contract.",
             "hash": "c542201cbc67ccbf80ba2ddbbeb30c8f55a59100d05e640733813cd522bc06e0"
+        },
+        {
+            "id": "semantic:query-surface",
+            "source": "docs/generated/verification-query-surface.json",
+            "fields": [
+                "query_surface_profile",
+                "surfaces",
+                "closure_rules"
+            ],
+            "meaning": "Query language and lazy composition observable surface contract.",
+            "hash": "4b9e69979951dc77ee8d4e2ef3a286cb1727baf9c25f3e33d6f08d593e2e047b"
         },
         {
             "id": "semantic:run-manifest",
@@ -605,7 +616,7 @@
                 "closure_rules"
             ],
             "meaning": "Active objective requirement-to-evidence coverage contract.",
-            "hash": "115c3a165df4c405ca4c02d56f4524a5160e8a1fda3eb122a15438f8b666077c"
+            "hash": "7782adb3adac911048fc722d0c430938ad7ce242a363ae0a138a75f4afddf9a0"
         }
     ],
     "closure_rules": [

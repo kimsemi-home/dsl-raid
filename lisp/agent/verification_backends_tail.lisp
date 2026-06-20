@@ -6,6 +6,7 @@
     ("control-plane-verifier" "docs/generated/verification-control-plane.json" "scripts/verificationcontrolgen.sh")
     ("provider-compat" "docs/generated/verification-provider-compat.json" "scripts/verificationprovidergen.sh")
     ("runtime-trace" "docs/generated/verification-runtime-trace.json" "scripts/verificationruntimegen.sh")
+    ("query-surface" "docs/generated/verification-query-surface.json" "scripts/verificationquerygen.sh")
     ("run-manifest" "docs/generated/verification-run-manifest.json" "scripts/verificationrunmanifestgen.sh")
     ("bootstrap-sequence" "docs/generated/verification-bootstrap-sequence.json" "scripts/verificationbootstrapgen.sh")
     ("experiment-loop" "docs/generated/verification-experiment-loop.json" "scripts/verificationexperimentgen.sh")

@@ -203,6 +203,12 @@
             "generator": "scripts/verificationruntimegen.sh"
         },
         {
+            "id": "test:verification.backend.query-surface",
+            "subject": "docs/generated/verification-query-surface.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationquerygen.sh"
+        },
+        {
             "id": "test:verification.backend.run-manifest",
             "subject": "docs/generated/verification-run-manifest.json",
             "kind": "generated-backend",

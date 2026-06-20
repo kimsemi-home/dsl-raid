@@ -1,0 +1,75 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationquerygen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_query_surface.lisp",
+    "query_surface_profile": "query-and-lazy-observable-surface",
+    "surfaces": [
+        {
+            "id": "query-surface:policy-terminal",
+            "kind": "query",
+            "command": "cargo run -p dslraid-cli -- query examples/runscope/runscope.raid.json 'kind=transition and requires~=policy:no_secret_leak or terminal=true' --format json",
+            "fixture": "examples/runscope/runscope.raid.json",
+            "assertion": "contains-subject:transition:runtime.running_to_completed",
+            "evidence": [
+                "crates/dslraid-cli/src/commands/query/tests/values.rs"
+            ],
+            "status": "checked",
+            "meaning": "Query finds policy-gated transitions without reading internal indexes."
+        },
+        {
+            "id": "query-surface:guard-action",
+            "kind": "query",
+            "command": "cargo run -p dslraid-cli -- query tests/golden/query/guard-action.input.json 'kind=guard and expression.source~=ready' --format json",
+            "fixture": "tests/golden/query/guard-action.input.json",
+            "assertion": "contains-subject:guard:runtime.can_start",
+            "evidence": [
+                "crates/dslraid-cli/src/commands/query/tests/item_map.rs"
+            ],
+            "status": "checked",
+            "meaning": "Query can inspect guard and action semantic fields."
+        },
+        {
+            "id": "query-surface:lazy-diagnostics",
+            "kind": "lazy-composition",
+            "command": "cargo run -p dslraid-cli -- compose examples/runscope/runscope.raid.json --materialize diagnostics-only --format json",
+            "fixture": "examples/runscope/runscope.raid.json",
+            "assertion": "compose-lazy-empty",
+            "evidence": [
+                "crates/dslraid-cli/src/commands/compose/tests.rs"
+            ],
+            "status": "checked",
+            "meaning": "Diagnostics-only composition stays lazy and avoids state materialization."
+        },
+        {
+            "id": "query-surface:lazy-focused",
+            "kind": "lazy-composition",
+            "command": "cargo run -p dslraid-cli -- compose examples/runscope/runscope.raid.json --materialize reachable --limit 5000 --focus state:runtime.running --depth 1 --format json",
+            "fixture": "examples/runscope/runscope.raid.json",
+            "assertion": "compose-lazy-focused",
+            "evidence": [
+                "crates/dslraid-cli/src/commands/compose/product/materialize.rs",
+                "crates/dslraid-cli/src/commands/compose/product/focus.rs"
+            ],
+            "status": "checked",
+            "meaning": "Focused reachable composition materializes only the requested surface."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "query-surface:command-backed",
+            "meaning": "Every query surface is exercised by CLI output.",
+            "check": "scripts/verificationquerygen.sh check"
+        },
+        {
+            "id": "query-surface:lazy-default",
+            "meaning": "Composition surfaces must keep lazy metadata.",
+            "check": "scripts/verificationquerygen.sh check"
+        },
+        {
+            "id": "query-surface:surface-only",
+            "meaning": "Consumers need query and compose commands, not internals.",
+            "check": "scripts/verificationquerygen.sh check"
+        }
+    ]
+}

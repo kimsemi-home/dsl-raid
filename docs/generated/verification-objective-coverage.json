@@ -89,6 +89,17 @@
             ],
             "status": "tracked",
             "meaning": "Remote run result is tracked by head SHA, conclusion, and URL."
+        },
+        {
+            "id": "objective:query-lazy",
+            "kind": "query-lazy-surface",
+            "requirement": "query and lazy composition are executable surfaces",
+            "gate": "gate:query-surface",
+            "evidence": [
+                "docs/generated/verification-query-surface.json"
+            ],
+            "status": "tracked",
+            "meaning": "Query and lazy composition are command-backed, not hidden implementation details."
         }
     ],
     "closure_rules": [

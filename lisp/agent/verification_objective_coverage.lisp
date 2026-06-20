@@ -21,7 +21,10 @@
      "PDCA and experiments are explicit evidence before policy.")
     ("objective:remote-actions" "actions-receipt" "remote GitHub Actions receipt"
      "gate:actions-receipt" ("docs/generated/verification-actions-receipt.json")
-     "Remote run result is tracked by head SHA, conclusion, and URL.")))
+     "Remote run result is tracked by head SHA, conclusion, and URL.")
+    ("objective:query-lazy" "query-lazy-surface" "query and lazy composition are executable surfaces"
+     "gate:query-surface" ("docs/generated/verification-query-surface.json")
+     "Query and lazy composition are command-backed, not hidden implementation details.")))
 
 (defparameter *verification-objective-coverage-rules*
   '(("objective-coverage:evidence-linked" "Every objective row cites evidence.")

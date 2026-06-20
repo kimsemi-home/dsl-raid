@@ -21,7 +21,7 @@ validate_objective_coverage() {
 import json, os, sys
 data = json.load(open(sys.argv[1]))
 errors, seen = [], set()
-required = {"privacy-exclusion", "autonomous-merge", "source-shape", "backend-projection", "codegen-chain", "pdca-learning", "actions-receipt"}
+required = {"privacy-exclusion", "autonomous-merge", "source-shape", "backend-projection", "codegen-chain", "pdca-learning", "actions-receipt", "query-lazy-surface"}
 kinds = {row.get("kind") for row in data.get("requirements", [])}
 for row in data.get("requirements", []):
     if row["id"] in seen:
@@ -38,7 +38,7 @@ if required - kinds:
     errors.append(f"missing objective kinds {sorted(required - kinds)}")
 evidence = json.load(open("docs/generated/verification-evidence.json"))
 backends = {row["backend"] for row in evidence.get("generated_backends", [])}
-for backend in ("github-actions", "gitlab-ci", "local-makefile", "bazel", "source-shape"):
+for backend in ("github-actions", "gitlab-ci", "local-makefile", "bazel", "source-shape", "query-surface"):
     if backend not in backends:
         errors.append(f"missing generated backend evidence {backend}")
 codegen = json.load(open("docs/generated/verification-codegen.json"))

@@ -179,6 +179,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.query-surface",
+            "subject": "docs/generated/verification-query-surface.json",
+            "check": "scripts/verificationquerygen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.run-manifest",
             "subject": "docs/generated/verification-run-manifest.json",
             "check": "scripts/verificationrunmanifestgen.sh check",
