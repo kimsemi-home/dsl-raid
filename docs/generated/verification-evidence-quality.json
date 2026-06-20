@@ -666,6 +666,18 @@
             "meaning": "Operating loop evidence is suitable when every stage is command-backed."
         },
         {
+            "id": "evidence-quality:knowledge-conversion",
+            "target": "docs/generated/verification-knowledge-conversion.json",
+            "quality": "high",
+            "purpose": "knowledge-conversion",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "steps",
+                "closure_rules"
+            ],
+            "meaning": "Knowledge conversion evidence is suitable when errors close through revalidation."
+        },
+        {
             "id": "evidence-quality:objective-coverage",
             "target": "docs/generated/verification-objective-coverage.json",
             "quality": "high",

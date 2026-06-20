@@ -47,7 +47,7 @@
     ("github-actions-suite" ("github-actions-suite"))
     ("evidence-before-change" ("evidence-before-change"))
     ("incident-learning" ("incident-learning"))
-    ("learning-loop" ("learning-loop"))
+    ("learning-loop" ("learning-loop")) ("knowledge-conversion" ("knowledge-conversion"))
     ("quality-closure" ("quality-closure"))
     ("precommit-closure" ("precommit-closure"))
     ("genesis-charter" ("genesis-charter"))

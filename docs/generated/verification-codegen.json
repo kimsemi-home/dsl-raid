@@ -315,6 +315,12 @@
             ]
         },
         {
+            "axis": "knowledge-conversion",
+            "backends": [
+                "knowledge-conversion"
+            ]
+        },
+        {
             "axis": "quality-closure",
             "backends": [
                 "quality-closure"

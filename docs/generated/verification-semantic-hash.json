@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "2564d7f044b09d8edf5ad36bbbd07bbc91c19f5cd88b408520f1d0a371e69a4c"
+            "hash": "2dfa5580529bc5ef633fbe5665feff83e85b9032a43e49a58a5d53acba500c16"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "bd8fea873d6754419fec9276aacfe82f74b70a11164068a5657d641148210c01"
+            "hash": "29d2c8d936386a03626eafe740b66e8100d974f92ae7f1ffee2e5898669ee0a5"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "5cf76e06e11f6a277e5a688ae10ea58cb245fc835af11330a8bcecdcd519859c"
+            "hash": "93133ba50b52a55bebcdfc6e36e35de43b626d8fe8d99e51941faec520a459ea"
         },
         {
             "id": "semantic:authority",
@@ -97,7 +97,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "a69680aae7a2d7a39968c02dfdcab96d75fdb050d5d9788fb115935bd8e4f7dd"
+            "hash": "023d7e0fd792aca29054941c06c641f408bf43cd09b4655aa6f764b88eefea81"
         },
         {
             "id": "semantic:lease",
@@ -331,6 +331,17 @@
             ],
             "meaning": "Release promotion provenance and evidence contract.",
             "hash": "1c305e3031f3a08c8b7717cf8b0fc2c55ad861e7c67dad06639652c0bea69be6"
+        },
+        {
+            "id": "semantic:knowledge-conversion",
+            "source": "docs/generated/verification-knowledge-conversion.json",
+            "fields": [
+                "knowledge_conversion_profile",
+                "steps",
+                "closure_rules"
+            ],
+            "meaning": "Error to knowledge conversion contract.",
+            "hash": "51af0b21d01b8f3998e0e393011dc3f3960f966b81a5e2fe50439d908a4717b5"
         },
         {
             "id": "semantic:evidence-before-change",
@@ -749,7 +760,7 @@
                 "closure_rules"
             ],
             "meaning": "Generated backend to quality gate closure contract.",
-            "hash": "de70353c57237deeadff219b4ebe855733c81844b665a4a7420d325c76e35780"
+            "hash": "0597fa7be5a4b1cdbe0436bbabe4e8a0f12888b39c56f7c23371d891682772f4"
         },
         {
             "id": "semantic:precommit-closure",

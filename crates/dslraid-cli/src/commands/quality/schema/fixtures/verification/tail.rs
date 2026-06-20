@@ -1,6 +1,6 @@
 use super::{Fixture, MANIFEST};
 
-pub(super) fn schemas() -> [Fixture; 30] {
+pub(super) fn schemas() -> [Fixture; 23] {
     [
         (MANIFEST, "docs/generated/verification-versioned-ssot.json"),
         (MANIFEST, "docs/generated/verification-domain-fsm.json"),
@@ -39,6 +39,10 @@ pub(super) fn schemas() -> [Fixture; 30] {
             "docs/generated/verification-incident-learning.json",
         ),
         (MANIFEST, "docs/generated/verification-learning-loop.json"),
+        (
+            MANIFEST,
+            "docs/generated/verification-knowledge-conversion.json",
+        ),
         (MANIFEST, "docs/generated/verification-quality-closure.json"),
         (
             MANIFEST,
@@ -47,26 +51,6 @@ pub(super) fn schemas() -> [Fixture; 30] {
         (
             MANIFEST,
             "docs/generated/verification-evidence-before-change.json",
-        ),
-        (
-            MANIFEST,
-            "docs/generated/verification-migration-surface.json",
-        ),
-        (
-            MANIFEST,
-            "docs/generated/verification-language-expansion.json",
-        ),
-        (MANIFEST, "docs/generated/verification-genesis-charter.json"),
-        (MANIFEST, "docs/generated/verification-meta-model.json"),
-        (MANIFEST, "docs/generated/verification-backup-steward.json"),
-        (
-            MANIFEST,
-            "docs/generated/verification-revalidation-gate.json",
-        ),
-        (MANIFEST, "docs/generated/verification-cold-start-gate.json"),
-        (
-            MANIFEST,
-            "docs/generated/verification-evidence-separation.json",
         ),
     ]
 }

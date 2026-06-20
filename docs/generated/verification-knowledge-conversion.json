@@ -1,0 +1,152 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationknowledgegen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_knowledge_conversion.lisp",
+    "knowledge_conversion_profile": "error-to-knowledge",
+    "steps": [
+        {
+            "order": 1,
+            "id": "knowledge-conversion:incompleteness",
+            "phase": "incompleteness-visible",
+            "input": "lisp/agent/verification_incompleteness_ledger.lisp",
+            "output": "docs/generated/verification-incompleteness-ledger.json",
+            "command": "bash scripts/verificationincompletegen.sh check",
+            "assertion": "stdout:verification incompleteness ledger check ok",
+            "gate": "gate:incompleteness-ledger",
+            "evidence": [
+                "docs/generated/verification-incompleteness-ledger.json"
+            ],
+            "meaning": "Incomplete knowledge is visible and owned."
+        },
+        {
+            "order": 2,
+            "id": "knowledge-conversion:failure",
+            "phase": "failure-signaled",
+            "input": "lisp/agent/verification_failure_conditions.lisp",
+            "output": "docs/generated/verification-failure-conditions.json",
+            "command": "bash scripts/verificationfailuregen.sh check",
+            "assertion": "stdout:verification failure conditions check ok",
+            "gate": "gate:failure-conditions",
+            "evidence": [
+                "docs/generated/verification-failure-conditions.json"
+            ],
+            "meaning": "Failure signals block authority and name a response."
+        },
+        {
+            "order": 3,
+            "id": "knowledge-conversion:evidence",
+            "phase": "evidence-captured",
+            "input": "lisp/agent/verification_evidence.lisp",
+            "output": "docs/generated/verification-evidence.json",
+            "command": "bash scripts/verificationevidencegen.sh check",
+            "assertion": "stdout:verification evidence generated output ok",
+            "gate": "gate:evidence-graph",
+            "evidence": [
+                "docs/generated/verification-evidence.json"
+            ],
+            "meaning": "The error becomes durable evidence."
+        },
+        {
+            "order": 4,
+            "id": "knowledge-conversion:root-cause",
+            "phase": "root-cause-mapped",
+            "input": "lisp/agent/verification_root_cause.lisp",
+            "output": "docs/generated/verification-root-cause.json",
+            "command": "bash scripts/verificationrootcausegen.sh check",
+            "assertion": "stdout:verification root cause check ok",
+            "gate": "gate:root-cause",
+            "evidence": [
+                "docs/generated/verification-root-cause.json"
+            ],
+            "meaning": "Evidence narrows root cause candidates."
+        },
+        {
+            "order": 5,
+            "id": "knowledge-conversion:debt",
+            "phase": "debt-recorded",
+            "input": "lisp/agent/verification_debt.lisp",
+            "output": "docs/generated/verification-debt.json",
+            "command": "bash scripts/verificationdebtgen.sh check",
+            "assertion": "stdout:verification debt check ok",
+            "gate": "gate:debt-register",
+            "evidence": [
+                "docs/generated/verification-debt.json"
+            ],
+            "meaning": "Unclosed learning gaps become explicit debt."
+        },
+        {
+            "order": 6,
+            "id": "knowledge-conversion:incident-learning",
+            "phase": "incident-learned",
+            "input": "lisp/agent/verification_incident_learning.lisp",
+            "output": "docs/generated/verification-incident-learning.json",
+            "command": "bash scripts/verificationincidentgen.sh check",
+            "assertion": "stdout:verification incident learning check ok",
+            "gate": "gate:incident-learning",
+            "evidence": [
+                "docs/generated/verification-incident-learning.json"
+            ],
+            "meaning": "Incidents close only after knowledge update and prevention."
+        },
+        {
+            "order": 7,
+            "id": "knowledge-conversion:learning-loop",
+            "phase": "knowledge-updated",
+            "input": "lisp/agent/verification_learning_loop.lisp",
+            "output": "docs/generated/verification-learning-loop.json",
+            "command": "bash scripts/verificationlearninggen.sh check",
+            "assertion": "stdout:verification learning loop check ok",
+            "gate": "gate:learning-loop",
+            "evidence": [
+                "docs/generated/verification-learning-loop.json"
+            ],
+            "meaning": "Evidence returns through the learning loop."
+        },
+        {
+            "order": 8,
+            "id": "knowledge-conversion:version-propagated",
+            "phase": "version-propagated",
+            "input": "lisp/agent/verification_versioned_ssot.lisp",
+            "output": "docs/generated/verification-versioned-ssot.json",
+            "command": "bash scripts/verificationversionedssotgen.sh check",
+            "assertion": "stdout:verification versioned ssot check ok",
+            "gate": "gate:versioned-ssot",
+            "evidence": [
+                "docs/generated/verification-versioned-ssot.json"
+            ],
+            "meaning": "Updated knowledge is versioned before runtime authority."
+        },
+        {
+            "order": 9,
+            "id": "knowledge-conversion:revalidated",
+            "phase": "runtime-revalidated",
+            "input": "lisp/agent/verification_revalidation_gate.lisp",
+            "output": "docs/generated/verification-revalidation-gate.json",
+            "command": "bash scripts/verificationrevalidationgen.sh check",
+            "assertion": "stdout:verification revalidation gate check ok",
+            "gate": "gate:revalidation",
+            "evidence": [
+                "docs/generated/verification-revalidation-gate.json"
+            ],
+            "meaning": "Revalidation turns learned knowledge back into authority."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "knowledge-conversion:visible",
+            "meaning": "Errors and unknowns must become visible evidence.",
+            "check": "scripts/verificationknowledgegen.sh check"
+        },
+        {
+            "id": "knowledge-conversion:owned",
+            "meaning": "Every unresolved learning gap has an owner.",
+            "check": "scripts/verificationknowledgegen.sh check"
+        },
+        {
+            "id": "knowledge-conversion:closed",
+            "meaning": "Conversion closes through versioned knowledge and revalidation.",
+            "check": "scripts/verificationknowledgegen.sh check"
+        }
+    ]
+}

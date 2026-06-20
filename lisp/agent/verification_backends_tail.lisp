@@ -29,6 +29,7 @@
     ("release-check-providers" "scripts/releasecheck" "scripts/releasecheckgen.sh")
     ("incident-learning" "docs/generated/verification-incident-learning.json" "scripts/verificationincidentgen.sh")
     ("learning-loop" "docs/generated/verification-learning-loop.json" "scripts/verificationlearninggen.sh")
+    ("knowledge-conversion" "docs/generated/verification-knowledge-conversion.json" "scripts/verificationknowledgegen.sh")
     ("quality-closure" "docs/generated/verification-quality-closure.json" "scripts/verificationqualitygen.sh")
     ("precommit-closure" "docs/generated/verification-precommit-closure.json" "scripts/verificationprecommitgen.sh")
     ("genesis-charter" "docs/generated/verification-genesis-charter.json" "scripts/verificationgenesisgen.sh")

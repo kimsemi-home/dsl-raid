@@ -16,4 +16,5 @@
     ("semantic:adr-governance" "docs/generated/verification-adr-governance.json" ("adr_profile" "records" "closure_rules") "ADR boundary contract for semantic and implementation changes.")
     ("semantic:backend-parity" "docs/generated/verification-backend-parity.json" ("parity_profile" "projections" "closure_rules") "Generated execution backend graph parity contract.")
     ("semantic:github-actions-suite" "docs/generated/verification-github-actions.json" ("workflow_suite_profile" "workflows" "closure_rules") "GitHub Actions workflow ownership and permission contract.")
-    ("semantic:release-provenance" "docs/generated/verification-release-provenance.json" ("release_profile" "gates" "closure_rules") "Release promotion provenance and evidence contract.")))
+    ("semantic:release-provenance" "docs/generated/verification-release-provenance.json" ("release_profile" "gates" "closure_rules") "Release promotion provenance and evidence contract.")
+    ("semantic:knowledge-conversion" "docs/generated/verification-knowledge-conversion.json" ("knowledge_conversion_profile" "steps" "closure_rules") "Error to knowledge conversion contract.")))

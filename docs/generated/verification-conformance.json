@@ -341,6 +341,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.knowledge-conversion",
+            "subject": "docs/generated/verification-knowledge-conversion.json",
+            "check": "scripts/verificationknowledgegen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.quality-closure",
             "subject": "docs/generated/verification-quality-closure.json",
             "check": "scripts/verificationqualitygen.sh check",

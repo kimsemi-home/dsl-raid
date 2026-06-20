@@ -1,0 +1,26 @@
+use super::{Fixture, MANIFEST};
+
+pub(super) fn schemas() -> [Fixture; 8] {
+    [
+        (
+            MANIFEST,
+            "docs/generated/verification-migration-surface.json",
+        ),
+        (
+            MANIFEST,
+            "docs/generated/verification-language-expansion.json",
+        ),
+        (MANIFEST, "docs/generated/verification-genesis-charter.json"),
+        (MANIFEST, "docs/generated/verification-meta-model.json"),
+        (MANIFEST, "docs/generated/verification-backup-steward.json"),
+        (
+            MANIFEST,
+            "docs/generated/verification-revalidation-gate.json",
+        ),
+        (MANIFEST, "docs/generated/verification-cold-start-gate.json"),
+        (
+            MANIFEST,
+            "docs/generated/verification-evidence-separation.json",
+        ),
+    ]
+}

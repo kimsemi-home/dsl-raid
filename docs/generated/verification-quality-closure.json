@@ -393,6 +393,13 @@
             "evidence": "docs/generated/verification-evidence.json"
         },
         {
+            "backend": "knowledge-conversion",
+            "output": "docs/generated/verification-knowledge-conversion.json",
+            "generator": "scripts/verificationknowledgegen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
             "backend": "quality-closure",
             "output": "docs/generated/verification-quality-closure.json",
             "generator": "scripts/verificationqualitygen.sh",

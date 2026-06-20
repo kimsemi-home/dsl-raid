@@ -365,6 +365,12 @@
             "generator": "scripts/verificationlearninggen.sh"
         },
         {
+            "id": "test:verification.backend.knowledge-conversion",
+            "subject": "docs/generated/verification-knowledge-conversion.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationknowledgegen.sh"
+        },
+        {
             "id": "test:verification.backend.quality-closure",
             "subject": "docs/generated/verification-quality-closure.json",
             "kind": "generated-backend",
