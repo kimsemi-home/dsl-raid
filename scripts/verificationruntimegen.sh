@@ -17,32 +17,9 @@ generate() {
 }
 
 validate_runtime_trace() {
-  python3 - "$repo" "$repo/$out" "$repo/docs/generated/verification-evidence.json" <<'PY'
-import json, pathlib, sys
-repo, path, evidence_path = pathlib.Path(sys.argv[1]), sys.argv[2], sys.argv[3]
-data, evidence = json.load(open(path)), json.load(open(evidence_path))
-outputs = {row["output"] for row in evidence["generated_backends"]}
-statuses, errors, seen, triples = {"covered", "uncovered", "failed"}, [], set(), set()
-for row in data.get("mappings", []):
-    if row["id"] in seen: errors.append(f"duplicate runtime trace {row['id']}")
-    seen.add(row["id"])
-    for key in ["design_ir", "trace", "coverage"]:
-        if not (repo / row[key]).exists(): errors.append(f"{row['id']} missing {key}")
-    if row["runtime_subject"] != row["design_subject"]:
-        errors.append(f"{row['id']} runtime subject differs from design subject")
-    if row["coverage_status"] not in statuses:
-        errors.append(f"{row['id']} bad coverage status")
-    for item in row.get("evidence", []):
-        if item not in outputs: errors.append(f"{row['id']} unknown evidence {item}")
-    triples.add((row["design_ir"], row["trace"], row["coverage"]))
-if not data.get("mappings"): errors.append("runtime trace manifest has no mappings")
-if not data.get("closure_rules"): errors.append("runtime trace manifest has no rules")
-if errors:
-    print("\n".join(errors), file=sys.stderr)
-    sys.exit(1)
-for triple in sorted(triples):
-    print("\t".join(triple))
-PY
+  PYTHONDONTWRITEBYTECODE=1 python3 \
+    "$repo/scripts/lib/runtime_trace_check.py" "$repo" \
+    "$repo/$out" "$repo/docs/generated/verification-evidence.json"
 }
 
 check_runtime_commands() {
