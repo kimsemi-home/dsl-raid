@@ -16,36 +16,10 @@ generate() {
 }
 
 validate_executable_knowledge() {
-  python3 - "$repo/$out" "$repo" <<'PY'
-import json, os, subprocess, sys
-data, repo = json.load(open(sys.argv[1])), sys.argv[2]
-errors, seen, kinds = [], set(), []
-required = ["dsl", "specification", "ontology", "policy", "schema", "contract",
-            "manifest", "ir", "verification-rule", "migration-rule",
-            "translation-manifest", "evidence-policy"]
-def exists(path): return os.path.exists(os.path.join(repo, path))
-def run(command):
-    return subprocess.run(["bash", "-lc", command], cwd=repo, text=True, capture_output=True)
-for row in data.get("records", []):
-    if row["id"] in seen: errors.append(f"duplicate record {row['id']}")
-    seen.add(row["id"]); kinds.append(row["kind"])
-    if not exists(row["source"]): errors.append(f"{row['id']} missing source")
-    for key in ("generated", "evidence"):
-        for item in row.get(key, []):
-            if not exists(item): errors.append(f"{row['id']} missing {key} {item}")
-    result = run(row["command"])
-    expected = row["assertion"].removeprefix("stdout:")
-    if result.returncode or expected not in result.stdout:
-        errors.append(f"{row['id']} expected stdout {expected!r}")
-    if row["source"] in row.get("generated", []):
-        errors.append(f"{row['id']} source cannot equal generated artifact")
-if kinds != required: errors.append("executable knowledge kinds are not canonical")
-if not data.get("closure_rules"): errors.append("executable knowledge has no rules")
-if errors:
-    print("\n".join(errors), file=sys.stderr)
-    sys.exit(1)
-print("verification executable knowledge check ok")
-PY
+  PYTHONDONTWRITEBYTECODE=1 python3 \
+    "$repo/scripts/lib/executable_knowledge_check.py" \
+    "$repo/$out" \
+    "$repo"
 }
 
 case "$mode" in
