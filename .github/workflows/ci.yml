@@ -127,7 +127,12 @@ jobs:
       - name: Verify Lisp checks are owned by quality
         run: |
           set -euo pipefail
-          owner=crates/dslraid-cli/src/commands/quality/lisp/scripts.rs
+          owner=/tmp/dslraid-lisp-check-owners.rs
+          {
+            cat crates/dslraid-cli/src/commands/quality/lisp/scripts.rs
+            find crates/dslraid-cli/src/commands/quality/lisp/scripts \
+              -name '*.rs' -print0 | sort -z | xargs -0 cat
+          } > "$owner"
           grep -q 'scripts/lisp-test.sh' "$owner"
           grep -q 'scripts/lisp-docgen.sh' "$owner"
           grep -q 'scripts/langdiaggen.sh' "$owner"
