@@ -1,0 +1,207 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationexecutablegen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_executable_knowledge.lisp",
+    "executable_knowledge_profile": "machine-readable-ssot",
+    "records": [
+        {
+            "id": "executable-knowledge:dsl",
+            "kind": "dsl",
+            "source": "lisp/runtime/runscope.lisp",
+            "generated": [
+                "examples/runscope/runscope.lisp.raid.json"
+            ],
+            "command": "bash scripts/lisp-irgen.sh check",
+            "assertion": "stdout:lisp generated ir ok",
+            "evidence": [
+                "docs/generated/lisp-pipeline.md"
+            ],
+            "gate": "gate:language-expansion",
+            "meaning": "DSL knowledge must expand to Canonical IR."
+        },
+        {
+            "id": "executable-knowledge:specification",
+            "kind": "specification",
+            "source": "examples/runscope/runscope.assertions.json",
+            "generated": [
+                "docs/generated/assertion-catalog.md"
+            ],
+            "command": "bash scripts/assertiongen.sh check",
+            "assertion": "stdout:assertion generated doc ok",
+            "evidence": [
+                "examples/runscope/runscope.validation.json"
+            ],
+            "gate": "gate:conformance",
+            "meaning": "Specification knowledge must be checked and rendered from assertion data."
+        },
+        {
+            "id": "executable-knowledge:ontology",
+            "kind": "ontology",
+            "source": "lisp/agent/verification_ontology.lisp",
+            "generated": [
+                "docs/generated/verification-ontology.json"
+            ],
+            "command": "bash scripts/verificationontologygen.sh check",
+            "assertion": "stdout:verification ontology generated output ok",
+            "evidence": [
+                "docs/generated/verification-codegen.json"
+            ],
+            "gate": "gate:ontology",
+            "meaning": "Ontology knowledge is executable when generated deterministically."
+        },
+        {
+            "id": "executable-knowledge:policy",
+            "kind": "policy",
+            "source": "lisp/agent/verification_access_policy.lisp",
+            "generated": [
+                "docs/generated/verification-access-policy.json"
+            ],
+            "command": "bash scripts/verificationaccessgen.sh check",
+            "assertion": "stdout:verification access policy check ok",
+            "evidence": [
+                "docs/generated/verification-authority.json"
+            ],
+            "gate": "gate:access-policy",
+            "meaning": "Policy knowledge must reject unsafe authority paths."
+        },
+        {
+            "id": "executable-knowledge:schema",
+            "kind": "schema",
+            "source": "lisp/agent/verification_manifest_schema.lisp",
+            "generated": [
+                "schemas/dslraid-verification-manifest.schema.json"
+            ],
+            "command": "bash scripts/verificationmanifestschemagen.sh check",
+            "assertion": "stdout:verification manifest schema generated output ok",
+            "evidence": [
+                "docs/generated/verification-conformance.json"
+            ],
+            "gate": "gate:schema",
+            "meaning": "Schema knowledge must be generated from Lisp SSOT."
+        },
+        {
+            "id": "executable-knowledge:contract",
+            "kind": "contract",
+            "source": "lisp/agent/verification_runtime_contract.lisp",
+            "generated": [
+                "docs/generated/verification-runtime-contract.json"
+            ],
+            "command": "bash scripts/verificationruntimecontractgen.sh check",
+            "assertion": "stdout:verification runtime contract check ok",
+            "evidence": [
+                "examples/runscope/run-001.trace.json"
+            ],
+            "gate": "gate:runtime-contract",
+            "meaning": "Contract knowledge must be checked against runtime evidence."
+        },
+        {
+            "id": "executable-knowledge:manifest",
+            "kind": "manifest",
+            "source": "examples/runscope/runscope.agent-run.json",
+            "generated": [
+                "docs/generated/agent-run-manifest.md"
+            ],
+            "command": "bash scripts/agentmanifestgen.sh check",
+            "assertion": "stdout:agent run manifest generated doc ok",
+            "evidence": [
+                "schemas/dslraid-agent-run.schema.json"
+            ],
+            "gate": "gate:run-manifest",
+            "meaning": "Manifest knowledge must render from schema-valid run data."
+        },
+        {
+            "id": "executable-knowledge:ir",
+            "kind": "ir",
+            "source": "examples/runscope/runscope.lisp.raid.json",
+            "generated": [
+                "generated/runtime_fsm.go",
+                "generated/runtime_fsm.rs"
+            ],
+            "command": "cargo run --quiet -p dslraid-cli -- artifact verify examples/runscope/runscope.raid.json --lock examples/runscope/runscope.lock.json",
+            "assertion": "stdout:artifact verification passed",
+            "evidence": [
+                "examples/runscope/runscope.lock.json"
+            ],
+            "gate": "gate:artifact-freshness",
+            "meaning": "IR knowledge must prove generated artifacts are fresh."
+        },
+        {
+            "id": "executable-knowledge:verification-rule",
+            "kind": "verification-rule",
+            "source": "lisp/agent/verification_knowledge_conversion.lisp",
+            "generated": [
+                "docs/generated/verification-knowledge-conversion.json"
+            ],
+            "command": "bash scripts/verificationknowledgegen.sh check",
+            "assertion": "stdout:verification knowledge conversion check ok",
+            "evidence": [
+                "docs/generated/verification-learning-loop.json"
+            ],
+            "gate": "gate:knowledge-conversion",
+            "meaning": "Verification rules are executable when they run evidence-backed checks."
+        },
+        {
+            "id": "executable-knowledge:migration-rule",
+            "kind": "migration-rule",
+            "source": "lisp/agent/verification_migration_surface.lisp",
+            "generated": [
+                "docs/generated/verification-migration-surface.json"
+            ],
+            "command": "bash scripts/verificationmigrationgen.sh check",
+            "assertion": "stdout:verification migration surface check ok",
+            "evidence": [
+                "docs/generated/verification-versioned-ssot.json"
+            ],
+            "gate": "gate:migration",
+            "meaning": "Migration knowledge must keep version transitions executable."
+        },
+        {
+            "id": "executable-knowledge:translation-manifest",
+            "kind": "translation-manifest",
+            "source": "lisp/agent/verification_translation_verifier.lisp",
+            "generated": [
+                "docs/generated/verification-translation-verifier.json"
+            ],
+            "command": "bash scripts/verificationtranslationgen.sh check",
+            "assertion": "stdout:verification translation verifier check ok",
+            "evidence": [
+                "docs/generated/verification-loss-ledger.json"
+            ],
+            "gate": "gate:translation",
+            "meaning": "Translation knowledge must prove loss policy through generated evidence."
+        },
+        {
+            "id": "executable-knowledge:evidence-policy",
+            "kind": "evidence-policy",
+            "source": "lisp/agent/verification_evidence_quality.lisp",
+            "generated": [
+                "docs/generated/verification-evidence-quality.json"
+            ],
+            "command": "bash scripts/verificationevidencequalitygen.sh check",
+            "assertion": "stdout:verification evidence quality check ok",
+            "evidence": [
+                "docs/generated/verification-evidence.json"
+            ],
+            "gate": "gate:evidence-quality",
+            "meaning": "Evidence policy must be machine-checked before confidence increases."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "executable-knowledge:no-prose-ssot",
+            "meaning": "Human prose explains but never owns SSOT.",
+            "check": "scripts/verificationexecutablegen.sh check"
+        },
+        {
+            "id": "executable-knowledge:command-backed",
+            "meaning": "Every knowledge record has a passing command.",
+            "check": "scripts/verificationexecutablegen.sh check"
+        },
+        {
+            "id": "executable-knowledge:artifact-linked",
+            "meaning": "Executable knowledge generates or checks artifacts.",
+            "check": "scripts/verificationexecutablegen.sh check"
+        }
+    ]
+}

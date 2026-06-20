@@ -678,6 +678,18 @@
             "meaning": "Knowledge conversion evidence is suitable when errors close through revalidation."
         },
         {
+            "id": "evidence-quality:executable-knowledge",
+            "target": "docs/generated/verification-executable-knowledge.json",
+            "quality": "high",
+            "purpose": "executable-knowledge",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "records",
+                "closure_rules"
+            ],
+            "meaning": "Executable knowledge evidence is suitable when every knowledge form has a command."
+        },
+        {
             "id": "evidence-quality:objective-coverage",
             "target": "docs/generated/verification-objective-coverage.json",
             "quality": "high",

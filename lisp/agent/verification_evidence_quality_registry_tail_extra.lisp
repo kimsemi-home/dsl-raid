@@ -46,6 +46,11 @@
      "high" "knowledge-conversion" "gate:evidence-quality"
      ("steps" "closure_rules")
      "Knowledge conversion evidence is suitable when errors close through revalidation.")
+    ("evidence-quality:executable-knowledge"
+     "docs/generated/verification-executable-knowledge.json"
+     "high" "executable-knowledge" "gate:evidence-quality"
+     ("records" "closure_rules")
+     "Executable knowledge evidence is suitable when every knowledge form has a command.")
     ("evidence-quality:objective-coverage"
      "docs/generated/verification-objective-coverage.json"
      "high" "objective-coverage" "gate:evidence-quality"

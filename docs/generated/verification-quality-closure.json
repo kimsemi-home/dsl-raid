@@ -386,6 +386,13 @@
             "evidence": "docs/generated/verification-evidence.json"
         },
         {
+            "backend": "executable-knowledge",
+            "output": "docs/generated/verification-executable-knowledge.json",
+            "generator": "scripts/verificationexecutablegen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
             "backend": "learning-loop",
             "output": "docs/generated/verification-learning-loop.json",
             "generator": "scripts/verificationlearninggen.sh",

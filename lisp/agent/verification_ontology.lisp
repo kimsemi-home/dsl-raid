@@ -13,7 +13,7 @@
     "reasoning-access" "reliability-registry" "cross-agent-agreement" "adversarial-review"
     "evidence-quality" "lease-and-abort" "review-capacity" "feedback-closure" "quarantine"
     "external-confidence" "verification-sidecar" "orchestration-manifest"
-    "control-plane-verifier" "provider-compat" "runtime-trace" "runtime-contract" "domain-fsm-dsl" "semantic-os" "operating-loop" "run-manifest" "adr-governance" "backend-parity" "execution-projection" "github-actions-suite" "evidence-before-change" "incident-learning" "learning-loop" "knowledge-conversion" "quality-closure" "precommit-closure" "genesis-charter" "meta-model" "backup-steward" "revalidation-gate" "cold-start-gate" "evidence-separation" "versioned-ssot" "bounded-context" "context-map" "translation-verifier"
+    "control-plane-verifier" "provider-compat" "runtime-trace" "runtime-contract" "domain-fsm-dsl" "semantic-os" "operating-loop" "run-manifest" "adr-governance" "backend-parity" "execution-projection" "github-actions-suite" "evidence-before-change" "incident-learning" "executable-knowledge" "learning-loop" "knowledge-conversion" "quality-closure" "precommit-closure" "genesis-charter" "meta-model" "backup-steward" "revalidation-gate" "cold-start-gate" "evidence-separation" "versioned-ssot" "bounded-context" "context-map" "translation-verifier"
     "historical-interpreter" "ontology-transition" "ssot-defect"
     "root-cause" "semantic-debugger" "evidence-pruning" "security-audit"
     "failure-conditions" "debt-register" "incompleteness-ledger"))

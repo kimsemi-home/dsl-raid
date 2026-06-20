@@ -29,5 +29,7 @@
      "GitHub Actions suite semantic receipt.")
     ("semantic-diff:release-provenance" "semantic:release-provenance"
      "Release provenance semantic receipt.")
+    ("semantic-diff:executable-knowledge" "semantic:executable-knowledge"
+     "Executable knowledge semantic receipt.")
     ("semantic-diff:knowledge-conversion" "semantic:knowledge-conversion"
      "Error to knowledge conversion semantic receipt.")))

@@ -309,6 +309,12 @@
             ]
         },
         {
+            "axis": "executable-knowledge",
+            "backends": [
+                "executable-knowledge"
+            ]
+        },
+        {
             "axis": "learning-loop",
             "backends": [
                 "learning-loop"

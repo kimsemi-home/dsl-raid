@@ -335,6 +335,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.executable-knowledge",
+            "subject": "docs/generated/verification-executable-knowledge.json",
+            "check": "scripts/verificationexecutablegen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.learning-loop",
             "subject": "docs/generated/verification-learning-loop.json",
             "check": "scripts/verificationlearninggen.sh check",
