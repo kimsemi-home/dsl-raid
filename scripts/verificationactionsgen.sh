@@ -34,6 +34,10 @@ for row in data.get("workflows", []):
     text = open(row["workflow"]).read()
     if "permissions:" not in text:
         errors.append(f"{row['id']} missing permissions block")
+    if "concurrency:" not in text:
+        errors.append(f"{row['id']} missing concurrency block")
+    if "pull_request_target:" in text:
+        errors.append(f"{row['id']} uses forbidden pull_request_target")
     for item in row.get("permissions", []):
         if item not in text:
             errors.append(f"{row['id']} missing permission {item}")

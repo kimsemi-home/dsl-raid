@@ -96,12 +96,12 @@
     "closure_rules": [
         {
             "id": "github-actions:generated-header",
-            "meaning": "Generated workflows must name their generator.",
+            "meaning": "Generated workflows must name their generator and avoid pull_request_target.",
             "check": "scripts/verificationactionsgen.sh check"
         },
         {
             "id": "github-actions:least-permission",
-            "meaning": "Every workflow declares explicit permissions.",
+            "meaning": "Every workflow declares explicit permissions and concurrency.",
             "check": "scripts/verificationactionsgen.sh check"
         },
         {

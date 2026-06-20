@@ -13,6 +13,7 @@
   (format out "name: Release~%~%")
   (format out "on:~%  push:~%    tags:~%      - 'v*'~%")
   (format out "  workflow_dispatch:~%~%permissions:~%  contents: write~%~%")
+  (format out "concurrency:~%  group: release-${{ github.ref }}~%  cancel-in-progress: true~%~%")
   (format out "jobs:~%  release:~%")
   (format out "    name: Create GitHub release~%")
   (format out "    runs-on: ubuntu-latest~%")

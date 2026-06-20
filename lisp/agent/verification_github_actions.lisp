@@ -23,8 +23,8 @@
      "Release workflow is generated and checked before publishing.")))
 
 (defparameter *verification-github-actions-rules*
-  '(("github-actions:generated-header" "Generated workflows must name their generator.")
-    ("github-actions:least-permission" "Every workflow declares explicit permissions.")
+  '(("github-actions:generated-header" "Generated workflows must name their generator and avoid pull_request_target.")
+    ("github-actions:least-permission" "Every workflow declares explicit permissions and concurrency.")
     ("github-actions:evidence-linked" "Every workflow links generated evidence.")))
 
 (defun emit-verification-github-actions-json (&optional stream)
