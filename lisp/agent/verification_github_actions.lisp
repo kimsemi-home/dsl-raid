@@ -7,10 +7,10 @@
     ("github-actions:golden" ".github/workflows/golden.yml" "generated-golden" t
      "scripts/goldengen.sh" ("contents: read") ("tests/golden/verification-graph.generated.json")
      "Golden workflow is generated from the Lisp SSOT.")
-    ("github-actions:security" ".github/workflows/security.yml" "security-guard" nil
-     "curated" ("contents: read" "security-events: write")
+    ("github-actions:security" ".github/workflows/security.yml" "generated-security" t
+     "scripts/securityworkflowgen.sh" ("contents: read" "security-events: write")
      ("docs/generated/verification-security-audit.json")
-     "Security workflow keeps audit and secret scanning separate.")
+     "Security workflow is generated from the Lisp SSOT.")
     ("github-actions:pages" ".github/workflows/pages.yml" "deploy-guard" nil
      "curated" ("contents: read" "pages: write" "id-token: write")
      ("docs/generated/verification-sidecar.json")

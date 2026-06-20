@@ -29,6 +29,13 @@
             "evidence": "docs/generated/verification-evidence.json"
         },
         {
+            "backend": "github-security",
+            "output": ".github/workflows/security.yml",
+            "generator": "scripts/securityworkflowgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
             "backend": "gitlab-ci",
             "output": ".gitlab-ci.yml",
             "generator": "scripts/gitlabgen.sh",

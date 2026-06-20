@@ -36,9 +36,9 @@
         {
             "id": "github-actions:security",
             "workflow": ".github/workflows/security.yml",
-            "role": "security-guard",
-            "generated": false,
-            "generator": "curated",
+            "role": "generated-security",
+            "generated": true,
+            "generator": "scripts/securityworkflowgen.sh",
             "permissions": [
                 "contents: read",
                 "security-events: write"
@@ -46,7 +46,7 @@
             "evidence": [
                 "docs/generated/verification-security-audit.json"
             ],
-            "meaning": "Security workflow keeps audit and secret scanning separate."
+            "meaning": "Security workflow is generated from the Lisp SSOT."
         },
         {
             "id": "github-actions:pages",

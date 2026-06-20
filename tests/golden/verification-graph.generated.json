@@ -53,6 +53,12 @@
             "generator": "scripts/goldengen.sh"
         },
         {
+            "id": "test:verification.backend.github-security",
+            "subject": ".github/workflows/security.yml",
+            "kind": "generated-backend",
+            "generator": "scripts/securityworkflowgen.sh"
+        },
+        {
             "id": "test:verification.backend.gitlab-ci",
             "subject": ".gitlab-ci.yml",
             "kind": "generated-backend",

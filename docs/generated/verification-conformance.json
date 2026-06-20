@@ -29,6 +29,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.github-security",
+            "subject": ".github/workflows/security.yml",
+            "check": "scripts/securityworkflowgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.gitlab-ci",
             "subject": ".gitlab-ci.yml",
             "check": "scripts/gitlabgen.sh check",

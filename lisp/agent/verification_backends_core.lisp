@@ -4,6 +4,7 @@
   '(("github-actions" ".github/workflows/verification.yml" "scripts/workflowgen.sh")
     ("github-ci" ".github/workflows/ci.yml" "scripts/cigen.sh")
     ("github-golden" ".github/workflows/golden.yml" "scripts/goldengen.sh")
+    ("github-security" ".github/workflows/security.yml" "scripts/securityworkflowgen.sh")
     ("gitlab-ci" ".gitlab-ci.yml" "scripts/gitlabgen.sh")
     ("local-makefile" "Makefile" "scripts/makegen.sh")
     ("bazel" "BUILD.bazel" "scripts/bazelgen.sh")

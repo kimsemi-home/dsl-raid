@@ -48,7 +48,8 @@
             "backends": [
                 "github-actions",
                 "github-ci",
-                "github-golden"
+                "github-golden",
+                "github-security"
             ]
         },
         {
