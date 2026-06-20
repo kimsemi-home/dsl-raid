@@ -3593,6 +3593,7 @@
                                     "source-shape",
                                     "backend-projection",
                                     "actions-hardening",
+                                    "release-pipeline",
                                     "codegen-chain",
                                     "pdca-learning",
                                     "evidence-governance",

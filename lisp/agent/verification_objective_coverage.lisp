@@ -19,6 +19,9 @@
     ("objective:actions-hardening" "actions-hardening" "generated GitHub Actions stay least-privilege and concurrent"
      "gate:github-actions" ("docs/generated/verification-github-actions.json" ".github/workflows/release.yml")
      "Generated workflows declare permissions, concurrency, and forbidden-event guards.")
+    ("objective:release-pipeline" "release-pipeline" "release pipelines are generated, checked, and provenance-bound"
+     "gate:release" ("docs/generated/verification-release-provenance.json" "docs/generated/verification-workflow-lineage.json" ".github/workflows/release.yml")
+     "Release promotion is tag-bound, generated, and backed by lineage evidence.")
     ("objective:codegen-chain" "codegen-chain" "Ontology to executable SSOT to generated artifacts"
      "gate:codegen" ("docs/generated/verification-ontology.json" "docs/generated/verification-codegen.json")
      "Code, docs, schemas, tests, conformance, actions, and releases are mapped.")

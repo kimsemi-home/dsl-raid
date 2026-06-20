@@ -849,7 +849,7 @@
                 "closure_rules"
             ],
             "meaning": "Active objective requirement-to-evidence coverage contract.",
-            "hash": "086c8129f9ed2052a71349f77f804d8d0b3f441b4e9bcc977a1589c86752cca9"
+            "hash": "35d53aa733f32e669e9144d6c95ae9a7ef620cbc3d23c96cec355c90ff4e2200"
         },
         {
             "id": "semantic:learning-loop",

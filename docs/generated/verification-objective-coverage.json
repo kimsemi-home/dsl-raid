@@ -80,6 +80,19 @@
             "meaning": "Generated workflows declare permissions, concurrency, and forbidden-event guards."
         },
         {
+            "id": "objective:release-pipeline",
+            "kind": "release-pipeline",
+            "requirement": "release pipelines are generated, checked, and provenance-bound",
+            "gate": "gate:release",
+            "evidence": [
+                "docs/generated/verification-release-provenance.json",
+                "docs/generated/verification-workflow-lineage.json",
+                ".github/workflows/release.yml"
+            ],
+            "status": "tracked",
+            "meaning": "Release promotion is tag-bound, generated, and backed by lineage evidence."
+        },
+        {
             "id": "objective:codegen-chain",
             "kind": "codegen-chain",
             "requirement": "Ontology to executable SSOT to generated artifacts",
