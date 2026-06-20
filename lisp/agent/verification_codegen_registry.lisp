@@ -43,6 +43,7 @@
     ("run-manifest" ("run-manifest"))
     ("adr-governance" ("adr-governance"))
     ("backend-parity" ("backend-parity"))
+    ("execution-projection" ("execution-projection"))
     ("github-actions-suite" ("github-actions-suite"))
     ("evidence-before-change" ("evidence-before-change"))
     ("incident-learning" ("incident-learning"))

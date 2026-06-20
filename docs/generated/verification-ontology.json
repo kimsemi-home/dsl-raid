@@ -65,6 +65,7 @@
         "run-manifest",
         "adr-governance",
         "backend-parity",
+        "execution-projection",
         "github-actions-suite",
         "evidence-before-change",
         "incident-learning",

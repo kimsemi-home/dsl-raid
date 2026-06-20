@@ -25,4 +25,8 @@
      "External confidence ceiling contract for verification outputs.")
     ("semantic:sidecar" "docs/generated/verification-sidecar.json"
      ("sidecar_profile" "receipts" "closure_rules")
-     "Independent verification sidecar receipt contract.")))
+     "Independent verification sidecar receipt contract.")
+    ("semantic:execution-projection"
+     "docs/generated/verification-execution-projection.json"
+     ("execution_projection_profile" "projections" "closure_rules")
+     "Command-level execution projection parity contract.")))

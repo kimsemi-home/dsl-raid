@@ -257,6 +257,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.execution-projection",
+            "subject": "docs/generated/verification-execution-projection.json",
+            "check": "scripts/verificationprojectiongen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.github-actions-suite",
             "subject": "docs/generated/verification-github-actions.json",
             "check": "scripts/verificationactionsgen.sh check",

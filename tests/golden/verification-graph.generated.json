@@ -281,6 +281,12 @@
             "generator": "scripts/verificationparitygen.sh"
         },
         {
+            "id": "test:verification.backend.execution-projection",
+            "subject": "docs/generated/verification-execution-projection.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationprojectiongen.sh"
+        },
+        {
             "id": "test:verification.backend.github-actions-suite",
             "subject": "docs/generated/verification-github-actions.json",
             "kind": "generated-backend",

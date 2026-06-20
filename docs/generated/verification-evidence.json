@@ -53,6 +53,7 @@
     {"backend": "objective-coverage", "output": "docs/generated/verification-objective-coverage.json", "generator": "scripts/verificationobjectivegen.sh", "check": "scripts/verificationobjectivegen.sh check"},
     {"backend": "adr-governance", "output": "docs/generated/verification-adr-governance.json", "generator": "scripts/verificationadrgen.sh", "check": "scripts/verificationadrgen.sh check"},
     {"backend": "backend-parity", "output": "docs/generated/verification-backend-parity.json", "generator": "scripts/verificationparitygen.sh", "check": "scripts/verificationparitygen.sh check"},
+    {"backend": "execution-projection", "output": "docs/generated/verification-execution-projection.json", "generator": "scripts/verificationprojectiongen.sh", "check": "scripts/verificationprojectiongen.sh check"},
     {"backend": "github-actions-suite", "output": "docs/generated/verification-github-actions.json", "generator": "scripts/verificationactionsgen.sh", "check": "scripts/verificationactionsgen.sh check"},
     {"backend": "release-provenance", "output": "docs/generated/verification-release-provenance.json", "generator": "scripts/verificationreleaseprovenancegen.sh", "check": "scripts/verificationreleaseprovenancegen.sh check"},
     {"backend": "release-check-providers", "output": "scripts/releasecheck", "generator": "scripts/releasecheckgen.sh", "check": "scripts/releasecheckgen.sh check"},

@@ -262,6 +262,12 @@
             ]
         },
         {
+            "axis": "execution-projection",
+            "backends": [
+                "execution-projection"
+            ]
+        },
+        {
             "axis": "github-actions-suite",
             "backends": [
                 "github-actions-suite"

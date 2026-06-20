@@ -19,6 +19,7 @@
     ("objective-coverage" "docs/generated/verification-objective-coverage.json" "scripts/verificationobjectivegen.sh")
     ("adr-governance" "docs/generated/verification-adr-governance.json" "scripts/verificationadrgen.sh")
     ("backend-parity" "docs/generated/verification-backend-parity.json" "scripts/verificationparitygen.sh")
+    ("execution-projection" "docs/generated/verification-execution-projection.json" "scripts/verificationprojectiongen.sh")
     ("github-actions-suite" "docs/generated/verification-github-actions.json" "scripts/verificationactionsgen.sh")
     ("release-provenance" "docs/generated/verification-release-provenance.json" "scripts/verificationreleaseprovenancegen.sh")
     ("release-check-providers" "scripts/releasecheck" "scripts/releasecheckgen.sh")

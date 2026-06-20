@@ -1,0 +1,114 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationprojectiongen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_execution_projection.lisp",
+    "execution_projection_profile": "same-command-projection",
+    "projections": [
+        {
+            "id": "execution-projection:github-actions",
+            "backend": "github-actions",
+            "output": ".github/workflows/verification.yml",
+            "generator": "scripts/workflowgen.sh",
+            "graph_nodes": [
+                "lint",
+                "unit-test",
+                "integration-test",
+                "conformance",
+                "release-check"
+            ],
+            "command_probes": [
+                "bash scripts/check-source-lines.sh",
+                "cargo test --workspace",
+                "npm --prefix apps/viewer run build",
+                "cargo run -p dslraid-cli -- quality",
+                "bash scripts/releasecheck/artifacts.sh"
+            ],
+            "check": "scripts/workflowgen.sh check",
+            "meaning": "GitHub Actions must carry representative graph commands."
+        },
+        {
+            "id": "execution-projection:gitlab-ci",
+            "backend": "gitlab-ci",
+            "output": ".gitlab-ci.yml",
+            "generator": "scripts/gitlabgen.sh",
+            "graph_nodes": [
+                "lint",
+                "unit-test",
+                "integration-test",
+                "conformance",
+                "release-check"
+            ],
+            "command_probes": [
+                "bash scripts/check-source-lines.sh",
+                "cargo test --workspace",
+                "npm --prefix apps/viewer run build",
+                "cargo run -p dslraid-cli -- quality",
+                "bash scripts/releasecheck/artifacts.sh"
+            ],
+            "check": "scripts/gitlabgen.sh check",
+            "meaning": "GitLab CI must carry representative graph commands."
+        },
+        {
+            "id": "execution-projection:local-makefile",
+            "backend": "local-makefile",
+            "output": "Makefile",
+            "generator": "scripts/makegen.sh",
+            "graph_nodes": [
+                "lint",
+                "unit-test",
+                "integration-test",
+                "conformance",
+                "release-check"
+            ],
+            "command_probes": [
+                "bash scripts/check-source-lines.sh",
+                "cargo test --workspace",
+                "npm --prefix apps/viewer run build",
+                "cargo run -p dslraid-cli -- quality",
+                "bash scripts/releasecheck/artifacts.sh"
+            ],
+            "check": "scripts/makegen.sh check",
+            "meaning": "Makefile must carry representative graph commands."
+        },
+        {
+            "id": "execution-projection:bazel",
+            "backend": "bazel",
+            "output": "BUILD.bazel",
+            "generator": "scripts/bazelgen.sh",
+            "graph_nodes": [
+                "lint",
+                "unit-test",
+                "integration-test",
+                "conformance",
+                "release-check"
+            ],
+            "command_probes": [
+                "bash scripts/check-source-lines.sh",
+                "cargo test --workspace",
+                "npm --prefix apps/viewer run build",
+                "cargo run -p dslraid-cli -- quality",
+                "bash scripts/releasecheck/artifacts.sh"
+            ],
+            "check": "scripts/bazelgen.sh check",
+            "meaning": "Bazel must carry representative graph commands."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "execution-projection:commands",
+            "meaning": "Every execution backend must contain representative graph commands.",
+            "check": "scripts/verificationprojectiongen.sh check"
+        },
+        {
+            "id": "execution-projection:nodes",
+            "meaning": "Every execution backend must expose the graph node set.",
+            "check": "scripts/verificationprojectiongen.sh check"
+        },
+        {
+            "id": "execution-projection:generators",
+            "meaning": "Every execution backend must remain generated and checkable.",
+            "check": "scripts/verificationprojectiongen.sh check"
+        }
+    ]
+}
