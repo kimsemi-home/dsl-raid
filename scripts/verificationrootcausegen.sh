@@ -17,36 +17,8 @@ generate() {
 }
 
 validate_root_cause() {
-  python3 - "$repo/$out" "$repo/docs/generated/verification-evidence.json" <<'PY'
-import json, sys
-data, evidence = [json.load(open(path)) for path in sys.argv[1:]]
-outputs = {row["output"] for row in evidence["generated_backends"]}
-statuses = {"candidate-set", "confirmed", "rejected", "closed"}
-errors = []
-for row in data.get("cases", []):
-    if row["status"] not in statuses:
-        errors.append(f"{row['id']} bad status")
-    if not row.get("candidates"):
-        errors.append(f"{row['id']} missing candidates")
-    if not row.get("validation_evidence"):
-        errors.append(f"{row['id']} missing validation evidence")
-    if row["status"] != "confirmed" and row["confidence_ceiling"] == "high":
-        errors.append(f"{row['id']} unconfirmed root cause cannot be high confidence")
-    if row["authority"].startswith("agent:"):
-        errors.append(f"{row['id']} authority cannot be an agent")
-    for field in ("validation_evidence", "evidence"):
-        for item in row.get(field, []):
-            if item not in outputs:
-                errors.append(f"{row['id']} unknown {field} {item}")
-if not data.get("cases"):
-    errors.append("root cause manifest has no cases")
-if not data.get("closure_rules"):
-    errors.append("root cause manifest has no rules")
-if errors:
-    print("\n".join(errors), file=sys.stderr)
-    sys.exit(1)
-print("verification root cause check ok")
-PY
+  PYTHONDONTWRITEBYTECODE=1 python3 "$repo/scripts/lib/root_cause_check.py" \
+    "$repo/$out" "$repo/docs/generated/verification-evidence.json" "$repo"
 }
 
 case "$mode" in
