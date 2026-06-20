@@ -17,35 +17,10 @@ generate() {
 }
 
 validate_release_provenance() {
-  python3 - "$repo/$out" <<'PY'
-import json, os, sys
-data = json.load(open(sys.argv[1]))
-errors, seen = [], set()
-for row in data.get("gates", []):
-    if row["id"] in seen:
-        errors.append(f"duplicate release gate {row['id']}")
-    seen.add(row["id"])
-    if row.get("status") != "required":
-        errors.append(f"{row['id']} must be required")
-    if not os.path.exists(row["workflow"]):
-        errors.append(f"{row['id']} missing workflow")
-        continue
-    text = open(row["workflow"]).read()
-    for item in row.get("requires", []):
-        if item not in text:
-            errors.append(f"{row['id']} missing release requirement {item}")
-    for item in row.get("evidence", []):
-        if not os.path.exists(item):
-            errors.append(f"{row['id']} missing evidence {item}")
-if len(data.get("gates", [])) < 5:
-    errors.append("release provenance needs all promotion gates")
-if not data.get("closure_rules"):
-    errors.append("release provenance manifest has no rules")
-if errors:
-    print("\n".join(errors), file=sys.stderr)
-    sys.exit(1)
-print("verification release provenance check ok")
-PY
+  PYTHONDONTWRITEBYTECODE=1 python3 \
+    "$repo/scripts/lib/release_provenance_check.py" \
+    "$repo/$out" \
+    "$repo/docs/generated/verification-github-actions.json"
 }
 
 case "$mode" in
