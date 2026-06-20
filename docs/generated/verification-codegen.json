@@ -286,6 +286,12 @@
             ]
         },
         {
+            "axis": "learning-loop",
+            "backends": [
+                "learning-loop"
+            ]
+        },
+        {
             "axis": "genesis-charter",
             "backends": [
                 "genesis-charter"

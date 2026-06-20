@@ -2792,7 +2792,8 @@
                                     "codegen-chain",
                                     "pdca-learning",
                                     "actions-receipt",
-                                    "query-lazy-surface"
+                                    "query-lazy-surface",
+                                    "learning-loop"
                                 ]
                             },
                             "requirement": {
@@ -3078,6 +3079,142 @@
                     "minItems": 1,
                     "items": {
                         "$ref": "#/$defs/incident_learning_cycle"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
+                "learning_loop_profile",
+                "stages",
+                "cycles",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationlearninggen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "learning_loop_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "stages": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "id",
+                            "order",
+                            "from",
+                            "to",
+                            "evidence",
+                            "meaning"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "id": {
+                                "$ref": "#/$defs/semantic_ref"
+                            },
+                            "order": {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            "from": {
+                                "type": "string",
+                                "minLength": 1
+                            },
+                            "to": {
+                                "type": "string",
+                                "minLength": 1
+                            },
+                            "evidence": {
+                                "$ref": "#/$defs/strings"
+                            },
+                            "meaning": {
+                                "type": "string",
+                                "minLength": 1
+                            }
+                        }
+                    }
+                },
+                "cycles": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "object",
+                        "required": [
+                            "id",
+                            "trigger",
+                            "incident",
+                            "stages",
+                            "evidence",
+                            "owner",
+                            "knowledge_update",
+                            "revalidation",
+                            "status",
+                            "meaning"
+                        ],
+                        "additionalProperties": false,
+                        "properties": {
+                            "id": {
+                                "$ref": "#/$defs/semantic_ref"
+                            },
+                            "trigger": {
+                                "$ref": "#/$defs/semantic_ref"
+                            },
+                            "incident": {
+                                "$ref": "#/$defs/semantic_ref"
+                            },
+                            "stages": {
+                                "$ref": "#/$defs/strings"
+                            },
+                            "evidence": {
+                                "$ref": "#/$defs/strings"
+                            },
+                            "owner": {
+                                "$ref": "#/$defs/semantic_ref"
+                            },
+                            "knowledge_update": {
+                                "$ref": "#/$defs/semantic_ref"
+                            },
+                            "revalidation": {
+                                "$ref": "#/$defs/semantic_ref"
+                            },
+                            "status": {
+                                "enum": [
+                                    "open",
+                                    "closed",
+                                    "revalidating"
+                                ]
+                            },
+                            "meaning": {
+                                "type": "string",
+                                "minLength": 1
+                            }
+                        }
                     }
                 },
                 "closure_rules": {

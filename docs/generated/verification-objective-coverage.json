@@ -80,6 +80,17 @@
             "meaning": "PDCA and experiments are explicit evidence before policy."
         },
         {
+            "id": "objective:learning-loop",
+            "kind": "learning-loop",
+            "requirement": "mistakes become evidence-backed knowledge updates",
+            "gate": "gate:learning-loop",
+            "evidence": [
+                "docs/generated/verification-learning-loop.json"
+            ],
+            "status": "tracked",
+            "meaning": "Agent Cluster learning is tracked from reality to revalidation."
+        },
+        {
             "id": "objective:remote-actions",
             "kind": "actions-receipt",
             "requirement": "remote GitHub Actions receipt",

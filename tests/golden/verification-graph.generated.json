@@ -311,6 +311,12 @@
             "generator": "scripts/verificationincidentgen.sh"
         },
         {
+            "id": "test:verification.backend.learning-loop",
+            "subject": "docs/generated/verification-learning-loop.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationlearninggen.sh"
+        },
+        {
             "id": "test:verification.backend.genesis-charter",
             "subject": "docs/generated/verification-genesis-charter.json",
             "kind": "generated-backend",

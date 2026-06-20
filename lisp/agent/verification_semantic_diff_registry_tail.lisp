@@ -38,4 +38,6 @@
     ("semantic-diff:objective-coverage" "semantic:objective-coverage"
      "Objective coverage semantic receipt.")
     ("semantic-diff:incompleteness-ledger" "semantic:incompleteness-ledger"
-     "Incompleteness ledger semantic receipt.")))
+     "Incompleteness ledger semantic receipt.")
+    ("semantic-diff:learning-loop" "semantic:learning-loop"
+     "Learning loop semantic receipt.")))

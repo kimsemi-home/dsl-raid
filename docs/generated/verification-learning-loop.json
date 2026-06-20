@@ -1,0 +1,148 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationlearninggen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_learning_loop.lisp",
+    "learning_loop_profile": "reality-to-revalidation",
+    "stages": [
+        {
+            "id": "stage:reality",
+            "order": 1,
+            "from": "runtime-event",
+            "to": "observation",
+            "evidence": [
+                "docs/generated/verification-runtime-trace.json"
+            ],
+            "meaning": "Reality is captured before interpretation."
+        },
+        {
+            "id": "stage:observation",
+            "order": 2,
+            "from": "observation",
+            "to": "evidence",
+            "evidence": [
+                "docs/generated/verification-evidence.json"
+            ],
+            "meaning": "Observed facts become durable evidence."
+        },
+        {
+            "id": "stage:evidence",
+            "order": 3,
+            "from": "evidence",
+            "to": "interpretation",
+            "evidence": [
+                "docs/generated/verification-evidence-separation.json"
+            ],
+            "meaning": "Evidence is separated from claims and interpretations."
+        },
+        {
+            "id": "stage:interpretation",
+            "order": 4,
+            "from": "interpretation",
+            "to": "rulebook",
+            "evidence": [
+                "docs/generated/verification-root-cause.json"
+            ],
+            "meaning": "Interpretation stays bounded until validated."
+        },
+        {
+            "id": "stage:rulebook",
+            "order": 5,
+            "from": "rulebook",
+            "to": "design",
+            "evidence": [
+                "docs/generated/verification-context-map.json"
+            ],
+            "meaning": "Rules and contexts update before implementation."
+        },
+        {
+            "id": "stage:design",
+            "order": 6,
+            "from": "design",
+            "to": "codegen",
+            "evidence": [
+                "docs/generated/verification-ssot-defect.json"
+            ],
+            "meaning": "Design updates name affected SSOT surfaces."
+        },
+        {
+            "id": "stage:codegen",
+            "order": 7,
+            "from": "codegen",
+            "to": "revalidation",
+            "evidence": [
+                "docs/generated/verification-codegen.json",
+                "docs/generated/verification-conformance.json"
+            ],
+            "meaning": "Generated artifacts regain authority only after checks."
+        }
+    ],
+    "cycles": [
+        {
+            "id": "learning:generated-drift",
+            "trigger": "trigger:generated-drift",
+            "incident": "incident:generated-drift-drill",
+            "stages": [
+                "stage:reality",
+                "stage:observation",
+                "stage:evidence",
+                "stage:interpretation",
+                "stage:rulebook",
+                "stage:design",
+                "stage:codegen"
+            ],
+            "evidence": [
+                "docs/generated/verification-incident-learning.json",
+                "docs/generated/verification-semantic-diff.json"
+            ],
+            "owner": "owner:verification",
+            "knowledge_update": "update:generated-freshness-rule",
+            "revalidation": "revalidate:quality-gate",
+            "status": "closed",
+            "meaning": "Generated drift becomes a learning cycle, not an untracked fix."
+        },
+        {
+            "id": "learning:agent-claim",
+            "trigger": "trigger:unchecked-agent-claim",
+            "incident": "incident:claim-confidence-gap",
+            "stages": [
+                "stage:observation",
+                "stage:evidence",
+                "stage:interpretation",
+                "stage:rulebook",
+                "stage:codegen"
+            ],
+            "evidence": [
+                "docs/generated/verification-confidence.json",
+                "docs/generated/verification-actions-receipt.json"
+            ],
+            "owner": "owner:quality",
+            "knowledge_update": "update:confidence-ceiling-rule",
+            "revalidation": "revalidate:actions-receipt",
+            "status": "closed",
+            "meaning": "Agent claims need evidence and external confidence before authority."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "learning-loop:ordered",
+            "meaning": "Learning stages must remain ordered.",
+            "check": "scripts/verificationlearninggen.sh check"
+        },
+        {
+            "id": "learning-loop:evidence-linked",
+            "meaning": "Stages and cycles cite generated evidence.",
+            "check": "scripts/verificationlearninggen.sh check"
+        },
+        {
+            "id": "learning-loop:update-required",
+            "meaning": "Closed cycles name knowledge updates.",
+            "check": "scripts/verificationlearninggen.sh check"
+        },
+        {
+            "id": "learning-loop:owner-required",
+            "meaning": "Cycle ownership is non-agent.",
+            "check": "scripts/verificationlearninggen.sh check"
+        }
+    ]
+}

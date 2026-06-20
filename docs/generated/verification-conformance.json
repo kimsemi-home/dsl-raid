@@ -287,6 +287,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.learning-loop",
+            "subject": "docs/generated/verification-learning-loop.json",
+            "check": "scripts/verificationlearninggen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.genesis-charter",
             "subject": "docs/generated/verification-genesis-charter.json",
             "check": "scripts/verificationgenesisgen.sh check",
