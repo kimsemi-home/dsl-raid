@@ -20,6 +20,7 @@
     ("merge-automation" "docs/generated/verification-merge-automation.json" "scripts/verificationautomergegen.sh")
     ("branch-protection" "docs/generated/verification-branch-protection.json" "scripts/verificationbranchgen.sh")
     ("actions-receipt" "docs/generated/verification-actions-receipt.json" "scripts/verificationreceiptgen.sh")
+    ("merge-receipt" "docs/generated/verification-merge-receipt.json" "scripts/verificationmergereceiptgen.sh")
     ("source-shape" "docs/generated/verification-source-shape.json" "scripts/verificationsourcegen.sh")
     ("objective-coverage" "docs/generated/verification-objective-coverage.json" "scripts/verificationobjectivegen.sh")
     ("adr-governance" "docs/generated/verification-adr-governance.json" "scripts/verificationadrgen.sh")

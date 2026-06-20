@@ -11,6 +11,7 @@
       "bash scripts/verificationautomergegen.sh check"
       "bash scripts/verificationbranchgen.sh check"
       "bash scripts/verificationreceiptgen.sh check"
+      "bash scripts/verificationmergereceiptgen.sh check"
       "bash scripts/verificationsourcegen.sh check"
       "bash scripts/verificationobjectivegen.sh check"
       "bash scripts/verificationadrgen.sh check"

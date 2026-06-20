@@ -351,6 +351,13 @@
             "evidence": "docs/generated/verification-evidence.json"
         },
         {
+            "backend": "merge-receipt",
+            "output": "docs/generated/verification-merge-receipt.json",
+            "generator": "scripts/verificationmergereceiptgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
             "backend": "source-shape",
             "output": "docs/generated/verification-source-shape.json",
             "generator": "scripts/verificationsourcegen.sh",

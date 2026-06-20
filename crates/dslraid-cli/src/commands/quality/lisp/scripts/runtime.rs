@@ -13,6 +13,7 @@ pub(super) const CHECKS: &[&str] = &[
     "scripts/verificationautomergegen.sh",
     "scripts/verificationbranchgen.sh",
     "scripts/verificationreceiptgen.sh",
+    "scripts/verificationmergereceiptgen.sh",
     "scripts/verificationsourcegen.sh",
     "scripts/verificationobjectivegen.sh",
     "scripts/verificationadrgen.sh",

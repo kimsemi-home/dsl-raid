@@ -329,6 +329,12 @@
             "generator": "scripts/verificationreceiptgen.sh"
         },
         {
+            "id": "test:verification.backend.merge-receipt",
+            "subject": "docs/generated/verification-merge-receipt.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationmergereceiptgen.sh"
+        },
+        {
             "id": "test:verification.backend.source-shape",
             "subject": "docs/generated/verification-source-shape.json",
             "kind": "generated-backend",

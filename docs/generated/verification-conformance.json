@@ -305,6 +305,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.merge-receipt",
+            "subject": "docs/generated/verification-merge-receipt.json",
+            "check": "scripts/verificationmergereceiptgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.source-shape",
             "subject": "docs/generated/verification-source-shape.json",
             "check": "scripts/verificationsourcegen.sh check",

@@ -1,6 +1,6 @@
 use super::{Fixture, MANIFEST};
 
-pub(super) fn schemas() -> [Fixture; 10] {
+pub(super) fn schemas() -> [Fixture; 11] {
     [
         (
             MANIFEST,
@@ -30,5 +30,6 @@ pub(super) fn schemas() -> [Fixture; 10] {
             MANIFEST,
             "docs/generated/verification-experiment-decision.json",
         ),
+        (MANIFEST, "docs/generated/verification-merge-receipt.json"),
     ]
 }

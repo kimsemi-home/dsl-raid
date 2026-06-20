@@ -95,7 +95,8 @@
         {
             "axis": "actions-receipt",
             "backends": [
-                "actions-receipt"
+                "actions-receipt",
+                "merge-receipt"
             ]
         },
         {

@@ -14,7 +14,7 @@
     ("merge-readiness" ("merge-readiness"))
     ("merge-automation" ("merge-automation"))
     ("branch-protection" ("branch-protection"))
-    ("actions-receipt" ("actions-receipt"))
+    ("actions-receipt" ("actions-receipt" "merge-receipt"))
     ("source-shape" ("source-shape"))
     ("objective-coverage" ("objective-coverage"))
     ("pdca-evidence" ("pdca-manifest"))

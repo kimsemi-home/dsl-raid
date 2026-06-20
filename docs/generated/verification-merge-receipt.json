@@ -1,0 +1,78 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationmergereceiptgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_merge_receipt.lisp",
+    "merge_receipt_profile": "post-push-closure",
+    "receipts": [
+        {
+            "id": "merge-receipt:head-sync",
+            "kind": "head-sync",
+            "command": "git status -sb",
+            "expected": "## main...origin/main",
+            "evidence": [
+                "docs/generated/verification-actions-receipt.json",
+                "docs/generated/verification-merge-automation.json"
+            ],
+            "fields": [
+                "branch",
+                "headSha",
+                "remote"
+            ],
+            "status": "closed",
+            "meaning": "A pushed merge is complete only when local and remote main agree."
+        },
+        {
+            "id": "merge-receipt:required-workflows",
+            "kind": "required-workflows",
+            "command": "gh run list --repo kimsemi-home/dsl-raid --branch main --limit 6",
+            "expected": "CI, Security, Golden, Pages, and Verification Graph success",
+            "evidence": [
+                "docs/generated/verification-actions-receipt.json",
+                "docs/generated/verification-github-actions.json"
+            ],
+            "fields": [
+                "name",
+                "headSha",
+                "status",
+                "conclusion",
+                "url"
+            ],
+            "status": "closed",
+            "meaning": "Remote completion must cover every generated required workflow."
+        },
+        {
+            "id": "merge-receipt:pages-health",
+            "kind": "pages-health",
+            "command": "curl -L -s -o /tmp/dslraid-pages.html -w '%{http_code}' https://kimsemi-home.github.io/dsl-raid/",
+            "expected": "200",
+            "evidence": [
+                "docs/generated/verification-actions-receipt.json",
+                ".github/workflows/pages.yml"
+            ],
+            "fields": [
+                "url",
+                "http_status"
+            ],
+            "status": "closed",
+            "meaning": "Published viewer health closes the post-push receipt."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "merge-receipt:closed",
+            "meaning": "Every post-push receipt must close.",
+            "check": "scripts/verificationmergereceiptgen.sh check"
+        },
+        {
+            "id": "merge-receipt:evidence-linked",
+            "meaning": "Every receipt cites generated evidence.",
+            "check": "scripts/verificationmergereceiptgen.sh check"
+        },
+        {
+            "id": "merge-receipt:required-workflows",
+            "meaning": "Workflow receipts must cover required jobs.",
+            "check": "scripts/verificationmergereceiptgen.sh check"
+        }
+    ]
+}

@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "166d26937eb4be83cc1b8f9b4acba2e7a85124c8bfea1963241cc756a183bbee"
+            "hash": "8106026030edf37ee25603f325a47bb623a6f83f72d185ecf9203bc4c06b74e7"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "8c6ed3a04e04b738a542dcd04679395ccdb04676eb708ef78dd9432b106cdd29"
+            "hash": "0c586975dd088f88ad4f6ec858c822737eea9175915edcf8175a0750fe1b0954"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "3eec92d732057f2601670624b50903167cdcb65e890c6d673f3c6959880e6e70"
+            "hash": "c267f06cede46c9127e17764489ae16780bd7a9f578ab72cf6da4ddac8e31406"
         },
         {
             "id": "semantic:authority",
@@ -97,7 +97,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "6e4ffcc2343a0be93ea73ca08052c6530f467e4b4f306c6ccb9449eb6285ed86"
+            "hash": "d4f632aa865ef0d09a59123856a99350d7e07ca3e9702bbea3bd1d164fd35314"
         },
         {
             "id": "semantic:lease",
@@ -849,7 +849,7 @@
                 "closure_rules"
             ],
             "meaning": "Generated backend to quality gate closure contract.",
-            "hash": "2e6c6d916b8eae6c61ee87b1d1f810021b5653b7ad2791a30cd4b60c2cfd7fc5"
+            "hash": "de78fd0599556316427fa822de2856918eca8c2b2ea57c1bd36a1e44f696d611"
         },
         {
             "id": "semantic:precommit-closure",
@@ -862,6 +862,17 @@
             ],
             "meaning": "Local pre-commit hook quality gate closure contract.",
             "hash": "1b24b67af599cd702536f3339f73459d025a9cb77cd9688156aaa983f6d7b8dc"
+        },
+        {
+            "id": "semantic:merge-receipt",
+            "source": "docs/generated/verification-merge-receipt.json",
+            "fields": [
+                "merge_receipt_profile",
+                "receipts",
+                "closure_rules"
+            ],
+            "meaning": "Post-push branch sync, workflow, and Pages closure receipt contract.",
+            "hash": "06d921a7af242aa874e9c02843e31f56e1f8dfc4580cb073d9b519846f099311"
         }
     ],
     "closure_rules": [

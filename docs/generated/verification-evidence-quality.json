@@ -654,6 +654,18 @@
             "meaning": "Confidence decision evidence is suitable when gates close confidence changes."
         },
         {
+            "id": "evidence-quality:merge-receipt",
+            "target": "docs/generated/verification-merge-receipt.json",
+            "quality": "high",
+            "purpose": "merge-receipt",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "receipts",
+                "closure_rules"
+            ],
+            "meaning": "Merge receipt evidence is suitable when post-push verdicts are explicit."
+        },
+        {
             "id": "evidence-quality:merge-readiness",
             "target": "docs/generated/verification-merge-readiness.json",
             "quality": "high",

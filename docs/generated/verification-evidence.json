@@ -61,6 +61,7 @@
     {"backend": "merge-automation", "output": "docs/generated/verification-merge-automation.json", "generator": "scripts/verificationautomergegen.sh", "check": "scripts/verificationautomergegen.sh check"},
     {"backend": "branch-protection", "output": "docs/generated/verification-branch-protection.json", "generator": "scripts/verificationbranchgen.sh", "check": "scripts/verificationbranchgen.sh check"},
     {"backend": "actions-receipt", "output": "docs/generated/verification-actions-receipt.json", "generator": "scripts/verificationreceiptgen.sh", "check": "scripts/verificationreceiptgen.sh check"},
+    {"backend": "merge-receipt", "output": "docs/generated/verification-merge-receipt.json", "generator": "scripts/verificationmergereceiptgen.sh", "check": "scripts/verificationmergereceiptgen.sh check"},
     {"backend": "source-shape", "output": "docs/generated/verification-source-shape.json", "generator": "scripts/verificationsourcegen.sh", "check": "scripts/verificationsourcegen.sh check"},
     {"backend": "objective-coverage", "output": "docs/generated/verification-objective-coverage.json", "generator": "scripts/verificationobjectivegen.sh", "check": "scripts/verificationobjectivegen.sh check"},
     {"backend": "adr-governance", "output": "docs/generated/verification-adr-governance.json", "generator": "scripts/verificationadrgen.sh", "check": "scripts/verificationadrgen.sh check"},
