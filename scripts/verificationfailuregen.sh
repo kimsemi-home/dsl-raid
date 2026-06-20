@@ -17,38 +17,8 @@ generate() {
 }
 
 validate_failure() {
-  python3 - "$repo/$out" "$repo/docs/generated/verification-evidence.json" <<'PY'
-import json, sys
-data, evidence = [json.load(open(path)) for path in sys.argv[1:]]
-outputs = {row["output"] for row in evidence["generated_backends"]}
-domains = {"ontology", "confidence", "reviewer", "control-plane", "lease", "translation", "evidence-quality", "feedback"}
-severities, errors, seen = {"error", "warning", "info"}, [], set()
-for row in data.get("conditions", []):
-    if row["id"] in seen:
-        errors.append(f"duplicate condition {row['id']}")
-    seen.add(row["id"])
-    if row["domain"] not in domains:
-        errors.append(f"{row['id']} bad domain")
-    if row["severity"] not in severities:
-        errors.append(f"{row['id']} bad severity")
-    if not row.get("blocks"):
-        errors.append(f"{row['id']} missing blocks")
-    if row["owner"].startswith("agent:"):
-        errors.append(f"{row['id']} owner cannot be an agent")
-    if not row["response"].startswith("response:"):
-        errors.append(f"{row['id']} missing response")
-    for item in row.get("evidence", []):
-        if item not in outputs:
-            errors.append(f"{row['id']} unknown evidence {item}")
-if not data.get("conditions"):
-    errors.append("failure manifest has no conditions")
-if not data.get("closure_rules"):
-    errors.append("failure manifest has no rules")
-if errors:
-    print("\n".join(errors), file=sys.stderr)
-    sys.exit(1)
-print("verification failure conditions check ok")
-PY
+  PYTHONDONTWRITEBYTECODE=1 python3 "$repo/scripts/lib/failure_check.py" \
+    "$repo/$out" "$repo/docs/generated/verification-evidence.json" "$repo"
 }
 
 case "$mode" in
