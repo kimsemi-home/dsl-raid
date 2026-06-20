@@ -17,7 +17,7 @@ generate() {
 }
 
 validate_objective_coverage() {
-  python3 "$script_dir/lib/objective_coverage_check.py" "$repo/$out"
+  PYTHONDONTWRITEBYTECODE=1 python3 "$script_dir/lib/objective_coverage_check.py" "$repo/$out"
 }
 
 case "$mode" in
