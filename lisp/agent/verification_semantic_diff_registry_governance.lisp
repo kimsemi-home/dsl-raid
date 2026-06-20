@@ -13,6 +13,8 @@
      "Evidence quality semantic receipt.")
     ("semantic-diff:lease" "semantic:lease"
      "Lease and abort semantic receipt.")
+    ("semantic-diff:abort-evidence" "semantic:abort-evidence"
+     "Abort evidence bundle semantic receipt.")
     ("semantic-diff:review-capacity" "semantic:review-capacity"
      "Review capacity semantic receipt.")
     ("semantic-diff:feedback-closure" "semantic:feedback-closure"

@@ -149,6 +149,12 @@
             "status": "required"
         },
         {
+            "id": "conformance:backend.abort-evidence",
+            "subject": "docs/generated/verification-abort-evidence.json",
+            "check": "scripts/verificationabortgen.sh check",
+            "status": "required"
+        },
+        {
             "id": "conformance:backend.review-capacity",
             "subject": "docs/generated/verification-review-capacity.json",
             "check": "scripts/verificationreviewgen.sh check",

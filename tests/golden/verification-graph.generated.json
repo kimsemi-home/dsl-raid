@@ -173,6 +173,12 @@
             "generator": "scripts/verificationleasegen.sh"
         },
         {
+            "id": "test:verification.backend.abort-evidence",
+            "subject": "docs/generated/verification-abort-evidence.json",
+            "kind": "generated-backend",
+            "generator": "scripts/verificationabortgen.sh"
+        },
+        {
             "id": "test:verification.backend.review-capacity",
             "subject": "docs/generated/verification-review-capacity.json",
             "kind": "generated-backend",

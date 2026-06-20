@@ -1222,6 +1222,51 @@
                 "generated_by",
                 "subject",
                 "source",
+                "abort_profile",
+                "bundles",
+                "closure_rules"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "manifest_version": {
+                    "$ref": "#/$defs/semver"
+                },
+                "generated_by": {
+                    "const": "scripts/verificationabortgen.sh"
+                },
+                "subject": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "source": {
+                    "$ref": "#/$defs/path"
+                },
+                "abort_profile": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "bundles": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/abort_evidence_bundle"
+                    }
+                },
+                "closure_rules": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/rule"
+                    }
+                }
+            }
+        },
+        {
+            "type": "object",
+            "required": [
+                "manifest_version",
+                "generated_by",
+                "subject",
+                "source",
                 "root_cause_profile",
                 "cases",
                 "closure_rules"
@@ -6616,6 +6661,55 @@
                         "closed",
                         "revalidating"
                     ]
+                },
+                "meaning": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "abort_evidence_bundle": {
+            "type": "object",
+            "required": [
+                "id",
+                "lease",
+                "decision",
+                "bundle",
+                "classified_artifacts",
+                "recheck_claims",
+                "evidence_update",
+                "authority_effect",
+                "evidence",
+                "meaning"
+            ],
+            "additionalProperties": false,
+            "properties": {
+                "id": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "lease": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "decision": {
+                    "const": "decision:abort"
+                },
+                "bundle": {
+                    "$ref": "#/$defs/semantic_ref"
+                },
+                "classified_artifacts": {
+                    "$ref": "#/$defs/strings"
+                },
+                "recheck_claims": {
+                    "$ref": "#/$defs/strings"
+                },
+                "evidence_update": {
+                    "$ref": "#/$defs/path"
+                },
+                "authority_effect": {
+                    "const": "commit-blocked"
+                },
+                "evidence": {
+                    "$ref": "#/$defs/strings"
                 },
                 "meaning": {
                     "type": "string",

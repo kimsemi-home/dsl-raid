@@ -169,6 +169,13 @@
             "evidence": "docs/generated/verification-evidence.json"
         },
         {
+            "backend": "abort-evidence",
+            "output": "docs/generated/verification-abort-evidence.json",
+            "generator": "scripts/verificationabortgen.sh",
+            "quality_gate": "dslraid-cli quality",
+            "evidence": "docs/generated/verification-evidence.json"
+        },
+        {
             "backend": "review-capacity",
             "output": "docs/generated/verification-review-capacity.json",
             "generator": "scripts/verificationreviewgen.sh",

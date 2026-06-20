@@ -582,6 +582,18 @@
             "meaning": "Governed compiler evidence is suitable when candidate output is gated."
         },
         {
+            "id": "evidence-quality:abort-evidence",
+            "target": "docs/generated/verification-abort-evidence.json",
+            "quality": "high",
+            "purpose": "abort-evidence",
+            "assessed_by": "gate:evidence-quality",
+            "signals": [
+                "bundles",
+                "closure_rules"
+            ],
+            "meaning": "Abort evidence is suitable when stopped work keeps evidence and rechecks claims."
+        },
+        {
             "id": "evidence-quality:merge-readiness",
             "target": "docs/generated/verification-merge-readiness.json",
             "quality": "high",

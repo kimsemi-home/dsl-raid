@@ -45,7 +45,7 @@
     ("backup-steward" "Missing or overloaded owner" "Temporary steward, forbidden actions, and review-back" "Backup authority keeps work moving without becoming permanent ownership.")
     ("revalidation-gate" "Knowledge freshness boundary" "Status, owner, blocked actions, and allowed work" "Revalidation date is an authority gate, not a reminder.")
     ("evidence-separation" "Raw evidence, interpretation, claim, artifact" "Separated evidence chain" "Observed facts, meaning, claims, and artifacts must not collapse into one object.")
-    ("lease-and-abort" "Agent work lease" "Finished, rebase, abort, or escalate state" "Abort blocks authority; it never deletes evidence.")
+    ("lease-and-abort" "Agent work lease" "Lease state and abort evidence bundle" "Abort blocks authority; it never deletes evidence.")
     ("quarantine" "Suspicious output or tool behavior" "Isolated evidence bundle" "Quarantine blocks artifact commit, confidence increase, and automatic approval.")
     ("loss-ledger" "Cross-context translation" "Recorded semantic loss" "Lossy translation must declare what was lost; forbidden loss blocks promotion.")
     ("translation-verifier" "Context translation" "Independent loss-ledger verification" "Translations promote only after loss policy and generated evidence are checked.")

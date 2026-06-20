@@ -1,10 +1,11 @@
 use super::{Fixture, MANIFEST};
 
-pub(super) fn schemas() -> [Fixture; 21] {
+pub(super) fn schemas() -> [Fixture; 22] {
     [
         (MANIFEST, "docs/generated/verification-review-capacity.json"),
         (MANIFEST, "docs/generated/verification-feedback.json"),
         (MANIFEST, "docs/generated/verification-quarantine.json"),
+        (MANIFEST, "docs/generated/verification-abort-evidence.json"),
         (MANIFEST, "docs/generated/verification-confidence.json"),
         (MANIFEST, "docs/generated/verification-sidecar.json"),
         (MANIFEST, "docs/generated/verification-orchestration.json"),

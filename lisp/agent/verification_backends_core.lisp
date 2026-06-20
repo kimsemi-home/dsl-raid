@@ -24,6 +24,7 @@
     ("adversarial-review" "docs/generated/verification-adversarial-review.json" "scripts/verificationadversarialgen.sh")
     ("evidence-quality" "docs/generated/verification-evidence-quality.json" "scripts/verificationevidencequalitygen.sh")
     ("lease-manifest" "docs/generated/verification-lease.json" "scripts/verificationleasegen.sh")
+    ("abort-evidence" "docs/generated/verification-abort-evidence.json" "scripts/verificationabortgen.sh")
     ("review-capacity" "docs/generated/verification-review-capacity.json" "scripts/verificationreviewgen.sh")
     ("feedback-closure" "docs/generated/verification-feedback.json" "scripts/verificationfeedbackgen.sh")
     ("quarantine-manifest" "docs/generated/verification-quarantine.json" "scripts/verificationquarantinegen.sh")

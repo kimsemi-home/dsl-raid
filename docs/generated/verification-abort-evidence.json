@@ -1,0 +1,72 @@
+{
+    "manifest_version": "0.1.0",
+    "generated_by": "scripts/verificationabortgen.sh",
+    "subject": "verify:daemon",
+    "source": "lisp/agent/verification_abort_evidence.lisp",
+    "abort_profile": "evidence-retaining-stop",
+    "bundles": [
+        {
+            "id": "abort:lease-timeout",
+            "lease": "lease:verification-daemon",
+            "decision": "decision:abort",
+            "bundle": "bundle:evidence-retained",
+            "classified_artifacts": [
+                "docs/generated/verification-evidence.json",
+                "docs/generated/verification-quality-closure.json"
+            ],
+            "recheck_claims": [
+                "claim:fresh-artifacts",
+                "claim:quality-gate"
+            ],
+            "evidence_update": "docs/generated/verification-evidence.json",
+            "authority_effect": "commit-blocked",
+            "evidence": [
+                "docs/generated/verification-lease.json",
+                "docs/generated/verification-conformance.json"
+            ],
+            "meaning": "Expired work keeps evidence and rechecks affected claims."
+        },
+        {
+            "id": "abort:stale-artifact",
+            "lease": "lease:release-check",
+            "decision": "decision:abort",
+            "bundle": "bundle:artifact-classified",
+            "classified_artifacts": [
+                "generated/runtime_fsm.rs",
+                "generated/runtime_fsm.go"
+            ],
+            "recheck_claims": [
+                "claim:artifact-freshness"
+            ],
+            "evidence_update": "docs/generated/verification-evidence.json",
+            "authority_effect": "commit-blocked",
+            "evidence": [
+                "examples/runscope/runscope.lock.json",
+                "docs/generated/verification-release-provenance.json"
+            ],
+            "meaning": "Stale generated artifacts are classified before retry."
+        }
+    ],
+    "closure_rules": [
+        {
+            "id": "abort-evidence:bundle-required",
+            "meaning": "Abort creates an evidence bundle.",
+            "check": "scripts/verificationabortgen.sh check"
+        },
+        {
+            "id": "abort-evidence:artifact-classified",
+            "meaning": "Intermediate artifacts are classified.",
+            "check": "scripts/verificationabortgen.sh check"
+        },
+        {
+            "id": "abort-evidence:claim-recheck",
+            "meaning": "Affected claims are rechecked before retry.",
+            "check": "scripts/verificationabortgen.sh check"
+        },
+        {
+            "id": "abort-evidence:memory-retained",
+            "meaning": "Abort blocks commit but keeps memory.",
+            "check": "scripts/verificationabortgen.sh check"
+        }
+    ]
+}

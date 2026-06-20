@@ -35,6 +35,7 @@
     {"backend": "adversarial-review", "output": "docs/generated/verification-adversarial-review.json", "generator": "scripts/verificationadversarialgen.sh", "check": "scripts/verificationadversarialgen.sh check"},
     {"backend": "evidence-quality", "output": "docs/generated/verification-evidence-quality.json", "generator": "scripts/verificationevidencequalitygen.sh", "check": "scripts/verificationevidencequalitygen.sh check"},
     {"backend": "lease-manifest", "output": "docs/generated/verification-lease.json", "generator": "scripts/verificationleasegen.sh", "check": "scripts/verificationleasegen.sh check"},
+    {"backend": "abort-evidence", "output": "docs/generated/verification-abort-evidence.json", "generator": "scripts/verificationabortgen.sh", "check": "scripts/verificationabortgen.sh check"},
     {"backend": "review-capacity", "output": "docs/generated/verification-review-capacity.json", "generator": "scripts/verificationreviewgen.sh", "check": "scripts/verificationreviewgen.sh check"},
     {"backend": "feedback-closure", "output": "docs/generated/verification-feedback.json", "generator": "scripts/verificationfeedbackgen.sh", "check": "scripts/verificationfeedbackgen.sh check"},
     {"backend": "quarantine-manifest", "output": "docs/generated/verification-quarantine.json", "generator": "scripts/verificationquarantinegen.sh", "check": "scripts/verificationquarantinegen.sh check"},

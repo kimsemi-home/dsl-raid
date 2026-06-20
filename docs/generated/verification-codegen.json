@@ -184,7 +184,8 @@
         {
             "axis": "lease-and-abort",
             "backends": [
-                "lease-manifest"
+                "lease-manifest",
+                "abort-evidence"
             ]
         },
         {

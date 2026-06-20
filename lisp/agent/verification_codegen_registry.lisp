@@ -29,7 +29,7 @@
     ("cross-agent-agreement" ("agreement-manifest"))
     ("adversarial-review" ("adversarial-review"))
     ("evidence-quality" ("evidence-quality"))
-    ("lease-and-abort" ("lease-manifest"))
+    ("lease-and-abort" ("lease-manifest" "abort-evidence"))
     ("review-capacity" ("review-capacity"))
     ("feedback-closure" ("feedback-closure"))
     ("quarantine" ("quarantine-manifest"))

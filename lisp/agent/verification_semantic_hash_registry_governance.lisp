@@ -11,6 +11,9 @@
     ("semantic:lease" "docs/generated/verification-lease.json"
      ("lease_profile" "leases" "abort_rules" "closure_rules")
      "Lease and abort authority boundary for verification work.")
+    ("semantic:abort-evidence" "docs/generated/verification-abort-evidence.json"
+     ("abort_profile" "bundles" "closure_rules")
+     "Abort evidence bundle and retained-memory contract.")
     ("semantic:review-capacity" "docs/generated/verification-review-capacity.json"
      ("review_capacity_profile" "queues" "overload_rules" "closure_rules")
      "Review capacity and overload freeze boundary for verification work.")

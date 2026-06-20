@@ -15,7 +15,7 @@
                 "generated_backends"
             ],
             "meaning": "Verification graph shape and generated backend contract.",
-            "hash": "b661ab656aed5e1260de17aebd4cb680f55ca327113f64bb878eae91c04209d6"
+            "hash": "e931e77a79cf594335b5bdfa0a50f301c930c6ca376a4083d70e39b1fc259de0"
         },
         {
             "id": "semantic:codegen-map",
@@ -24,7 +24,7 @@
                 "axes"
             ],
             "meaning": "Ontology codegen axes mapped to generated backends.",
-            "hash": "9e9ed0709d41190c7d5a0274b4f2ea0046ff1234f38a9145a99c98941d9a5f07"
+            "hash": "c465210144b7f9f884844bcba1462c06798b4c9fafffdaa5de036e87d240a9f0"
         },
         {
             "id": "semantic:loss-ledger",
@@ -42,7 +42,7 @@
                 "rules"
             ],
             "meaning": "Required checks for generated backend freshness.",
-            "hash": "d60fc6a9532a469d7c00edd4b6976f7f50f892cea11607ade3e9d9e51eb5c7ba"
+            "hash": "9d0292c7904286cfeb0f57c046f8ca95549cc5cbfa8bb5172ec493275b18f921"
         },
         {
             "id": "semantic:authority",
@@ -97,7 +97,7 @@
                 "closure_rules"
             ],
             "meaning": "Evidence quality review contract for generated verification evidence.",
-            "hash": "22c62a4cddbffa62ae90740366642e85f34d6250344e1aec369b85d83351718b"
+            "hash": "4b8c4a90438833a26f718ed8af081cf600ffed010658b32f5d03a846b0d71c8c"
         },
         {
             "id": "semantic:lease",
@@ -110,6 +110,17 @@
             ],
             "meaning": "Lease and abort authority boundary for verification work.",
             "hash": "d765d08d382738466a0d242bdc3e7d09f0e41d75f85963d2c6200dccf6b97c7f"
+        },
+        {
+            "id": "semantic:abort-evidence",
+            "source": "docs/generated/verification-abort-evidence.json",
+            "fields": [
+                "abort_profile",
+                "bundles",
+                "closure_rules"
+            ],
+            "meaning": "Abort evidence bundle and retained-memory contract.",
+            "hash": "f0ba0c52edcd9fb0e92be3bc1ed1de7914128aee0e5e8cc5ee397dbc03964011"
         },
         {
             "id": "semantic:review-capacity",
@@ -782,7 +793,7 @@
                 "closure_rules"
             ],
             "meaning": "Generated backend to quality gate closure contract.",
-            "hash": "948a1d1f21ffba6078c0037243b19e2264c7b02fe114f07c40252bbf649fdff3"
+            "hash": "0e816ec6bc6f4a26269ec694caa84c76f44ecf27836d92eef3078853108b142f"
         },
         {
             "id": "semantic:precommit-closure",
