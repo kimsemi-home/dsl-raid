@@ -4,9 +4,9 @@
   '(("github-actions:ci" ".github/workflows/ci.yml" "core-guard" nil
      "curated" ("contents: read") ("docs/generated/verification-conformance.json")
      "CI guards lint, quality, and ownership checks.")
-    ("github-actions:golden" ".github/workflows/golden.yml" "golden-guard" nil
-     "curated" ("contents: read") ("tests/golden/verification-graph.generated.json")
-     "Golden workflow protects deterministic generated outputs.")
+    ("github-actions:golden" ".github/workflows/golden.yml" "generated-golden" t
+     "scripts/goldengen.sh" ("contents: read") ("tests/golden/verification-graph.generated.json")
+     "Golden workflow is generated from the Lisp SSOT.")
     ("github-actions:security" ".github/workflows/security.yml" "security-guard" nil
      "curated" ("contents: read" "security-events: write")
      ("docs/generated/verification-security-audit.json")

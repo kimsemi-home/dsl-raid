@@ -226,8 +226,8 @@
             "id": "semantic-diff:github-actions-suite",
             "hash_id": "semantic:github-actions-suite",
             "summary": "GitHub Actions suite semantic receipt.",
-            "base_hash": "b2f811e210388a1ce9fa44c2298baecca1f27333b118e10c87c1cdc63bd9dfdd",
-            "head_hash": "b2f811e210388a1ce9fa44c2298baecca1f27333b118e10c87c1cdc63bd9dfdd",
+            "base_hash": "56d6aa1b842fde0f59deba6b4f6f9b93582788c10d4852c54237084883570389",
+            "head_hash": "56d6aa1b842fde0f59deba6b4f6f9b93582788c10d4852c54237084883570389",
             "status": "unchanged",
             "evidence": "docs/generated/verification-semantic-hash.json"
         },

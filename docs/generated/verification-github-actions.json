@@ -22,16 +22,16 @@
         {
             "id": "github-actions:golden",
             "workflow": ".github/workflows/golden.yml",
-            "role": "golden-guard",
-            "generated": false,
-            "generator": "curated",
+            "role": "generated-golden",
+            "generated": true,
+            "generator": "scripts/goldengen.sh",
             "permissions": [
                 "contents: read"
             ],
             "evidence": [
                 "tests/golden/verification-graph.generated.json"
             ],
-            "meaning": "Golden workflow protects deterministic generated outputs."
+            "meaning": "Golden workflow is generated from the Lisp SSOT."
         },
         {
             "id": "github-actions:security",

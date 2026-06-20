@@ -14,7 +14,7 @@
     ((:file "package") (:file "principles") (:file "markdown")
      (:file "verification_release_checks_core") (:file "verification_release_checks_governance") (:file "verification_release_checks_runtime") (:file "verification_release_checks_ssot") (:file "verification_release_checks_artifacts") (:file "verification_release_checks") (:file "verification") (:file "verification_backends_core") (:file "verification_backends_tail") (:file "verification_backends") (:file "verification_accessors")
      (:file "verification_markdown")
-     (:file "verification_workflow_names") (:file "verification_workflow") (:file "verification_gitlab")
+     (:file "verification_workflow_names") (:file "verification_workflow") (:file "verification_golden_workflow") (:file "verification_gitlab")
      (:file "verification_makefile") (:file "verification_bazel")
      (:file "verification_release") (:file "verification_ontology") (:file "verification_codegen_registry") (:file "verification_codegen")
      (:file "verification_privacy") (:file "verification_pdca")

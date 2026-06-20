@@ -275,7 +275,7 @@
                 "closure_rules"
             ],
             "meaning": "GitHub Actions workflow ownership and permission contract.",
-            "hash": "b2f811e210388a1ce9fa44c2298baecca1f27333b118e10c87c1cdc63bd9dfdd"
+            "hash": "56d6aa1b842fde0f59deba6b4f6f9b93582788c10d4852c54237084883570389"
         },
         {
             "id": "semantic:release-provenance",
