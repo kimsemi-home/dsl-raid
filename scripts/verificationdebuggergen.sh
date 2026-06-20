@@ -17,44 +17,9 @@ generate() {
 }
 
 validate_debugger() {
-  python3 - "$repo/$out" "$repo/docs/generated/verification-evidence.json" <<'PY'
-import json, sys
-data, evidence = [json.load(open(path)) for path in sys.argv[1:]]
-outputs = {row["output"] for row in evidence["generated_backends"]}
-errors, seen = [], set()
-for row in data.get("sessions", []):
-    if row["id"] in seen:
-        errors.append(f"duplicate session {row['id']}")
-    seen.add(row["id"])
-    if not row.get("inputs"):
-        errors.append(f"{row['id']} missing inputs")
-    if not row.get("possible_causes"):
-        errors.append(f"{row['id']} missing possible causes")
-    if not row.get("required_verification"):
-        errors.append(f"{row['id']} missing verification")
-    if row.get("evidence_quality_risk") not in {"low", "medium", "high"}:
-        errors.append(f"{row['id']} bad evidence quality risk")
-    if row.get("confidence_ceiling") not in {"low", "medium", "high"}:
-        errors.append(f"{row['id']} bad confidence ceiling")
-    if row.get("missing_evidence") and row["confidence_ceiling"] == "high":
-        errors.append(f"{row['id']} missing evidence cannot permit high confidence")
-    if row.get("escalation") not in {"none", "review", "authority-gate"}:
-        errors.append(f"{row['id']} bad escalation")
-    if row.get("evidence_quality_risk") != "low" and row["escalation"] == "none":
-        errors.append(f"{row['id']} risk requires escalation")
-    for field in ("inputs", "required_verification", "evidence"):
-        for item in row.get(field, []):
-            if item not in outputs:
-                errors.append(f"{row['id']} unknown {field} {item}")
-if not data.get("sessions"):
-    errors.append("semantic debugger manifest has no sessions")
-if not data.get("closure_rules"):
-    errors.append("semantic debugger manifest has no rules")
-if errors:
-    print("\n".join(errors), file=sys.stderr)
-    sys.exit(1)
-print("verification semantic debugger check ok")
-PY
+  PYTHONDONTWRITEBYTECODE=1 python3 \
+    "$repo/scripts/lib/semantic_debugger_check.py" \
+    "$repo/$out" "$repo/docs/generated/verification-evidence.json"
 }
 
 case "$mode" in
