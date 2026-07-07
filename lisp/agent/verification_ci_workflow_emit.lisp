@@ -13,4 +13,5 @@
   (write-ci-source-shape-job out)
   (write-ci-lisp-job out)
   (write-ci-dslraid-job out)
-  (write-ci-viewer-job out))
+  (write-ci-viewer-job out)
+  (write-ci-flutter-viewer-job out))

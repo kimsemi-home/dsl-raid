@@ -58,6 +58,7 @@ related policies.
   code generation backends, runtime tooling, and CLI workflows
 - TypeScript for the web application shell
 - Canvas 2D for the interactive graph viewport
+- Flutter 3.44 stable plus `shadcn_ui` for the parallel Graph IDE shell pilot
 - WASM, WebGL, ELK, and Graphviz remain later expansion points
 
 ## Repository Map
@@ -74,6 +75,8 @@ design contracts.
 - `generated`: checked example backend artifacts generated from Canonical IR
 - `apps/viewer`: TypeScript Canvas viewer with search, hit-testing, inspector,
   and diagnostics panels
+- `apps/viewer_flutter`: Flutter shadcn Graph IDE shell pilot over the same
+  projected ViewModel boundary
 - `lisp`: Common Lisp SSOT forms, expansion, language conformance, and
   deterministic Canonical IR emitters
 
@@ -84,6 +87,9 @@ design contracts.
 - [Validation Proposition Catalog](docs/validation.md)
 - [Traceability and Runtime Evidence](docs/traceability-runtime.md)
 - [Viewer Architecture](docs/viewer-architecture.md)
+- [Flutter Viewer Strategy](docs/flutter-viewer-strategy.md)
+- [ViewModel UI Contract](docs/viewmodel-ui-contract.md)
+- [Graph IDE Tokens](docs/graph-ide-tokens.md)
 - [Viewer Rendering Guide](docs/viewer-rendering.md)
 - [Refactoring Guide](docs/refactoring.md)
 - [Operational Product Contracts](docs/operational-contracts.md)
@@ -172,3 +178,21 @@ npm run build
 The viewer loads `public/examples/runscope.raid.json` and
 `public/examples/run-001.coverage.json` when the Pages workflow renders example
 assets, and falls back to an embedded RunScope sample during local development.
+
+## Flutter Viewer Pilot
+
+```bash
+cd apps/viewer_flutter
+flutter analyze
+flutter test
+flutter build web
+```
+
+The Flutter pilot uses `shadcn_ui` and a CustomPainter graph viewport while the
+TypeScript viewer remains the production shell. Its sample data lives in
+`apps/viewer_flutter/assets/view_model_sample.json`, is loaded through
+`lib/view_model_loader.dart`, and can be checked from the repo root with:
+
+```bash
+cargo run -p dslraid-cli -- schema validate schemas/dslraid-view.schema.json apps/viewer_flutter/assets/view_model_sample.json
+```

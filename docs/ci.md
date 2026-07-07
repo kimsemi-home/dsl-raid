@@ -52,6 +52,7 @@ Once the Rust workspace and viewer exist, required checks should be:
 - `dslraid project --visibility public` leak fixture
 - golden check
 - viewer lint, test, build
+- Flutter viewer pilot analyze, test, and web build
 - security audit
 - secret scan
 

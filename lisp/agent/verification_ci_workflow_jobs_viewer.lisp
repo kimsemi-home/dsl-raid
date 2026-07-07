@@ -22,6 +22,28 @@
      "      - name: Test viewer"
      "        working-directory: apps/viewer"
      "        run: npm test"
-     "      - name: Build viewer"
-     "        working-directory: apps/viewer"
-     "        run: npm run build")))
+	     "      - name: Build viewer"
+	     "        working-directory: apps/viewer"
+	     "        run: npm run build")))
+
+(defun write-ci-flutter-viewer-job (out)
+  (write-ci-lines
+   out
+   '("  flutter-viewer:"
+     "    name: Flutter viewer pilot"
+     "    runs-on: ubuntu-latest"
+     "    steps:"
+     "      - uses: actions/checkout@v6"
+     "      - uses: subosito/flutter-action@v2"
+     "        with:"
+     "          channel: stable"
+     "          cache: true"
+     "      - name: Analyze Flutter viewer"
+     "        working-directory: apps/viewer_flutter"
+     "        run: flutter analyze"
+     "      - name: Test Flutter viewer"
+     "        working-directory: apps/viewer_flutter"
+     "        run: flutter test"
+     "      - name: Build Flutter viewer web"
+     "        working-directory: apps/viewer_flutter"
+     "        run: flutter build web")))

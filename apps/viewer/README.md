@@ -30,3 +30,11 @@ npm run dev
 
 The current app is a TypeScript + Canvas 2D implementation. It keeps Core IR,
 projection/view model, camera, selection, and inspector state separate.
+
+The parallel Flutter pilot lives in `../viewer_flutter`. It must consume the
+same projected ViewModel boundary and should not replace this viewer until the
+strategy in `../../docs/flutter-viewer-strategy.md` is accepted.
+
+Graph color and badge semantics should follow
+`../../docs/graph-ide-tokens.md`; `src/canvas/style.ts` keeps the TypeScript
+mapping for the current Canvas renderer.

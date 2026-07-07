@@ -1,0 +1,115 @@
+{
+  "view_version": "0.1.0",
+  "source": {
+    "core_ir": "examples/runscope/runscope.raid.json",
+    "projection": "view:runtime",
+    "hash": "sample-runscope"
+  },
+  "layout": {
+    "engine": "manual",
+    "version": "flutter-pilot"
+  },
+  "nodes": [
+    {
+      "id": "layout:runtime",
+      "subject": "fsm:runtime",
+      "x": 48,
+      "y": 52,
+      "width": 190,
+      "height": 76,
+      "label": "Runtime FSM",
+      "badges": ["projection", "coverage"],
+      "style": {
+        "tone": "success"
+      }
+    },
+    {
+      "id": "layout:agent",
+      "subject": "fsm:agent",
+      "x": 360,
+      "y": 52,
+      "width": 190,
+      "height": 76,
+      "label": "Agent FSM",
+      "badges": ["policy"]
+    },
+    {
+      "id": "layout:artifact",
+      "subject": "artifact:runtime_fsm_rs",
+      "x": 210,
+      "y": 214,
+      "width": 210,
+      "height": 76,
+      "label": "Generated runtime_fsm.rs",
+      "badges": ["stale-check"],
+      "style": {
+        "tone": "warning"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "layout:runtime_to_artifact",
+      "subject": "derivation:runtime_codegen",
+      "from": "layout:runtime",
+      "to": "layout:artifact",
+      "label": "codegen",
+      "route": [
+        { "x": 143, "y": 128 },
+        { "x": 250, "y": 214 }
+      ],
+      "style": {
+        "tone": "success"
+      }
+    },
+    {
+      "id": "layout:agent_to_artifact",
+      "subject": "trace:policy_to_codegen",
+      "from": "layout:agent",
+      "to": "layout:artifact",
+      "label": "trace",
+      "route": [
+        { "x": 455, "y": 128 },
+        { "x": 380, "y": 214 }
+      ]
+    }
+  ],
+  "inspector_panels": [
+    {
+      "subject": "artifact:runtime_fsm_rs",
+      "title": "Generated runtime_fsm.rs",
+      "sections": [
+        {
+          "title": "Traceability",
+          "rows": [
+            {
+              "label": "Defined at",
+              "value": "lisp/runtime/runscope.lisp"
+            },
+            {
+              "label": "Source map",
+              "value": "runscope.sourcemap.json"
+            },
+            {
+              "label": "Coverage",
+              "value": "run-001.coverage.json"
+            }
+          ]
+        },
+        {
+          "title": "Migration note",
+          "rows": [
+            {
+              "label": "Contract",
+              "value": "schemas/dslraid-view.schema.json"
+            },
+            {
+              "label": "Renderer",
+              "value": "Flutter CustomPainter pilot"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
