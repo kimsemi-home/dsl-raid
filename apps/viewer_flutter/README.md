@@ -17,7 +17,9 @@ viewport, an inspector panel, and diagnostics from
 fixture later.
 
 Shared semantic graph tokens live in `lib/graph_tokens.dart` and are documented
-in `../../docs/graph-ide-tokens.md`.
+in `../../docs/graph-ide-tokens.md`. Meta Astryx token references live in
+`lib/astryx_tokens.dart`; they map the public Astryx neutral theme into Flutter
+constants used by the shadcn theme and graph tone resolver.
 
 ## Commands
 
@@ -25,6 +27,13 @@ in `../../docs/graph-ide-tokens.md`.
 flutter analyze
 flutter test
 flutter build web
+```
+
+The GitHub Pages deployment serves this pilot at
+`https://kimsemi-home.github.io/dsl-raid/flutter/`, so the deployment build uses:
+
+```sh
+flutter build web --base-href /dsl-raid/flutter/
 ```
 
 From the repository root, validate the fixture contract with:

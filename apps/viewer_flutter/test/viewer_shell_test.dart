@@ -1,3 +1,4 @@
+import 'package:dslraid_viewer/astryx_tokens.dart';
 import 'package:dslraid_viewer/graph_view.dart';
 import 'package:dslraid_viewer/main.dart';
 import 'package:dslraid_viewer/shell.dart';
@@ -25,5 +26,10 @@ void main() {
     expect(find.text('Inspector'), findsOneWidget);
     expect(find.text('Diagnostics'), findsOneWidget);
     expect(find.text(viewModel.source.coreIr), findsOneWidget);
+
+    final context = tester.element(find.byType(DslraidShell));
+    final theme = ShadTheme.of(context);
+    expect(theme.colorScheme.background, AstryxNeutralTokens.backgroundBody);
+    expect(theme.colorScheme.foreground, AstryxNeutralTokens.textPrimary);
   });
 }

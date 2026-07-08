@@ -37,6 +37,19 @@ through `lib/view_model_loader.dart`. The asset intentionally follows
 fixture, so the next step can swap in a generated projection fixture without
 changing the shell widgets.
 
+The pilot is also published inside the GitHub Pages artifact at
+`https://kimsemi-home.github.io/dsl-raid/flutter/`. The TypeScript Canvas
+viewer remains the root Pages app; the Flutter build is a subpath deployment so
+agents and reviewers can inspect the shadcn-style shell without changing the
+production viewer entry point.
+
+Astryx usage: Meta Astryx is currently React and StyleX based, so the Flutter
+pilot uses it as an agent-readable token and component reference rather than a
+runtime package. `apps/viewer_flutter/lib/astryx_tokens.dart` mirrors the
+public Astryx neutral theme into Dart constants, and
+`apps/viewer_flutter/lib/graph_tokens.dart` maps those constants into the
+shadcn Flutter theme plus DSLRaid graph semantic tones.
+
 See [ViewModel UI Contract](viewmodel-ui-contract.md) for the agent-readable
 field and surface mapping, and [Graph IDE Tokens](graph-ide-tokens.md) for the
 shared TypeScript/Flutter token baseline.
@@ -51,6 +64,7 @@ architecture rather than replacing it:
 - right inspector panel;
 - bottom diagnostics panel;
 - `shadcn_ui` app/theme/card/badge/button primitives;
+- Astryx neutral token bridge feeding the shadcn theme and graph semantics;
 - JSON ViewModel asset loading through `DslraidViewModel.fromJson`;
 - widget test proving the shell, shadcn root, and graph viewport mount.
 
@@ -73,7 +87,7 @@ Local Flutter checks:
 cd apps/viewer_flutter
 flutter analyze
 flutter test
-flutter build web
+flutter build web --base-href /dsl-raid/flutter/
 ```
 
 Schema fixture check:
@@ -89,6 +103,12 @@ npm --prefix apps/viewer test
 npm --prefix apps/viewer run build
 ```
 
-Add Flutter checks to CI only after the shell either promotes
-`assets/view_model_sample.json` as a stable ViewModel fixture or replaces it
-with a generated fixture from `examples/runscope`.
+CI now analyzes, tests, and builds the Flutter pilot on pull requests and main.
+The Pages workflow also runs a deployment build so the hosted pilot stays tied
+to the same ViewModel fixture contract.
+
+The current Pages workflow builds both web viewers. It runs the TypeScript
+viewer build first, then builds the Flutter pilot with the Pages subpath
+`base-href`, copies `apps/viewer_flutter/build/web` into
+`apps/viewer/dist/flutter`, and uploads the combined `apps/viewer/dist`
+artifact.

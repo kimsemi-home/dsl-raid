@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
+import 'astryx_tokens.dart';
 import 'graph_tokens.dart';
 import 'shell.dart';
 import 'view_model.dart';
@@ -60,20 +61,20 @@ class DslraidTheme {
         card: DslraidGraphTokens.panel,
         cardForeground: DslraidGraphTokens.foreground,
         primary: DslraidGraphTokens.primary,
-        primaryForeground: Color(0xFFFFFFFF),
-        secondary: Color(0xFFE7F4F0),
+        primaryForeground: AstryxNeutralTokens.onAccent,
+        secondary: AstryxNeutralTokens.backgroundMuted,
         secondaryForeground: DslraidGraphTokens.foreground,
-        muted: Color(0xFFF0EEE7),
+        muted: AstryxNeutralTokens.backgroundMuted,
         mutedForeground: DslraidGraphTokens.mutedForeground,
-        accent: Color(0xFFDDF7F1),
+        accent: AstryxNeutralTokens.tealMuted,
         accentForeground: DslraidGraphTokens.foreground,
         destructive: DslraidGraphTokens.danger,
         border: DslraidGraphTokens.border,
         input: DslraidGraphTokens.border,
         ring: DslraidGraphTokens.primary,
-        selection: Color(0xFFCFF7ED),
+        selection: AstryxNeutralTokens.tealMuted,
       ),
-      radius: const BorderRadius.all(Radius.circular(8)),
+      radius: const BorderRadius.all(AstryxNeutralTokens.radius),
     );
   }
 

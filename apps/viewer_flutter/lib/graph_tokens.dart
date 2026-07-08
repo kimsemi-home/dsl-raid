@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 
+import 'astryx_tokens.dart';
 import 'view_model.dart';
 
 class DslraidGraphTokens {
-  static const primary = Color(0xFF0F766E);
-  static const foreground = Color(0xFF171717);
-  static const background = Color(0xFFFAFAF6);
-  static const panel = Color(0xFFFFFEFA);
-  static const border = Color(0xFFDFD8C8);
-  static const warning = Color(0xFFB45309);
-  static const danger = Color(0xFFB42318);
-  static const mutedForeground = Color(0xFF68635A);
-  static const successSurface = Color(0xFFCCFBF1);
-  static const generatedSurface = Color(0xFFDBEAFE);
-  static const warningSurface = Color(0xFFFEF3C7);
-  static const dangerSurface = Color(0xFFFEE2E2);
-  static const mutedSurface = Color(0xFFE5E7EB);
-  static const neutralSurface = Color(0xFFEBE6DA);
+  static const primary = AstryxNeutralTokens.accent;
+  static const foreground = AstryxNeutralTokens.textPrimary;
+  static const background = AstryxNeutralTokens.backgroundBody;
+  static const panel = AstryxNeutralTokens.backgroundCard;
+  static const border = AstryxNeutralTokens.border;
+  static const success = AstryxNeutralTokens.success;
+  static const warning = AstryxNeutralTokens.warning;
+  static const danger = AstryxNeutralTokens.error;
+  static const mutedForeground = AstryxNeutralTokens.textSecondary;
+  static const successSurface = AstryxNeutralTokens.successMuted;
+  static const generatedSurface = AstryxNeutralTokens.blueMuted;
+  static const warningSurface = AstryxNeutralTokens.warningMuted;
+  static const dangerSurface = AstryxNeutralTokens.errorMuted;
+  static const mutedSurface = AstryxNeutralTokens.backgroundMuted;
+  static const neutralSurface = AstryxNeutralTokens.neutralOverlay;
 
   static const panelPadding = 16.0;
   static const compactPanelPadding = 12.0;
@@ -27,7 +29,7 @@ class DslraidGraphTokens {
 
   static Color toneStroke(DslraidTone tone, ShadThemeData theme) {
     return switch (tone) {
-      DslraidTone.success => primary,
+      DslraidTone.success => success,
       DslraidTone.warning => warning,
       DslraidTone.danger => danger,
       DslraidTone.muted => theme.colorScheme.mutedForeground,
