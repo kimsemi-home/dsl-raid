@@ -47,6 +47,19 @@ Source references:
 | `flaky` | `graphToneTokens.warning.badgeFill` | `DslraidGraphTokens.badgeFill(... warning ...)` | Unstable or needs review. |
 | Other | `graphBadgeTokens.neutral` | `DslraidGraphTokens.badgeFill(... neutral ...)` | Informational metadata. |
 
+## Status Signal Tokens
+
+The Flutter pilot renders a compact project-panel status grid from derived
+`ViewStatusSignal` values. The grid reuses the same tone stroke/fill resolvers
+as graph nodes so contract health, coverage, codegen freshness, trace links,
+and review state do not introduce a second palette.
+
+| Status signal | Token source | Reader-facing state |
+| --- | --- | --- |
+| `Contract`, `Source`, `Trace` | `DslraidGraphTokens.toneStroke(success)` and `toneFill(success)` when linked and current. | Fixture contract, projection provenance, and trace link health. |
+| `Review`, `Codegen`, `Coverage` | `toneStroke(warning/danger/success/muted)` based on derived ViewModel state. | Agent-readable review load, stale codegen tags, and coverage tags or gaps. |
+| `Layout` | `toneStroke(normal)` unless the layout engine is `none`. | Renderer metadata without implying Core IR health. |
+
 ## Density Tokens
 
 | Token | Value | Use |

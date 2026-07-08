@@ -21,6 +21,136 @@ class DslraidViewModel {
   final List<InspectorPanel> inspectorPanels;
   final List<DiagnosticItem> diagnostics;
 
+  List<ViewStatusSignal> get statusSignals {
+    final badges = nodes.expand((node) => node.badges).toSet();
+    return [
+      ViewStatusSignal(
+        label: 'Contract',
+        value: 'v$viewVersion schema',
+        tone: DslraidTone.success,
+      ),
+      ViewStatusSignal(
+        label: 'Source',
+        value: source.hash ?? source.projection,
+        tone: source.hash == null ? DslraidTone.warning : DslraidTone.success,
+      ),
+      ViewStatusSignal(
+        label: 'Layout',
+        value: layout.version.isEmpty
+            ? layout.engine
+            : '${layout.engine} / ${layout.version}',
+        tone: layout.engine == 'none'
+            ? DslraidTone.warning
+            : DslraidTone.normal,
+      ),
+      _reviewSignal(),
+      _coverageSignal(badges),
+      _codegenSignal(badges),
+      _traceSignal(),
+    ];
+  }
+
+  ViewStatusSignal _reviewSignal() {
+    final dangerCount = diagnostics
+        .where((item) => item.tone == DslraidTone.danger)
+        .length;
+    final warningCount = diagnostics
+        .where((item) => item.tone == DslraidTone.warning)
+        .length;
+    if (dangerCount > 0) {
+      return ViewStatusSignal(
+        label: 'Review',
+        value: '$dangerCount blocked',
+        tone: DslraidTone.danger,
+      );
+    }
+    if (warningCount > 0) {
+      return ViewStatusSignal(
+        label: 'Review',
+        value: '$warningCount warning',
+        tone: DslraidTone.warning,
+      );
+    }
+    return const ViewStatusSignal(
+      label: 'Review',
+      value: 'clear',
+      tone: DslraidTone.success,
+    );
+  }
+
+  ViewStatusSignal _coverageSignal(Set<String> badges) {
+    if (badges.any(_coverageGapBadges.contains)) {
+      return const ViewStatusSignal(
+        label: 'Coverage',
+        value: 'gap tagged',
+        tone: DslraidTone.warning,
+      );
+    }
+    final coverageCount = badges.where(_coverageOkBadges.contains).length;
+    if (coverageCount > 0) {
+      return ViewStatusSignal(
+        label: 'Coverage',
+        value: '$coverageCount tag',
+        tone: DslraidTone.success,
+      );
+    }
+    return const ViewStatusSignal(
+      label: 'Coverage',
+      value: 'not tagged',
+      tone: DslraidTone.muted,
+    );
+  }
+
+  ViewStatusSignal _codegenSignal(Set<String> badges) {
+    final staleBadges = badges.where((badge) => badge.contains('stale'));
+    if (staleBadges.isNotEmpty) {
+      return ViewStatusSignal(
+        label: 'Codegen',
+        value: staleBadges.first,
+        tone: DslraidTone.warning,
+      );
+    }
+    final generated =
+        badges.contains('generated') ||
+        nodes.any((node) => node.label.toLowerCase().contains('generated'));
+    if (generated) {
+      return const ViewStatusSignal(
+        label: 'Codegen',
+        value: 'fresh',
+        tone: DslraidTone.success,
+      );
+    }
+    return const ViewStatusSignal(
+      label: 'Codegen',
+      value: 'not linked',
+      tone: DslraidTone.muted,
+    );
+  }
+
+  ViewStatusSignal _traceSignal() {
+    final traceEdges = edges.where((edge) {
+      final label = edge.label?.toLowerCase() ?? '';
+      final subject = edge.subject.toLowerCase();
+      return label.contains('trace') || subject.contains('trace');
+    }).toList();
+    if (traceEdges.isEmpty) {
+      return const ViewStatusSignal(
+        label: 'Trace',
+        value: 'not linked',
+        tone: DslraidTone.muted,
+      );
+    }
+    final hasRisk = traceEdges.any(
+      (edge) =>
+          edge.tone == DslraidTone.warning || edge.tone == DslraidTone.danger,
+    );
+    return ViewStatusSignal(
+      label: 'Trace',
+      value: '${traceEdges.length} linked',
+      tone: hasRisk ? DslraidTone.warning : DslraidTone.success,
+    );
+  }
+
   factory DslraidViewModel.fromJson(Map<String, Object?> json) {
     final nodes = _list(json['nodes']).map(SceneNode.fromJson).toList();
     final edges = _list(json['edges']).map(SceneEdge.fromJson).toList();
@@ -36,6 +166,18 @@ class DslraidViewModel {
       diagnostics: _diagnosticsFrom(nodes, edges),
     );
   }
+}
+
+class ViewStatusSignal {
+  const ViewStatusSignal({
+    required this.label,
+    required this.value,
+    required this.tone,
+  });
+
+  final String label;
+  final String value;
+  final DslraidTone tone;
 }
 
 class ViewSource {
@@ -207,6 +349,7 @@ List<DiagnosticItem> _diagnosticsFrom(
           code: 'DSLR-VIEW-NODE',
           subject: node.subject,
           message: '${node.label} needs review in the projected ViewModel.',
+          tone: node.tone,
         ),
     for (final edge in edges)
       if (edge.tone == DslraidTone.warning || edge.tone == DslraidTone.danger)
@@ -215,9 +358,13 @@ List<DiagnosticItem> _diagnosticsFrom(
           subject: edge.subject,
           message:
               '${edge.label ?? edge.id} needs review in the projected ViewModel.',
+          tone: edge.tone,
         ),
   ];
 }
+
+const Set<String> _coverageOkBadges = {'coverage', 'covered', 'tested'};
+const Set<String> _coverageGapBadges = {'uncovered', 'not_deployed'};
 
 Map<String, Object?> _map(Object? value) {
   if (value is Map<String, Object?>) {

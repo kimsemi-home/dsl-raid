@@ -66,6 +66,26 @@ review workflow state that cannot be represented by node/edge style tone.
 | Diagnostics | Derived from `warning`/`danger` tones for now. | First-class diagnostics require a schema migration. |
 | Review/diff | `subject`, `source.hash`, style tone, badges. | Review comments belong to annotations, not this view cache. |
 
+## Derived Status Signals
+
+The Flutter pilot now exposes a renderer-local `ViewStatusSignal` list from the
+schema-shaped ViewModel. This keeps the current schema strict while making the
+agent-facing shell explicit about contract and freshness state:
+
+| Signal | Derived from | Tone rule |
+| --- | --- | --- |
+| `Contract` | `view_version` | `success` when the loaded fixture is schema-shaped. |
+| `Source` | `source.hash`, `source.projection` | `success` with a hash, `warning` when only projection metadata is present. |
+| `Layout` | `layout.engine`, `layout.version` | `warning` only for `none`; otherwise renderer metadata. |
+| `Review` | Derived diagnostics from warning/danger nodes and edges. | `danger` for blocked items, `warning` for review items, `success` when clear. |
+| `Coverage` | Node badges such as `coverage`, `covered`, `tested`, `uncovered`. | `success` for coverage tags, `warning` for explicit gaps, `muted` when absent. |
+| `Codegen` | Node labels and badges such as `generated` and `stale-check`. | `warning` for stale tags, `success` for generated/fresh tags, `muted` when absent. |
+| `Trace` | Edge labels or subjects containing trace references. | `success` when linked, `warning` when linked trace edges are review/risk toned. |
+
+These signals are app-shell state, not schema fields. Promote them into
+`schemas/dslraid-view.schema.json` only if generated projections need stable
+status ids, source locations, or workflow ownership.
+
 ## State Ownership
 
 The ViewModel owns:
