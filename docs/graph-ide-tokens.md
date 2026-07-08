@@ -36,6 +36,11 @@ Source references:
 | Risk | `danger` | `graphToneTokens.danger` | `DslraidGraphTokens.toneStroke(danger)` | Failed, blocked, unsafe, or release-risk state. |
 | Background | `muted` | `graphToneTokens.muted` | `DslraidGraphTokens.toneStroke(muted)` | Filtered, disabled, out-of-scope, or secondary context. |
 
+The Flutter pilot also renders these tone names in a read-only Token Legend
+panel. The legend is sourced from `DslraidGraphTokens.toneLegend`, so the UI,
+tests, and docs share the same agent-readable token names instead of duplicating
+one-off labels.
+
 ## Badge Tokens
 
 | Badge state | TypeScript token | Flutter token resolver | Meaning |

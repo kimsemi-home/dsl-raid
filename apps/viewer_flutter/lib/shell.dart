@@ -3,6 +3,7 @@ import 'package:shadcn_ui/shadcn_ui.dart';
 
 import 'graph_view.dart';
 import 'graph_tokens.dart';
+import 'token_legend.dart';
 import 'view_model.dart';
 
 class DslraidShell extends StatelessWidget {
@@ -39,7 +40,13 @@ class _WideShell extends StatelessWidget {
         SizedBox(
           width: 280,
           child: SingleChildScrollView(
-            child: _ProjectPanel(viewModel: viewModel),
+            child: Column(
+              children: [
+                _ProjectPanel(viewModel: viewModel),
+                const SizedBox(height: 12),
+                const DslraidTokenLegend(),
+              ],
+            ),
           ),
         ),
         Expanded(child: _Workspace(viewModel: viewModel)),
@@ -60,6 +67,8 @@ class _NarrowShell extends StatelessWidget {
       padding: const EdgeInsets.all(12),
       children: [
         _ProjectPanel(viewModel: viewModel),
+        const SizedBox(height: 12),
+        const DslraidTokenLegend(),
         const SizedBox(height: 12),
         SizedBox(height: 420, child: _Workspace(viewModel: viewModel)),
         const SizedBox(height: 12),
