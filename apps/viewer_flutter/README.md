@@ -16,6 +16,11 @@ viewport, an inspector panel, and diagnostics from
 `lib/view_model_loader.dart`, keeping the shell ready for a generated projection
 fixture later.
 
+The project panel also derives compact status signals for the loaded contract,
+source hash, layout engine, review load, coverage tags, codegen freshness, and
+trace linkage. These signals stay app-shell state until generated projections
+need stable schema-level status ids or workflow ownership.
+
 Shared semantic graph tokens live in `lib/graph_tokens.dart` and are documented
 in `../../docs/graph-ide-tokens.md`. Meta Astryx token references live in
 `lib/astryx_tokens.dart`; they map the public Astryx neutral theme into Flutter

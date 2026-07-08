@@ -36,7 +36,12 @@ class _WideShell extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SizedBox(width: 280, child: _ProjectPanel(viewModel: viewModel)),
+        SizedBox(
+          width: 280,
+          child: SingleChildScrollView(
+            child: _ProjectPanel(viewModel: viewModel),
+          ),
+        ),
         Expanded(child: _Workspace(viewModel: viewModel)),
         SizedBox(width: 340, child: _InspectorPanel(viewModel: viewModel)),
       ],
@@ -85,6 +90,8 @@ class _ProjectPanel extends StatelessWidget {
           _BadgeRow(
             values: [viewModel.source.projection, viewModel.layout.engine],
           ),
+          const SizedBox(height: 14),
+          _StatusSignalGrid(signals: viewModel.statusSignals),
           const SizedBox(height: 16),
           for (final node in viewModel.nodes)
             _SubjectTile(
@@ -287,6 +294,74 @@ class _BadgeRow extends StatelessWidget {
       children: [
         for (final value in values) ShadBadge.outline(child: Text(value)),
       ],
+    );
+  }
+}
+
+class _StatusSignalGrid extends StatelessWidget {
+  const _StatusSignalGrid({required this.signals});
+
+  final List<ViewStatusSignal> signals;
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final isTwoColumn = constraints.maxWidth >= 232;
+        final itemWidth = isTwoColumn
+            ? (constraints.maxWidth - 8) / 2
+            : constraints.maxWidth;
+        return Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            for (final signal in signals)
+              SizedBox(
+                width: itemWidth,
+                child: _StatusSignalTile(signal: signal),
+              ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _StatusSignalTile extends StatelessWidget {
+  const _StatusSignalTile({required this.signal});
+
+  final ViewStatusSignal signal;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = ShadTheme.of(context);
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: DslraidGraphTokens.toneFill(signal.tone, theme),
+        border: Border.all(
+          color: DslraidGraphTokens.toneStroke(signal.tone, theme),
+        ),
+        borderRadius: const BorderRadius.all(DslraidGraphTokens.badgeRadius),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(signal.label, style: theme.textTheme.small),
+            const SizedBox(height: 4),
+            Tooltip(
+              message: signal.value,
+              child: Text(
+                signal.value,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: theme.textTheme.p,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:dslraid_viewer/astryx_tokens.dart';
 import 'package:dslraid_viewer/graph_view.dart';
 import 'package:dslraid_viewer/main.dart';
 import 'package:dslraid_viewer/shell.dart';
+import 'package:dslraid_viewer/view_model.dart';
 import 'package:dslraid_viewer/view_model_loader.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -26,6 +27,18 @@ void main() {
     expect(find.text('Inspector'), findsOneWidget);
     expect(find.text('Diagnostics'), findsOneWidget);
     expect(find.text(viewModel.source.coreIr), findsOneWidget);
+    expect(find.text('Contract'), findsAtLeastNWidgets(1));
+    expect(find.text('Review'), findsAtLeastNWidgets(1));
+    expect(find.text('1 warning'), findsAtLeastNWidgets(1));
+    expect(find.text('Codegen'), findsAtLeastNWidgets(1));
+    expect(find.text('stale-check'), findsAtLeastNWidgets(1));
+    expect(find.text('Trace'), findsAtLeastNWidgets(1));
+    expect(find.text('1 linked'), findsAtLeastNWidgets(1));
+    expect(
+      viewModel.statusSignals.map((signal) => signal.label),
+      containsAll(['Contract', 'Review', 'Coverage', 'Codegen', 'Trace']),
+    );
+    expect(viewModel.diagnostics.single.tone, DslraidTone.warning);
 
     final context = tester.element(find.byType(DslraidShell));
     final theme = ShadTheme.of(context);

@@ -66,6 +66,8 @@ architecture rather than replacing it:
 - `shadcn_ui` app/theme/card/badge/button primitives;
 - Astryx neutral token bridge feeding the shadcn theme and graph semantics;
 - JSON ViewModel asset loading through `DslraidViewModel.fromJson`;
+- derived status signals for contract, source, layout, review, coverage,
+  codegen freshness, and trace linkage;
 - widget test proving the shell, shadcn root, and graph viewport mount.
 
 ## Migration Risks
