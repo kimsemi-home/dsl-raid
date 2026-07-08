@@ -18,6 +18,7 @@
      "          cache-dependency-path: apps/viewer/package-lock.json"
      "      - uses: subosito/flutter-action@v2"
      "        with:"
+     "          flutter-version: 3.44.2"
      "          channel: stable"
      "          cache: true"
      "      - name: Render example assets"

@@ -23,6 +23,8 @@ constants used by the shadcn theme and graph tone resolver.
 
 ## Commands
 
+The local and CI baseline is Flutter `3.44.2` on the stable channel.
+
 ```sh
 flutter analyze
 flutter test
