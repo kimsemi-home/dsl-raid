@@ -58,6 +58,39 @@ class DslraidGraphTokens {
     };
   }
 
+  static const toneLegend = [
+    DslraidTokenLegendEntry(
+      tone: DslraidTone.success,
+      label: 'Verified',
+      token: 'graphTone.success',
+      description: 'Covered, generated, deployed, or passing state.',
+    ),
+    DslraidTokenLegendEntry(
+      tone: DslraidTone.warning,
+      label: 'Needs review',
+      token: 'graphTone.warning',
+      description: 'Stale, uncovered, flaky, or review-needed state.',
+    ),
+    DslraidTokenLegendEntry(
+      tone: DslraidTone.danger,
+      label: 'Risk',
+      token: 'graphTone.danger',
+      description: 'Blocked, failed, unsafe, or release-risk state.',
+    ),
+    DslraidTokenLegendEntry(
+      tone: DslraidTone.muted,
+      label: 'Muted',
+      token: 'graphTone.muted',
+      description: 'Filtered, disabled, out-of-scope, or secondary context.',
+    ),
+    DslraidTokenLegendEntry(
+      tone: DslraidTone.normal,
+      label: 'Normal',
+      token: 'graphTone.default',
+      description: 'Ordinary projected graph element.',
+    ),
+  ];
+
   static Color badgeFill({
     required String badge,
     required DslraidTone tone,
@@ -84,4 +117,18 @@ class DslraidGraphTokens {
     }
     return neutralSurface;
   }
+}
+
+class DslraidTokenLegendEntry {
+  const DslraidTokenLegendEntry({
+    required this.tone,
+    required this.label,
+    required this.token,
+    required this.description,
+  });
+
+  final DslraidTone tone;
+  final String label;
+  final String token;
+  final String description;
 }
