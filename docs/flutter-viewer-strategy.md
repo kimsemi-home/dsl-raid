@@ -104,8 +104,9 @@ npm --prefix apps/viewer run build
 ```
 
 CI now analyzes, tests, and builds the Flutter pilot on pull requests and main.
-The Pages workflow also runs a deployment build so the hosted pilot stays tied
-to the same ViewModel fixture contract.
+The generated CI and Pages workflows pin Flutter `3.44.2` on the stable channel
+so the hosted pilot stays tied to the same local latest-stable toolchain and
+ViewModel fixture contract.
 
 The current Pages workflow builds both web viewers. It runs the TypeScript
 viewer build first, then builds the Flutter pilot with the Pages subpath

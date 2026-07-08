@@ -12,6 +12,10 @@ run a strict validation matrix without adding project infrastructure.
 - `.github/workflows/pages.yml`: public viewer demo deployment, including the
   Flutter pilot under `/dsl-raid/flutter/`
 
+The generated CI and Pages workflows pin the Flutter viewer pilot to Flutter
+`3.44.2` on the stable channel, matching the local toolchain used for the
+current Astryx/shadcn pilot work.
+
 ## Permission Rules
 
 Default to:

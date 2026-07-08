@@ -36,6 +36,7 @@
      "      - uses: actions/checkout@v6"
      "      - uses: subosito/flutter-action@v2"
      "        with:"
+     "          flutter-version: 3.44.2"
      "          channel: stable"
      "          cache: true"
      "      - name: Analyze Flutter viewer"
