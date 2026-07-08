@@ -9,7 +9,8 @@ run a strict validation matrix without adding project infrastructure.
 - `.github/workflows/security.yml`: dependency audit and secret scanning
 - `.github/workflows/golden.yml`: golden output checks
 - `.github/workflows/release.yml`: tag release creation
-- `.github/workflows/pages.yml`: public viewer demo deployment
+- `.github/workflows/pages.yml`: public viewer demo deployment, including the
+  Flutter pilot under `/dsl-raid/flutter/`
 
 ## Permission Rules
 
@@ -53,6 +54,8 @@ Once the Rust workspace and viewer exist, required checks should be:
 - golden check
 - viewer lint, test, build
 - Flutter viewer pilot analyze, test, and web build
+- Pages deployment builds the TypeScript viewer root and publishes the Flutter
+  pilot as a subpath artifact
 - security audit
 - secret scan
 

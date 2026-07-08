@@ -3,6 +3,29 @@
 These tokens keep the TypeScript Canvas viewer and Flutter `shadcn_ui` pilot
 aligned around semantic graph states instead of renderer-specific color choices.
 
+## Astryx Bridge
+
+The Flutter pilot uses Meta Astryx as a design-system reference through
+`apps/viewer_flutter/lib/astryx_tokens.dart`. Astryx itself is a React and
+StyleX system, so the Flutter app does not depend on the npm packages at
+runtime. Instead, the bridge maps the public Astryx neutral theme tokens into
+Dart constants, then feeds them into `ShadThemeData` and DSLRaid graph semantic
+tokens.
+
+Source references:
+
+- `https://github.com/facebook/astryx`
+- `https://astryx.atmeta.com/`
+- `@astryxdesign/theme-neutral`
+
+| Astryx token family | Flutter bridge | DSLRaid use |
+| --- | --- | --- |
+| `--color-background-*` | `AstryxNeutralTokens.background*` | shadcn app, card, muted, and scaffold surfaces. |
+| `--color-text-*` | `AstryxNeutralTokens.text*` | foreground and muted foreground text. |
+| `--color-border*` | `AstryxNeutralTokens.border*` | shadcn borders and graph panel borders. |
+| `--color-success/error/warning*` | `AstryxNeutralTokens.success/error/warning*` | graph health, risk, and review tones. |
+| categorical blue/teal muted surfaces | `blueMuted`, `tealMuted` | generated badges, focus, accent, and selection. |
+
 ## Tone Tokens
 
 | Semantic state | Schema tone | TypeScript token | Flutter token resolver | Meaning |
@@ -41,7 +64,8 @@ aligned around semantic graph states instead of renderer-specific color choices.
   `badgeFill`.
 - Flutter: `apps/viewer_flutter/lib/graph_tokens.dart` exposes
   `DslraidGraphTokens` for `DslraidTheme`, `GraphPainter`, panels, badges, and
-  diagnostic rows.
+  diagnostic rows. It reads Astryx neutral values from
+  `apps/viewer_flutter/lib/astryx_tokens.dart`.
 
 New renderer work should add semantic tokens first, then map those tokens to
 colors, stroke widths, labels, or shadcn component variants.
@@ -50,6 +74,8 @@ colors, stroke widths, labels, or shadcn component variants.
 
 - Do not add one-off hex colors inside graph renderers when a semantic token
   already exists.
+- Do not import Astryx React packages into Flutter; port token values or
+  component behavior through the bridge and keep the runtime Flutter-native.
 - Add schema tones only when the state is renderer-independent.
 - Keep hover, selection, camera, focus, and search query as app state, not
   ViewModel schema state.
