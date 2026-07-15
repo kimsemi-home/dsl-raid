@@ -11,6 +11,7 @@ Structured document sources, generated Markdown, implementation, and tests form 
 - A linked implementation or test change requires a document-source and generated-document change in the same commit.
 - A linked document change requires an implementation or test change in the same commit.
 - The trace manifest uses repository-relative paths and rejects missing or escaping paths.
+- The standard-library verifier must also satisfy the repository's error-handling lint policy.
 
 ## Relationship to DSLRaid
 

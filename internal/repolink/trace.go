@@ -1,6 +1,7 @@
 package repolink
 
 import (
+	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -27,13 +28,12 @@ type Group struct {
 }
 
 func LoadManifest(root string) (Manifest, error) {
-	file, err := os.Open(filepath.Join(root, "traceability.json"))
+	body, err := os.ReadFile(filepath.Join(root, "traceability.json"))
 	if err != nil {
 		return Manifest{}, err
 	}
-	defer file.Close()
 	var manifest Manifest
-	decoder := json.NewDecoder(file)
+	decoder := json.NewDecoder(bytes.NewReader(body))
 	decoder.DisallowUnknownFields()
 	if err := decoder.Decode(&manifest); err != nil {
 		return Manifest{}, err

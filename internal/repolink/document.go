@@ -57,13 +57,12 @@ func CheckDocuments(root string) error {
 
 func loadDocument(root string) (Document, error) {
 	path := filepath.Join(root, "docs-src", "document-code-coupling.json")
-	file, err := os.Open(path)
+	body, err := os.ReadFile(path)
 	if err != nil {
 		return Document{}, err
 	}
-	defer file.Close()
 	var doc Document
-	decoder := json.NewDecoder(file)
+	decoder := json.NewDecoder(bytes.NewReader(body))
 	decoder.DisallowUnknownFields()
 	if err := decoder.Decode(&doc); err != nil {
 		return Document{}, err
