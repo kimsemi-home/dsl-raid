@@ -12,6 +12,8 @@ Planned fixture projects:
 - `composition-conflict/`: lazy composition and conflict diagnostics
 - `runtime-trace-overlay/`: trace import, coverage overlay, and source maps
 - `runscope/`: bootstrap fixture for source, artifact, trace, and lock examples
+- `local-finance/`: fixture-only evidence receipt convergence with a fail-closed,
+  no-external-write boundary for the MyHome finance workflow
 
 Each fixture should eventually include:
 

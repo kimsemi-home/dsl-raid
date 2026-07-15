@@ -1,0 +1,140 @@
+{
+  "ir_version": "0.1.0",
+  "project": {
+    "id": "myhome-local-finance-evidence",
+    "name": "MyHome Local Finance Evidence",
+    "visibility": "internal",
+    "tags": ["internal-tooling", "local-first", "finance", "fixture-only"],
+    "metadata": {
+      "summary": "Public-safe contract for verifying indirect receipts; no credentials, account identifiers, holdings, transactions, or revenue values."
+    }
+  },
+  "contexts": [
+    {
+      "id": "context:local_finance_evidence",
+      "name": "Local Finance Evidence Context",
+      "kind": "bounded_context",
+      "owns": [
+        "requirement:receipts_converge",
+        "capability:evidence_verification",
+        "policy:no_external_writes",
+        "policy:receipt_integrity",
+        "policy:fail_closed",
+        "command:verify_evidence",
+        "fsm:local_finance_evidence"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "requirement:receipts_converge",
+      "name": "Indirect receipts converge",
+      "description": "Ledger, portfolio, revenue, and shorts fixture or plan-only receipts converge into one month-bound aggregate hash or a bounded failure state.",
+      "satisfied_by": ["fsm:local_finance_evidence", "policy:no_external_writes", "policy:receipt_integrity", "policy:fail_closed"],
+      "visibility": "internal",
+      "tags": ["monthly", "reliability", "evidence"]
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "capability:evidence_verification",
+      "name": "Evidence verification",
+      "kind": "runtime",
+      "owner": "context:local_finance_evidence",
+      "provides": ["command:verify_evidence"],
+      "visibility": "internal",
+      "tags": ["verification", "read-only"]
+    }
+  ],
+  "policies": [
+    {
+      "id": "policy:no_external_writes",
+      "name": "No external writes",
+      "kind": "security",
+      "applies_to": ["fsm:local_finance_evidence", "transition:local_finance_evidence.readiness_to_ledger", "transition:local_finance_evidence.ledger_to_portfolio", "transition:local_finance_evidence.portfolio_to_revenue", "transition:local_finance_evidence.revenue_to_shorts", "transition:local_finance_evidence.shorts_to_aggregate"],
+      "visibility": "internal",
+      "tags": ["fixture-only", "plan-only", "no-trade", "no-transfer", "no-upload"]
+    },
+    {
+      "id": "policy:receipt_integrity",
+      "name": "Receipt integrity",
+      "kind": "security",
+      "applies_to": ["fsm:local_finance_evidence", "command:verify_evidence"],
+      "visibility": "internal",
+      "tags": ["sha256", "month-bound", "tamper-evident"]
+    },
+    {
+      "id": "policy:fail_closed",
+      "name": "Fail closed",
+      "kind": "runtime",
+      "applies_to": ["state:local_finance_evidence.blocked"],
+      "visibility": "internal",
+      "tags": ["recovery", "diagnostic"]
+    }
+  ],
+  "commands": [
+    {
+      "id": "command:verify_evidence",
+      "name": "Verify indirect evidence",
+      "capability": "capability:evidence_verification",
+      "visibility": "internal",
+      "tags": ["deterministic", "read-only"]
+    }
+  ],
+  "fsms": [
+    {
+      "id": "fsm:local_finance_evidence",
+      "name": "LocalFinanceEvidenceFSM",
+      "context": "context:local_finance_evidence",
+      "visibility": "internal",
+      "tags": ["monthly", "tamper-evident"],
+      "defined_at": {
+        "uri": "examples/local-finance/local-finance.raid.json",
+        "range": {"start_line": 91, "end_line": 133}
+      },
+      "states": [
+        {"id": "idle", "kind": "atomic", "initial": true},
+        {"id": "readiness_check", "kind": "atomic"},
+        {"id": "ledger_receipt", "kind": "atomic"},
+        {"id": "portfolio_receipt", "kind": "atomic"},
+        {"id": "revenue_receipt", "kind": "atomic"},
+        {"id": "shorts_receipt", "kind": "atomic"},
+        {"id": "aggregate_verified", "kind": "atomic", "terminal": true, "terminal_semantics": "success"},
+        {"id": "blocked", "kind": "atomic", "terminal": true, "terminal_semantics": "failed"}
+      ],
+      "events": [
+        {"id": "verify_requested", "name": "verify requested", "kind": "external"},
+        {"id": "readiness_failed", "name": "readiness failed", "kind": "error"},
+        {"id": "receipt_failed", "name": "receipt failed", "kind": "error"}
+      ],
+      "guards": [],
+      "actions": [],
+      "transitions": [
+        {"id": "idle_to_readiness", "from": "idle", "to": "readiness_check", "on": "verify_requested", "guards": [], "actions": []},
+        {"id": "readiness_to_ledger", "from": "readiness_check", "to": "ledger_receipt", "guards": [], "actions": [], "requires": ["policy:no_external_writes", "policy:receipt_integrity"]},
+        {"id": "readiness_to_blocked", "from": "readiness_check", "to": "blocked", "on": "readiness_failed", "guards": [], "actions": [], "requires": ["policy:fail_closed"]},
+        {"id": "ledger_to_portfolio", "from": "ledger_receipt", "to": "portfolio_receipt", "guards": [], "actions": [], "requires": ["policy:no_external_writes", "policy:receipt_integrity"]},
+        {"id": "ledger_to_blocked", "from": "ledger_receipt", "to": "blocked", "on": "receipt_failed", "guards": [], "actions": [], "requires": ["policy:fail_closed"]},
+        {"id": "portfolio_to_revenue", "from": "portfolio_receipt", "to": "revenue_receipt", "guards": [], "actions": [], "requires": ["policy:no_external_writes", "policy:receipt_integrity"]},
+        {"id": "portfolio_to_blocked", "from": "portfolio_receipt", "to": "blocked", "on": "receipt_failed", "guards": [], "actions": [], "requires": ["policy:fail_closed"]},
+        {"id": "revenue_to_shorts", "from": "revenue_receipt", "to": "shorts_receipt", "guards": [], "actions": [], "requires": ["policy:no_external_writes", "policy:receipt_integrity"]},
+        {"id": "revenue_to_blocked", "from": "revenue_receipt", "to": "blocked", "on": "receipt_failed", "guards": [], "actions": [], "requires": ["policy:fail_closed"]},
+        {"id": "shorts_to_aggregate", "from": "shorts_receipt", "to": "aggregate_verified", "guards": [], "actions": [], "requires": ["policy:no_external_writes", "policy:receipt_integrity"]},
+        {"id": "shorts_to_blocked", "from": "shorts_receipt", "to": "blocked", "on": "receipt_failed", "guards": [], "actions": [], "requires": ["policy:fail_closed"]}
+      ]
+    }
+  ],
+  "compositions": [],
+  "projections": [
+    {
+      "id": "view:runtime",
+      "kind": "projection",
+      "source": "fsm:local_finance_evidence",
+      "show": ["states", "transitions", "events", "requirements", "policies", "capabilities"],
+      "filters": {"unreachable": false}
+    }
+  ],
+  "derivations": [],
+  "artifacts": [],
+  "diagnostics": []
+}
