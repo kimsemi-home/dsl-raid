@@ -4,9 +4,9 @@
     "id": "myhome-local-finance-evidence",
     "name": "MyHome Local Finance Evidence",
     "visibility": "internal",
-    "tags": ["internal-tooling", "local-first", "finance", "fixture-only"],
+    "tags": ["internal-tooling", "local-first", "finance", "fixture-only", "plan-only"],
     "metadata": {
-      "summary": "Public-safe contract for verifying indirect receipts; no credentials, account identifiers, holdings, transactions, or revenue values."
+      "summary": "Public-safe contract for verifying plan-only monthly readiness and indirect receipts; no credentials, account identifiers, holdings, transactions, or revenue values."
     }
   },
   "contexts": [
@@ -16,11 +16,16 @@
       "kind": "bounded_context",
       "owns": [
         "requirement:receipts_converge",
+        "requirement:monthly_readiness_converges",
         "capability:evidence_verification",
+        "capability:readiness_verification",
         "policy:no_external_writes",
+        "policy:no_credentials_or_network",
+        "policy:monthly_order",
         "policy:receipt_integrity",
         "policy:fail_closed",
         "command:verify_evidence",
+        "command:verify_readiness",
         "fsm:local_finance_evidence"
       ]
     }
@@ -33,6 +38,14 @@
       "satisfied_by": ["fsm:local_finance_evidence", "policy:no_external_writes", "policy:receipt_integrity", "policy:fail_closed"],
       "visibility": "internal",
       "tags": ["monthly", "reliability", "evidence"]
+    },
+    {
+      "id": "requirement:monthly_readiness_converges",
+      "name": "Monthly readiness plans converge",
+      "description": "Ledger day 2, portfolio day 3, and revenue day 5 plan-only schedules converge before Jarvis verifies evidence, without reading credentials or activating any connector.",
+      "satisfied_by": ["fsm:local_finance_evidence", "policy:no_credentials_or_network", "policy:monthly_order", "policy:fail_closed"],
+      "visibility": "internal",
+      "tags": ["monthly", "readiness", "plan-only"]
     }
   ],
   "capabilities": [
@@ -44,6 +57,15 @@
       "provides": ["command:verify_evidence"],
       "visibility": "internal",
       "tags": ["verification", "read-only"]
+    },
+    {
+      "id": "capability:readiness_verification",
+      "name": "Connection readiness verification",
+      "kind": "runtime",
+      "owner": "context:local_finance_evidence",
+      "provides": ["command:verify_readiness"],
+      "visibility": "internal",
+      "tags": ["verification", "plan-only"]
     }
   ],
   "policies": [
@@ -51,9 +73,25 @@
       "id": "policy:no_external_writes",
       "name": "No external writes",
       "kind": "security",
-      "applies_to": ["fsm:local_finance_evidence", "transition:local_finance_evidence.readiness_to_ledger", "transition:local_finance_evidence.ledger_to_portfolio", "transition:local_finance_evidence.portfolio_to_revenue", "transition:local_finance_evidence.revenue_to_shorts", "transition:local_finance_evidence.shorts_to_aggregate"],
+      "applies_to": ["fsm:local_finance_evidence", "transition:local_finance_evidence.readiness_to_ledger_plan", "transition:local_finance_evidence.schedule_to_ledger", "transition:local_finance_evidence.ledger_to_portfolio", "transition:local_finance_evidence.portfolio_to_revenue", "transition:local_finance_evidence.revenue_to_shorts", "transition:local_finance_evidence.shorts_to_aggregate"],
       "visibility": "internal",
       "tags": ["fixture-only", "plan-only", "no-trade", "no-transfer", "no-upload"]
+    },
+    {
+      "id": "policy:no_credentials_or_network",
+      "name": "No credential reads or network",
+      "kind": "security",
+      "applies_to": ["transition:local_finance_evidence.readiness_to_ledger_plan", "transition:local_finance_evidence.ledger_plan_to_portfolio_plan", "transition:local_finance_evidence.portfolio_plan_to_revenue_plan", "transition:local_finance_evidence.revenue_plan_to_schedule"],
+      "visibility": "internal",
+      "tags": ["plan-only", "public-config", "no-keychain", "no-network"]
+    },
+    {
+      "id": "policy:monthly_order",
+      "name": "Monthly fail-closed order",
+      "kind": "runtime",
+      "applies_to": ["state:local_finance_evidence.schedule_verified"],
+      "visibility": "internal",
+      "tags": ["day-2", "day-3", "day-5", "asia-seoul"]
     },
     {
       "id": "policy:receipt_integrity",
@@ -79,6 +117,13 @@
       "capability": "capability:evidence_verification",
       "visibility": "internal",
       "tags": ["deterministic", "read-only"]
+    },
+    {
+      "id": "command:verify_readiness",
+      "name": "Verify monthly connection readiness",
+      "capability": "capability:readiness_verification",
+      "visibility": "internal",
+      "tags": ["deterministic", "plan-only"]
     }
   ],
   "fsms": [
@@ -95,6 +140,10 @@
       "states": [
         {"id": "idle", "kind": "atomic", "initial": true},
         {"id": "readiness_check", "kind": "atomic"},
+        {"id": "ledger_plan", "kind": "atomic"},
+        {"id": "portfolio_plan", "kind": "atomic"},
+        {"id": "revenue_plan", "kind": "atomic"},
+        {"id": "schedule_verified", "kind": "atomic"},
         {"id": "ledger_receipt", "kind": "atomic"},
         {"id": "portfolio_receipt", "kind": "atomic"},
         {"id": "revenue_receipt", "kind": "atomic"},
@@ -104,6 +153,7 @@
       ],
       "events": [
         {"id": "verify_requested", "name": "verify requested", "kind": "external"},
+        {"id": "plan_failed", "name": "plan failed", "kind": "error"},
         {"id": "readiness_failed", "name": "readiness failed", "kind": "error"},
         {"id": "receipt_failed", "name": "receipt failed", "kind": "error"}
       ],
@@ -111,8 +161,16 @@
       "actions": [],
       "transitions": [
         {"id": "idle_to_readiness", "from": "idle", "to": "readiness_check", "on": "verify_requested", "guards": [], "actions": []},
-        {"id": "readiness_to_ledger", "from": "readiness_check", "to": "ledger_receipt", "guards": [], "actions": [], "requires": ["policy:no_external_writes", "policy:receipt_integrity"]},
+        {"id": "readiness_to_ledger_plan", "from": "readiness_check", "to": "ledger_plan", "guards": [], "actions": [], "requires": ["policy:no_external_writes", "policy:no_credentials_or_network"]},
         {"id": "readiness_to_blocked", "from": "readiness_check", "to": "blocked", "on": "readiness_failed", "guards": [], "actions": [], "requires": ["policy:fail_closed"]},
+        {"id": "ledger_plan_to_portfolio_plan", "from": "ledger_plan", "to": "portfolio_plan", "guards": [], "actions": [], "requires": ["policy:no_external_writes", "policy:no_credentials_or_network"]},
+        {"id": "ledger_plan_to_blocked", "from": "ledger_plan", "to": "blocked", "on": "plan_failed", "guards": [], "actions": [], "requires": ["policy:fail_closed"]},
+        {"id": "portfolio_plan_to_revenue_plan", "from": "portfolio_plan", "to": "revenue_plan", "guards": [], "actions": [], "requires": ["policy:no_external_writes", "policy:no_credentials_or_network"]},
+        {"id": "portfolio_plan_to_blocked", "from": "portfolio_plan", "to": "blocked", "on": "plan_failed", "guards": [], "actions": [], "requires": ["policy:fail_closed"]},
+        {"id": "revenue_plan_to_schedule", "from": "revenue_plan", "to": "schedule_verified", "guards": [], "actions": [], "requires": ["policy:no_external_writes", "policy:no_credentials_or_network", "policy:monthly_order"]},
+        {"id": "revenue_plan_to_blocked", "from": "revenue_plan", "to": "blocked", "on": "plan_failed", "guards": [], "actions": [], "requires": ["policy:fail_closed"]},
+        {"id": "schedule_to_ledger", "from": "schedule_verified", "to": "ledger_receipt", "guards": [], "actions": [], "requires": ["policy:no_external_writes", "policy:receipt_integrity", "policy:monthly_order"]},
+        {"id": "schedule_to_blocked", "from": "schedule_verified", "to": "blocked", "on": "plan_failed", "guards": [], "actions": [], "requires": ["policy:fail_closed"]},
         {"id": "ledger_to_portfolio", "from": "ledger_receipt", "to": "portfolio_receipt", "guards": [], "actions": [], "requires": ["policy:no_external_writes", "policy:receipt_integrity"]},
         {"id": "ledger_to_blocked", "from": "ledger_receipt", "to": "blocked", "on": "receipt_failed", "guards": [], "actions": [], "requires": ["policy:fail_closed"]},
         {"id": "portfolio_to_revenue", "from": "portfolio_receipt", "to": "revenue_receipt", "guards": [], "actions": [], "requires": ["policy:no_external_writes", "policy:receipt_integrity"]},
