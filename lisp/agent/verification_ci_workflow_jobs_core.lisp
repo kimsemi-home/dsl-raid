@@ -11,7 +11,7 @@
      ""
      "      - uses: actions/setup-go@v6"
      "        with:"
-     "          go-version: stable"
+     "          go-version: 1.26.5"
      "          cache: false"
      ""
      "      - name: Install actionlint"

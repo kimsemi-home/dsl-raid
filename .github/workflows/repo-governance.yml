@@ -1,0 +1,30 @@
+name: Repository governance
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  document-code-coupling:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-go@v6
+        with:
+          go-version: "1.26.5"
+          cache: true
+          cache-dependency-path: go.mod
+      - name: Verify generated documents and trace manifest
+        run: |
+          go run ./cmd/repoctl docs check
+          go run ./cmd/repoctl trace verify
+          go test ./...
+      - name: Reject one-sided document or code changes
+        if: github.event_name == 'pull_request'
+        run: go run ./cmd/repoctl trace range origin/${{ github.base_ref }}

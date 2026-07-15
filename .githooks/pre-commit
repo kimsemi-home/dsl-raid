@@ -4,6 +4,8 @@ set -euo pipefail
 repo="$(git rev-parse --show-toplevel)"
 cd "$repo"
 
+go run ./cmd/repoctl docs check
+go run ./cmd/repoctl trace staged
 bash scripts/go-lint.sh
 cargo fmt --all -- --check
 cargo clippy --workspace --all-targets -- -D warnings

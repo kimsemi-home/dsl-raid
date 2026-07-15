@@ -1,0 +1,13 @@
+{
+  "schema_version": "repo.traceability/v1",
+  "groups": [
+    {
+      "id": "document-code-coupling",
+      "document_sources": ["docs-src/document-code-coupling.json"],
+      "generated_documents": ["docs/generated/document-code-coupling.md", "docs/generated/generated-docs.md"],
+      "code": ["cmd/repoctl", "internal/repolink", "traceability.json"],
+      "tests": ["internal/repolink/trace_test.go"],
+      "change_policy": "bidirectional"
+    }
+  ]
+}

@@ -1,3 +1,3 @@
 module github.com/kimsemi-home/dsl-raid/generated
 
-go 1.24
+go 1.26.5
