@@ -12,6 +12,9 @@ Structured document sources, generated Markdown, implementation, and tests form 
 - A linked document change requires an implementation or test change in the same commit.
 - The trace manifest uses repository-relative paths and rejects missing or escaping paths.
 - The standard-library verifier must also satisfy the repository's error-handling lint policy.
+- The curated repository-governance workflow is registered in the GitHub Actions suite SSOT and declares least-privilege permissions plus concurrency.
+- The unified quality command recognizes only the exact repoctl documentation generator marker when the local command exists.
+- Go lint excludes the Viewer dependency tree so repository governance evaluates owned source rather than vendored npm packages.
 
 ## Relationship to DSLRaid
 

@@ -20,7 +20,8 @@
      "Verification Graph workflow is generated from the Lisp SSOT.")
     ("github-actions:release" ".github/workflows/release.yml" "generated-release" t
      "scripts/releasegen.sh" ("contents: write") ("docs/generated/verification-conformance.json")
-     "Release workflow is generated and checked before publishing.")))
+     "Release workflow is generated and checked before publishing.")
+    ("github-actions:repo-governance" ".github/workflows/repo-governance.yml" "curated-repository-guard" nil "curated" ("contents: read") ("docs/generated/document-code-coupling.md") "Repository governance verifies generated documents, trace links, and bidirectional change coupling.")))
 
 (defparameter *verification-github-actions-rules*
   '(("github-actions:generated-header" "Generated workflows must name their generator and avoid pull_request_target.")

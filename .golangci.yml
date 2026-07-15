@@ -5,6 +5,9 @@ run:
 
 linters:
   default: standard
+  exclusions:
+    paths:
+      - apps/viewer/node_modules
 
 issues:
   max-issues-per-linter: 0
@@ -14,3 +17,6 @@ formatters:
   enable:
     - gofmt
     - goimports
+  exclusions:
+    paths:
+      - apps/viewer/node_modules

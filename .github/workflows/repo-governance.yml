@@ -8,6 +8,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: repo-governance-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   document-code-coupling:
     runs-on: ubuntu-latest

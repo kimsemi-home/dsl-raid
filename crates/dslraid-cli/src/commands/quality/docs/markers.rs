@@ -32,6 +32,9 @@ fn check_generator(path: &Path, generator: &str) -> Result<()> {
     if generator.starts_with("dslraid ") {
         return Ok(());
     }
+    if generator == "go run ./cmd/repoctl docs generate" && Path::new("cmd/repoctl").is_dir() {
+        return Ok(());
+    }
     if generator.starts_with("scripts/") && Path::new(generator).exists() {
         return Ok(());
     }

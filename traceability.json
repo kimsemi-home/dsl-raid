@@ -4,8 +4,8 @@
     {
       "id": "document-code-coupling",
       "document_sources": ["docs-src/document-code-coupling.json"],
-      "generated_documents": ["docs/generated/document-code-coupling.md", "docs/generated/generated-docs.md"],
-      "code": ["cmd/repoctl", "internal/repolink", "traceability.json"],
+      "generated_documents": ["docs/generated/document-code-coupling.md", "docs/generated/generated-docs.md", "docs/generated/verification-github-actions.json"],
+      "code": ["cmd/repoctl", "internal/repolink", "traceability.json", ".github/workflows/repo-governance.yml", ".golangci.yml", "crates/dslraid-cli/src/commands/quality/docs/markers.rs", "lisp/agent/verification_github_actions.lisp", "scripts/lib/actions_suite_policy.py"],
       "tests": ["internal/repolink/trace_test.go"],
       "change_policy": "bidirectional"
     }
