@@ -46,7 +46,7 @@
 
 (defun write-go-tooling (out)
   (format out "      - uses: actions/setup-go@v6~%")
-  (format out "        with:~%          go-version: stable~%          cache: false~%"))
+  (format out "        with:~%          go-version: 1.26.5~%          cache: false~%"))
 
 (defun write-node-tooling (out)
   (format out "      - uses: actions/setup-node@v6~%")

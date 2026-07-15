@@ -5,6 +5,7 @@ expected_workflows = {
     ".github/workflows/pages.yml",
     ".github/workflows/verification.yml",
     ".github/workflows/release.yml",
+    ".github/workflows/repo-governance.yml",
 }
 
 forbidden_tokens = [

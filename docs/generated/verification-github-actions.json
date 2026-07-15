@@ -91,6 +91,20 @@
                 "docs/generated/verification-conformance.json"
             ],
             "meaning": "Release workflow is generated and checked before publishing."
+        },
+        {
+            "id": "github-actions:repo-governance",
+            "workflow": ".github/workflows/repo-governance.yml",
+            "role": "curated-repository-guard",
+            "generated": false,
+            "generator": "curated",
+            "permissions": [
+                "contents: read"
+            ],
+            "evidence": [
+                "docs/generated/document-code-coupling.md"
+            ],
+            "meaning": "Repository governance verifies generated documents, trace links, and bidirectional change coupling."
         }
     ],
     "closure_rules": [

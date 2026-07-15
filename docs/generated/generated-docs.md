@@ -11,6 +11,7 @@ Source: `docs/generated/*.md`
 | [assertion-catalog.md](assertion-catalog.md) | DSLRaid Assertion Catalog | `scripts/assertiongen.sh` |
 | [backend-targets.md](backend-targets.md) | DSLRaid Backend Targets | `scripts/backendgen.sh` |
 | [cli-reference.md](cli-reference.md) | DSLRaid CLI Reference | `dslraid doc cli generate` |
+| [document-code-coupling.md](document-code-coupling.md) | Document-Code Coupling Gate | `go run ./cmd/repoctl docs generate` |
 | [fsm-catalog.md](fsm-catalog.md) | DSLRaid FSM Catalog | `dslraid doc fsm-catalog` |
 | [language-diagnostics.md](language-diagnostics.md) | DSLRaid Lisp Language Diagnostics | `scripts/langdiaggen.sh` |
 | [lisp-pipeline.md](lisp-pipeline.md) | DSLRaid Lisp Pipeline | `scripts/lisp-docgen.sh` |

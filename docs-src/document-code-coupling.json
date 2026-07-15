@@ -1,0 +1,23 @@
+{
+  "schema_version": "repo.document/v1",
+  "id": "document-code-coupling",
+  "title": "Document-Code Coupling Gate",
+  "output": "docs/generated/document-code-coupling.md",
+  "summary": "Structured document sources, generated Markdown, implementation, and tests form one traceable change unit.",
+  "sections": [
+    {
+      "heading": "Change contract",
+      "bullets": ["JSON is the source for every new document covered by this gate.", "Markdown output is deterministic and cannot be edited independently.", "A linked implementation or test change requires a document-source and generated-document change in the same commit.", "A linked document change requires an implementation or test change in the same commit.", "The trace manifest uses repository-relative paths and rejects missing or escaping paths.", "The standard-library verifier must also satisfy the repository's error-handling lint policy.", "The curated repository-governance workflow is registered in the GitHub Actions suite SSOT and declares least-privilege permissions plus concurrency.", "The unified quality command recognizes only the exact repoctl documentation generator marker when the local command exists.", "Go lint excludes the Viewer dependency tree so repository governance evaluates owned source rather than vendored npm packages."]
+    },
+    {
+      "heading": "Relationship to DSLRaid",
+      "paragraphs": ["The gate is a repository-governance adapter over DSLRaid's existing source, test, document, derivation, and artifact traceability model. It does not change Canonical IR, diagnostic codes, stable IDs, composition, projection, or code-generation semantics."],
+      "bullets": ["Core IR remains the executable architecture source of truth.", "The JSON trace manifest is intentionally small and standard-library verifiable.", "Future integration may project these groups into DSLRaid artifacts after an ADR-backed Core IR decision."]
+    },
+    {
+      "heading": "Commands",
+      "code_language": "sh",
+      "code": "go run ./cmd/repoctl docs generate\ngo run ./cmd/repoctl docs check\ngo run ./cmd/repoctl trace verify\ngo run ./cmd/repoctl trace staged\ngo test ./..."
+    }
+  ]
+}
