@@ -1,0 +1,167 @@
+{
+  "ir_version": "0.1.0",
+  "project": {
+    "id": "dslraid-research-source-radar",
+    "name": "DSLRaid Research Source Radar",
+    "visibility": "internal",
+    "tags": ["internal-tooling", "research", "primary-sources", "revalidation"],
+    "metadata": {
+      "summary": "Executable lifecycle for converting curated discovery into primary-source-checked, actionable, and time-bounded engineering decisions."
+    }
+  },
+  "contexts": [
+    {
+      "id": "context:source_radar",
+      "name": "Research Source Radar Context",
+      "kind": "bounded_context",
+      "owns": [
+        "requirement:primary_source_precedence",
+        "requirement:decision_revalidation",
+        "capability:source_decision_verification",
+        "policy:aggregator_is_discovery_only",
+        "policy:official_constraints_win",
+        "policy:public_safe_research",
+        "policy:bounded_revalidation",
+        "command:verify_source_decisions",
+        "fsm:source_radar",
+        "artifact:research_decisions"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "requirement:primary_source_precedence",
+      "name": "Primary source precedence",
+      "description": "Every curated discovery link is checked against an original or official source before an adopt, adapt, or defer decision is accepted.",
+      "satisfied_by": ["fsm:source_radar", "policy:aggregator_is_discovery_only", "policy:official_constraints_win"],
+      "visibility": "internal",
+      "tags": ["research", "reliability"]
+    },
+    {
+      "id": "requirement:decision_revalidation",
+      "name": "Bounded decision revalidation",
+      "description": "Every decision names a target repository, concrete action, guardrails, and a revalidation date no more than six months after review.",
+      "satisfied_by": ["fsm:source_radar", "policy:bounded_revalidation", "artifact:research_decisions"],
+      "visibility": "internal",
+      "tags": ["memory", "handoff", "verification"]
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "capability:source_decision_verification",
+      "name": "Source decision verification",
+      "kind": "runtime",
+      "owner": "context:source_radar",
+      "provides": ["command:verify_source_decisions"],
+      "visibility": "internal",
+      "tags": ["deterministic", "read-only"]
+    }
+  ],
+  "policies": [
+    {
+      "id": "policy:aggregator_is_discovery_only",
+      "name": "Aggregator is discovery only",
+      "kind": "custom",
+      "applies_to": ["transition:source_radar.discovery_to_primary"],
+      "visibility": "internal",
+      "tags": ["geeknews", "primary-source"]
+    },
+    {
+      "id": "policy:official_constraints_win",
+      "name": "Official constraints win",
+      "kind": "security",
+      "applies_to": ["transition:source_radar.primary_to_applicability", "transition:source_radar.applicability_to_adopted", "transition:source_radar.applicability_to_deferred"],
+      "visibility": "internal",
+      "tags": ["provider-policy", "fail-closed"]
+    },
+    {
+      "id": "policy:public_safe_research",
+      "name": "Public-safe research metadata",
+      "kind": "security",
+      "applies_to": ["fsm:source_radar", "artifact:research_decisions"],
+      "visibility": "internal",
+      "tags": ["no-credentials", "no-private-data", "no-local-paths"]
+    },
+    {
+      "id": "policy:bounded_revalidation",
+      "name": "Bounded revalidation",
+      "kind": "runtime",
+      "applies_to": ["transition:source_radar.applicability_to_adopted", "transition:source_radar.applicability_to_deferred"],
+      "visibility": "internal",
+      "tags": ["six-month-maximum", "durable-memory"]
+    }
+  ],
+  "commands": [
+    {
+      "id": "command:verify_source_decisions",
+      "name": "Verify research source decisions",
+      "capability": "capability:source_decision_verification",
+      "visibility": "internal",
+      "tags": ["offline", "hash-sealed"]
+    }
+  ],
+  "fsms": [
+    {
+      "id": "fsm:source_radar",
+      "name": "ResearchSourceRadarFSM",
+      "context": "context:source_radar",
+      "visibility": "internal",
+      "tags": ["curation", "decision", "revalidation"],
+      "defined_at": {
+        "uri": "examples/source-radar/source-radar.raid.json",
+        "range": {"start_line": 105, "end_line": 145}
+      },
+      "states": [
+        {"id": "idle", "kind": "atomic", "initial": true},
+        {"id": "discovery_recorded", "kind": "atomic"},
+        {"id": "primary_checked", "kind": "atomic"},
+        {"id": "applicability_checked", "kind": "atomic"},
+        {"id": "adopted", "kind": "atomic", "terminal": true, "terminal_semantics": "success"},
+        {"id": "deferred", "kind": "atomic", "terminal": true, "terminal_semantics": "success"},
+        {"id": "rejected", "kind": "atomic", "terminal": true, "terminal_semantics": "success"},
+        {"id": "blocked", "kind": "atomic", "terminal": true, "terminal_semantics": "failed"}
+      ],
+      "events": [
+        {"id": "scan_requested", "name": "scan requested", "kind": "external"},
+        {"id": "adopt_selected", "name": "adopt selected", "kind": "external"},
+        {"id": "defer_selected", "name": "defer selected", "kind": "external"},
+        {"id": "reject_selected", "name": "reject selected", "kind": "external"},
+        {"id": "validation_failed", "name": "validation failed", "kind": "error"}
+      ],
+      "guards": [],
+      "actions": [],
+      "transitions": [
+        {"id": "idle_to_discovery", "from": "idle", "to": "discovery_recorded", "on": "scan_requested", "guards": [], "actions": [], "requires": ["policy:public_safe_research"]},
+        {"id": "discovery_to_primary", "from": "discovery_recorded", "to": "primary_checked", "guards": [], "actions": [], "requires": ["policy:aggregator_is_discovery_only"]},
+        {"id": "primary_to_applicability", "from": "primary_checked", "to": "applicability_checked", "guards": [], "actions": [], "requires": ["policy:official_constraints_win"]},
+        {"id": "applicability_to_adopted", "from": "applicability_checked", "to": "adopted", "on": "adopt_selected", "guards": [], "actions": [], "requires": ["policy:official_constraints_win", "policy:bounded_revalidation"]},
+        {"id": "applicability_to_deferred", "from": "applicability_checked", "to": "deferred", "on": "defer_selected", "guards": [], "actions": [], "requires": ["policy:official_constraints_win", "policy:bounded_revalidation"]},
+        {"id": "applicability_to_rejected", "from": "applicability_checked", "to": "rejected", "on": "reject_selected", "guards": [], "actions": [], "requires": ["policy:official_constraints_win"]},
+        {"id": "discovery_to_blocked", "from": "discovery_recorded", "to": "blocked", "on": "validation_failed", "guards": [], "actions": [], "requires": ["policy:public_safe_research"]},
+        {"id": "primary_to_blocked", "from": "primary_checked", "to": "blocked", "on": "validation_failed", "guards": [], "actions": [], "requires": ["policy:official_constraints_win"]},
+        {"id": "applicability_to_blocked", "from": "applicability_checked", "to": "blocked", "on": "validation_failed", "guards": [], "actions": [], "requires": ["policy:official_constraints_win"]}
+      ]
+    }
+  ],
+  "compositions": [],
+  "projections": [
+    {
+      "id": "view:source_radar",
+      "kind": "projection",
+      "source": "fsm:source_radar",
+      "show": ["states", "transitions", "events", "requirements", "policies", "capabilities", "artifacts"],
+      "filters": {"unreachable": false}
+    }
+  ],
+  "derivations": [],
+  "artifacts": [
+    {
+      "id": "artifact:research_decisions",
+      "kind": "other",
+      "path": "examples/source-radar/research-decisions.json",
+      "visibility": "internal",
+      "tags": ["research", "decisions", "hash-sealed"]
+    }
+  ],
+  "diagnostics": []
+}

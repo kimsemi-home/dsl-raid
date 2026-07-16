@@ -14,6 +14,8 @@ Planned fixture projects:
 - `runscope/`: bootstrap fixture for source, artifact, trace, and lock examples
 - `local-finance/`: plan-only monthly readiness and fixture evidence convergence with a fail-closed,
   no-external-write boundary for the MyHome finance workflow
+- `source-radar/`: curated-source intake, primary-source precedence, adoption
+  decisions, and bounded revalidation for internal productivity work
 
 Each fixture should eventually include:
 
