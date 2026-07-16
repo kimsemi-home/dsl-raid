@@ -1,0 +1,93 @@
+{
+  "schema_version": "dslraid.research-radar/v1",
+  "reviewed_on": "2026-07-16",
+  "sources": [
+    {
+      "id": "cli-auth-right-way",
+      "discovery_url": "https://news.hada.io/topic?id=30648",
+      "primary_url": "https://www.abgeo.dev/blog/cli-authentication-the-right-way/",
+      "evidence_urls": ["https://datatracker.ietf.org/doc/html/rfc8252", "https://developers.google.com/youtube/v3/guides/auth/installed-apps"],
+      "topic": "Reliable CLI OAuth handoff",
+      "target": "myhome-shorts-factory",
+      "decision": "adapt",
+      "action": "add fake system-browser handoff and a no-launch URL fallback around random-port loopback OAuth",
+      "rationale": "Loopback is reliable on the owner Mac, while an explicit URL fallback makes browser-launch failure visible instead of hanging.",
+      "guardrails": ["never embed a user-agent", "bind before creating the URL", "do not paste authorization codes", "state and PKCE remain mandatory"],
+      "revalidate_by": "2026-10-16"
+    },
+    {
+      "id": "google-installed-app-oauth",
+      "discovery_url": "https://news.hada.io/topic?id=30648",
+      "primary_url": "https://developers.google.com/youtube/v3/guides/auth/installed-apps",
+      "evidence_urls": ["https://developers.google.com/identity/protocols/oauth2/policies", "https://datatracker.ietf.org/doc/html/rfc8252"],
+      "topic": "Google desktop installed-app OAuth",
+      "target": "myhome-shorts-factory",
+      "decision": "adopt",
+      "action": "bind an exact random loopback redirect into a system-browser PKCE request before callback handling",
+      "rationale": "Google explicitly directs browser-capable desktop and CLI applications to the installed-app flow.",
+      "guardrails": ["desktop OAuth client type", "exact 127.0.0.1 runtime port", "system browser only", "youtube.upload least scope"],
+      "revalidate_by": "2026-10-16"
+    },
+    {
+      "id": "google-device-flow-scope-limit",
+      "discovery_url": "https://news.hada.io/topic?id=30648",
+      "primary_url": "https://developers.google.com/identity/protocols/oauth2/limited-input-device",
+      "evidence_urls": ["https://developers.google.com/youtube/v3/guides/auth/devices", "https://developers.google.com/identity/protocols/oauth2/scopes"],
+      "topic": "Device authorization grant applicability",
+      "target": "myhome-shorts-factory",
+      "decision": "defer",
+      "action": "do not implement device flow unless Google adds youtube.upload to the allowed device scopes",
+      "rationale": "Google device flow currently allows youtube and youtube.readonly but not the required youtube.upload scope.",
+      "guardrails": ["official provider constraints override aggregator advice", "no broader youtube scope substitution", "no unsupported grant fallback"],
+      "revalidate_by": "2026-10-16"
+    },
+    {
+      "id": "paisa-local-first-finance",
+      "discovery_url": "https://news.hada.io/topic?id=11007",
+      "primary_url": "https://paisa.fyi/",
+      "evidence_urls": ["https://paisa.fyi/reference/import/", "https://paisa.fyi/reference/credit-card/"],
+      "topic": "Local-first statement import",
+      "target": "myhome-ledger",
+      "decision": "adapt",
+      "action": "add versioned issuer import templates with deterministic deduplication and category suggestion history",
+      "rationale": "Import consistency and classification are the real moat for monthly credit-first automation, while financial data stays local.",
+      "guardrails": ["prefer CSV or structured exports", "extract PDF text only when necessary", "never trust OCR amounts without reconciliation", "retain source hashes"],
+      "revalidate_by": "2026-10-16"
+    },
+    {
+      "id": "devflow-native",
+      "discovery_url": "https://news.hada.io/topic?id=29955",
+      "primary_url": "https://github.com/Sungblab/devflow-native",
+      "evidence_urls": ["https://sungblab.com/projects"],
+      "topic": "Repo-local agent handoff",
+      "target": "dsl-raid",
+      "decision": "adapt",
+      "action": "persist source decisions, verification evidence, and the next revalidation date in repository-local artifacts",
+      "rationale": "Long-running internal tooling needs durable state outside a single agent conversation.",
+      "guardrails": ["public-safe metadata only", "no local absolute paths", "no credentials", "hash every decision set"],
+      "revalidate_by": "2026-10-16"
+    },
+    {
+      "id": "loop-engineering",
+      "discovery_url": "https://news.hada.io/topic?id=30301",
+      "primary_url": "https://addyosmani.com/blog/loop-engineering/",
+      "evidence_urls": ["https://addyosmani.com/blog/agent-harness-engineering/"],
+      "topic": "Goal-driven verification loops",
+      "target": "dsl-raid",
+      "decision": "adapt",
+      "action": "model explicit stop conditions, durable memory, and independent semantic checks for every source-driven change",
+      "rationale": "Automation is useful only when the repository retains what changed, what was verified, and what remains uncertain.",
+      "guardrails": ["done remains a claim until evidenced", "maker output needs an independent semantic check", "keep review capacity bounded", "avoid comprehension debt"],
+      "revalidate_by": "2026-10-16"
+    }
+  ],
+  "checks": [
+    "aggregator-primary-separated",
+    "decisions-actionable",
+    "official-constraints-win",
+    "revalidation-bounded",
+    "source-urls-https",
+    "targets-explicit"
+  ],
+  "aggregate_hash": "ddfafc7182faaa2783bc08ecc954167cf5cb19e63c1b178005521bcd7197a385"
+}
